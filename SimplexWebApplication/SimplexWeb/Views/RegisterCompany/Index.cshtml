@@ -1,0 +1,182 @@
+﻿@using Kendo.Mvc.UI
+@using EZFactorModel.Ref
+
+@model Company
+@{
+    ViewBag.Title = "Register Company";
+}
+
+<div id="example">
+    <div id="inputFormContainer" style="margin-left:25px; margin-top:50px;" >
+        <form id="registration">
+            <table class="inputFormTable">
+                <tr>
+                    <td>
+                        <div class="editor-label"><label for="cname">Company Name:</label></div>
+                        <div class="editor-field"><input type="text" id="cname" name="Company Name" class="k-textbox" required data-bind="value: companyName"/></div>
+                        <div class="editor-label"><label for="ein">EIN:</label></div>
+                        <div class="editor-field"><input type="text" id="ein" name="EIN Number" class="k-textbox" required data-bind="value: einNumber" data-role='maskedtextbox' data-mask="99-0000000"/></div>
+                        <div class="editor-label"><label for="addLine1">Address Line 1:</label></div>
+                        <div class="editor-field"><input type="text" id="addLine1" name="Address Line 1" class="k-textbox" required data-bind="value: addressLine1"/></div>
+                        <div class="editor-label"><label for="addLine2">Address Line 2:</label></div>
+                        <div class="editor-field"><input type="text" id="addLine2" name="Address Line 2" class="k-textbox" data-bind="value: addressLine2"/></div>
+                        <div class="editor-label"><label for="city">City:</label></div>
+                        <div class="editor-field"><input type="text" id="city" name="City" class="k-textbox" required data-bind="value: city"/></div>
+                        <div class="editor-label"><label for="zip">ZIP Code:</label></div>
+                        <div class="editor-field"><input type="text" id="zip" name="ZIP Code" class="k-textbox" required data-bind="value: zipCode" /></div>
+                        <div class="editor-label"><label for="country">Country:</label></div>
+                        <div class="editor-field"><select id="country" name="Country" style="width:200px" data-bind="source: countries, value: country"></select></div>
+                        <br>
+                        <br>
+                        <div class="editor-label"><label for="fname">First Name:</label></div>
+                        <div class="editor-field"><input id="fname" data-bind="value: firstName" /></div>
+                        <div class="editor-label"><label for="lname">Last Name:</label></div>        
+                        <div class="editor-field"><input id="lname" data-bind="value: lastName" /></div>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <div class="editor-label"><input type="checkbox" id="agree" data-bind="checked: agreed" /></div>
+                        <div class="editor-field"><label for="agree">I have read the licence agreement</label></div>
+                        <div class="editor-field"><button data-bind="enabled: agreed, click: register" style="display: block">Register</button></div>    
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <div class="current-state">
+        <h4>Current view model state:</h4>
+        <pre>
+    {
+        firstName: <span data-bind="text: firstName"></span>,
+        lastName: <span data-bind="text: lastName"></span>,
+        country: <span data-bind="text: country"></span>,
+        agreed: <span data-bind="text: agreed"></span>
+        ein : <span data-bind="text: einNumber"></span>
+        addressLine1 : <span data-bind="text: addressLine1"></span>
+        addressLine2 : <span data-bind="text: addressLine1"></span>
+    }
+        </pre>
+    </div>
+    <div class="editor-field"><button data-bind="click: startOver" style="display: block">Start Over</button></div>    
+
+    <div class="confirmation" data-bind="visible: confirmed">
+        Thank you for your registration, <span data-bind="text: firstName"></span> <span data-bind="text: lastName"></span>
+        <br /><br />
+        <li class="status">
+            </li>
+    </div>
+    
+    <script>
+
+        
+        function saveCompanyInfo(e) {
+            e.preventDefault();
+
+            var validator = $("#example").kendoValidator().data("kendoValidator");
+
+            if (validator.validate()) {
+                alert("call db here");
+
+
+                var company = {
+                    "CompanyName": this.get("companyName"),
+                    "FirstName": this.get("firstName"),
+                    "LastName": this.get("lastName"),
+                    "EIN": this.get("einNumber"),
+                    "AddressLine1": this.get("addressLine1"),
+                    "AddressLine2": this.get("addressLine2"),
+                    "City": this.get("city"),
+                    "ZipCode" : this.get("zipCode"),
+                    "Country": this.get("country")
+                };
+
+                var parms = {
+                    jsonStringCompany: JSON.stringify(company)
+                };
+
+
+                $.ajax({
+                    type: "POST",
+                    traditional: true,
+                    url: '@Url.Action("SaveCompanyInfo", "RegisterCompany")',
+                    async: true,
+                    data: parms,
+                    dataType: "json",
+                    beforeSend: function (xhr) {
+                    },
+                    success: function (response, textStatus, jqXHR) {
+                        alert(response.message);
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert("Error found during execution");
+
+                    }
+                });
+
+                this.set("confirmed", true);
+            } 
+
+
+        }
+
+
+        $(document).ready(Init);
+
+        function Init() {
+            var viewModel = kendo.observable({
+                firstName: '@Html.Raw(Json.Encode(Model.FirstName))'.replace(/['"]+/g, ''),
+                lastName: '@Html.Raw(Json.Encode(Model.LastName))'.replace(/['"]+/g, ''),
+                countries: ["Unites States", "Bangladesh"],
+                country: '@Html.Raw(Json.Encode(Model.Country))'.replace(/['"]+/g, ''),
+                einNumber: '@Html.Raw(Json.Encode(Model.EIN))'.replace(/['"]+/g, ''),
+                addressLine1: '@Html.Raw(Json.Encode(Model.AddressLine1))'.replace(/['"]+/g, ''),
+                addressLine2: '@Html.Raw(Json.Encode(Model.AddressLine2))'.replace(/['"]+/g, ''),
+                city: '@Html.Raw(Json.Encode(Model.City))'.replace(/['"]+/g, ''),
+                zipCode: '@Html.Raw(Json.Encode(Model.ZipCode))'.replace(/['"]+/g, ''),
+                agreed: false,
+                confirmed: false,
+                register: saveCompanyInfo,
+                startOver: function () {
+                    this.set("confirmed", false);
+                    this.set("agreed", false);
+                    this.set("country", '@Html.Raw(Json.Encode(Model.Country))'.replace(/['"]+/g, ''));
+                    this.set("companyName", '@Html.Raw(Json.Encode(Model.CompanyName))'.replace(/['"]+/g, ''));
+                    this.set("firstName", '@Html.Raw(Json.Encode(Model.FirstName))'.replace(/['"]+/g, ''));
+                    this.set("lastName", '@Html.Raw(Json.Encode(Model.LastName))'.replace(/['"]+/g, ''));
+                    this.set("einNumber", '@Html.Raw(Json.Encode(Model.EIN))'.replace(/['"]+/g, ''));
+                    this.set("addressLine1", '@Html.Raw(Json.Encode(Model.AddressLine1))'.replace(/['"]+/g, ''));
+                    this.set("addressLine2", '@Html.Raw(Json.Encode(Model.AddressLine2))'.replace(/['"]+/g, ''));
+                    this.set("city", '@Html.Raw(Json.Encode(Model.City))'.replace(/['"]+/g, ''));
+                    this.set("zipCode", '@Html.Raw(Json.Encode(Model.ZipCode))'.replace(/['"]+/g, ''));
+                }
+            });
+
+
+            
+            
+            kendo.bind($("#example"), viewModel);
+        }
+    </script>
+
+    <style>
+        .inputFormTable { 
+            position: relative; 
+            width: 700px; /* for IE 6 */
+            height: 300px;
+            background-color: Silver;
+            border-radius: 25px; /* Gives any image a round corner */
+           
+        }
+        .editor-label {
+            margin-left: 20px;
+            float: left;
+            width: 200px;
+        }
+
+        .editor-field {
+            margin-left: 200px;
+        }
+
+    </style>
+</div>

@@ -1,0 +1,520 @@
+2016-01-09 12:32:56,704 [14] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 12:32:56,723 [14] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 12:32:56,724 [14] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 12:32:56,725 [14] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 12:32:56,727 [14] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 12:43:32,123 [11] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 12:43:32,125 [11] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 12:43:32,127 [11] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 12:43:32,128 [11] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 12:43:32,134 [11] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 12:46:32,136 [26] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 12:46:32,138 [26] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 12:46:32,140 [26] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 12:46:32,141 [26] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 12:46:32,142 [26] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 12:46:44,170 [30] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 12:46:44,171 [30] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 12:46:44,172 [30] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 12:46:44,173 [30] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 12:46:44,173 [30] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 12:51:56,049 [32] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 12:51:56,052 [32] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 12:51:56,053 [32] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 12:51:56,054 [32] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 12:51:56,055 [32] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 12:52:11,270 [31] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 12:52:11,271 [31] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 12:52:11,272 [31] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 12:52:11,272 [31] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 12:52:11,273 [31] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 12:53:32,145 [33] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 12:53:32,147 [33] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 12:53:32,150 [33] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 12:53:32,153 [33] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 12:53:32,155 [33] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 12:57:10,147 [18] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 12:57:10,148 [18] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 12:57:10,149 [18] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 12:57:10,151 [18] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 12:57:10,153 [18] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 12:57:25,578 [18] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 12:57:25,580 [18] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 12:57:25,581 [18] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 12:57:25,582 [18] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 12:57:25,582 [18] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 12:58:30,394 [18] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 12:58:30,397 [18] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 12:58:30,399 [18] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 12:58:30,400 [18] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 12:58:30,401 [18] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 12:59:57,493 [17] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 12:59:57,494 [17] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 12:59:57,496 [17] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 12:59:57,498 [17] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 12:59:57,500 [17] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 13:01:04,312 [18] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 13:01:04,313 [18] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 13:01:04,314 [18] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 13:01:04,315 [18] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 13:01:04,316 [18] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 13:02:33,273 [18] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 13:02:33,275 [18] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 13:02:33,276 [18] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 13:02:33,278 [18] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 13:02:33,279 [18] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 13:04:21,269 [18] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 13:04:21,271 [18] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 13:04:21,272 [18] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 13:04:21,273 [18] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 13:04:21,274 [18] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 13:06:44,936 [34] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 13:06:44,937 [34] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 13:06:44,939 [34] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 13:06:44,940 [34] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 13:06:44,940 [34] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 13:07:01,467 [6] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 13:07:01,469 [6] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 13:07:01,470 [6] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 13:07:01,470 [6] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 13:07:01,471 [6] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 13:07:29,535 [34] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 13:07:29,538 [34] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 13:07:29,539 [34] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 13:07:29,540 [34] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 13:07:29,542 [34] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 13:08:09,222 [34] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 13:08:09,224 [34] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 13:08:09,225 [34] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 13:08:09,226 [34] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 13:08:09,227 [34] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 13:10:58,247 [39] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 13:10:58,267 [39] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 13:10:58,269 [39] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 13:10:58,270 [39] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 13:10:58,272 [39] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 13:11:30,574 [37] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 13:11:30,575 [37] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 13:11:30,576 [37] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 13:11:30,578 [37] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 13:11:30,579 [37] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 13:12:17,221 [27] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 13:12:17,223 [27] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 13:12:17,226 [27] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 13:12:17,227 [27] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 13:12:17,228 [27] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 13:12:55,166 [35] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 13:12:55,168 [35] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 13:12:55,170 [35] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 13:12:55,171 [35] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 13:12:55,172 [35] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 13:15:16,165 [27] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 13:15:16,167 [27] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 13:15:16,169 [27] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 13:15:16,170 [27] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 13:15:16,171 [27] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 13:15:21,996 [27] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 13:15:21,998 [27] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 13:15:21,999 [27] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 13:15:21,999 [27] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 13:15:22,000 [27] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 13:15:46,682 [34] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 13:15:46,683 [34] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 13:15:46,684 [34] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 13:15:46,688 [34] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 13:15:46,689 [34] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 13:15:58,293 [32] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 13:15:58,294 [32] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 13:15:58,296 [32] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 13:15:58,298 [32] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 13:15:58,299 [32] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 13:17:19,805 [28] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 13:17:19,821 [28] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 13:17:19,822 [28] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 13:17:19,823 [28] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 13:17:19,825 [28] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 13:21:20,653 [28] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 13:21:20,654 [28] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 13:21:20,655 [28] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 13:21:20,656 [28] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 13:21:20,657 [28] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 13:21:56,793 [34] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 13:21:56,794 [34] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 13:21:56,795 [34] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 13:21:56,796 [34] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 13:21:56,797 [34] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 13:24:04,254 [19] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 13:24:04,256 [19] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 13:24:04,257 [19] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 13:24:04,258 [19] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 13:24:04,259 [19] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 13:25:07,233 [36] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 13:25:07,235 [36] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 13:25:07,237 [36] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 13:25:07,238 [36] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 13:25:07,239 [36] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 13:26:10,880 [31] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 13:26:10,882 [31] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 13:26:10,884 [31] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 13:26:10,887 [31] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 13:26:10,892 [31] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 13:27:53,415 [35] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 13:27:53,417 [35] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 13:27:53,419 [35] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 13:27:53,420 [35] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 13:27:53,421 [35] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 13:30:15,416 [17] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 13:30:15,417 [17] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 13:30:15,420 [17] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 13:30:15,421 [17] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 13:30:15,422 [17] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 13:32:03,878 [17] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 13:32:03,880 [17] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 13:32:03,881 [17] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 13:32:03,882 [17] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 13:32:03,883 [17] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 13:35:14,224 [15] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 13:35:14,225 [15] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 13:35:14,226 [15] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 13:35:14,227 [15] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 13:35:14,228 [15] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 13:36:13,843 [33] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 13:36:13,844 [33] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 13:36:13,846 [33] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 13:36:13,847 [33] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 13:36:13,848 [33] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 13:36:51,470 [21] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 13:36:51,471 [21] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 13:36:51,472 [21] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 13:36:51,473 [21] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 13:36:51,474 [21] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 13:37:51,190 [12] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 13:37:51,191 [12] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 13:37:51,192 [12] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 13:37:51,193 [12] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 13:37:51,194 [12] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 13:40:11,840 [21] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 13:40:11,850 [21] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 13:40:11,852 [21] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 13:40:11,853 [21] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 13:40:11,854 [21] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 13:43:02,542 [13] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 13:43:02,544 [13] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 13:43:02,545 [13] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 13:43:02,546 [13] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 13:43:02,547 [13] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 13:43:40,724 [13] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 13:43:40,725 [13] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 13:43:40,727 [13] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 13:43:40,728 [13] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 13:43:40,729 [13] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 13:44:09,523 [21] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 13:44:09,525 [21] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 13:44:09,525 [21] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 13:44:09,526 [21] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 13:44:09,527 [21] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 13:45:15,018 [21] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 13:45:15,020 [21] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 13:45:15,021 [21] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 13:45:15,022 [21] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 13:45:15,029 [21] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 13:46:13,226 [21] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 13:46:13,228 [21] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 13:46:13,229 [21] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 13:46:13,231 [21] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 13:46:13,232 [21] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 13:48:33,119 [13] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 13:48:33,138 [13] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 13:48:33,140 [13] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 13:48:33,141 [13] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 13:48:33,142 [13] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 13:50:45,812 [6] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 13:50:45,814 [6] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 13:50:45,816 [6] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 13:50:45,818 [6] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 13:50:45,821 [6] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 13:51:53,816 [6] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 13:51:53,818 [6] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 13:51:53,820 [6] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 13:51:53,821 [6] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 13:51:53,821 [6] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 13:53:16,725 [6] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 13:53:16,726 [6] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 13:53:16,728 [6] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 13:53:16,728 [6] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 13:53:16,729 [6] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 13:53:36,649 [6] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 13:53:36,650 [6] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 13:53:36,651 [6] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 13:53:36,653 [6] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 13:53:36,654 [6] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 13:55:46,954 [10] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 13:55:46,956 [10] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 13:55:46,957 [10] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 13:55:46,957 [10] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 13:55:46,958 [10] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 13:56:08,827 [22] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 13:56:08,828 [22] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 13:56:08,834 [22] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 13:56:08,836 [22] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 13:56:08,838 [22] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 13:57:49,258 [5] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 13:57:49,260 [5] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 13:57:49,261 [5] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 13:57:49,272 [5] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 13:57:49,273 [5] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 13:59:03,769 [26] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 13:59:03,771 [26] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 13:59:03,772 [26] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 13:59:03,773 [26] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 13:59:03,774 [26] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 14:00:07,063 [22] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 14:00:07,065 [22] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 14:00:07,066 [22] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 14:00:07,067 [22] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 14:00:07,069 [22] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 14:01:14,297 [24] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 14:01:14,299 [24] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 14:01:14,300 [24] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 14:01:14,301 [24] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 14:01:14,303 [24] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 14:03:14,724 [11] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 14:03:14,725 [11] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 14:03:14,726 [11] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 14:03:14,728 [11] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 14:03:14,729 [11] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 14:04:13,349 [23] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 14:04:13,351 [23] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 14:04:13,354 [23] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 14:04:13,355 [23] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 14:04:13,356 [23] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 14:04:35,034 [11] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 14:04:35,035 [11] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 14:04:35,037 [11] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 14:04:35,038 [11] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 14:04:35,040 [11] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 14:04:50,396 [11] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 14:04:50,398 [11] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 14:04:50,401 [11] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 14:04:50,404 [11] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 14:04:50,406 [11] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 14:06:20,482 [11] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 14:06:20,483 [11] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 14:06:20,484 [11] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 14:06:20,486 [11] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 14:06:20,487 [11] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 14:06:49,757 [11] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 14:06:49,758 [11] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 14:06:49,760 [11] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 14:06:49,760 [11] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 14:06:49,761 [11] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 14:07:13,193 [11] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 14:07:13,213 [11] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 14:07:13,215 [11] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 14:07:13,216 [11] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 14:07:13,218 [11] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 14:22:37,332 [18] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 14:22:37,333 [18] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 14:22:37,334 [18] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 14:22:37,335 [18] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 14:22:37,336 [18] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 14:23:53,392 [17] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 14:23:53,394 [17] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 14:23:53,395 [17] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 14:23:53,396 [17] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 14:23:53,397 [17] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 14:24:44,064 [25] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 14:24:44,065 [25] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 14:24:44,066 [25] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 14:24:44,068 [25] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 14:24:44,070 [25] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 14:27:41,021 [15] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 14:27:41,023 [15] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 14:27:41,024 [15] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 14:27:41,024 [15] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 14:27:41,025 [15] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 16:43:17,473 [14] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 16:43:17,503 [14] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 16:43:17,505 [14] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 16:43:17,506 [14] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 16:43:17,508 [14] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 16:45:00,888 [10] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 16:45:00,908 [10] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 16:45:00,909 [10] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 16:45:00,911 [10] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 16:45:00,912 [10] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 16:48:01,719 [21] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 16:48:01,734 [21] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 16:48:01,735 [21] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 16:48:01,736 [21] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 16:48:01,737 [21] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 16:48:27,280 [21] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 16:48:27,282 [21] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 16:48:27,283 [21] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 16:48:27,310 [21] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 16:48:27,312 [21] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 16:48:59,533 [21] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 16:48:59,535 [21] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 16:48:59,535 [21] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 16:48:59,536 [21] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 16:48:59,539 [21] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 16:49:26,928 [21] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 16:49:26,929 [21] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 16:49:26,931 [21] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 16:49:26,932 [21] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 16:49:26,933 [21] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 16:49:43,143 [21] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 16:49:43,145 [21] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 16:49:43,146 [21] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 16:49:43,147 [21] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 16:49:43,148 [21] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 16:51:21,693 [21] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 16:51:21,695 [21] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 16:51:21,695 [21] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 16:51:21,696 [21] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 16:51:21,697 [21] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 16:52:02,054 [21] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 16:52:02,056 [21] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 16:52:02,058 [21] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 16:52:02,058 [21] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 16:52:02,059 [21] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 16:52:37,315 [21] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 16:52:37,316 [21] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 16:52:37,317 [21] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 16:52:37,318 [21] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 16:52:37,319 [21] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 16:52:52,684 [21] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 16:52:52,685 [21] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 16:52:52,686 [21] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 16:52:52,689 [21] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 16:52:52,691 [21] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 16:53:43,892 [27] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 16:53:43,897 [27] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 16:53:43,899 [27] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 16:53:43,904 [27] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 16:53:43,905 [27] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 16:54:10,413 [21] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 16:54:10,414 [21] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 16:54:10,415 [21] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 16:54:10,415 [21] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 16:54:10,416 [21] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 16:56:22,383 [16] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 16:56:22,385 [16] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 16:56:22,385 [16] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 16:56:22,386 [16] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 16:56:22,387 [16] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 16:56:48,317 [16] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 16:56:48,336 [16] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 16:56:48,337 [16] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 16:56:48,339 [16] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 16:56:48,340 [16] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 17:00:06,592 [12] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 17:00:06,594 [12] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 17:00:06,595 [12] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 17:00:06,596 [12] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 17:00:06,598 [12] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 17:01:28,179 [19] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 17:01:28,199 [19] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 17:01:28,201 [19] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 17:01:28,202 [19] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 17:01:28,203 [19] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 17:02:56,200 [15] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 17:02:56,203 [15] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 17:02:56,204 [15] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 17:02:56,209 [15] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 17:02:56,210 [15] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 17:06:14,453 [33] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 17:06:14,458 [33] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 17:06:14,459 [33] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 17:06:14,460 [33] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 17:06:14,460 [33] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 17:08:34,775 [33] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 17:08:34,776 [33] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 17:08:34,779 [33] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 17:08:34,779 [33] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 17:08:34,780 [33] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 17:08:52,949 [33] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 17:08:52,950 [33] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 17:08:52,952 [33] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 17:08:52,953 [33] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 17:08:52,956 [33] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 17:09:56,595 [33] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 17:09:56,597 [33] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 17:09:56,598 [33] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 17:09:56,599 [33] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 17:09:56,600 [33] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 17:10:15,751 [31] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 17:10:15,753 [31] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 17:10:15,754 [31] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 17:10:15,757 [31] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 17:10:15,758 [31] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 17:10:34,036 [31] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 17:10:34,037 [31] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 17:10:34,038 [31] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 17:10:34,040 [31] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 17:10:34,043 [31] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 17:10:58,741 [33] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 17:10:58,742 [33] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 17:10:58,743 [33] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 17:10:58,744 [33] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 17:10:58,745 [33] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 17:11:18,385 [17] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 17:11:18,386 [17] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 17:11:18,387 [17] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 17:11:18,388 [17] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 17:11:18,388 [17] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 17:12:13,302 [14] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 17:12:13,304 [14] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 17:12:13,306 [14] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 17:12:13,307 [14] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 17:12:13,308 [14] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 17:12:28,437 [11] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 17:12:28,440 [11] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 17:12:28,442 [11] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 17:12:28,443 [11] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 17:12:28,444 [11] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 17:12:58,008 [22] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 17:12:58,009 [22] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 17:12:58,011 [22] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 17:12:58,011 [22] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 17:12:58,012 [22] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 17:13:27,148 [22] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 17:13:27,149 [22] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 17:13:27,151 [22] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 17:13:27,151 [22] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 17:13:27,153 [22] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 17:13:49,841 [11] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 17:13:49,842 [11] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 17:13:49,843 [11] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 17:13:49,844 [11] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 17:13:49,845 [11] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 17:15:22,794 [11] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 17:15:22,795 [11] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 17:15:22,796 [11] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 17:15:22,797 [11] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 17:15:22,798 [11] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 17:15:42,225 [12] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 17:15:42,245 [12] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 17:15:42,246 [12] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 17:15:42,247 [12] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 17:15:42,249 [12] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 17:16:50,960 [11] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 17:16:50,963 [11] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 17:16:50,966 [11] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 17:16:50,969 [11] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 17:16:50,970 [11] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 17:17:34,809 [11] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 17:17:34,810 [11] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 17:17:34,811 [11] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 17:17:34,811 [11] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 17:17:34,813 [11] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 17:18:54,238 [26] INFO  PhenixTools.Logger.PhenixLogger [(null)] - ... and an Info log.
+2016-01-09 17:18:54,242 [26] WARN  PhenixTools.Logger.PhenixLogger [(null)] - ... and a warning.
+2016-01-09 17:18:54,243 [26] ERROR PhenixTools.Logger.PhenixLogger [(null)] - ... and an error.
+2016-01-09 17:18:54,244 [26] FATAL PhenixTools.Logger.PhenixLogger [(null)] - ... and a fatal error.
+2016-01-09 17:18:54,245 [26] INFO  PhenixTools.Logger.PhenixLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-09 17:49:45,636 [5] INFO  PhenixTools.Logger.SimplexLogger [(null)] - ... and an Info log.
+2016-01-09 17:49:45,677 [5] WARN  PhenixTools.Logger.SimplexLogger [(null)] - ... and a warning.
+2016-01-09 17:49:45,678 [5] ERROR PhenixTools.Logger.SimplexLogger [(null)] - ... and an error.
+2016-01-09 17:49:45,679 [5] FATAL PhenixTools.Logger.SimplexLogger [(null)] - ... and a fatal error.
+2016-01-09 17:49:45,681 [5] INFO  PhenixTools.Logger.SimplexLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:

@@ -1,0 +1,17 @@
+Arvixe
+
+Control Panel Login http://tigerlily.arvixe.com/Default.aspx?pid=Home
+Username: coalesc1
+Password: Ph9l0ksG57
+
+
+How to FTP files:
+hostname: coalescesoftcom.com
+UID: coalesc1
+PWD: Ph9l0ksG57
+
+
+
+Home Page:
+https://customers.arvixe.com/
+uid: tzaman536@gmail.com pwd: Changeme123

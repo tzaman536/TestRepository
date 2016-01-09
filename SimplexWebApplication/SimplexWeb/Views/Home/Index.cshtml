@@ -1,0 +1,232 @@
+﻿
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<script>
+    
+</script>
+<table style="width:100%; height:300px">
+    <tr style="height:300px; ">
+        <td style="width:10px;border:1px solid white;"></td>
+        <td style="width:300px; border:1px solid white; text-align:center;">
+            <section id="imgListReceivable" class="imageSection1"></section>
+            <b>Custom Software Development</b>
+        </td>
+        <td style="width:10px;border:1px solid white;"></td>
+        <td style="width:300px; border:1px solid white;  text-align:center">
+            <section id="imgAcquireReceivable" class="imageSection2"></section>
+            <b>IT Infrastructure</b>
+        </td>
+        <td style="width:10px;border:1px solid white;"></td>
+        <td style="width:300px; border:1px solid white; text-align:center">
+            <section id="imgFundContract" class="imageSection3"></section>
+            <b>Software Consulting</b>
+        </td>
+    </tr>
+</table>
+
+<ol class="round">
+    <li class="one">
+        <h5>A Proven Way to Boost Cash Flow</h5>
+        Factoring is a transaction in which a business sells its accounts receivable, or invoices, to a third party<br /> 
+        commercial financial company, also known as a “factor.” This is done so that the business can receive cash <br />
+        more quickly than it would by waiting 30 to 60 days for a customer payment. Factoring is sometimes called 
+        “accounts receivable financing.” The terms and nature of factoring can differ among various industries and financial <br />
+        services providers. Most factoring companies will purchase your invoices and advance you money within 24 hours. <br /> 
+        The advance rate can range from 80% to as much as 95% depending on the industry, your customers’ credit histories <br /> 
+        and other criteria. The factor also provides you back-office support. Once it collects from your customers, the <br />
+        factor pays you the reserve balances of the invoices, minus a fee for assuming the collection risk. The benefit of<br /> 
+        factoring is that, instead of waiting one to two months for a customer payment, you now have that cash in hand to <br /> 
+        operate and grow your business. Factoring is not a loan. No debt is assumed by factoring. The funds are unrestricted,<br /> 
+        providing a company more flexibility than with a traditional bank loan.<br />
+    </li>
+
+    <li class="two">
+        <h5>Factoring in Five Simple Steps</h5>
+        You perform a service for your customer.<br />
+        You send your invoice to a factoring company.<br />
+        You receive a cash advance on your invoice from the factoring company.<br />
+        The factoring company collects full payment from your customer.<br />
+        The factoring company pays you the rest of your invoice amount, minus a fee.<br />
+    </li>
+
+    <li class="three">
+        <h5>What are the Advantages to Factoring?</h5>
+        There are several reasons why factoring is a valuable financial tool for many businesses. The key benefit is that<br />
+        factoring provides a quick boost to your cash flow. Many factoring companies provide cash on your accounts receivable <br />
+        within 24 hours. This can solve short-term cash flow issues and help fuel the growth of your business. Factoring <br />
+        companies handle your customer collections, and may also evaluate your customers’ credit and payment histories.<br />
+    </li>
+
+  <li class="four">
+        <h5>Is Factoring Something New?</h5>
+        No, it actually goes back several centuries. The origin of factoring lies in overseas trade among nations. It became<br />
+        a part of doing business in England as early as the 1400s, and came to America with the Pilgrims in 1620. Like all financial<br />
+        tools, factoring has evolved over the years. It grew in the United States as an effective way for companies to build more cash<br />
+        flow, due to limitations companies faced securing loans in the nation’s fragmented banking system.<br />
+    </li>
+
+  <li class="five">
+        <h5>Who Factors?</h5>
+        Companies of all sizes, from one-person businesses to Fortune 500 corporations, use factoring as a way to increase their cash flow.<br /> 
+        Factoring spans all industries, including trucking, transportation, manufacturing and distribution, textiles, oil and gas, and staffing<br />
+        agencies. Companies use the cash generated from factoring to pay for inventory, buy new equipment, add employees, expand operations—basically<br />
+        any expenses related to their business. Factoring allows a company to make quicker decisions and expand at a faster pace.
+    </li>
+
+  <li class="six">
+        <h5>How Factoring Works</h5>
+        Here’s a fictional example to illustrate a common factoring situation:<br />
+        ABC Transport is a trucking company that wants to double the size of its fleet over the next two years and serve more clients in the West.<br /> 
+        The company has just landed a new customer on the West Coast who needs freight shipped from Kansas City to Los Angeles. The customer will pay<br /> 
+        for the service within 30 days, but that won’t cover the immediate fuel, payroll and maintenance costs of running the route. <br />
+        The owners of ABC Transport have been in this situation before. They feel that the lack of available cash flow has prevented the<br />
+        company from taking on new business. ABC Transport turns to a factoring company, selling the West Coast customer’s invoice in exchange<br />
+        for a 90 percent advance on the total amount within a day. The influx of cash replenishes the trucking company’s reserves, allowing it <br />
+        to run the Kansas City-Los Angeles route. Factoring also gives ABC Transport the<br /> 
+        flexibility to take on new customers as well.<br />
+    </li>
+
+</ol>
+
+<script>
+
+    function sayHello() {
+        alert("Hello");
+    }
+
+    $("#helloBtn").click(function () {
+        sayHello();
+        ezfactor_welcome();
+    });
+
+    $("#imgAcquireReceivable").click(function () {
+        
+//        $.ajax({
+//            type: 'POST',
+//            url: '@Url.Action("Index", "AcquireReceivable")',
+//            data: null,
+//            complete: function () {
+//                    }
+//                
+//            });
+        window.location.href = '@Url.Action("Index","AcquireReceivable")'
+     });
+
+    $("#imgListReceivable").click(function () {
+        window.location.href = '@Url.Action("Index","ListReceivable")'
+    });
+
+    $("#imgFundContract").click(function () {
+        window.location.href = '@Url.Action("Index","FundContract")'
+    });
+
+    
+
+</script>
+<style>
+
+    #menu h2 {
+        font-size: 1em;
+        text-transform: uppercase;
+        padding: 5px 10px;
+    }
+    #template img {
+        margin: 5px 20px 0 0;
+        float: left;
+    }
+    #template {
+        width: 380px;
+    }
+    #template ol {
+        float: left;
+        margin: 0;
+        padding: 10px 10px 0 10px;
+    }
+    #template:after {
+        content: ".";
+        display: block;
+        height: 0;
+        clear: both;
+        visibility: hidden;
+    }
+    #template .k-button {
+        float: left;
+        clear: left;
+        margin: 5px 0 5px 12px;
+    }
+
+    .imageSection1 { 
+        position:relative;
+        width: 100%; /* for IE 6 */
+        height: 100%;
+        /*background: url(@Url.Content("~/Images/Vista.gif")) no-repeat;*/
+        background: url(@Url.Content("~/Images/CustomSoftwareSolution.jpg")) no-repeat center; 
+        background-size: 100%;
+        /*border-radius: 25px;  Gives any image a round corner */
+        /*border-bottom-left-radius: 10px; */
+        cursor: pointer;
+   
+    }
+
+    .setionText {
+       text-align: center;
+    }
+
+    .textSectionOne  {
+        position: relative;
+        display: inline-block;
+        margin-top: 50px; /* Use this to move text on the image */
+        margin-right: 40px; /* Use this to move text on the image */
+        color:red; 
+        float: right; /* Use this to move text on the image */
+       
+    }
+
+    .imageSection2 { 
+        position: relative; 
+        width: 100%; /* for IE 6 */
+        height: 100%;
+        /*background: url(@Url.Content("~/Images/Office2007.gif")) no-repeat center;*/
+        background: url(@Url.Content("~/Images/ITInfrastructure.jpg")) no-repeat center;
+        background-size:100%;
+        /*border-radius: 25px;  Gives any image a round corner */
+        cursor: pointer;
+    }
+
+    .textSectionTwo  {
+        position: relative;
+        display: inline-block;
+        margin-top: 50px; /* Use this to move text on the image */
+        margin-right: 40px; /* Use this to move text on the image */
+        color:red; 
+        float: right; /* Use this to move text on the image */
+       
+    }
+
+
+    .imageSection3 { 
+        position: relative; 
+        width: 100%; /* for IE 6 */
+        height: 100%;
+        /*background: url(@Url.Content("~/Images/Office2010Silver.gif")) no-repeat;*/
+        background: url(@Url.Content("~/Images/SoftwareConsulting.jpg")) no-repeat center;
+        background-size:100%;
+        /*border-radius: 25px;  Gives any image a round corner */
+        cursor:pointer;
+    }
+
+    .textSectionThree  {
+        position: relative;
+        display: inline-block;
+        margin-top: 50px; /* Use this to move text on the image */
+        margin-right: 40px; /* Use this to move text on the image */
+        color:red; 
+        float: right; /* Use this to move text on the image */
+       
+    }
+
+    
+
+</style>
