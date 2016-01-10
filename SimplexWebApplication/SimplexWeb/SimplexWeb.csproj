@@ -201,6 +201,7 @@
     <Compile Include="Controllers\ITInfrastructureController.cs" />
     <Compile Include="Controllers\ListReceivableController.cs" />
     <Compile Include="Controllers\RegisterCompanyController.cs" />
+    <Compile Include="Controllers\SoftwareConsultingController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1332,6 +1333,7 @@
     <Content Include="Views\RegisterCompany\Index.cshtml" />
     <Content Include="Views\CustomSoftware\Index.cshtml" />
     <Content Include="Views\ITInfrastructure\Index.cshtml" />
+    <Content Include="Views\SoftwareConsulting\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\STACK\SimplexTools\SimplexTool.csproj">
