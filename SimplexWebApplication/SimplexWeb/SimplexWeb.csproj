@@ -11,7 +11,7 @@
     <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Simplex.Web</RootNamespace>
+    <RootNamespace>Simplex</RootNamespace>
     <AssemblyName>Simplex</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
@@ -195,11 +195,11 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AcquireReceivableController.cs" />
+    <Compile Include="Controllers\CustomSoftwareController.cs" />
     <Compile Include="Controllers\FundContractController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ListReceivableController.cs" />
     <Compile Include="Controllers\RegisterCompanyController.cs" />
-    <Compile Include="Controllers\Shared\EZFactorHelper.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1186,6 +1186,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Controllers\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -1328,6 +1329,7 @@
     <Content Include="Views\ListReceivable\Index.cshtml" />
     <Content Include="Views\FundContract\Index.cshtml" />
     <Content Include="Views\RegisterCompany\Index.cshtml" />
+    <Content Include="Views\CustomSoftware\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\STACK\SimplexTools\SimplexTool.csproj">
@@ -1359,7 +1361,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>60269</DevelopmentServerPort>
+          <DevelopmentServerPort>54022</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

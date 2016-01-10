@@ -1,0 +1,58 @@
+2016-01-10 09:06:09,984 [6] INFO  PhenixTools.Logger.SimplexLogger [(null)] - ... and an Info log.
+2016-01-10 09:06:10,046 [6] WARN  PhenixTools.Logger.SimplexLogger [(null)] - ... and a warning.
+2016-01-10 09:06:10,053 [6] ERROR PhenixTools.Logger.SimplexLogger [(null)] - ... and an error.
+2016-01-10 09:06:10,059 [6] FATAL PhenixTools.Logger.SimplexLogger [(null)] - ... and a fatal error.
+2016-01-10 09:06:10,061 [6] INFO  PhenixTools.Logger.SimplexLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-10 09:07:26,000 [6] INFO  PhenixTools.Logger.SimplexLogger [(null)] - ... and an Info log.
+2016-01-10 09:07:26,002 [6] WARN  PhenixTools.Logger.SimplexLogger [(null)] - ... and a warning.
+2016-01-10 09:07:26,003 [6] ERROR PhenixTools.Logger.SimplexLogger [(null)] - ... and an error.
+2016-01-10 09:07:26,007 [6] FATAL PhenixTools.Logger.SimplexLogger [(null)] - ... and a fatal error.
+2016-01-10 09:07:26,010 [6] INFO  PhenixTools.Logger.SimplexLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-10 09:10:14,948 [5] INFO  PhenixTools.Logger.SimplexLogger [(null)] - Returning view from HomeController Contact()
+2016-01-10 09:10:30,019 [11] INFO  PhenixTools.Logger.SimplexLogger [(null)] - ... and an Info log.
+2016-01-10 09:10:30,020 [11] WARN  PhenixTools.Logger.SimplexLogger [(null)] - ... and a warning.
+2016-01-10 09:10:30,021 [11] ERROR PhenixTools.Logger.SimplexLogger [(null)] - ... and an error.
+2016-01-10 09:10:30,022 [11] FATAL PhenixTools.Logger.SimplexLogger [(null)] - ... and a fatal error.
+2016-01-10 09:10:30,023 [11] INFO  PhenixTools.Logger.SimplexLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-10 09:12:21,753 [12] INFO  PhenixTools.Logger.SimplexLogger [(null)] - Returning view from HomeController About()
+2016-01-10 09:12:26,068 [18] INFO  PhenixTools.Logger.SimplexLogger [(null)] - Returning view from HomeController Contact()
+2016-01-10 09:12:27,618 [5] INFO  PhenixTools.Logger.SimplexLogger [(null)] - ... and an Info log.
+2016-01-10 09:12:27,619 [5] WARN  PhenixTools.Logger.SimplexLogger [(null)] - ... and a warning.
+2016-01-10 09:12:27,620 [5] ERROR PhenixTools.Logger.SimplexLogger [(null)] - ... and an error.
+2016-01-10 09:12:27,621 [5] FATAL PhenixTools.Logger.SimplexLogger [(null)] - ... and a fatal error.
+2016-01-10 09:12:27,623 [5] INFO  PhenixTools.Logger.SimplexLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-10 09:37:05,862 [6] INFO  PhenixTools.Logger.SimplexLogger [(null)] - ... and an Info log.
+2016-01-10 09:37:05,909 [6] WARN  PhenixTools.Logger.SimplexLogger [(null)] - ... and a warning.
+2016-01-10 09:37:05,911 [6] ERROR PhenixTools.Logger.SimplexLogger [(null)] - ... and an error.
+2016-01-10 09:37:05,913 [6] FATAL PhenixTools.Logger.SimplexLogger [(null)] - ... and a fatal error.
+2016-01-10 09:37:05,922 [6] INFO  PhenixTools.Logger.SimplexLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-10 09:41:06,608 [6] INFO  PhenixTools.Logger.SimplexLogger [(null)] - ... and an Info log.
+2016-01-10 09:41:06,626 [6] WARN  PhenixTools.Logger.SimplexLogger [(null)] - ... and a warning.
+2016-01-10 09:41:06,627 [6] ERROR PhenixTools.Logger.SimplexLogger [(null)] - ... and an error.
+2016-01-10 09:41:06,629 [6] FATAL PhenixTools.Logger.SimplexLogger [(null)] - ... and a fatal error.
+2016-01-10 09:41:06,630 [6] INFO  PhenixTools.Logger.SimplexLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-10 09:41:31,563 [13] INFO  PhenixTools.Logger.SimplexLogger [(null)] - ... and an Info log.
+2016-01-10 09:41:31,564 [13] WARN  PhenixTools.Logger.SimplexLogger [(null)] - ... and a warning.
+2016-01-10 09:41:31,566 [13] ERROR PhenixTools.Logger.SimplexLogger [(null)] - ... and an error.
+2016-01-10 09:41:31,567 [13] FATAL PhenixTools.Logger.SimplexLogger [(null)] - ... and a fatal error.
+2016-01-10 09:41:31,569 [13] INFO  PhenixTools.Logger.SimplexLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-10 10:06:03,079 [5] INFO  PhenixTools.Logger.SimplexLogger [(null)] - ... and an Info log.
+2016-01-10 10:06:03,117 [5] WARN  PhenixTools.Logger.SimplexLogger [(null)] - ... and a warning.
+2016-01-10 10:06:03,120 [5] ERROR PhenixTools.Logger.SimplexLogger [(null)] - ... and an error.
+2016-01-10 10:06:03,121 [5] FATAL PhenixTools.Logger.SimplexLogger [(null)] - ... and a fatal error.
+2016-01-10 10:06:03,124 [5] INFO  PhenixTools.Logger.SimplexLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-10 10:11:05,366 [13] INFO  PhenixTools.Logger.SimplexLogger [(null)] - ... and an Info log.
+2016-01-10 10:11:05,385 [13] WARN  PhenixTools.Logger.SimplexLogger [(null)] - ... and a warning.
+2016-01-10 10:11:05,386 [13] ERROR PhenixTools.Logger.SimplexLogger [(null)] - ... and an error.
+2016-01-10 10:11:05,388 [13] FATAL PhenixTools.Logger.SimplexLogger [(null)] - ... and a fatal error.
+2016-01-10 10:11:05,390 [13] INFO  PhenixTools.Logger.SimplexLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-10 10:21:06,854 [18] INFO  PhenixTools.Logger.SimplexLogger [(null)] - ... and an Info log.
+2016-01-10 10:21:06,872 [18] WARN  PhenixTools.Logger.SimplexLogger [(null)] - ... and a warning.
+2016-01-10 10:21:06,874 [18] ERROR PhenixTools.Logger.SimplexLogger [(null)] - ... and an error.
+2016-01-10 10:21:06,875 [18] FATAL PhenixTools.Logger.SimplexLogger [(null)] - ... and a fatal error.
+2016-01-10 10:21:06,876 [18] INFO  PhenixTools.Logger.SimplexLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
+2016-01-10 10:37:10,974 [13] INFO  PhenixTools.Logger.SimplexLogger [(null)] - ... and an Info log.
+2016-01-10 10:37:10,998 [13] WARN  PhenixTools.Logger.SimplexLogger [(null)] - ... and a warning.
+2016-01-10 10:37:11,000 [13] ERROR PhenixTools.Logger.SimplexLogger [(null)] - ... and an error.
+2016-01-10 10:37:11,002 [13] FATAL PhenixTools.Logger.SimplexLogger [(null)] - ... and a fatal error.
+2016-01-10 10:37:11,004 [13] INFO  PhenixTools.Logger.SimplexLogger [(null)] - Returning view from HomeController Index(). Current user is tzaman:
