@@ -198,6 +198,7 @@
     <Compile Include="Controllers\CustomSoftwareController.cs" />
     <Compile Include="Controllers\FundContractController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ITInfrastructureController.cs" />
     <Compile Include="Controllers\ListReceivableController.cs" />
     <Compile Include="Controllers\RegisterCompanyController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
@@ -1330,6 +1331,7 @@
     <Content Include="Views\FundContract\Index.cshtml" />
     <Content Include="Views\RegisterCompany\Index.cshtml" />
     <Content Include="Views\CustomSoftware\Index.cshtml" />
+    <Content Include="Views\ITInfrastructure\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\STACK\SimplexTools\SimplexTool.csproj">
