@@ -1,34 +1,71 @@
 ﻿@{
-    ViewBag.Title = "About";
+    ViewBag.Title = "Contact";
 }
 
-<hgroup class="title">
-    <h1>@ViewBag.Title.</h1>
-    <h2>@ViewBag.Message</h2>
-</hgroup>
 
-<article>
-    <p>
-        Use this area to provide additional information.
-    </p>
+<h1 style="margin-left:100px;">CONTACT US.</h1>
 
-    <p>
-        Use this area to provide additional information.
-    </p>
 
-    <p>
-        Use this area to provide additional information.
-    </p>
-</article>
+<div id="inputFormContainer" style="margin-left:100px; margin-top:50px;" >
+    <table class="inputFormTable">
+        <tr style>
+            <td>
+                <div style="margin-left:15px;" >
+                    <h4>Buiness Development</h4></br>
+                    Denia Zaman</br>
+                    dzaman75@gmail.com </br>
+                    516 639 8131</br>
+                </div>
+            </td>
+        </tr>
+    </table>
 
-<aside>
-    <h3>Aside Title</h3>
-    <p>
-        Use this area to provide additional information.
-    </p>
-    <ul>
-        <li>@Html.ActionLink("Home", "Index", "Home")</li>
-        <li>@Html.ActionLink("About", "About", "Home")</li>
-        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-    </ul>
-</aside>
+    <br />
+    <br />
+    <table class="inputFormTable">
+        <tr style>
+            <td>
+                <div style="margin-left:15px;" >
+                    <h4>Technical Support</h4></br>
+                    Denia Zaman <br />
+                    dzaman75@gmail.com <br />
+                    516 639 8131<br />
+                </div>
+            </td>
+        </tr>
+    </table>
+
+</div>
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+<style>
+    .inputFormTable { 
+        position: relative; 
+        width: 250px; /* for IE 6 */
+        height: 150px;
+        background-color: Silver;
+        border-radius: 25px; /* Gives any image a round corner */
+           
+    }
+    .editor-label {
+        margin-left: 20px;
+        float: left;
+        width: 200px;
+    }
+
+    .editor-field {
+        margin-left: 200px;
+    }
+
+</style>    
