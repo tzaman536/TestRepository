@@ -3295,6 +3295,7 @@
     <Content Include="Areas\razor\Views\spreadsheet\disabled_cells.cshtml" />
     <Content Include="Content\mobile-nav.json" />
     <None Include="Properties\PublishProfiles\DevDeploy.pubxml" />
+    <Content Include="Views\Home\IndexKendo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\razor\Views\map\api.cshtml" />
