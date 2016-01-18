@@ -1,0 +1,107 @@
+C:\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Examples\VS2015\Kendo.Mvc.Examples\bin\Kendo.Mvc.Examples.dll.config
+C:\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Examples\VS2015\Kendo.Mvc.Examples\bin\Kendo.Mvc.Examples.dll
+C:\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Examples\VS2015\Kendo.Mvc.Examples\bin\Kendo.Mvc.Examples.pdb
+C:\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Examples\VS2015\Kendo.Mvc.Examples\bin\Antlr3.Runtime.dll
+C:\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Examples\VS2015\Kendo.Mvc.Examples\bin\EntityFramework.dll
+C:\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Examples\VS2015\Kendo.Mvc.Examples\bin\Microsoft.Web.Infrastructure.dll
+C:\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Examples\VS2015\Kendo.Mvc.Examples\bin\Newtonsoft.Json.dll
+C:\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Examples\VS2015\Kendo.Mvc.Examples\bin\System.Net.Http.Extensions.dll
+C:\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Examples\VS2015\Kendo.Mvc.Examples\bin\System.Net.Http.Formatting.dll
+C:\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Examples\VS2015\Kendo.Mvc.Examples\bin\System.Net.Http.Primitives.dll
+C:\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Examples\VS2015\Kendo.Mvc.Examples\bin\System.Web.Helpers.dll
+C:\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Examples\VS2015\Kendo.Mvc.Examples\bin\System.Web.Http.dll
+C:\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Examples\VS2015\Kendo.Mvc.Examples\bin\System.Web.Http.WebHost.dll
+C:\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Examples\VS2015\Kendo.Mvc.Examples\bin\System.Web.Mvc.dll
+C:\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Examples\VS2015\Kendo.Mvc.Examples\bin\System.Web.Optimization.dll
+C:\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Examples\VS2015\Kendo.Mvc.Examples\bin\System.Web.Providers.dll
+C:\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Examples\VS2015\Kendo.Mvc.Examples\bin\System.Web.Razor.dll
+C:\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Examples\VS2015\Kendo.Mvc.Examples\bin\System.Web.WebPages.Deployment.dll
+C:\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Examples\VS2015\Kendo.Mvc.Examples\bin\System.Web.WebPages.dll
+C:\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Examples\VS2015\Kendo.Mvc.Examples\bin\System.Web.WebPages.Razor.dll
+C:\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Examples\VS2015\Kendo.Mvc.Examples\bin\WebGrease.dll
+C:\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Examples\VS2015\Kendo.Mvc.Examples\bin\Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml.dll
+C:\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Examples\VS2015\Kendo.Mvc.Examples\bin\Telerik.Windows.Zip.dll
+C:\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Examples\VS2015\Kendo.Mvc.Examples\bin\EntityFramework.xml
+C:\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Examples\VS2015\Kendo.Mvc.Examples\bin\Telerik.Web.Spreadsheet.xml
+C:\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Examples\VS2015\Kendo.Mvc.Examples\bin\Kendo.Mvc.xml
+C:\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Examples\VS2015\Kendo.Mvc.Examples\bin\Newtonsoft.Json.xml
+C:\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Examples\VS2015\Kendo.Mvc.Examples\bin\System.Net.Http.Extensions.xml
+C:\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Examples\VS2015\Kendo.Mvc.Examples\bin\System.Net.Http.Formatting.xml
+C:\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Examples\VS2015\Kendo.Mvc.Examples\bin\System.Net.Http.Primitives.xml
+C:\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Examples\VS2015\Kendo.Mvc.Examples\bin\System.Web.Helpers.xml
+C:\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Examples\VS2015\Kendo.Mvc.Examples\bin\System.Web.Http.xml
+C:\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Examples\VS2015\Kendo.Mvc.Examples\bin\System.Web.Http.WebHost.xml
+C:\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Examples\VS2015\Kendo.Mvc.Examples\bin\System.Web.Mvc.xml
+C:\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Examples\VS2015\Kendo.Mvc.Examples\bin\System.Web.Razor.xml
+C:\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Examples\VS2015\Kendo.Mvc.Examples\bin\System.Web.WebPages.xml
+C:\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Examples\VS2015\Kendo.Mvc.Examples\bin\System.Web.WebPages.Deployment.xml
+C:\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Examples\VS2015\Kendo.Mvc.Examples\bin\System.Web.WebPages.Razor.xml
+C:\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Examples\VS2015\Kendo.Mvc.Examples\bin\Microsoft.Web.Infrastructure.xml
+C:\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Examples\VS2015\Kendo.Mvc.Examples\bin\Telerik.Windows.Documents.Core.xml
+C:\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Examples\VS2015\Kendo.Mvc.Examples\bin\Telerik.Windows.Documents.Fixed.xml
+C:\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Examples\VS2015\Kendo.Mvc.Examples\bin\Telerik.Windows.Documents.Spreadsheet.xml
+C:\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Examples\VS2015\Kendo.Mvc.Examples\bin\Telerik.Windows.Documents.Spreadsheet.FormatProviders.Pdf.xml
+C:\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Examples\VS2015\Kendo.Mvc.Examples\bin\Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml.xml
+C:\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Examples\VS2015\Kendo.Mvc.Examples\bin\Telerik.Windows.Zip.xml
+C:\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Examples\VS2015\Kendo.Mvc.Examples\bin\bg-BG\Kendo.Mvc.resources.dll
+C:\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Examples\VS2015\Kendo.Mvc.Examples\bin\cs-CZ\Kendo.Mvc.resources.dll
+C:\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Examples\VS2015\Kendo.Mvc.Examples\bin\da-DK\Kendo.Mvc.resources.dll
+C:\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Examples\VS2015\Kendo.Mvc.Examples\bin\de-DE\Kendo.Mvc.resources.dll
+C:\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Examples\VS2015\Kendo.Mvc.Examples\bin\es-ES\Kendo.Mvc.resources.dll
+C:\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Examples\VS2015\Kendo.Mvc.Examples\bin\fr-CA\Kendo.Mvc.resources.dll
+C:\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Examples\VS2015\Kendo.Mvc.Examples\bin\fr-FR\Kendo.Mvc.resources.dll
+C:\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Examples\VS2015\Kendo.Mvc.Examples\bin\it-IT\Kendo.Mvc.resources.dll
+C:\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Examples\VS2015\Kendo.Mvc.Examples\bin\nl-NL\Kendo.Mvc.resources.dll
+C:\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Examples\VS2015\Kendo.Mvc.Examples\bin\pl-PL\Kendo.Mvc.resources.dll
+C:\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Examples\VS2015\Kendo.Mvc.Examples\bin\pt-BR\Kendo.Mvc.resources.dll
+C:\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Examples\VS2015\Kendo.Mvc.Examples\bin\pt-PT\Kendo.Mvc.resources.dll
+C:\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Examples\VS2015\Kendo.Mvc.Examples\bin\ro-RO\Kendo.Mvc.resources.dll
+C:\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Examples\VS2015\Kendo.Mvc.Examples\bin\ru-RU\Kendo.Mvc.resources.dll
+C:\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Examples\VS2015\Kendo.Mvc.Examples\bin\sv-SE\Kendo.Mvc.resources.dll
+C:\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Examples\VS2015\Kendo.Mvc.Examples\bin\tr-TR\Kendo.Mvc.resources.dll
+C:\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Examples\VS2015\Kendo.Mvc.Examples\bin\uk-UA\Kendo.Mvc.resources.dll
+C:\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Examples\VS2015\Kendo.Mvc.Examples\bin\zh-CN\Kendo.Mvc.resources.dll
+C:\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Examples\VS2015\Kendo.Mvc.Examples\obj\Debug\Kendo.Mvc.Examples.csproj.App.config
+C:\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Examples\VS2015\Kendo.Mvc.Examples\obj\Debug\Kendo.Mvc.Examples.csprojResolveAssemblyReference.cache
+C:\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Examples\VS2015\Kendo.Mvc.Examples\obj\Debug\Kendo.Mvc.Examples.dll
+C:\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Examples\VS2015\Kendo.Mvc.Examples\obj\Debug\Kendo.Mvc.Examples.pdb
+C:\SourceCode\Simplex\VS2015\Kendo.Mvc.Examples\bin\Kendo.Mvc.Examples.dll.config
+C:\SourceCode\Simplex\VS2015\Kendo.Mvc.Examples\bin\Kendo.Mvc.Examples.dll
+C:\SourceCode\Simplex\VS2015\Kendo.Mvc.Examples\bin\Kendo.Mvc.Examples.pdb
+C:\SourceCode\Simplex\VS2015\Kendo.Mvc.Examples\bin\Antlr3.Runtime.dll
+C:\SourceCode\Simplex\VS2015\Kendo.Mvc.Examples\bin\EntityFramework.dll
+C:\SourceCode\Simplex\VS2015\Kendo.Mvc.Examples\bin\log4net.dll
+C:\SourceCode\Simplex\VS2015\Kendo.Mvc.Examples\bin\Microsoft.Web.Infrastructure.dll
+C:\SourceCode\Simplex\VS2015\Kendo.Mvc.Examples\bin\Newtonsoft.Json.dll
+C:\SourceCode\Simplex\VS2015\Kendo.Mvc.Examples\bin\System.Net.Http.Extensions.dll
+C:\SourceCode\Simplex\VS2015\Kendo.Mvc.Examples\bin\System.Net.Http.Formatting.dll
+C:\SourceCode\Simplex\VS2015\Kendo.Mvc.Examples\bin\System.Net.Http.Primitives.dll
+C:\SourceCode\Simplex\VS2015\Kendo.Mvc.Examples\bin\System.Web.Helpers.dll
+C:\SourceCode\Simplex\VS2015\Kendo.Mvc.Examples\bin\System.Web.Http.dll
+C:\SourceCode\Simplex\VS2015\Kendo.Mvc.Examples\bin\System.Web.Http.WebHost.dll
+C:\SourceCode\Simplex\VS2015\Kendo.Mvc.Examples\bin\System.Web.Mvc.dll
+C:\SourceCode\Simplex\VS2015\Kendo.Mvc.Examples\bin\System.Web.Optimization.dll
+C:\SourceCode\Simplex\VS2015\Kendo.Mvc.Examples\bin\System.Web.Providers.dll
+C:\SourceCode\Simplex\VS2015\Kendo.Mvc.Examples\bin\System.Web.Razor.dll
+C:\SourceCode\Simplex\VS2015\Kendo.Mvc.Examples\bin\System.Web.WebPages.Deployment.dll
+C:\SourceCode\Simplex\VS2015\Kendo.Mvc.Examples\bin\System.Web.WebPages.dll
+C:\SourceCode\Simplex\VS2015\Kendo.Mvc.Examples\bin\System.Web.WebPages.Razor.dll
+C:\SourceCode\Simplex\VS2015\Kendo.Mvc.Examples\bin\WebGrease.dll
+C:\SourceCode\Simplex\VS2015\Kendo.Mvc.Examples\bin\EntityFramework.xml
+C:\SourceCode\Simplex\VS2015\Kendo.Mvc.Examples\bin\log4net.xml
+C:\SourceCode\Simplex\VS2015\Kendo.Mvc.Examples\bin\Newtonsoft.Json.xml
+C:\SourceCode\Simplex\VS2015\Kendo.Mvc.Examples\bin\System.Net.Http.Extensions.xml
+C:\SourceCode\Simplex\VS2015\Kendo.Mvc.Examples\bin\System.Net.Http.Formatting.xml
+C:\SourceCode\Simplex\VS2015\Kendo.Mvc.Examples\bin\System.Net.Http.Primitives.xml
+C:\SourceCode\Simplex\VS2015\Kendo.Mvc.Examples\bin\System.Web.Helpers.xml
+C:\SourceCode\Simplex\VS2015\Kendo.Mvc.Examples\bin\System.Web.Http.xml
+C:\SourceCode\Simplex\VS2015\Kendo.Mvc.Examples\bin\System.Web.Http.WebHost.xml
+C:\SourceCode\Simplex\VS2015\Kendo.Mvc.Examples\bin\System.Web.Mvc.xml
+C:\SourceCode\Simplex\VS2015\Kendo.Mvc.Examples\bin\System.Web.Razor.xml
+C:\SourceCode\Simplex\VS2015\Kendo.Mvc.Examples\bin\System.Web.WebPages.xml
+C:\SourceCode\Simplex\VS2015\Kendo.Mvc.Examples\bin\System.Web.WebPages.Deployment.xml
+C:\SourceCode\Simplex\VS2015\Kendo.Mvc.Examples\bin\System.Web.WebPages.Razor.xml
+C:\SourceCode\Simplex\VS2015\Kendo.Mvc.Examples\bin\Microsoft.Web.Infrastructure.xml
+C:\SourceCode\Simplex\VS2015\Kendo.Mvc.Examples\obj\Debug\Kendo.Mvc.Examples.csproj.App.config
+C:\SourceCode\Simplex\VS2015\Kendo.Mvc.Examples\obj\Debug\Kendo.Mvc.Examples.dll
+C:\SourceCode\Simplex\VS2015\Kendo.Mvc.Examples\obj\Debug\Kendo.Mvc.Examples.pdb
