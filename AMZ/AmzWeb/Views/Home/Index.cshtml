@@ -1,151 +1,137 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <title>AMZ Wholesale </title>
+    <title>AMZ Wholesale</title>
     <link href="@Url.Content("~/Content/shared/suite.css")" rel="stylesheet">
-    <style>
-        #page > h2 {
-            padding: 2em 0 0;
-        }
-        .box h2 a:hover {
-            text-decoration: none;
-        }
-        .box h2 span {
-            display: block;
-            font-size: .7em;
-        }
-        #page > ul > li.box {
-            clear: none;
-            display: inline-block;
-            float: none;
-            min-width: 290px;
-            max-width: 300px;
-        }
-        hr {
-            height: 1px;
-            line-height: 1px;
-            background: #DFDFDF;
-            border: 0;
-        }
-        #page .suite .imgPlate,
-        #page .suite .box {
-            border-width: 0;
-            box-shadow: none;
-        }
-        #page .suite {
-            text-align: center;
-        }
-        #page .suite .box h2 {
-            margin-top: 1em;
-        }
-    </style>
+    @Styles.Render("~/Content/kendo/css")
+    @Styles.Render("~/Content/shared/css")
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/kendo")
+    @Scripts.Render("~/bundles/demo")
+
+    @* Include the JavaScript for the current culture *@
+    @{ var culture = System.Threading.Thread.CurrentThread.CurrentCulture.ToString(); }
+    <script src="@Url.Content("~/Scripts/cultures/kendo.culture." + culture + ".min.js")"></script>
+
+    @* Set the current culture *@
+    <script>
+        kendo.culture("@culture");
+    </script>
+
+   
+
 </head>
 <body>
-    <h1 class="header">AMZ Wholesale </h1>
+    <script>
+        //window.location.href = '@Url.RouteUrl("RazorDefault", new { controller = "Suite"})'
+        $(document).ready(function () {
+            alert("Hello");
+        });
+   
+    </script>
+
+    <h1 class="header">AMZ Wholesale</h1>
     <div id="page">
         <div class="suites">
-            @model IEnumerable<Kendo.Mvc.Examples.Models.ProductViewModel>
-            <script type="text/x-kendo-tmpl" id="template">
-                $(document).ready(function () {
-                
-
-                @*<div class="product">
-                    <img src="@Url.Content("~/content/web/foods/")#:ProductID#.jpg" alt="#:ProductName# image" />
-                    <h3>#:ProductName#</h3>
-                    <p>#:kendo.toString(UnitPrice, "c")#</p>
-                </div>*@
-
-                });
-             </script>
-                                  <div class="demo-section k-content wide">
-                                      @(Html.Kendo().ListView<Kendo.Mvc.Examples.Models.ProductViewModel>(Model)
-                .Name("listView")
-                .TagName("div")
-                .ClientTemplateId("template")
-                .DataSource(dataSource =>
-                {
-                    dataSource.Read(read => read.Action("Products_Read", "ListView"));
-                    dataSource.PageSize(21);
-                })
-                .Pageable()
-                                      )
-                                  </div>
-
-                                  <style>
-                                      #listView {
-                                          padding: 10px 5px;
-                                          margin-bottom: -1px;
-                                          min-height: 510px;
-                                      }
-
-                                      .product {
-                                          float: left;
-                                          position: relative;
-                                          width: 111px;
-                                          height: 170px;
-                                          margin: 0 5px;
-                                          padding: 0;
-                                      }
-
-                                          .product img {
-                                              width: 110px;
-                                              height: 110px;
-                                          }
-
-                                          .product h3 {
-                                              margin: 0;
-                                              padding: 3px 5px 0 0;
-                                              max-width: 96px;
-                                              overflow: hidden;
-                                              line-height: 1.1em;
-                                              font-size: .9em;
-                                              font-weight: normal;
-                                              text-transform: uppercase;
-                                              color: #999;
-                                          }
-
-                                          .product p {
-                                              visibility: hidden;
-                                          }
-
-                                          .product:hover p {
-                                              visibility: visible;
-                                              position: absolute;
-                                              width: 110px;
-                                              height: 110px;
-                                              top: 0;
-                                              margin: 0;
-                                              padding: 0;
-                                              line-height: 110px;
-                                              vertical-align: middle;
-                                              text-align: center;
-                                              color: #fff;
-                                              background-color: rgba(0,0,0,0.75);
-                                              transition: background .2s linear, color .2s linear;
-                                              -moz-transition: background .2s linear, color .2s linear;
-                                              -webkit-transition: background .2s linear, color .2s linear;
-                                              -o-transition: background .2s linear, color .2s linear;
-                                          }
-
-                                      .k-listview:after {
-                                          content: ".";
-                                          display: block;
-                                          height: 0;
-                                          clear: both;
-                                          visibility: hidden;
-                                      }
-                                  </style>
+            <div class="suite-column">
+                <h2>Telerik UI for ASP.NET MVC Demos</h2>
+                <img src="../../Content/shared/demos-mobile.png" />
+                <a href="@(Url.RouteUrl("RazorDefault", new { controller = "Suite"}))">Launch ASP.NET MVC Demos</a>
             </div>
-        <div class="suite-column">
-                    <h2>AMZ Wholesale </h2>
-                    <img src="../../Content/shared/demos-mobile.png" />
-                    <a href="@(Url.RouteUrl("RazorDefault", new { controller = "Suite"}))">Launch ASP.NET MVC Demos</a>
-                </div>
+           
+        </div>
+    </div>
+
+    @model IEnumerable<Kendo.Mvc.Examples.Models.ProductViewModel>
+
+        <script type="text/x-kendo-tmpl" id="template">
+            <div class="product">
+                <img src="@Url.Content("~/content/web/foods/")#:ProductID#.jpg" alt="#:ProductName# image" />
+                <h3>#:ProductName#</h3>
+                <p>#:kendo.toString(UnitPrice, "c")#</p>
+            </div>
+        </script>
+
+        <div class="demo-section k-content wide">
+            @(Html.Kendo().ListView<Kendo.Mvc.Examples.Models.ProductViewModel>(Model)
+    .Name("listView")
+    .TagName("div")
+    .ClientTemplateId("template")
+    .DataSource(dataSource =>
+    {
+        dataSource.Read(read => read.Action("Products_Read", "ListView"));
+        dataSource.PageSize(21);
+    })
+    .Pageable()
+            )
         </div>
 
-       
-           
-            
+        <style>
+            #listView {
+                padding: 10px 5px;
+                margin-bottom: -1px;
+                min-height: 510px;
+            }
+
+            .product {
+                float: left;
+                position: relative;
+                width: 111px;
+                height: 170px;
+                margin: 0 5px;
+                padding: 0;
+            }
+
+                .product img {
+                    width: 110px;
+                    height: 110px;
+                }
+
+                .product h3 {
+                    margin: 0;
+                    padding: 3px 5px 0 0;
+                    max-width: 96px;
+                    overflow: hidden;
+                    line-height: 1.1em;
+                    font-size: .9em;
+                    font-weight: normal;
+                    text-transform: uppercase;
+                    color: #999;
+                }
+
+                .product p {
+                    visibility: hidden;
+                }
+
+                .product:hover p {
+                    visibility: visible;
+                    position: absolute;
+                    width: 110px;
+                    height: 110px;
+                    top: 0;
+                    margin: 0;
+                    padding: 0;
+                    line-height: 110px;
+                    vertical-align: middle;
+                    text-align: center;
+                    color: #fff;
+                    background-color: rgba(0,0,0,0.75);
+                    transition: background .2s linear, color .2s linear;
+                    -moz-transition: background .2s linear, color .2s linear;
+                    -webkit-transition: background .2s linear, color .2s linear;
+                    -o-transition: background .2s linear, color .2s linear;
+                }
+
+            .k-listview:after {
+                content: ".";
+                display: block;
+                height: 0;
+                clear: both;
+                visibility: hidden;
+            }
+        </style>
+
 
 </body>
 </html>

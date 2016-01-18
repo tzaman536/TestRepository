@@ -76,6 +76,6 @@ C:\SourceCode\Simplex\AMZ\AmzWeb\bin\System.Web.WebPages.Deployment.xml
 C:\SourceCode\Simplex\AMZ\AmzWeb\bin\System.Web.WebPages.Razor.xml
 C:\SourceCode\Simplex\AMZ\AmzWeb\bin\Microsoft.Web.Infrastructure.xml
 C:\SourceCode\Simplex\AMZ\AmzWeb\obj\Debug\AmzWeb.csproj.App.config
-C:\SourceCode\Simplex\AMZ\AmzWeb\obj\Debug\AmzWeb.csprojResolveAssemblyReference.cache
 C:\SourceCode\Simplex\AMZ\AmzWeb\obj\Debug\AmzWeb.dll
 C:\SourceCode\Simplex\AMZ\AmzWeb\obj\Debug\AmzWeb.pdb
+C:\SourceCode\Simplex\AMZ\AmzWeb\obj\Debug\AmzWeb.csprojResolveAssemblyReference.cache

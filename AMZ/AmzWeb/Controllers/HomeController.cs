@@ -10,49 +10,12 @@ namespace Kendo.Mvc.Examples.Controllers
 {
     public class HomeController : Controller
     {
-        private ProductService productService;
-
-        public HomeController()
-        {
-            productService = new ProductService(new SampleEntities());
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            productService.Dispose();
-
-            base.Dispose(disposing);
-        }
-
         public ActionResult Index()
         {
-            return View(GetProductsLocal());
+            return View();
         }
 
-        public ActionResult Products_Read([DataSourceRequest] DataSourceRequest request)
-        {
-            return Json(GetProductsLocal().ToDataSourceResult(request));
-        }
 
-        private static IEnumerable<ProductViewModel> GetProductsLocal()
-        {
-            List<ProductViewModel> result = new List<ProductViewModel>();
-            for (int i = 1; i < 15; i++)
-            {
-                result.Add(new ProductViewModel
-                {
-                    ProductID = i,
-                    ProductName = string.Format("Name {0}", i),
-                    UnitPrice = 10,
-                    UnitsInStock = 50,
-                    UnitsOnOrder = 10,
-                    Discontinued = false,
-                    LastSupply = DateTime.Today
-                });
-            }
-
-            return result;
-        }
 
         public JsonResult GetProducts(string text)
         {

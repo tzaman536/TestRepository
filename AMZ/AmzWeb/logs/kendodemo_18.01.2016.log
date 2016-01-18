@@ -24,3 +24,9 @@
 2016-01-18 16:31:53,447 [5] INFO  Kendo.Mvc.Examples.Controllers.ListViewController [(null)] - Hello there with out tool
 2016-01-18 16:31:53,449 [5] INFO  Kendo.Mvc.Examples.Controllers.ListViewController [(null)] - Assembly executing in C:\Users\tzaman\AppData\Local\Temp\Temporary ASP.NET Files\vs\0dc55ef6\ee56866f\assembly\dl3\91bfeab4\ca38c11a_3752d101
 2016-01-18 16:31:53,451 [5] INFO  Kendo.Mvc.Examples.Controllers.ListViewController [(null)] - DataDirectory is  C:\SourceCode\Simplex\AMZ\AmzWeb\App_Data
+2016-01-18 17:21:10,889 [48] INFO  Kendo.Mvc.Examples.Controllers.ListViewController [(null)] - Hello there with out tool
+2016-01-18 17:21:10,931 [48] INFO  Kendo.Mvc.Examples.Controllers.ListViewController [(null)] - Assembly executing in C:\Users\tzaman\AppData\Local\Temp\Temporary ASP.NET Files\vs\0dc55ef6\ee56866f\assembly\dl3\91bfeab4\ad349c12_3c52d101
+2016-01-18 17:21:10,934 [48] INFO  Kendo.Mvc.Examples.Controllers.ListViewController [(null)] - DataDirectory is  C:\SourceCode\Simplex\AMZ\AmzWeb\App_Data
+2016-01-18 17:33:39,640 [41] INFO  Kendo.Mvc.Examples.Controllers.ListViewController [(null)] - Hello there with out tool
+2016-01-18 17:33:39,642 [41] INFO  Kendo.Mvc.Examples.Controllers.ListViewController [(null)] - Assembly executing in C:\Users\tzaman\AppData\Local\Temp\Temporary ASP.NET Files\vs\0dc55ef6\ee56866f\assembly\dl3\91bfeab4\ad349c12_3c52d101
+2016-01-18 17:33:39,644 [41] INFO  Kendo.Mvc.Examples.Controllers.ListViewController [(null)] - DataDirectory is  C:\SourceCode\Simplex\AMZ\AmzWeb\App_Data
