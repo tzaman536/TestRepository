@@ -54,7 +54,7 @@
 <script type="text/x-kendo-tmpl" id="template">
     <div class="product-view k-widget">
         <dl>
-            <dt class="dtImage">
+            <dt>
                 <img src="@Url.Content("~/content/products/")#:ProductID#.jpg"/>
             </dt>
             <dt>Product Name</dt>
@@ -100,6 +100,7 @@
         box-sizing: border-box;
         border-top: 0;
         position: relative;
+
     }
 
         .product-view:nth-child(even) {
@@ -112,14 +113,6 @@
             overflow: visible;
         }
 
-        .product-view dtImage {
-            float: right;
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            line-height: 24px;
-            font-size: 18px;
-        }
 
         .product-view dt, dd {
             margin: 0;
