@@ -25,7 +25,7 @@ namespace AmzWholeSaleWeb.Controllers
         private static IEnumerable<ProductViewModel> GetProductsLocal()
         {
             List<ProductViewModel> result = new List<ProductViewModel>();
-            for (int i = 1; i < 15; i++)
+            for (int i = 1; i < 80; i++)
             {
                 result.Add(new ProductViewModel
                 {
