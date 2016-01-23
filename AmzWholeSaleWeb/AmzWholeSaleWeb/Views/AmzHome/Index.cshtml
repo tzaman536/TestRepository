@@ -1,0 +1,122 @@
+﻿@model IEnumerable<Kendo.Mvc.Examples.Models.ProductViewModel>
+@{
+    ViewBag.Title = "AMZ";
+}
+
+<div class="jumbotron">
+    <h1>AMZ Wholesale </h1>
+    <p class="lead">
+        Tamim write a few lines about your company here. Describe what your company does. How well BBB has rated you.
+        How your customers like your company. Something short but to the point.
+    </p>
+    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+</div>
+
+@*<div class="row">*@
+    @*<div class="col-md-4">
+        <h2>Getting started</h2>
+        <p>
+            Write something about how your customers can benifit from buying your product. List some features of your comapny
+            that are better than your competitors.
+            
+        </p>
+        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+    </div>*@
+    @*<div class="col-md-4">
+        <h2>Get more libraries</h2>
+        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
+        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Web Hosting</h2>
+        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
+        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+    </div>*@
+@*</div>*@
+
+<script type="text/x-kendo-tmpl" id="template">
+    <div class="product">
+        <img src="@Url.Content("~/content/products/")#:ProductID#.jpg" alt="#:ProductName# image" />
+        <h3>#:ProductName#</h3>
+        <p>#:kendo.toString(UnitPrice, "c")#</p>
+    </div>
+</script>
+
+<div class="demo-section k-content wide">
+    @(Html.Kendo().ListView<Kendo.Mvc.Examples.Models.ProductViewModel>(Model)
+    .Name("listView")
+    .TagName("div")
+    .ClientTemplateId("template")
+    .DataSource(dataSource =>
+    {
+        dataSource.Read(read => read.Action("Products_Read", "AmzHome"));
+        dataSource.PageSize(21);
+    })
+    .Pageable()
+    )
+</div>
+
+<style>
+    #listView {
+        padding: 10px 5px;
+        margin-bottom: -1px;
+        min-height: 510px;
+    }
+
+    .product {
+        float: left;
+        position: relative;
+        width: 111px;
+        height: 170px;
+        margin: 0 5px;
+        padding: 0;
+    }
+
+        .product img {
+            width: 110px;
+            height: 110px;
+        }
+
+        .product h3 {
+            margin: 0;
+            padding: 3px 5px 0 0;
+            max-width: 96px;
+            overflow: hidden;
+            line-height: 1.1em;
+            font-size: .9em;
+            font-weight: normal;
+            text-transform: uppercase;
+            color: #999;
+        }
+
+        .product p {
+            visibility: hidden;
+        }
+
+        .product:hover p {
+            visibility: visible;
+            position: absolute;
+            width: 110px;
+            height: 110px;
+            top: 0;
+            margin: 0;
+            padding: 0;
+            line-height: 110px;
+            vertical-align: middle;
+            text-align: center;
+            color: #fff;
+            background-color: rgba(0,0,0,0.75);
+            transition: background .2s linear, color .2s linear;
+            -moz-transition: background .2s linear, color .2s linear;
+            -webkit-transition: background .2s linear, color .2s linear;
+            -o-transition: background .2s linear, color .2s linear;
+        }
+
+    .k-listview:after {
+        content: ".";
+        display: block;
+        height: 0;
+        clear: both;
+        visibility: hidden;
+    }
+</style>
