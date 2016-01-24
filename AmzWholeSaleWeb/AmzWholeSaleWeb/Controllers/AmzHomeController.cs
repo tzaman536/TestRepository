@@ -3,6 +3,7 @@ using AmzModel;
 using Kendo.Mvc.Examples.Models;
 using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
+using log4net;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,14 +14,24 @@ namespace AmzWholeSaleWeb.Controllers
 {
     public class AmzHomeController : Controller
     {
-        public ActionResult Index()
+        private static readonly ILog logger = LogManager.GetLogger(typeof(AmzHomeController));
+        private AmzProductHandler productHandler;
+
+        public AmzHomeController()
         {
-            return View(AmzProductHandler.GetProducts());
+            productHandler = new AmzProductHandler();
         }
 
-        public ActionResult Products_Read([DataSourceRequest] DataSourceRequest request)
+        public ActionResult Index()
         {
-            return Json(AmzProductHandler.GetProducts().ToDataSourceResult(request));
+            return View(productHandler.GetProducts());
+
+
+    }
+
+    public ActionResult Products_Read([DataSourceRequest] DataSourceRequest request)
+        {
+            return Json(productHandler.GetProducts().ToDataSourceResult(request));
         }
 
 

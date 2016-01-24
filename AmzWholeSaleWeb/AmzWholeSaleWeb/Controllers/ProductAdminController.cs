@@ -1,6 +1,8 @@
-﻿using AmzModel;
+﻿using AmzBL.Products;
+using AmzModel;
 using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
+using log4net;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +11,17 @@ using System.Web.Mvc;
 
 namespace AmzWholeSaleWeb.Controllers
 {
+
     public class ProductAdminController : Controller
     {
+        private static readonly ILog logger = LogManager.GetLogger(typeof(ProductAdminController));
+
+        private AmzProductHandler productHandler;
+
+        public ProductAdminController()
+        {
+            productHandler = new AmzProductHandler();
+        }
 
         // GET: ProductAdmin
         public ActionResult Index()
@@ -20,7 +31,7 @@ namespace AmzWholeSaleWeb.Controllers
 
         public ActionResult Editing_Read([DataSourceRequest] DataSourceRequest request)
         {
-            return Json(AmzBL.Products.AmzProductHandler.GetProducts().ToDataSourceResult(request));
+            return Json(productHandler.GetProducts().ToDataSourceResult(request));
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
@@ -32,7 +43,7 @@ namespace AmzWholeSaleWeb.Controllers
             {
                 foreach (var product in products)
                 {
-                    var addedProduct = AmzBL.Products.AmzProductHandler.AddProduct(product);
+                    var addedProduct = productHandler.AddProduct(product);
                     if (addedProduct != null)
                         product.ProductID = addedProduct.ProductID;
 

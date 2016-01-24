@@ -7,12 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Dapper;
+using log4net;
 
 namespace AmzBL.Products
 {
     public class AmzProductHandler
     {
-        public static IEnumerable<AmzProduct> GetProducts()
+        private static readonly ILog logger = LogManager.GetLogger(typeof(AmzProductHandler));
+
+        public IEnumerable<AmzProduct> GetProducts()
         {
             IEnumerable<AmzProduct> result = new List<AmzProduct>();
 
@@ -35,7 +38,7 @@ namespace AmzBL.Products
 
         }
 
-        public static AmzProduct GetProduct(int productId)
+        public  AmzProduct GetProduct(int productId)
         {
             IEnumerable<AmzProduct> result = new List<AmzProduct>();
 
@@ -52,7 +55,7 @@ namespace AmzBL.Products
                 }
                 catch (Exception ex)
                 {
-                    //PhenixMail.SendMail("daContactDetail.GetClientContactDetail()-ERROR", string.Format("{0}", ex.Message), ConfigurationManager.AppSettings["MAIL_SALES_TEAM"]);
+                    logger.Error(ex);
                 }
 
             }
@@ -65,9 +68,10 @@ namespace AmzBL.Products
 
         }
 
-        public static AmzProduct AddProduct(AmzProduct p)
+        public  AmzProduct AddProduct(AmzProduct p)
         {
 
+            logger.InfoFormat("Adding product: {0} - {1}", p.ProductName, p.ProductDescription);
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
             {
                 conn.Open();
@@ -118,7 +122,7 @@ namespace AmzBL.Products
                 }
                 catch (Exception ex)
                 {
-                    //PhenixMail.SendMail("daContactDetail.GetClientContactDetail()-ERROR", string.Format("{0}", ex.Message), ConfigurationManager.AppSettings["MAIL_SALES_TEAM"]);
+                    logger.Error(ex);
                 }
 
             }

@@ -1,0 +1,15 @@
+2016-01-24 15:07:28,223 [13] INFO  AmzWholeSaleWeb.MvcApplication [(null)] - AmzHome Controller 
+2016-01-24 15:09:05,810 [1] INFO  AmzWholeSaleWeb.MvcApplication [(null)] - Starting AMZ Wholesale site...
+2016-01-24 15:09:08,779 [13] INFO  AmzWholeSaleWeb.Controllers.AmzHomeController [(null)] - AmzHome Controller 
+2016-01-24 15:10:23,367 [18] INFO  AmzWholeSaleWeb.Controllers.AmzHomeController [(null)] - AmzHome Controller 
+2016-01-24 15:15:21,649 [1] INFO  AmzWholeSaleWeb.MvcApplication [(null)] - Starting AMZ Wholesale site...
+2016-01-24 15:17:17,046 [6] INFO  AmzBL.Products.AmzProductHandler [(null)] - Adding product: Hello - There
+2016-01-24 15:22:08,431 [1] INFO  AmzWholeSaleWeb.MvcApplication [(null)] - Starting AMZ Wholesale site...
+2016-01-24 15:22:52,297 [17] INFO  AmzWholeSaleWeb.Controllers.ProductAdminController [(null)] - Initialized product handler
+2016-01-24 15:23:01,150 [9] INFO  AmzWholeSaleWeb.Controllers.ProductAdminController [(null)] - Initialized product handler
+2016-01-24 15:23:24,297 [17] INFO  AmzWholeSaleWeb.Controllers.ProductAdminController [(null)] - Initialized product handler
+2016-01-24 15:23:24,382 [17] INFO  AmzBL.Products.AmzProductHandler [(null)] - Adding product: hello - there
+2016-01-24 15:23:27,465 [12] INFO  AmzWholeSaleWeb.Controllers.ProductAdminController [(null)] - Initialized product handler
+2016-01-24 15:23:29,107 [17] INFO  AmzWholeSaleWeb.Controllers.ProductAdminController [(null)] - Initialized product handler
+2016-01-24 15:23:33,170 [17] INFO  AmzWholeSaleWeb.Controllers.ProductAdminController [(null)] - Initialized product handler
+2016-01-24 15:23:34,689 [12] INFO  AmzWholeSaleWeb.Controllers.ProductAdminController [(null)] - Initialized product handler
