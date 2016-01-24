@@ -1,4 +1,6 @@
-﻿using Kendo.Mvc.Examples.Models;
+﻿using AmzBL.Products;
+using AmzModel;
+using Kendo.Mvc.Examples.Models;
 using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
 using System;
@@ -13,34 +15,33 @@ namespace AmzWholeSaleWeb.Controllers
     {
         public ActionResult Index()
         {
-            return View(GetProductsLocal());
+            return View(AmzProductData.GetProducts());
         }
 
         public ActionResult Products_Read([DataSourceRequest] DataSourceRequest request)
         {
-            return Json(GetProductsLocal().ToDataSourceResult(request));
+            return Json(AmzProductData.GetProducts().ToDataSourceResult(request));
         }
 
 
-        private static IEnumerable<ProductViewModel> GetProductsLocal()
-        {
-            List<ProductViewModel> result = new List<ProductViewModel>();
-            for (int i = 1; i < 80; i++)
-            {
-                result.Add(new ProductViewModel
-                {
-                    ProductID = i,
-                    ProductName = string.Format("Name {0}", i),
-                    UnitPrice = 10,
-                    UnitsInStock = 50,
-                    UnitsOnOrder = 10,
-                    Discontinued = false,
-                    LastSupply = DateTime.Today
-                });
-            }
+        //private static IEnumerable<AmzProduct> GetProductsLocal()
+        //{
+        //    List<AmzProduct> result = new List<AmzProduct>();
+        //    for (int i = 1; i < 80; i++)
+        //    {
+        //        result.Add(new AmzProduct
+        //        {
+        //            ProductID = i,
+        //            ProductName = string.Format("Name {0}", i),
+        //            UnitPrice = 10,
+        //            UnitsInStock = 50,
+        //            UnitsOnOrder = 10,
+        //            Discontinued = false
+        //        });
+        //    }
 
-            return result;
-        }
+        //    return result;
+        //}
 
         public ActionResult About()
         {

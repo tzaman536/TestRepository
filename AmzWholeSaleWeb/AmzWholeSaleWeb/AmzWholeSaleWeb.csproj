@@ -1496,6 +1496,16 @@
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AmzBL\AmzBL.csproj">
+      <Project>{6f084d12-c94e-4a75-8c55-f420d965d8df}</Project>
+      <Name>AmzBL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AmzModel\AmzModel.csproj">
+      <Project>{491bbde3-1319-4bc3-b6e0-5146c7d48a44}</Project>
+      <Name>AmzModel</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

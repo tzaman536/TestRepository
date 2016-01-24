@@ -5,6 +5,10 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmzWholeSaleWeb", "AmzWholeSaleWeb\AmzWholeSaleWeb.csproj", "{1D8243DA-F574-4CF3-911C-1052398F0036}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmzBL", "AmzBL\AmzBL.csproj", "{6F084D12-C94E-4A75-8C55-F420D965D8DF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmzModel", "AmzModel\AmzModel.csproj", "{491BBDE3-1319-4BC3-B6E0-5146C7D48A44}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{1D8243DA-F574-4CF3-911C-1052398F0036}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D8243DA-F574-4CF3-911C-1052398F0036}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D8243DA-F574-4CF3-911C-1052398F0036}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F084D12-C94E-4A75-8C55-F420D965D8DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F084D12-C94E-4A75-8C55-F420D965D8DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F084D12-C94E-4A75-8C55-F420D965D8DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F084D12-C94E-4A75-8C55-F420D965D8DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{491BBDE3-1319-4BC3-B6E0-5146C7D48A44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{491BBDE3-1319-4BC3-B6E0-5146C7D48A44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{491BBDE3-1319-4BC3-B6E0-5146C7D48A44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{491BBDE3-1319-4BC3-B6E0-5146C7D48A44}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

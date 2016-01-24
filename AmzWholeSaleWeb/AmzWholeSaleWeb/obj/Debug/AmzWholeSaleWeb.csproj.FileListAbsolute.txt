@@ -204,3 +204,7 @@ C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\Microsoft.Owin.Securit
 C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\obj\Debug\AmzWholeSaleWeb.csprojResolveAssemblyReference.cache
 C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\obj\Debug\AmzWholeSaleWeb.dll
 C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\obj\Debug\AmzWholeSaleWeb.pdb
+C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\AmzBL.dll
+C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\AmzModel.dll
+C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\AmzBL.pdb
+C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\AmzModel.pdb
