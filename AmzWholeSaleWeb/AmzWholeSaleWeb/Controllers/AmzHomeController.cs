@@ -15,12 +15,12 @@ namespace AmzWholeSaleWeb.Controllers
     {
         public ActionResult Index()
         {
-            return View(AmzProductData.GetProducts());
+            return View(AmzProductHandler.GetProducts());
         }
 
         public ActionResult Products_Read([DataSourceRequest] DataSourceRequest request)
         {
-            return Json(AmzProductData.GetProducts().ToDataSourceResult(request));
+            return Json(AmzProductHandler.GetProducts().ToDataSourceResult(request));
         }
 
 
