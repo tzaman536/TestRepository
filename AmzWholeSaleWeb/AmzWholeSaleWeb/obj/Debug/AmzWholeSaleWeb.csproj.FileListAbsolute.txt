@@ -122,6 +122,7 @@ C:\delete\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\zh-CN\Kendo.Mvc.resources.dll
 C:\delete\AmzWholeSaleWeb\AmzWholeSaleWeb\obj\Debug\AmzWholeSaleWeb.csprojResolveAssemblyReference.cache
 C:\delete\AmzWholeSaleWeb\AmzWholeSaleWeb\obj\Debug\AmzWholeSaleWeb.dll
 C:\delete\AmzWholeSaleWeb\AmzWholeSaleWeb\obj\Debug\AmzWholeSaleWeb.pdb
+C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\obj\Debug\AmzWholeSaleWeb.csprojResolveAssemblyReference.cache
 C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\ApplicationInsights.config
 C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\roslyn\csc.exe
 C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
@@ -138,6 +139,8 @@ C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\roslyn\VBCSCompiler.ex
 C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\AmzWholeSaleWeb.dll.config
 C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\AmzWholeSaleWeb.dll
 C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\AmzWholeSaleWeb.pdb
+C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\AmzBL.dll
+C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\AmzModel.dll
 C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\Antlr3.Runtime.dll
 C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\EntityFramework.dll
 C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\EntityFramework.SqlServer.dll
@@ -172,6 +175,9 @@ C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\System.Web.WebPages.De
 C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\System.Web.WebPages.dll
 C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\System.Web.WebPages.Razor.dll
 C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\WebGrease.dll
+C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\Dapper.dll
+C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\AmzBL.pdb
+C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\AmzModel.pdb
 C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\Microsoft.AI.DependencyCollector.xml
 C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\Microsoft.AI.ServerTelemetryChannel.xml
 C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\Microsoft.AI.Web.xml
@@ -201,10 +207,7 @@ C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\Microsoft.Owin.Securit
 C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\Microsoft.Owin.Security.Google.xml
 C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\Microsoft.Owin.Security.Twitter.xml
 C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\obj\Debug\AmzWholeSaleWeb.csprojResolveAssemblyReference.cache
+C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\Dapper.pdb
+C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\Dapper.xml
 C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\obj\Debug\AmzWholeSaleWeb.dll
 C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\obj\Debug\AmzWholeSaleWeb.pdb
-C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\AmzBL.dll
-C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\AmzModel.dll
-C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\AmzBL.pdb
-C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\AmzModel.pdb
