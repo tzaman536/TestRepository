@@ -75,7 +75,7 @@ namespace AmzBL.Products
 
             logger.InfoFormat("Adding product: {0} - {1}", p.ProductName, p.ProductDescription);
             DateTime addDate = DateTime.UtcNow;
-            string addedBy = HttpContext.Current.User.Identity.Name;
+            string addedBy = HttpContext.Current.Request.LogonUserIdentity.Name;
             if (string.IsNullOrEmpty(addedBy))
             {
                 logger.Warn("Couldn't figure out HttpContext user identity. Using Environment.UserName instead");
@@ -146,7 +146,7 @@ namespace AmzBL.Products
             bool result = true;
             logger.InfoFormat("Updating product: {0} - {1}", p.ProductName, p.ProductDescription);
             DateTime updateDate = DateTime.UtcNow;
-            string updatedBy = HttpContext.Current.User.Identity.Name;
+            string updatedBy = HttpContext.Current.Request.LogonUserIdentity.Name; 
             if(string.IsNullOrEmpty(updatedBy))
             {
                 logger.Warn("Couldn't figure out HttpContext user identity. Using Environment.UserName instead");

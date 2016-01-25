@@ -4,8 +4,15 @@
 }
 
 <h2>Product Admin </h2>
-@(Html.Kendo().Grid<AmzModel.AmzProduct>()
-    .Name("Grid")
+<div id="productImage">
+    @*<img id="selectedItemImage" src="@Url.Content("~/content/products/1.jpg")" />*@
+    <img id="selectedItemImage" src="@Url.Content("~/content/products/1.jpg")" />
+    
+</div>
+<br />
+<div id="allProducts">
+    @(Html.Kendo().Grid<AmzModel.AmzProduct>()
+    .Name("ProductGrid")
     .Columns(columns =>
     {
         columns.Bound(p => p.ProductName);
@@ -26,11 +33,15 @@
     .Pageable()
     .Navigatable()
     .Sortable()
+    .Selectable(selectable => selectable
+            .Mode(GridSelectionMode.Single)
+            .Type(GridSelectionType.Row))
     //.Scrollable()
+    .Events(events => events.Change("onChange"))
     .DataSource(dataSource => dataSource
         .Ajax()
         .Batch(true)
-        .PageSize(100)
+        .PageSize(10)
         .ServerOperation(false)
         .Events(events => events.Error("error_handler"))
         .Model(model => model.Id(p => p.ProductID))
@@ -39,8 +50,22 @@
         .Update("Editing_Update", "ProductAdmin")
         .Destroy("Editing_Destroy", "ProductAdmin")
     )
-)
+    )
+</div>
 <script type="text/javascript">
+
+    if (!String.prototype.format) {
+        String.prototype.format = function () {
+            var args = arguments;
+            return this.replace(/{(\d+)}/g, function (match, number) {
+                return typeof args[number] != 'undefined'
+                  ? args[number]
+                  : match
+                ;
+            });
+        };
+    }
+
     function error_handler(e) {
         if (e.errors) {
             var message = "Errors:\n";
@@ -53,6 +78,14 @@
             });
             alert(message);
         }
+    }
+
+    function onChange(arg) {
+        var grid = $("#ProductGrid").data("kendoGrid");
+        var selectedItem = grid.dataItem(grid.select());
+       
+        document.getElementById("selectedItemImage").src = "@Url.Content("~/content/products/{0}.jpg")".format(selectedItem.ProductID);
+        
     }
 </script>
 

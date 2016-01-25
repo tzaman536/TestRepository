@@ -5,6 +5,7 @@ using Kendo.Mvc.UI;
 using log4net;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -27,6 +28,13 @@ namespace AmzWholeSaleWeb.Controllers
         public ActionResult Index()
         {
             return View();
+        }
+
+        public ActionResult Image(string id)
+        {
+            var dir = Server.MapPath("/Content/products");
+            var path = Path.Combine(dir, id + ".jpg");
+            return base.File(path, "image/jpeg");
         }
 
         public ActionResult Editing_Read([DataSourceRequest] DataSourceRequest request)
