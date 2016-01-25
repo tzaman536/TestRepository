@@ -18,9 +18,15 @@
                 <input type="hidden" id="idProductID" name="productID" value="1" />
                 <br />
                 <input id="btn_submitFile" type="submit" value="Upload Image" />
+
+                <br />
+
+                <h3>@ViewBag.Message</h3>
             }
     </div>
+    
 </div>
+
 <br />
 <div id="allProducts">
     @(Html.Kendo().Grid<AmzModel.AmzProduct>()

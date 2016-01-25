@@ -28,19 +28,17 @@ namespace AmzWholeSaleWeb.Controllers
         // GET: ProductAdmin
         public ActionResult Index(string message)
         {
-            if(!string.IsNullOrEmpty(message))
+            if (!string.IsNullOrEmpty(message))
             {
-
+                ViewBag.Message = message;
+            }
+            else
+            {
+                ViewBag.Message = "Manage your product by uploading product image and typing in product descritpion below.";
             }
             return View();
         }
 
-        public ActionResult Image(string id)
-        {
-            var dir = Server.MapPath("/Content/products");
-            var path = Path.Combine(dir, id + ".jpg");
-            return base.File(path, "image/jpeg");
-        }
 
         public ActionResult Editing_Read([DataSourceRequest] DataSourceRequest request)
         {
@@ -100,9 +98,16 @@ namespace AmzWholeSaleWeb.Controllers
         {
             var request = System.Web.HttpContext.Current.Request;
 
+            string uploadMessage = "File upload successful";
+
+            FileInfo fi = new FileInfo(file.FileName);
+            if(!fi.Extension.Equals(".jpg"))
+            {
+                uploadMessage = "Please upload a valid [.jpg] image file";
+            }
+
             return RedirectToAction("Index", new RouteValueDictionary(
-                                                new { controller = "ProductAdmin", action = "Index", message = "hello" }));
-            //return Redirect(string.Format("{0}#ProductAdmin",request.UrlReferrer));
+                                                new { controller = "ProductAdmin", action = "Index", message =  uploadMessage}));
         }
 
 
