@@ -12,14 +12,23 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="ApplicationInsights.config">
       <publishTime>01/23/2016 07:24:36</publishTime>
     </File>
+    <File Include="bin/AmzBL.dll">
+      <publishTime>01/24/2016 21:51:30</publishTime>
+    </File>
+    <File Include="bin/AmzModel.dll">
+      <publishTime>01/24/2016 21:51:29</publishTime>
+    </File>
     <File Include="bin/AmzWholeSaleWeb.dll">
-      <publishTime>01/23/2016 10:32:15</publishTime>
+      <publishTime>01/24/2016 21:51:37</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.dll">
       <publishTime>01/23/2016 07:24:13</publishTime>
     </File>
     <File Include="bin/ApplicationInsights.config">
       <publishTime>01/23/2016 07:24:36</publishTime>
+    </File>
+    <File Include="bin/Dapper.dll">
+      <publishTime>01/24/2016 10:47:16</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>01/23/2016 07:24:16</publishTime>
@@ -32,6 +41,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="bin/Kendo.Mvc.Examples.dll">
       <publishTime>01/17/2016 18:15:15</publishTime>
+    </File>
+    <File Include="bin/log4net.dll">
+      <publishTime>01/24/2016 14:54:11</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.Agent.Intercept.dll">
       <publishTime>01/23/2016 07:24:29</publishTime>
@@ -1741,7 +1753,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/23/2016 07:24:04</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>01/23/2016 07:24:38</publishTime>
+      <publishTime>01/24/2016 14:54:17</publishTime>
     </File>
     <File Include="Scripts/ai.0.15.0-build58334.js">
       <publishTime>01/23/2016 07:24:37</publishTime>
@@ -3901,7 +3913,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/23/2016 07:24:15</publishTime>
     </File>
     <File Include="Views/AmzHome/Index.cshtml">
-      <publishTime>01/23/2016 10:41:14</publishTime>
+      <publishTime>01/24/2016 10:34:26</publishTime>
     </File>
     <File Include="Views/Home/About.cshtml">
       <publishTime>01/23/2016 07:24:04</publishTime>
@@ -3930,6 +3942,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/Manage/VerifyPhoneNumber.cshtml">
       <publishTime>01/23/2016 07:24:16</publishTime>
     </File>
+    <File Include="Views/ProductAdmin/Index.cshtml">
+      <publishTime>01/24/2016 21:40:39</publishTime>
+    </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>01/23/2016 07:24:15</publishTime>
     </File>
@@ -3943,13 +3958,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/23/2016 07:24:16</publishTime>
     </File>
     <File Include="Views/Web.config">
-      <publishTime>01/23/2016 08:02:27</publishTime>
+      <publishTime>01/24/2016 15:07:03</publishTime>
     </File>
     <File Include="Views/_ViewStart.cshtml">
       <publishTime>01/23/2016 07:24:04</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>01/23/2016 10:32:23</publishTime>
+      <publishTime>01/24/2016 21:51:46</publishTime>
     </File>
   </ItemGroup>
 </Project>
