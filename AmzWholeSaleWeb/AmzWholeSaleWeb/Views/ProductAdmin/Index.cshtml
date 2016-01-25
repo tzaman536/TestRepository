@@ -4,10 +4,22 @@
 }
 
 <h2>Product Admin </h2>
-<div id="productImage">
-    @*<img id="selectedItemImage" src="@Url.Content("~/content/products/1.jpg")" />*@
-    <img id="selectedItemImage" src="@Url.Content("~/content/products/1.jpg")" />
+<div id="test" class="pad" contenteditable="true">
+    <div id="productImage" class="fif">
+        @*<img id="selectedItemImage" src="@Url.Content("~/content/products/1.jpg")" />*@
+        <img id="selectedItemImage" src="@Url.Content("~/content/products/1.jpg")" />
+
+    </div>    
     
+    <div id="uploadButton" class="fif">
+            @using (Html.BeginForm("UploadImage", "ProductAdmin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <input type="file" name="file" />
+                <input type="hidden" id="idProductID" name="productID" value="1" />
+                <br />
+                <input id="btn_submitFile" type="submit" value="Upload Image" />
+            }
+    </div>
 </div>
 <br />
 <div id="allProducts">
@@ -54,17 +66,6 @@
 </div>
 <script type="text/javascript">
 
-    //if (!String.prototype.format) {
-    //    String.prototype.format = function () {
-    //        var args = arguments;
-    //        return this.replace(/{(\d+)}/g, function (match, number) {
-    //            return typeof args[number] != 'undefined'
-    //              ? args[number]
-    //              : match
-    //            ;
-    //        });
-    //    };
-    //}
 
     function error_handler(e) {
         if (e.errors) {
@@ -80,6 +81,8 @@
         }
     }
 
+
+
     function onChange(arg) {
         var grid = $("#ProductGrid").data("kendoGrid");
         var selectedItem = grid.dataItem(grid.select());
@@ -87,5 +90,21 @@
         document.getElementById("selectedItemImage").src = "@Url.Content("~/content/products/{0}.jpg")".format(selectedItem.ProductID);
         
     }
+
+    
+
 </script>
 
+<style>
+    .pad {
+    background-color: #eee;
+    padding: 4px;
+    overflow:hidden  /*  first */
+    }
+    .fif {
+        display: inline-block;
+        margin: 0;
+        padding: 4px 8px;
+        float:left  /* second part */
+    }
+</style>

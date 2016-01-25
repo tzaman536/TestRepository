@@ -90,5 +90,17 @@ namespace AmzWholeSaleWeb.Controllers
             return Json(products.ToDataSourceResult(request, ModelState));
         }
 
+        [HttpPost]
+        public ActionResult UploadImage(HttpPostedFileBase file, int productID)
+        {
+            var request = System.Web.HttpContext.Current.Request;
+
+
+
+            return Redirect(string.Format("{0}#ProductAdmin",request.UrlReferrer));
+        }
+
+
+
     }
 }
