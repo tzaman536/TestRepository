@@ -3,8 +3,10 @@ using AmzModel;
 using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
 using log4net;
+using Simplex.Tools.File;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -96,15 +98,61 @@ namespace AmzWholeSaleWeb.Controllers
         [HttpPost]
         public ActionResult UploadImage(HttpPostedFileBase file, int productID)
         {
-            var request = System.Web.HttpContext.Current.Request;
-
             string uploadMessage = "File upload successful";
-
-            FileInfo fi = new FileInfo(file.FileName);
-            if(!fi.Extension.Equals(".jpg"))
+            bool fileIsValid = true;
+            try
             {
-                uploadMessage = "Please upload a valid [.jpg] image file";
+                var request = System.Web.HttpContext.Current.Request;
+
+                FileInfo fi = new FileInfo(file.FileName);
+                if (!fi.Extension.Equals(".jpg"))
+                {
+                    uploadMessage = "Please upload a valid [.jpg] image file";
+                }
+
+                if(productID == 0)
+                {
+                    uploadMessage = "Can't except product id 0. Please select a valid data row";
+                    fileIsValid = false;
+                }
+
+                if (fileIsValid)
+                {
+                    string path = System.Web.HttpContext.Current.Server.MapPath("~/UploadedImages");
+                    string sourceFile = string.Format(@"{0}\{1}", path, file.FileName);
+                    file.SaveAs(sourceFile);
+                    
+                    logger.InfoFormat("Saved input file as {0}",sourceFile);
+                    string destinationFilePath = System.Web.HttpContext.Current.Server.MapPath("~/Content") + string.Format(@"\products\{0}_product.jpg",productID);
+                    Bitmap bmOriginal = new Bitmap(sourceFile);
+                    ImageHandler ih = new ImageHandler();
+                    ih.Save(bmOriginal, 100, 100, 100, destinationFilePath);
+                     
+                    logger.InfoFormat("Resized input file and saved as {0}",destinationFilePath);
+                    logger.InfoFormat("File upload successful");
+                    
+                    try
+                    {
+                        FileInfo fiFileToDelete = new FileInfo(sourceFile);
+                        if (fiFileToDelete.Exists)
+                            fiFileToDelete.Delete();
+                        logger.InfoFormat("Removed file {0}",sourceFile);
+
+                    }
+                    catch (Exception ex1)
+                    {
+                        logger.Error(ex1);   
+                    }
+
+                }
+
             }
+            catch(Exception ex)
+            {
+                logger.Error(ex);
+                uploadMessage = string.Format("File upload failed: Error: {0}", ex.Message);
+            }
+
 
             return RedirectToAction("Index", new RouteValueDictionary(
                                                 new { controller = "ProductAdmin", action = "Index", message =  uploadMessage}));

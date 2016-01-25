@@ -15,7 +15,7 @@
             @using (Html.BeginForm("UploadImage", "ProductAdmin", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
                 <input type="file" name="file" />
-                <input type="hidden" id="idProductID" name="productID" value="1" />
+                <input type="hidden" id="idProductID" name="productID" value="0" />
                 <br />
                 <input id="btn_submitFile" type="submit" value="Upload Image" />
 
@@ -92,12 +92,13 @@
     function onChange(arg) {
         var grid = $("#ProductGrid").data("kendoGrid");
         var selectedItem = grid.dataItem(grid.select());
-       
+
         document.getElementById("selectedItemImage").src = "@Url.Content("~/content/products/{0}.jpg")".format(selectedItem.ProductID);
-        
+        document.getElementById("idProductID").value = selectedItem.ProductID;
+
     }
 
-    
+
 
 </script>
 

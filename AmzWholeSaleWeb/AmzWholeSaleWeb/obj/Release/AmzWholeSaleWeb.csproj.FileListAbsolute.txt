@@ -89,3 +89,5 @@ C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\log4net.xml
 C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\Dapper.pdb
 C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\Dapper.xml
 C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\obj\Release\AmzWholeSaleWeb.csprojResolveAssemblyReference.cache
+C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\SimplexTools.dll
+C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\SimplexTools.pdb
