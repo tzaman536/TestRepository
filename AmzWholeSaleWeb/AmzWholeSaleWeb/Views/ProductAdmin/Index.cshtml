@@ -26,11 +26,11 @@
     .Pageable()
     .Navigatable()
     .Sortable()
-    .Scrollable()
+    //.Scrollable()
     .DataSource(dataSource => dataSource
         .Ajax()
         .Batch(true)
-        .PageSize(20)
+        .PageSize(100)
         .ServerOperation(false)
         .Events(events => events.Error("error_handler"))
         .Model(model => model.Id(p => p.ProductID))

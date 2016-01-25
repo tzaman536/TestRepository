@@ -61,7 +61,7 @@ namespace AmzWholeSaleWeb.Controllers
             {
                 foreach (var product in products)
                 {
-                    //productService.Update(product);
+                    productHandler.UpdateProduct(product);
                 }
             }
 

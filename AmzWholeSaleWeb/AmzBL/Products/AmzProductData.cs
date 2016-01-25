@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Dapper;
 using log4net;
+using System.Web;
 
 namespace AmzBL.Products
 {
@@ -26,7 +27,8 @@ namespace AmzBL.Products
                 {
                     result = conn.Query<AmzProduct>(@"
                     SELECT * 
-                    FROM phenix.amz_Products");
+                    FROM phenix.amz_Products
+                    order by ProductID");
                 }
                 catch (Exception ex)
                 {
@@ -72,6 +74,14 @@ namespace AmzBL.Products
         {
 
             logger.InfoFormat("Adding product: {0} - {1}", p.ProductName, p.ProductDescription);
+            DateTime addDate = DateTime.UtcNow;
+            string addedBy = HttpContext.Current.User.Identity.Name;
+            if (string.IsNullOrEmpty(addedBy))
+            {
+                logger.Warn("Couldn't figure out HttpContext user identity. Using Environment.UserName instead");
+                addedBy  = Environment.UserName;
+            }
+
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
             {
                 conn.Open();
@@ -107,8 +117,8 @@ namespace AmzBL.Products
                                 ,p.UnitsOnOrder
                                 ,p.Discontinued
                                 ,p.ImageUploadSuccessful
-                                ,p.AddDate
-                                ,p.AddedBy
+                                ,addDate
+                                ,addedBy
                                 });
 
 
@@ -127,6 +137,63 @@ namespace AmzBL.Products
 
             }
             return null;
+
+        }
+
+        public bool UpdateProduct(AmzProduct p)
+        {
+
+            bool result = true;
+            logger.InfoFormat("Updating product: {0} - {1}", p.ProductName, p.ProductDescription);
+            DateTime updateDate = DateTime.UtcNow;
+            string updatedBy = HttpContext.Current.User.Identity.Name;
+            if(string.IsNullOrEmpty(updatedBy))
+            {
+                logger.Warn("Couldn't figure out HttpContext user identity. Using Environment.UserName instead");
+                updatedBy = Environment.UserName;
+            }
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+            {
+                conn.Open();
+                try
+                {
+                    conn.Execute(@"
+                                                        update phenix.amz_Products
+                                                        set ProductName = @ProductName
+                                                            , ProductDescription = @ProductDescription
+                                                            , UnitPrice = @UnitPrice
+                                                            , UnitsInStock = @UnitsInStock
+                                                            , UnitsOnOrder = @UnitsOnOrder
+                                                            , Discontinued = @Discontinued
+                                                            , ImageUploadSuccessful = @ImageUploadSuccessful
+                                                            , ModifiedDate = @updateDate
+                                                            , ModifiedBy = @updatedBy
+                                                        where ProductID = @ProductID
+
+                                                    ",
+                                                    new {
+                                                        p.ProductName
+                                                        ,p.ProductDescription
+                                                        ,p.UnitPrice
+                                                        ,p.UnitsInStock
+                                                        ,p.UnitsOnOrder
+                                                        ,p.Discontinued
+                                                        ,p.ImageUploadSuccessful
+                                                        ,updateDate
+                                                        ,updatedBy
+                                                        ,p.ProductID
+                                                    });
+
+
+                }
+                catch (Exception ex)
+                {
+                    result = false;
+                    logger.Error(ex);
+                }
+
+            }
+            return result;
 
         }
 

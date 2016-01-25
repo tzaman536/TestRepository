@@ -39,4 +39,5 @@ values ( 'Chai'
 	,1
 	,getdate()
 	,'tzaman')
+SELECT SCOPE_IDENTITY()
 */
