@@ -27,6 +27,10 @@ namespace AmzWholeSaleWeb
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
 
+
+            bundles.Add(new ScriptBundle("~/bundles/simplex").Include(
+            "~/Scripts/simplex.js"));
+
             #region Kendo files
             bundles.Add(new ScriptBundle("~/bundles/kendo").Include(
             "~/Scripts/kendo/kendo.all.min.js",

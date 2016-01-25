@@ -41,7 +41,7 @@
     .DataSource(dataSource => dataSource
         .Ajax()
         .Batch(true)
-        .PageSize(10)
+        .PageSize(7)
         .ServerOperation(false)
         .Events(events => events.Error("error_handler"))
         .Model(model => model.Id(p => p.ProductID))
@@ -54,17 +54,17 @@
 </div>
 <script type="text/javascript">
 
-    if (!String.prototype.format) {
-        String.prototype.format = function () {
-            var args = arguments;
-            return this.replace(/{(\d+)}/g, function (match, number) {
-                return typeof args[number] != 'undefined'
-                  ? args[number]
-                  : match
-                ;
-            });
-        };
-    }
+    //if (!String.prototype.format) {
+    //    String.prototype.format = function () {
+    //        var args = arguments;
+    //        return this.replace(/{(\d+)}/g, function (match, number) {
+    //            return typeof args[number] != 'undefined'
+    //              ? args[number]
+    //              : match
+    //            ;
+    //        });
+    //    };
+    //}
 
     function error_handler(e) {
         if (e.errors) {
