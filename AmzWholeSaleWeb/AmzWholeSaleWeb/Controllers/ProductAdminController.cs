@@ -9,6 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 
 namespace AmzWholeSaleWeb.Controllers
 {
@@ -25,8 +26,12 @@ namespace AmzWholeSaleWeb.Controllers
         }
 
         // GET: ProductAdmin
-        public ActionResult Index()
+        public ActionResult Index(string message)
         {
+            if(!string.IsNullOrEmpty(message))
+            {
+
+            }
             return View();
         }
 
@@ -95,9 +100,9 @@ namespace AmzWholeSaleWeb.Controllers
         {
             var request = System.Web.HttpContext.Current.Request;
 
-
-
-            return Redirect(string.Format("{0}#ProductAdmin",request.UrlReferrer));
+            return RedirectToAction("Index", new RouteValueDictionary(
+                                                new { controller = "ProductAdmin", action = "Index", message = "hello" }));
+            //return Redirect(string.Format("{0}#ProductAdmin",request.UrlReferrer));
         }
 
 
