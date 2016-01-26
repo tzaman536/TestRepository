@@ -21,7 +21,16 @@
 
                 <br />
 
-                <h3>@ViewBag.Message</h3>
+                if (ViewBag.ErrorFound == false)
+                {
+                    <h3 style="color:blue">@ViewBag.Message </h3> 
+                }
+                else
+                {
+                    <h3 style = "color:red" > @ViewBag.Message </h3 >
+
+                }
+
             }
     </div>
     
@@ -93,7 +102,7 @@
         var grid = $("#ProductGrid").data("kendoGrid");
         var selectedItem = grid.dataItem(grid.select());
 
-        document.getElementById("selectedItemImage").src = "@Url.Content("~/content/products/{0}.jpg")".format(selectedItem.ProductID);
+        document.getElementById("selectedItemImage").src = "@Url.Content("~/content/products/{0}.jpg?{1}")".format(selectedItem.ProductID, new Date().getTime());
         document.getElementById("idProductID").value = selectedItem.ProductID;
 
     }

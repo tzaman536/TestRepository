@@ -167,6 +167,7 @@ C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\Microsoft.Owin.Securit
 C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\Microsoft.Web.Infrastructure.dll
 C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\Newtonsoft.Json.dll
 C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\Owin.dll
+C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\SimplexTools.dll
 C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\System.Web.Helpers.dll
 C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\System.Web.Mvc.dll
 C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\System.Web.Optimization.dll
@@ -176,6 +177,7 @@ C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\System.Web.WebPages.dl
 C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\System.Web.WebPages.Razor.dll
 C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\WebGrease.dll
 C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\Dapper.dll
+C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\SimplexTools.pdb
 C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\AmzBL.pdb
 C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\AmzModel.pdb
 C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\log4net.xml
@@ -213,5 +215,3 @@ C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\Dapper.xml
 C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\obj\Debug\AmzWholeSaleWeb.csprojResolveAssemblyReference.cache
 C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\obj\Debug\AmzWholeSaleWeb.dll
 C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\obj\Debug\AmzWholeSaleWeb.pdb
-C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\SimplexTools.dll
-C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\SimplexTools.pdb

@@ -28,18 +28,18 @@ namespace AmzWholeSaleWeb.Controllers
         }
 
         // GET: ProductAdmin
-        public ActionResult Index(string message)
+        public ActionResult Index(string message, bool errorFund=false)
         {
-            if (!string.IsNullOrEmpty(message))
-            {
-                ViewBag.Message = message;
-            }
-            else
-            {
+            if (string.IsNullOrEmpty(message))
                 ViewBag.Message = "Manage your product by uploading product image and typing in product descritpion below.";
-            }
+            else
+                ViewBag.Message = message;
+
+            ViewBag.ErrorFound = errorFund;
+            
             return View();
         }
+
 
 
         public ActionResult Editing_Read([DataSourceRequest] DataSourceRequest request)
@@ -99,6 +99,7 @@ namespace AmzWholeSaleWeb.Controllers
         public ActionResult UploadImage(HttpPostedFileBase file, int productID)
         {
             string uploadMessage = "File upload successful";
+            bool fileUploadSuccessful = true;
             bool fileIsValid = true;
             try
             {
@@ -119,11 +120,17 @@ namespace AmzWholeSaleWeb.Controllers
                 if (fileIsValid)
                 {
                     string path = System.Web.HttpContext.Current.Server.MapPath("~/UploadedImages");
-                    string sourceFile = string.Format(@"{0}\{1}", path, file.FileName);
+                    DirectoryInfo di = new DirectoryInfo(path);
+                    if(!di.Exists)
+                    {
+                        di.Create();
+                    }
+
+                    string sourceFile = string.Format(@"{0}\{1}_{2}", path,DateTime.Now.Ticks, file.FileName);
                     file.SaveAs(sourceFile);
                     
                     logger.InfoFormat("Saved input file as {0}",sourceFile);
-                    string destinationFilePath = System.Web.HttpContext.Current.Server.MapPath("~/Content") + string.Format(@"\products\{0}_product.jpg",productID);
+                    string destinationFilePath = System.Web.HttpContext.Current.Server.MapPath("~/Content") + string.Format(@"\products\{0}.jpg",productID);
                     Bitmap bmOriginal = new Bitmap(sourceFile);
                     ImageHandler ih = new ImageHandler();
                     ih.Save(bmOriginal, 100, 100, 100, destinationFilePath);
@@ -142,6 +149,7 @@ namespace AmzWholeSaleWeb.Controllers
                     catch (Exception ex1)
                     {
                         logger.Error(ex1);   
+                        
                     }
 
                 }
@@ -151,11 +159,12 @@ namespace AmzWholeSaleWeb.Controllers
             {
                 logger.Error(ex);
                 uploadMessage = string.Format("File upload failed: Error: {0}", ex.Message);
+                fileUploadSuccessful = false;
             }
 
 
             return RedirectToAction("Index", new RouteValueDictionary(
-                                                new { controller = "ProductAdmin", action = "Index", message =  uploadMessage}));
+                                                new { controller = "ProductAdmin", action = "Index", message =  uploadMessage, status = fileUploadSuccessful }));
         }
 
 
