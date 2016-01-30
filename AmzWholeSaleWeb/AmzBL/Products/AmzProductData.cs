@@ -27,7 +27,7 @@ namespace AmzBL.Products
                 {
                     result = conn.Query<AmzProduct>(@"
                     SELECT * 
-                    FROM phenix.amz_Products
+                    FROM amz.Products
                     order by ProductID");
                 }
                 catch (Exception ex)
@@ -51,7 +51,7 @@ namespace AmzBL.Products
                 {
                     result = conn.Query<AmzProduct>(@"
                     SELECT * 
-                    FROM phenix.amz_Products
+                    FROM amz.Products
                     where ProductId = @productId
                     ", new { productId });
                 }
@@ -88,7 +88,7 @@ namespace AmzBL.Products
                 try
                 {
                     var result = conn.Query<int>(@"
-                                                        insert into phenix.amz_Products
+                                                        insert into amz.Products
                                                         (ProductName
                                                         , ProductDescription
                                                         , UnitPrice
@@ -158,7 +158,7 @@ namespace AmzBL.Products
                 try
                 {
                     conn.Execute(@"
-                                                        update phenix.amz_Products
+                                                        update amz.Products
                                                         set ProductName = @ProductName
                                                             , ProductDescription = @ProductDescription
                                                             , UnitPrice = @UnitPrice
