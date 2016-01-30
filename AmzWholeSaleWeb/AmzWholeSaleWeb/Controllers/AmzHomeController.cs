@@ -54,7 +54,7 @@ namespace AmzWholeSaleWeb.Controllers
             }
             else
             {
-                c.TotalItems = 50;
+                c.CartItems= ch.GetCartItems(c.CartID);
             }
             return Json(new { success = true, Cart = c }, JsonRequestBehavior.AllowGet);
 

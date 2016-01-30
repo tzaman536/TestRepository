@@ -53,6 +53,8 @@ namespace Simplex.Tools.Cart
                       and CheckedOut = 0
                     ", new { currentUser,dateCreated,checkedOut });
 
+                    if (result != null && result.Any())
+                        return result.ElementAtOrDefault(0);
 
 
                 }
@@ -62,6 +64,29 @@ namespace Simplex.Tools.Cart
                 }
             }
             return null;
+        }
+
+
+        public IEnumerable<CartItems> GetCartItems(int cartID)
+        {
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+            {
+                conn.Open();
+                try
+                {
+                   return conn.Query<CartItems>(@"
+                    SELECT * 
+                    FROM dbo.CartItems
+                    where CartID = @cartID
+                    ", new { cartID });
+
+                }
+                catch (Exception ex)
+                {
+                    logger.Error(ex);
+                    return null;
+                }
+            }
         }
 
     }

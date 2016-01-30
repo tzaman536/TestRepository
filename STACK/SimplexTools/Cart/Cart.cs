@@ -19,5 +19,23 @@ namespace Simplex.Tools.Cart
         public int TotalItems { get; set; }
         public string Message { get; set; }
         public bool IsValid { get; set; }
+
+        public IEnumerable<CartItems> CartItems
+        {
+            get
+            {
+                return cartItems;
+            }
+
+            set
+            {
+                cartItems = value;
+                if(value != null)
+                    TotalItems = cartItems.Count();
+            }
+        }
+
+        private IEnumerable<CartItems> cartItems;
+        
     }
 }
