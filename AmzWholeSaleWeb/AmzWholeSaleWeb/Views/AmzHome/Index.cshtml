@@ -97,14 +97,15 @@
                 beforeSend: function (xhr) {
                 },
                 success: function (response, textStatus, jqXHR) {
-                    //alert(response.message);
+                    //alert("Hello");
                     itemsInCart = response.Cart.TotalItems;
-                    //alert(response.Cart.TotalItemsInCart);
-                    //alert(itemsInCart);
-                    cartButton.textContent = "Items in cart " + itemsInCart;
+                    cartButton.textContent = "Items in cart (" + itemsInCart + ")";
+                    if (response.Cart.IsValid == false)
+                        alert(response.Cart.Message);
+
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    alert("Error found during execution");
+                    alert("Failed to get cart data. Please reload your page");
                 }
             });
 

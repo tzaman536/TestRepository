@@ -4,9 +4,11 @@ using Kendo.Mvc.Examples.Models;
 using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
 using log4net;
+using Simplex.Tools.Cart;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mime;
 using System.Web;
 using System.Web.Mvc;
 
@@ -38,9 +40,24 @@ namespace AmzWholeSaleWeb.Controllers
 
         public ActionResult GetTotalItemsInCart([DataSourceRequest]DataSourceRequest request)
         {
-            Cart c = new Cart();
-            c.TotalItems = 15;
+            string message;
+            CartHandler ch = new CartHandler();
+
+            Cart c = ch.GetUserCart(out message);
+
+            if (c == null)
+            {
+                c = new Cart();
+                c.TotalItems = 0;
+                c.Message = message;
+                c.IsValid = false;
+            }
+            else
+            {
+                c.TotalItems = 50;
+            }
             return Json(new { success = true, Cart = c }, JsonRequestBehavior.AllowGet);
+
         }
         #endregion 
 
