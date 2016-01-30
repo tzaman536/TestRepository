@@ -1,7 +1,7 @@
-IF OBJECT_ID (N'amz_Products', N'U') IS NOT NULL 
-   drop table phenix.amz_Products
+IF OBJECT_ID (N'Products', N'U') IS NOT NULL 
+   drop table amz.Products
 
-create table phenix.amz_Products
+create table amz.Products
 (
 	ProductID int identity not null,
 	ProductName nvarchar(100) not null,
@@ -19,7 +19,7 @@ create table phenix.amz_Products
 )
 
 /*
-insert into phenix.amz_Products
+insert into amz.Products
 (ProductName
 	,ProductDescription
 	,UnitPrice

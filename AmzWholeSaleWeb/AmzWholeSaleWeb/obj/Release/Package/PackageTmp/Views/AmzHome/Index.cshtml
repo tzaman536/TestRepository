@@ -4,7 +4,7 @@
     ViewBag.Title = "AMZ";
 }
 
-<div class="jumbotron">
+@*<div class="jumbotron">
     <h1>AMZ Wholesale </h1>
     <p class="lead">
         We are dedicated to providing our customers with great deals, fast shipping, and excellent service.
@@ -14,8 +14,9 @@
         Register with us so that we can keep you upto date with all our lates deals and new supplies.
 
     </p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+ </div>*@
+
+
 
 @*<div class="row">*@
     @*<div class="col-md-4">
@@ -39,6 +40,7 @@
     </div>*@
 @*</div>*@
 
+<br />
 
 <div class="demo-section k-content wide">
     
@@ -48,7 +50,7 @@
     .ClientTemplateId("template")
     .DataSource(dataSource => dataSource
         .Model(model => model.Id("ProductID"))
-        .PageSize(20)
+        .PageSize(99)
         //.Create(create => create.Action("Editing_Create", "ListView"))
         .Read(read => read.Action("Products_Read", "AmzHome"))
         //.Update(update => update.Action("Editing_Update", "ListView"))
@@ -57,33 +59,20 @@
 </div>
 
 <script type="text/x-kendo-tmpl" id="template">
-    @*<div class="product-view k-widget">*@
-    <div class="product">
+    <div class="product-view k-widget">
         <dl>
-            <dt>
-                <img src="@Url.Content("~/content/products/")#:ProductID#.jpg"/>
-            </dt>
-            <dt>Product Name</dt>
+            <dt ><img src="@Url.Content("~/content/products/")#:ProductID#.jpg" alt="#:ProductName# image" /> #:ProductDescription#</dt>
             <dd>#:ProductName#</dd>
-            <dt>Unit Price</dt>
-            <dd>#:kendo.toString(UnitPrice, "c")#</dd>
-            <dt>Units In Stock</dt>
-            <dd>#:UnitsInStock#</dd>
+            <dd>Price: #:kendo.toString(UnitPrice, "c")#</dd>
+            <dd>In Stock: #:UnitsInStock#</dd>
         </dl>
         <div class="edit-buttons">
-            <button onclick="addToCart('#:ProductName#')">Add to cart</button>
-            @*<a class="k-button k-edit-button" href="\\#"><span class="k-icon k-edit"></span></a>
-            <a class="k-button k-delete-button" href="\\#"><span class="k-icon k-delete"></span></a>*@
+            <button id="addToCartButton" type="button" onclick="addToCart()">Add to cart</button>
         </div>
     </div>
 </script>
 
 <script>
-    function addToCart(e)
-    {
-        alert(e);
-    }
-
     $(function() {
         var listView = $("#listView").data("kendoListView");
 
@@ -98,40 +87,33 @@
             $("#listView").focus();
         }
     });
-</script>
 
+
+    function addToCart() {
+        alert("Add to cart")
+    }
+</script>
 
 
 <style>
     .product-view {
         float: left;
-        width: 50%;
-        height: 300px;
-        box-sizing: border-box;
-        border-top: 0;
-        position: relative;
-
-    }
-    .product {
-        float: left;
-        position: relative;
-        width: 50%;
+        width: 33.3%;
         height: 300px;
         box-sizing: border-box;
         border-top: 0;
         position: relative;
     }
-    
 
-        .product-view dt img {
-            float: right;
-            width: 110px;
-            height: 110px;
-            -webkit-transform: translate3d(0,0,0);
-            transform: translate3d(0,0,0);
-            
-        }
-
+    .product-view img
+    {
+        float:left;
+        width:110px;
+        height:110px;
+        opacity:100;
+        margin-bottom:40px;
+        margin-right:10px;
+    }
         .product-view:nth-child(even) {
             border-left-width: 0;
         }
@@ -139,9 +121,8 @@
         .product-view dl {
             margin: 10px 10px 0;
             padding: 0;
-            overflow: visible;
+            overflow: hidden;
         }
-
 
         .product-view dt, dd {
             margin: 0;
@@ -152,15 +133,18 @@
         }
 
         .product-view dt {
-            font-size: 11px;
+            font-size: 14px;
             height: 16px;
             line-height: 16px;
-            text-transform: uppercase;
-            opacity: 0.5;
+            text-transform: none;
+            opacity:1;
+            margin-left: 10px;
+            word-wrap:break-word;
+           
         }
 
         .product-view dd {
-            height: 46px;
+            height: 25px;
             overflow: hidden;
             white-space: nowrap;
             text-overflow: ellipsis;
@@ -211,96 +195,4 @@
                 border-left-width: 1px;
             }
     }
-
-        #listView {
-        padding: 10px 5px;
-        margin-bottom: -1px;
-        min-height: 510px;
-    }
-
-    /*.product {
-        float: left;
-        position: relative;
-        width: 111px;
-        height: 170px;
-        margin: 0 5px;
-        padding: 0;
-    }
-
-        .product img {
-            width: 110px;
-            height: 110px;
-        }
-
-        .product h3 {
-            margin: 0;
-            padding: 3px 5px 0 0;
-            max-width: 96px;
-            overflow: hidden;
-            line-height: 1.1em;
-            font-size: .9em;
-            font-weight: normal;
-            text-transform: uppercase;
-            color: #999;
-        }
-
-        .product p {
-            visibility: hidden;
-        }
-
-        .product:hover p {
-            visibility: visible;
-            position: absolute;
-            width: 110px;
-            height: 110px;
-            top: 0;
-            margin: 0;
-            padding: 0;
-            line-height: 110px;
-            vertical-align: middle;
-            text-align: center;
-            color: #fff;
-            background-color: rgba(0,0,0,0.75);
-            transition: background .2s linear, color .2s linear;
-            -moz-transition: background .2s linear, color .2s linear;
-            -webkit-transition: background .2s linear, color .2s linear;
-            -o-transition: background .2s linear, color .2s linear;
-        }
-
-    .k-listview:after {
-        content: ".";
-        display: block;
-        height: 0;
-        clear: both;
-        visibility: hidden;
-    }*/
-
 </style>
-
-
-
-
-@*<script type="text/x-kendo-tmpl" id="template">
-    <div class="product">
-        <img src="@Url.Content("~/content/products/")#:ProductID#.jpg" alt="#:ProductName# image" />
-        <h3>#:ProductName#</h3>
-        <p>#:kendo.toString(UnitPrice, "c")#</p>
-    </div>
-</script>
-
-<div class="demo-section k-content wide">
-    @(Html.Kendo().ListView<Kendo.Mvc.Examples.Models.ProductViewModel>(Model)
-    .Name("listView")
-    .TagName("div")
-    .ClientTemplateId("template")
-    .DataSource(dataSource =>
-    {
-        dataSource.Read(read => read.Action("Products_Read", "AmzHome"));
-        dataSource.PageSize(21);
-    })
-    .Pageable()
-    )
-</div>
-
-<style>
-</style>*@

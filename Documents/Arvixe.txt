@@ -15,3 +15,13 @@ PWD: Ph9l0ksG57
 Home Page:
 https://customers.arvixe.com/
 uid: tzaman536@gmail.com pwd: Changeme123
+
+
+
+To unlock your registrar lock and proceed with making changes to your domain:
+
+1. Login to your Customer Area: customers.arvixe.com/clientarea.php
+2. Click My Domains and the Manage Domains button to the right of the domain in which you'd like to unlock
+3. In the Registrar Lock tab click Disable Registrar Lock
+4. Make the changes to your domain
+5. Go back to the Registrar Lock tab and click Enable Registrar Lock
