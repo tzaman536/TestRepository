@@ -98,9 +98,9 @@
                 },
                 success: function (response, textStatus, jqXHR) {
                     //alert(response.message);
-                    itemsInCart = response.TotalItemsInCart;
-                    alert(response.TotalItemsInCart);
-                    alert(itemsInCart);
+                    itemsInCart = response.Cart.TotalItems;
+                    //alert(response.Cart.TotalItemsInCart);
+                    //alert(itemsInCart);
                     cartButton.textContent = "Items in cart " + itemsInCart;
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {

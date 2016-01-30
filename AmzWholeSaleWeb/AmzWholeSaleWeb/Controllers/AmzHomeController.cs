@@ -38,7 +38,9 @@ namespace AmzWholeSaleWeb.Controllers
 
         public ActionResult GetTotalItemsInCart([DataSourceRequest]DataSourceRequest request)
         {
-            return Json(new { success = true, TotalItemsInCart = 10 }, JsonRequestBehavior.AllowGet);
+            Cart c = new Cart();
+            c.TotalItems = 15;
+            return Json(new { success = true, Cart = c }, JsonRequestBehavior.AllowGet);
         }
         #endregion 
 

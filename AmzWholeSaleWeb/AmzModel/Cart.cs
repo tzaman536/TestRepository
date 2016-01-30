@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace AmzModel
 {
-    class Cart
+    public class Cart
     {
+        public int TotalItems { get; set; }
     }
 }
