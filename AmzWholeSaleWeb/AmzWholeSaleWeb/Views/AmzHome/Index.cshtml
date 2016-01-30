@@ -18,7 +18,7 @@
 
 
 <div class="row">
-    <button id="CartButton" type="button" onclick="addToCart()">Add to cart</button>
+    <button id="CartButton" type="button" onclick="addToCart()">Cart</button>
 </div>
     @*<div class="row">*@
     @*<div class="col-md-4">
@@ -76,7 +76,17 @@
 
     <script>
         $(document).ready(function () {
+
+            getCartCount();
+            
         });
+
+        function getCartCount()
+        {
+            var cartButton = document.getElementById("CartButton");
+            var itemsInCart = 5;
+            cartButton.textContent = "Items in cart " + itemsInCart;
+        }
 
         $(function () {
             var listView = $("#listView").data("kendoListView");
