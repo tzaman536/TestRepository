@@ -81,10 +81,19 @@
             
         });
 
+        $(function () {
+            var listView = $("#listView").data("kendoListView");
+            
+                $(".k-add-button").click(function (e) {
+                        listView.add();
+                        e.preventDefault();
+                    });
+        });
 
-        //GET CART COUNT
-        function getCartCount()
-        {
+
+
+        // getCartCount(); GET CART COUNT
+        function getCartCount(){
             var cartButton = document.getElementById("CartButton");
             var itemsInCart = 5;
 
@@ -110,18 +119,8 @@
                     alert("Failed to get cart data. Please reload your page");
                 }
             });
-
-          
         }
 
-        $(function () {
-            var listView = $("#listView").data("kendoListView");
-
-            $(".k-add-button").click(function (e) {
-                listView.add();
-                e.preventDefault();
-            });
-        });
 
         $(document.body).keydown(function (e) {
             if (e.altKey && e.keyCode == 87) {
@@ -131,7 +130,7 @@
 
 
         function addToCart() {
-            alert("Add to cart")
+
         }
     </script>
 
