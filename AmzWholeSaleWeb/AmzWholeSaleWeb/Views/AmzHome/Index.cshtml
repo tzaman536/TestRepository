@@ -85,7 +85,30 @@
         {
             var cartButton = document.getElementById("CartButton");
             var itemsInCart = 5;
-            cartButton.textContent = "Items in cart " + itemsInCart;
+
+            var parms = null;
+            $.ajax({
+                type: "GET",
+                traditional: true,
+                url: '@Url.Action("GetTotalItemsInCart", "AmzHome")',
+                async: true,
+                data: parms,
+                dataType: "json",
+                beforeSend: function (xhr) {
+                },
+                success: function (response, textStatus, jqXHR) {
+                    //alert(response.message);
+                    itemsInCart = response.TotalItemsInCart;
+                    alert(response.TotalItemsInCart);
+                    alert(itemsInCart);
+                    cartButton.textContent = "Items in cart " + itemsInCart;
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert("Error found during execution");
+                }
+            });
+
+          
         }
 
         $(function () {

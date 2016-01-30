@@ -27,32 +27,21 @@ namespace AmzWholeSaleWeb.Controllers
             return View(productHandler.GetProducts());
 
 
-    }
+        }
 
-    public ActionResult Products_Read([DataSourceRequest] DataSourceRequest request)
+        public ActionResult Products_Read([DataSourceRequest] DataSourceRequest request)
         {
             return Json(productHandler.GetProducts().ToDataSourceResult(request));
         }
 
+        #region Shopping cart 
 
-        //private static IEnumerable<AmzProduct> GetProductsLocal()
-        //{
-        //    List<AmzProduct> result = new List<AmzProduct>();
-        //    for (int i = 1; i < 80; i++)
-        //    {
-        //        result.Add(new AmzProduct
-        //        {
-        //            ProductID = i,
-        //            ProductName = string.Format("Name {0}", i),
-        //            UnitPrice = 10,
-        //            UnitsInStock = 50,
-        //            UnitsOnOrder = 10,
-        //            Discontinued = false
-        //        });
-        //    }
+        public ActionResult GetTotalItemsInCart([DataSourceRequest]DataSourceRequest request)
+        {
+            return Json(new { success = true, TotalItemsInCart = 10 }, JsonRequestBehavior.AllowGet);
+        }
+        #endregion 
 
-        //    return result;
-        //}
 
         public ActionResult About()
         {
@@ -67,5 +56,9 @@ namespace AmzWholeSaleWeb.Controllers
 
             return View();
         }
+
+
+
+
     }
 }

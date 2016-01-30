@@ -29,7 +29,7 @@ namespace EZFactor1.Controllers
             if (!registered)
                 message = "Please register your company.";
 
-            return Json(new { success = false, message = message }, JsonRequestBehavior.AllowGet);
+            return Json(new { success = true, message = message }, JsonRequestBehavior.AllowGet);
 
 
         }
