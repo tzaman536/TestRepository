@@ -18,6 +18,7 @@ namespace AmzWholeSaleWeb.Controllers
 
     public class ProductAdminController : Controller
     {
+        public string FILE_UPLOAD_SUCCESSFUL = "File upload successful";
         private static readonly ILog logger = LogManager.GetLogger(typeof(ProductAdminController));
 
         private AmzProductHandler productHandler;
@@ -31,12 +32,22 @@ namespace AmzWholeSaleWeb.Controllers
         public ActionResult Index(string message, bool errorFund=false)
         {
             if (string.IsNullOrEmpty(message))
+            {
                 ViewBag.Message = "Manage your product by uploading product image and typing in product descritpion below.";
+            }
             else
-                ViewBag.Message = message;
+            {
+                if(message.Equals(FILE_UPLOAD_SUCCESSFUL))
+                    ViewBag.ErrorFound = false;
+                else
+                    ViewBag.ErrorFound = true;
 
-            ViewBag.ErrorFound = errorFund;
+
+                ViewBag.Message = message;
+            }
+
             
+
             return View();
         }
 
@@ -58,7 +69,18 @@ namespace AmzWholeSaleWeb.Controllers
                 {
                     var addedProduct = productHandler.AddProduct(product);
                     if (addedProduct != null)
+                    {
+                        ViewBag.Message = "Record saved";
+                        ViewBag.ErrorFound = false;
+
                         product.ProductID = addedProduct.ProductID;
+                    }
+                    else
+                    {
+                        ViewBag.Message = "Failed to save record";
+                        ViewBag.ErrorFound = true;
+
+                    }
 
                     results.Add(product);
                 }
@@ -98,8 +120,8 @@ namespace AmzWholeSaleWeb.Controllers
         [HttpPost]
         public ActionResult UploadImage(HttpPostedFileBase file, int productID)
         {
-            string uploadMessage = "File upload successful";
-            bool fileUploadSuccessful = true;
+            string uploadMessage = FILE_UPLOAD_SUCCESSFUL;
+            bool fileUploadFailed = false;
             bool fileIsValid = true;
             try
             {
@@ -113,8 +135,9 @@ namespace AmzWholeSaleWeb.Controllers
 
                 if(productID == 0)
                 {
-                    uploadMessage = "Can't except product id 0. Please select a valid data row";
+                    uploadMessage = "Can't except product id 0. Add a product -> Save Changes -> Select the row -> Upload image";
                     fileIsValid = false;
+                    fileUploadFailed = true;
                 }
 
                 if (fileIsValid)
@@ -136,7 +159,7 @@ namespace AmzWholeSaleWeb.Controllers
                     ih.Save(bmOriginal, 100, 100, 100, destinationFilePath);
                      
                     logger.InfoFormat("Resized input file and saved as {0}",destinationFilePath);
-                    logger.InfoFormat("File upload successful");
+                    logger.InfoFormat(FILE_UPLOAD_SUCCESSFUL);
                     
                     try
                     {
@@ -159,12 +182,12 @@ namespace AmzWholeSaleWeb.Controllers
             {
                 logger.Error(ex);
                 uploadMessage = string.Format("File upload failed: Error: {0}", ex.Message);
-                fileUploadSuccessful = false;
+                fileUploadFailed = true;
             }
 
 
             return RedirectToAction("Index", new RouteValueDictionary(
-                                                new { controller = "ProductAdmin", action = "Index", message =  uploadMessage, status = fileUploadSuccessful }));
+                                                new { controller = "ProductAdmin", action = "Index", message =  uploadMessage, status = fileUploadFailed }));
         }
 
 

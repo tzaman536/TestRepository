@@ -28,7 +28,7 @@ namespace AmzBL.Products
                     result = conn.Query<AmzProduct>(@"
                     SELECT * 
                     FROM amz.Products
-                    order by ProductID");
+                    order by ProductID desc");
                 }
                 catch (Exception ex)
                 {
