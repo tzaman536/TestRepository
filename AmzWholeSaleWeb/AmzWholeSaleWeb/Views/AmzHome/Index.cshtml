@@ -162,7 +162,7 @@
         // getCartCount(); GET CART COUNT
         function getCartCount(){
             var cartButton = document.getElementById("CartButton");
-            var itemsInCart = 5;
+            var itemsInCart = 0;
 
             var parms = null;
             $.ajax({
@@ -236,9 +236,35 @@
         }
 
 
+        function sendToPayPal(items)
+        {
+            alert(items);
+
+        }
+
         function submitCart()
         {
-            alert('Sending to paypal')
+
+            var parms = null;
+            $.ajax({
+                type: "GET",
+                traditional: true,
+                url: '@Url.Action("GetCartItemsSummary", "AmzHome")',
+                async: true,
+                data: parms,
+                dataType: "json",
+                beforeSend: function (xhr) {
+                },
+                success: function (response, textStatus, jqXHR) {
+                    sendToPayPal(response.CartItemSummary);
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert("Failed to get cart data. Please reload your page");
+                }
+            });
+
+
+            /*
             var form = document.createElement("form");
             form.method = "POST";
             form.action = "https://www.sandbox.paypal.com/cgi-bin/webscr"
@@ -293,6 +319,7 @@
 
 
             form.submit();
+            */
         }
 
     </script>

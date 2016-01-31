@@ -90,6 +90,23 @@ namespace Simplex.Tools.Cart
         }
 
 
+        public IEnumerable<CartItems> GetCartItemsSummary(string sql)
+        {
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+            {
+                conn.Open();
+                try
+                {
+                    return conn.Query<CartItems>(sql);
+                }
+                catch (Exception ex)
+                {
+                    logger.Error(ex);
+                    return null;
+                }
+            }
+        }
+
 
         public IEnumerable<CartItems> GetCartItems(int cartID)
         {

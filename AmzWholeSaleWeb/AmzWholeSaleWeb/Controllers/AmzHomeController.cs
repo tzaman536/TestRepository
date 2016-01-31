@@ -61,6 +61,8 @@ namespace AmzWholeSaleWeb.Controllers
         }
 
 
+
+
         [HttpPost]
         public ActionResult AddItemToCart([DataSourceRequest]DataSourceRequest request, int productID, decimal unitPrice, int quantity)
         {
@@ -94,6 +96,28 @@ namespace AmzWholeSaleWeb.Controllers
             return View();
         }
 
+        public ActionResult GetCartItemsSummary([DataSourceRequest]DataSourceRequest request)
+        {
+            string message;
+            CartHandler ch = new CartHandler();
+
+            Cart c = ch.GetUserCart(out message);
+            IEnumerable<CartItems> CartItemSummary = new List<CartItems>();
+
+            if (c != null)
+            {
+                string sql = string.Format(@"
+                    select CartID,p.ProductName,sum(Quantity) as Quantity,sum(Price) as Price
+                    from dbo.CartItems ci
+                    inner join amz.Products p on ci.ProductID = p.ProductID
+                    where CartID = {0}
+                    group by CartID,ProductName
+                ",c.CartID);
+                CartItemSummary = ch.GetCartItemsSummary(sql);
+            }
+            return Json(new { success = true, CartItemSummary = CartItemSummary }, JsonRequestBehavior.AllowGet);
+
+        }
 
 
 
