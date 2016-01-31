@@ -65,7 +65,12 @@ namespace AmzWholeSaleWeb.Controllers
         public ActionResult AddItemToCart([DataSourceRequest]DataSourceRequest request, int productID)
         {
 
-        
+            CartHandler ch = new CartHandler();
+            string message;
+            Cart c = ch.GetUserCart(out message);
+
+
+
             return Json(new { success = true, message = string.Format("product id is {0}", productID) }, JsonRequestBehavior.AllowGet);
         }
         #endregion 
