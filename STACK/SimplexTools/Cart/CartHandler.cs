@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using log4net;
+using PhenixTools.Mail;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -65,6 +66,29 @@ namespace Simplex.Tools.Cart
             }
             return null;
         }
+
+        public bool AddCartItem(int cartID, int productID, int quantity, decimal unitPrice)
+        {
+            bool itemAddded = true;
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+            {
+                conn.Open();
+                try
+                {
+                    var result = conn.Query<Cart>(@"
+                        INSERT INTO dbo.CartItems(CartID,ProductID,Quantity,Price) VALUES (@cartID,@productID,@quantity,@unitPrice)
+                    ", new { cartID,productID, quantity, unitPrice });
+                }
+                catch (Exception ex)
+                {
+                    logger.Error(ex);
+                    PhenixMail.SendMail("CartHandler.AddCartItem()-ERROR", string.Format("{0}", ex.Message), ConfigurationManager.AppSettings["TechSupportEmail"]);
+                    itemAddded = false;
+                }
+            }
+            return itemAddded;
+        }
+
 
 
         public IEnumerable<CartItems> GetCartItems(int cartID)

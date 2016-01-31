@@ -5,7 +5,7 @@ create table dbo.CartItems
 (
 	CartItemID int identity not null,
 	CartID int not null,
-	ProductId int not null,
+	ProductID int not null,
 	Quantity int not null,
 	Price decimal(25,2) not null
 )
@@ -13,7 +13,7 @@ GO
 
 
 ALTER TABLE dbo.CartItems
-ADD CONSTRAINT PK_CartItems_CartItemID PRIMARY KEY (CartID)
+ADD CONSTRAINT PK_CartItems_CartItemID PRIMARY KEY (CartItemID)
 GO
 
 

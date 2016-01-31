@@ -100,7 +100,7 @@
             <dd>In Stock: #:UnitsInStock#</dd>
         </dl>
         <div class="edit-buttons">
-            <button id="addToCartButton" type="button" onclick="addToCart('#:ProductID#')">Add to cart</button>
+            <button id="addToCartButton" type="button" onclick="addToCart('#:ProductID#', '#:UnitPrice#', 1)">Add to cart</button>
         </div>
     </div>
 </script>
@@ -177,7 +177,7 @@
                 success: function (response, textStatus, jqXHR) {
                     //alert("Hello");
                     itemsInCart = response.Cart.TotalItems;
-                    cartButton.textContent = "Items in cart (" + itemsInCart + ")";
+                    cartButton.textContent = "Check Out (" + itemsInCart + ")";
                     if (response.Cart.IsValid == false)
                         alert(response.Cart.Message);
 
@@ -195,8 +195,9 @@
             }
         });
 
-        function addToCart(e) {
-            var parms = { productID: e }
+        function addToCart(productID, unitPrice, quantity) {
+
+            var parms = { productID: productID, unitPrice: unitPrice, quantity: quantity  }
             $.ajax({
                 type: "POST",
                 traditional: true,
@@ -207,13 +208,15 @@
                 beforeSend: function (xhr) {
                 },
                 success: function (response, textStatus, jqXHR) {
-                    alert(response.message);
+                    getCartCount();
+                    //alert(response.message);
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
                     alert("Error found during execution");
 
                 }
             });
+
 
         }
 
