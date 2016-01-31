@@ -208,7 +208,6 @@
                 beforeSend: function (xhr) {
                 },
                 success: function (response, textStatus, jqXHR) {
-                    getCartCount();
                     //alert(response.message);
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -217,6 +216,7 @@
                 }
             });
 
+            getCartCount();
 
         }
 
