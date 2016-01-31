@@ -200,16 +200,11 @@
 
         
         function onChange(arg) {
-            
-            //var selected = $.map(this.select(), function (item) {
-            //    return $(item).text();
-            //});
-            //alert("Selected: " + selected.length + " item(s), [" + selected.join(", ") + "]");
-
             var ds = $("#listView").data("kendoListView");
             var selectedItem = ds.dataItem(ds.select());
-            alert(selectedItem.ProductID);
+            
 
+            document.getElementById("popUpWindowImageLarge").src = "@Url.Content("~/content/products/{0}.jpg?{1}")".format(selectedItem.ProductID, new Date().getTime());
 
             $("#window").show();
             $("#window").data("kendoWindow").open();
