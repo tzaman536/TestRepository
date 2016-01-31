@@ -200,7 +200,17 @@
 
         
         function onChange(arg) {
-            //alert(arg.productID);
+            
+            //var selected = $.map(this.select(), function (item) {
+            //    return $(item).text();
+            //});
+            //alert("Selected: " + selected.length + " item(s), [" + selected.join(", ") + "]");
+
+            var ds = $("#listView").data("kendoListView");
+            var selectedItem = ds.dataItem(ds.select());
+            alert(selectedItem.ProductID);
+
+
             $("#window").show();
             $("#window").data("kendoWindow").open();
         }
