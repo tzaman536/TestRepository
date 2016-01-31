@@ -18,7 +18,7 @@
 
 <br />
 <div class="row">
-    <button id="CartButton" type="button" onclick="addToCart()">Cart</button>
+    <button id="CartButton" type="button" onclick="submitCart()">Cart</button>
 </div>
 <br />
     @*<div class="row">*@
@@ -220,7 +220,6 @@
 
         }
 
-
         function onChange(arg) {
             var ds = $("#listView").data("kendoListView");
             var selectedItem = ds.dataItem(ds.select());
@@ -234,6 +233,59 @@
 
             $("#window").show();
             $("#window").data("kendoWindow").open();
+        }
+
+
+        function submitCart()
+        {
+            alert('Sending to paypal')
+            var form = document.createElement("form");
+            form.method = "POST";
+            form.action = "https://www.sandbox.paypal.com/cgi-bin/webscr"
+
+            var element1 = document.createElement("input");
+            element1.type = "hidden";
+            element1.name = "cmd";
+            element1.value = "_cart";
+            form.appendChild(element1);
+
+            var element2 = document.createElement("input");
+            element2.type = "hidden";
+            element2.name = "upload";
+            element2.value = "1";
+            form.appendChild(element2);
+
+            var element3 = document.createElement("input");
+            element3.type = "hidden";
+            element3.name = "business";
+            element3.value = "tzaman536-facilitator@gmail.com";
+            form.appendChild(element3);
+
+
+            for (i = 1; i < 6; i++) {
+                var element4 = document.createElement("input");
+                element4.type = "hidden";
+                element4.name = "item_name_" + i;
+                element4.value = "Item Name " + i;
+                form.appendChild(element4);
+
+                var element5 = document.createElement("input");
+                element5.type = "hidden";
+                element5.name = "amount_" + i;
+                element5.value = i * 100;
+                form.appendChild(element5);
+
+                var element6 = document.createElement("input");
+                element6.type = "hidden";
+                element6.name = "shipping_" + i;
+                element6.value = "5";
+                form.appendChild(element6);
+
+            }
+
+
+
+            form.submit();
         }
 
     </script>
