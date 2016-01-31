@@ -61,13 +61,32 @@
             <div class="imageBig">
                 <img id="popUpWindowImageLarge" src="@Url.Content("~/content/products/1.jpg")" alt="Product image" />
             </div>
+            <br />
+            <div style="width: 100%; display:table;">
+                <div style="display: table-row">
+                    <div style="width:600px; display:table-cell;">
+                        <div class="imageMedium">
+                            <img id="popUpWindowImageMedium" src="@Url.Content("~/content/products/1.jpg")" alt="Product image" />
+                        </div>
+                    </div>
+                    <div display:table-cell;">
+                        <div class="imageSmall">
+                            <img id="popUpWindowImageSmall" src="@Url.Content("~/content/products/1.jpg")" alt="Product image" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div>
+                <button id="addToCartFromPopupWindow" type="button" onclick="addToCart()"></button>
+            </div>
         </div>
 
     </text>)
             .Draggable()
             .Resizable()
             .Events(ev => ev.Close("onClose"))
-            .Width(500)
+            .Width(600)
     )
 </div>
 
@@ -114,7 +133,7 @@
 
             hideWindow();
             getCartCount();
-            
+
         });
 
         function onClose(){
@@ -131,7 +150,7 @@
 
         $(function () {
             var listView = $("#listView").data("kendoListView");
-            
+
                 $(".k-add-button").click(function (e) {
                         listView.add();
                         e.preventDefault();
@@ -198,13 +217,17 @@
 
         }
 
-        
+
         function onChange(arg) {
             var ds = $("#listView").data("kendoListView");
             var selectedItem = ds.dataItem(ds.select());
-            
+
 
             document.getElementById("popUpWindowImageLarge").src = "@Url.Content("~/content/products/{0}.jpg?{1}")".format(selectedItem.ProductID, new Date().getTime());
+            document.getElementById("popUpWindowImageMedium").src = "@Url.Content("~/content/products/{0}.jpg?{1}")".format(selectedItem.ProductID, new Date().getTime());
+            document.getElementById("popUpWindowImageSmall").src = "@Url.Content("~/content/products/{0}.jpg?{1}")".format(selectedItem.ProductID, new Date().getTime());
+
+            $("div#windowProductName").text(selectedItem.ProductName);
 
             $("#window").show();
             $("#window").data("kendoWindow").open();
@@ -228,6 +251,22 @@
             margin-bottom:40px;
             margin-right:10px;
         }
+        .imageMedium img{
+            float: left;
+            width:300px;
+            height:300px;
+            opacity:100;
+            margin-right:10px;
+        }
+        .imageSmall img{
+            float: left;
+            width:100px;
+            height:100px;
+            opacity:100;
+            margin-bottom:40px;
+            margin-right:0px;
+        }
+
         .product-view {
             float: left;
             width: 33.3%;
