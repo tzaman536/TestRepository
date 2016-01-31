@@ -69,7 +69,7 @@
                 <dd>In Stock: #:UnitsInStock#</dd>
             </dl>
             <div class="edit-buttons">
-                <button id="addToCartButton" type="button" onclick="addToCart()">Add to cart</button>
+                <button id="addToCartButton" type="button" onclick="addToCart('#:ProductID#')">Add to cart</button>
             </div>
         </div>
     </script>
@@ -129,7 +129,29 @@
         });
 
 
-        function addToCart() {
+        function addToCart(e) {
+
+
+            var parms = { productID : e }
+
+
+            $.ajax({
+                type: "POST",
+                traditional: true,
+                url: '@Url.Action("AddItemToCart", "AmzHome")',
+                async: true,
+                data: parms,
+                dataType: "json",
+                beforeSend: function (xhr) {
+                },
+                success: function (response, textStatus, jqXHR) {
+                    alert(response.message);
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert("Error found during execution");
+
+                }
+            });
 
         }
     </script>
