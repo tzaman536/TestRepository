@@ -107,7 +107,7 @@ namespace AmzWholeSaleWeb.Controllers
             if (c != null)
             {
                 string sql = string.Format(@"
-                    select CartID,p.ProductName,sum(Quantity) as Quantity,sum(Price) as Price
+                    select CartID,p.ProductName,sum(Quantity) as Quantity,sum(Price) as Price, 5 as Shipping
                     from dbo.CartItems ci
                     inner join amz.Products p on ci.ProductID = p.ProductID
                     where CartID = {0}
