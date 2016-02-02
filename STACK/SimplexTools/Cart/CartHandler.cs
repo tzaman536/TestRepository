@@ -18,6 +18,36 @@ namespace Simplex.Tools.Cart
         private static readonly ILog logger = LogManager.GetLogger(typeof(CartHandler));
 
 
+        public bool SetCartProcessed(int cartID,out string message)
+        {
+            message = "Cart processed";
+            bool checkedOut = false;
+            DateTime dateCreated = DateTime.Today;
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+            {
+                conn.Open();
+                try
+                {
+                    var result =  conn.Query<Cart>(@"
+                    UPDATE  dbo.Cart
+                    SET CheckedOut = 1
+                    WHERE CartID = @cartID
+                    ", new { cartID });
+
+                }
+                catch (Exception ex)
+                {
+
+                    logger.Error(ex);
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+
+
         public Cart GetUserCart(out string message)
         {
             message = "Can't identify current user. Please login using your credential.";

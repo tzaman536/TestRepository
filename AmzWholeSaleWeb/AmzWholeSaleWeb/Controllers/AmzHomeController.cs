@@ -79,6 +79,24 @@ namespace AmzWholeSaleWeb.Controllers
 
             return Json(new { success = true, message = string.Format("product id is {0}", productID) }, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpPost]
+        public ActionResult SetCartProcessed([DataSourceRequest]DataSourceRequest request)
+        {
+
+
+            CartHandler ch = new CartHandler();
+            string message;
+            Cart c = ch.GetUserCart(out message);
+            ch.SetCartProcessed(c.CartID,out message);
+
+            
+
+            return Json(new { success = true, message = "Check out completed." }, JsonRequestBehavior.AllowGet);
+        }
+
+        
+
         #endregion 
 
 

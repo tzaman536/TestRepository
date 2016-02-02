@@ -236,6 +236,30 @@
         }
 
 
+        function SetCartProcessed() {
+
+            var parms = null;
+            $.ajax({
+                type: "POST",
+                traditional: true,
+                url: '@Url.Action("SetCartProcessed", "AmzHome")',
+                async: true,
+                data: parms,
+                dataType: "json",
+                beforeSend: function (xhr) {
+                },
+                success: function (response, textStatus, jqXHR) {
+                    //alert(response.message);
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    //alert("Error found during execution");
+
+                }
+            });
+
+            getCartCount();
+
+        }
         function sendToPayPal(items)
         {
             var form = document.createElement("form");
@@ -289,13 +313,11 @@
                 element7.name = "quantity_" + i;
                 element7.value = items[key].Quantity;
                 form.appendChild(element7);
-
-
             }
 
 
-
             form.submit();
+            SetCartProcessed();
 
         }
 
