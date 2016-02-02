@@ -285,6 +285,13 @@
             form.appendChild(element3);
 
 
+            var elementReturnURL = document.createElement("input");
+            elementReturnURL.type = "hidden";
+            elementReturnURL.name = "return";
+            elementReturnURL.value = "www.coalescesoftcom.com";
+            form.appendChild(elementReturnURL);
+
+
             var i = 0;
             for (var key in items) {
 

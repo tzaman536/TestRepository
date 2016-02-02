@@ -26,6 +26,9 @@ namespace AmzWholeSaleWeb.Controllers
 
         public ActionResult Index()
         {
+            string currentUser = System.Web.HttpContext.Current.Request.LogonUserIdentity.Name;
+            logger.InfoFormat("Current user is {0}",currentUser);
+
             return View(productHandler.GetProducts());
 
 
