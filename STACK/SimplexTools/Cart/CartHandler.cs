@@ -51,14 +51,14 @@ namespace Simplex.Tools.Cart
         public Cart GetUserCart(out string message)
         {
             message = "Can't identify current user. Please login using your credential.";
-            string currentUser = HttpContext.Current.Request.LogonUserIdentity.Name;
+            string currentUser = System.Web.HttpContext.Current.Session.SessionID;
             if(string.IsNullOrEmpty(currentUser))
             {
                 return null;
             }
 
             bool checkedOut = false;
-            DateTime dateCreated = DateTime.Today;
+            DateTime dateCreated = DateTime.UtcNow;
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
             {
                 conn.Open();

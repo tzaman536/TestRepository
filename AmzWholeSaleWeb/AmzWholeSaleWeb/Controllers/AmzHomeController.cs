@@ -11,6 +11,8 @@ using System.Linq;
 using System.Net.Mime;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using System.Web.SessionState;
 
 namespace AmzWholeSaleWeb.Controllers
 {
@@ -27,7 +29,13 @@ namespace AmzWholeSaleWeb.Controllers
         public ActionResult Index()
         {
             string currentUser = System.Web.HttpContext.Current.Request.LogonUserIdentity.Name;
-            logger.InfoFormat("Current user is {0}",currentUser);
+            logger.InfoFormat("System.Web.HttpContext.Current.Request.LogonUserIdentity.Name {0}", currentUser);
+            currentUser = User.Identity.GetUserId();
+            logger.InfoFormat("User.Identity.GetUserId() {0}", currentUser);
+            currentUser = System.Security.Principal.WindowsIdentity.GetCurrent().Name.ToString();
+            logger.InfoFormat("System.Security.Principal.WindowsIdentity.GetCurrent().Name.ToString() {0}", currentUser);
+            currentUser = System.Web.HttpContext.Current.Session.SessionID;
+            logger.InfoFormat("System.Web.HttpContext.Current.Session.SessionID", currentUser);
 
             return View(productHandler.GetProducts());
 
@@ -116,6 +124,17 @@ namespace AmzWholeSaleWeb.Controllers
 
             return View();
         }
+
+        public ActionResult GetSessionInfo([DataSourceRequest]DataSourceRequest request)
+        {
+            string message = string.Format("System.Web.HttpContext.Current.Session.SessionID: {0}", System.Web.HttpContext.Current.Session.SessionID);
+
+
+            return Json(new { success = true, message = message }, JsonRequestBehavior.AllowGet);
+
+        }
+
+        
 
         public ActionResult GetCartItemsSummary([DataSourceRequest]DataSourceRequest request)
         {

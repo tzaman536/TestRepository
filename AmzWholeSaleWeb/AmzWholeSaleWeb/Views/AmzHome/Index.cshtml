@@ -3,23 +3,24 @@
 @{
     ViewBag.Title = "AMZ";
 }
+<div>
+    <form id="formDynamic" target="paypal" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+        <input type="hidden" name="cmd" value="_cart">
+        <input type="hidden" name="upload" value="1">
+        <input type="hidden" name="business" value="tzaman536-facilitator@gmail.com">
+    </form>
+</div>
 
-@*<div class="jumbotron">
-    <h1>AMZ Wholesale </h1>
-    <p class="lead">
-        We are dedicated to providing our customers with great deals, fast shipping, and excellent service.
-        We sell a wide variety of items: housewares, home improvement supplies, pet food, clothing, carpets, and much more.  Our inventory is constantly expanding.  
-        Please check in often for new great deals. 
+<div class="jumbotron">
+    <button id="CartButton" type="button" onclick="submitCart()">Check out</button>
+    <button id="CartButton" type="button" onclick="getSessionID()">GetSessionID</button>
+ </div>
 
-        Register with us so that we can keep you upto date with all our lates deals and new supplies.
-
-    </p>
- </div>*@
-
-<br />
+@*<br />
 <div class="row">
     <button id="CartButton" type="button" onclick="submitCart()">Cart</button>
-</div>
+    <button id="CartButton" type="button" onclick="getSessionID()">GetSessionID</button>
+</div>*@
 <br />
     @*<div class="row">*@
     @*<div class="col-md-4">
@@ -260,7 +261,51 @@
             getCartCount();
 
         }
+
         function sendToPayPal(items)
+        {
+            var formDynamic = document.getElementById("formDynamic");
+            var i = 0;
+            for (var key in items) {
+
+                //alert(items[key].ProductName);
+                i++;
+                var element4 = document.createElement("input");
+                element4.type = "hidden";
+                element4.name = "item_name_" + i;
+                element4.value = items[key].ProductName;
+                formDynamic.appendChild(element4);
+
+                var element5 = document.createElement("input");
+                element5.type = "hidden";
+                element5.name = "amount_" + i;
+                element5.value = items[key].Price;
+                formDynamic.appendChild(element5);
+
+                var element6 = document.createElement("input");
+                element6.type = "hidden";
+                element6.name = "shipping_" + i;
+                element6.value = items[key].Shipping;
+                formDynamic.appendChild(element6);
+
+                var element7 = document.createElement("input");
+                element7.type = "hidden";
+                element7.name = "quantity_" + i;
+                element7.value = items[key].Quantity;
+                formDynamic.appendChild(element7);
+            }
+
+
+            formDynamic.submit();
+            SetCartProcessed();
+
+
+
+
+            
+        }
+
+        function sendToPayPalOld(items)
         {
             var form = document.createElement("form");
             form.method = "POST";
@@ -325,6 +370,29 @@
 
             form.submit();
             SetCartProcessed();
+
+        }
+
+
+        function getSessionID()
+        {
+            var parms = null;
+            $.ajax({
+                type: "GET",
+                traditional: true,
+                url: '@Url.Action("GetSessionInfo", "AmzHome")',
+                async: true,
+                data: parms,
+                dataType: "json",
+                beforeSend: function (xhr) {
+                },
+                success: function (response, textStatus, jqXHR) {
+                    alert(response.message);
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert("Failed to get cart data. Please reload your page");
+                }
+            });
 
         }
 

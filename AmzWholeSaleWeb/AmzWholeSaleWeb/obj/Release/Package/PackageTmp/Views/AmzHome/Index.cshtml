@@ -16,35 +16,100 @@
     </p>
  </div>*@
 
-
-
-@*<div class="row">*@
-    @*<div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            Write something about how your customers can benifit from buying your product. List some features of your comapny
-            that are better than your competitors.
-            
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>*@
-    @*<div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>*@
-@*</div>*@
-
 <br />
+<div class="row">
+    <button id="CartButton" type="button" onclick="submitCart()">Cart</button>
+    <button id="CartButton" type="button" onclick="getSessionID()">GetSessionID</button>
+</div>
+<br />
+    @*<div class="row">*@
+    @*<div class="col-md-4">
+            <h2>Getting started</h2>
+            <p>
+                Write something about how your customers can benifit from buying your product. List some features of your comapny
+                that are better than your competitors.
 
-<div class="demo-section k-content wide">
-    
-    @(Html.Kendo().ListView<AmzModel.AmzProduct>(Model)
+            </p>
+            <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+        </div>*@
+    @*<div class="col-md-4">
+            <h2>Get more libraries</h2>
+            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
+            <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Web Hosting</h2>
+            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
+            <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+        </div>*@
+    @*</div>*@
+<div id="popUpWindowSection">
+    @(Html.Kendo().Window()
+    .Name("window")
+    .Title("")
+    .Actions(actions => actions
+        .Custom("custom")
+        .Minimize()
+        .Maximize()
+        .Close()
+    )
+    .Content(@<text>
+        <div>
+            <div id="windowProductName" class="windowProductName">
+                x
+            </div>
+            <br />
+            <div class="imageBig">
+                <img id="popUpWindowImageLarge" src="@Url.Content("~/content/products/1.jpg")" alt="Product image" />
+            </div>
+            <br />
+            <div style="width: 100%; display:table;">
+                <div style="display: table-row">
+                    <div style="width:600px; display:table-cell;">
+                        <div class="imageMedium">
+                            <img id="popUpWindowImageMedium" src="@Url.Content("~/content/products/1.jpg")" alt="Product image" />
+                        </div>
+                    </div>
+                    <div display:table-cell;">
+                        <div class="imageSmall">
+                            <img id="popUpWindowImageSmall" src="@Url.Content("~/content/products/1.jpg")" alt="Product image" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div>
+                <button id="addToCartFromPopupWindow" type="button" onclick="addToCart()"></button>
+            </div>
+        </div>
+
+    </text>)
+            .Draggable()
+            .Resizable()
+            .Events(ev => ev.Close("onClose"))
+            .Width(600)
+    )
+</div>
+
+
+<script type="text/x-kendo-tmpl" id="template">
+    <div class="product-view k-widget">
+        <dl>
+            <dt><img src="@Url.Content("~/content/products/")#:ProductID#.jpg" alt="#:ProductName# image" /> #:ProductDescription#</dt>
+            <dd>#:ProductName#</dd>
+            <dd>Price: #:kendo.toString(UnitPrice, "c")#</dd>
+            <dd>In Stock: #:UnitsInStock#</dd>
+        </dl>
+        <div class="edit-buttons">
+            <button id="addToCartButton" type="button" onclick="addToCart('#:ProductID#', '#:UnitPrice#', 1)">Add to cart</button>
+        </div>
+    </div>
+</script>
+
+
+    <div class="demo-section k-content wide">
+
+        @(Html.Kendo().ListView<AmzModel.AmzProduct>(Model)
     .Name("listView")
     .TagName("div")
     .ClientTemplateId("template")
@@ -53,146 +118,399 @@
         .PageSize(99)
         //.Create(create => create.Action("Editing_Create", "ListView"))
         .Read(read => read.Action("Products_Read", "AmzHome"))
-        //.Update(update => update.Action("Editing_Update", "ListView"))
-        //.Destroy(destroy => destroy.Action("Editing_Destroy", "ListView"))
-    ).Pageable().Editable().Navigatable().Selectable())
-</div>
-
-<script type="text/x-kendo-tmpl" id="template">
-    <div class="product-view k-widget">
-        <dl>
-            <dt ><img src="@Url.Content("~/content/products/")#:ProductID#.jpg" alt="#:ProductName# image" /> #:ProductDescription#</dt>
-            <dd>#:ProductName#</dd>
-            <dd>Price: #:kendo.toString(UnitPrice, "c")#</dd>
-            <dd>In Stock: #:UnitsInStock#</dd>
-        </dl>
-        <div class="edit-buttons">
-            <button id="addToCartButton" type="button" onclick="addToCart()">Add to cart</button>
-        </div>
+    //.Update(update => update.Action("Editing_Update", "ListView"))
+    //.Destroy(destroy => destroy.Action("Editing_Destroy", "ListView"))
+    ).Pageable()
+    .Editable()
+    .Navigatable()
+    .Selectable()
+    .Events(events => events.Change("onChange"))
+    )
     </div>
-</script>
 
-<script>
-    $(function() {
-        var listView = $("#listView").data("kendoListView");
 
-        $(".k-add-button").click(function(e) {
-            listView.add();
-            e.preventDefault();
+    <script>
+        $(document).ready(function () {
+
+            hideWindow();
+            getCartCount();
+
         });
-    });
 
-    $(document.body).keydown(function (e) {
-        if (e.altKey && e.keyCode == 87) {
-            $("#listView").focus();
-        }
-    });
+        function onClose(){
 
-
-    function addToCart() {
-        alert("Add to cart")
-    }
-</script>
-
-
-<style>
-    .product-view {
-        float: left;
-        width: 33.3%;
-        height: 300px;
-        box-sizing: border-box;
-        border-top: 0;
-        position: relative;
-    }
-
-    .product-view img
-    {
-        float:left;
-        width:110px;
-        height:110px;
-        opacity:100;
-        margin-bottom:40px;
-        margin-right:10px;
-    }
-        .product-view:nth-child(even) {
-            border-left-width: 0;
         }
 
-        .product-view dl {
-            margin: 10px 10px 0;
-            padding: 0;
-            overflow: hidden;
+        function hideWindow()
+        {
+            $("#window").hide();
+            $("#window").data("kendoWindow").close();
+
+
         }
 
-        .product-view dt, dd {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            line-height: 24px;
-            font-size: 18px;
+        $(function () {
+            var listView = $("#listView").data("kendoListView");
+
+                $(".k-add-button").click(function (e) {
+                        listView.add();
+                        e.preventDefault();
+                    });
+        });
+
+
+
+        // getCartCount(); GET CART COUNT
+        function getCartCount(){
+            var cartButton = document.getElementById("CartButton");
+            var itemsInCart = 0;
+
+            var parms = null;
+            $.ajax({
+                type: "GET",
+                traditional: true,
+                url: '@Url.Action("GetTotalItemsInCart", "AmzHome")',
+                async: true,
+                data: parms,
+                dataType: "json",
+                beforeSend: function (xhr) {
+                },
+                success: function (response, textStatus, jqXHR) {
+                    //alert("Hello");
+                    itemsInCart = response.Cart.TotalItems;
+                    cartButton.textContent = "Check Out (" + itemsInCart + ")";
+                    if (response.Cart.IsValid == false)
+                        alert(response.Cart.Message);
+
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert("Failed to get cart data. Please reload your page");
+                }
+            });
         }
 
-        .product-view dt {
-            font-size: 14px;
-            height: 16px;
-            line-height: 16px;
-            text-transform: none;
-            opacity:1;
-            margin-left: 10px;
-            word-wrap:break-word;
-           
+
+        $(document.body).keydown(function (e) {
+            if (e.altKey && e.keyCode == 87) {
+                $("#listView").focus();
+            }
+        });
+
+        function addToCart(productID, unitPrice, quantity) {
+
+            var parms = { productID: productID, unitPrice: unitPrice, quantity: quantity  }
+            $.ajax({
+                type: "POST",
+                traditional: true,
+                url: '@Url.Action("AddItemToCart", "AmzHome")',
+                async: true,
+                data: parms,
+                dataType: "json",
+                beforeSend: function (xhr) {
+                },
+                success: function (response, textStatus, jqXHR) {
+                    //alert(response.message);
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert("Error found during execution");
+
+                }
+            });
+
+            getCartCount();
+
         }
 
-        .product-view dd {
-            height: 25px;
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
+        function onChange(arg) {
+            var ds = $("#listView").data("kendoListView");
+            var selectedItem = ds.dataItem(ds.select());
+
+
+            document.getElementById("popUpWindowImageLarge").src = "@Url.Content("~/content/products/{0}.jpg?{1}")".format(selectedItem.ProductID, new Date().getTime());
+            document.getElementById("popUpWindowImageMedium").src = "@Url.Content("~/content/products/{0}.jpg?{1}")".format(selectedItem.ProductID, new Date().getTime());
+            document.getElementById("popUpWindowImageSmall").src = "@Url.Content("~/content/products/{0}.jpg?{1}")".format(selectedItem.ProductID, new Date().getTime());
+
+            $("div#windowProductName").text(selectedItem.ProductName);
+
+            $("#window").show();
+            $("#window").data("kendoWindow").open();
         }
 
-            .product-view dd .k-widget,
-            .product-view dd .k-textbox {
-                font-size: 14px;
+
+        function SetCartProcessed() {
+
+            var parms = null;
+            $.ajax({
+                type: "POST",
+                traditional: true,
+                url: '@Url.Action("SetCartProcessed", "AmzHome")',
+                async: true,
+                data: parms,
+                dataType: "json",
+                beforeSend: function (xhr) {
+                },
+                success: function (response, textStatus, jqXHR) {
+                    //alert(response.message);
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    //alert("Error found during execution");
+
+                }
+            });
+
+            getCartCount();
+
+        }
+        function sendToPayPal(items)
+        {
+            var form = document.createElement("form");
+            form.method = "POST";
+            form.action = "https://www.sandbox.paypal.com/cgi-bin/webscr"
+
+            var element1 = document.createElement("input");
+            element1.type = "hidden";
+            element1.name = "cmd";
+            element1.value = "_cart";
+            form.appendChild(element1);
+
+            var element2 = document.createElement("input");
+            element2.type = "hidden";
+            element2.name = "upload";
+            element2.value = "1";
+            form.appendChild(element2);
+
+            var element3 = document.createElement("input");
+            element3.type = "hidden";
+            element3.name = "business";
+            element3.value = "tzaman536-facilitator@gmail.com";
+            form.appendChild(element3);
+
+
+            var elementReturnURL = document.createElement("input");
+            elementReturnURL.type = "hidden";
+            elementReturnURL.name = "return";
+            elementReturnURL.value = "www.coalescesoftcom.com";
+            form.appendChild(elementReturnURL);
+
+
+            var i = 0;
+            for (var key in items) {
+
+                //alert(items[key].ProductName);
+                i++;
+                var element4 = document.createElement("input");
+                element4.type = "hidden";
+                element4.name = "item_name_" + i;
+                element4.value = items[key].ProductName;
+                form.appendChild(element4);
+
+                var element5 = document.createElement("input");
+                element5.type = "hidden";
+                element5.name = "amount_" + i;
+                element5.value = items[key].Price;
+                form.appendChild(element5);
+
+                var element6 = document.createElement("input");
+                element6.type = "hidden";
+                element6.name = "shipping_" + i;
+                element6.value = items[key].Shipping;
+                form.appendChild(element6);
+
+                var element7 = document.createElement("input");
+                element7.type = "hidden";
+                element7.name = "quantity_" + i;
+                element7.value = items[key].Quantity;
+                form.appendChild(element7);
             }
 
-    .k-listview {
-        border-width: 1px 0 0;
-        padding: 0;
-        overflow: hidden;
-        min-height: 298px;
-    }
 
-    .edit-buttons {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        text-align: right;
-        padding: 5px;
-        background-color: rgba(0,0,0,0.1);
-    }
+            form.submit();
+            SetCartProcessed();
 
-    .k-pager-wrap {
-        border-top: 0;
-    }
+        }
 
-    span.k-invalid-msg {
-        position: absolute;
-        margin-left: 6px;
-    }
 
-    .k-add-button {
-        margin-bottom: 2em;
-    }
+        function getSessionID()
+        {
+            var parms = null;
+            $.ajax({
+                type: "GET",
+                traditional: true,
+                url: '@Url.Action("GetSessionInfo", "AmzHome")',
+                async: true,
+                data: parms,
+                dataType: "json",
+                beforeSend: function (xhr) {
+                },
+                success: function (response, textStatus, jqXHR) {
+                    alert(response.message);
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert("Failed to get cart data. Please reload your page");
+                }
+            });
 
-    @@media only screen and (max-width : 620px) {
+        }
+
+        function submitCart()
+        {
+
+            var parms = null;
+            $.ajax({
+                type: "GET",
+                traditional: true,
+                url: '@Url.Action("GetCartItemsSummary", "AmzHome")',
+                async: true,
+                data: parms,
+                dataType: "json",
+                beforeSend: function (xhr) {
+                },
+                success: function (response, textStatus, jqXHR) {
+                    sendToPayPal(response.CartItemSummary);
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert("Failed to get cart data. Please reload your page");
+                }
+            });
+
+
+            /*
+
+            */
+        }
+
+    </script>
+
+
+    <style>
+
+        .windowProductName{
+            font-size: 18px;
+            font-weight:bold;
+        }
+
+        .imageBig img{
+            float: left;
+            width:500px;
+            height:500px;
+            opacity:100;
+            margin-bottom:40px;
+            margin-right:10px;
+        }
+        .imageMedium img{
+            float: left;
+            width:300px;
+            height:300px;
+            opacity:100;
+            margin-right:10px;
+        }
+        .imageSmall img{
+            float: left;
+            width:100px;
+            height:100px;
+            opacity:100;
+            margin-bottom:40px;
+            margin-right:0px;
+        }
 
         .product-view {
-            width: 100%;
+            float: left;
+            width: 33.3%;
+            height: 300px;
+            box-sizing: border-box;
+            border-top: 0;
+            position: relative;
         }
 
-            .product-view:nth-child(even) {
-                border-left-width: 1px;
+            .product-view img {
+                float: left;
+                width: 110px;
+                height: 110px;
+                opacity: 100;
+                margin-bottom: 40px;
+                margin-right: 10px;
             }
-    }
-</style>
+
+            .product-view:nth-child(even) {
+                border-left-width: 0;
+            }
+
+            .product-view dl {
+                margin: 10px 10px 0;
+                padding: 0;
+                overflow: hidden;
+            }
+
+            .product-view dt, dd {
+                margin: 1;
+                padding: 0;
+                width: 100%;
+                line-height: 20px;
+                font-size: 15px;
+                font-weight:normal;
+            }
+
+            .product-view dt {
+                margin-right:1;
+                font-size: 13px;
+                height: 16px;
+                line-height: 16px;
+                text-transform: none;
+                opacity: 1;
+                margin-left: 10px;
+                word-wrap: break-word;
+            }
+
+            .product-view dd {
+                height: 25px;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+
+                .product-view dd .k-widget,
+                .product-view dd .k-textbox {
+                    font-size: 14px;
+                }
+
+        .k-listview {
+            border-width: 1px 0 0;
+            padding: 0;
+            overflow: hidden;
+            min-height: 298px;
+        }
+
+        .edit-buttons {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            text-align: right;
+            padding: 5px;
+            background-color: rgba(0,0,0,0.1);
+        }
+
+        .k-pager-wrap {
+            border-top: 0;
+        }
+
+        span.k-invalid-msg {
+            position: absolute;
+            margin-left: 6px;
+        }
+
+        .k-add-button {
+            margin-bottom: 2em;
+        }
+
+        @@media only screen and (max-width : 620px) {
+
+            .product-view {
+                width: 100%;
+            }
+
+                .product-view:nth-child(even) {
+                    border-left-width: 1px;
+                }
+        }
+    </style>
