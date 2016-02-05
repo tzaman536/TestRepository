@@ -15,6 +15,38 @@
     @Styles.Render("~/Content/kendo/css")
 </head>
 <body>
+    <style>
+        .cart {
+            text-align: right;
+            font-weight: bold;
+            font-size: 15px;
+            color: white;
+            text-decoration: underline;
+            margin: auto;
+            padding-top: 10px;
+            padding-left: 10px;
+            padding-bottom: 5px;
+            line-height: 20px;
+            float: right;
+        }
+
+        .cart > li > a:hover{
+            color: coral;
+            background-color: transparent;
+            cursor:grab;
+
+        }
+
+        .search-bar {
+            padding-bottom: 2px;
+            float: left;
+        }
+
+        .resizedTextbox {
+            width: 1000px;
+            height: 45px;
+        }
+    </style>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -33,6 +65,22 @@
                     <li>@Html.ActionLink("Admin", "Index", "ProductAdmin")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
+            </div>
+             <div class="navbar-collapse collapse">
+                <div class="search-bar">
+                    @*<input type="text"  class="k-textbox" name="nameSeartItems" id="idSearchItems" required="required" />*@
+                    <input type="text" class="k-textbox resizedTextbox" name="nameSeartItems" id="idSearchItems" value="Search products" onfocus="if (this.value == 'Search products') { this.value = ''; }" />
+                </div>
+                <div class="search-bar">
+                    @(Html.Kendo().Button()
+                        .Name("searchProductButton")
+                        .HtmlAttributes(new { type = "button" })
+                        .ImageUrl(Url.Content("~/Content/shared/search.png"))
+                        .Content(""))                
+                </div>
+                <ul class="nav navbar-right">
+                    <li id="shoppingCartLink">@Html.ActionLink("Cart (0)", "Contact", "Home")</li>
+                </ul>
             </div>
         </div>
     </div>

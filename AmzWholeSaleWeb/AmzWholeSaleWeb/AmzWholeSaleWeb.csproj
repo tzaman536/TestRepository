@@ -645,6 +645,7 @@
     <Content Include="Content\products\8.jpg" />
     <Content Include="Content\products\80.jpg" />
     <Content Include="Content\products\9.jpg" />
+    <Content Include="Content\shared\search.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

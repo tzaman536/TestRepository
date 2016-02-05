@@ -11,10 +11,10 @@
     </form>
 </div>
 
-<div class="jumbotron">
+@*<div class="jumbotron">
     <button id="CartButton" type="button" onclick="submitCart()">Check out</button>
     <button id="CartButton" type="button" onclick="getSessionID()">GetSessionID</button>
- </div>
+ </div>*@
 
 @*<br />
 <div class="row">
@@ -135,6 +135,9 @@
             hideWindow();
             getCartCount();
 
+            $("#shoppingCartLink").click(function () {
+                submitCart();
+            });
         });
 
         function onClose(){
@@ -162,7 +165,7 @@
 
         // getCartCount(); GET CART COUNT
         function getCartCount(){
-            var cartButton = document.getElementById("CartButton");
+            //var cartButton = document.getElementById("CartButton");
             var itemsInCart = 0;
 
             var parms = null;
@@ -178,9 +181,24 @@
                 success: function (response, textStatus, jqXHR) {
                     //alert("Hello");
                     itemsInCart = response.Cart.TotalItems;
-                    cartButton.textContent = "Check Out (" + itemsInCart + ")";
+
+                    $("#shoppingCartLink").text("Cart (" + itemsInCart + ")");
+                    $("#shoppingCartLink").addClass("cart");
+                    //cartButton.textContent = "Check Out (" + itemsInCart + ")";
+
+                    //var cartLink = document.getElementById("myCartLink");
+                    //cartLink.textContent = "Check Out (" + itemsInCart + ")";
+                    //alert(cartLink.className);
+                    //alert(cartLink.COMMENT_NODE);
+                    //alert(cartLink.innerHTML);
+                    //alert(cartLink.TEXT_NODE);
+
+
+
+
                     if (response.Cart.IsValid == false)
                         alert(response.Cart.Message);
+
 
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -218,6 +236,11 @@
             });
 
             getCartCount();
+            var isIE = false || !!document.documentMode;
+            if (isIE == true) {
+                location.reload();
+            }
+
 
         }
 
@@ -262,7 +285,25 @@
 
         }
 
+
+
         function sendToPayPal(items)
+        {
+            var isIE = false || !!document.documentMode;
+            var isChrome = !!window.chrome && !!window.chrome.webstore;
+            if(isIE == true)
+            {
+                sendToPayPalIE(items);
+            }
+            else
+            {
+
+                sendToPayPalChrome(items);
+            }
+
+        }
+
+        function sendToPayPalIE(items)
         {
             var formDynamic = document.getElementById("formDynamic");
             var i = 0;
@@ -305,7 +346,7 @@
             
         }
 
-        function sendToPayPalOld(items)
+        function sendToPayPalChrome(items)
         {
             var form = document.createElement("form");
             form.method = "POST";
@@ -376,6 +417,9 @@
 
         function getSessionID()
         {
+
+            
+
             var parms = null;
             $.ajax({
                 type: "GET",
@@ -393,6 +437,8 @@
                     alert("Failed to get cart data. Please reload your page");
                 }
             });
+
+
 
         }
 

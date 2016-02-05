@@ -3,24 +3,24 @@
 @{
     ViewBag.Title = "AMZ";
 }
+<div>
+    <form id="formDynamic" target="paypal" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+        <input type="hidden" name="cmd" value="_cart">
+        <input type="hidden" name="upload" value="1">
+        <input type="hidden" name="business" value="tzaman536-facilitator@gmail.com">
+    </form>
+</div>
 
 @*<div class="jumbotron">
-    <h1>AMZ Wholesale </h1>
-    <p class="lead">
-        We are dedicated to providing our customers with great deals, fast shipping, and excellent service.
-        We sell a wide variety of items: housewares, home improvement supplies, pet food, clothing, carpets, and much more.  Our inventory is constantly expanding.  
-        Please check in often for new great deals. 
-
-        Register with us so that we can keep you upto date with all our lates deals and new supplies.
-
-    </p>
+    <button id="CartButton" type="button" onclick="submitCart()">Check out</button>
+    <button id="CartButton" type="button" onclick="getSessionID()">GetSessionID</button>
  </div>*@
 
-<br />
+@*<br />
 <div class="row">
     <button id="CartButton" type="button" onclick="submitCart()">Cart</button>
     <button id="CartButton" type="button" onclick="getSessionID()">GetSessionID</button>
-</div>
+</div>*@
 <br />
     @*<div class="row">*@
     @*<div class="col-md-4">
@@ -135,6 +135,9 @@
             hideWindow();
             getCartCount();
 
+            $("#shoppingCartLink").click(function () {
+                submitCart();
+            });
         });
 
         function onClose(){
@@ -162,7 +165,7 @@
 
         // getCartCount(); GET CART COUNT
         function getCartCount(){
-            var cartButton = document.getElementById("CartButton");
+            //var cartButton = document.getElementById("CartButton");
             var itemsInCart = 0;
 
             var parms = null;
@@ -178,9 +181,24 @@
                 success: function (response, textStatus, jqXHR) {
                     //alert("Hello");
                     itemsInCart = response.Cart.TotalItems;
-                    cartButton.textContent = "Check Out (" + itemsInCart + ")";
+
+                    $("#shoppingCartLink").text("Cart (" + itemsInCart + ")");
+                    $("#shoppingCartLink").addClass("cart");
+                    //cartButton.textContent = "Check Out (" + itemsInCart + ")";
+
+                    //var cartLink = document.getElementById("myCartLink");
+                    //cartLink.textContent = "Check Out (" + itemsInCart + ")";
+                    //alert(cartLink.className);
+                    //alert(cartLink.COMMENT_NODE);
+                    //alert(cartLink.innerHTML);
+                    //alert(cartLink.TEXT_NODE);
+
+
+
+
                     if (response.Cart.IsValid == false)
                         alert(response.Cart.Message);
+
 
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -218,6 +236,11 @@
             });
 
             getCartCount();
+            var isIE = false || !!document.documentMode;
+            if (isIE == true) {
+                location.reload();
+            }
+
 
         }
 
@@ -261,7 +284,69 @@
             getCartCount();
 
         }
+
+
+
         function sendToPayPal(items)
+        {
+            var isIE = false || !!document.documentMode;
+            var isChrome = !!window.chrome && !!window.chrome.webstore;
+            if(isIE == true)
+            {
+                sendToPayPalIE(items);
+            }
+            else
+            {
+
+                sendToPayPalChrome(items);
+            }
+
+        }
+
+        function sendToPayPalIE(items)
+        {
+            var formDynamic = document.getElementById("formDynamic");
+            var i = 0;
+            for (var key in items) {
+
+                //alert(items[key].ProductName);
+                i++;
+                var element4 = document.createElement("input");
+                element4.type = "hidden";
+                element4.name = "item_name_" + i;
+                element4.value = items[key].ProductName;
+                formDynamic.appendChild(element4);
+
+                var element5 = document.createElement("input");
+                element5.type = "hidden";
+                element5.name = "amount_" + i;
+                element5.value = items[key].Price;
+                formDynamic.appendChild(element5);
+
+                var element6 = document.createElement("input");
+                element6.type = "hidden";
+                element6.name = "shipping_" + i;
+                element6.value = items[key].Shipping;
+                formDynamic.appendChild(element6);
+
+                var element7 = document.createElement("input");
+                element7.type = "hidden";
+                element7.name = "quantity_" + i;
+                element7.value = items[key].Quantity;
+                formDynamic.appendChild(element7);
+            }
+
+
+            formDynamic.submit();
+            SetCartProcessed();
+
+
+
+
+            
+        }
+
+        function sendToPayPalChrome(items)
         {
             var form = document.createElement("form");
             form.method = "POST";
@@ -332,6 +417,9 @@
 
         function getSessionID()
         {
+
+            
+
             var parms = null;
             $.ajax({
                 type: "GET",
@@ -349,6 +437,8 @@
                     alert("Failed to get cart data. Please reload your page");
                 }
             });
+
+
 
         }
 
