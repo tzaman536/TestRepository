@@ -1,4 +1,4 @@
-IF OBJECT_ID (N'Products', N'U') IS NOT NULL 
+IF OBJECT_ID ('amz.Products', 'U') IS NOT NULL 
    drop table amz.Products
 
 create table amz.Products
@@ -6,12 +6,16 @@ create table amz.Products
 	ProductID int identity not null,
 	ProductName nvarchar(100) not null,
 	ProductDescription nvarchar(200) not null,
+	ProductLongDescription text null,
 	UnitPrice decimal(25,2) not null,
 	UnitsInStock int not null,
 	UnitsOnOrder int not null,
 	Discontinued bit not null,
 	LastSupply datetime null,
 	ImageUploadSuccessful bit not null,
+	SmallImageId nvarchar(150) not null,
+	MediumImageId nvarchar(150) not null,
+	LargeImageId nvarchar(150) not null,
 	AddDate datetime not null,
 	AddedBy nvarchar(50) not null,
 	ModifiedDate datetime null,

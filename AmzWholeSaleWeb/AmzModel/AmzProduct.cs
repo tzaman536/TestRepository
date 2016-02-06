@@ -11,11 +11,15 @@ namespace AmzModel
         public int ProductID { get; set; }
 	    public string ProductName { get; set; }
         public string ProductDescription { get; set; }
+        public string ProductLongDescription { get; set; }
         public decimal UnitPrice { get; set; }
         public int UnitsInStock { get; set; }
         public int UnitsOnOrder { get; set; }
         public bool Discontinued { get; set; }
         public bool ImageUploadSuccessful { get; set; }
+        public string SmallImageId { get; set; }
+        public string MediumImageId { get; set; }
+        public string LargeImageId { get; set; }
         public DateTime AddDate { get; set; }
         public string AddedBy { get; set; }
         public DateTime? ModifiedDate { get; set; }

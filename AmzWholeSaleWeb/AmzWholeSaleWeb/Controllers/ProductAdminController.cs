@@ -19,6 +19,7 @@ namespace AmzWholeSaleWeb.Controllers
     public class ProductAdminController : Controller
     {
         public string FILE_UPLOAD_SUCCESSFUL = "File upload successful";
+        public string PRODUCT_UPLOAD_SUCCESSFUL = "Product upload successful";
         private static readonly ILog logger = LogManager.GetLogger(typeof(ProductAdminController));
 
         private AmzProductHandler productHandler;
@@ -188,6 +189,98 @@ namespace AmzWholeSaleWeb.Controllers
 
             return RedirectToAction("Index", new RouteValueDictionary(
                                                 new { controller = "ProductAdmin", action = "Index", message =  uploadMessage, status = fileUploadFailed }));
+        }
+
+
+
+        [HttpPost]
+        public ActionResult UploadProduct(HttpPostedFileBase file, string productName, string productDescription, string productLongDescription, decimal unitPrice)
+        {
+            string uploadMessage = PRODUCT_UPLOAD_SUCCESSFUL;
+            bool fileUploadFailed = false;
+            bool fileIsValid = true;
+            try
+            {
+                var request = System.Web.HttpContext.Current.Request;
+
+                FileInfo fi = new FileInfo(file.FileName);
+                if (!fi.Extension.Equals(".jpg"))
+                {
+                    uploadMessage = "Please upload a valid [.jpg] image file";
+                }
+
+                
+                if (fileIsValid)
+                {
+                    AmzProduct product = new AmzProduct()
+                    {
+                        ProductName = productName
+                        ,ProductDescription = productDescription
+                        ,ProductLongDescription = productLongDescription
+                        ,UnitPrice = unitPrice
+                    };
+                    
+                    string path = System.Web.HttpContext.Current.Server.MapPath("~/UploadedImages");
+                    DirectoryInfo di = new DirectoryInfo(path);
+                    if (!di.Exists)
+                    {
+                        di.Create();
+                    }
+
+                    string nowTicks = DateTime.Now.Ticks.ToString();
+
+                    string sourceFile = string.Format(@"{0}\{1}_{2}", nowTicks, file.FileName);
+                    file.SaveAs(sourceFile);
+                    logger.InfoFormat("Saved input file as {0}", sourceFile);
+
+
+                    Bitmap bmOriginal = new Bitmap(sourceFile);
+                    ImageHandler ih = new ImageHandler();
+
+                    product.SmallImageId = System.Web.HttpContext.Current.Server.MapPath("~/Content") + string.Format(@"\products\AMZ_Small_{0}.jpg", nowTicks);
+                    ih.Save(bmOriginal, 100, 100, 100, product.SmallImageId);
+                    logger.InfoFormat("Resized input file and saved as {0}", product.SmallImageId);
+
+                    product.MediumImageId = System.Web.HttpContext.Current.Server.MapPath("~/Content") + string.Format(@"\products\AMZ_Medium_{0}.jpg", nowTicks);
+                    ih.Save(bmOriginal, 400, 400, 100, product.MediumImageId);
+                    logger.InfoFormat("Resized input file and saved as {0}", product.MediumImageId);
+
+                    product.LargeImageId = System.Web.HttpContext.Current.Server.MapPath("~/Content") + string.Format(@"\products\AMZ_Large_{0}.jpg", nowTicks);
+                    ih.Save(bmOriginal, 400, 400, 100, product.LargeImageId);
+                    logger.InfoFormat("Resized input file and saved as {0}",product.LargeImageId);
+
+                    product.ImageUploadSuccessful = true;
+
+                    productHandler.AddProduct(product);
+
+                    logger.InfoFormat(PRODUCT_UPLOAD_SUCCESSFUL);
+
+                    try
+                    {
+                        FileInfo fiFileToDelete = new FileInfo(sourceFile);
+                        if (fiFileToDelete.Exists)
+                            fiFileToDelete.Delete();
+                        logger.InfoFormat("Removed file {0}", sourceFile);
+
+                    }
+                    catch (Exception ex1)
+                    {
+                        logger.Error(ex1);
+
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex);
+                uploadMessage = string.Format("Product upload failed: Error: {0}", ex.Message);
+                fileUploadFailed = true;
+            }
+
+
+            return RedirectToAction("Index", new RouteValueDictionary(
+                                                new { controller = "ProductAdmin", action = "Index", message = uploadMessage, status = fileUploadFailed }));
         }
 
 

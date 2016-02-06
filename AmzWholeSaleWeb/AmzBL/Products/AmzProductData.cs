@@ -91,32 +91,45 @@ namespace AmzBL.Products
                                                         insert into amz.Products
                                                         (ProductName
                                                         , ProductDescription
+                                                        , ProductLongDescription
                                                         , UnitPrice
                                                         , UnitsInStock
                                                         , UnitsOnOrder
                                                         , Discontinued
                                                         , ImageUploadSuccessful
+                                                        , SmallImageId
+                                                        , MediumImageId
+                                                        , LargeImageId
                                                         , AddDate
                                                         , AddedBy
                                                         )
                                                         values(@ProductName
                                                             , @ProductDescription
+                                                            , @ProductLongDescription
                                                             , @UnitPrice
                                                             , @UnitsInStock
                                                             , @UnitsOnOrder
                                                             , @Discontinued
                                                             , @ImageUploadSuccessful
+                                                            , @SmallImageId
+                                                            , @MediumImageId
+                                                            , @LargeImageId
                                                             , getdate()
-                                                            , 'tzaman')
+                                                            , @addedBy
+                                                        )
                                                         SELECT SCOPE_IDENTITY()
 
                         ", new { p.ProductName
                                 ,p.ProductDescription
+                                ,p.ProductLongDescription
                                 ,p.UnitPrice
                                 ,p.UnitsInStock
                                 ,p.UnitsOnOrder
                                 ,p.Discontinued
                                 ,p.ImageUploadSuccessful
+                                ,p.SmallImageId
+                                ,p.MediumImageId
+                                ,p.LargeImageId
                                 ,addDate
                                 ,addedBy
                                 });
