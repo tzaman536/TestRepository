@@ -95,7 +95,7 @@
 <script type="text/x-kendo-tmpl" id="template">
     <div class="product-view k-widget">
         <dl>
-            <dt><img src="@Url.Content("~/content/products/")#:ProductID#.jpg" alt="#:ProductName# image" /> #:ProductDescription#</dt>
+            <dt><img src="@Url.Content("~/content/products/")#:SmallImageId#" alt="#:ProductName# image" /> #:ProductDescription#</dt>
             <dd>#:ProductName#</dd>
             <dd>Price: #:kendo.toString(UnitPrice, "c")#</dd>
             <dd>In Stock: #:UnitsInStock#</dd>
@@ -249,9 +249,9 @@
             var selectedItem = ds.dataItem(ds.select());
 
 
-            document.getElementById("popUpWindowImageLarge").src = "@Url.Content("~/content/products/{0}.jpg?{1}")".format(selectedItem.ProductID, new Date().getTime());
-            document.getElementById("popUpWindowImageMedium").src = "@Url.Content("~/content/products/{0}.jpg?{1}")".format(selectedItem.ProductID, new Date().getTime());
-            document.getElementById("popUpWindowImageSmall").src = "@Url.Content("~/content/products/{0}.jpg?{1}")".format(selectedItem.ProductID, new Date().getTime());
+            document.getElementById("popUpWindowImageLarge").src = "@Url.Content("~/content/products/{0}?{1}")".format(selectedItem.SmallImageId, new Date().getTime());
+            document.getElementById("popUpWindowImageMedium").src = "@Url.Content("~/content/products/{0}?{1}")".format(selectedItem.SmallImageId, new Date().getTime());
+            document.getElementById("popUpWindowImageSmall").src = "@Url.Content("~/content/products/{0}?{1}")".format(selectedItem.SmallImageId, new Date().getTime());
 
             $("div#windowProductName").text(selectedItem.ProductName);
 

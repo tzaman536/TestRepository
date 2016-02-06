@@ -148,7 +148,7 @@
         var selectedItem = grid.dataItem(grid.select());
 
         document.getElementById("selectedItemImage").src = "@Url.Content("~/content/products/{0}?{1}")".format(selectedItem.SmallImageId, new Date().getTime());
-        alert(document.getElementById("selectedItemImage").src);
+
         document.getElementById("idProductID").value = selectedItem.ProductID;
 
     }
