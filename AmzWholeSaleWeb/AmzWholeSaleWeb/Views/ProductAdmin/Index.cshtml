@@ -5,12 +5,12 @@
 <div style="widows: 100%; display:table;">
     <div style="display:table-row">
         <div style="min-width:600px; display:table-cell;">
-            @using (Html.BeginForm("UploadProduct","ProductAdminController",FormMethod.Post, new { enctype = "multipart/form-data" }))
+            @using (Html.BeginForm("UploadProduct", "ProductAdmin", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
-                <input type="hidden" id="inputProductName" name="productName" value=""/>
-                <input type="hidden" id="inputProductDescription" name="productDescription" value="" />
-                <input type="hidden" id="inputProductLongDescription" name="productLongDescription" value="" />
-                <input type="hidden" id="inputUnitPrice" name="unitPrice" value="" />
+                @*<input type="hidden" id="inputProductName" name="productName" value=""/>*@
+                @*<input type="hidden" id="inputProductDescription" name="productDescription" value="" />*@
+                @*<input type="hidden" id="inputProductLongDescription" name="productLongDescription" value="" />*@
+                @*<input type="hidden" id="inputUnitPrice" name="unitPrice" value="0" />*@
                 <dl>
                     <dt>
                         Product Image:
@@ -22,19 +22,19 @@
                         Product Name:
                     </dt>
                     <dd>
-                        <input type="text" class="k-textbox" id="idProductName" value="Product Name" onfocus="if (this.value == 'Product Name') { this.value = '';}" />
+                        <input type="text" class="k-textbox" id="idProductName" value="Product Name" name="productName" onfocus="if (this.value == 'Product Name') { this.value = '';}" />
                     </dd>
                     <dt>
                         Product Description:
                     </dt>
                     <dd>
-                        <input type="text" class="k-textbox" id="idProductDescription" value="Product Description" onfocus="if (this.value == 'Product Description') { this.value = ''; }" />
+                        <input type="text" class="k-textbox" id="idProductDescription" value="Product Description" name="productDescription"  onfocus="if (this.value == 'Product Description') { this.value = ''; }" />
                     </dd>
                     <dt>
                         Unit Price:
                     </dt>
                     <dd>
-                        <input type="text" class="k-textbox" id="idUnitPrice" value="Unit price" onfocus="if (this.value == 'Unit price') { this.value = ''; }" />
+                        <input type="text" class="k-textbox" id="idUnitPrice" name="unitPrice" value="Unit price" onfocus="if (this.value == 'Unit price') { this.value = ''; }" />
                     </dd>
                     <dt>
                         Product Long Description:
@@ -42,24 +42,21 @@
                     <dd>
                         <div class="box wide">
                             <div class="box-col">
-                                <textarea id="idProductLongDescription" style="min-width:500px; min-height:500px;" rows="4" cols="20" onfocus="if (this.value == 'Product Long Description') { this.value = '';}">Product Long Description</textarea>
+                                <textarea id="idProductLongDescription" name="productLongDescription" style="min-width:500px; min-height:500px;" rows="4" cols="20" onfocus="if (this.value == 'Product Long Description') { this.value = '';}">Product Long Description</textarea>
                             </div>
 
                         </div>
                     </dd>
                 </dl>
-                <input id="btn_submitFile" type="submit" class="k-button" value="Upload" />
+                <input id="btn_UploadProduct" type="submit" class="k-button" value="Upload" />
             }
         </div>
         <div style="max-width:900px; display:table-cell;">
-            <div id="test" class="pad" contenteditable="true">
-                <div id="productImage" class="fif">
-                    @*<img id="selectedItemImage" src="@Url.Content("~/content/products/1.jpg")" />*@
+                <div id="productImage">
                     <img id="selectedItemImage" src="@Url.Content("~/content/products/1.jpg")" />
-
                 </div>
-
-                <div id="uploadButton" class="fif">
+                <br />
+                <div id="uploadButton">
                     @using (Html.BeginForm("UploadImage", "ProductAdmin", FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
                         <input type="file" name="file" />
@@ -80,7 +77,6 @@
                         }
                     }
                 </div>
-            </div>
             <br />
             <div id="allProducts">
                 @(Html.Kendo().Grid<AmzModel.AmzProduct>()
