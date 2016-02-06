@@ -34,7 +34,7 @@ namespace AmzWholeSaleWeb.Controllers
         {
             if (string.IsNullOrEmpty(message))
             {
-                ViewBag.Message = "Manage your product by uploading product image and typing in product descritpion below.";
+                ViewBag.Message = "Upload new products.";
             }
             else
             {
@@ -229,7 +229,7 @@ namespace AmzWholeSaleWeb.Controllers
 
                     string nowTicks = DateTime.Now.Ticks.ToString();
 
-                    string sourceFile = string.Format(@"{0}\{1}_{2}", nowTicks, file.FileName);
+                    string sourceFile = string.Format(@"{0}\{1}_{2}",path, nowTicks, fi.Name);
                     file.SaveAs(sourceFile);
                     logger.InfoFormat("Saved input file as {0}", sourceFile);
 

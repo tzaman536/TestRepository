@@ -7,10 +7,6 @@
         <div style="min-width:600px; display:table-cell;">
             @using (Html.BeginForm("UploadProduct", "ProductAdmin", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
-                @*<input type="hidden" id="inputProductName" name="productName" value=""/>*@
-                @*<input type="hidden" id="inputProductDescription" name="productDescription" value="" />*@
-                @*<input type="hidden" id="inputProductLongDescription" name="productLongDescription" value="" />*@
-                @*<input type="hidden" id="inputUnitPrice" name="unitPrice" value="0" />*@
                 <dl>
                     <dt>
                         Product Image:
@@ -42,7 +38,7 @@
                     <dd>
                         <div class="box wide">
                             <div class="box-col">
-                                <textarea id="idProductLongDescription" name="productLongDescription" style="min-width:500px; min-height:500px;" rows="4" cols="20" onfocus="if (this.value == 'Product Long Description') { this.value = '';}">Product Long Description</textarea>
+                                <textarea id="idProductLongDescription" name="productLongDescription" style="min-width:500px; min-height:300px;" rows="4" cols="20" onfocus="if (this.value == 'Product Long Description') { this.value = '';}">Product Long Description</textarea>
                             </div>
 
                         </div>
@@ -75,6 +71,10 @@
                             <h3 style="color:red"> @ViewBag.Message </h3>
 
                         }
+                        <script>
+                            alert('@ViewBag.Message');
+                        </script>
+
                     }
                 </div>
             <br />
