@@ -4,10 +4,54 @@
 <h2>Product Admin </h2>
 <div style="widows: 100%; display:table;">
     <div style="display:table-row">
-        <div style="width:600px; display:table-cell;">
-            left
+        <div style="min-width:600px; display:table-cell;">
+            @using (Html.BeginForm("UploadProduct","ProductAdminController",FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <input type="hidden" id="inputProductName" name="productName" value=""/>
+                <input type="hidden" id="inputProductDescription" name="productDescription" value="" />
+                <input type="hidden" id="inputProductLongDescription" name="productLongDescription" value="" />
+                <input type="hidden" id="inputUnitPrice" name="unitPrice" value="" />
+                <dl>
+                    <dt>
+                        Product Image:
+                    </dt>
+                    <dd>
+                        <input id="inputFile" type="file" name="file" />
+                    </dd>
+                    <dt>
+                        Product Name:
+                    </dt>
+                    <dd>
+                        <input type="text" class="k-textbox" id="idProductName" value="Product Name" onfocus="if (this.value == 'Product Name') { this.value = '';}" />
+                    </dd>
+                    <dt>
+                        Product Description:
+                    </dt>
+                    <dd>
+                        <input type="text" class="k-textbox" id="idProductDescription" value="Product Description" onfocus="if (this.value == 'Product Description') { this.value = ''; }" />
+                    </dd>
+                    <dt>
+                        Unit Price:
+                    </dt>
+                    <dd>
+                        <input type="text" class="k-textbox" id="idUnitPrice" value="Unit price" onfocus="if (this.value == 'Unit price') { this.value = ''; }" />
+                    </dd>
+                    <dt>
+                        Product Long Description:
+                    </dt>
+                    <dd>
+                        <div class="box wide">
+                            <div class="box-col">
+                                <textarea id="idProductLongDescription" style="min-width:500px; min-height:500px;" rows="4" cols="20" onfocus="if (this.value == 'Product Long Description') { this.value = '';}">Product Long Description</textarea>
+                            </div>
+
+                        </div>
+                    </dd>
+                </dl>
+                <input id="btn_submitFile" type="submit" class="k-button" value="Upload" />
+            }
         </div>
-        <div style="width:900px; display:table-cell;">
+        <div style="max-width:900px; display:table-cell;">
             <div id="test" class="pad" contenteditable="true">
                 <div id="productImage" class="fif">
                     @*<img id="selectedItemImage" src="@Url.Content("~/content/products/1.jpg")" />*@
