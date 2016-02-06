@@ -147,7 +147,8 @@
         var grid = $("#ProductGrid").data("kendoGrid");
         var selectedItem = grid.dataItem(grid.select());
 
-        document.getElementById("selectedItemImage").src = "@Url.Content("~/content/products/{0}.jpg?{1}")".format(selectedItem.ProductID, new Date().getTime());
+        document.getElementById("selectedItemImage").src = "@Url.Content("~/content/products/{0}?{1}")".format(selectedItem.SmallImageId, new Date().getTime());
+        alert(document.getElementById("selectedItemImage").src);
         document.getElementById("idProductID").value = selectedItem.ProductID;
 
     }

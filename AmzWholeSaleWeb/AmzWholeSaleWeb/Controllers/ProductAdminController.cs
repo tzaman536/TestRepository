@@ -237,16 +237,17 @@ namespace AmzWholeSaleWeb.Controllers
                     Bitmap bmOriginal = new Bitmap(sourceFile);
                     ImageHandler ih = new ImageHandler();
 
-                    product.SmallImageId = System.Web.HttpContext.Current.Server.MapPath("~/Content") + string.Format(@"\products\AMZ_Small_{0}.jpg", nowTicks);
-                    ih.Save(bmOriginal, 100, 100, 100, product.SmallImageId);
+                    string destinationFilePath = System.Web.HttpContext.Current.Server.MapPath("~/Content/products");
+                    product.SmallImageId =  string.Format(@"AMZ_Small_{0}.jpg", nowTicks);
+                    ih.Save(bmOriginal, 100, 100, 100, string.Format(@"{0}\{1}",destinationFilePath,product.SmallImageId));
                     logger.InfoFormat("Resized input file and saved as {0}", product.SmallImageId);
 
-                    product.MediumImageId = System.Web.HttpContext.Current.Server.MapPath("~/Content") + string.Format(@"\products\AMZ_Medium_{0}.jpg", nowTicks);
-                    ih.Save(bmOriginal, 400, 400, 100, product.MediumImageId);
+                    product.MediumImageId = string.Format(@"AMZ_Medium_{0}.jpg", nowTicks);
+                    ih.Save(bmOriginal, 400, 400, 100, string.Format(@"{0}\{1}",destinationFilePath, product.MediumImageId));
                     logger.InfoFormat("Resized input file and saved as {0}", product.MediumImageId);
 
-                    product.LargeImageId = System.Web.HttpContext.Current.Server.MapPath("~/Content") + string.Format(@"\products\AMZ_Large_{0}.jpg", nowTicks);
-                    ih.Save(bmOriginal, 400, 400, 100, product.LargeImageId);
+                    product.LargeImageId = string.Format(@"AMZ_Large_{0}.jpg", nowTicks);
+                    ih.Save(bmOriginal, 400, 400, 100, string.Format(@"{0}\{1}",destinationFilePath, product.LargeImageId));
                     logger.InfoFormat("Resized input file and saved as {0}",product.LargeImageId);
 
                     product.ImageUploadSuccessful = true;
