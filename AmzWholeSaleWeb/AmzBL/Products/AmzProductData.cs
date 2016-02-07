@@ -174,6 +174,7 @@ namespace AmzBL.Products
                                                         update amz.Products
                                                         set ProductName = @ProductName
                                                             , ProductDescription = @ProductDescription
+                                                            , ProductLongDescription = @ProductLongDescription
                                                             , UnitPrice = @UnitPrice
                                                             , UnitsInStock = @UnitsInStock
                                                             , UnitsOnOrder = @UnitsOnOrder
@@ -187,6 +188,7 @@ namespace AmzBL.Products
                                                     new {
                                                         p.ProductName
                                                         ,p.ProductDescription
+                                                        ,p.ProductLongDescription
                                                         ,p.UnitPrice
                                                         ,p.UnitsInStock
                                                         ,p.UnitsOnOrder
