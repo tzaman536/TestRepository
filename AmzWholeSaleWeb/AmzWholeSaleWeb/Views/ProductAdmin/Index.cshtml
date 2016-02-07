@@ -126,6 +126,28 @@
 
 <script type="text/javascript">
 
+    $(document).ready(function () {
+        validateUploadForm();
+    });
+
+
+    function validateUploadForm() {
+        $("#btn_UploadProduct").bind("click", function () {
+            var productName = document.getElementById("idProductName").value;
+            var productDescription = document.getElementById("idProductDescription").value;
+            var unitPrice = document.getElementById("idUnitPrice").value;
+            var productLongDescription = document.getElementById("idProductLongDescription").value;
+
+            if(productName == '' || productName == "Product Name")
+            {
+                alert("Please type product name");
+                return false;
+            }
+
+
+
+        });
+    }
 
     function error_handler(e) {
         if (e.errors) {
