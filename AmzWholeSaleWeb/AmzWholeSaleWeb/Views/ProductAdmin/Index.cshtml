@@ -4,7 +4,7 @@
 <h2>Product Admin </h2>
 <div style="widows: 100%; display:table;">
     <div style="display:table-row">
-        <div style="min-width:600px; display:table-cell;">
+        <div id="idProductUploadForm" style="min-width:600px; display:table-cell;">
             @using (Html.BeginForm("UploadProduct", "ProductAdmin", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
                 <dl>
@@ -18,19 +18,22 @@
                         Product Name:
                     </dt>
                     <dd>
-                        <input type="text" class="k-textbox" id="idProductName" value="Product Name" name="productName" onfocus="if (this.value == 'Product Name') { this.value = '';}" />
+                        @*<input type="text" class="k-textbox" id="idProductName" value="Product Name" name="productName" onfocus="if (this.value == 'Product Name') { this.value = '';}" />*@
+                        <input type="text" class="k-textbox" id="idProductName" name="productName"  required/>
                     </dd>
                     <dt>
                         Product Description:
                     </dt>
                     <dd>
-                        <input type="text" class="k-textbox" id="idProductDescription" value="Product Description" name="productDescription"  onfocus="if (this.value == 'Product Description') { this.value = ''; }" />
+                        @*<input type="text" class="k-textbox" id="idProductDescription" value="Product Description" name="productDescription"  onfocus="if (this.value == 'Product Description') { this.value = ''; }" />*@
+                        <input type="text" class="k-textbox" id="idProductDescription" name="productDescription"  required />
                     </dd>
                     <dt>
                         Unit Price:
                     </dt>
                     <dd>
-                        <input type="text" class="k-textbox" id="idUnitPrice" name="unitPrice" value="Unit price" onfocus="if (this.value == 'Unit price') { this.value = ''; }" />
+                        @*<input type="text" class="k-textbox" id="idUnitPrice" name="unitPrice" value="Unit price" onfocus="if (this.value == 'Unit price') { this.value = ''; }" />*@
+                        <input type="text" class="k-textbox" id="idUnitPrice" name="unitPrice" required />
                     </dd>
                     <dt>
                         Product Long Description:
@@ -38,7 +41,8 @@
                     <dd>
                         <div class="box wide">
                             <div class="box-col">
-                                <textarea id="idProductLongDescription" name="productLongDescription" style="min-width:500px; min-height:300px;" rows="4" cols="20" onfocus="if (this.value == 'Product Long Description') { this.value = '';}">Product Long Description</textarea>
+                                @*<textarea id="idProductLongDescription" name="productLongDescription" style="min-width:500px; min-height:300px;" rows="4" cols="20" onfocus="if (this.value == 'Product Long Description') { this.value = '';}">Product Long Description</textarea>*@
+                                <textarea id="idProductLongDescription" name="productLongDescription" style="min-width:500px; min-height:300px;" rows="4" cols="20" required></textarea>
                             </div>
 
                         </div>
@@ -94,7 +98,7 @@
                     })
                     .ToolBar(toolbar =>
                     {
-                        toolbar.Create();
+                        //toolbar.Create();
                         toolbar.Save();
                     })
                     .Editable(editable => editable.Mode(GridEditMode.InCell))
@@ -132,17 +136,34 @@
 
 
     function validateUploadForm() {
-        $("#btn_UploadProduct").bind("click", function () {
-            var productName = document.getElementById("idProductName").value;
-            var productDescription = document.getElementById("idProductDescription").value;
-            var unitPrice = document.getElementById("idUnitPrice").value;
-            var productLongDescription = document.getElementById("idProductLongDescription").value;
 
-            if(productName == '' || productName == "Product Name")
+
+        $("#btn_UploadProduct").bind("click", function () {
+
+            var validator = $("#idProductUploadForm").kendoValidator().data("kendoValidator");
+
+            if ($("#inputFile").get(0).files.length === 0)
             {
-                alert("Please type product name");
+                alert("Pick an image file");
+                return false;
+                
+            }
+
+            if (!validator.validate()) {
                 return false;
             }
+
+
+            //var productName = document.getElementById("idProductName").value;
+            //var productDescription = document.getElementById("idProductDescription").value;
+            //var unitPrice = document.getElementById("idUnitPrice").value;
+            //var productLongDescription = document.getElementById("idProductLongDescription").value;
+
+            //if(productName == '' || productName == "Product Name")
+            //{
+            //    alert("Please type product name");
+            //    return false;
+            //}
 
 
 
