@@ -52,6 +52,12 @@ namespace AmzWholeSaleWeb.Controllers
             return View();
         }
 
+        public ActionResult ManageProduct(string message, bool errorFund = false)
+        {
+            return View();
+        }
+
+
 
 
         public ActionResult Editing_Read([DataSourceRequest] DataSourceRequest request)

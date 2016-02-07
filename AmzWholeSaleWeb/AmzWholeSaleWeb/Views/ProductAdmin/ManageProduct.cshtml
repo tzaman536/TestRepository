@@ -1,0 +1,120 @@
+﻿
+@{
+    ViewBag.Title = "ManageProduct";
+}
+
+<h2>ManageProduct</h2>
+<div style="widows: 100%; display:table;">
+    <div style="display:table-row">
+        <div id="idProductUploadForm" style="min-width:900px; display:table-cell;">
+            <div id="productImage">
+                <img id="selectedItemImage" src="@Url.Content("~/content/products/1.jpg")" />
+            </div>
+            <br />
+            <div id="uploadButton">
+                @using (Html.BeginForm("UploadImage", "ProductAdmin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <input type="file" name="file" />
+                    <input type="hidden" id="idProductID" name="productID" value="0" />
+                        <br />
+                        <input id="btn_submitFile" type="submit" value="Upload Image" />
+
+                        <br />
+
+                    if (ViewBag.ErrorFound == false)
+                    {
+                        <h3 style="color:blue">@ViewBag.Message </h3>
+                    }
+                    else
+                    {
+                        <h3 style="color:red"> @ViewBag.Message </h3>
+
+                    }
+                    <script>
+                            alert('@ViewBag.Message');
+                    </script>
+
+                }
+            </div>
+            <br />
+            <div id="allProducts">
+                @(Html.Kendo().Grid<AmzModel.AmzProduct>()
+                    .Name("ProductGrid")
+                    .Columns(columns =>
+                    {
+                        columns.Bound(p => p.ProductName);
+                        columns.Bound(p => p.ProductDescription);
+                        columns.Bound(p => p.UnitPrice).Width(140);
+                        columns.Bound(p => p.UnitsInStock).Width(140);
+                        columns.Bound(p => p.UnitsOnOrder).Width(140);
+                        columns.Bound(p => p.ImageUploadSuccessful).Width(140);
+                        columns.Bound(p => p.Discontinued).Width(100);
+                        columns.Command(command => command.Destroy()).Width(110);
+                    })
+                    .ToolBar(toolbar =>
+                    {
+                        //toolbar.Create();
+                        toolbar.Save();
+                    })
+                    .Editable(editable => editable.Mode(GridEditMode.InCell))
+                    .Pageable()
+                    .Navigatable()
+                    .Sortable()
+                    .Selectable(selectable => selectable
+                            .Mode(GridSelectionMode.Single)
+                            .Type(GridSelectionType.Row))
+                    //.Scrollable()
+                    .Events(events => events.Change("onChange"))
+                    .DataSource(dataSource => dataSource
+                        .Ajax()
+                        .Batch(true)
+                        .PageSize(3)
+                        .ServerOperation(false)
+                        .Events(events => events.Error("error_handler"))
+                        .Model(model => model.Id(p => p.ProductID))
+                        .Create("Editing_Create", "ProductAdmin")
+                        .Read("Editing_Read", "ProductAdmin")
+                        .Update("Editing_Update", "ProductAdmin")
+                        .Destroy("Editing_Destroy", "ProductAdmin")
+                    )
+                )
+            </div>
+
+        </div>
+        <div style="max-width:100px; display:table-cell;">
+            Right
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function error_handler(e) {
+        if (e.errors) {
+            var message = "Errors:\n";
+            $.each(e.errors, function (key, value) {
+                if ('errors' in value) {
+                    $.each(value.errors, function() {
+                        message += this + "\n";
+                    });
+                }
+            });
+            alert(message);
+        }
+    }
+
+
+
+    function onChange(arg) {
+        var grid = $("#ProductGrid").data("kendoGrid");
+        var selectedItem = grid.dataItem(grid.select());
+
+        document.getElementById("selectedItemImage").src = "@Url.Content("~/content/products/{0}?{1}")".format(selectedItem.SmallImageId, new Date().getTime());
+
+        document.getElementById("idProductID").value = selectedItem.ProductID;
+
+    }
+
+
+
+</script>
+

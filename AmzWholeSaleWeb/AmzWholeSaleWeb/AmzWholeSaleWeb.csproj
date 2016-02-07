@@ -1492,6 +1492,7 @@
     <Content Include="Scripts\kendo\kendo.window.min.js.map" />
     <Content Include="Views\AmzHome\Index.cshtml" />
     <Content Include="Views\ProductAdmin\Index.cshtml" />
+    <Content Include="Views\ProductAdmin\ManageProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
