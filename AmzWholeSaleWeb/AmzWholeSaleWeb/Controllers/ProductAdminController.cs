@@ -54,6 +54,21 @@ namespace AmzWholeSaleWeb.Controllers
 
         public ActionResult ManageProduct(string message, bool errorFund = false)
         {
+            if (string.IsNullOrEmpty(message))
+            {
+                ViewBag.Message = "Manage existing products.";
+            }
+            else
+            {
+                if (message.Equals(FILE_UPLOAD_SUCCESSFUL))
+                    ViewBag.ErrorFound = false;
+                else
+                    ViewBag.ErrorFound = true;
+
+
+                ViewBag.Message = message;
+            }
+
             return View();
         }
 

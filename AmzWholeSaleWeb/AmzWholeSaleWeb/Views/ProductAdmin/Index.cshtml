@@ -1,133 +1,62 @@
 ﻿@{
     ViewBag.Title = "Product Admin";
 }
-<h2>Product Admin </h2>
-<div style="widows: 100%; display:table;">
-    <div style="display:table-row">
-        <div id="idProductUploadForm" style="min-width:600px; display:table-cell;">
-            @using (Html.BeginForm("UploadProduct", "ProductAdmin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+<div>
+    <div style="widows: 100%; display:table;">
+        <div style="display:table-row">
+            <div id="idProductUploadForm" style="min-width:900px; display:table-cell;">
+                @using (Html.BeginForm("UploadProduct", "ProductAdmin", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
-                <dl>
-                    <dt>
-                        Product Image:
-                    </dt>
-                    <dd>
-                        <input id="inputFile" type="file" name="file" />
-                    </dd>
-                    <dt>
-                        Product Name:
-                    </dt>
-                    <dd>
-                        @*<input type="text" class="k-textbox" id="idProductName" value="Product Name" name="productName" onfocus="if (this.value == 'Product Name') { this.value = '';}" />*@
-                        <input type="text" class="k-textbox" id="idProductName" name="productName"  required/>
-                    </dd>
-                    <dt>
-                        Product Description:
-                    </dt>
-                    <dd>
-                        @*<input type="text" class="k-textbox" id="idProductDescription" value="Product Description" name="productDescription"  onfocus="if (this.value == 'Product Description') { this.value = ''; }" />*@
-                        <input type="text" class="k-textbox" id="idProductDescription" name="productDescription"  required />
-                    </dd>
-                    <dt>
-                        Unit Price:
-                    </dt>
-                    <dd>
-                        @*<input type="text" class="k-textbox" id="idUnitPrice" name="unitPrice" value="Unit price" onfocus="if (this.value == 'Unit price') { this.value = ''; }" />*@
-                        <input type="text" class="k-textbox" id="idUnitPrice" name="unitPrice" required />
-                    </dd>
-                    <dt>
-                        Product Long Description:
-                    </dt>
-                    <dd>
-                        <div class="box wide">
-                            <div class="box-col">
-                                @*<textarea id="idProductLongDescription" name="productLongDescription" style="min-width:500px; min-height:300px;" rows="4" cols="20" onfocus="if (this.value == 'Product Long Description') { this.value = '';}">Product Long Description</textarea>*@
-                                <textarea id="idProductLongDescription" name="productLongDescription" style="min-width:500px; min-height:300px;" rows="4" cols="20" required></textarea>
+                    <dl>
+                        <dt>
+                            Product Image:
+                        </dt>
+                        <dd>
+                            <input id="inputFile" type="file" name="file" />
+                        </dd>
+                        <dt>
+                            Product Name:
+                        </dt>
+                        <dd>
+                            @*<input type="text" class="k-textbox" id="idProductName" value="Product Name" name="productName" onfocus="if (this.value == 'Product Name') { this.value = '';}" />*@
+                            <input type="text" class="k-textbox" id="idProductName" name="productName" required />
+                        </dd>
+                        <dt>
+                            Product Description:
+                        </dt>
+                        <dd>
+                            @*<input type="text" class="k-textbox" id="idProductDescription" value="Product Description" name="productDescription"  onfocus="if (this.value == 'Product Description') { this.value = ''; }" />*@
+                            <input type="text" class="k-textbox" id="idProductDescription" name="productDescription" required />
+                        </dd>
+                        <dt>
+                            Unit Price:
+                        </dt>
+                        <dd>
+                            @*<input type="text" class="k-textbox" id="idUnitPrice" name="unitPrice" value="Unit price" onfocus="if (this.value == 'Unit price') { this.value = ''; }" />*@
+                            <input type="text" class="k-textbox" id="idUnitPrice" name="unitPrice" required />
+                        </dd>
+                        <dt>
+                            Product Long Description:
+                        </dt>
+                        <dd>
+                            <div class="box wide">
+                                <div class="box-col">
+                                    @*<textarea id="idProductLongDescription" name="productLongDescription" style="min-width:500px; min-height:300px;" rows="4" cols="20" onfocus="if (this.value == 'Product Long Description') { this.value = '';}">Product Long Description</textarea>*@
+                                    <textarea id="idProductLongDescription" name="productLongDescription" style="min-width:500px; min-height:300px;" rows="4" cols="20" required></textarea>
+                                </div>
+
                             </div>
-
-                        </div>
-                    </dd>
-                </dl>
-                <input id="btn_UploadProduct" type="submit" class="k-button" value="Upload" />
-            }
-        </div>
-        <div style="max-width:900px; display:table-cell;">
-                <div id="productImage">
-                    <img id="selectedItemImage" src="@Url.Content("~/content/products/1.jpg")" />
-                </div>
-                <br />
-                <div id="uploadButton">
-                    @using (Html.BeginForm("UploadImage", "ProductAdmin", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                    {
-                        <input type="file" name="file" />
-                        <input type="hidden" id="idProductID" name="productID" value="0" />
-                        <br />
-                        <input id="btn_submitFile" type="submit" value="Upload Image" />
-
-                        <br />
-
-                        if (ViewBag.ErrorFound == false)
-                        {
-                            <h3 style="color:blue">@ViewBag.Message </h3>
-                        }
-                        else
-                        {
-                            <h3 style="color:red"> @ViewBag.Message </h3>
-
-                        }
-                        <script>
-                            alert('@ViewBag.Message');
-                        </script>
-
-                    }
-                </div>
-            <br />
-            <div id="allProducts">
-                @(Html.Kendo().Grid<AmzModel.AmzProduct>()
-                    .Name("ProductGrid")
-                    .Columns(columns =>
-                    {
-                        columns.Bound(p => p.ProductName);
-                        columns.Bound(p => p.ProductDescription);
-                        columns.Bound(p => p.UnitPrice).Width(140);
-                        columns.Bound(p => p.UnitsInStock).Width(140);
-                        columns.Bound(p => p.UnitsOnOrder).Width(140);
-                        columns.Bound(p => p.ImageUploadSuccessful).Width(140);
-                        columns.Bound(p => p.Discontinued).Width(100);
-                        columns.Command(command => command.Destroy()).Width(110);
-                    })
-                    .ToolBar(toolbar =>
-                    {
-                        //toolbar.Create();
-                        toolbar.Save();
-                    })
-                    .Editable(editable => editable.Mode(GridEditMode.InCell))
-                    .Pageable()
-                    .Navigatable()
-                    .Sortable()
-                    .Selectable(selectable => selectable
-                            .Mode(GridSelectionMode.Single)
-                            .Type(GridSelectionType.Row))
-                    //.Scrollable()
-                    .Events(events => events.Change("onChange"))
-                    .DataSource(dataSource => dataSource
-                        .Ajax()
-                        .Batch(true)
-                        .PageSize(3)
-                        .ServerOperation(false)
-                        .Events(events => events.Error("error_handler"))
-                        .Model(model => model.Id(p => p.ProductID))
-                        .Create("Editing_Create", "ProductAdmin")
-                        .Read("Editing_Read", "ProductAdmin")
-                        .Update("Editing_Update", "ProductAdmin")
-                        .Destroy("Editing_Destroy", "ProductAdmin")
-                    )
-                )
+                        </dd>
+                    </dl>
+                    <input id="btn_UploadProduct" type="submit" class="k-button" value="Upload" />
+                }
+            </div>
+            <div style="max-width:300px; display:table-cell;">
+                @Html.Partial("AdminMenu")
             </div>
         </div>
     </div>
 </div>
-
 <script type="text/javascript">
 
     $(document).ready(function () {
