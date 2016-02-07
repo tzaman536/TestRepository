@@ -15,7 +15,7 @@
                             Product Image:
                         </dt>
                         <dd>
-                            <input id="inputFile" type="file" name="file" />
+                            <input id="inputFile" class="k-textbox fileUploadBox" type="file" name="file" />
                         </dd>
                         <dt>
                             Product Name:
@@ -45,7 +45,7 @@
                             <div class="box wide">
                                 <div class="box-col">
                                     @*<textarea id="idProductLongDescription" name="productLongDescription" style="min-width:500px; min-height:300px;" rows="4" cols="20" onfocus="if (this.value == 'Product Long Description') { this.value = '';}">Product Long Description</textarea>*@
-                                    <textarea id="idProductLongDescription" name="productLongDescription" style="min-width:500px; min-height:300px;" rows="4" cols="20" required></textarea>
+                                    <textarea id="idProductLongDescription" name="productLongDescription" class="k-textbox productLongDescription" rows="4" cols="20" required></textarea>
                                 </div>
 
                             </div>
@@ -137,8 +137,16 @@
 
 <style>
 
+    .fileUploadBox{
+        min-width:500px;
+    }
     .productName {
         min-width: 255px;
     }
     
+    .productLongDescription{
+        min-width:500px; 
+        min-height:300px;
+    }
+
 </style>
