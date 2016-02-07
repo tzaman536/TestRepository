@@ -171,15 +171,32 @@ namespace AmzWholeSaleWeb.Controllers
                         di.Create();
                     }
 
-                    string sourceFile = string.Format(@"{0}\{1}_{2}", path,DateTime.Now.Ticks, file.FileName);
+                    string sourceFile = string.Format(@"{0}\{1}_{2}", path,DateTime.Now.Ticks, fi.Name);
                     file.SaveAs(sourceFile);
                     
                     logger.InfoFormat("Saved input file as {0}",sourceFile);
-                    string destinationFilePath = System.Web.HttpContext.Current.Server.MapPath("~/Content") + string.Format(@"\products\{0}.jpg",productID);
+                    string destinationFilePath = System.Web.HttpContext.Current.Server.MapPath("~/Content/products");
+
+
+
                     Bitmap bmOriginal = new Bitmap(sourceFile);
                     ImageHandler ih = new ImageHandler();
-                    ih.Save(bmOriginal, 100, 100, 100, destinationFilePath);
-                     
+
+
+                    var product = productHandler.GetProduct(productID);
+                    if(product != null)
+                    {
+                        ih.Save(bmOriginal, 100, 100, 100, string.Format(@"{0}\{1}", destinationFilePath, product.SmallImageId));
+                        logger.InfoFormat("Resized input file and saved as {0}", product.SmallImageId);
+
+                        ih.Save(bmOriginal, 400, 400, 100, string.Format(@"{0}\{1}", destinationFilePath, product.MediumImageId));
+                        logger.InfoFormat("Resized input file and saved as {0}", product.MediumImageId);
+
+                        ih.Save(bmOriginal, 400, 400, 100, string.Format(@"{0}\{1}", destinationFilePath, product.LargeImageId));
+                        logger.InfoFormat("Resized input file and saved as {0}", product.LargeImageId);
+                    }
+
+
                     logger.InfoFormat("Resized input file and saved as {0}",destinationFilePath);
                     logger.InfoFormat(FILE_UPLOAD_SUCCESSFUL);
                     
@@ -208,8 +225,8 @@ namespace AmzWholeSaleWeb.Controllers
             }
 
 
-            return RedirectToAction("Index", new RouteValueDictionary(
-                                                new { controller = "ProductAdmin", action = "Index", message =  uploadMessage, status = fileUploadFailed }));
+            return RedirectToAction("ManageProduct", new RouteValueDictionary(
+                                                new { controller = "ProductAdmin", action = "ManageProduct", message =  uploadMessage, status = fileUploadFailed }));
         }
 
 
