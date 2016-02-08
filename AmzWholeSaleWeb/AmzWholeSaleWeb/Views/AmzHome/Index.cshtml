@@ -94,7 +94,7 @@
     .Editable()
     .Navigatable()
     .Selectable()
-    .Events(events => events.Change("onChange"))
+    .Events(events => events.Change("onChange").DataBound("onDataBound"))
     )
     </div>
 
@@ -118,6 +118,15 @@
             });
         });
 
+        function onDataBound()
+        {
+            //alert("Data bound");
+            if($("#listView").data("kendoListView").dataSource.total() === 0) 
+            {
+                var url = '@Url.Action("ProductNotFound", "AmzHome")';
+                window.location.href = url;
+            }
+        }
 
         function dataFilter() {
             return {

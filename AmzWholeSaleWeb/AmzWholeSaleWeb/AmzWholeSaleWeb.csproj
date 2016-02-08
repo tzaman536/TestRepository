@@ -1494,6 +1494,8 @@
     <Content Include="Views\ProductAdmin\Index.cshtml" />
     <Content Include="Views\ProductAdmin\ManageProduct.cshtml" />
     <Content Include="Views\ProductAdmin\AdminMenu.cshtml" />
+    <Content Include="Views\AmzHome\ProductNotFund.cshtml" />
+    <Content Include="Views\AmzHome\ProductNotFound.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

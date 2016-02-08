@@ -42,6 +42,11 @@ namespace AmzWholeSaleWeb.Controllers
 
         }
 
+        public ActionResult ProductNotFound()
+        {
+            return View();
+        }
+
         public ActionResult Products_Read([DataSourceRequest] DataSourceRequest request, string productFilter)
         {
 
@@ -51,7 +56,11 @@ namespace AmzWholeSaleWeb.Controllers
                 productFilter = null;
             }
 
-            return Json(productHandler.GetProducts(productFilter).ToDataSourceResult(request));
+            var result = productHandler.GetProducts(productFilter);
+            if(result == null || !result.Any())
+                return RedirectToAction("ProductNotFound");
+            else
+                return Json(result.ToDataSourceResult(request));
         }
 
         #region Shopping cart 
