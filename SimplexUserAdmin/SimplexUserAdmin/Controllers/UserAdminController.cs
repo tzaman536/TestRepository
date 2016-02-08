@@ -19,11 +19,14 @@ namespace SimplexUserAdmin.Controllers
 
         }
 
+        #region Views
         // GET: UserAdmin
         public ActionResult Index()
         {
             return View();
         }
+
+        // ManageUser view is for managing user role
         public ActionResult ManageUser(string message)
         {
             if (string.IsNullOrEmpty(message))
@@ -36,6 +39,18 @@ namespace SimplexUserAdmin.Controllers
             return View();
         }
 
+        public ActionResult ManagePassword(string message)
+        {
+            if (string.IsNullOrEmpty(message))
+            {
+                ViewBag.Message = "Reset user password";
+            }
+            else
+                ViewBag.Message = message;
+
+            return View();
+        }
+        
 
         public ActionResult RoleAdmin(string message)
         {
@@ -49,6 +64,7 @@ namespace SimplexUserAdmin.Controllers
             return View();
         }
 
+        #endregion
         // GET: UserAdmin/Details/5
         public ActionResult Details(int id)
         {
@@ -241,6 +257,16 @@ namespace SimplexUserAdmin.Controllers
             return RedirectToAction("RoleAdmin", new RouteValueDictionary(
                                                 new { controller = "UserAdmin", action = "RoleAdmin", message = userMessage}));
         }
+
+        [HttpPost]
+        public ActionResult ManageUserPassword(string userName, string password, string action)
+        {
+            string userMessage = "Password changed";
+
+            return RedirectToAction("ManagePassword", new RouteValueDictionary(
+                                                 new { controller = "UserAdmin", action = "ManagePassword", message = userMessage }));
+        }
+
 
     }
 }
