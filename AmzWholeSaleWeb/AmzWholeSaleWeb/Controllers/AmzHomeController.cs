@@ -42,9 +42,16 @@ namespace AmzWholeSaleWeb.Controllers
 
         }
 
-        public ActionResult Products_Read([DataSourceRequest] DataSourceRequest request)
+        public ActionResult Products_Read([DataSourceRequest] DataSourceRequest request, string productFilter)
         {
-            return Json(productHandler.GetProducts().ToDataSourceResult(request));
+
+            
+            if (!string.IsNullOrEmpty(productFilter) && productFilter.Equals("Search products"))
+            {
+                productFilter = null;
+            }
+
+            return Json(productHandler.GetProducts(productFilter).ToDataSourceResult(request));
         }
 
         #region Shopping cart 

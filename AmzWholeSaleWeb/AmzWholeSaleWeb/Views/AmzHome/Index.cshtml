@@ -87,7 +87,7 @@
         .Model(model => model.Id("ProductID"))
         .PageSize(99)
         //.Create(create => create.Action("Editing_Create", "ListView"))
-        .Read(read => read.Action("Products_Read", "AmzHome"))
+        .Read(read => read.Action("Products_Read", "AmzHome").Data("dataFilter"))
     //.Update(update => update.Action("Editing_Update", "ListView"))
     //.Destroy(destroy => destroy.Action("Editing_Destroy", "ListView"))
     ).Pageable()
@@ -108,8 +108,22 @@
             $("#shoppingCartLink").click(function () {
                 submitCart();
             });
+
+            $("#searchProductButton").click(function () {
+
+                $("#listView").data("kendoListView").dataSource.read();
+                //if (window.location.hostname == "www.myweb.com") {
+                //    window.location.href = window.location.href + "?single";
+                //}
+            });
         });
 
+
+        function dataFilter() {
+            return {
+                productFilter: $("#idSearchItems").val()
+            }
+        }
         function onClose(){
 
         }
@@ -480,6 +494,7 @@
             box-sizing: border-box;
             border-top: 0;
             position: relative;
+            
         }
 
             .product-view img {

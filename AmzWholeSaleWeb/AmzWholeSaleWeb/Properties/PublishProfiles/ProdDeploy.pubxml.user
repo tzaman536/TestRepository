@@ -13,13 +13,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/23/2016 07:24:36</publishTime>
     </File>
     <File Include="bin/AmzBL.dll">
-      <publishTime>02/01/2016 19:41:15</publishTime>
+      <publishTime>02/08/2016 13:50:08</publishTime>
     </File>
     <File Include="bin/AmzModel.dll">
-      <publishTime>02/01/2016 19:41:14</publishTime>
+      <publishTime>02/08/2016 13:50:08</publishTime>
     </File>
     <File Include="bin/AmzWholeSaleWeb.dll">
-      <publishTime>02/04/2016 21:50:15</publishTime>
+      <publishTime>02/08/2016 13:50:18</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.dll">
       <publishTime>01/23/2016 07:24:13</publishTime>
@@ -3901,7 +3901,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/23/2016 07:24:15</publishTime>
     </File>
     <File Include="Views/Account/Login.cshtml">
-      <publishTime>01/23/2016 07:24:15</publishTime>
+      <publishTime>02/08/2016 12:50:51</publishTime>
     </File>
     <File Include="Views/Account/Register.cshtml">
       <publishTime>01/23/2016 07:24:15</publishTime>
@@ -3922,7 +3922,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/23/2016 07:24:15</publishTime>
     </File>
     <File Include="Views/AmzHome/Index.cshtml">
-      <publishTime>02/04/2016 21:42:19</publishTime>
+      <publishTime>02/07/2016 09:03:33</publishTime>
     </File>
     <File Include="Views/Home/About.cshtml">
       <publishTime>01/23/2016 07:24:04</publishTime>
@@ -3951,8 +3951,14 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/Manage/VerifyPhoneNumber.cshtml">
       <publishTime>01/23/2016 07:24:16</publishTime>
     </File>
+    <File Include="Views/ProductAdmin/AdminMenu.cshtml">
+      <publishTime>02/07/2016 08:49:17</publishTime>
+    </File>
     <File Include="Views/ProductAdmin/Index.cshtml">
-      <publishTime>01/30/2016 10:46:34</publishTime>
+      <publishTime>02/07/2016 09:42:35</publishTime>
+    </File>
+    <File Include="Views/ProductAdmin/ManageProduct.cshtml">
+      <publishTime>02/07/2016 11:46:35</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>01/23/2016 07:24:15</publishTime>
@@ -3961,7 +3967,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/23/2016 07:24:16</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>02/05/2016 04:56:01</publishTime>
+      <publishTime>02/06/2016 11:59:55</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
       <publishTime>01/23/2016 07:24:16</publishTime>

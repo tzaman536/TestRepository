@@ -16,7 +16,7 @@ namespace AmzBL.Products
     {
         private static readonly ILog logger = LogManager.GetLogger(typeof(AmzProductHandler));
 
-        public IEnumerable<AmzProduct> GetProducts()
+        public IEnumerable<AmzProduct> GetProducts(string filterText = null)
         {
             IEnumerable<AmzProduct> result = new List<AmzProduct>();
 
@@ -36,7 +36,23 @@ namespace AmzBL.Products
                 }
 
             }
-            return result;
+            if (!string.IsNullOrEmpty(filterText))
+            {
+                var r = result.Where(x => x.ProductName.ToUpper().Contains(filterText.ToUpper()));
+                if (r == null || !r.Any())
+                {
+                    r = result.Where(x => x.ProductDescription.ToUpper().Contains(filterText.ToUpper()));
+                    if(r == null || !r.Any())
+                        r = result.Where(x => x.ProductLongDescription.ToUpper().Contains(filterText.ToUpper()));
+
+                    return r;
+                }
+                else
+                    return r;
+
+            }
+            else
+                return result;
 
         }
 
