@@ -29,9 +29,22 @@ namespace AmzWholeSaleWeb.Controllers
             productHandler = new AmzProductHandler();
         }
 
+        #region Views
         // GET: ProductAdmin
+
         public ActionResult Index(string message, bool errorFund=false)
         {
+
+            if(!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            if(!User.IsInRole("AmzAdmin"))
+            {
+                return RedirectToAction("Index", "AmzHome");
+            }
+
             if (string.IsNullOrEmpty(message))
             {
                 ViewBag.Message = "Upload new products.";
@@ -54,6 +67,12 @@ namespace AmzWholeSaleWeb.Controllers
 
         public ActionResult ManageProduct(string message, bool errorFund = false)
         {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+
             if (string.IsNullOrEmpty(message))
             {
                 ViewBag.Message = "Manage existing products.";
@@ -72,7 +91,7 @@ namespace AmzWholeSaleWeb.Controllers
             return View();
         }
 
-
+        #endregion
 
 
         public ActionResult Editing_Read([DataSourceRequest] DataSourceRequest request)

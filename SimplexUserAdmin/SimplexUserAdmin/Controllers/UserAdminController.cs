@@ -123,40 +123,96 @@ namespace SimplexUserAdmin.Controllers
 
 
         [HttpPost]
-        public ActionResult AddUserToRole(string userName, string roleName)
+        public ActionResult ManageUserToRole(string userName, string roleName, string action)
         {
-            string userMessage = "User added to role";
-            try
+            if (action.Equals("Add User To Role"))
             {
-                var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>());
-                IdentityResult roleAddResult;
-
-                if (roleManager.RoleExists(roleName))
+                string userMessage = "User added to role";
+                try
                 {
-                    var _context = new ApplicationDbContext();
-                    var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(_context));
+                    var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>());
 
-                    //Check if user is in this role
-                    var userFromDb = _context.Users.ToList().Where(x => x.UserName.Equals(userName)).ElementAtOrDefault(0);
-                    if(userFromDb != null)
+                    if (roleManager.RoleExists(roleName))
                     {
-                        userManager.AddToRole(userFromDb.Id, roleName);
+                        var _context = new ApplicationDbContext();
+                        var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(_context));
+
+                        //Check if user exists
+                        var userFromDb = _context.Users.ToList().Where(x => x.UserName.Equals(userName)).ElementAtOrDefault(0);
+                        if (userFromDb != null)
+                        {
+                            userManager.AddToRole(userFromDb.Id, roleName);
+                        }
+                        else
+                        {
+                            userMessage = string.Format("Can't find user {0}", userName);
+                        }
+
+
                     }
-                    
+                    else
+                    {
+                        userMessage = string.Format("Role {0} does not exists", roleName);
+                    }
+
                 }
-                else
+                catch (Exception ex)
                 {
-                    userMessage = string.Format("Role {0} does not exists", roleName);
+                    userMessage = ex.Message;
                 }
 
+                return RedirectToAction("ManageUser", new RouteValueDictionary(
+                                                    new { controller = "UserAdmin", action = "ManageUser", message = userMessage }));
             }
-            catch (Exception ex)
+
+
+            if (action.Equals("Remove User From Role"))
             {
-                userMessage = ex.Message;
+                string userMessage = "User removed from role";
+                try
+                {
+                    var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>());
+
+                    if (roleManager.RoleExists(roleName))
+                    {
+                        var _context = new ApplicationDbContext();
+                        var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(_context));
+
+
+
+                        //Check if user exists
+                        var userFromDb = _context.Users.ToList().Where(x => x.UserName.Equals(userName)).ElementAtOrDefault(0);
+                        if (userFromDb != null)
+                        {
+                            if(userManager.IsInRole(userFromDb.Id,roleName))
+                            {
+                                userManager.RemoveFromRole(userFromDb.Id,roleName);
+                            }
+                        }
+                        else
+                        {
+                            userMessage = string.Format("Can't find user {0}", userName);
+                        }
+
+
+                    }
+                    else
+                    {
+                        userMessage = string.Format("Role {0} does not exists", roleName);
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    userMessage = ex.Message;
+                }
+
+                return RedirectToAction("ManageUser", new RouteValueDictionary(
+                                                    new { controller = "UserAdmin", action = "ManageUser", message = userMessage }));
             }
 
             return RedirectToAction("ManageUser", new RouteValueDictionary(
-                                                new { controller = "UserAdmin", action = "ManageUser", message = userMessage }));
+                                                 new { controller = "UserAdmin", action = "ManageUser", message = "Command not recognized" }));
         }
 
         [HttpPost]
