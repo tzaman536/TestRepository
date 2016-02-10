@@ -67,11 +67,11 @@ namespace AmzBL.Products
                 try
                 {
                     result = conn.Query<AmzProduct>(@"
-                        SELECT p.ProductName,ProductDescription,UnitPrice,SmallImageId,MediumImageId,LargeImageId,count(*) as TotalItemsInCart, count(*) * UnitPrice as CostOfItemsInCart 
+                        SELECT p.ProductId,p.ProductName,ProductDescription,UnitPrice,SmallImageId,MediumImageId,LargeImageId,count(*) as TotalItemsInCart, count(*) * UnitPrice as CostOfItemsInCart 
                         FROM amz.Products p
                         INNER JOIN dbo.CartItems ci on p.ProductId = ci.ProductId
                         WHERE CartId = @cartId
-                        group by p.ProductName,ProductDescription,UnitPrice,SmallImageId,MediumImageId,LargeImageId                        
+                        group by p.ProductId,p.ProductName,ProductDescription,UnitPrice,SmallImageId,MediumImageId,LargeImageId                        
                     ", new { cartId = cartId}
                     );
                 }

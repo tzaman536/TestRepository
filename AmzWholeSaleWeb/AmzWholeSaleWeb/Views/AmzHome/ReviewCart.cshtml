@@ -24,7 +24,8 @@
             <dd>Total Items: #:TotalItemsInCart#</dd>
         </dl>
         <div class="edit-buttons">
-            <button id="addToCartButton" type="button" onclick="addToCart('#:ProductID#', '#:UnitPrice#', 1)">Add to cart</button>
+            <button id="addToCartButton" type="button" onclick="addToCart('#:ProductID#', '#:UnitPrice#', 1)">Add</button>
+            <button id="addToCartButton" type="button" onclick="addToCart('#:ProductID#', '#:UnitPrice#', 1)">Remove</button>
         </div>
     </div>
 </script>
@@ -253,6 +254,37 @@
         });
 
         getCartCount();
+
+    }
+
+    function addToCart(productID, unitPrice, quantity) {
+
+        var parms = { productID: productID, unitPrice: unitPrice, quantity: quantity }
+        $.ajax({
+            type: "POST",
+            traditional: true,
+            url: '@Url.Action("AddItemToCart", "AmzHome")',
+            async: true,
+            data: parms,
+            dataType: "json",
+            beforeSend: function (xhr) {
+            },
+            success: function (response, textStatus, jqXHR) {
+                //alert(response.message);
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert("Error found during execution");
+
+            }
+        });
+
+        getCartCount();
+        $("#listView").data("kendoListView").dataSource.read();
+        var isIE = false || !!document.documentMode;
+        if (isIE == true) {
+            location.reload();
+        }
+
 
     }
 

@@ -138,8 +138,6 @@
         {
             $("#window").data("kendoWindow").close();
             $("#window").hide();
-
-
         }
 
         $(function () {
@@ -150,10 +148,6 @@
                         e.preventDefault();
                     });
         });
-
-
-
-     
 
         $(document.body).keydown(function (e) {
             if (e.altKey && e.keyCode == 87) {
@@ -205,36 +199,6 @@
             $("#window").show();
             $("#window").data("kendoWindow").open();
         }
-
-
-        function SetCartProcessed() {
-
-            var parms = null;
-            $.ajax({
-                type: "POST",
-                traditional: true,
-                url: '@Url.Action("SetCartProcessed", "AmzHome")',
-                async: true,
-                data: parms,
-                dataType: "json",
-                beforeSend: function (xhr) {
-                },
-                success: function (response, textStatus, jqXHR) {
-                    //alert(response.message);
-                },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    //alert("Error found during execution");
-
-                }
-            });
-
-            getCartCount();
-
-        }
-
-
-
-        
 
         function getSessionID()
         {
