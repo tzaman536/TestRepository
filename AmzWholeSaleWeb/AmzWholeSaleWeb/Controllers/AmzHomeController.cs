@@ -152,6 +152,24 @@ namespace AmzWholeSaleWeb.Controllers
         }
 
         [HttpPost]
+        public ActionResult RemoveItemFromCart([DataSourceRequest]DataSourceRequest request, int productID)
+        {
+
+
+            CartHandler ch = new CartHandler();
+            string message;
+            Cart c = ch.GetUserCart(out message);
+
+            if (c != null)
+            {
+                ch.RemoveCartItem(c.CartID, productID);
+            }
+
+            return Json(new { success = true, message = string.Format("product id is {0}", productID) }, JsonRequestBehavior.AllowGet);
+        }
+        
+
+        [HttpPost]
         public ActionResult SetCartProcessed([DataSourceRequest]DataSourceRequest request)
         {
 

@@ -1,4 +1,10 @@
 ﻿/*
+    NOTE: Verify that URL is correct for every implementation
+    TODO: Read URL from app config and set it here
+
+*/
+
+/*
 String.Format function
 */
 if (!String.prototype.format) {
@@ -60,7 +66,10 @@ function getCartCount(){
     });
 }
 
-
+/*
+Add item to cart
+Note: Change URL to new clients URL for every implementation 
+*/
 function addToCart(productID, unitPrice, quantity) {
 
     var parms = { productID: productID, unitPrice: unitPrice, quantity: quantity }
@@ -91,3 +100,40 @@ function addToCart(productID, unitPrice, quantity) {
 
 
 }
+
+
+/*
+Remove item from cart
+Note: Change URL to new clients URL for every implementation 
+*/
+function removeFromCart(productID) {
+
+    var parms = { productID: productID }
+    $.ajax({
+        type: "POST",
+        traditional: true,
+        //url: '@Url.Action("AddItemToCart", "AmzHome")',
+        url: '/AmzHome/RemoveItemFromCart',
+        async: true,
+        data: parms,
+        dataType: "json",
+        beforeSend: function (xhr) {
+        },
+        success: function (response, textStatus, jqXHR) {
+            //alert(response.message);
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            alert("Error found during execution");
+
+        }
+    });
+
+    getCartCount();
+    var isIE = false || !!document.documentMode;
+    if (isIE == true) {
+        location.reload();
+    }
+
+
+}
+

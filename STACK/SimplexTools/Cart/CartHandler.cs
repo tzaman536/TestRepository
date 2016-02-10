@@ -120,6 +120,35 @@ namespace Simplex.Tools.Cart
         }
 
 
+        public bool RemoveCartItem(int cartID, int productID)
+        {
+            bool itemAddded = true;
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+            {
+                conn.Open();
+                try
+                {
+                    var result = conn.Query<Cart>(@"
+                            DELETE dbo.CartItems
+                            WHERE CartItemId IN (
+					                            SELECT MAX(CartItemId)
+					                            FROM dbo.CartItems t
+					                            WHERE cartid = @cartID
+					                              and ProductId = @productID
+					                            )
+                    ", new { cartID, productID });
+                }
+                catch (Exception ex)
+                {
+                    logger.Error(ex);
+                    PhenixMail.SendMail("CartHandler.AddCartItem()-ERROR", string.Format("{0}", ex.Message), ConfigurationManager.AppSettings["TechSupportEmail"]);
+                    itemAddded = false;
+                }
+            }
+            return itemAddded;
+        }
+
+
         public IEnumerable<CartItems> GetCartItemsSummary(string sql)
         {
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
