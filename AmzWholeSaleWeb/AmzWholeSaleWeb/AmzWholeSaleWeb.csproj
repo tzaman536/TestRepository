@@ -1496,6 +1496,7 @@
     <Content Include="Views\ProductAdmin\AdminMenu.cshtml" />
     <Content Include="Views\AmzHome\ProductNotFound.cshtml" />
     <Content Include="Views\AmzHome\ReviewCart.cshtml" />
+    <Content Include="Views\AmzHome\CartIsEmpty.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -48,6 +48,12 @@ namespace AmzWholeSaleWeb.Controllers
             return View();
         }
 
+        public ActionResult CartIsEmpty()
+        {
+            return View();
+        }
+
+
         public ActionResult ReviewCart()
         {
             return View();
@@ -79,19 +85,17 @@ namespace AmzWholeSaleWeb.Controllers
             CartHandler ch = new CartHandler();
             Cart c = ch.GetUserCart(out message);
 
-            if (c != null)
+            if (c != null )
             {
                 var result = productHandler.GetCartProducts(c.CartID);
                 if (result == null || !result.Any())
-                    return RedirectToAction("ProductNotFound");
+                    return RedirectToAction("CartIsEmpty");
                 else
-                    // To DO Replace this with Nothing in your cart
                     return Json(result.ToDataSourceResult(request));
             }
             else
             {
-                // To DO Replace this with Nothing in your cart
-                return RedirectToAction("ProductNotFound");
+                return RedirectToAction("CartIsEmpty");
             }
         }
 
@@ -102,18 +106,26 @@ namespace AmzWholeSaleWeb.Controllers
             string message;
             CartHandler ch = new CartHandler();
 
+            
             Cart c = ch.GetUserCart(out message);
 
-            if (c == null)
-            {
-                c = new Cart();
-                c.TotalItems = 0;
-                c.Message = message;
-                c.IsValid = false;
+            try {
+                if (c == null)
+                {
+                    c = new Cart();
+                    c.TotalItems = 0;
+                    c.Message = message;
+                    c.IsValid = false;
+
+                }
+                else
+                {
+                    c.CartItems = ch.GetCartItems(c.CartID);
+                }
             }
-            else
+            catch(Exception ex)
             {
-                c.CartItems= ch.GetCartItems(c.CartID);
+                logger.Fatal(ex);
             }
             return Json(new { success = true, Cart = c }, JsonRequestBehavior.AllowGet);
 
