@@ -10,7 +10,10 @@
     </form>
 </div>
 
-<h2> Please review your cart and click <button id="idCheckOutAndPay">Check out</button> to complete your transaction</h2>
+<h3> Please review your cart and click <input id="idBuyNowPageTop" type="image" name="submit" border="0"
+       src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif"
+       alt="PayPal - The safer, easier way to pay online">
+ to complete your transaction</h3>
 <br />
 @Html.ActionLink("Take me back to home page", "Index", "AmzHome")
 
@@ -52,6 +55,12 @@
     )
 </div>
 
+<h3>
+    Click <input id="idBuyNowPageBottom" type="image" name="submit" border="0"
+                                             src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif"
+                                             alt="PayPal - The safer, easier way to pay online">
+    to complete your transaction
+</h3>
 
 <script>
     $(document).ready(function () {
@@ -64,6 +73,13 @@
         $("#idBuyNowTopMenu").click(function () {
             submitCart();
         });
+        $("#idBuyNowPageTop").click(function () {
+            submitCart();
+        });
+        $("#idBuyNowPageBottom").click(function () {
+            submitCart();
+        });
+
     });
 
     function onDataBound() {
