@@ -56,7 +56,37 @@ namespace AmzBL.Products
 
         }
 
-        public  AmzProduct GetProduct(int productId)
+
+        public IEnumerable<AmzProduct> GetCartProducts(int cartId)
+        {
+            IEnumerable<AmzProduct> result = new List<AmzProduct>();
+
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+            {
+                conn.Open();
+                try
+                {
+                    result = conn.Query<AmzProduct>(@"
+                        SELECT p.ProductName,ProductDescription,UnitPrice,SmallImageId,MediumImageId,LargeImageId,count(*) as TotalItemsInCart, count(*) * UnitPrice as CostOfItemsInCart 
+                        FROM amz.Products p
+                        INNER JOIN dbo.CartItems ci on p.ProductId = ci.ProductId
+                        WHERE CartId = @cartId
+                        group by p.ProductName,ProductDescription,UnitPrice,SmallImageId,MediumImageId,LargeImageId                        
+                    ", new { cartId = cartId}
+                    );
+                }
+                catch (Exception ex)
+                {
+                    //PhenixMail.SendMail("daContactDetail.GetClientContactDetail()-ERROR", string.Format("{0}", ex.Message), ConfigurationManager.AppSettings["MAIL_SALES_TEAM"]);
+                }
+
+            }
+
+            return result;
+
+        }
+
+        public AmzProduct GetProduct(int productId)
         {
             IEnumerable<AmzProduct> result = new List<AmzProduct>();
 

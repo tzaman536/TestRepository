@@ -32,7 +32,7 @@
         .Model(model => model.Id("ProductID"))
         .PageSize(99)
         //.Create(create => create.Action("Editing_Create", "ListView"))
-        .Read(read => read.Action("Products_Read", "AmzHome").Data("dataFilter"))
+        .Read(read => read.Action("CartItems_Read", "AmzHome"))
     //.Update(update => update.Action("Editing_Update", "ListView"))
     //.Destroy(destroy => destroy.Action("Editing_Destroy", "ListView"))
     ).Pageable()
@@ -57,11 +57,7 @@
         }
     }
 
-    function dataFilter() {
-        return {
-            productFilter: $("#idSearchItems").val()
-        }
-    }
+    
     function onClose() {
 
     }

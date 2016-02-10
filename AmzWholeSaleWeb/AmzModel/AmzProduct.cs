@@ -8,6 +8,7 @@ namespace AmzModel
 {
     public class AmzProduct
     {
+
         public int ProductID { get; set; }
 	    public string ProductName { get; set; }
         public string ProductDescription { get; set; }
@@ -20,6 +21,8 @@ namespace AmzModel
         public string SmallImageId { get; set; }
         public string MediumImageId { get; set; }
         public string LargeImageId { get; set; }
+        public int TotalItemsInCart { get; set; }
+        public decimal CostOfItemsInCart { get; set; }
         public DateTime AddDate { get; set; }
         public string AddedBy { get; set; }
         public DateTime? ModifiedDate { get; set; }

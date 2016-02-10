@@ -71,6 +71,30 @@ namespace AmzWholeSaleWeb.Controllers
                 return Json(result.ToDataSourceResult(request));
         }
 
+        public ActionResult CartItems_Read([DataSourceRequest] DataSourceRequest request)
+        {
+
+
+            string message;
+            CartHandler ch = new CartHandler();
+            Cart c = ch.GetUserCart(out message);
+
+            if (c != null)
+            {
+                var result = productHandler.GetCartProducts(c.CartID);
+                if (result == null || !result.Any())
+                    return RedirectToAction("ProductNotFound");
+                else
+                    // To DO Replace this with Nothing in your cart
+                    return Json(result.ToDataSourceResult(request));
+            }
+            else
+            {
+                // To DO Replace this with Nothing in your cart
+                return RedirectToAction("ProductNotFound");
+            }
+        }
+
         #region Shopping cart 
 
         public ActionResult GetTotalItemsInCart([DataSourceRequest]DataSourceRequest request)
