@@ -26,6 +26,7 @@ namespace AmzWholeSaleWeb.Controllers
             productHandler = new AmzProductHandler();
         }
 
+        #region Views
         public ActionResult Index()
         {
             string currentUser = System.Web.HttpContext.Current.Request.LogonUserIdentity.Name;
@@ -46,6 +47,13 @@ namespace AmzWholeSaleWeb.Controllers
         {
             return View();
         }
+
+        public ActionResult ReviewCart()
+        {
+            return View();
+        }
+        #endregion
+
 
         public ActionResult Products_Read([DataSourceRequest] DataSourceRequest request, string productFilter)
         {
