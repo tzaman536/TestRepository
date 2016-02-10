@@ -3,13 +3,6 @@
 @{
     ViewBag.Title = "AMZ";
 }
-<div>
-    <form id="formDynamic" target="paypal" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
-        <input type="hidden" name="cmd" value="_cart">
-        <input type="hidden" name="upload" value="1">
-        <input type="hidden" name="business" value="tzaman536-facilitator@gmail.com">
-    </form>
-</div>
 
 <div id="popUpWindowSection">
     @(Html.Kendo().Window()
@@ -241,133 +234,7 @@
 
 
 
-        function sendToPayPal(items)
-        {
-            var isIE = false || !!document.documentMode;
-            var isChrome = !!window.chrome && !!window.chrome.webstore;
-            if(isIE == true)
-            {
-                sendToPayPalIE(items);
-            }
-            else
-            {
-
-                sendToPayPalChrome(items);
-            }
-
-        }
-
-        function sendToPayPalIE(items)
-        {
-            var formDynamic = document.getElementById("formDynamic");
-            var i = 0;
-            for (var key in items) {
-
-                //alert(items[key].ProductName);
-                i++;
-                var element4 = document.createElement("input");
-                element4.type = "hidden";
-                element4.name = "item_name_" + i;
-                element4.value = items[key].ProductName;
-                formDynamic.appendChild(element4);
-
-                var element5 = document.createElement("input");
-                element5.type = "hidden";
-                element5.name = "amount_" + i;
-                element5.value = items[key].Price;
-                formDynamic.appendChild(element5);
-
-                var element6 = document.createElement("input");
-                element6.type = "hidden";
-                element6.name = "shipping_" + i;
-                element6.value = items[key].Shipping;
-                formDynamic.appendChild(element6);
-
-                var element7 = document.createElement("input");
-                element7.type = "hidden";
-                element7.name = "quantity_" + i;
-                element7.value = items[key].Quantity;
-                formDynamic.appendChild(element7);
-            }
-
-
-            formDynamic.submit();
-            SetCartProcessed();
-
-
-
-
-            
-        }
-
-        function sendToPayPalChrome(items)
-        {
-            var form = document.createElement("form");
-            form.method = "POST";
-            form.action = "https://www.sandbox.paypal.com/cgi-bin/webscr"
-
-            var element1 = document.createElement("input");
-            element1.type = "hidden";
-            element1.name = "cmd";
-            element1.value = "_cart";
-            form.appendChild(element1);
-
-            var element2 = document.createElement("input");
-            element2.type = "hidden";
-            element2.name = "upload";
-            element2.value = "1";
-            form.appendChild(element2);
-
-            var element3 = document.createElement("input");
-            element3.type = "hidden";
-            element3.name = "business";
-            element3.value = "tzaman536-facilitator@gmail.com";
-            form.appendChild(element3);
-
-
-            var elementReturnURL = document.createElement("input");
-            elementReturnURL.type = "hidden";
-            elementReturnURL.name = "return";
-            elementReturnURL.value = "www.coalescesoftcom.com";
-            form.appendChild(elementReturnURL);
-
-
-            var i = 0;
-            for (var key in items) {
-
-                //alert(items[key].ProductName);
-                i++;
-                var element4 = document.createElement("input");
-                element4.type = "hidden";
-                element4.name = "item_name_" + i;
-                element4.value = items[key].ProductName;
-                form.appendChild(element4);
-
-                var element5 = document.createElement("input");
-                element5.type = "hidden";
-                element5.name = "amount_" + i;
-                element5.value = items[key].Price;
-                form.appendChild(element5);
-
-                var element6 = document.createElement("input");
-                element6.type = "hidden";
-                element6.name = "shipping_" + i;
-                element6.value = items[key].Shipping;
-                form.appendChild(element6);
-
-                var element7 = document.createElement("input");
-                element7.type = "hidden";
-                element7.name = "quantity_" + i;
-                element7.value = items[key].Quantity;
-                form.appendChild(element7);
-            }
-
-
-            form.submit();
-            SetCartProcessed();
-
-        }
-
+        
 
         function getSessionID()
         {
@@ -396,33 +263,7 @@
 
         }
 
-        function submitCart()
-        {
-
-            var parms = null;
-            $.ajax({
-                type: "GET",
-                traditional: true,
-                url: '@Url.Action("GetCartItemsSummary", "AmzHome")',
-                async: true,
-                data: parms,
-                dataType: "json",
-                beforeSend: function (xhr) {
-                },
-                success: function (response, textStatus, jqXHR) {
-                    sendToPayPal(response.CartItemSummary);
-                },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    alert("Failed to get cart data. Please reload your page");
-                }
-            });
-
-
-            /*
-
-            */
-        }
-
+       
     </script>
 
 
