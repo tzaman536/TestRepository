@@ -59,3 +59,35 @@ function getCartCount(){
         }
     });
 }
+
+
+function addToCart(productID, unitPrice, quantity) {
+
+    var parms = { productID: productID, unitPrice: unitPrice, quantity: quantity }
+    $.ajax({
+        type: "POST",
+        traditional: true,
+        //url: '@Url.Action("AddItemToCart", "AmzHome")',
+        url: '/AmzHome/AddItemToCart',
+        async: true,
+        data: parms,
+        dataType: "json",
+        beforeSend: function (xhr) {
+        },
+        success: function (response, textStatus, jqXHR) {
+            //alert(response.message);
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            alert("Error found during execution");
+
+        }
+    });
+
+    getCartCount();
+    var isIE = false || !!document.documentMode;
+    if (isIE == true) {
+        location.reload();
+    }
+
+
+}
