@@ -32,38 +32,25 @@ function getCartCount(){
         //url: '@Url.Action("GetTotalItemsInCart", "AmzHome")',
         // Use following url format if the method is in .js file
         url: '/AmzHome/GetTotalItemsInCart',
-        async: true,
+        async: false,
         data: parms,
         dataType: "json",
         beforeSend: function (xhr) {
         },
         success: function (response, textStatus, jqXHR) {
-            //alert("Hello");
+
             itemsInCart = response.Cart.TotalItems;
-
-            $("#shoppingCartLink").text("Cart (" + itemsInCart + ")");
-            $("#shoppingCartLink").addClass("cart");
-            //cartButton.textContent = "Check Out (" + itemsInCart + ")";
-
-            //var cartLink = document.getElementById("myCartLink");
-            //cartLink.textContent = "Check Out (" + itemsInCart + ")";
-            //alert(cartLink.className);
-            //alert(cartLink.COMMENT_NODE);
-            //alert(cartLink.innerHTML);
-            //alert(cartLink.TEXT_NODE);
-
-
-
-
             if (response.Cart.IsValid == false)
                 alert(response.Cart.Message);
-
-
+            
+            return response.Cart.TotalItems;
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             alert("Failed to get cart data. Please reload your page");
         }
     });
+
+    return itemsInCart;
 }
 
 /*
@@ -73,12 +60,13 @@ Note: Change URL to new clients URL for every implementation
 function addToCart(productID, unitPrice, quantity) {
 
     var parms = { productID: productID, unitPrice: unitPrice, quantity: quantity }
+
     $.ajax({
         type: "POST",
         traditional: true,
         //url: '@Url.Action("AddItemToCart", "AmzHome")',
         url: '/AmzHome/AddItemToCart',
-        async: true,
+        async: false,
         data: parms,
         dataType: "json",
         beforeSend: function (xhr) {
@@ -97,8 +85,6 @@ function addToCart(productID, unitPrice, quantity) {
     if (isIE == true) {
         location.reload();
     }
-
-
 }
 
 
@@ -114,7 +100,7 @@ function removeFromCart(productID) {
         traditional: true,
         //url: '@Url.Action("AddItemToCart", "AmzHome")',
         url: '/AmzHome/RemoveItemFromCart',
-        async: true,
+        async: false,
         data: parms,
         dataType: "json",
         beforeSend: function (xhr) {

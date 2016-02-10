@@ -63,7 +63,7 @@
             <dd>In Stock: #:UnitsInStock#</dd>
         </dl>
         <div class="edit-buttons">
-            <button id="addToCartButton" type="button" onclick="addToCart('#:ProductID#', '#:UnitPrice#', 1)">Add to cart</button>
+            <button id="addToCartButton" type="button" onclick="addOneItemToCart('#:ProductID#', '#:UnitPrice#', 1)">Add to cart</button>
         </div>
     </div>
 </script>
@@ -96,8 +96,8 @@
         $(document).ready(function () {
 
             hideWindow();
-            getCartCount();
-
+            updateCartButton();
+            
             $("#shoppingCartLink").click(function () {
                 //submitCart(); move this method to ReviewCart page
                 var url = '@Url.Action("ReviewCart", "AmzHome")';
@@ -114,6 +114,13 @@
                 //}
             });
         });
+
+        function updateCartButton()
+        {
+            $("#shoppingCartLink").text(getCartCount());
+            $("#shoppingCartLink").addClass("cart");
+
+        }
 
         function onDataBound()
         {
@@ -199,6 +206,12 @@
         }
 
        
+        function addOneItemToCart(productID, unitPrice, quantity) {
+            addToCart(productID, unitPrice, quantity);
+            updateCartButton();
+        }
+
+
     </script>
 
 
