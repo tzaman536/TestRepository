@@ -17,6 +17,9 @@ https://customers.arvixe.com/
 uid: tzaman536@gmail.com pwd: Changeme123
 
 
+To Create a DB
+Log into control panel and create a DB
+
 
 To unlock your registrar lock and proceed with making changes to your domain:
 
