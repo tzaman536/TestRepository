@@ -19,14 +19,12 @@
         .cart {
             text-align: right;
             font-weight: bold;
-            font-size: 15px;
-            color: white;
+            font-size: 10px;
+            color: black;
+            background-color:silver;
             text-decoration: underline;
             margin: auto;
-            padding-top: 10px;
-            padding-left: 10px;
-            padding-bottom: 5px;
-            line-height: 20px;
+            line-height: 15px;
             float: right;
         }
 
@@ -78,9 +76,9 @@
                         .ImageUrl(Url.Content("~/Content/shared/search.png"))
                         .Content(""))                
                 </div>
-                <ul class="nav navbar-right">
-                    <li id="shoppingCartLink">@Html.ActionLink("Cart (0)", "Contact", "Home")</li>
-                </ul>
+                <div class="nav navbar-right">
+                    <button id="shoppingCartLink" class="cart">Cart</button>
+                </div>
             </div>
         </div>
     </div>
