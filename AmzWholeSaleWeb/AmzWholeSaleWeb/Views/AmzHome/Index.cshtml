@@ -63,7 +63,8 @@
             <dd>In Stock: #:UnitsInStock#</dd>
         </dl>
         <div class="edit-buttons">
-            <button id="addToCartButton" type="button" onclick="addOneItemToCart('#:ProductID#', '#:UnitPrice#', 1)">Add to cart</button>
+            <input id="addToCartButton" type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_cart_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" onclick="addOneItemToCart('#:ProductID#', '#:UnitPrice#', 1)" >
+            @*<button id="addToCartButton" type="button" onclick="addOneItemToCart('#:ProductID#', '#:UnitPrice#', 1)">Add to cart</button>*@
         </div>
     </div>
 </script>
