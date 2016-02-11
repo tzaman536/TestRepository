@@ -64,8 +64,9 @@
 
 <script>
     $(document).ready(function () {
-        $("#shoppingCartLink").text("Check out");
-        $("#shoppingCartLink").addClass("cart");
+        //$("#shoppingCartLink").text("Check out");
+        //$("#shoppingCartLink").addClass("cart");
+        updateCartButton();
 
         $("#idCheckOutAndPay").click(function () {
             submitCart();
@@ -81,7 +82,11 @@
         });
 
     });
+    function updateCartButton() {
+        $("#shoppingCartLink").text(getCartCount());
+        //$("#shoppingCartLink").addClass("cart");
 
+    }
     function onDataBound() {
         //alert("Data bound");
         @*if ($("#listView").data("kendoListView").dataSource.total() === 0) {
