@@ -31,7 +31,7 @@
                             <img id="popUpWindowImageMedium" src="@Url.Content("~/content/products/1.jpg")" alt="Product image" />
                         </div>
                     </div>
-                    <div display:table-cell;">
+                    <div style="display:table-cell;">
                         <div class="imageSmall">
                             <img id="popUpWindowImageSmall" src="@Url.Content("~/content/products/1.jpg")" alt="Product image" />
                         </div>
@@ -98,14 +98,19 @@
 
             hideWindow();
             updateCartButton();
-            
+
             $("#shoppingCartLink").click(function () {
                 //submitCart(); move this method to ReviewCart page
                 var url = '@Url.Action("ReviewCart", "AmzHome")';
                 window.location.href = url;
-
-
             });
+
+            $("#idViewCart").click(function () {
+                //submitCart(); move this method to ReviewCart page
+                var url = '@Url.Action("ReviewCart", "AmzHome")';
+                window.location.href = url;
+            });
+            
 
             $("#searchProductButton").click(function () {
 
@@ -126,7 +131,7 @@
         function onDataBound()
         {
             //alert("Data bound");
-            if($("#listView").data("kendoListView").dataSource.total() === 0) 
+            if($("#listView").data("kendoListView").dataSource.total() === 0)
             {
                 var url = '@Url.Action("ProductNotFound", "AmzHome")';
                 window.location.href = url;
@@ -182,7 +187,7 @@
         function getSessionID()
         {
 
-            
+
 
             var parms = null;
             $.ajax({
@@ -206,7 +211,7 @@
 
         }
 
-       
+
         function addOneItemToCart(productID, unitPrice, quantity) {
             addToCart(productID, unitPrice, quantity);
             updateCartButton();

@@ -27,8 +27,10 @@
             <dd>Total Items: #:TotalItemsInCart#</dd>
         </dl>
         <div class="edit-buttons">
-            <button id="addToCartButton" type="button" onclick="addOneMoreToCart('#:ProductID#', '#:UnitPrice#', 1)">Add</button>
+           <button id="addToCartButton" type="button" onclick="addOneMoreToCart('#:ProductID#', '#:UnitPrice#', 1)">Add</button>
             <button id="addToCartButton" type="button" onclick="removeOneFromCart('#:ProductID#')">Remove</button>
+            
+            
         </div>
     </div>
 </script>
@@ -283,16 +285,18 @@
 
     }
 
-    function addOneMoreToCart(productID, unitPrice, quantity)
+    function addOneMoreToCart(productID,unitPrice, quantity)
     {
         addToCart(productID, unitPrice, quantity);
         $("#listView").data("kendoListView").dataSource.read();
+        updateCartButton();
     }
 
     function removeOneFromCart(productID)
     {
         removeFromCart(productID);
         $("#listView").data("kendoListView").dataSource.read();
+        updateCartButton();
 
     }
 
