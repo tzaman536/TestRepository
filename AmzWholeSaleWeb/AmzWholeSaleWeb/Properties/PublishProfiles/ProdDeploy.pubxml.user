@@ -19,7 +19,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/10/2016 20:30:13</publishTime>
     </File>
     <File Include="bin/AmzWholeSaleWeb.dll">
-      <publishTime>02/10/2016 20:30:20</publishTime>
+      <publishTime>02/11/2016 20:45:15</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.dll">
       <publishTime>01/23/2016 07:24:13</publishTime>
@@ -3928,7 +3928,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/10/2016 10:17:16</publishTime>
     </File>
     <File Include="Views/AmzHome/Index.cshtml">
-      <publishTime>02/10/2016 20:20:50</publishTime>
+      <publishTime>02/11/2016 19:57:27</publishTime>
     </File>
     <File Include="Views/AmzHome/ProductNotFound.cshtml">
       <publishTime>02/08/2016 16:49:46</publishTime>
@@ -3979,7 +3979,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/23/2016 07:24:16</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>02/10/2016 20:21:51</publishTime>
+      <publishTime>02/11/2016 19:44:18</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
       <publishTime>01/23/2016 07:24:16</publishTime>
