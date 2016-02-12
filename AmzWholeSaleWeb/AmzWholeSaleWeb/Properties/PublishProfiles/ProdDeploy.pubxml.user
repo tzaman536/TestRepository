@@ -13,13 +13,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/23/2016 07:24:36</publishTime>
     </File>
     <File Include="bin/AmzBL.dll">
-      <publishTime>02/08/2016 13:50:08</publishTime>
+      <publishTime>02/10/2016 20:30:13</publishTime>
     </File>
     <File Include="bin/AmzModel.dll">
-      <publishTime>02/08/2016 13:50:08</publishTime>
+      <publishTime>02/10/2016 20:30:13</publishTime>
     </File>
     <File Include="bin/AmzWholeSaleWeb.dll">
-      <publishTime>02/08/2016 13:50:18</publishTime>
+      <publishTime>02/10/2016 20:30:20</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.dll">
       <publishTime>01/23/2016 07:24:13</publishTime>
@@ -151,7 +151,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/23/2016 07:24:20</publishTime>
     </File>
     <File Include="bin/SimplexTools.dll">
-      <publishTime>02/04/2016 21:50:06</publishTime>
+      <publishTime>02/10/2016 20:30:13</publishTime>
     </File>
     <File Include="bin/System.Web.Helpers.dll">
       <publishTime>01/23/2016 07:24:12</publishTime>
@@ -1733,6 +1733,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="Content/products/9.jpg">
       <publishTime>01/28/2016 21:15:15</publishTime>
+    </File>
+    <File Include="Content/shared/cart.png">
+      <publishTime>01/12/2016 16:42:22</publishTime>
     </File>
     <File Include="Content/shared/search.png">
       <publishTime>02/04/2016 21:27:11</publishTime>
@@ -3880,7 +3883,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/23/2016 07:24:13</publishTime>
     </File>
     <File Include="Scripts/simplex.js">
-      <publishTime>01/25/2016 11:33:12</publishTime>
+      <publishTime>02/10/2016 12:18:20</publishTime>
     </File>
     <File Include="Scripts/_references.js">
       <publishTime>01/25/2016 11:32:00</publishTime>
@@ -3921,8 +3924,17 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/Account/_ExternalLoginsListPartial.cshtml">
       <publishTime>01/23/2016 07:24:15</publishTime>
     </File>
+    <File Include="Views/AmzHome/CartIsEmpty.cshtml">
+      <publishTime>02/10/2016 10:17:16</publishTime>
+    </File>
     <File Include="Views/AmzHome/Index.cshtml">
-      <publishTime>02/07/2016 09:03:33</publishTime>
+      <publishTime>02/10/2016 20:20:50</publishTime>
+    </File>
+    <File Include="Views/AmzHome/ProductNotFound.cshtml">
+      <publishTime>02/08/2016 16:49:46</publishTime>
+    </File>
+    <File Include="Views/AmzHome/ReviewCart.cshtml">
+      <publishTime>02/10/2016 20:27:56</publishTime>
     </File>
     <File Include="Views/Home/About.cshtml">
       <publishTime>01/23/2016 07:24:04</publishTime>
@@ -3967,7 +3979,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/23/2016 07:24:16</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>02/06/2016 11:59:55</publishTime>
+      <publishTime>02/10/2016 20:21:51</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
       <publishTime>01/23/2016 07:24:16</publishTime>

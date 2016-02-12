@@ -55,6 +55,15 @@
             float: left;
         }
 
+        .cartButton {
+            background-position:center;
+            background-repeat: no-repeat;
+            background-color: lightgray;
+        }
+
+        .payPal{
+            padding-right:10px;
+        }
         .resizedTextbox {
             min-width: 250px;
             min-height: 25px;
@@ -92,11 +101,13 @@
                         .Content(""))                
                 </div>
                 <div class="nav navbar-right">
-                    <button id="idViewCart" class="cart">
-                        <img src="~/Content/shared/cart.png" alt="Cart Icon" /> <div id="shoppingCartLink" class="cartText"> Cart</div>
+                    <button id="idViewCart" class="cartButton"><div id="shoppingCartLink"> Cart</div>
+                        <img src="~/Content/shared/cart.png" alt="Cart Icon" /> 
                     </button>
+                </div>
+                 <div class="nav navbar-right" >
                     <input id="idBuyNowTopMenu" type="image" name="submit" border="0"
-                           src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif"
+                           src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif"
                            alt="PayPal - The safer, easier way to pay online">
                 </div>
             </div>

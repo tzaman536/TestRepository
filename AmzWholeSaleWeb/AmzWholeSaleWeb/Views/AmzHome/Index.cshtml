@@ -60,12 +60,11 @@
             <dt><img src="@Url.Content("~/content/products/")#:SmallImageId#" alt="#:ProductName# image" /> #:ProductDescription#</dt>
             <dd>#:ProductName#</dd>
             <dd>Price: #:kendo.toString(UnitPrice, "c")#</dd>
-            <dd>In Stock: #:UnitsInStock#</dd>
+            <dd><input id="addToCartButton" type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_cart_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" onclick="addOneItemToCart('#:ProductID#', '#:UnitPrice#', 1)"></dd>
         </dl>
-        <div class="edit-buttons">
+        @*<div class="edit-buttons">
             <input id="addToCartButton" type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_cart_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" onclick="addOneItemToCart('#:ProductID#', '#:UnitPrice#', 1)" >
-            @*<button id="addToCartButton" type="button" onclick="addOneItemToCart('#:ProductID#', '#:UnitPrice#', 1)">Add to cart</button>*@
-        </div>
+        </div>*@
     </div>
 </script>
 
@@ -99,6 +98,10 @@
             hideWindow();
             updateCartButton();
 
+            $("#idBuyNowTopMenu").click(function () {
+                var url = '@Url.Action("ReviewCart", "AmzHome")';
+                window.location.href = url;
+            })
             $("#shoppingCartLink").click(function () {
                 //submitCart(); move this method to ReviewCart page
                 var url = '@Url.Action("ReviewCart", "AmzHome")';
@@ -110,7 +113,7 @@
                 var url = '@Url.Action("ReviewCart", "AmzHome")';
                 window.location.href = url;
             });
-            
+
 
             $("#searchProductButton").click(function () {
 
