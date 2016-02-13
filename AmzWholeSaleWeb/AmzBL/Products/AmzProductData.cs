@@ -261,5 +261,45 @@ namespace AmzBL.Products
 
         }
 
+        public bool DeleteProduct(AmzProduct p)
+        {
+
+            bool result = true;
+            logger.InfoFormat("Deleting product: {0} - {1}", p.ProductName, p.ProductDescription);
+            DateTime updateDate = DateTime.UtcNow;
+            string updatedBy = HttpContext.Current.Request.LogonUserIdentity.Name;
+            if (string.IsNullOrEmpty(updatedBy))
+            {
+                logger.Warn("Couldn't figure out HttpContext user identity. Using Environment.UserName instead");
+                updatedBy = Environment.UserName;
+            }
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+            {
+                conn.Open();
+                try
+                {
+                    conn.Execute(@"
+                                                        delete amz.Products
+                                                        where ProductID = @ProductID
+
+                                                    ",
+                                                    new
+                                                    {
+                                                        p.ProductID
+                                                    });
+
+
+                }
+                catch (Exception ex)
+                {
+                    result = false;
+                    logger.Error(ex);
+                }
+
+            }
+            return result;
+
+        }
+
     }
 }

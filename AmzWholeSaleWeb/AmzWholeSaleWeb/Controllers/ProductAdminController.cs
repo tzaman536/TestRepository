@@ -149,9 +149,45 @@ namespace AmzWholeSaleWeb.Controllers
         {
             if (products.Any())
             {
+                string destinationFilePath = System.Web.HttpContext.Current.Server.MapPath("~/Content/products");
                 foreach (var product in products)
                 {
-                    //productService.Destroy(product);
+                    
+                    try
+                    {
+                        string fileToDelete = string.Format(@"{0}\{1}", destinationFilePath, product.OriginalImageId);
+                        FileInfo fi = new FileInfo(fileToDelete);
+                        if (fi.Exists)
+                        {
+                            fi.Delete();
+                        }
+                        fileToDelete = string.Format(@"{0}\{1}", destinationFilePath, product.SmallImageId);
+                        fi = new FileInfo(fileToDelete);
+                        if (fi.Exists)
+                        {
+                            fi.Delete();
+                        }
+                        fileToDelete = string.Format(@"{0}\{1}", destinationFilePath, product.MediumImageId);
+                        fi = new FileInfo(fileToDelete);
+                        if (fi.Exists)
+                        {
+                            fi.Delete();
+                        }
+                        fileToDelete = string.Format(@"{0}\{1}", destinationFilePath, product.LargeImageId);
+                        fi = new FileInfo(fileToDelete);
+                        if (fi.Exists)
+                        {
+                            fi.Delete();
+                        }
+
+                    }
+                    catch (Exception ex)
+                    {
+                        logger.Fatal(ex);
+                    }
+
+
+                    productHandler.DeleteProduct(product);
                 }
             }
 
