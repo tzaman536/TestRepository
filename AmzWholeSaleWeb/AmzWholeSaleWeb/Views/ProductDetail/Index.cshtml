@@ -8,6 +8,7 @@
         <h4>
             @ViewBag.Product.ProductLongDescription
         </h4>
+        <h5>@ViewBag.Product.OriginalImageId</h5>
     </div>
     @*<div class="imageBig">
         <img id="productDetailLargeImage" src="@Url.Content("~/content/products/1.jpg")" alt="Product image" />
@@ -15,7 +16,7 @@
 
     <div style="width: 100%; display:table;">
         <div style="display: table-row">
-            <div style="width:600px; display:table-cell;">
+            <div style="width:800px; min-height:1000px; display:table-cell;">
                 <div class="imageMedium">
                     <img id="productDetailLargeImage" src="@Url.Content("~/content/products/1.jpg")" alt="Product image" />
                 </div>
@@ -32,7 +33,10 @@
 
 <script>
     $(document).ready(function () {
-        document.getElementById("productDetailLargeImage").src = "@Url.Content("~/content/products/{0}?{1}")".format('@ViewBag.Product.LargeImageId', new Date().getTime()); $("#idBuyNowTopMenu").click(function () {
+        document.getElementById("productDetailLargeImage").src = "@Url.Content("~/content/products/{0}?{1}")".format('@ViewBag.Product.OriginalImageId', new Date().getTime());
+
+
+        $("#idBuyNowTopMenu").click(function () {
             var url = '@Url.Action("ReviewCart", "AmzHome")';
             window.location.href = url;
         })

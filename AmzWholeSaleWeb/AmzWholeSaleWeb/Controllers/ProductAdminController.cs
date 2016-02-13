@@ -183,18 +183,19 @@ namespace AmzWholeSaleWeb.Controllers
 
                 if (fileIsValid)
                 {
-                    string path = System.Web.HttpContext.Current.Server.MapPath("~/UploadedImages");
-                    DirectoryInfo di = new DirectoryInfo(path);
-                    if(!di.Exists)
-                    {
-                        di.Create();
-                    }
+                    //string path = System.Web.HttpContext.Current.Server.MapPath("~/UploadedImages");
+                    //DirectoryInfo di = new DirectoryInfo(path);
+                    //if(!di.Exists)
+                    //{
+                    //    di.Create();
+                    //}
 
-                    string sourceFile = string.Format(@"{0}\{1}_{2}", path,DateTime.Now.Ticks, fi.Name);
+                    var product = productHandler.GetProduct(productID);
+                    string destinationFilePath = System.Web.HttpContext.Current.Server.MapPath("~/Content/products");
+                    string sourceFile = string.Format(@"{0}\{1}", destinationFilePath, product.OriginalImageId);
                     file.SaveAs(sourceFile);
                     
                     logger.InfoFormat("Saved input file as {0}",sourceFile);
-                    string destinationFilePath = System.Web.HttpContext.Current.Server.MapPath("~/Content/products");
 
 
 
@@ -202,7 +203,6 @@ namespace AmzWholeSaleWeb.Controllers
                     ImageHandler ih = new ImageHandler();
 
 
-                    var product = productHandler.GetProduct(productID);
                     if(product != null)
                     {
                         ih.Save(bmOriginal, 100, 100, 100, string.Format(@"{0}\{1}", destinationFilePath, product.SmallImageId));
@@ -277,24 +277,28 @@ namespace AmzWholeSaleWeb.Controllers
                         ,UnitPrice = unitPrice
                     };
                     
-                    string path = System.Web.HttpContext.Current.Server.MapPath("~/UploadedImages");
-                    DirectoryInfo di = new DirectoryInfo(path);
-                    if (!di.Exists)
-                    {
-                        di.Create();
-                    }
+                    //string path = System.Web.HttpContext.Current.Server.MapPath("~/UploadedImages");
+                    //DirectoryInfo di = new DirectoryInfo(path);
+                    //if (!di.Exists)
+                    //{
+                    //    di.Create();
+                    //}
 
                     string nowTicks = DateTime.Now.Ticks.ToString();
+                    string destinationFilePath = System.Web.HttpContext.Current.Server.MapPath("~/Content/products");
+                    string originalImageId = string.Format("AMZ_Original_{0}.jpg",nowTicks);
 
-                    string sourceFile = string.Format(@"{0}\{1}_{2}",path, nowTicks, fi.Name);
+                    string sourceFile = string.Format(@"{0}\{1}", destinationFilePath, originalImageId);
                     file.SaveAs(sourceFile);
                     logger.InfoFormat("Saved input file as {0}", sourceFile);
+                    product.OriginalImageId = originalImageId;
 
 
                     Bitmap bmOriginal = new Bitmap(sourceFile);
                     ImageHandler ih = new ImageHandler();
 
-                    string destinationFilePath = System.Web.HttpContext.Current.Server.MapPath("~/Content/products");
+                    
+
                     product.SmallImageId =  string.Format(@"AMZ_Small_{0}.jpg", nowTicks);
                     ih.Save(bmOriginal, 100, 100, 100, string.Format(@"{0}\{1}",destinationFilePath,product.SmallImageId));
                     logger.InfoFormat("Resized input file and saved as {0}", product.SmallImageId);

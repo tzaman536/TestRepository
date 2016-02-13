@@ -16,6 +16,7 @@ create table amz.Products
 	SmallImageId nvarchar(150) not null,
 	MediumImageId nvarchar(150) not null,
 	LargeImageId nvarchar(150) not null,
+	OriginalImageId nvarchar(150) not null,
 	AddDate datetime not null,
 	AddedBy nvarchar(50) not null,
 	ModifiedDate datetime null,

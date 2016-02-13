@@ -21,6 +21,7 @@ namespace AmzModel
         public string SmallImageId { get; set; }
         public string MediumImageId { get; set; }
         public string LargeImageId { get; set; }
+        public string OriginalImageId { get; set; }
         public int TotalItemsInCart { get; set; }
         public decimal CostOfItemsInCart { get; set; }
         public DateTime AddDate { get; set; }

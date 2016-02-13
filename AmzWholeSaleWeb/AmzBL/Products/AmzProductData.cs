@@ -146,6 +146,7 @@ namespace AmzBL.Products
                                                         , SmallImageId
                                                         , MediumImageId
                                                         , LargeImageId
+                                                        , OriginalImageId
                                                         , AddDate
                                                         , AddedBy
                                                         )
@@ -160,6 +161,7 @@ namespace AmzBL.Products
                                                             , @SmallImageId
                                                             , @MediumImageId
                                                             , @LargeImageId
+                                                            , @OriginalImageId
                                                             , getdate()
                                                             , @addedBy
                                                         )
@@ -176,6 +178,7 @@ namespace AmzBL.Products
                                 ,p.SmallImageId
                                 ,p.MediumImageId
                                 ,p.LargeImageId
+                                ,p.OriginalImageId
                                 ,addDate
                                 ,addedBy
                                 });
