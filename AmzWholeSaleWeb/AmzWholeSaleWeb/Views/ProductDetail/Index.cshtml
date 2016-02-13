@@ -12,22 +12,59 @@
     @*<div class="imageBig">
         <img id="productDetailLargeImage" src="@Url.Content("~/content/products/1.jpg")" alt="Product image" />
     </div>*@
+
+    <div style="width: 100%; display:table;">
+        <div style="display: table-row">
+            <div style="width:600px; display:table-cell;">
+                <div class="imageMedium">
+                    <img id="productDetailLargeImage" src="@Url.Content("~/content/products/1.jpg")" alt="Product image" />
+                </div>
+            </div>
+            <div style="display:table-cell;">
+                <div>
+                    <input id="addToCartButton" type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_cart_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" onclick="addOneItemToCart(1, 2, 1)">
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <br/>
 
 <script>
     $(document).ready(function () {
-        @*document.getElementById("productDetailLargeImage").src = "@Url.Content("~/content/products/{0}?{1}")".format('@ViewBag.Product.LargeImageId', new Date().getTime());*@
+        document.getElementById("productDetailLargeImage").src = "@Url.Content("~/content/products/{0}?{1}")".format('@ViewBag.Product.LargeImageId', new Date().getTime());
 
     });
+
+
+    function addOneItemToCart(productID, unitPrice, quantity) {
+        addToCart(productID, unitPrice, quantity);
+        updateCartButton();
+    }
 </script>
 <style>
-    .imageBig img{
-    float: left;
-    width:500px;
-    height:500px;
-    opacity:100;
-    margin-bottom:40px;
-    margin-right:10px;
-    }
+
+        .imageBig img{
+            float: left;
+            width:500px;
+            height:500px;
+            opacity:100;
+            margin-bottom:40px;
+            margin-right:10px;
+        }
+        .imageMedium img{
+            float: left;
+            width:300px;
+            height:300px;
+            opacity:100;
+            margin-right:10px;
+        }
+        .imageSmall img{
+            float: left;
+            width:100px;
+            height:100px;
+            opacity:100;
+            margin-bottom:40px;
+            margin-right:0px;
+        }
 </style>
