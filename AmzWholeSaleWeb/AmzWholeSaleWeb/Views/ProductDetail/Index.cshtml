@@ -32,7 +32,11 @@
 
 <script>
     $(document).ready(function () {
-        document.getElementById("productDetailLargeImage").src = "@Url.Content("~/content/products/{0}?{1}")".format('@ViewBag.Product.LargeImageId', new Date().getTime());
+        document.getElementById("productDetailLargeImage").src = "@Url.Content("~/content/products/{0}?{1}")".format('@ViewBag.Product.LargeImageId', new Date().getTime()); $("#idBuyNowTopMenu").click(function () {
+            var url = '@Url.Action("ReviewCart", "AmzHome")';
+            window.location.href = url;
+        })
+
 
     });
 
