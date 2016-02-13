@@ -1,7 +1,33 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Product Detail";
 }
 @Html.ActionLink("Take me back to home page", "Index", "AmzHome")
-<h2>Product Detail</h2>
+<div>
+    <div>
+        <h3>@ViewBag.Product.ProductName</h3>
+        <h4>
+            @ViewBag.Product.ProductLongDescription
+        </h4>
+    </div>
+    @*<div class="imageBig">
+        <img id="productDetailLargeImage" src="@Url.Content("~/content/products/1.jpg")" alt="Product image" />
+    </div>*@
+</div>
+<br/>
 
+<script>
+    $(document).ready(function () {
+        @*document.getElementById("productDetailLargeImage").src = "@Url.Content("~/content/products/{0}?{1}")".format('@ViewBag.Product.LargeImageId', new Date().getTime());*@
+
+    });
+</script>
+<style>
+    .imageBig img{
+    float: left;
+    width:500px;
+    height:500px;
+    opacity:100;
+    margin-bottom:40px;
+    margin-right:10px;
+    }
+</style>
