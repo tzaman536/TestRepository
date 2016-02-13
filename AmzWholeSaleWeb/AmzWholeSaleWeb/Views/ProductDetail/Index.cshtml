@@ -22,7 +22,7 @@
             </div>
             <div style="display:table-cell;">
                 <div>
-                    <input id="addToCartButton" type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_cart_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" onclick="addOneItemToCart(1, 2, 1)">
+                    <input id="addToCartButton" type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_cart_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" onclick="addOneItemToCart()">
                 </div>
             </div>
         </div>
@@ -36,9 +36,13 @@
 
     });
 
+    function updateCartButton() {
+        $("#shoppingCartLink").text(getCartCount());
+        //$("#shoppingCartLink").addClass("cart");
 
-    function addOneItemToCart(productID, unitPrice, quantity) {
-        addToCart(productID, unitPrice, quantity);
+    }
+    function addOneItemToCart() {
+        addToCart('@ViewBag.Product.ProductID', '@ViewBag.Product.UnitPrice', 1);
         updateCartButton();
     }
 </script>
