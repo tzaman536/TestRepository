@@ -38,10 +38,6 @@
                     </div>
                 </div>
             </div>
-            <br />
-            <div>
-                <button id="addToCartFromPopupWindow" type="button" onclick="addToCart()"></button>
-            </div>
         </div>
 
     </text>)
@@ -61,6 +57,7 @@
             <dd>#:ProductName#</dd>
             <dd>Price: #:kendo.toString(UnitPrice, "c")#</dd>
             <dd><input id="addToCartButton" type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_cart_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" onclick="addOneItemToCart('#:ProductID#', '#:UnitPrice#', 1)"></dd>
+            <dd><a id="idViewMore" href="/ProductDetail/Index?productID=#:ProductID#" >Click to view more</a></dd>
         </dl>
         @*<div class="edit-buttons">
             <input id="addToCartButton" type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_cart_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" onclick="addOneItemToCart('#:ProductID#', '#:UnitPrice#', 1)" >
@@ -103,13 +100,11 @@
                 window.location.href = url;
             })
             $("#shoppingCartLink").click(function () {
-                //submitCart(); move this method to ReviewCart page
                 var url = '@Url.Action("ReviewCart", "AmzHome")';
                 window.location.href = url;
             });
 
             $("#idViewCart").click(function () {
-                //submitCart(); move this method to ReviewCart page
                 var url = '@Url.Action("ReviewCart", "AmzHome")';
                 window.location.href = url;
             });
@@ -118,24 +113,21 @@
             $("#searchProductButton").click(function () {
 
                 $("#listView").data("kendoListView").dataSource.read();
-                //if (window.location.hostname == "www.myweb.com") {
-                //    window.location.href = window.location.href + "?single";
-                //}
             });
+
         });
 
-        function updateCartButton()
-        {
+
+
+        function updateCartButton() {
             $("#shoppingCartLink").text(getCartCount());
             //$("#shoppingCartLink").addClass("cart");
 
         }
 
-        function onDataBound()
-        {
+        function onDataBound() {
             //alert("Data bound");
-            if($("#listView").data("kendoListView").dataSource.total() === 0)
-            {
+            if ($("#listView").data("kendoListView").dataSource.total() === 0) {
                 var url = '@Url.Action("ProductNotFound", "AmzHome")';
                 window.location.href = url;
             }
@@ -146,12 +138,11 @@
                 productFilter: $("#idSearchItems").val()
             }
         }
-        function onClose(){
+        function onClose() {
 
         }
 
-        function hideWindow()
-        {
+        function hideWindow() {
             $("#window").data("kendoWindow").close();
             $("#window").hide();
         }
@@ -159,10 +150,10 @@
         $(function () {
             var listView = $("#listView").data("kendoListView");
 
-                $(".k-add-button").click(function (e) {
-                        listView.add();
-                        e.preventDefault();
-                    });
+            $(".k-add-button").click(function (e) {
+                listView.add();
+                e.preventDefault();
+            });
         });
 
         $(document.body).keydown(function (e) {
@@ -187,8 +178,7 @@
             $("#window").data("kendoWindow").open();
         }
 
-        function getSessionID()
-        {
+        function getSessionID() {
 
 
 
@@ -272,6 +262,7 @@
                 opacity: 100;
                 margin-bottom: 10px;
                 margin-right: 10px;
+                cursor:zoom-in;
             }
 
             .product-view:nth-child(even) {
