@@ -21,22 +21,26 @@
                             Product Name:
                         </dt>
                         <dd>
-                            @*<input type="text" class="k-textbox" id="idProductName" value="Product Name" name="productName" onfocus="if (this.value == 'Product Name') { this.value = '';}" />*@
                             <input type="text" class="k-textbox productName" id="idProductName" name="productName" required />
                         </dd>
                         <dt>
                             Product Description:
                         </dt>
                         <dd>
-                            @*<input type="text" class="k-textbox productName" id="idProductDescription" name="productDescription" required />*@
                             <textarea id="idProductDescription" name="productDescription" class="k-textbox productDescription" rows="4" cols="20" required></textarea>
                         </dd>
                         <dt>
                             Unit Price:
                         </dt>
                         <dd>
-                            @*<input type="text" class="k-textbox" id="idUnitPrice" name="unitPrice" value="Unit price" onfocus="if (this.value == 'Unit price') { this.value = ''; }" />*@
-                            <input type="number" class="k-textbox" id="idUnitPrice" name="unitPrice" data-role='maskedtextbox' required   />
+                            @*<input type="number" class="k-textbox numberOfUnits" id="idUnitPrice" name="unitPrice" data-role='maskedtextbox' required/>*@
+                            <input type="number" class="k-textbox numberOfUnits" id="idUnitPrice" name="unitPrice" data-role='maskedtextbox' required />
+                        </dd>
+                        <dt>
+                            In Stock:
+                        </dt>
+                        <dd>
+                            <input type="number" class="k-textbox numberOfUnits" id="idUnitInStock" name="unitInStock" data-role='maskedtextbox' required />
                         </dd>
                         <dt>
                             Product Long Description:
@@ -44,7 +48,6 @@
                         <dd>
                             <div class="box wide">
                                 <div class="box-col">
-                                    @*<textarea id="idProductLongDescription" name="productLongDescription" style="min-width:500px; min-height:300px;" rows="4" cols="20" onfocus="if (this.value == 'Product Long Description') { this.value = '';}">Product Long Description</textarea>*@
                                     <textarea id="idProductLongDescription" name="productLongDescription" class="k-textbox productLongDescription" rows="4" cols="20" required></textarea>
                                 </div>
 
@@ -136,7 +139,9 @@
 </script>
 
 <style>
-
+    .numberOfUnits{
+      min-height:30px;
+    }
     .fileUploadBox{
         min-width:500px;
     }

@@ -59,6 +59,7 @@
             background-position:center;
             background-repeat: no-repeat;
             background-color: lightgray;
+            margin-left:5px;
         }
 
         .payPal{
@@ -82,8 +83,8 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "AmzHome")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "AmzHome")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "AmzHome")</li>
                     <li>@Html.ActionLink("Admin", "Index", "ProductAdmin")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
@@ -107,7 +108,7 @@
                 </div>
                  <div class="nav navbar-right" >
                     <input id="idBuyNowTopMenu" type="image" name="submit" border="0"
-                           src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif"
+                           src="https://www.paypalobjects.com/en_US/i/btn/x-click-but6.gif"
                            alt="PayPal - The safer, easier way to pay online">
                 </div>
             </div>
@@ -117,7 +118,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - AMZ Wholesale    Contact us at 716 430 7865</p>
+            <p>&copy; @DateTime.Now.Year - AMZ Wholesale    Contact us at 716 825 1744</p>
         </footer>
     </div>
 

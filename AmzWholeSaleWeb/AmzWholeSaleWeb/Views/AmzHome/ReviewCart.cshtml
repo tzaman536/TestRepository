@@ -26,7 +26,7 @@
             <dt><img src="@Url.Content("~/content/products/")#:SmallImageId#" alt="#:ProductName# image" /> #:ProductDescription#</dt>
             <dd>#:ProductName#</dd>
             <dd>Price: #:kendo.toString(CostOfItemsInCart, "c")#</dd>
-            <dd class="numberOfUnits">Total Items: <input type="text" class="k-textbox numberOfUnitsTextBox" id="idNumberOfUnits"  name="numberOfUnits" value="#:TotalItemsInCart#" /><button class="k-primary updateUnitButton" onclick="updateCart('#:ProductID#', '#:UnitPrice#')">Update Cart</button></dd>
+            <dd class="numberOfUnits">Total Items: <input type="number" class="k-textbox numberOfUnitsTextBox" id="idNumberOfUnits"  name="numberOfUnits" value="#:TotalItemsInCart#" data-role='maskedtextbox' /><button class="k-primary updateUnitButton" onclick="updateCart('#:ProductID#', '#:UnitPrice#')">Update Cart</button></dd>
         </dl>
         @*<div class="edit-buttons">
             <button id="addToCartButton" type="button" onclick="addOneMoreToCart('#:ProductID#', '#:UnitPrice#', 1)">Add</button>
@@ -321,7 +321,7 @@
         min-height:50px;
     }
     .numberOfUnitsTextBox{
-        max-width:40px;
+        max-width:80px;
         text-align:left;
     }
     .updateUnitButton{

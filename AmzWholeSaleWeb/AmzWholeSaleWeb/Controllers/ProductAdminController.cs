@@ -287,7 +287,7 @@ namespace AmzWholeSaleWeb.Controllers
 
 
         [HttpPost]
-        public ActionResult UploadProduct(HttpPostedFileBase file, string productName, string productDescription, string productLongDescription, decimal unitPrice)
+        public ActionResult UploadProduct(HttpPostedFileBase file, string productName, string productDescription, string productLongDescription, decimal unitPrice, int unitInStock)
         {
             string uploadMessage = PRODUCT_UPLOAD_SUCCESSFUL;
             bool fileUploadFailed = false;
