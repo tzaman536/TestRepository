@@ -54,11 +54,13 @@
     <div class="product-view k-widget">
         <dl>
             <dt><img src="@Url.Content("~/content/products/")#:SmallImageId#" alt="#:ProductName# image" /> #:ProductDescription#</dt>
-            <dd>#:ProductName#</dd>
+            <dd><a href="/ProductDetail/Index?productID=#:ProductID#">#:ProductName#</a></dd>
             <dd class="ddPrice">#:kendo.toString(UnitPrice, "c")#</dd>
             <dd>In stock: #:UnitsInStock#</dd>
             <dd><input id="addToCartButton" type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_addtocart_96x21.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" onclick="addOneItemToCart('#:ProductID#', '#:UnitPrice#', 1)"></dd>
-            <dd><a id="idViewMore" href="/ProductDetail/Index?productID=#:ProductID#" >Click to view more</a></dd>
+            <dd><input id="idViewMore" type="image" src="@Url.Content("~/Content/shared/ViewMore.png")" border="0" name="submit" alt="View More" onclick="viewDetail('#:ProductID#')"></dd>
+            @*<dd><a id="idViewMore" href="/ProductDetail/Index?productID=#:ProductID#" >Click to view more</a></dd>*@
+            
         </dl>
         @*<div class="edit-buttons">
             <input id="addToCartButton" type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_cart_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" onclick="addOneItemToCart('#:ProductID#', '#:UnitPrice#', 1)" >
@@ -111,6 +113,8 @@
             });
 
 
+
+
             $("#searchProductButton").click(function () {
 
                 $("#listView").data("kendoListView").dataSource.read();
@@ -119,6 +123,12 @@
         });
 
 
+        function viewDetail(productID)
+        {
+            var url = '/ProductDetail/Index?productID=' + productID;
+            window.location.href = url;
+
+        }
 
         function updateCartButton() {
             $("#shoppingCartLink").text(getCartCount());
