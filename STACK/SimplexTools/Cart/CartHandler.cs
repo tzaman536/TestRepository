@@ -97,17 +97,45 @@ namespace Simplex.Tools.Cart
             return null;
         }
 
-        public bool AddCartItem(int cartID, int productID, int quantity, decimal unitPrice)
+        public bool AddCartItem(int cartID, int productID, int quantity, decimal unitPrice, bool addToExisting = true)
         {
             bool itemAddded = true;
+
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
             {
                 conn.Open();
                 try
                 {
-                    var result = conn.Query<Cart>(@"
+
+                    var totalQty = conn.Query<int>(@"
+                        SELECT Quantity FROM dbo.CartItems WHERE CartID = @cartID AND ProductID = @productID ", new { cartID,productID });
+
+                    if (totalQty == null || !totalQty.Any())
+                    {
+                        var result = conn.Query<Cart>(@"
                         INSERT INTO dbo.CartItems(CartID,ProductID,Quantity,Price) VALUES (@cartID,@productID,@quantity,@unitPrice)
-                    ", new { cartID,productID, quantity, unitPrice });
+                    ", new { cartID, productID, quantity, unitPrice });
+                    }
+                    else
+                    {
+                        int totalItems = totalQty.ElementAtOrDefault(0);
+                        if(addToExisting)
+                        {
+                            totalItems = totalItems + quantity;
+                        }
+                        else
+                        {
+                            totalItems = quantity;
+                        }
+                        
+                        var result = conn.Execute(@"
+                            UPDATE  dbo.CartItems
+                            SET Quantity = @totalItems
+                            WHERE CartID = @cartID
+                              AND ProductID = @productID
+                            ", new { cartID,productID, totalItems });
+
+                    }
                 }
                 catch (Exception ex)
                 {

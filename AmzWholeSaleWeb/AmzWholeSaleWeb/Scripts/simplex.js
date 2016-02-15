@@ -58,9 +58,10 @@ function getCartCount(){
 Add item to cart
 Note: Change URL to new clients URL for every implementation 
 */
-function addToCart(productID, unitPrice, quantity) {
+function addToCart(productID, unitPrice, quantity, addToExisting) {
 
-    var parms = { productID: productID, unitPrice: unitPrice, quantity: quantity }
+
+    var parms = { productID: productID, unitPrice: unitPrice, quantity: quantity, addToExisting: addToExisting }
 
     $.ajax({
         type: "POST",

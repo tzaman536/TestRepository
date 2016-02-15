@@ -146,7 +146,7 @@ namespace AmzWholeSaleWeb.Controllers
 
 
         [HttpPost]
-        public ActionResult AddItemToCart([DataSourceRequest]DataSourceRequest request, int productID, decimal unitPrice, int quantity)
+        public ActionResult AddItemToCart([DataSourceRequest]DataSourceRequest request, int productID, decimal unitPrice, int quantity, bool addToExisting)
         {
 
             
@@ -156,7 +156,7 @@ namespace AmzWholeSaleWeb.Controllers
 
             if(c != null)
             {
-                ch.AddCartItem(c.CartID, productID, quantity, unitPrice);
+                ch.AddCartItem(c.CartID, productID, quantity, unitPrice, addToExisting);
             }
 
             return Json(new { success = true, message = string.Format("product id is {0}", productID) }, JsonRequestBehavior.AllowGet);

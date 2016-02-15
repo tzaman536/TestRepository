@@ -21,3 +21,6 @@ ALTER TABLE dbo.CartItems
 ADD CONSTRAINT FK_Cart_CartID FOREIGN KEY (CartID)
 REFERENCES dbo.Cart(CartID)
 GO
+
+ALTER TABLE dbo.CartItems
+ADD CONSTRAINT uc_CartIdProductId UNIQUE (CartID,ProductID)

@@ -26,7 +26,7 @@
             <dt><img src="@Url.Content("~/content/products/")#:SmallImageId#" alt="#:ProductName# image" /> #:ProductDescription#</dt>
             <dd>#:ProductName#</dd>
             <dd>Price: #:kendo.toString(CostOfItemsInCart, "c")#</dd>
-            <dd class="numberOfUnits">Total Items: <input type="text" class="k-textbox numberOfUnitsTextBox" id="idNumberOfUnits"  name="numberOfUnits" value="#:TotalItemsInCart#" /></dd>
+            <dd class="numberOfUnits">Total Items: <input type="text" class="k-textbox numberOfUnitsTextBox" id="idNumberOfUnits"  name="numberOfUnits" value="#:TotalItemsInCart#" /><button class="k-primary updateUnitButton" onclick="updateCart('#:ProductID#', '#:UnitPrice#')">Update Cart</button></dd>
         </dl>
         <div class="edit-buttons">
             <button id="addToCartButton" type="button" onclick="addOneMoreToCart('#:ProductID#', '#:UnitPrice#', 1)">Add</button>
@@ -86,6 +86,16 @@
         });
 
     });
+
+
+    function updateCart(productID, unitPrice) {
+        addToCart(productID, unitPrice, document.getElementById("idNumberOfUnits").value,false);
+        $("#listView").data("kendoListView").dataSource.read();
+        updateCartButton();
+
+
+    }
+
     function updateCartButton() {
         $("#shoppingCartLink").text(getCartCount());
         //$("#shoppingCartLink").addClass("cart");
@@ -99,7 +109,7 @@
         }*@
     }
 
-    
+
     function onClose() {
 
     }
@@ -289,7 +299,7 @@
 
     function addOneMoreToCart(productID,unitPrice, quantity)
     {
-        addToCart(productID, unitPrice, quantity);
+        addToCart(productID, unitPrice, quantity,true);
         $("#listView").data("kendoListView").dataSource.read();
         updateCartButton();
     }
@@ -313,6 +323,9 @@
     .numberOfUnitsTextBox{
         max-width:40px;
         text-align:left;
+    }
+    .updateUnitButton{
+        margin-left:10px;
     }
     .windowProductName {
         font-size: 18px;

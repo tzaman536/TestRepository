@@ -49,7 +49,7 @@
 
     }
     function addOneItemToCart() {
-        addToCart('@ViewBag.Product.ProductID', '@ViewBag.Product.UnitPrice', 1);
+        addToCart('@ViewBag.Product.ProductID', '@ViewBag.Product.UnitPrice', 1,true);
         updateCartButton();
     }
 </script>
