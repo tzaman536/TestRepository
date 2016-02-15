@@ -11,7 +11,7 @@
 </div>
 
 <h3> Please review your cart and click <input id="idBuyNowPageTop" type="image" name="submit" border="0"
-       src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif"
+       src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_checkout_pp_142x27.png"
        alt="PayPal - The safer, easier way to pay online">
  to complete your transaction</h3>
 <br />
@@ -28,10 +28,10 @@
             <dd>Price: #:kendo.toString(CostOfItemsInCart, "c")#</dd>
             <dd class="numberOfUnits">Total Items: <input type="text" class="k-textbox numberOfUnitsTextBox" id="idNumberOfUnits"  name="numberOfUnits" value="#:TotalItemsInCart#" /><button class="k-primary updateUnitButton" onclick="updateCart('#:ProductID#', '#:UnitPrice#')">Update Cart</button></dd>
         </dl>
-        <div class="edit-buttons">
+        @*<div class="edit-buttons">
             <button id="addToCartButton" type="button" onclick="addOneMoreToCart('#:ProductID#', '#:UnitPrice#', 1)">Add</button>
             <button id="addToCartButton" type="button" onclick="removeOneFromCart('#:ProductID#')">Remove</button>
-        </div>
+        </div>*@
         
 
     </div>
@@ -61,7 +61,7 @@
 
 <h3>
     Click <input id="idBuyNowPageBottom" type="image" name="submit" border="0"
-                                             src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif"
+                                             src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_checkout_pp_142x27.png"
                                              alt="PayPal - The safer, easier way to pay online">
     to complete your transaction
 </h3>

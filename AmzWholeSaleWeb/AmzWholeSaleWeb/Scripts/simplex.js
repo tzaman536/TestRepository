@@ -60,7 +60,7 @@ Note: Change URL to new clients URL for every implementation
 */
 function addToCart(productID, unitPrice, quantity, addToExisting) {
 
-
+   
     var parms = { productID: productID, unitPrice: unitPrice, quantity: quantity, addToExisting: addToExisting }
 
     $.ajax({

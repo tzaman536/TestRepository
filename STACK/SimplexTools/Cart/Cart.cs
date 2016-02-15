@@ -31,7 +31,7 @@ namespace Simplex.Tools.Cart
             {
                 cartItems = value;
                 if(value != null)
-                    TotalItems = cartItems.Count();
+                    TotalItems = cartItems.Sum(x => x.Quantity);
             }
         }
 
