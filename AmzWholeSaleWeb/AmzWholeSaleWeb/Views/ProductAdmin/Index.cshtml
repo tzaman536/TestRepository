@@ -28,8 +28,8 @@
                             Product Description:
                         </dt>
                         <dd>
-                            @*<input type="text" class="k-textbox" id="idProductDescription" value="Product Description" name="productDescription"  onfocus="if (this.value == 'Product Description') { this.value = ''; }" />*@
-                            <input type="text" class="k-textbox productName" id="idProductDescription" name="productDescription" required />
+                            @*<input type="text" class="k-textbox productName" id="idProductDescription" name="productDescription" required />*@
+                            <textarea id="idProductDescription" name="productDescription" class="k-textbox productDescription" rows="4" cols="20" required></textarea>
                         </dd>
                         <dt>
                             Unit Price:
@@ -141,7 +141,12 @@
         min-width:500px;
     }
     .productName {
-        min-width: 255px;
+        min-width: 500px;
+    }
+
+    .productDescription{
+        min-width:500px; 
+        min-height:100px;
     }
     
     .productLongDescription{
