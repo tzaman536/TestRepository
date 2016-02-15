@@ -55,8 +55,9 @@
         <dl>
             <dt><img src="@Url.Content("~/content/products/")#:SmallImageId#" alt="#:ProductName# image" /> #:ProductDescription#</dt>
             <dd>#:ProductName#</dd>
-            <dd>Price: #:kendo.toString(UnitPrice, "c")#</dd>
-            <dd><input id="addToCartButton" type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_cart_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" onclick="addOneItemToCart('#:ProductID#', '#:UnitPrice#', 1)"></dd>
+            <dd class="ddPrice">#:kendo.toString(UnitPrice, "c")#</dd>
+            <dd>In stock: #:UnitsInStock#</dd>
+            <dd><input id="addToCartButton" type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_addtocart_96x21.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" onclick="addOneItemToCart('#:ProductID#', '#:UnitPrice#', 1)"></dd>
             <dd><a id="idViewMore" href="/ProductDetail/Index?productID=#:ProductID#" >Click to view more</a></dd>
         </dl>
         @*<div class="edit-buttons">
@@ -216,6 +217,11 @@
 
     <style>
 
+        .ddPrice{
+            color:orangered;
+            font-weight:bold;
+            font-size:12px;
+        }
         .windowProductName{
             font-size: 18px;
             font-weight:bold;
