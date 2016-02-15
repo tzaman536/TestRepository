@@ -287,7 +287,7 @@ namespace AmzWholeSaleWeb.Controllers
 
 
         [HttpPost]
-        public ActionResult UploadProduct(HttpPostedFileBase file, string productName, string productDescription, string productLongDescription, decimal unitPrice, int unitInStock)
+        public ActionResult UploadProduct(IEnumerable<HttpPostedFileBase> files, string productName, string productDescription, string productLongDescription, decimal unitPrice, int unitInStock)
         {
             string uploadMessage = PRODUCT_UPLOAD_SUCCESSFUL;
             bool fileUploadFailed = false;
@@ -296,7 +296,7 @@ namespace AmzWholeSaleWeb.Controllers
             {
                 var request = System.Web.HttpContext.Current.Request;
 
-                FileInfo fi = new FileInfo(file.FileName);
+                FileInfo fi = new FileInfo(files.ElementAtOrDefault(0).FileName);
                 if (!fi.Extension.Equals(".jpg"))
                 {
                     uploadMessage = "Please upload a valid [.jpg] image file";
@@ -325,7 +325,7 @@ namespace AmzWholeSaleWeb.Controllers
                     string originalImageId = string.Format("AMZ_Original_{0}.jpg",nowTicks);
 
                     string sourceFile = string.Format(@"{0}\{1}", destinationFilePath, originalImageId);
-                    file.SaveAs(sourceFile);
+                    files.ElementAtOrDefault(0).SaveAs(sourceFile);
                     logger.InfoFormat("Saved input file as {0}", sourceFile);
                     product.OriginalImageId = originalImageId;
 
