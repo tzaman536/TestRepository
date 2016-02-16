@@ -147,6 +147,11 @@ namespace AmzBL.Products
                                                         , MediumImageId
                                                         , LargeImageId
                                                         , OriginalImageId
+                                                        , ImageIdOne
+                                                        , ImageIdTwo
+                                                        , ImageIdThree
+                                                        , ImageIdFour
+                                                        , ImageIdFive
                                                         , AddDate
                                                         , AddedBy
                                                         )
@@ -162,6 +167,11 @@ namespace AmzBL.Products
                                                             , @MediumImageId
                                                             , @LargeImageId
                                                             , @OriginalImageId
+                                                            , @ImageIdOne
+                                                            , @ImageIdTwo
+                                                            , @ImageIdThree
+                                                            , @ImageIdFour
+                                                            , @ImageIdFive
                                                             , getdate()
                                                             , @addedBy
                                                         )
@@ -179,6 +189,11 @@ namespace AmzBL.Products
                                 ,p.MediumImageId
                                 ,p.LargeImageId
                                 ,p.OriginalImageId
+                                ,p.ImageIdOne
+                                ,p.ImageIdTwo
+                                ,p.ImageIdThree
+                                ,p.ImageIdFour
+                                ,p.ImageIdFive
                                 ,addDate
                                 ,addedBy
                                 });

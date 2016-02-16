@@ -159,26 +159,87 @@ namespace AmzWholeSaleWeb.Controllers
                         FileInfo fi = new FileInfo(fileToDelete);
                         if (fi.Exists)
                         {
-                            fi.Delete();
+                            try
+                            {
+                                fi.Delete();
+                            }
+                            catch { }
                         }
                         fileToDelete = string.Format(@"{0}\{1}", destinationFilePath, product.SmallImageId);
                         fi = new FileInfo(fileToDelete);
                         if (fi.Exists)
                         {
-                            fi.Delete();
+                            try {
+                                fi.Delete();
+                            }
+                            catch { }
                         }
                         fileToDelete = string.Format(@"{0}\{1}", destinationFilePath, product.MediumImageId);
                         fi = new FileInfo(fileToDelete);
                         if (fi.Exists)
                         {
-                            fi.Delete();
+                            try {
+                                fi.Delete();
+                            }
+                            catch { }
                         }
                         fileToDelete = string.Format(@"{0}\{1}", destinationFilePath, product.LargeImageId);
                         fi = new FileInfo(fileToDelete);
                         if (fi.Exists)
                         {
-                            fi.Delete();
+                            try {
+                                fi.Delete();
+                            }
+                            catch { }
                         }
+                        fileToDelete = string.Format(@"{0}\{1}", destinationFilePath, product.ImageIdOne);
+                        fi = new FileInfo(fileToDelete);
+                        if (fi.Exists)
+                        {
+                            try {
+                                fi.Delete();
+                            }
+                            catch { }
+
+                        }
+                        fileToDelete = string.Format(@"{0}\{1}", destinationFilePath, product.ImageIdTwo);
+                        fi = new FileInfo(fileToDelete);
+                        if (fi.Exists)
+                        {
+                            try {
+                                fi.Delete();
+                            }
+                            catch { }
+                        }
+                        fileToDelete = string.Format(@"{0}\{1}", destinationFilePath, product.ImageIdThree);
+                        fi = new FileInfo(fileToDelete);
+                        if (fi.Exists)
+                        {
+                            try {
+                                fi.Delete();
+                            }
+                            catch { }
+                        }
+                        fileToDelete = string.Format(@"{0}\{1}", destinationFilePath, product.ImageIdFour);
+                        fi = new FileInfo(fileToDelete);
+                        if (fi.Exists)
+                        {
+                            try {
+                                fi.Delete();
+                            }
+                            catch { }
+                        }
+                        fileToDelete = string.Format(@"{0}\{1}", destinationFilePath, product.ImageIdFive);
+                        fi = new FileInfo(fileToDelete);
+                        if (fi.Exists)
+                        {
+                            try {
+                                fi.Delete();
+                            }
+                            catch { }
+                        }
+
+
 
                     }
                     catch (Exception ex)
@@ -322,9 +383,10 @@ namespace AmzWholeSaleWeb.Controllers
 
                     string nowTicks = DateTime.Now.Ticks.ToString();
                     string destinationFilePath = System.Web.HttpContext.Current.Server.MapPath("~/Content/products");
-                    string originalImageId = string.Format("AMZ_Original_{0}.jpg",nowTicks);
 
+                    string originalImageId = string.Format("AMZ_Original_{0}.jpg",nowTicks);
                     string sourceFile = string.Format(@"{0}\{1}", destinationFilePath, originalImageId);
+
                     files.ElementAtOrDefault(0).SaveAs(sourceFile);
                     logger.InfoFormat("Saved input file as {0}", sourceFile);
                     product.OriginalImageId = originalImageId;
@@ -347,25 +409,75 @@ namespace AmzWholeSaleWeb.Controllers
                     ih.Save(bmOriginal, 400, 400, 100, string.Format(@"{0}\{1}",destinationFilePath, product.LargeImageId));
                     logger.InfoFormat("Resized input file and saved as {0}",product.LargeImageId);
 
+
+                    if(files.ElementAtOrDefault(1) != null )
+                    {
+                        originalImageId = string.Format("AMZ_Image_1_{0}.jpg", nowTicks);
+                        sourceFile = string.Format(@"{0}\{1}", destinationFilePath, originalImageId);
+                        product.ImageIdOne = originalImageId;
+                        files.ElementAtOrDefault(1).SaveAs(sourceFile);
+                        logger.InfoFormat("Saved image one file as {0}", sourceFile);
+                    }
+
+                    if (files.ElementAtOrDefault(2) != null)
+                    {
+                        originalImageId = string.Format("AMZ_Image_2_{0}.jpg", nowTicks);
+                        sourceFile = string.Format(@"{0}\{1}", destinationFilePath, originalImageId);
+                        product.ImageIdTwo = originalImageId;
+                        files.ElementAtOrDefault(2).SaveAs(sourceFile);
+                        logger.InfoFormat("Saved image two file as {0}", sourceFile);
+                    }
+
+                    if (files.ElementAtOrDefault(3) != null)
+                    {
+                        originalImageId = string.Format("AMZ_Image_3_{0}.jpg", nowTicks);
+                        sourceFile = string.Format(@"{0}\{1}", destinationFilePath, originalImageId);
+                        product.ImageIdThree = originalImageId;
+                        files.ElementAtOrDefault(3).SaveAs(sourceFile);
+                        logger.InfoFormat("Saved image three file as {0}", sourceFile);
+                    }
+
+                    if (files.ElementAtOrDefault(4) != null)
+                    {
+                        originalImageId = string.Format("AMZ_Image_4_{0}.jpg", nowTicks);
+                        sourceFile = string.Format(@"{0}\{1}", destinationFilePath, originalImageId);
+                        product.ImageIdFour = originalImageId;
+                        files.ElementAtOrDefault(4).SaveAs(sourceFile);
+                        logger.InfoFormat("Saved image four file as {0}", sourceFile);
+                    }
+
+                    if (files.ElementAtOrDefault(5) != null)
+                    {
+                        originalImageId = string.Format("AMZ_Image_5_{0}.jpg", nowTicks);
+                        sourceFile = string.Format(@"{0}\{1}", destinationFilePath, originalImageId);
+                        product.ImageIdFive = originalImageId;
+                        files.ElementAtOrDefault(5).SaveAs(sourceFile);
+                        logger.InfoFormat("Saved image five file as {0}", sourceFile);
+                    }
+
+
+
+
+
                     product.ImageUploadSuccessful = true;
 
                     productHandler.AddProduct(product);
 
                     logger.InfoFormat(PRODUCT_UPLOAD_SUCCESSFUL);
 
-                    try
-                    {
-                        FileInfo fiFileToDelete = new FileInfo(sourceFile);
-                        if (fiFileToDelete.Exists)
-                            fiFileToDelete.Delete();
-                        logger.InfoFormat("Removed file {0}", sourceFile);
+                    //try
+                    //{
+                    //    FileInfo fiFileToDelete = new FileInfo(sourceFile);
+                    //    if (fiFileToDelete.Exists)
+                    //        fiFileToDelete.Delete();
+                    //    logger.InfoFormat("Removed file {0}", sourceFile);
 
-                    }
-                    catch (Exception ex1)
-                    {
-                        logger.Error(ex1);
+                    //}
+                    //catch (Exception ex1)
+                    //{
+                    //    logger.Error(ex1);
 
-                    }
+                    //}
                 }
 
             }
