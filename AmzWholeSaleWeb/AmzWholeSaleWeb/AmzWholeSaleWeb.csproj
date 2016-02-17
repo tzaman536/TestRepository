@@ -567,6 +567,7 @@
     <Content Include="Content\products\200\69.jpg" />
     <Content Include="Content\products\200\72.jpg" />
     <Content Include="Content\products\loading.gif" />
+    <Content Include="Content\products\loading.jpg" />
     <Content Include="Content\shared\cart.png" />
     <Content Include="Content\shared\search.png" />
     <Content Include="Content\shared\ViewMore.png" />
