@@ -3,11 +3,14 @@
     ViewBag.Title = "Review Cart";
 }
 <div>
-    <form id="formDynamic" target="paypal" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
-        <input type="hidden" name="cmd" value="_cart">
-        <input type="hidden" name="upload" value="1">
-        <input type="hidden" name="business" value="tzaman536-facilitator@gmail.com">
-    </form>
+    @*<form id="formDynamic" target="paypal" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">*@
+        <form id="formDynamic" target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+            <input type="hidden" name="cmd" value="_cart">
+            <input type="hidden" name="upload" value="1">
+            @*<input type="hidden" name="business" value="tzaman536-facilitator@gmail.com">*@
+            <input type="hidden" name="business" value="tamimzaman10@yahoo.com">
+            <input type="hidden" name="return" value="www.amzwholesale.com">
+        </form>
 </div>
 
 <h3> Please review your cart and click <input id="idBuyNowPageTop" type="image" name="submit" border="0"
@@ -210,8 +213,9 @@
     function sendToPayPalChrome(items) {
         var form = document.createElement("form");
         form.method = "POST";
-        form.action = "https://www.sandbox.paypal.com/cgi-bin/webscr"
-
+        //form.action = "https://www.sandbox.paypal.com/cgi-bin/webscr"
+        form.action = "https://www.paypal.com/cgi-bin/webscr"
+        
         var element1 = document.createElement("input");
         element1.type = "hidden";
         element1.name = "cmd";
@@ -227,14 +231,15 @@
         var element3 = document.createElement("input");
         element3.type = "hidden";
         element3.name = "business";
-        element3.value = "tzaman536-facilitator@gmail.com";
+        //element3.value = "tzaman536-facilitator@gmail.com";
+        element3.value = "tamimzaman10@yahoo.com";
         form.appendChild(element3);
 
 
         var elementReturnURL = document.createElement("input");
         elementReturnURL.type = "hidden";
         elementReturnURL.name = "return";
-        elementReturnURL.value = "www.coalescesoftcom.com";
+        elementReturnURL.value = "www.amzwholesale.com";
         form.appendChild(elementReturnURL);
 
 

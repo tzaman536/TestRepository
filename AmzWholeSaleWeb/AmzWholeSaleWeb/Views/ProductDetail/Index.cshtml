@@ -71,11 +71,7 @@
 <script>
     $(document).ready(function () {
         hideWindow();
-        document.getElementById("productDetailLargeImage").src = "@Url.Content("~/content/products/{0}?{1}")".format('@ViewBag.Product.OriginalImageId', new Date().getTime());
-        if('@ViewBag.Product.ImageIdOne'  != null)
-        {
-            document.getElementById("imageOne").src = "@Url.Content("~/content/products/{0}?{1}")".format('@ViewBag.Product.ImageIdOne', new Date().getTime());
-        }
+        updateCartButton();
 
         
 
@@ -84,7 +80,18 @@
             window.location.href = url;
         })
 
-        updateCartButton();
+        $("#shoppingCartLink").click(function () {
+            var url = '@Url.Action("ReviewCart", "AmzHome")';
+            window.location.href = url;
+        });
+
+        $("#idViewCart").click(function () {
+            var url = '@Url.Action("ReviewCart", "AmzHome")';
+            window.location.href = url;
+        });
+
+
+
     });
     function hideWindow() {
         $("#window").data("kendoWindow").close();
@@ -102,6 +109,7 @@
 
     function updateCartButton() {
         $("#shoppingCartLink").text(getCartCount());
+
     }
     function addOneItemToCart() {
         addToCart('@ViewBag.Product.ProductID', '@ViewBag.Product.UnitPrice', 1,true);
