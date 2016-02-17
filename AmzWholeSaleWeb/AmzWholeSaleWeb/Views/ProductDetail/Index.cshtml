@@ -1,19 +1,48 @@
 ﻿@{
     ViewBag.Title = "Product Detail";
 }
+@model IEnumerable<AmzWholeSaleWeb.Controllers.ProductImage>
 @Html.ActionLink("Take me back to home page", "Index", "AmzHome")
+<div>
+    <input id="addToCartButton" type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_addtocart_96x21.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" onclick="addOneItemToCart()">
+</div>
 <div>
     <div>
         <h3>@ViewBag.Product.ProductName</h3>
         <h4>
-            @ViewBag.Product.ProductLongDescription
+            @ViewBag.Product.ProductDescription
         </h4>
     </div>
     @*<div class="imageBig">
         <img id="productDetailLargeImage" src="@Url.Content("~/content/products/1.jpg")" alt="Product image" />
     </div>*@
+    <script type="text/x-kendo-tmpl" id="template">
+        <div class="product">
+            <img src="@Url.Content("~/content/products/")#:ImageId#" alt="image" /> 
+        </div>
+    </script>
+    <div class="demo-section k-content wide">
+        @(Html.Kendo().ListView<AmzWholeSaleWeb.Controllers.ProductImage>(Model)
+    .Name("listView")
+    .TagName("div")
+    .ClientTemplateId("template")
+    .DataSource(dataSource =>
+    {
+        dataSource.Read(read => read.Action("Index", "ProductDetail"));
+        dataSource.PageSize(21);
+    })
+    //.Pageable()
+        )
+    </div>
+    <div>
+        <h5>@ViewBag.Product.ProductLongDescription</h5>
+    </div>
+    <br />
+    <div>
+        <input id="addToCartButton" type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_addtocart_96x21.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" onclick="addOneItemToCart()">
+    </div>
 
-    <div style="width: 100%; display:table;">
+    @*<div style="width: 100%; display:table;">
         <div style="display: table-row">
             <div style="width:800px; min-height:1000px; display:table-cell;">
                 <div class="imageMedium">
@@ -29,14 +58,10 @@
 
             </div>
             <div style="display:table-row;">
-                <div>
-                    <input id="addToCartButton" type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_addtocart_96x21.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" onclick="addOneItemToCart()">
-                </div>
             </div>
         </div>
-    </div>
+    </div>*@
 </div>
-<br/>
 
 <script>
     $(document).ready(function () {
@@ -91,4 +116,61 @@
             margin-bottom:40px;
             margin-right:0px;
         }
+
+         #listView {
+        padding: 10px 5px;
+        margin-bottom: -1px;
+        min-height: 100px;
+    }
+    .product {
+        float: left;
+        position: relative;
+        width: 111px;
+        height: 170px;
+        margin: 0 5px;
+        padding: 0;
+    }
+    .product img {
+        width: 110px;
+        height: 110px;
+    }
+    .product h3 {
+        margin: 0;
+        padding: 3px 5px 0 0;
+        max-width: 96px;
+        overflow: hidden;
+        line-height: 1.1em;
+        font-size: .9em;
+        font-weight: normal;
+        text-transform: uppercase;
+        color: #999;
+    }
+    .product p {
+        visibility: hidden;
+    }
+    .product:hover p {
+        visibility: visible;
+        position: absolute;
+        width: 110px;
+        height: 110px;
+        top: 0;
+        margin: 0;
+        padding: 0;
+        line-height: 110px;
+        vertical-align: middle;
+        text-align: center;
+        color: #fff;
+        background-color: rgba(0,0,0,0.75);
+        transition: background .2s linear, color .2s linear;
+        -moz-transition: background .2s linear, color .2s linear;
+        -webkit-transition: background .2s linear, color .2s linear;
+        -o-transition: background .2s linear, color .2s linear;
+    }
+    .k-listview:after {
+        content: ".";
+        display: block;
+        height: 0;
+        clear: both;
+        visibility: hidden;
+    }
 </style>
