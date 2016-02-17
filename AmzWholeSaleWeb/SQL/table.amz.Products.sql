@@ -4,8 +4,8 @@ IF OBJECT_ID ('amz.Products', 'U') IS NOT NULL
 create table amz.Products
 (
 	ProductID int identity not null,
-	ProductName nvarchar(100) not null,
-	ProductDescription nvarchar(200) not null,
+	ProductName nvarchar(150) not null,
+	ProductDescription nvarchar(255) not null,
 	ProductLongDescription text null,
 	UnitPrice decimal(25,2) not null,
 	UnitsInStock int not null,

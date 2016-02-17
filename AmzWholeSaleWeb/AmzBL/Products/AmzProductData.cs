@@ -120,6 +120,13 @@ namespace AmzBL.Products
         {
 
             logger.InfoFormat("Adding product: {0} - {1}", p.ProductName, p.ProductDescription);
+            if (p.ProductName.Length >= 150)
+                p.ProductName = p.ProductName.Substring(0, 149);
+
+            if (p.ProductDescription.Length >= 255)
+                p.ProductDescription = p.ProductDescription.Substring(0, 254);
+
+
             DateTime addDate = DateTime.UtcNow;
             string addedBy = HttpContext.Current.Request.LogonUserIdentity.Name;
             if (string.IsNullOrEmpty(addedBy))
