@@ -3,6 +3,7 @@ using AmzModel;
 using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
 using log4net;
+using Simplex.Tools.Cart;
 using Simplex.Tools.File;
 using System;
 using System.Collections.Generic;
@@ -97,6 +98,22 @@ namespace AmzWholeSaleWeb.Controllers
         }
 
         #endregion
+
+        public ActionResult Cart_Read([DataSourceRequest] DataSourceRequest request)
+        {
+
+            CartHandler ch = new CartHandler();
+            string sql = @"      select c.CartId, p.ProductName, ci.Quantity, ci.Price, ci.Quantity * ci.Price as Total, c.DateCreated, c.CheckedOut
+                    from dbo.Cart c
+                    inner join dbo.CartItems ci on c.CartId = ci.CartId
+                    inner join amz.Products p on ci.ProductId = p.ProductID
+                    order by DateCreated, CheckedOut
+              ";
+            var result = ch.GetCartView(sql);
+
+            return Json(productHandler.GetProducts().ToDataSourceResult(request));
+        }
+
 
 
         public ActionResult Editing_Read([DataSourceRequest] DataSourceRequest request)

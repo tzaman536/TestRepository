@@ -8,49 +8,28 @@
 
 <h2>ViewTransactions</h2>
 <div id="allProducts" style="min-width:1200px">
-    @(Html.Kendo().Grid<AmzModel.AmzProduct>()
-    .Name("ProductGrid")
-    .Columns(columns =>
-    {
-        columns.Bound(p => p.ProductName).Width(100);
-        columns.Bound(p => p.ProductDescription).Width(100);
-        columns.Bound(p => p.ProductLongDescription).Width(255);
-        columns.Bound(p => p.UnitPrice).Width(85);
-        columns.Bound(p => p.UnitsInStock).Width(85);
-        columns.Bound(p => p.UnitsOnOrder).Width(85);
-        columns.Bound(p => p.ImageUploadSuccessful).Width(50);
-        columns.Bound(p => p.Discontinued).Width(50);
-        columns.Command(command => command.Destroy()).Width(110);
-    })
-    .ToolBar(toolbar =>
-    {
-        //toolbar.Create();
-        toolbar.Save();
-    })
-    .Editable(editable => editable.Mode(GridEditMode.InCell))
-    //.Pageable()
-    .Filterable()
-    .Navigatable()
-    .Sortable()
-    .Selectable(selectable => selectable
-            .Mode(GridSelectionMode.Single)
-            .Type(GridSelectionType.Row))
-    //.Scrollable()
-    .Events(events => events.Change("onChange"))
-    .DataSource(dataSource => dataSource
-        .Ajax()
-        .Batch(true)
-        .PageSize(1000)
-        .ServerOperation(false)
-        .Events(events => events.Error("error_handler"))
-        .Model(model => model.Id(p => p.ProductID))
-                        .Create("Editing_Create", "ProductAdmin")
-                        .Read("Editing_Read", "ProductAdmin")
-                        .Update("Editing_Update", "ProductAdmin")
-                        .Destroy("Editing_Destroy", "ProductAdmin")
-                    )
-    )
-</div>
+@(Html.Kendo().Grid<AmzModel.AmzProduct>()
+        .Name("grid")
+        .Columns(columns =>
+        {
+            columns.Bound(c => c.ProductName);
+            columns.Bound(c => c.ProductDescription);
+            columns.Bound(c => c.UnitPrice).Width(150);
+        })
+        .HtmlAttributes(new { style = "height: 550px;" })
+        .Scrollable()
+        .Groupable()
+        .Sortable()
+        .Pageable(pageable => pageable
+            .Refresh(true)
+            .PageSizes(true)
+            .ButtonCount(5))
+        .DataSource(dataSource => dataSource
+            .Ajax()
+            .Read(read => read.Action("Cart_Read", "ProductAdmin"))
+            .PageSize(20)
+        )
+)</div>
 
 
 <script>
