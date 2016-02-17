@@ -111,7 +111,7 @@ namespace AmzWholeSaleWeb.Controllers
               ";
             var result = ch.GetCartView(sql);
 
-            return Json(productHandler.GetProducts().ToDataSourceResult(request));
+            return Json(result.ToDataSourceResult(request));
         }
 
 

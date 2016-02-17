@@ -8,26 +8,30 @@
 
 <h2>ViewTransactions</h2>
 <div id="allProducts" style="min-width:1200px">
-@(Html.Kendo().Grid<AmzModel.AmzProduct>()
+@(Html.Kendo().Grid<Simplex.Tools.Cart.CartView>()
         .Name("grid")
         .Columns(columns =>
         {
+            columns.Bound(c => c.CartId);
             columns.Bound(c => c.ProductName);
-            columns.Bound(c => c.ProductDescription);
-            columns.Bound(c => c.UnitPrice).Width(150);
+            columns.Bound(c => c.Quantity).Width(150);
+            columns.Bound(c => c.Price).Width(150);
+            columns.Bound(c => c.Total).Width(150);
+            columns.Bound(c => c.DateCreated).Width(150).Format("{0:MM/dd/yyyy }");
+            columns.Bound(c => c.CheckedOut).Width(150);
         })
         .HtmlAttributes(new { style = "height: 550px;" })
         .Scrollable()
         .Groupable()
         .Sortable()
-        .Pageable(pageable => pageable
-            .Refresh(true)
-            .PageSizes(true)
-            .ButtonCount(5))
+        //.Pageable(pageable => pageable
+        //    .Refresh(true)
+        //    .PageSizes(true)
+        //    .ButtonCount(5))
         .DataSource(dataSource => dataSource
             .Ajax()
             .Read(read => read.Action("Cart_Read", "ProductAdmin"))
-            .PageSize(20)
+        //.PageSize(20)
         )
 )</div>
 
