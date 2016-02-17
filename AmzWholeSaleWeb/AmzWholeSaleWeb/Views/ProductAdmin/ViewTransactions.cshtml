@@ -1,0 +1,101 @@
+﻿
+@{
+    ViewBag.Title = "ViewTransactions";
+}
+<div>
+    @Html.Partial("AdminMenuHorizontal")
+</div>
+
+<h2>ViewTransactions</h2>
+<div id="allProducts" style="min-width:1200px">
+    @(Html.Kendo().Grid<AmzModel.AmzProduct>()
+    .Name("ProductGrid")
+    .Columns(columns =>
+    {
+        columns.Bound(p => p.ProductName).Width(100);
+        columns.Bound(p => p.ProductDescription).Width(100);
+        columns.Bound(p => p.ProductLongDescription).Width(255);
+        columns.Bound(p => p.UnitPrice).Width(85);
+        columns.Bound(p => p.UnitsInStock).Width(85);
+        columns.Bound(p => p.UnitsOnOrder).Width(85);
+        columns.Bound(p => p.ImageUploadSuccessful).Width(50);
+        columns.Bound(p => p.Discontinued).Width(50);
+        columns.Command(command => command.Destroy()).Width(110);
+    })
+    .ToolBar(toolbar =>
+    {
+        //toolbar.Create();
+        toolbar.Save();
+    })
+    .Editable(editable => editable.Mode(GridEditMode.InCell))
+    //.Pageable()
+    .Filterable()
+    .Navigatable()
+    .Sortable()
+    .Selectable(selectable => selectable
+            .Mode(GridSelectionMode.Single)
+            .Type(GridSelectionType.Row))
+    //.Scrollable()
+    .Events(events => events.Change("onChange"))
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .Batch(true)
+        .PageSize(1000)
+        .ServerOperation(false)
+        .Events(events => events.Error("error_handler"))
+        .Model(model => model.Id(p => p.ProductID))
+                        .Create("Editing_Create", "ProductAdmin")
+                        .Read("Editing_Read", "ProductAdmin")
+                        .Update("Editing_Update", "ProductAdmin")
+                        .Destroy("Editing_Destroy", "ProductAdmin")
+                    )
+    )
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        $("#ProductGrid").data("kendoGrid").dataSource.read();
+    });
+
+    function error_handler(e) {
+        if (e.errors) {
+            var message = "Errors:\n";
+            $.each(e.errors, function (key, value) {
+                if ('errors' in value) {
+                    $.each(value.errors, function () {
+                        message += this + "\n";
+                    });
+                }
+            });
+            alert(message);
+        }
+    }
+
+    function onChange(arg) {
+        @*var grid = $("#ProductGrid").data("kendoGrid");
+        var selectedItem = grid.dataItem(grid.select());
+
+        document.getElementById("selectedItemImageOriginal").src = "@Url.Content("~/content/products/{0}?{1}")".format(selectedItem.OriginalImageId, new Date().getTime());
+        document.getElementById("selectedItemImageOne").src = "@Url.Content("~/content/products/{0}?{1}")".format(selectedItem.ImageIdOne, new Date().getTime());
+        document.getElementById("selectedItemImageTwo").src = "@Url.Content("~/content/products/{0}?{1}")".format(selectedItem.ImageIdTwo, new Date().getTime());
+        document.getElementById("selectedItemImageThree").src = "@Url.Content("~/content/products/{0}?{1}")".format(selectedItem.ImageIdThree, new Date().getTime());
+        document.getElementById("selectedItemImageFour").src = "@Url.Content("~/content/products/{0}?{1}")".format(selectedItem.ImageIdFour, new Date().getTime());
+        document.getElementById("selectedItemImageFive").src = "@Url.Content("~/content/products/{0}?{1}")".format(selectedItem.ImageIdFive, new Date().getTime());
+
+        document.getElementById("idProductID").value = selectedItem.ProductID;*@
+
+    }
+
+
+</script>
+
+<style>
+    .k-grid {
+        font-size: 10px;
+    }
+    .k-grid td {
+        line-height: 2em;
+    }
+
+</style>

@@ -91,6 +91,11 @@ namespace AmzWholeSaleWeb.Controllers
             return View();
         }
 
+        public ActionResult ViewTransactions()
+        {
+            return View();
+        }
+
         #endregion
 
 
