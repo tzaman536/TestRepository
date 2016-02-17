@@ -40,13 +40,13 @@
     <div style="display:table-row">
         <div id="uploadButton">
                 <input type="hidden" id="idProductID" name="productID" value="0" />
-                <input id="btn_submitFile" type="submit" value="Upload Image" />
+                <input id="btn_submitFile" type="submit" value="Upload Images" />
         </div>
      </div>
 </div>
 }
-
-<div id="allProducts">
+<br />
+<div id="allProducts" style="min-width:1200px">
     @(Html.Kendo().Grid<AmzModel.AmzProduct>()
     .Name("ProductGrid")
     .Columns(columns =>
@@ -164,7 +164,8 @@
 <style>
     .mangeProductImage
     {
-        max-width:150px; 
+        min-width:200px;
+        max-width:200px; 
         display:table-cell; 
         border:double;
     }
