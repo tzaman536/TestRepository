@@ -256,7 +256,7 @@ namespace AmzWholeSaleWeb.Controllers
         }
 
         [HttpPost]
-        public ActionResult UploadImage(HttpPostedFileBase file, int productID)
+        public ActionResult UploadImage(IEnumerable<HttpPostedFileBase> files, int productID)
         {
             string uploadMessage = FILE_UPLOAD_SUCCESSFUL;
             bool fileUploadFailed = false;
@@ -265,73 +265,168 @@ namespace AmzWholeSaleWeb.Controllers
             {
                 var request = System.Web.HttpContext.Current.Request;
 
-                FileInfo fi = new FileInfo(file.FileName);
-                if (!fi.Extension.Equals(".jpg"))
-                {
-                    uploadMessage = "Please upload a valid [.jpg] image file";
-                }
-
-                if(productID == 0)
+                if (productID == 0)
                 {
                     uploadMessage = "Can't except product id 0. Add a product -> Save Changes -> Select the row -> Upload image";
                     fileIsValid = false;
                     fileUploadFailed = true;
                 }
 
-                if (fileIsValid)
+                var product = productHandler.GetProduct(productID);
+                string destinationFilePath = System.Web.HttpContext.Current.Server.MapPath("~/Content/products");
+                string nowTicks = DateTime.Now.Ticks.ToString();
+
+
+                if (files.ElementAtOrDefault(0) != null)
                 {
-                    //string path = System.Web.HttpContext.Current.Server.MapPath("~/UploadedImages");
-                    //DirectoryInfo di = new DirectoryInfo(path);
-                    //if(!di.Exists)
-                    //{
-                    //    di.Create();
-                    //}
-
-                    var product = productHandler.GetProduct(productID);
-                    string destinationFilePath = System.Web.HttpContext.Current.Server.MapPath("~/Content/products");
-                    string sourceFile = string.Format(@"{0}\{1}", destinationFilePath, product.OriginalImageId);
-                    file.SaveAs(sourceFile);
-                    
-                    logger.InfoFormat("Saved input file as {0}",sourceFile);
-
-
-
-                    Bitmap bmOriginal = new Bitmap(sourceFile);
-                    ImageHandler ih = new ImageHandler();
-
-
-                    if(product != null)
+                    fileIsValid = true;
+                    FileInfo fi = new FileInfo(files.ElementAtOrDefault(0).FileName);
+                    if (!fi.Extension.Equals(".jpg"))
                     {
-                        ih.Save(bmOriginal, 100, 100, 100, string.Format(@"{0}\{1}", destinationFilePath, product.SmallImageId));
-                        logger.InfoFormat("Resized input file and saved as {0}", product.SmallImageId);
-
-                        ih.Save(bmOriginal, 400, 400, 100, string.Format(@"{0}\{1}", destinationFilePath, product.MediumImageId));
-                        logger.InfoFormat("Resized input file and saved as {0}", product.MediumImageId);
-
-                        ih.Save(bmOriginal, 400, 400, 100, string.Format(@"{0}\{1}", destinationFilePath, product.LargeImageId));
-                        logger.InfoFormat("Resized input file and saved as {0}", product.LargeImageId);
+                        uploadMessage = "Please upload a valid [.jpg] image file";
+                        fileIsValid = false;
                     }
 
-
-                    logger.InfoFormat("Resized input file and saved as {0}",destinationFilePath);
-                    logger.InfoFormat(FILE_UPLOAD_SUCCESSFUL);
-                    
-                    try
+                    if (fileIsValid)
                     {
-                        FileInfo fiFileToDelete = new FileInfo(sourceFile);
-                        if (fiFileToDelete.Exists)
-                            fiFileToDelete.Delete();
-                        logger.InfoFormat("Removed file {0}",sourceFile);
+                        string sourceFile = string.Format(@"{0}\{1}", destinationFilePath, product.OriginalImageId);
+                        files.ElementAtOrDefault(0).SaveAs(sourceFile);
 
-                    }
-                    catch (Exception ex1)
-                    {
-                        logger.Error(ex1);   
-                        
-                    }
+                        logger.InfoFormat("Saved input file as {0}", sourceFile);
 
+
+
+                        Bitmap bmOriginal = new Bitmap(sourceFile);
+                        ImageHandler ih = new ImageHandler();
+
+
+                        if (product != null)
+                        {
+                            ih.Save(bmOriginal, 100, 100, 100, string.Format(@"{0}\{1}", destinationFilePath, product.SmallImageId));
+                            logger.InfoFormat("Resized input file and saved as {0}", product.SmallImageId);
+
+                            ih.Save(bmOriginal, 400, 400, 100, string.Format(@"{0}\{1}", destinationFilePath, product.MediumImageId));
+                            logger.InfoFormat("Resized input file and saved as {0}", product.MediumImageId);
+
+                            ih.Save(bmOriginal, 400, 400, 100, string.Format(@"{0}\{1}", destinationFilePath, product.LargeImageId));
+                            logger.InfoFormat("Resized input file and saved as {0}", product.LargeImageId);
+                        }
+
+
+                        logger.InfoFormat("Resized input file and saved as {0}", destinationFilePath);
+                    }
                 }
 
+                fileIsValid = true;
+                if (files.ElementAtOrDefault(1) != null)
+                {
+                    FileInfo fi = new FileInfo(files.ElementAtOrDefault(1).FileName);
+                    if (!fi.Extension.Equals(".jpg"))
+                    {
+                        uploadMessage = "Please upload a valid [.jpg] image 1 file";
+                        fileIsValid = false;
+                    }
+
+                    if (fileIsValid)
+                    {
+                        if(string.IsNullOrEmpty(product.ImageIdOne))
+                            product.ImageIdOne = string.Format("AMZ_Image_1_{0}.jpg", nowTicks);
+
+                        string sourceFile = string.Format(@"{0}\{1}", destinationFilePath, product.ImageIdOne);
+                        files.ElementAtOrDefault(1).SaveAs(sourceFile);
+
+                        logger.InfoFormat("Saved input file as {0}", sourceFile);
+                    }
+                }
+
+
+                if (files.ElementAtOrDefault(2) != null)
+                {
+                    FileInfo fi = new FileInfo(files.ElementAtOrDefault(2).FileName);
+                    if (!fi.Extension.Equals(".jpg"))
+                    {
+                        uploadMessage = "Please upload a valid [.jpg] image 2 file";
+                        fileIsValid = false;
+                    }
+
+                    if (fileIsValid)
+                    {
+                        if (string.IsNullOrEmpty(product.ImageIdTwo))
+                            product.ImageIdTwo = string.Format("AMZ_Image_2_{0}.jpg", nowTicks);
+
+                        string sourceFile = string.Format(@"{0}\{1}", destinationFilePath, product.ImageIdTwo);
+                        files.ElementAtOrDefault(2).SaveAs(sourceFile);
+
+                        logger.InfoFormat("Saved input file as {0}", sourceFile);
+                    }
+                }
+
+                if (files.ElementAtOrDefault(3) != null)
+                {
+                    FileInfo fi = new FileInfo(files.ElementAtOrDefault(3).FileName);
+                    if (!fi.Extension.Equals(".jpg"))
+                    {
+                        uploadMessage = "Please upload a valid [.jpg] image 3 file";
+                        fileIsValid = false;
+                    }
+
+                    if (fileIsValid)
+                    {
+                        if (string.IsNullOrEmpty(product.ImageIdThree))
+                            product.ImageIdThree = string.Format("AMZ_Image_3_{0}.jpg", nowTicks);
+
+                        string sourceFile = string.Format(@"{0}\{1}", destinationFilePath, product.ImageIdThree);
+                        files.ElementAtOrDefault(3).SaveAs(sourceFile);
+
+                        logger.InfoFormat("Saved input file as {0}", sourceFile);
+                    }
+                }
+
+                if (files.ElementAtOrDefault(4) != null)
+                {
+                    FileInfo fi = new FileInfo(files.ElementAtOrDefault(4).FileName);
+                    if (!fi.Extension.Equals(".jpg"))
+                    {
+                        uploadMessage = "Please upload a valid [.jpg] image 4 file";
+                        fileIsValid = false;
+                    }
+
+                    if (fileIsValid)
+                    {
+                        if (string.IsNullOrEmpty(product.ImageIdFour))
+                            product.ImageIdFour = string.Format("AMZ_Image_4_{0}.jpg", nowTicks);
+
+                        string sourceFile = string.Format(@"{0}\{1}", destinationFilePath, product.ImageIdFour);
+                        files.ElementAtOrDefault(4).SaveAs(sourceFile);
+
+                        logger.InfoFormat("Saved input file as {0}", sourceFile);
+                    }
+                }
+
+                if (files.ElementAtOrDefault(5) != null)
+                {
+                    FileInfo fi = new FileInfo(files.ElementAtOrDefault(5).FileName);
+                    if (!fi.Extension.Equals(".jpg"))
+                    {
+                        uploadMessage = "Please upload a valid [.jpg] image 5 file";
+                        fileIsValid = false;
+                    }
+
+                    if (fileIsValid)
+                    {
+                        if (string.IsNullOrEmpty(product.ImageIdFive))
+                            product.ImageIdFive = string.Format("AMZ_Image_5_{0}.jpg", nowTicks);
+
+                        string sourceFile = string.Format(@"{0}\{1}", destinationFilePath, product.ImageIdFive);
+                        files.ElementAtOrDefault(5).SaveAs(sourceFile);
+
+                        logger.InfoFormat("Saved input file as {0}", sourceFile);
+                    }
+                }
+
+
+                productHandler.UpdateProduct(product);
+                logger.InfoFormat(FILE_UPLOAD_SUCCESSFUL);
             }
             catch(Exception ex)
             {
@@ -362,6 +457,7 @@ namespace AmzWholeSaleWeb.Controllers
                 {
                     uploadMessage = "Please upload a valid [.jpg] image file";
                 }
+
 
                 
                 if (fileIsValid)

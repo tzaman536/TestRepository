@@ -1423,6 +1423,7 @@
     <Content Include="Views\ProductDetail\Index.cshtml" />
     <Content Include="Views\AmzHome\Contact.cshtml" />
     <Content Include="Views\AmzHome\About.cshtml" />
+    <Content Include="Views\ProductAdmin\AdminMenuHorizontal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

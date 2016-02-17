@@ -1,11 +1,12 @@
 ﻿@{
     ViewBag.Title = "ManageProduct";
 }
-<div id="userMessage" >
-    <h5 style="color:blue">@ViewBag.Message </h5>
-</div>
 <div>
-    @Html.Partial("AdminMenu")
+    @Html.Partial("AdminMenuHorizontal")
+</div>
+<div id="userMessage" style="width: 1200px;">
+    <div style="float: left; width: 120px;"><h5 style="color:black; font-weight:bold;"> Message: </h5></div>
+    <div style="float: left; width: 900px;"><h5 style="color:blue"> @ViewBag.Message </h5></div>
 </div>
 @using (Html.BeginForm("UploadImage", "ProductAdmin", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
@@ -67,7 +68,8 @@
         toolbar.Save();
     })
     .Editable(editable => editable.Mode(GridEditMode.InCell))
-    .Pageable()
+    //.Pageable()
+    .Filterable()
     .Navigatable()
     .Sortable()
     .Selectable(selectable => selectable
@@ -78,7 +80,7 @@
     .DataSource(dataSource => dataSource
         .Ajax()
         .Batch(true)
-        .PageSize(3)
+        .PageSize(1000)
         .ServerOperation(false)
         .Events(events => events.Error("error_handler"))
         .Model(model => model.Id(p => p.ProductID))
@@ -102,10 +104,10 @@
 
         $("#btn_submitFile").bind("click", function () {
 
-            if ($("#inputFile").get(0).files.length === 0) {
-                alert("Pick an image file");
-                return false;
-            }
+            //if ($("#inputFile").get(0).files.length === 0) {
+            //    alert("Pick an image file");
+            //    return false;
+            //}
 
 
             document.getElementById("userMessage").innerHTML = "Uploading file. Please wait.....";
@@ -152,6 +154,10 @@
 
         document.getElementById("selectedItemImageOriginal").src = "@Url.Content("~/content/products/{0}?{1}")".format(selectedItem.OriginalImageId, new Date().getTime());
         document.getElementById("selectedItemImageOne").src = "@Url.Content("~/content/products/{0}?{1}")".format(selectedItem.ImageIdOne, new Date().getTime());
+        document.getElementById("selectedItemImageTwo").src = "@Url.Content("~/content/products/{0}?{1}")".format(selectedItem.ImageIdTwo, new Date().getTime());
+        document.getElementById("selectedItemImageThree").src = "@Url.Content("~/content/products/{0}?{1}")".format(selectedItem.ImageIdThree, new Date().getTime());
+        document.getElementById("selectedItemImageFour").src = "@Url.Content("~/content/products/{0}?{1}")".format(selectedItem.ImageIdFour, new Date().getTime());
+        document.getElementById("selectedItemImageFive").src = "@Url.Content("~/content/products/{0}?{1}")".format(selectedItem.ImageIdFive, new Date().getTime());
 
         document.getElementById("idProductID").value = selectedItem.ProductID;
 

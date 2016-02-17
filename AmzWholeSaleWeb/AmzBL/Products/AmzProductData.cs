@@ -253,6 +253,11 @@ namespace AmzBL.Products
                                                             , ImageUploadSuccessful = @ImageUploadSuccessful
                                                             , ModifiedDate = @updateDate
                                                             , ModifiedBy = @updatedBy
+                                                            , ImageIdOne = @ImageIdOne
+                                                            , ImageIdTwo = @ImageIdTwo
+                                                            , ImageIdThree = @ImageIdThree
+                                                            , ImageIdFour = @ImageIdFour
+                                                            , ImageIdFive = @ImageIdFive
                                                         where ProductID = @ProductID
 
                                                     ",
@@ -267,6 +272,11 @@ namespace AmzBL.Products
                                                         ,p.ImageUploadSuccessful
                                                         ,updateDate
                                                         ,updatedBy
+                                                        ,p.ImageIdOne
+                                                        ,p.ImageIdTwo
+                                                        ,p.ImageIdThree
+                                                        ,p.ImageIdFour
+                                                        ,p.ImageIdFive
                                                         ,p.ProductID
                                                     });
 
