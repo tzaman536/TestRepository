@@ -53,7 +53,7 @@
 <script type="text/x-kendo-tmpl" id="template">
     <div class="product-view k-widget">
         <dl>
-            <dt><img src="@Url.Content("~/content/products/")#:SmallImageId#" alt="#:ProductName# image" /> #:ProductDescription#</dt>
+            <dt><img src="@Url.Content("~/content/products/")#:SmallImageId#" alt="#:ProductName# image" onclick="imageClicked('#:ProductID#')" /> #:ProductDescription#</dt>
             <dd><a href="/ProductDetail/Index?productID=#:ProductID#">#:ProductName#</a></dd>
             <dd class="ddPrice">#:kendo.toString(UnitPrice, "c")#</dd>
             <dd>In stock: #:UnitsInStock#</dd>
@@ -86,7 +86,7 @@
     ).Pageable()
     .Editable()
     .Navigatable()
-    .Selectable()
+    //.Selectable()
     .Events(events => events.Change("onChange").DataBound("onDataBound"))
     )
     </div>
@@ -173,6 +173,12 @@
             }
         });
 
+        function imageClicked(productID)
+        {
+            var url = '/ProductDetail/Index?productID=' + productID;
+            window.location.href = url;
+
+        }
 
         function onChange(arg) {
             var ds = $("#listView").data("kendoListView");

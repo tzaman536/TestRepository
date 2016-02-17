@@ -281,7 +281,7 @@ namespace AmzWholeSaleWeb.Controllers
                 {
                     fileIsValid = true;
                     FileInfo fi = new FileInfo(files.ElementAtOrDefault(0).FileName);
-                    if (!fi.Extension.Equals(".jpg"))
+                    if (!fi.Extension.ToLower().Equals(".jpg"))
                     {
                         uploadMessage = "Please upload a valid [.jpg] image file";
                         fileIsValid = false;
@@ -321,7 +321,7 @@ namespace AmzWholeSaleWeb.Controllers
                 if (files.ElementAtOrDefault(1) != null)
                 {
                     FileInfo fi = new FileInfo(files.ElementAtOrDefault(1).FileName);
-                    if (!fi.Extension.Equals(".jpg"))
+                    if (!fi.Extension.ToLower().Equals(".jpg"))
                     {
                         uploadMessage = "Please upload a valid [.jpg] image 1 file";
                         fileIsValid = false;
@@ -343,7 +343,7 @@ namespace AmzWholeSaleWeb.Controllers
                 if (files.ElementAtOrDefault(2) != null)
                 {
                     FileInfo fi = new FileInfo(files.ElementAtOrDefault(2).FileName);
-                    if (!fi.Extension.Equals(".jpg"))
+                    if (!fi.Extension.ToLower().Equals(".jpg"))
                     {
                         uploadMessage = "Please upload a valid [.jpg] image 2 file";
                         fileIsValid = false;
@@ -364,7 +364,7 @@ namespace AmzWholeSaleWeb.Controllers
                 if (files.ElementAtOrDefault(3) != null)
                 {
                     FileInfo fi = new FileInfo(files.ElementAtOrDefault(3).FileName);
-                    if (!fi.Extension.Equals(".jpg"))
+                    if (!fi.Extension.ToLower().Equals(".jpg"))
                     {
                         uploadMessage = "Please upload a valid [.jpg] image 3 file";
                         fileIsValid = false;
@@ -385,7 +385,7 @@ namespace AmzWholeSaleWeb.Controllers
                 if (files.ElementAtOrDefault(4) != null)
                 {
                     FileInfo fi = new FileInfo(files.ElementAtOrDefault(4).FileName);
-                    if (!fi.Extension.Equals(".jpg"))
+                    if (!fi.Extension.ToLower().Equals(".jpg"))
                     {
                         uploadMessage = "Please upload a valid [.jpg] image 4 file";
                         fileIsValid = false;
@@ -406,7 +406,7 @@ namespace AmzWholeSaleWeb.Controllers
                 if (files.ElementAtOrDefault(5) != null)
                 {
                     FileInfo fi = new FileInfo(files.ElementAtOrDefault(5).FileName);
-                    if (!fi.Extension.Equals(".jpg"))
+                    if (!fi.Extension.ToLower().Equals(".jpg"))
                     {
                         uploadMessage = "Please upload a valid [.jpg] image 5 file";
                         fileIsValid = false;
@@ -453,7 +453,7 @@ namespace AmzWholeSaleWeb.Controllers
                 var request = System.Web.HttpContext.Current.Request;
 
                 FileInfo fi = new FileInfo(files.ElementAtOrDefault(0).FileName);
-                if (!fi.Extension.Equals(".jpg"))
+                if (!fi.Extension.ToLower().Equals(".jpg"))
                 {
                     uploadMessage = "Please upload a valid [.jpg] image file";
                 }
@@ -468,6 +468,7 @@ namespace AmzWholeSaleWeb.Controllers
                         ,ProductDescription = productDescription
                         ,ProductLongDescription = productLongDescription
                         ,UnitPrice = unitPrice
+                        ,UnitsInStock = unitInStock
                     };
                     
                     //string path = System.Web.HttpContext.Current.Server.MapPath("~/UploadedImages");
