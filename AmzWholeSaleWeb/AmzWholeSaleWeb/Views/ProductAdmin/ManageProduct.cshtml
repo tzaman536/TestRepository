@@ -12,28 +12,28 @@
 
 <div style="widows: 100%; display:table;">
     <div style="display:table-row">
-        <div style="max-width:150px; display:table-cell; border:double;">
+        <div class="mangeProductImage">
             <img id="selectedItemImageOriginal" src="@Url.Content("~/content/products/loading.jpg")" />
             <input id="inputFile" class="k-textbox fileUploadBox" type="file" name="files" /><br />
         </div>
-        <div style="max-width:150px; display:table-cell; border:double;">
-            <img id="selectedItemImageOriginal" src="@Url.Content("~/content/products/loading.jpg")" />
+        <div class="mangeProductImage">
+            <img id="selectedItemImageOne" src="@Url.Content("~/content/products/loading.jpg")" />
             <input id="inputFile" class="k-textbox fileUploadBox" type="file" name="files" /><br />
         </div>
-        <div id="productImageOriginal" style="max-width:150px; display:table-cell; border:double;">
-            <img id="selectedItemImageOriginal" src="@Url.Content("~/content/products/loading.jpg")" />
+        <div class="mangeProductImage">
+            <img id="selectedItemImageTwo" src="@Url.Content("~/content/products/loading.jpg")" />
             <input id="inputFile" class="k-textbox fileUploadBox" type="file" name="files" /><br />
         </div>
-        <div id="productImageOriginal" style="max-width:150px; display:table-cell; border:double;">
-            <img id="selectedItemImageOriginal" src="@Url.Content("~/content/products/loading.jpg")" />
+        <div class="mangeProductImage">
+            <img id="selectedItemImageThree" src="@Url.Content("~/content/products/loading.jpg")" />
             <input id="inputFile" class="k-textbox fileUploadBox" type="file" name="files" /><br />
         </div>
-        <div id="productImageOriginal" style="max-width:150px; display:table-cell; border:double;">
-            <img id="selectedItemImageOriginal" src="@Url.Content("~/content/products/loading.jpg")" />
+        <div class="mangeProductImage">
+            <img id="selectedItemImageFour" src="@Url.Content("~/content/products/loading.jpg")" />
             <input id="inputFile" class="k-textbox fileUploadBox" type="file" name="files" /><br />
         </div>
-        <div id="productImageOriginal" style="max-width:150px; display:table-cell; border:double;">
-            <img id="selectedItemImageOriginal" src="@Url.Content("~/content/products/loading.jpg")" />
+        <div class="mangeProductImage">
+            <img id="selectedItemImageFive" src="@Url.Content("~/content/products/loading.jpg")" />
             <input id="inputFile" class="k-textbox fileUploadBox" type="file" name="files" /><br />
         </div>
     </div>
@@ -93,8 +93,8 @@
 <script type="text/javascript">
 
     $(document).ready(function () {
-        validateUploadForm();    
-      
+        validateUploadForm();
+
     });
 
     function validateUploadForm() {
@@ -109,7 +109,7 @@
 
 
             document.getElementById("userMessage").innerHTML = "Uploading file. Please wait.....";
-            
+
             window.setInterval(function () {
                 // 'blink' class is toggled into 'P' tag between the interval of 500 ms
                 $("#userMessage").toggleClass('blink');
@@ -150,7 +150,8 @@
         var grid = $("#ProductGrid").data("kendoGrid");
         var selectedItem = grid.dataItem(grid.select());
 
-        document.getElementById("selectedItemImageOriginal").src = "@Url.Content("~/content/products/{0}?{1}")".format(selectedItem.SmallImageId, new Date().getTime());
+        document.getElementById("selectedItemImageOriginal").src = "@Url.Content("~/content/products/{0}?{1}")".format(selectedItem.OriginalImageId, new Date().getTime());
+        document.getElementById("selectedItemImageOne").src = "@Url.Content("~/content/products/{0}?{1}")".format(selectedItem.ImageIdOne, new Date().getTime());
 
         document.getElementById("idProductID").value = selectedItem.ProductID;
 
@@ -161,6 +162,21 @@
 </script>
 
 <style>
+    .mangeProductImage
+    {
+        max-width:150px; 
+        display:table-cell; 
+        border:double;
+    }
+    .mangeProductImage img{
+            float: left;
+            width:100px;
+            height:100px;
+            opacity:100;
+            margin-bottom:40px;
+            margin-right:0px;
+        }
+
     .k-grid {
         font-size: 10px;
     }
