@@ -5,7 +5,9 @@
 
 <h2>Sections</h2>
 
-<h3>@ViewBag.Message</h3>
+<div>
+    <h3 id="updateStatus">Manage store sections:</h3>
+</div>
 
 <div id="allProducts" style="min-width:400px; max-width:900px">
     @(Html.Kendo().Grid<AmzModel.Section>()
@@ -41,7 +43,7 @@
         .Batch(true)
         .PageSize(1000)
         .ServerOperation(false)
-        .Events(events => events.Error("error_handler"))
+        .Events(events => events.Error("error_handler").Sync("sync_handler").RequestEnd("onRequestEnd"))
         .Model(model => model.Id(p => p.SectionID))
                         .Create("Section_Create", "ReferenceData")
                         .Read("Section_Read", "ReferenceData")
@@ -66,8 +68,29 @@
     }
 
     function onChange(arg) {
-
+        //alert("Changed");
     }
+
+    function sync_handler(e)
+    {
+    }
+
+    function onRequestEnd(e) {
+
+        if (e.type == "update" && !e.response.Errors) {
+            alert("Section updated");
+        }
+
+        if (e.type == "create" && !e.response.Errors) {
+            alert("Section added");
+        }
+
+        if (e.type == "destroy" && !e.response.Errors) {
+            alert("Section deleted");
+        }
+        
+    }
+
 </script>
 
 
