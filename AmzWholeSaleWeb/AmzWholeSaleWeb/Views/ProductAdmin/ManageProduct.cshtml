@@ -82,7 +82,7 @@
         .Batch(true)
         .PageSize(1000)
         .ServerOperation(false)
-        .Events(events => events.Error("error_handler"))
+        .Events(events => events.Error("error_handler").RequestEnd("onRequestEnd"))
         .Model(model => model.Id(p => p.ProductID))
                         .Create("Editing_Create", "ProductAdmin")
                         .Read("Editing_Read", "ProductAdmin")
@@ -163,7 +163,17 @@
 
     }
 
+    function onRequestEnd(e) {
 
+        if (e.type == "update" && !e.response.Errors) {
+            alert("product updated");
+        }
+
+        if (e.type == "destroy" && !e.response.Errors) {
+            alert("Producdt deleted");
+        }
+
+    }
 
 </script>
 
