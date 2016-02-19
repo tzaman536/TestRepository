@@ -28,26 +28,6 @@ create table amz.Products
 	ModifiedBy nvarchar(50) null
 )
 
-/*
-insert into amz.Products
-(ProductName
-	,ProductDescription
-	,UnitPrice
-	,UnitsInStock
-	,UnitsOnOrder
-	,Discontinued
-	,ImageUploadSuccessful
-	,AddDate
-	,AddedBy
-)	
-values ( 'Chai'
-	,'Chai'
-	,10
-	,100
-	,50
-	,0
-	,1
-	,getdate()
-	,'tzaman')
-SELECT SCOPE_IDENTITY()
-*/
+ALTER TABLE amz.Products
+ADD CONSTRAINT PK_Products_ProductName PRIMARY KEY (ProductName)
+GO
