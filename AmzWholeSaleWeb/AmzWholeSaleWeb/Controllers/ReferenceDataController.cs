@@ -8,7 +8,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace AmzWholeSaleWeb.Views.ProductAdmin
+namespace AmzWholeSaleWeb.Controllers
 {
     public class ReferenceDataController : Controller
     {
