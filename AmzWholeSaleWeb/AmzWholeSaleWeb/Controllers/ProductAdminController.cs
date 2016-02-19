@@ -1,4 +1,5 @@
 ﻿using AmzBL.Products;
+using AmzBL.Sections;
 using AmzModel;
 using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
@@ -24,10 +25,12 @@ namespace AmzWholeSaleWeb.Controllers
         private static readonly ILog logger = LogManager.GetLogger(typeof(ProductAdminController));
 
         private AmzProductHandler productHandler;
+        private SectionDataHandler sectionHandler;
 
         public ProductAdminController()
         {
             productHandler = new AmzProductHandler();
+            sectionHandler = new SectionDataHandler();
         }
 
         #region Views
@@ -73,6 +76,13 @@ namespace AmzWholeSaleWeb.Controllers
                 return RedirectToAction("Login", "Account");
             }
 
+            ViewData["SourceList"] = new string[] { "select...", "Furnituer", "Home", "Construction" }.Select(x =>
+            new
+            {
+                SectionID = x,
+                Status = x
+            });
+            //PopulateSections();
 
             if (string.IsNullOrEmpty(message))
             {
@@ -90,6 +100,14 @@ namespace AmzWholeSaleWeb.Controllers
             }
 
             return View();
+        }
+
+
+        private void PopulateSections()
+        {
+            var sections = sectionHandler.GetSections();
+            ViewData["sections"] = sections;
+            ViewData["defaultSection"] = sections.First();
         }
 
         public ActionResult ViewTransactions()

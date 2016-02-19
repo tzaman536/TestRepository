@@ -22,6 +22,7 @@ create table amz.Products
 	ImageIdThree nvarchar(150) null,
 	ImageIdFour nvarchar(150) null,
 	ImageIdFive nvarchar(150) null,
+	SectionID int null,
 	AddDate datetime not null,
 	AddedBy nvarchar(50) not null,
 	ModifiedDate datetime null,
