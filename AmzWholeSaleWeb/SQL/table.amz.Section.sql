@@ -1,7 +1,7 @@
-IF OBJECT_ID ('amz.Section', 'U') IS NOT NULL 
-   drop table amz.Section
+IF OBJECT_ID ('amz.Sections', 'U') IS NOT NULL 
+   drop table amz.Sections
 
-create table amz.Section
+create table amz.Sections
 (
 	SectionID int identity not null,
 	SectionName nvarchar(50) not null,
@@ -13,8 +13,8 @@ create table amz.Section
 )
 GO
 
-ALTER TABLE amz.Section
-ADD CONSTRAINT PK_Section_SectionName PRIMARY KEY (SectionName)
+ALTER TABLE amz.Sections
+ADD CONSTRAINT PK_Sections_SectionName PRIMARY KEY (SectionName)
 GO
 
 

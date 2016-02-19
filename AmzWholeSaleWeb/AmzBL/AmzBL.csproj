@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="Products\AmzProductData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sections\SectionData.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AmzModel\AmzModel.csproj">
