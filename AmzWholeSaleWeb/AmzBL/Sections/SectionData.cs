@@ -24,7 +24,7 @@ namespace AmzBL.Sections
                 try
                 {
                     result = conn.Query<Section>(@"
-                    SELECT SectionID as Id, SectionName as Status
+                    SELECT SectionID , SectionName 
                     FROM amz.Sections
                     order by SectionName desc");
                 }

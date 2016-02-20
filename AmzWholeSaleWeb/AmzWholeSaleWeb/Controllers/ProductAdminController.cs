@@ -106,7 +106,7 @@ namespace AmzWholeSaleWeb.Controllers
         private void PopulateSections()
         {
             var sections = sectionHandler.GetSections();
-            ViewData["SourceList"] = sections;
+            ViewData["SectionList"] = sections;
             ViewData["defaultSection"] = sections.First();
         }
 
