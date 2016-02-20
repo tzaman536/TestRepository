@@ -17,7 +17,7 @@
             columns.Bound(c => c.Quantity).Width(150);
             columns.Bound(c => c.Price).Width(150);
             columns.Bound(c => c.Total).Width(150);
-            columns.Bound(c => c.DateCreated).Width(150).Format("{0:MM/dd/yyyy }");
+            columns.Bound(c => c.DateCreated).Width(150).Format("{0:MM/dd/yyyy hh:mm tt }");
             columns.Bound(c => c.CheckedOut).Width(150);
         })
         .HtmlAttributes(new { style = "height: 550px;" })
