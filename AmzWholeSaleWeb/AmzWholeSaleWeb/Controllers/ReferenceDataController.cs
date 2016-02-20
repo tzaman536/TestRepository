@@ -23,6 +23,14 @@ namespace AmzWholeSaleWeb.Controllers
         public ActionResult Index()
         {
             ViewBag.Message = "Reference data management page.";
+
+            ViewData["SourceList"] = new string[] { "select...", "g", "k", "Prime" }.Select(x =>
+            new
+            {
+                Id = x,
+                Status = x
+            });
+
             return View();
         }
 

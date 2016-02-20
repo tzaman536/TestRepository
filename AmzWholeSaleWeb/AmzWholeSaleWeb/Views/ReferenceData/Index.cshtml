@@ -9,93 +9,61 @@
     <h3 id="updateStatus">Manage store sections:</h3>
 </div>
 
-@*<div id="allTest" style="min-width:400px; max-width:900px">
-@(Html.Kendo().Grid<Kendo.Mvc.Examples.Models.ProductViewModel>()
-    .Name("grid")
-    .Columns(columns =>
-    {
-        columns.Bound(p => p.ProductName);
-        columns.Bound(p => p.Category).ClientTemplate("#=Category.CategoryName#").Width(180);
-        columns.Bound(p => p.UnitPrice).Width(130);
-        columns.Command(command => command.Destroy()).Width(150);
-    })
-    .ToolBar(toolBar =>
-    {
-        toolBar.Create();
-        toolBar.Save();
-    })
-    .Editable(editable => editable.Mode(GridEditMode.InCell))
-    .Pageable()
-    .Sortable()
-    .Scrollable()
-    .HtmlAttributes(new { style = "height:550px;" })
-    .DataSource(dataSource => dataSource
-        .Ajax()
-        .Batch(true)
-        .ServerOperation(false)
-        .Events(events => events.Error("error_handler"))
-        .Model(model =>
-        {
-            model.Id(p => p.ProductID);
-            model.Field(p => p.ProductID).Editable(false);
-            model.Field(p => p.Category).DefaultValue(
-                ViewData["defaultCategory"] as Kendo.Mvc.Examples.Models.CategoryViewModel);
-        })
-        .PageSize(20)
-        .Read(read => read.Action("EditingCustom_Read", "ReferenceData"))
-        .Create(create => create.Action("EditingCustom_Create", "ReferenceData"))
-        .Update(update => update.Action("EditingCustom_Update", "ReferenceData"))
-        .Destroy(destroy => destroy.Action("EditingCustom_Destroy", "ReferenceData"))
-    )
-)</div>*@
 
-
-
-<div id="allProducts" style="min-width:400px; max-width:900px">
+<div>
     @(Html.Kendo().Grid<AmzModel.Section>()
-    .Name("SectionGrid")
-    .Columns(columns =>
-    {
-        columns.Bound(p => p.SectionName).Width(100);
-        columns.Bound(p => p.SectionDescription).Width(100);
-        columns.Bound(p => p.AddDate).Width(255);
-        columns.Bound(p => p.AddedBy).Width(85);
-        columns.Bound(p => p.ModifiedDate).Width(85);
-        columns.Bound(p => p.ModifiedBy).Width(85);
-        columns.Command(command => command.Destroy()).Width(110);
+          //.Name("Grid").Events(e => e.FilterMenuInit("filterMenuInit"))
+          .Name("Grid")
+      .Columns(columns =>
+      {
+          columns.ForeignKey(p => p.SectionName, (System.Collections.IEnumerable)ViewData["SourceList"], "Id", "Status").Title("Category");
+          columns.Bound(p => p.SectionDescription).Width(100);
+          columns.Bound(p => p.AddDate).Width(255);
+          columns.Bound(p => p.AddedBy).Width(85);
+          columns.Bound(p => p.ModifiedDate).Width(85);
+          columns.Bound(p => p.ModifiedBy).Width(85);
+          columns.Command(c =>
+          {
+              c.Edit();
+              c.Destroy();
+          });
+      })
+        .ToolBar(tools =>
+        {
+            tools.Create();
+        })
+        .Sortable().Filterable()
+        .Pageable().Scrollable(scrollable => scrollable.Height(800)).Reorderable(reorderable => reorderable.Columns(true)).Resizable(resizable => resizable.Columns(true))
+        .DataSource(dataSource => dataSource
+            .Ajax()
+            .Events(events => events.Error("errorHandler"))
+            .PageSize(1000)
+            .Model(model =>
+            {
+                model.Id(p => p.SectionID);
+                model.Field(p => p.SectionID).Editable(false);
+                model.Field(p => p.SectionName).Editable(true);
+                model.Field(p => p.SectionDescription).Editable(true);
+                model.Field(p => p.AddDate).Editable(false);
+                model.Field(p => p.AddedBy).Editable(false);
+                model.Field(p => p.ModifiedDate).Editable(false);
+                model.Field(p => p.ModifiedBy).Editable(false);
 
-    })
-    .ToolBar(toolbar =>
-    {
-        toolbar.Create();
-        toolbar.Save();
-    })
-    .Editable(editable => editable.Mode(GridEditMode.InCell))
-    //.Pageable()
-    .Filterable()
-    .Navigatable()
-    .Sortable()
-    .Selectable(selectable => selectable
-            .Mode(GridSelectionMode.Single)
-            .Type(GridSelectionType.Row))
-    //.Scrollable()
-    .Events(events => events.Change("onChange"))
-    .DataSource(dataSource => dataSource
-        .Ajax()
-        .Batch(true)
-        .PageSize(1000)
-        .ServerOperation(false)
-        .Events(events => events.Error("error_handler").Sync("sync_handler").RequestEnd("onRequestEnd"))
-        .Model(model => model.Id(p => p.SectionID))
-                        .Create("Section_Create", "ReferenceData")
-                        .Read("Section_Read", "ReferenceData")
-                        .Update("Section_Update", "ReferenceData")
-                        .Destroy("Section_Destroy", "ReferenceData")
-                    )
+            })
+                    .Create(update => update.Action("Section_Create", "ReferenceData"))
+                    .Read(read => read.Action("Section_Read", "ReferenceData"))
+                    .Update(update => update.Action("Section_Update", "ReferenceData"))
+                    .Destroy(update => update.Action("Section_Destroy", "ReferenceData"))
+        )
     )
+
+
+
+
 </div>
+
 <script>
-    function error_handler(e) {
+    function errorHandler(e) {
         if (e.errors) {
             var message = "Errors:\n";
             $.each(e.errors, function (key, value) {

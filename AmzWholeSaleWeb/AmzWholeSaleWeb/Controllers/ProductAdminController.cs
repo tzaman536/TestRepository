@@ -79,7 +79,7 @@ namespace AmzWholeSaleWeb.Controllers
             ViewData["SourceList"] = new string[] { "select...", "Furnituer", "Home", "Construction" }.Select(x =>
             new
             {
-                SectionID = x,
+                Id = x,
                 Status = x
             });
             //PopulateSections();
