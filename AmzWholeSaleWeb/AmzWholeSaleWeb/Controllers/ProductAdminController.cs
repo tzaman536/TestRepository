@@ -140,159 +140,139 @@ namespace AmzWholeSaleWeb.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Editing_Create([DataSourceRequest] DataSourceRequest request, [Bind(Prefix = "models")]IEnumerable<AmzProduct> products)
+        public ActionResult Editing_Create([DataSourceRequest] DataSourceRequest request, AmzProduct product)
         {
-            var results = new List<AmzProduct>();
 
-            if (products != null && ModelState.IsValid)
+            var addedProduct = productHandler.AddProduct(product);
+            if (addedProduct != null)
             {
-                foreach (var product in products)
-                {
-                    var addedProduct = productHandler.AddProduct(product);
-                    if (addedProduct != null)
-                    {
-                        ViewBag.Message = "Record saved";
-                        ViewBag.ErrorFound = false;
+                ViewBag.Message = "Record saved";
+                ViewBag.ErrorFound = false;
 
-                        product.ProductID = addedProduct.ProductID;
-                    }
-                    else
-                    {
-                        ViewBag.Message = "Failed to save record";
-                        ViewBag.ErrorFound = true;
+                product.ProductID = addedProduct.ProductID;
+            }
+            else
+            {
+                ViewBag.Message = "Failed to save record";
+                ViewBag.ErrorFound = true;
 
-                    }
-
-                    results.Add(product);
-                }
             }
 
-            return Json(results.ToDataSourceResult(request, ModelState));
+
+            return Json(new[] { product }.ToDataSourceResult(request, ModelState));
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Editing_Update([DataSourceRequest] DataSourceRequest request, [Bind(Prefix = "models")]IEnumerable<AmzProduct> products)
+        public ActionResult Editing_Update([DataSourceRequest] DataSourceRequest request, AmzProduct product)
         {
-            if (products != null && ModelState.IsValid)
-            {
-                foreach (var product in products)
-                {
-                    productHandler.UpdateProduct(product);
-                }
-            }
+            productHandler.UpdateProduct(product);
 
-            return Json(products.ToDataSourceResult(request, ModelState));
+            return Json(new[] { product }.ToDataSourceResult(request, ModelState));
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Editing_Destroy([DataSourceRequest] DataSourceRequest request, [Bind(Prefix = "models")]IEnumerable<AmzProduct> products)
+        public ActionResult Editing_Destroy([DataSourceRequest] DataSourceRequest request, AmzProduct product)
         {
-            if (products.Any())
-            {
-                string destinationFilePath = System.Web.HttpContext.Current.Server.MapPath("~/Content/products");
-                foreach (var product in products)
-                {
+            string destinationFilePath = System.Web.HttpContext.Current.Server.MapPath("~/Content/products");
                     
-                    try
+                try
+                {
+                    string fileToDelete = string.Format(@"{0}\{1}", destinationFilePath, product.OriginalImageId);
+                    FileInfo fi = new FileInfo(fileToDelete);
+                    if (fi.Exists)
                     {
-                        string fileToDelete = string.Format(@"{0}\{1}", destinationFilePath, product.OriginalImageId);
-                        FileInfo fi = new FileInfo(fileToDelete);
-                        if (fi.Exists)
+                        try
                         {
-                            try
-                            {
-                                fi.Delete();
-                            }
-                            catch { }
+                            fi.Delete();
                         }
-                        fileToDelete = string.Format(@"{0}\{1}", destinationFilePath, product.SmallImageId);
-                        fi = new FileInfo(fileToDelete);
-                        if (fi.Exists)
-                        {
-                            try {
-                                fi.Delete();
-                            }
-                            catch { }
+                        catch { }
+                    }
+                    fileToDelete = string.Format(@"{0}\{1}", destinationFilePath, product.SmallImageId);
+                    fi = new FileInfo(fileToDelete);
+                    if (fi.Exists)
+                    {
+                        try {
+                            fi.Delete();
                         }
-                        fileToDelete = string.Format(@"{0}\{1}", destinationFilePath, product.MediumImageId);
-                        fi = new FileInfo(fileToDelete);
-                        if (fi.Exists)
-                        {
-                            try {
-                                fi.Delete();
-                            }
-                            catch { }
+                        catch { }
+                    }
+                    fileToDelete = string.Format(@"{0}\{1}", destinationFilePath, product.MediumImageId);
+                    fi = new FileInfo(fileToDelete);
+                    if (fi.Exists)
+                    {
+                        try {
+                            fi.Delete();
                         }
-                        fileToDelete = string.Format(@"{0}\{1}", destinationFilePath, product.LargeImageId);
-                        fi = new FileInfo(fileToDelete);
-                        if (fi.Exists)
-                        {
-                            try {
-                                fi.Delete();
-                            }
-                            catch { }
+                        catch { }
+                    }
+                    fileToDelete = string.Format(@"{0}\{1}", destinationFilePath, product.LargeImageId);
+                    fi = new FileInfo(fileToDelete);
+                    if (fi.Exists)
+                    {
+                        try {
+                            fi.Delete();
                         }
-                        fileToDelete = string.Format(@"{0}\{1}", destinationFilePath, product.ImageIdOne);
-                        fi = new FileInfo(fileToDelete);
-                        if (fi.Exists)
-                        {
-                            try {
-                                fi.Delete();
-                            }
-                            catch { }
-
+                        catch { }
+                    }
+                    fileToDelete = string.Format(@"{0}\{1}", destinationFilePath, product.ImageIdOne);
+                    fi = new FileInfo(fileToDelete);
+                    if (fi.Exists)
+                    {
+                        try {
+                            fi.Delete();
                         }
-                        fileToDelete = string.Format(@"{0}\{1}", destinationFilePath, product.ImageIdTwo);
-                        fi = new FileInfo(fileToDelete);
-                        if (fi.Exists)
-                        {
-                            try {
-                                fi.Delete();
-                            }
-                            catch { }
-                        }
-                        fileToDelete = string.Format(@"{0}\{1}", destinationFilePath, product.ImageIdThree);
-                        fi = new FileInfo(fileToDelete);
-                        if (fi.Exists)
-                        {
-                            try {
-                                fi.Delete();
-                            }
-                            catch { }
-                        }
-                        fileToDelete = string.Format(@"{0}\{1}", destinationFilePath, product.ImageIdFour);
-                        fi = new FileInfo(fileToDelete);
-                        if (fi.Exists)
-                        {
-                            try {
-                                fi.Delete();
-                            }
-                            catch { }
-                        }
-                        fileToDelete = string.Format(@"{0}\{1}", destinationFilePath, product.ImageIdFive);
-                        fi = new FileInfo(fileToDelete);
-                        if (fi.Exists)
-                        {
-                            try {
-                                fi.Delete();
-                            }
-                            catch { }
-                        }
-
-
+                        catch { }
 
                     }
-                    catch (Exception ex)
+                    fileToDelete = string.Format(@"{0}\{1}", destinationFilePath, product.ImageIdTwo);
+                    fi = new FileInfo(fileToDelete);
+                    if (fi.Exists)
                     {
-                        logger.Fatal(ex);
+                        try {
+                            fi.Delete();
+                        }
+                        catch { }
+                    }
+                    fileToDelete = string.Format(@"{0}\{1}", destinationFilePath, product.ImageIdThree);
+                    fi = new FileInfo(fileToDelete);
+                    if (fi.Exists)
+                    {
+                        try {
+                            fi.Delete();
+                        }
+                        catch { }
+                    }
+                    fileToDelete = string.Format(@"{0}\{1}", destinationFilePath, product.ImageIdFour);
+                    fi = new FileInfo(fileToDelete);
+                    if (fi.Exists)
+                    {
+                        try {
+                            fi.Delete();
+                        }
+                        catch { }
+                    }
+                    fileToDelete = string.Format(@"{0}\{1}", destinationFilePath, product.ImageIdFive);
+                    fi = new FileInfo(fileToDelete);
+                    if (fi.Exists)
+                    {
+                        try {
+                            fi.Delete();
+                        }
+                        catch { }
                     }
 
 
-                    productHandler.DeleteProduct(product);
+
                 }
-            }
+                catch (Exception ex)
+                {
+                    logger.Fatal(ex);
+                }
 
-            return Json(products.ToDataSourceResult(request, ModelState));
+
+                productHandler.DeleteProduct(product);
+
+            return Json(new[] { product }.ToDataSourceResult(request, ModelState));
         }
 
         [HttpPost]
