@@ -29,7 +29,6 @@ namespace AmzModel
         public string ImageIdFive { get; set; }
         public int TotalItemsInCart { get; set; }
         public int SectionID { get; set; }
-        public string SectionName { get; set; }
         public decimal CostOfItemsInCart { get; set; }
         public DateTime AddDate { get; set; }
         public string AddedBy { get; set; }
