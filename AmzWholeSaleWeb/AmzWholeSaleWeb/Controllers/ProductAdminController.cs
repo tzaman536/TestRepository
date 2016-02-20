@@ -76,13 +76,13 @@ namespace AmzWholeSaleWeb.Controllers
                 return RedirectToAction("Login", "Account");
             }
 
-            ViewData["SourceList"] = new string[] { "select...", "Furnituer", "Home", "Construction" }.Select(x =>
-            new
-            {
-                Id = x,
-                Status = x
-            });
-            //PopulateSections();
+            //ViewData["SourceList"] = new string[] { "select...", "Furnituer", "Home", "Construction" }.Select(x =>
+            //new
+            //{
+            //    Id = x,
+            //    Status = x
+            //});
+            PopulateSections();
 
             if (string.IsNullOrEmpty(message))
             {
@@ -106,7 +106,7 @@ namespace AmzWholeSaleWeb.Controllers
         private void PopulateSections()
         {
             var sections = sectionHandler.GetSections();
-            ViewData["sections"] = sections;
+            ViewData["SourceList"] = sections;
             ViewData["defaultSection"] = sections.First();
         }
 

@@ -53,13 +53,14 @@
     .Columns(columns =>
     {
         columns.Bound(p => p.ProductName).Width(100);
+        columns.ForeignKey(p => p.SectionID, (System.Collections.IEnumerable)ViewData["SourceList"], "Id", "Status").Title("Category");
         columns.Bound(p => p.ProductDescription).Width(100);
         columns.Bound(p => p.ProductLongDescription).Width(255);
         columns.Bound(p => p.UnitPrice).Width(85);
         columns.Bound(p => p.UnitsInStock).Width(85);
         columns.Bound(p => p.UnitsOnOrder).Width(85);
-        columns.Bound(p => p.ImageUploadSuccessful).Width(50);
-        columns.Bound(p => p.Discontinued).Width(50);
+        //columns.Bound(p => p.ImageUploadSuccessful).Width(50);
+        //columns.Bound(p => p.Discontinued).Width(50);
         columns.Command(command => command.Destroy()).Width(110);
     })
     .ToolBar(toolbar =>
@@ -83,7 +84,21 @@
         .PageSize(1000)
         .ServerOperation(false)
         .Events(events => events.Error("error_handler").RequestEnd("onRequestEnd"))
-        .Model(model => model.Id(p => p.ProductID))
+        //.Model(model => model.Id(p => p.ProductID))
+        .Model(model =>
+        {
+            model.Id(p => p.ProductID);
+            model.Field(p => p.ProductName).Editable(true);
+            model.Field(p => p.SectionID).Editable(true);
+            model.Field(p => p.ProductDescription).Editable(true);
+            model.Field(p => p.ProductLongDescription).Editable(true);
+            model.Field(p => p.UnitPrice).Editable(true);
+            model.Field(p => p.UnitsInStock).Editable(true);
+            model.Field(p => p.UnitsOnOrder).Editable(true);
+
+        })
+
+
                         .Create("Editing_Create", "ProductAdmin")
                         .Read("Editing_Read", "ProductAdmin")
                         .Update("Editing_Update", "ProductAdmin")

@@ -8,6 +8,8 @@ namespace AmzModel
 {
     public class Section
     {
+        public int Id { get; set; }
+        public string Status { get; set; }
         public int SectionID { get; set; }
 	    public string SectionName { get; set; }
         public string SectionDescription { get; set; }
