@@ -72,9 +72,9 @@
     .Filterable()
     .Navigatable()
     .Sortable()
-    //.Selectable(selectable => selectable
-    //        .Mode(GridSelectionMode.Single)
-    //        .Type(GridSelectionType.Cell))
+    .Selectable(selectable => selectable
+            .Mode(GridSelectionMode.Single)
+            .Type(GridSelectionType.Row))
     //.Scrollable()
     .Events(events => events.Change("onChange"))
     .DataSource(dataSource => dataSource
@@ -165,6 +165,8 @@
     function onChange(arg) {
         var grid = $("#ProductGrid").data("kendoGrid");
         var selectedItem = grid.dataItem(grid.select());
+        //alert(selectedItem);
+
 
         document.getElementById("selectedItemImageOriginal").src = "@Url.Content("~/content/products/{0}?{1}")".format(selectedItem.OriginalImageId, new Date().getTime());
         document.getElementById("selectedItemImageOne").src = "@Url.Content("~/content/products/{0}?{1}")".format(selectedItem.ImageIdOne, new Date().getTime());
