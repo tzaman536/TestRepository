@@ -1424,7 +1424,7 @@
     <Content Include="Views\ProductDetail\Index.cshtml" />
     <Content Include="Views\AmzHome\Contact.cshtml" />
     <Content Include="Views\AmzHome\About.cshtml" />
-    <Content Include="Views\ProductAdmin\AdminMenuHorizontal.cshtml" />
+    <Content Include="Views\Shared\AdminMenuHorizontal.cshtml" />
     <Content Include="Views\ProductAdmin\ViewTransactions.cshtml" />
     <Content Include="Views\ReferenceData\Index.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\GridForeignKey.cshtml" />
