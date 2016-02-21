@@ -53,9 +53,9 @@
 <script type="text/x-kendo-tmpl" id="template">
     <div class="product-view k-widget">
         <dl>
-            <dt><img src="@Url.Content("~/content/products/")#:SmallImageId#" alt="#:ProductName# image" onclick="imageClicked('#:ProductID#')" /> #:ProductDescription#</dt>
+            <dt><img src="@Url.Content("~/content/products/")#:SmallImageId#" alt="#:ProductName# image" onclick="imageClicked('#:ProductID#')" /> <a href="/ProductDetail/Index?productID=#:ProductID#">#:ProductName#</a></dt>
             <dd>&nbsp;</dd>
-            <dd><a href="/ProductDetail/Index?productID=#:ProductID#">#:ProductName#</a></dd>
+            <dd>#:ProductDescription#</dd>
             <dd class="ddPrice">#:kendo.toString(UnitPrice, "c")#</dd>
             <dd>In stock: #:UnitsInStock# <b style="color:blue; float:right;">Free shipping</b></dd>
             <dd><input id="addToCartButton" type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_addtocart_96x21.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" onclick="addOneItemToCart('#:ProductID#', '#:UnitPrice#', 1)"></dd>

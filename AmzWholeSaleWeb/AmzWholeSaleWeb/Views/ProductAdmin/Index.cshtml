@@ -9,30 +9,56 @@
 </div>
 @using (Html.BeginForm("UploadProduct", "ProductAdmin", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
+    <h4> Product Images:</h4>
+    <div style="widows: 100%; display:table;">
+        <div style="display:table-row">
+            
+            <div class="mangeProductImage">
+                <input id="inputFile" class="k-textbox fileUploadBox" type="file" name="files" /><br />
+            </div>
+            <div class="mangeProductImage">
+                <input id="inputFile" class="k-textbox fileUploadBox" type="file" name="files" /><br />
+            </div>
+            <div class="mangeProductImage">
+                <input id="inputFile" class="k-textbox fileUploadBox" type="file" name="files" /><br />
+            </div>
+            <div class="mangeProductImage">
+                <input id="inputFile" class="k-textbox fileUploadBox" type="file" name="files" /><br />
+            </div>
+            <div class="mangeProductImage">
+                <input id="inputFile" class="k-textbox fileUploadBox" type="file" name="files" /><br />
+            </div>
+            <div class="mangeProductImage">
+                <input id="inputFile" class="k-textbox fileUploadBox" type="file" name="files" /><br />
+            </div>
+        </div>
+    </div>
+
+
 <div>
     <div style="widows: 100%; display:table;">
         <div style="display:table-row">
             <div id="idProductUploadForm" style="min-width:900px; display:table-cell;">
                     <dl>
-                        <dt>
+                        @*<dt>
                             Product Image:
                         </dt>
                         <dd>
-                            <input id="inputFile" class="k-textbox fileUploadBox" type="file" name="files" /><br />
-                            <input id="inputFile" class="k-textbox fileUploadBox" type="file" name="files" /><br />
-                            <input id="inputFile" class="k-textbox fileUploadBox" type="file" name="files" /><br />
-                            <input id="inputFile" class="k-textbox fileUploadBox" type="file" name="files" /><br />
-                            <input id="inputFile" class="k-textbox fileUploadBox" type="file" name="files" /><br />
-                            <input id="inputFile" class="k-textbox fileUploadBox" type="file" name="files" /><br />
-                        </dd>
+                            <input id="inputFile" class="k-textbox fileUploadBox" type="file" name="files" />
+                            <input id="inputFile" class="k-textbox fileUploadBox" type="file" name="files" />
+                            <input id="inputFile" class="k-textbox fileUploadBox" type="file" name="files" />
+                            <input id="inputFile" class="k-textbox fileUploadBox" type="file" name="files" />
+                            <input id="inputFile" class="k-textbox fileUploadBox" type="file" name="files" />
+                            <input id="inputFile" class="k-textbox fileUploadBox" type="file" name="files" />
+                        </dd>*@
                         <dt>
-                            Product Name:
+                            Product Name (150 characters max):
                         </dt>
                         <dd>
                             <input type="text" class="k-textbox productName" id="idProductName" name="productName" required />
                         </dd>
                         <dt>
-                            Product Description:
+                            Product Description (255 characters max):
                         </dt>
                         <dd>
                             <textarea id="idProductDescription" name="productDescription" class="k-textbox productDescription" rows="4" cols="20" required></textarea>
@@ -51,7 +77,7 @@
                             <input type="number" class="k-textbox numberOfUnits" id="idUnitInStock" name="unitInStock" data-role='maskedtextbox' required />
                         </dd>
                         <dt>
-                            Product Long Description:
+                            Product Long Description (Unlimited character):
                         </dt>
                         <dd>
                             <div class="box wide">
@@ -62,9 +88,12 @@
                             </div>
                         </dd>
                     </dl>
-                    <input id="btn_UploadProduct" type="submit" class="k-button" value="Upload" />
             </div>
             <div style="max-width:300px; display:table-cell;">
+                <br />
+                <br />
+                <input id="btn_UploadProduct" type="submit" class="k-button" value="Upload" />
+
                 @*@Html.Partial("AdminMenu")*@
             </div>
         </div>
@@ -147,11 +176,20 @@
 </script>
 
 <style>
+    .mangeProductImage
+    {
+        min-width:200px;
+        max-width:200px; 
+        display:table-cell; 
+        border:double;
+    }
+   
     .numberOfUnits{
       min-height:30px;
     }
     .fileUploadBox{
-        min-width:500px;
+        min-width:195px;
+        max-width:195px;
     }
     .productName {
         min-width: 500px;
@@ -159,7 +197,7 @@
 
     .productDescription{
         min-width:500px; 
-        min-height:100px;
+        min-height:70px;
     }
     
     .productLongDescription{
