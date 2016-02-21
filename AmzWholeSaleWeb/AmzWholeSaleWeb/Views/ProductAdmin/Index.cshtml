@@ -1,15 +1,18 @@
 ﻿@{
     ViewBag.Title = "Product Admin";
 }
+<div>
+    @Html.Partial("AdminMenuHorizontal")
+</div>
 <div id="messageForUser">
     @ViewBag.Message
 </div>
+@using (Html.BeginForm("UploadProduct", "ProductAdmin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
 <div>
     <div style="widows: 100%; display:table;">
         <div style="display:table-row">
             <div id="idProductUploadForm" style="min-width:900px; display:table-cell;">
-                @using (Html.BeginForm("UploadProduct", "ProductAdmin", FormMethod.Post, new { enctype = "multipart/form-data" }))
-            {
                     <dl>
                         <dt>
                             Product Image:
@@ -60,14 +63,16 @@
                         </dd>
                     </dl>
                     <input id="btn_UploadProduct" type="submit" class="k-button" value="Upload" />
-                }
             </div>
             <div style="max-width:300px; display:table-cell;">
-                @Html.Partial("AdminMenu")
+                @*@Html.Partial("AdminMenu")*@
             </div>
         </div>
     </div>
 </div>
+ }
+
+
 <script type="text/javascript">
 
     $(document).ready(function () {
@@ -138,8 +143,6 @@
         document.getElementById("idProductID").value = selectedItem.ProductID;
 
     }
-
-
 
 </script>
 

@@ -1,8 +1,99 @@
-﻿<div class="navbar-collapse collapse">
+﻿@(Html.Kendo().ToolBar()
+    .Name("ToolBar")
+    .Items(items =>
+    {
+        items.Add().Type(CommandType.Button).Text("Add").Id("btnAdd").Click("buttonClickHandler");
+        items.Add().Type(CommandType.Button).Text("Manage").Id("btnManage").Click("buttonClickHandler");
+        items.Add().Type(CommandType.Separator);
+        items.Add().Type(CommandType.Button).Togglable(true).Text("Transactions").Id("btnTransactions").Toggle("buttonToggleHandler");
+        items.Add().Type(CommandType.Button).Togglable(true).Text("App Data").Id("btnAppData").Toggle("buttonToggleHandler");
+        items.Add().Type(CommandType.Separator);
+        items.Add().Type(CommandType.SplitButton).Text("Split Button").Id("mainButton").Click("splitButtonClickHandler").MenuButtons(menuButtons =>
+        {
+            menuButtons.Add().Text("Action 1").Id("action1");
+            menuButtons.Add().Text("Action 2").Id("action2");
+            menuButtons.Add().Text("Action 3").Id("action3");
+        });
+        items.Add().Type(CommandType.Separator);
+        items.Add().Type(CommandType.ButtonGroup).Buttons(buttons =>
+        {
+            buttons.Add().Text("Radio 1").Id("radio1").Togglable(true).Group("radio").Toggle("buttonToggleHandler");
+            buttons.Add().Text("Radio 2").Id("radio2").Togglable(true).Group("radio").Toggle("buttonToggleHandler");
+            buttons.Add().Text("Radio 3").Id("radio3").Togglable(true).Group("radio").Toggle("buttonToggleHandler");
+        });
+        items.Add().Type(CommandType.Button).Text("Overflow button").Id("overflowButton").Overflow(ShowInOverflowPopup.Always);
+    })
+    .Events(e => e.Click("onClick").Toggle("onToggle").Open("onOpen").Close("onClose").OverflowOpen("onOverflowOpen").OverflowClose("onOverflowClose"))
+)
+@*<div class="navbar-collapse collapse">
     <div style="float: left; width: 100px;">@Html.ActionLink("Add", "Index", "ProductAdmin", routeValues: null, htmlAttributes: new { id = "registerLink" })</div>
     <div style="float: left; width: 100px;">@Html.ActionLink("Manage", "ManageProduct", "ProductAdmin", routeValues: null, htmlAttributes: new { id = "loginLink" })</div>
     <div style="float: left; width: 100px;">@Html.ActionLink("ViewTransactions", "ViewTransactions", "ProductAdmin", routeValues: null, htmlAttributes: new { id = "loginLink" })</div>
     <div style="width: 100px;">@Html.ActionLink("App Data", "Index", "ReferenceData", routeValues: null, htmlAttributes: new { id = "loginLink" })</div>
     <br style="clear: left;" />
-</div>
+</div>*@
 
+<script>
+
+    function buttonClickHandler(e) {
+        //alert(e.target.text() + " 'click' event is fired.");
+        if (e.target.text() == "Add") {
+            var url = '@Url.Action("Index", "ProductAdmin")';
+            window.location.href = url;
+        }
+        if (e.target.text() == "Manage") {
+            var url = '@Url.Action("ManageProduct", "ProductAdmin")';
+            window.location.href = url;
+        }
+
+    }
+
+    function buttonToggleHandler(e) {
+        //alert(e.target.text() + " 'toggle' event is fired.");
+
+        if (e.target.text() == "Transactions") {
+            var url = '@Url.Action("ViewTransactions", "ProductAdmin")';
+            window.location.href = url;
+        }
+        if (e.target.text() == "App Data") {
+            var url = '@Url.Action("Index", "ReferenceData")';
+            window.location.href = url;
+        }
+
+        
+    }
+
+    function splitButtonClickHandler(e) {
+        alert("SplitButton event: " + e.id + " is clicked.");
+    }
+
+    function onClick(e) {
+        //alert("ToolBar 'click' event is fired for element with id: " + e.id);
+    }
+
+    function onToggle(e) {
+        //if (e.group == "radio") {
+        //    alert("Toolbar 'toggle' event: " + e.id + " button is selected from group: " + e.group);
+        //} else {
+        //    alert("ToolBar 'toggle' event: " + e.id + " button is changed");
+        //}
+    }
+
+    function onOverflowOpen(e) {
+        alert("Overflow container open");
+    }
+
+    function onOverflowClose(e) {
+        alert("Overflow container close");
+    }
+
+    function onOpen(e) {
+        alert("SplitButton popup open");
+    }
+
+    function onClose(e) {
+        alert("SplitButton popup close");
+    }
+
+
+</script>
