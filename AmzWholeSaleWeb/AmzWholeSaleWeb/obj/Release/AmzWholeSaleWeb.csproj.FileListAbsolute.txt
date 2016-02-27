@@ -91,3 +91,5 @@ C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\Dapper.xml
 C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\obj\Release\AmzWholeSaleWeb.csprojResolveAssemblyReference.cache
 C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\SimplexTools.dll
 C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\SimplexTools.pdb
+C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\Sections\SectionData.cs
+C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\Views\Shared\AdminMenuHorizontal.cshtml

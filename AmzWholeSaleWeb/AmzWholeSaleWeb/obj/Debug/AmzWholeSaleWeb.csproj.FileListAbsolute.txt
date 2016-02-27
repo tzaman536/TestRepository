@@ -135,6 +135,8 @@ C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\roslyn\System.Reflecti
 C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\roslyn\vbc.exe
 C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\roslyn\VBCSCompiler.exe
 C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\roslyn\VBCSCompiler.exe.config
+C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\Sections\SectionData.cs
+C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\Views\Shared\AdminMenuHorizontal.cshtml
 C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\AmzWholeSaleWeb.dll.config
 C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\AmzWholeSaleWeb.dll
 C:\SourceCode\Simplex\AmzWholeSaleWeb\AmzWholeSaleWeb\bin\AmzWholeSaleWeb.pdb

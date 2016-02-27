@@ -30,7 +30,7 @@ namespace AmzWholeSaleWeb.Controllers
         public ProductAdminController()
         {
             productHandler = new AmzProductHandler();
-            sectionHandler = new SectionDataHandler();
+            //sectionHandler = new SectionDataHandler();
         }
 
         #region Views
@@ -105,6 +105,8 @@ namespace AmzWholeSaleWeb.Controllers
 
         private void PopulateSections()
         {
+            if (sectionHandler == null)
+                sectionHandler = new SectionDataHandler();
             var sections = sectionHandler.GetSections();
             ViewData["SectionList"] = sections;
             ViewData["defaultSection"] = sections.First();

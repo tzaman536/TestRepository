@@ -13,13 +13,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/23/2016 07:24:36</publishTime>
     </File>
     <File Include="bin/AmzBL.dll">
-      <publishTime>02/17/2016 18:50:42</publishTime>
+      <publishTime>02/21/2016 14:35:26</publishTime>
     </File>
     <File Include="bin/AmzModel.dll">
       <publishTime>02/21/2016 12:46:41</publishTime>
     </File>
     <File Include="bin/AmzWholeSaleWeb.dll">
-      <publishTime>02/21/2016 12:46:49</publishTime>
+      <publishTime>02/21/2016 14:41:47</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.dll">
       <publishTime>01/23/2016 07:24:13</publishTime>
@@ -150,6 +150,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="bin/roslyn/VBCSCompiler.exe.config">
       <publishTime>01/23/2016 07:24:20</publishTime>
     </File>
+    <File Include="bin/Sections/SectionData.cs">
+      <publishTime>02/20/2016 18:26:38</publishTime>
+    </File>
     <File Include="bin/SimplexTools.dll">
       <publishTime>02/21/2016 12:46:41</publishTime>
     </File>
@@ -173,6 +176,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="bin/System.Web.WebPages.Razor.dll">
       <publishTime>01/23/2016 07:24:12</publishTime>
+    </File>
+    <File Include="bin/Views/Shared/AdminMenuHorizontal.cshtml">
+      <publishTime>02/21/2016 12:09:24</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>01/23/2016 07:24:13</publishTime>
@@ -3934,7 +3940,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/23/2016 07:24:15</publishTime>
     </File>
     <File Include="Views/AmzHome/About.cshtml">
-      <publishTime>02/15/2016 13:25:25</publishTime>
+      <publishTime>02/19/2016 09:31:25</publishTime>
     </File>
     <File Include="Views/AmzHome/CartIsEmpty.cshtml">
       <publishTime>02/10/2016 10:17:16</publishTime>
