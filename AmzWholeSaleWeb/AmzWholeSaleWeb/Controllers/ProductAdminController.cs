@@ -138,7 +138,7 @@ namespace AmzWholeSaleWeb.Controllers
 
         public ActionResult Editing_Read([DataSourceRequest] DataSourceRequest request)
         {
-            return Json(productHandler.GetProducts().ToDataSourceResult(request));
+            return Json(productHandler.GetProducts(null,null,true).ToDataSourceResult(request));
         }
 
         [AcceptVerbs(HttpVerbs.Post)]

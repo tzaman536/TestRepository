@@ -16,19 +16,36 @@ namespace AmzBL.Products
     {
         private static readonly ILog logger = LogManager.GetLogger(typeof(AmzProductHandler));
 
-        public IEnumerable<AmzProduct> GetProducts(string filterText = null)
+        public IEnumerable<AmzProduct> GetProducts(string filterText = null, string sectionName= null, bool getAll = false)
         {
             IEnumerable<AmzProduct> result = new List<AmzProduct>();
+
+            string sql = @"SELECT * 
+                    FROM amz.Products
+                    order by ProductID desc";
+
+
+            if(string.IsNullOrEmpty(sectionName) && !getAll)
+            {
+                sectionName = "Prime";
+            }
+
+            if(string.IsNullOrEmpty(filterText) &&  !getAll)
+            {
+
+                sql = @"SELECT * 
+                        FROM amz.Products p
+                        INNER JOIN amz.Sections s on p.SectionId = s.SectionID
+                        WHERE s.SectionName = @sectionName
+                        order by ProductID desc";
+            }
 
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
             {
                 conn.Open();
                 try
                 {
-                    result = conn.Query<AmzProduct>(@"
-                    SELECT * 
-                    FROM amz.Products
-                    order by ProductID desc");
+                    result = conn.Query<AmzProduct>(sql, new { sectionName });
                 }
                 catch (Exception ex)
                 {

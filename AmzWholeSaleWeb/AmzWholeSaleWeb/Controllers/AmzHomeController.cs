@@ -73,16 +73,22 @@ namespace AmzWholeSaleWeb.Controllers
         #endregion
 
 
-        public ActionResult Products_Read([DataSourceRequest] DataSourceRequest request, string productFilter)
+        public ActionResult Products_Read([DataSourceRequest] DataSourceRequest request, string productFilter, string productSection)
         {
 
+            if(string.IsNullOrEmpty(productSection))
+            {
+                productSection = "Prime";
+            }
             
+
+
             if (!string.IsNullOrEmpty(productFilter) && productFilter.Equals("Search products"))
             {
                 productFilter = null;
             }
 
-            var result = productHandler.GetProducts(productFilter);
+            var result = productHandler.GetProducts(productFilter,productSection);
             if(result == null || !result.Any())
                 return RedirectToAction("ProductNotFound");
             else
