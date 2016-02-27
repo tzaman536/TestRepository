@@ -13,6 +13,7 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using System.Web.SessionState;
+using AmzBL.Sections;
 
 namespace AmzWholeSaleWeb.Controllers
 {
@@ -195,13 +196,22 @@ namespace AmzWholeSaleWeb.Controllers
             return Json(new { success = true, message = "Check out completed." }, JsonRequestBehavior.AllowGet);
         }
 
-        
-
-        #endregion 
 
 
+        #endregion
 
- 
+
+
+
+        public JsonResult GetSections()
+        {
+            SectionDataHandler sectionHandler = new SectionDataHandler();
+            var sections = sectionHandler.GetSections();
+
+
+            return Json(sections, JsonRequestBehavior.AllowGet);
+        }
+
 
         public ActionResult GetSessionInfo([DataSourceRequest]DataSourceRequest request)
         {

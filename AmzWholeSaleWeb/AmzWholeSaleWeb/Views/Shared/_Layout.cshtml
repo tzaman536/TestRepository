@@ -53,6 +53,7 @@
 
         .search-bar {
             padding-bottom: 2px;
+            padding-right: 2px;
             float: left;
         }
 
@@ -91,6 +92,21 @@
                 @Html.Partial("_LoginPartial")
             </div>
              <div class="navbar-collapse collapse">
+                 <div class="search-bar">
+                     @(Html.Kendo().DropDownList()
+                          .Name("Category")
+                          .DataTextField("SectionName")
+                          .DataValueField("SectionID")
+                          .DataSource(source =>
+                          {
+                              source.Read(read =>
+                              {
+                                  read.Action("GetSections", "AmzHome");
+                              });
+                          })
+                                .HtmlAttributes(new { style = "width: 100px" })
+                     )
+                 </div>
                 <div class="search-bar">
                     @*<input type="text"  class="k-textbox" name="nameSeartItems" id="idSearchItems" required="required" />*@
                     <input type="text" class="k-textbox resizedTextbox" name="nameSeartItems" id="idSearchItems" value="Search products" onfocus="if (this.value == 'Search products') { this.value = ''; }" />
