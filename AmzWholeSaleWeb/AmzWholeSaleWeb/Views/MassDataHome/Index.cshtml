@@ -1,7 +1,378 @@
-﻿
+﻿@*@model IEnumerable<Kendo.Mvc.Examples.Models.ProductViewModel>*@
+@model IEnumerable<AmzModel.AmzProduct>
 @{
-    ViewBag.Title = "Mass Data";
+    ViewBag.Title = "MassData";
 }
 
-<h2>Mass Data home</h2>
+<div id="popUpWindowSection">
+    @(Html.Kendo().Window()
+    .Name("window")
+    .Title("")
+    .Actions(actions => actions
+        .Custom("custom")
+        .Minimize()
+        .Maximize()
+        .Close()
+    )
+    .Content(@<text>
+        <div>
+            <div id="windowProductName" class="windowProductName">
+                x
+            </div>
+            <br />
+            <div class="imageBig">
+                <img id="popUpWindowImageLarge" src="@Url.Content("~/content/products/loading.jpg")" alt="Product image" />
+            </div>
+            <br />
+            <div style="width: 100%; display:table;">
+                <div style="display: table-row">
+                    <div style="width:600px; display:table-cell;">
+                        <div class="imageMedium">
+                            <img id="popUpWindowImageMedium" src="@Url.Content("~/content/products/loading.jpg")" alt="Product image" />
+                        </div>
+                    </div>
+                    <div style="display:table-cell;">
+                        <div class="imageSmall">
+                            <img id="popUpWindowImageSmall" src="@Url.Content("~/content/products/loading.jpg")" alt="Product image" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+    </text>)
+            .Draggable()
+            .Resizable()
+            .Events(ev => ev.Close("onClose"))
+            .Width(600)
+            .Visible(false)
+    )
+</div>
+
+
+<script type="text/x-kendo-tmpl" id="template">
+    <div class="product-view k-widget">
+        <dl>
+            <dt><img src="@Url.Content("~/content/products/")#:SmallImageId#" alt="#:ProductName# image" onclick="imageClicked('#:ProductID#')" /> <a href="/ProductDetail/Index?productID=#:ProductID#">#:ProductName#</a></dt>
+            <dd>&nbsp;</dd>
+            <dd>#:ProductDescription#</dd>
+            <dd class="ddPrice">#:kendo.toString(UnitPrice, "c")#</dd>
+            <dd>In stock: #:UnitsInStock# <b style="color:blue; float:right;">Free shipping</b></dd>
+            <dd><input id="addToCartButton" type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_addtocart_96x21.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" onclick="addOneItemToCart('#:ProductID#', '#:UnitPrice#', 1)"></dd>
+            <dd><input id="idViewMore" type="image" src="@Url.Content("~/Content/shared/ViewMore.png")" border="0" name="submit" alt="View More" onclick="viewDetail('#:ProductID#')"></dd>
+            @*<dd><a id="idViewMore" href="/ProductDetail/Index?productID=#:ProductID#" >Click to view more</a></dd>*@
+
+        </dl>
+        @*<div class="edit-buttons">
+                <input id="addToCartButton" type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_cart_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" onclick="addOneItemToCart('#:ProductID#', '#:UnitPrice#', 1)" >
+            </div>*@
+    </div>
+</script>
+
+
+<div class="demo-section k-content wide">
+
+    @(Html.Kendo().ListView<AmzModel.AmzProduct>(Model)
+    .Name("listView")
+    .TagName("div")
+    .ClientTemplateId("template")
+    .DataSource(dataSource => dataSource
+        .Model(model => model.Id("ProductID"))
+        .PageSize(99)
+        //.Create(create => create.Action("Editing_Create", "ListView"))
+        .Read(read => read.Action("Products_Read", "MassDataHome").Data("dataFilter"))
+    //.Update(update => update.Action("Editing_Update", "ListView"))
+    //.Destroy(destroy => destroy.Action("Editing_Destroy", "ListView"))
+    ).Pageable()
+    .Editable()
+    .Navigatable()
+    //.Selectable()
+    .Events(events => events.Change("onChange").DataBound("onDataBound"))
+    )
+</div>
+<h5>Clik on arrow to view more products</h5>
+
+<script>
+        $(document).ready(function () {
+
+            hideWindow();
+            updateCartButton();
+
+            $("#idBuyNowTopMenu").click(function () {
+                var url = '@Url.Action("ReviewCart", "Shared")';
+                window.location.href = url;
+            })
+            $("#shoppingCartLink").click(function () {
+                var url = '@Url.Action("ReviewCart", "Shared")';
+                window.location.href = url;
+            });
+
+            $("#idViewCart").click(function () {
+                var url = '@Url.Action("ReviewCart", "Shared")';
+                window.location.href = url;
+            });
+
+
+
+
+            $("#searchProductButton").click(function () {
+
+                $("#listView").data("kendoListView").dataSource.read();
+            });
+
+
+
+
+        });
+
+
+
+        function viewDetail(productID)
+        {
+            var url = '/ProductDetail/Index?productID=' + productID;
+            window.location.href = url;
+
+        }
+
+        function updateCartButton() {
+            $("#shoppingCartLink").text(getCartCount());
+            //$("#shoppingCartLink").addClass("cart");
+
+        }
+
+        function onDataBound() {
+            //alert("Data bound");
+            if ($("#listView").data("kendoListView").dataSource.total() === 0) {
+                var url = '@Url.Action("ProductNotFound", "Shared")';
+                window.location.href = url;
+            }
+        }
+
+        function dataFilter() {
+            return {
+                productFilter: $("#idSearchItems").val(),
+                productSection: $("#Section").val()
+            }
+        }
+        function onClose() {
+
+        }
+
+        function hideWindow() {
+            $("#window").data("kendoWindow").close();
+            $("#window").hide();
+        }
+
+        $(function () {
+            var listView = $("#listView").data("kendoListView");
+
+            $(".k-add-button").click(function (e) {
+                listView.add();
+                e.preventDefault();
+            });
+        });
+
+        $(document.body).keydown(function (e) {
+            if (e.altKey && e.keyCode == 87) {
+                $("#listView").focus();
+            }
+        });
+
+        function imageClicked(productID)
+        {
+            var url = '/ProductDetail/Index?productID=' + productID;
+            window.location.href = url;
+
+        }
+
+        function onChange(arg) {
+            var ds = $("#listView").data("kendoListView");
+            var selectedItem = ds.dataItem(ds.select());
+
+
+            document.getElementById("popUpWindowImageLarge").src = "@Url.Content("~/content/products/{0}?{1}")".format(selectedItem.LargeImageId, new Date().getTime());
+            document.getElementById("popUpWindowImageMedium").src = "@Url.Content("~/content/products/{0}?{1}")".format(selectedItem.MediumImageId, new Date().getTime());
+            document.getElementById("popUpWindowImageSmall").src = "@Url.Content("~/content/products/{0}?{1}")".format(selectedItem.SmallImageId, new Date().getTime());
+
+            $("div#windowProductName").text(selectedItem.ProductName);
+
+            $("#window").show();
+            $("#window").data("kendoWindow").open();
+        }
+
+        function getSessionID() {
+
+
+
+            var parms = null;
+            $.ajax({
+                type: "GET",
+                traditional: true,
+                url: '@Url.Action("GetSessionInfo", "Shared")',
+                async: true,
+                data: parms,
+                dataType: "json",
+                beforeSend: function (xhr) {
+                },
+                success: function (response, textStatus, jqXHR) {
+                    alert(response.message);
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert("Failed to get cart data. Please reload your page");
+                }
+            });
+
+
+
+        }
+
+
+        function addOneItemToCart(productID, unitPrice, quantity) {
+            addToCart(productID, unitPrice, quantity,true);
+            updateCartButton();
+        }
+
+
+</script>
+
+
+<style>
+    .ddPrice {
+        color: orangered;
+        font-weight: bold;
+        font-size: 12px;
+    }
+
+    .windowProductName {
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .imageBig img {
+        float: left;
+        width: 500px;
+        height: 500px;
+        opacity: 100;
+        margin-bottom: 40px;
+        margin-right: 10px;
+    }
+
+    .imageMedium img {
+        float: left;
+        width: 300px;
+        height: 300px;
+        opacity: 100;
+        margin-right: 10px;
+    }
+
+    .imageSmall img {
+        float: left;
+        width: 100px;
+        height: 100px;
+        opacity: 100;
+        margin-bottom: 40px;
+        margin-right: 0px;
+    }
+
+    .product-view {
+        float: left;
+        width: 33.3%;
+        height: 300px;
+        box-sizing: border-box;
+        border-top: 0;
+        position: relative;
+    }
+
+        .product-view img {
+            float: left;
+            width: 110px;
+            height: 110px;
+            opacity: 100;
+            margin-bottom: 10px;
+            margin-right: 10px;
+            cursor: zoom-in;
+        }
+
+        .product-view:nth-child(even) {
+            border-left-width: 0;
+        }
+
+        .product-view dl {
+            margin: 10px 10px 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .product-view dt, dd {
+            margin: 1;
+            padding: 0;
+            width: 100%;
+            line-height: 20px;
+            font-size: 15px;
+            font-weight: normal;
+        }
+
+        .product-view dt {
+            margin-right: 1;
+            font-size: 13px;
+            height: 16px;
+            line-height: 16px;
+            text-transform: none;
+            opacity: 1;
+            margin-left: 10px;
+            word-wrap: break-word;
+        }
+
+        .product-view dd {
+            height: 25px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+            .product-view dd .k-widget,
+            .product-view dd .k-textbox {
+                font-size: 14px;
+            }
+
+    .k-listview {
+        border-width: 1px 0 0;
+        padding: 0;
+        overflow: hidden;
+        min-height: 298px;
+    }
+
+    .edit-buttons {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        text-align: right;
+        padding: 5px;
+        background-color: rgba(0,0,0,0.1);
+    }
+
+    .k-pager-wrap {
+        border-top: 0;
+    }
+
+    span.k-invalid-msg {
+        position: absolute;
+        margin-left: 6px;
+    }
+
+    .k-add-button {
+        margin-bottom: 2em;
+    }
+
+    @@media only screen and (max-width : 620px) {
+
+        .product-view {
+            width: 100%;
+        }
+
+            .product-view:nth-child(even) {
+                border-left-width: 1px;
+            }
+    }
+</style>

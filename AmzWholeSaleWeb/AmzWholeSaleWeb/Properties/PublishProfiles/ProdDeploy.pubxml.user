@@ -19,7 +19,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/21/2016 12:46:41</publishTime>
     </File>
     <File Include="bin/AmzWholeSaleWeb.dll">
-      <publishTime>02/28/2016 13:54:58</publishTime>
+      <publishTime>02/28/2016 17:09:12</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.dll">
       <publishTime>01/23/2016 07:24:13</publishTime>
@@ -3996,6 +3996,15 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/Manage/VerifyPhoneNumber.cshtml">
       <publishTime>01/23/2016 07:24:16</publishTime>
     </File>
+    <File Include="Views/MassDataHome/About.cshtml">
+      <publishTime>02/28/2016 16:50:55</publishTime>
+    </File>
+    <File Include="Views/MassDataHome/Contact.cshtml">
+      <publishTime>02/28/2016 16:50:29</publishTime>
+    </File>
+    <File Include="Views/MassDataHome/Index.cshtml">
+      <publishTime>02/28/2016 16:49:02</publishTime>
+    </File>
     <File Include="Views/ProductAdmin/AdminMenu.cshtml">
       <publishTime>02/19/2016 12:43:53</publishTime>
     </File>
@@ -4063,7 +4072,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/23/2016 07:24:16</publishTime>
     </File>
     <File Include="Views/Shared/MassData/_Layout.cshtml">
-      <publishTime>02/28/2016 11:45:29</publishTime>
+      <publishTime>02/28/2016 16:53:52</publishTime>
     </File>
     <File Include="Views/Shared/ProductNotFound.cshtml">
       <publishTime>02/28/2016 13:41:45</publishTime>
@@ -4081,10 +4090,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/24/2016 15:07:03</publishTime>
     </File>
     <File Include="Views/_ViewStart.cshtml">
-      <publishTime>02/28/2016 11:48:38</publishTime>
+      <publishTime>02/28/2016 16:39:28</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>02/28/2016 13:55:00</publishTime>
+      <publishTime>02/28/2016 17:09:15</publishTime>
     </File>
   </ItemGroup>
 </Project>

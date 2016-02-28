@@ -1446,6 +1446,8 @@
     <Content Include="Views\Shared\ProductNotFound.cshtml" />
     <Content Include="Views\Shared\ReviewCart.cshtml" />
     <Content Include="Views\MassDataHome\Index.cshtml" />
+    <Content Include="Views\MassDataHome\Contact.cshtml" />
+    <Content Include="Views\MassDataHome\About.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

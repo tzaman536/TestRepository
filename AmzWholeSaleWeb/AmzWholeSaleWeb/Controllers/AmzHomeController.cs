@@ -30,6 +30,7 @@ namespace AmzWholeSaleWeb.Controllers
         #region AMZ Specific
         public ActionResult Index()
         {
+            logger.Info("AMZWholeSale Index()");
             string currentUser = System.Web.HttpContext.Current.Request.LogonUserIdentity.Name;
             logger.InfoFormat("System.Web.HttpContext.Current.Request.LogonUserIdentity.Name {0}", currentUser);
             currentUser = User.Identity.GetUserId();

@@ -4,6 +4,7 @@ using AmzModel;
 using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
 using log4net;
+using Simplex.Tools.AppSettings;
 using Simplex.Tools.Cart;
 using Simplex.Tools.File;
 using System;
@@ -44,9 +45,11 @@ namespace AmzWholeSaleWeb.Controllers
                 return RedirectToAction("Login", "Account");
             }
 
-            if(!User.IsInRole("AmzAdmin"))
+            string homeController = AppSettingsHandler.GetAppSettingsValue("HomeController");
+
+            if (!User.IsInRole("AmzAdmin"))
             {
-                return RedirectToAction("Index", "AmzHome");
+                return RedirectToAction("Index", homeController);
             }
 
             if (string.IsNullOrEmpty(message))

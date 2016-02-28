@@ -89,13 +89,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Mass Data USA", "Index", "AmzHome", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Mass Data USA", "Index", "MassDataHome", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "AmzHome")</li>
-                    <li>@Html.ActionLink("About", "About", "AmzHome")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "AmzHome")</li>
+                    <li>@Html.ActionLink("Home", "Index", "MassDataHome")</li>
+                    <li>@Html.ActionLink("About", "About", "MassDataHome")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "MassDataHome")</li>
                     <li>@Html.ActionLink("Admin", "Index", "ProductAdmin")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
@@ -145,7 +145,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - AMZ Wholesale    Contact us at 716 825 1744 | 716-825-1733</p>
+            <p>&copy; @DateTime.Now.Year - Mass Data USA    Contact us at 123 456 7890 | 123-456-7890</p>
         </footer>
     </div>
     
