@@ -58,6 +58,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppSettings\AppSettingsHandler.cs" />
     <Compile Include="Cart\Cart.cs" />
     <Compile Include="Cart\CartHandler.cs" />
     <Compile Include="Cart\CartItems.cs" />

@@ -14,6 +14,8 @@ using System.Net.Mime;
 using Microsoft.AspNet.Identity;
 using System.Web.SessionState;
 using AmzBL.Sections;
+using System.Configuration;
+using Simplex.Tools.AppSettings;
 
 namespace AmzWholeSaleWeb.Controllers
 {
@@ -36,6 +38,9 @@ namespace AmzWholeSaleWeb.Controllers
 
         public ActionResult ReviewCart()
         {
+
+            ViewBag.PayPalUser = AppSettingsHandler.GetAppSettingsValue("PayPalBusiness");
+            ViewBag.ReturnUrl = AppSettingsHandler.GetAppSettingsValue("PayPalReturnUrl");
             return View();
         }
 

@@ -8,8 +8,10 @@
         <input type="hidden" name="cmd" value="_cart">
         <input type="hidden" name="upload" value="1">
         @*<input type="hidden" name="business" value="tzaman536-facilitator@gmail.com">*@
-        <input type="hidden" name="business" value="tamimzaman10@yahoo.com">
-        <input type="hidden" name="return" value="www.amzwholesale.com">
+        @*<input type="hidden" name="business" value="tamimzaman10@yahoo.com">*@
+        <input type="hidden" name="business" value=@ViewBag.PayPalUser>
+        <input type="hidden" name="return" value=@ViewBag.ReturnUrl>
+        @*<input type="hidden" name="return" value="http://www.amzwholesale.com">*@
     </form>
 </div>
 
@@ -20,6 +22,7 @@
     to complete your transaction
 </h3>
 <br />
+@*TODO: Pickup this link from App.config *@
 @Html.ActionLink("Take me back to home page", "Index", "AmzHome")
 
 
@@ -234,14 +237,18 @@
         element3.type = "hidden";
         element3.name = "business";
         //element3.value = "tzaman536-facilitator@gmail.com";
-        element3.value = "tamimzaman10@yahoo.com";
+        //element3.value = "tamimzaman10@yahoo.com";
+        element3.value = '@ViewBag.PayPalUser';
+
         form.appendChild(element3);
 
 
         var elementReturnURL = document.createElement("input");
         elementReturnURL.type = "hidden";
         elementReturnURL.name = "return";
-        elementReturnURL.value = "www.amzwholesale.com";
+        //elementReturnURL.value = "www.amzwholesale.com";
+        elementReturnURL.value = '@ViewBag.ReturnUrl';
+
         form.appendChild(elementReturnURL);
 
 
@@ -306,15 +313,13 @@
 
     }
 
-    function addOneMoreToCart(productID,unitPrice, quantity)
-    {
-        addToCart(productID, unitPrice, quantity,true);
+    function addOneMoreToCart(productID, unitPrice, quantity) {
+        addToCart(productID, unitPrice, quantity, true);
         $("#listView").data("kendoListView").dataSource.read();
         updateCartButton();
     }
 
-    function removeOneFromCart(productID)
-    {
+    function removeOneFromCart(productID) {
         removeFromCart(productID);
         $("#listView").data("kendoListView").dataSource.read();
         updateCartButton();
