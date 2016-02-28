@@ -75,7 +75,7 @@ namespace AmzWholeSaleWeb.Controllers
 
             var result = productHandler.GetProducts(productFilter, productSection);
             if (result == null || !result.Any())
-                return RedirectToAction("ProductNotFound");
+                return RedirectToAction("ProductNotFound", "Shared", new { area = "" });
             else
                 return Json(result.ToDataSourceResult(request));
         }

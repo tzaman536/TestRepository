@@ -143,7 +143,7 @@
         function onDataBound() {
             //alert("Data bound");
             if ($("#listView").data("kendoListView").dataSource.total() === 0) {
-                var url = '@Url.Action("ProductNotFound", "AmzHome")';
+                var url = '@Url.Action("ProductNotFound", "Shared")';
                 window.location.href = url;
             }
         }

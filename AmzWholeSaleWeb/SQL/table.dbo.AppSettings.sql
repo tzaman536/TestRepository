@@ -19,3 +19,5 @@ GO
 insert into AppSettings(AppKey,AppValue) values ('PayPalBusiness','tamimzaman10@yahoo.com')
 insert into AppSettings(AppKey,AppValue) values ('PayPalReturnUrl','http://www.amzwholesale.com')
 insert into AppSettings(AppKey,AppValue) values ('TechSupportEmail','tzaman536@gmail.com')
+insert into AppSettings(AppKey,AppValue) values ('HomeView','Index')
+insert into AppSettings(AppKey,AppValue) values ('HomeController','AmzHome')

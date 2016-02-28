@@ -33,6 +33,8 @@ namespace AmzWholeSaleWeb.Controllers
 
         public ActionResult ProductNotFound()
         {
+            ViewBag.HomeView = AppSettingsHandler.GetAppSettingsValue("HomeView");
+
             return View();
         }
 
@@ -41,11 +43,13 @@ namespace AmzWholeSaleWeb.Controllers
 
             ViewBag.PayPalUser = AppSettingsHandler.GetAppSettingsValue("PayPalBusiness");
             ViewBag.ReturnUrl = AppSettingsHandler.GetAppSettingsValue("PayPalReturnUrl");
+            ViewBag.HomeView = AppSettingsHandler.GetAppSettingsValue("HomeView");
             return View();
         }
 
         public ActionResult CartIsEmpty()
         {
+            ViewBag.HomeView = AppSettingsHandler.GetAppSettingsValue("HomeView");
             return View();
         }
 
