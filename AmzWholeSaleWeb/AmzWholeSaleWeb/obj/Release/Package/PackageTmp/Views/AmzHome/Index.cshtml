@@ -120,8 +120,12 @@
                 $("#listView").data("kendoListView").dataSource.read();
             });
 
+
+           
+
         });
 
+   
 
         function viewDetail(productID)
         {
@@ -146,7 +150,8 @@
 
         function dataFilter() {
             return {
-                productFilter: $("#idSearchItems").val()
+                productFilter: $("#idSearchItems").val(),
+                productSection: $("#Section").val()
             }
         }
         function onClose() {

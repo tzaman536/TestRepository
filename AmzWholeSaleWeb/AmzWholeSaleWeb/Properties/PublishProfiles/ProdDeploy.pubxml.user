@@ -13,13 +13,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/23/2016 07:24:36</publishTime>
     </File>
     <File Include="bin/AmzBL.dll">
-      <publishTime>02/21/2016 14:35:26</publishTime>
+      <publishTime>02/27/2016 14:59:22</publishTime>
     </File>
     <File Include="bin/AmzModel.dll">
       <publishTime>02/21/2016 12:46:41</publishTime>
     </File>
     <File Include="bin/AmzWholeSaleWeb.dll">
-      <publishTime>02/21/2016 14:41:47</publishTime>
+      <publishTime>02/27/2016 14:59:29</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.dll">
       <publishTime>01/23/2016 07:24:13</publishTime>
@@ -3898,7 +3898,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/23/2016 07:24:13</publishTime>
     </File>
     <File Include="Scripts/simplex.js">
-      <publishTime>02/15/2016 16:26:14</publishTime>
+      <publishTime>02/27/2016 13:17:24</publishTime>
     </File>
     <File Include="Scripts/_references.js">
       <publishTime>01/25/2016 11:32:00</publishTime>
@@ -3949,10 +3949,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/19/2016 09:31:22</publishTime>
     </File>
     <File Include="Views/AmzHome/Index.cshtml">
-      <publishTime>02/21/2016 11:28:10</publishTime>
+      <publishTime>02/27/2016 14:01:31</publishTime>
     </File>
     <File Include="Views/AmzHome/ProductNotFound.cshtml">
-      <publishTime>02/08/2016 16:49:46</publishTime>
+      <publishTime>02/27/2016 14:53:30</publishTime>
     </File>
     <File Include="Views/AmzHome/ReviewCart.cshtml">
       <publishTime>02/17/2016 15:10:16</publishTime>
@@ -4045,7 +4045,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/23/2016 07:24:16</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>02/20/2016 14:34:22</publishTime>
+      <publishTime>02/27/2016 13:16:24</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
       <publishTime>01/23/2016 07:24:16</publishTime>
