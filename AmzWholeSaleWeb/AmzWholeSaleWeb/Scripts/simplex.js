@@ -35,7 +35,7 @@ function getCartCount(){
         // Use following url format if the method is in .cshtml file
         //url: '@Url.Action("GetTotalItemsInCart", "AmzHome")',
         // Use following url format if the method is in .js file
-        url: '/AmzHome/GetTotalItemsInCart',
+        url: '/Shared/GetTotalItemsInCart',
         async: false,
         data: parms,
         dataType: "json",
@@ -70,7 +70,7 @@ function addToCart(productID, unitPrice, quantity, addToExisting) {
         type: "POST",
         traditional: true,
         //url: '@Url.Action("AddItemToCart", "AmzHome")',
-        url: '/AmzHome/AddItemToCart',
+        url: '/Shared/AddItemToCart',
         async: false,
         data: parms,
         dataType: "json",
@@ -104,7 +104,7 @@ function removeFromCart(productID) {
         type: "POST",
         traditional: true,
         //url: '@Url.Action("AddItemToCart", "AmzHome")',
-        url: '/AmzHome/RemoveItemFromCart',
+        url: '/Shared/RemoveItemFromCart',
         async: false,
         data: parms,
         dataType: "json",

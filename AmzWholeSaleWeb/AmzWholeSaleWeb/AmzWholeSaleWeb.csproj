@@ -208,8 +208,10 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AmzHomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MassDataHomeController.cs" />
     <Compile Include="Controllers\ProductAdminController.cs" />
     <Compile Include="Controllers\ProductDetailController.cs" />
+    <Compile Include="Controllers\SharedController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1272,7 +1274,7 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\AmzWholeSale\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
@@ -1419,9 +1421,8 @@
     <Content Include="Views\ProductAdmin\Index.cshtml" />
     <Content Include="Views\ProductAdmin\ManageProduct.cshtml" />
     <Content Include="Views\ProductAdmin\AdminMenu.cshtml" />
-    <Content Include="Views\AmzHome\ProductNotFound.cshtml" />
-    <Content Include="Views\AmzHome\ReviewCart.cshtml" />
-    <Content Include="Views\AmzHome\CartIsEmpty.cshtml" />
+    <Content Include="Views\AmzHome\ProductNotFound_obsolete.cshtml" />
+    <Content Include="Views\AmzHome\ReviewCart_obsolete.cshtml" />
     <Content Include="Views\ProductDetail\Index.cshtml" />
     <Content Include="Views\AmzHome\Contact.cshtml" />
     <Content Include="Views\AmzHome\About.cshtml" />
@@ -1441,10 +1442,14 @@
     <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Time.cshtml" />
     <Content Include="Views\Shared\MassData\_Layout.cshtml" />
+    <Content Include="Views\Shared\CartIsEmpty.cshtml" />
+    <Content Include="Views\Shared\ProductNotFound.cshtml" />
+    <Content Include="Views\Shared\ReviewCart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="UploadedImages\" />
+    <Folder Include="Views\MassDataHome\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

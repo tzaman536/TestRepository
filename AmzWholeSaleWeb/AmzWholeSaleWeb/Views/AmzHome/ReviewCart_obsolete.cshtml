@@ -1,0 +1,468 @@
+﻿@model IEnumerable<AmzModel.AmzProduct>
+@{
+    ViewBag.Title = "Review Cart";
+}
+<div>
+    @*<form id="formDynamic" target="paypal" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">*@
+        <form id="formDynamic" target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+            <input type="hidden" name="cmd" value="_cart">
+            <input type="hidden" name="upload" value="1">
+            @*<input type="hidden" name="business" value="tzaman536-facilitator@gmail.com">*@
+            <input type="hidden" name="business" value="tamimzaman10@yahoo.com">
+            <input type="hidden" name="return" value="www.amzwholesale.com">
+        </form>
+</div>
+
+<h3> Please review your cart and click <input id="idBuyNowPageTop" type="image" name="submit" border="0"
+       src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_checkout_pp_142x27.png"
+       alt="PayPal - The safer, easier way to pay online">
+ to complete your transaction</h3>
+<br />
+@Html.ActionLink("Take me back to home page", "Index", "AmzHome")
+
+
+
+
+<script type="text/x-kendo-tmpl" id="template">
+    <div class="product-view k-widget">
+        <dl>
+            <dt><img src="@Url.Content("~/content/products/")#:SmallImageId#" alt="#:ProductName# image" /> #:ProductDescription#</dt>
+            <dd>#:ProductName#</dd>
+            <dd>Price: #:kendo.toString(CostOfItemsInCart, "c")#</dd>
+            <dd class="numberOfUnits">Total Items: <input type="number" class="k-textbox numberOfUnitsTextBox"  min="0" id="#:ProductID#" value="#:TotalItemsInCart#" data-role='maskedtextbox' /><button class="k-primary updateUnitButton" onclick="updateCart('#:ProductID#', '#:UnitPrice#')">Update Cart</button></dd>
+        </dl>
+        @*<div class="edit-buttons">
+            <button id="addToCartButton" type="button" onclick="addOneMoreToCart('#:ProductID#', '#:UnitPrice#', 1)">Add</button>
+            <button id="addToCartButton" type="button" onclick="removeOneFromCart('#:ProductID#')">Remove</button>
+        </div>*@
+        
+
+    </div>
+</script>
+
+
+<div class="demo-section k-content wide">
+
+    @(Html.Kendo().ListView<AmzModel.AmzProduct>(Model)
+    .Name("listView")
+    .TagName("div")
+    .ClientTemplateId("template")
+    .DataSource(dataSource => dataSource
+        .Model(model => model.Id("ProductID"))
+        .PageSize(99)
+        //.Create(create => create.Action("Editing_Create", "ListView"))
+        .Read(read => read.Action("CartItems_Read", "Shared"))
+    //.Update(update => update.Action("Editing_Update", "ListView"))
+    //.Destroy(destroy => destroy.Action("Editing_Destroy", "ListView"))
+    ).Pageable()
+    .Editable()
+    .Navigatable()
+    .Selectable()
+    .Events(events => events.Change("onChange").DataBound("onDataBound"))
+    )
+</div>
+
+<h3>
+    Click <input id="idBuyNowPageBottom" type="image" name="submit" border="0"
+                                             src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_checkout_pp_142x27.png"
+                                             alt="PayPal - The safer, easier way to pay online">
+    to complete your transaction
+</h3>
+
+<script>
+    $(document).ready(function () {
+        //$("#shoppingCartLink").text("Check out");
+        //$("#shoppingCartLink").addClass("cart");
+        updateCartButton();
+
+        $("#idCheckOutAndPay").click(function () {
+            submitCart();
+        });
+        $("#idBuyNowTopMenu").click(function () {
+            submitCart();
+        });
+        $("#idBuyNowPageTop").click(function () {
+            submitCart();
+        });
+        $("#idBuyNowPageBottom").click(function () {
+            submitCart();
+        });
+
+    });
+
+
+    function updateCart(productID, unitPrice, value) {
+
+        addToCart(productID, unitPrice, document.getElementById(productID).value, false);
+       
+        $("#listView").data("kendoListView").dataSource.read();
+        updateCartButton();
+
+
+    }
+
+    function updateCartButton() {
+        $("#shoppingCartLink").text(getCartCount());
+        //$("#shoppingCartLink").addClass("cart");
+
+    }
+    function onDataBound() {
+        //alert("Data bound");
+        @*if ($("#listView").data("kendoListView").dataSource.total() === 0) {
+            var url = '@Url.Action("CartIsEmpty", "AmzHome")';
+            window.location.href = url;
+        }*@
+    }
+
+
+    function onClose() {
+
+    }
+    function onChange(arg) {
+        var ds = $("#listView").data("kendoListView");
+        var selectedItem = ds.dataItem(ds.select());
+
+
+        document.getElementById("popUpWindowImageLarge").src = "@Url.Content("~/content/products/{0}?{1}")".format(selectedItem.LargeImageId, new Date().getTime());
+        document.getElementById("popUpWindowImageMedium").src = "@Url.Content("~/content/products/{0}?{1}")".format(selectedItem.MediumImageId, new Date().getTime());
+        document.getElementById("popUpWindowImageSmall").src = "@Url.Content("~/content/products/{0}?{1}")".format(selectedItem.SmallImageId, new Date().getTime());
+
+        $("div#windowProductName").text(selectedItem.ProductName);
+
+        $("#window").show();
+        $("#window").data("kendoWindow").open();
+    }
+
+
+    function submitCart() {
+
+        var parms = null;
+        $.ajax({
+            type: "GET",
+            traditional: true,
+            url: '@Url.Action("GetCartItemsSummary", "Shared")',
+            async: true,
+            data: parms,
+            dataType: "json",
+            beforeSend: function (xhr) {
+            },
+            success: function (response, textStatus, jqXHR) {
+                sendToPayPal(response.CartItemSummary);
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert("Failed to get cart data. Please reload your page");
+            }
+        });
+    }
+
+    function sendToPayPal(items) {
+        var isIE = false || !!document.documentMode;
+        var isChrome = !!window.chrome && !!window.chrome.webstore;
+        if (isIE == true) {
+            sendToPayPalIE(items);
+        }
+        else {
+
+            sendToPayPalChrome(items);
+        }
+
+    }
+
+    function sendToPayPalIE(items) {
+        var formDynamic = document.getElementById("formDynamic");
+        var i = 0;
+        for (var key in items) {
+
+            //alert(items[key].ProductName);
+            i++;
+            var element4 = document.createElement("input");
+            element4.type = "hidden";
+            element4.name = "item_name_" + i;
+            element4.value = items[key].ProductName;
+            formDynamic.appendChild(element4);
+
+            var element5 = document.createElement("input");
+            element5.type = "hidden";
+            element5.name = "amount_" + i;
+            element5.value = items[key].Price;
+            formDynamic.appendChild(element5);
+
+            var element6 = document.createElement("input");
+            element6.type = "hidden";
+            element6.name = "shipping_" + i;
+            element6.value = items[key].Shipping;
+            formDynamic.appendChild(element6);
+
+            var element7 = document.createElement("input");
+            element7.type = "hidden";
+            element7.name = "quantity_" + i;
+            element7.value = items[key].Quantity;
+            formDynamic.appendChild(element7);
+        }
+
+
+        formDynamic.submit();
+        SetCartProcessed();
+
+
+
+
+
+    }
+
+    function sendToPayPalChrome(items) {
+        var form = document.createElement("form");
+        form.method = "POST";
+        //form.action = "https://www.sandbox.paypal.com/cgi-bin/webscr"
+        form.action = "https://www.paypal.com/cgi-bin/webscr"
+        
+        var element1 = document.createElement("input");
+        element1.type = "hidden";
+        element1.name = "cmd";
+        element1.value = "_cart";
+        form.appendChild(element1);
+
+        var element2 = document.createElement("input");
+        element2.type = "hidden";
+        element2.name = "upload";
+        element2.value = "1";
+        form.appendChild(element2);
+
+        var element3 = document.createElement("input");
+        element3.type = "hidden";
+        element3.name = "business";
+        //element3.value = "tzaman536-facilitator@gmail.com";
+        element3.value = "tamimzaman10@yahoo.com";
+        form.appendChild(element3);
+
+
+        var elementReturnURL = document.createElement("input");
+        elementReturnURL.type = "hidden";
+        elementReturnURL.name = "return";
+        elementReturnURL.value = "www.amzwholesale.com";
+        form.appendChild(elementReturnURL);
+
+
+        var i = 0;
+        for (var key in items) {
+
+            //alert(items[key].ProductName);
+            i++;
+            var element4 = document.createElement("input");
+            element4.type = "hidden";
+            element4.name = "item_name_" + i;
+            element4.value = items[key].ProductName;
+            form.appendChild(element4);
+
+            var element5 = document.createElement("input");
+            element5.type = "hidden";
+            element5.name = "amount_" + i;
+            element5.value = items[key].Price;
+            form.appendChild(element5);
+
+            var element6 = document.createElement("input");
+            element6.type = "hidden";
+            element6.name = "shipping_" + i;
+            element6.value = items[key].Shipping;
+            form.appendChild(element6);
+
+            var element7 = document.createElement("input");
+            element7.type = "hidden";
+            element7.name = "quantity_" + i;
+            element7.value = items[key].Quantity;
+            form.appendChild(element7);
+        }
+
+
+        form.submit();
+        SetCartProcessed();
+
+    }
+
+    function SetCartProcessed() {
+
+        var parms = null;
+        $.ajax({
+            type: "POST",
+            traditional: true,
+            url: '@Url.Action("SetCartProcessed", "Shared")',
+            async: true,
+            data: parms,
+            dataType: "json",
+            beforeSend: function (xhr) {
+            },
+            success: function (response, textStatus, jqXHR) {
+                //alert(response.message);
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                //alert("Error found during execution");
+
+            }
+        });
+
+        getCartCount();
+
+    }
+
+    function addOneMoreToCart(productID,unitPrice, quantity)
+    {
+        addToCart(productID, unitPrice, quantity,true);
+        $("#listView").data("kendoListView").dataSource.read();
+        updateCartButton();
+    }
+
+    function removeOneFromCart(productID)
+    {
+        removeFromCart(productID);
+        $("#listView").data("kendoListView").dataSource.read();
+        updateCartButton();
+
+    }
+
+</script>
+
+<style>
+
+    .numberOfUnits
+    {
+        min-height:50px;
+    }
+    .numberOfUnitsTextBox{
+        max-width:80px;
+        text-align:left;
+    }
+    .updateUnitButton{
+        margin-left:10px;
+    }
+    .windowProductName {
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .imageBig img {
+        float: left;
+        width: 500px;
+        height: 500px;
+        opacity: 100;
+        margin-bottom: 40px;
+        margin-right: 10px;
+    }
+
+    .imageMedium img {
+        float: left;
+        width: 300px;
+        height: 300px;
+        opacity: 100;
+        margin-right: 10px;
+    }
+
+    .imageSmall img {
+        float: left;
+        width: 100px;
+        height: 100px;
+        opacity: 100;
+        margin-bottom: 40px;
+        margin-right: 0px;
+    }
+
+    .product-view {
+        float: left;
+        width: 100%;
+        height: 300px;
+        box-sizing: border-box;
+        border-top: 0;
+        position: relative;
+    }
+
+        .product-view img {
+            float: left;
+            width: 110px;
+            height: 110px;
+            opacity: 100;
+            margin-bottom: 10px;
+            margin-right: 10px;
+        }
+
+        .product-view:nth-child(even) {
+            border-left-width: 0;
+        }
+
+        .product-view dl {
+            margin: 10px 10px 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .product-view dt, dd {
+            margin: 1;
+            padding: 0;
+            width: 100%;
+            line-height: 20px;
+            font-size: 15px;
+            font-weight: normal;
+        }
+
+        .product-view dt {
+            margin-right: 1;
+            font-size: 13px;
+            height: 16px;
+            line-height: 16px;
+            text-transform: none;
+            opacity: 1;
+            margin-left: 10px;
+            word-wrap: break-word;
+        }
+
+        .product-view dd {
+            height: 25px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+            .product-view dd .k-widget,
+            .product-view dd .k-textbox {
+                font-size: 14px;
+            }
+
+    .k-listview {
+        border-width: 1px 0 0;
+        padding: 0;
+        overflow: hidden;
+        min-height: 298px;
+    }
+
+    .edit-buttons {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        text-align: right;
+        padding: 5px;
+        background-color: rgba(0,0,0,0.1);
+    }
+
+    .k-pager-wrap {
+        border-top: 0;
+    }
+
+    span.k-invalid-msg {
+        position: absolute;
+        margin-left: 6px;
+    }
+
+    .k-add-button {
+        margin-bottom: 2em;
+    }
+
+    @@media only screen and (max-width : 620px) {
+
+        .product-view {
+            width: 100%;
+        }
+
+            .product-view:nth-child(even) {
+                border-left-width: 1px;
+            }
+    }
+</style>

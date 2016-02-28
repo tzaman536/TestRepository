@@ -4,19 +4,21 @@
 }
 <div>
     @*<form id="formDynamic" target="paypal" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">*@
-        <form id="formDynamic" target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
-            <input type="hidden" name="cmd" value="_cart">
-            <input type="hidden" name="upload" value="1">
-            @*<input type="hidden" name="business" value="tzaman536-facilitator@gmail.com">*@
-            <input type="hidden" name="business" value="tamimzaman10@yahoo.com">
-            <input type="hidden" name="return" value="www.amzwholesale.com">
-        </form>
+    <form id="formDynamic" target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+        <input type="hidden" name="cmd" value="_cart">
+        <input type="hidden" name="upload" value="1">
+        @*<input type="hidden" name="business" value="tzaman536-facilitator@gmail.com">*@
+        <input type="hidden" name="business" value="tamimzaman10@yahoo.com">
+        <input type="hidden" name="return" value="www.amzwholesale.com">
+    </form>
 </div>
 
-<h3> Please review your cart and click <input id="idBuyNowPageTop" type="image" name="submit" border="0"
-       src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_checkout_pp_142x27.png"
-       alt="PayPal - The safer, easier way to pay online">
- to complete your transaction</h3>
+<h3>
+    Please review your cart and click <input id="idBuyNowPageTop" type="image" name="submit" border="0"
+                                             src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_checkout_pp_142x27.png"
+                                             alt="PayPal - The safer, easier way to pay online">
+    to complete your transaction
+</h3>
 <br />
 @Html.ActionLink("Take me back to home page", "Index", "AmzHome")
 
@@ -29,13 +31,13 @@
             <dt><img src="@Url.Content("~/content/products/")#:SmallImageId#" alt="#:ProductName# image" /> #:ProductDescription#</dt>
             <dd>#:ProductName#</dd>
             <dd>Price: #:kendo.toString(CostOfItemsInCart, "c")#</dd>
-            <dd class="numberOfUnits">Total Items: <input type="number" class="k-textbox numberOfUnitsTextBox"  min="0" id="#:ProductID#" value="#:TotalItemsInCart#" data-role='maskedtextbox' /><button class="k-primary updateUnitButton" onclick="updateCart('#:ProductID#', '#:UnitPrice#')">Update Cart</button></dd>
+            <dd class="numberOfUnits">Total Items: <input type="number" class="k-textbox numberOfUnitsTextBox" min="0" id="#:ProductID#" value="#:TotalItemsInCart#" data-role='maskedtextbox' /><button class="k-primary updateUnitButton" onclick="updateCart('#:ProductID#', '#:UnitPrice#')">Update Cart</button></dd>
         </dl>
         @*<div class="edit-buttons">
-            <button id="addToCartButton" type="button" onclick="addOneMoreToCart('#:ProductID#', '#:UnitPrice#', 1)">Add</button>
-            <button id="addToCartButton" type="button" onclick="removeOneFromCart('#:ProductID#')">Remove</button>
-        </div>*@
-        
+                <button id="addToCartButton" type="button" onclick="addOneMoreToCart('#:ProductID#', '#:UnitPrice#', 1)">Add</button>
+                <button id="addToCartButton" type="button" onclick="removeOneFromCart('#:ProductID#')">Remove</button>
+            </div>*@
+
 
     </div>
 </script>
@@ -51,7 +53,7 @@
         .Model(model => model.Id("ProductID"))
         .PageSize(99)
         //.Create(create => create.Action("Editing_Create", "ListView"))
-        .Read(read => read.Action("CartItems_Read", "AmzHome"))
+        .Read(read => read.Action("CartItems_Read", "Shared"))
     //.Update(update => update.Action("Editing_Update", "ListView"))
     //.Destroy(destroy => destroy.Action("Editing_Destroy", "ListView"))
     ).Pageable()
@@ -64,8 +66,8 @@
 
 <h3>
     Click <input id="idBuyNowPageBottom" type="image" name="submit" border="0"
-                                             src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_checkout_pp_142x27.png"
-                                             alt="PayPal - The safer, easier way to pay online">
+                 src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_checkout_pp_142x27.png"
+                 alt="PayPal - The safer, easier way to pay online">
     to complete your transaction
 </h3>
 
@@ -94,7 +96,7 @@
     function updateCart(productID, unitPrice, value) {
 
         addToCart(productID, unitPrice, document.getElementById(productID).value, false);
-       
+
         $("#listView").data("kendoListView").dataSource.read();
         updateCartButton();
 
@@ -140,7 +142,7 @@
         $.ajax({
             type: "GET",
             traditional: true,
-            url: '@Url.Action("GetCartItemsSummary", "AmzHome")',
+            url: '@Url.Action("GetCartItemsSummary", "Shared")',
             async: true,
             data: parms,
             dataType: "json",
@@ -215,7 +217,7 @@
         form.method = "POST";
         //form.action = "https://www.sandbox.paypal.com/cgi-bin/webscr"
         form.action = "https://www.paypal.com/cgi-bin/webscr"
-        
+
         var element1 = document.createElement("input");
         element1.type = "hidden";
         element1.name = "cmd";
@@ -285,7 +287,7 @@
         $.ajax({
             type: "POST",
             traditional: true,
-            url: '@Url.Action("SetCartProcessed", "AmzHome")',
+            url: '@Url.Action("SetCartProcessed", "Shared")',
             async: true,
             data: parms,
             dataType: "json",
@@ -322,18 +324,19 @@
 </script>
 
 <style>
+    .numberOfUnits {
+        min-height: 50px;
+    }
 
-    .numberOfUnits
-    {
-        min-height:50px;
+    .numberOfUnitsTextBox {
+        max-width: 80px;
+        text-align: left;
     }
-    .numberOfUnitsTextBox{
-        max-width:80px;
-        text-align:left;
+
+    .updateUnitButton {
+        margin-left: 10px;
     }
-    .updateUnitButton{
-        margin-left:10px;
-    }
+
     .windowProductName {
         font-size: 18px;
         font-weight: bold;
