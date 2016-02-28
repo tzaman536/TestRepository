@@ -99,16 +99,16 @@
             updateCartButton();
 
             $("#idBuyNowTopMenu").click(function () {
-                var url = '@Url.Action("ReviewCart", "AmzHome")';
+                var url = '@Url.Action("ReviewCart", "Shared")';
                 window.location.href = url;
             })
             $("#shoppingCartLink").click(function () {
-                var url = '@Url.Action("ReviewCart", "AmzHome")';
+                var url = '@Url.Action("ReviewCart", "Shared")';
                 window.location.href = url;
             });
 
             $("#idViewCart").click(function () {
-                var url = '@Url.Action("ReviewCart", "AmzHome")';
+                var url = '@Url.Action("ReviewCart", "Shared")';
                 window.location.href = url;
             });
 
@@ -143,7 +143,7 @@
         function onDataBound() {
             //alert("Data bound");
             if ($("#listView").data("kendoListView").dataSource.total() === 0) {
-                var url = '@Url.Action("ProductNotFound", "AmzHome")';
+                var url = '@Url.Action("ProductNotFound", "Shared")';
                 window.location.href = url;
             }
         }
@@ -208,7 +208,7 @@
             $.ajax({
                 type: "GET",
                 traditional: true,
-                url: '@Url.Action("GetSessionInfo", "AmzHome")',
+                url: '@Url.Action("GetSessionInfo", "Shared")',
                 async: true,
                 data: parms,
                 dataType: "json",

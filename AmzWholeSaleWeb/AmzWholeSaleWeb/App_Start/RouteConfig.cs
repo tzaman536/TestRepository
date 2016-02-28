@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Simplex.Tools.AppSettings;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,7 +13,7 @@ namespace AmzWholeSaleWeb
 
         public static void RegisterRoutes(RouteCollection routes)
         {
-            string homeController = "AmzHome";
+            string homeController = AppSettingsHandler.GetAppSettingsValue("HomeController");
             string homeView = "Index";
 
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");

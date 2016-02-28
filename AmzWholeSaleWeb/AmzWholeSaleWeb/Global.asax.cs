@@ -1,4 +1,5 @@
 ﻿using log4net;
+using Simplex.Tools.AppSettings;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -23,7 +24,8 @@ namespace AmzWholeSaleWeb
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             log4net.Config.XmlConfigurator.Configure();
 
-            logger.Info("Starting AMZ Wholesale site...");
+            string homeControllerName = AppSettingsHandler.GetAppSettingsValue("HomeController");
+            logger.InfoFormat("Starting {0} application",homeControllerName);
             CleanupFiles();
 
         }

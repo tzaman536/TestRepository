@@ -16,8 +16,9 @@ ADD CONSTRAINT PK_AppKey PRIMARY KEY (AppKey)
 GO
 
 
-insert into AppSettings(AppKey,AppValue) values ('PayPalBusiness','tamimzaman10@yahoo.com')
-insert into AppSettings(AppKey,AppValue) values ('PayPalReturnUrl','http://www.amzwholesale.com')
+insert into AppSettings(AppKey,AppValue) values ('PayPalBusiness','tamimzaman104334e354@yahoo.com')
+insert into AppSettings(AppKey,AppValue) values ('PayPalReturnUrl','http://www.massdatausa.com')
 insert into AppSettings(AppKey,AppValue) values ('TechSupportEmail','tzaman536@gmail.com')
-insert into AppSettings(AppKey,AppValue) values ('HomeView','Index')
+insert into AppSettings(AppKey,AppValue) values ('HomeView','http://www.massdatausa.com')
 insert into AppSettings(AppKey,AppValue) values ('HomeController','AmzHome')
+
