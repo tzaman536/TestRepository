@@ -9,14 +9,17 @@ namespace AmzWholeSaleWeb
 {
     public class RouteConfig
     {
+
         public static void RegisterRoutes(RouteCollection routes)
         {
-            routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            string homeController = "AmzHome";
+            string homeView = "Index";
 
+            routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "AmzHome", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = homeController, action = homeView, id = UrlParameter.Optional }
             );
         }
     }
