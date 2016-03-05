@@ -58,9 +58,13 @@
             <dd><b>#:ProductName#</b></dd>
             <dd>#:ProductDescription#</dd>
             <dd class="ddPrice">#:kendo.toString(UnitPrice, "c")#</dd>
-            <dd><input id="addToCartButton" type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_addtocart_96x21.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" onclick="addOneItemToCart('#:ProductID#', '#:UnitPrice#', 1)"></dd>
-            <dd><input id="idViewMore" type="image" src="@Url.Content("~/Content/shared/ViewMore.png")" border="0" name="submit" alt="View More" onclick="viewDetail('#:ProductID#')"></dd>
-            @*<dd><a id="idViewMore" href="/ProductDetail/Index?productID=#:ProductID#" >Click to view more</a></dd>*@
+            @*<dd><input id="addToCartButton" type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_addtocart_96x21.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" onclick="addOneItemToCart('#:ProductID#', '#:UnitPrice#', 1)"></dd>*@
+            @*<dd><input id="idViewMore" type="image" src="@Url.Content("~/Content/shared/ViewMore.png")" border="0" name="submit" alt="View More" onclick="viewDetail('#:ProductID#')"></dd>*@
+            <dd class="ddButton"><button id="addToCartButton" class="button_AddToCart" onclick="addOneItemToCart('#:ProductID#', '#:UnitPrice#', 1)">Add to Cart</button>&nbsp;<button id="idViewMore" class="button_ViewMore" onclick="viewDetail('#:ProductID#')">View More</button></dd>
+            @*<dd class="ddButton"><button id="idViewMore" class="button_ViewMore" onclick="viewDetail('#:ProductID#')">View More</button></dd>*@
+
+
+
 
         </dl>
         @*<div class="edit-buttons">
@@ -237,11 +241,41 @@
 
 
 <style>
+
+/* Begin Button Style*/
+
+    .button_ViewMore{
+        border:1px solid #616261; -webkit-border-radius: 3px; -moz-border-radius: 3px;border-radius: 3px;font-size:12px;font-family:arial, helvetica, sans-serif; padding: 10px 10px 10px 10px; text-decoration:none; display:inline-block;text-shadow: -1px -1px 0 rgba(0,0,0,0.3);font-weight:bold; color: #FFFFFF;
+         background-color: #7d7e7d; background-image: -webkit-gradient(linear, left top, left bottom, from(#7d7e7d), to(#0e0e0e));
+         background-image: -webkit-linear-gradient(top, #7d7e7d, #0e0e0e);
+         background-image: -moz-linear-gradient(top, #7d7e7d, #0e0e0e);
+         background-image: -ms-linear-gradient(top, #7d7e7d, #0e0e0e);
+         background-image: -o-linear-gradient(top, #7d7e7d, #0e0e0e);
+         background-image: linear-gradient(to bottom, #7d7e7d, #0e0e0e);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#7d7e7d, endColorstr=#0e0e0e);
+    }
+
+
+    .button_ViewMore:hover{
+         border:1px solid #4a4b4a;
+         background-color: #646464; background-image: -webkit-gradient(linear, left top, left bottom, from(#646464), to(#282828));
+         background-image: -webkit-linear-gradient(top, #646464, #282828);
+         background-image: -moz-linear-gradient(top, #646464, #282828);
+         background-image: -ms-linear-gradient(top, #646464, #282828);
+         background-image: -o-linear-gradient(top, #646464, #282828);
+         background-image: linear-gradient(to bottom, #646464, #282828);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#646464, endColorstr=#282828);
+    }
+
+/* End Button Style*/
+
     .ddPrice {
         font-weight: bold;
         font-size: 12px;
     }
 
+    .ddButton{
+        line-height: 8px;
+        min-height:30px;
+    }
     .windowProductName {
         font-size: 18px;
         font-weight: bold;
@@ -276,19 +310,19 @@
     .product-view {
         float: left;
         width: 33.3%;
-        height: 500px;
+        height: 400px;
         box-sizing: border-box;
         position: relative;
         border: 0,0,0,0;
 
         /*background-color:white;*/
         
-/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#fcfff5+0,e9e9cf+100 */
-background: #fcfff5; /* Old browsers */
-background: -moz-linear-gradient(top,  #fcfff5 0%, #e9e9cf 100%); /* FF3.6-15 */
-background: -webkit-linear-gradient(top,  #fcfff5 0%,#e9e9cf 100%); /* Chrome10-25,Safari5.1-6 */
-background: linear-gradient(to bottom,  #fcfff5 0%,#e9e9cf 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfff5', endColorstr='#e9e9cf',GradientType=0 ); /* IE6-9 */
+        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#fcfff5+0,e9e9cf+100 */
+        background: #fcfff5; /* Old browsers */
+        background: -moz-linear-gradient(top,  #fcfff5 0%, #e9e9cf 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(top,  #fcfff5 0%,#e9e9cf 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom,  #fcfff5 0%,#e9e9cf 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfff5', endColorstr='#e9e9cf',GradientType=0 ); /* IE6-9 */
 
         border-color:white;
 

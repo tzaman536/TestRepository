@@ -1,4 +1,5 @@
 ﻿using AmzBL.Products;
+using Simplex.Tools.AppSettings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -60,7 +61,7 @@ namespace AmzWholeSaleWeb.Controllers
                 }
 
             }
-
+            ViewBag.HomeView = AppSettingsHandler.GetAppSettingsValue("HomeView");
             ViewBag.Product = result;
             return View(imageList);
         }

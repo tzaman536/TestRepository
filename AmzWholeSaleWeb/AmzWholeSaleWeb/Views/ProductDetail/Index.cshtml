@@ -28,7 +28,8 @@
 </div>
 
 @model IEnumerable<AmzWholeSaleWeb.Controllers.ProductImage>
-@Html.ActionLink("Take me back to home page", "Index", "AmzHome")
+@*@Html.ActionLink("Take me back to home page", "Index", "AmzHome")*@
+<a href=@ViewBag.HomeView> Take me back to home page</a>
 <div>
     <input id="addToCartButton" type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_addtocart_96x21.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" onclick="addOneItemToCart()">
 </div>
