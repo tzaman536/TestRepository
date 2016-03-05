@@ -35,8 +35,8 @@ namespace AmzBL.Products
 
                 sql = @"SELECT * 
                         FROM amz.Products p
-                        INNER JOIN amz.Sections s on p.SectionId = s.SectionID
-                        WHERE s.SectionName = @sectionName
+                        LEFT JOIN amz.Sections s on p.SectionId = s.SectionID
+                        WHERE ( s.SectionName = @sectionName or s.SectionName is null)
                         order by ProductID desc";
             }
 

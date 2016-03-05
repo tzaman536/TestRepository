@@ -91,6 +91,25 @@
             </div>
             <div style="max-width:300px; display:table-cell;">
                 <br />
+
+                <br />
+
+                @*<div>
+                    @(Html.Kendo().DropDownList()
+                          .Name("SectionProductAdd")
+                          .DataTextField("SectionName")
+                          .DataValueField("SectionName")
+                          .Events(ev => ev.DataBound("SectionListDataBound"))
+                          .DataSource(source =>
+                          {
+                              source.Read(read =>
+                              {
+                                  read.Action("GetSections", "Shared");
+                              });
+                          })
+                          .HtmlAttributes(new { style = "width: 100px" })
+                    )
+                </div>*@
                 <br />
                 <input id="btn_UploadProduct" type="submit" class="k-button" value="Upload" />
 
@@ -107,8 +126,13 @@
     $(document).ready(function () {
         $("#idUnitPrice").kendoNumericTextBox();
         validateUploadForm();
- 
+
     });
+
+        /*    Section Data */
+        function SectionListDataBound() {
+            this.value('Prime');
+        }
 
 
     function validateUploadForm() {

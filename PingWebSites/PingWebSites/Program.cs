@@ -21,7 +21,7 @@ namespace PingWebSites
             logger.Info("Starting PingWebSites");
 
 
-            string[] urlList = new string[] { "http://www.amzwholesale.com" };
+            string[] urlList = new string[] { "http://www.amzwholesale.com", "http://www.massdatausa.com" };
             foreach (var url in urlList)
             {
 
