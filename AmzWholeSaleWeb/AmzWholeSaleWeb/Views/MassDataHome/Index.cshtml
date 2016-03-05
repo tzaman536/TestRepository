@@ -55,7 +55,7 @@
         <dl>
             <dt><img src="@Url.Content("~/content/products/")#:SmallImageId#" alt="#:ProductName# image" onclick="imageClicked('#:ProductID#')" /></dt>
             <dd>&nbsp;</dd>
-            <dd>#:ProductName#</dd>
+            <dd><b>#:ProductName#</b></dd>
             <dd>#:ProductDescription#</dd>
             <dd class="ddPrice">#:kendo.toString(UnitPrice, "c")#</dd>
             <dd><input id="addToCartButton" type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_addtocart_96x21.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" onclick="addOneItemToCart('#:ProductID#', '#:UnitPrice#', 1)"></dd>
@@ -238,7 +238,6 @@
 
 <style>
     .ddPrice {
-        color: orangered;
         font-weight: bold;
         font-size: 12px;
     }
@@ -293,7 +292,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfff5', end
 
         border-color:white;
 
+        font-size: 10px;
+        font-family:Corbel;
+        font-weight:bold;
+        
     }
+
 
     .product-view img {
         float: left;
@@ -337,13 +341,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfff5', end
 
     .product-view dt {
         margin-right: 1;
-        font-size: 13px;
         height: 16px;
         line-height: 16px;
         text-transform: none;
         opacity: 1;
         margin-left: 10px;
         word-wrap: break-word;
+        
     }
 
     .product-view dd {
