@@ -83,14 +83,14 @@
         .Read(read => read.Action("Products_Read", "MassDataHome").Data("dataFilter"))
     //.Update(update => update.Action("Editing_Update", "ListView"))
     //.Destroy(destroy => destroy.Action("Editing_Destroy", "ListView"))
-    ).Pageable()
+    )
+    //.Pageable()
     .Editable()
     .Navigatable()
     //.Selectable()
     .Events(events => events.Change("onChange").DataBound("onDataBound"))
     )
 </div>
-<h5>Clik on arrow to view more products</h5>
 
 <script>
         $(document).ready(function () {
@@ -277,63 +277,77 @@
     .product-view {
         float: left;
         width: 33.3%;
-        height: 300px;
+        height: 350px;
         box-sizing: border-box;
-        border-top: 0;
         position: relative;
+        border: 0,0,0,0;
+        background-color:lightgray;
+        border-color:white;
+
     }
 
-        .product-view img {
-            float: left;
-            width: 110px;
-            height: 110px;
-            opacity: 100;
-            margin-bottom: 10px;
-            margin-right: 10px;
-            cursor: zoom-in;
-        }
+    .product-view img {
+        float: left;
+        width: 110px;
+        height: 110px;
+        opacity: 100;
+        margin-bottom: 10px;
+        margin-right: 10px;
+        cursor: zoom-in;
+    }
 
-        .product-view:nth-child(even) {
-            border-left-width: 0;
-        }
+    .product-view:nth-child(even) {
+        border-left-width: 15px;
+        border-right-width: 15px;
+        border-top-width: 30px;
+        border-bottom-width: 15px;
+    }
 
-        .product-view dl {
-            margin: 10px 10px 0;
-            padding: 0;
-            overflow: hidden;
-        }
+    .product-view:nth-child(odd) {
+        border-left-width: 15px;
+        border-right-width: 15px;
+        border-top-width: 30px;
+        border-bottom-width: 15px;
+    }
 
-        .product-view dt, dd {
-            margin: 1;
-            padding: 0;
-            width: 100%;
-            line-height: 20px;
-            font-size: 15px;
-            font-weight: normal;
-        }
 
-        .product-view dt {
-            margin-right: 1;
-            font-size: 13px;
-            height: 16px;
-            line-height: 16px;
-            text-transform: none;
-            opacity: 1;
-            margin-left: 10px;
-            word-wrap: break-word;
-        }
+    .product-view dl {
+        margin: 10px 10px 0;
+        padding: 0;
+        overflow: hidden;
+    }
 
-        .product-view dd {
-            height: 25px;
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-        }
+    .product-view dt, dd {
+        margin: 1;
+        padding: 0;
+        width: 100%;
+        line-height: 20px;
+        font-size: 15px;
+        font-weight: normal;
+    }
 
-            .product-view dd .k-widget,
-            .product-view dd .k-textbox {
-                font-size: 14px;
-            }
+    .product-view dt {
+        margin-right: 1;
+        font-size: 13px;
+        height: 16px;
+        line-height: 16px;
+        text-transform: none;
+        opacity: 1;
+        margin-left: 10px;
+        word-wrap: break-word;
+    }
+
+    .product-view dd {
+        height: 25px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    .product-view dd .k-widget,
+    .product-view dd .k-textbox {
+        font-size: 14px;
+    }
 
     .k-listview {
         border-width: 1px 0 0;

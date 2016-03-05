@@ -1,5 +1,5 @@
 ﻿body {
-    padding-top: 120px;
+    padding-top: 200px;
     padding-bottom: 20px;
 }
 
@@ -25,6 +25,9 @@ textarea {
 
 
 /*Override NavBar properties*/
+.navbar{
+    min-height:200px;
+}
 .navbar-inverse {
   background-color: darkred;
   border-color: #080808;
