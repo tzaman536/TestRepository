@@ -53,13 +53,14 @@
 <script type="text/x-kendo-tmpl" id="template">
     <div class="product-view k-widget">
         <dl>
-            <dt><img src="@Url.Content("~/content/products/")#:SmallImageId#" alt="#:ProductName# image" onclick="imageClicked('#:ProductID#')" /> <a href="/ProductDetail/Index?productID=#:ProductID#">#:ProductName#</a></dt>
+            <dt><img src="@Url.Content("~/content/products/")#:SmallImageId#" alt="#:ProductName# image" onclick="imageClicked('#:ProductID#')" /> <b>#:ProductName#</b></dt>
             <dd>&nbsp;</dd>
             <dd>#:ProductDescription#</dd>
             <dd class="ddPrice">#:kendo.toString(UnitPrice, "c")#</dd>
             <dd>In stock: #:UnitsInStock# <b style="color:blue; float:right;">Free shipping</b></dd>
-            <dd><input id="addToCartButton" type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_addtocart_96x21.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" onclick="addOneItemToCart('#:ProductID#', '#:UnitPrice#', 1)"></dd>
-            <dd><input id="idViewMore" type="image" src="@Url.Content("~/Content/shared/ViewMore.png")" border="0" name="submit" alt="View More" onclick="viewDetail('#:ProductID#')"></dd>
+            @*<dd><input id="addToCartButton" type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_addtocart_96x21.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" onclick="addOneItemToCart('#:ProductID#', '#:UnitPrice#', 1)"></dd>
+            <dd><input id="idViewMore" type="image" src="@Url.Content("~/Content/shared/ViewMore.png")" border="0" name="submit" alt="View More" onclick="viewDetail('#:ProductID#')"></dd>*@
+            <dd class="ddButton"><button id="addToCartButton" class="button_AddToCart" onclick="addOneItemToCart('#:ProductID#', '#:UnitPrice#', 1)">Add to Cart</button>&nbsp;<button id="idViewMore" class="button_ViewMore" onclick="viewDetail('#:ProductID#')">View More</button></dd>
             @*<dd><a id="idViewMore" href="/ProductDetail/Index?productID=#:ProductID#" >Click to view more</a></dd>*@
             
         </dl>
@@ -83,14 +84,14 @@
         .Read(read => read.Action("Products_Read", "AmzHome").Data("dataFilter"))
     //.Update(update => update.Action("Editing_Update", "ListView"))
     //.Destroy(destroy => destroy.Action("Editing_Destroy", "ListView"))
-    ).Pageable()
+    )
+    //.Pageable()
     .Editable()
     .Navigatable()
     //.Selectable()
     .Events(events => events.Change("onChange").DataBound("onDataBound"))
     )
     </div>
-    <h5>Clik on arrow to view more products</h5>
 
     <script>
         $(document).ready(function () {
@@ -243,6 +244,11 @@
             font-weight:bold;
             font-size:12px;
         }
+        .ddButton{
+            line-height: 8px;
+            min-height:30px;
+        }
+
         .windowProductName{
             font-size: 18px;
             font-weight:bold;
@@ -279,7 +285,33 @@
             box-sizing: border-box;
             border-top: 0;
             position: relative;
-            
+
+            /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#feffff+0,d2ebf9+100;Blue+3D+%2312 */
+            background: #feffff; /* Old browsers */
+            background: -moz-linear-gradient(top,  #feffff 0%, #d2ebf9 100%); /* FF3.6-15 */
+            background: -webkit-linear-gradient(top,  #feffff 0%,#d2ebf9 100%); /* Chrome10-25,Safari5.1-6 */
+            background: linear-gradient(to bottom,  #feffff 0%,#d2ebf9 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feffff', endColorstr='#d2ebf9',GradientType=0 ); /* IE6-9 */
+
+            border-color:white;
+
+            font-size: 10px;
+            font-family:Corbel;
+            font-weight:bold;
+        }
+
+        .product-view:nth-child(even) {
+            border-left-width: 15px;
+            border-right-width: 15px;
+            border-top-width: 30px;
+            border-bottom-width: 15px;
+        }
+
+        .product-view:nth-child(odd) {
+            border-left-width: 15px;
+            border-right-width: 15px;
+            border-top-width: 30px;
+            border-bottom-width: 15px;
         }
 
             .product-view img {
@@ -292,9 +324,6 @@
                 cursor:zoom-in;
             }
 
-            .product-view:nth-child(even) {
-                border-left-width: 0;
-            }
 
             .product-view dl {
                 margin: 10px 10px 0;

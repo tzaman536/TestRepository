@@ -66,11 +66,30 @@
             float: left;
         }
 
-        .cartButton {
-            background-position:center;
-            background-repeat: no-repeat;
-            background-color: lightgray;
+        .cartButton{
+            border:1px solid #d1dcdf; -webkit-border-radius: 3px; -moz-border-radius: 3px;border-radius: 3px;font-size:12px;font-family:arial, helvetica, sans-serif; 
+            padding: 10px 10px 10px 10px; 
+            text-decoration:none; display:inline-block;text-shadow: -1px -1px 0 rgba(0,0,0,0.3);font-weight:bold; color: white;
+            background-color: #f2f5f6; background-image: -webkit-gradient(linear, left top, left bottom, from(#f2f5f6), to(#c8d7dc));
+            background-image: -webkit-linear-gradient(top, #f2f5f6, #c8d7dc);
+            background-image: -moz-linear-gradient(top, #f2f5f6, #c8d7dc);
+            background-image: -ms-linear-gradient(top, #f2f5f6, #c8d7dc);
+            background-image: -o-linear-gradient(top, #f2f5f6, #c8d7dc);
+            background-image: linear-gradient(to bottom, #f2f5f6, #c8d7dc);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#f2f5f6, endColorstr=#c8d7dc);
             margin-left:5px;
+            max-height:52px;
+
+        }
+
+
+        .cartButton:hover{
+             border:1px solid #b6c7cc;
+             background-color: #d4dee1; background-image: -webkit-gradient(linear, left top, left bottom, from(#d4dee1), to(#a9c0c8));
+             background-image: -webkit-linear-gradient(top, #d4dee1, #a9c0c8);
+             background-image: -moz-linear-gradient(top, #d4dee1, #a9c0c8);
+             background-image: -ms-linear-gradient(top, #d4dee1, #a9c0c8);
+             background-image: -o-linear-gradient(top, #d4dee1, #a9c0c8);
+             background-image: linear-gradient(to bottom, #d4dee1, #a9c0c8);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#d4dee1, endColorstr=#a9c0c8);
         }
 
         .payPal{
