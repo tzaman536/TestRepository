@@ -15,21 +15,44 @@
     <div style="display:table-row">
         <div class="mainBodyImageCellFiller">
         </div>
+        <div class="mainBodyImageCellFiller">
+        </div>
+        <div class="mainBodyImageCellFiller">
+        </div>
+        <div class="mainBodyImageCellFiller">
+        </div>
+        <div class="mainBodyImageCellFiller">
+        </div>
+        <div class="mainBodyImageCellFiller">
+        </div>
+        <div class="mainBodyImageCellFiller">
+        </div>
         <div class="mainBodyImageCell">
-            <img id="idCustomSoftwareDevelopment" src="@Url.Content("~/Images/CustomSoftwareSolution.jpg")" />
-            <h3>Software Development</h3>
+            <dl>
+                <dt><img id="idCustomSoftwareDevelopment" src="@Url.Content("~/Images/CustomSoftwareSolution.jpg")" />
+                </dt>
+                <dd class="bodySectionHeaderText">Software Development</dd>
+            </dl>
        </div>
         <div class="mainBodyImageCellFiller">
         </div>
         <div class="mainBodyImageCell">
-            <img id="idSoftwareConsulting" src="@Url.Content("~/Images/ITInfrastructure.jpg")" />
-            <h3>Infrastructure</h3>
+            <dl>
+                <dt>
+                    <img id="idCustomSoftwareDevelopment" src="@Url.Content("~/Images/ITInfrastructure.jpg")" />
+                </dt>
+                <dd class="bodySectionHeaderText">IT Infrastructure</dd>
+            </dl>
         </div>
         <div class="mainBodyImageCellFiller">
         </div>
         <div class="mainBodyImageCell">
-            <img id="idSoftwareConsulting" src="@Url.Content("~/Images/SoftwareConsulting.jpg")" />
-            <h3>Software Consulting</h3>
+            <dl>
+                <dt>
+                    <img id="idCustomSoftwareDevelopment" src="@Url.Content("~/Images/SoftwareConsulting.jpg")" />
+                </dt>
+                <dd class="bodySectionHeaderText">Software Consulting</dd>
+            </dl>
         </div>
 
 
@@ -104,15 +127,21 @@
         border:0;
     }
     .mainBodyImageCell img{
-        float: left;
         width:150px;
         height:150px;
         opacity:100;
-        margin-bottom:40px;
-        margin-right:0px;
+        position:relative;
+     
     }
 
-
+    .bodySectionHeaderText{
+      color: #ffffff;
+      text-shadow: 0px 0px 0px #ffffff;
+      font-size: 15px;
+      font-family:Corbel;
+      font-weight:bold;
+      
+    }
 
     #menu h2 {
         font-size: 1em;
