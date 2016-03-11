@@ -12,7 +12,18 @@
     @Styles.Render("~/Content/kendo/css")
 
 </head>
+
 <body>
+    <style>
+        .pageFooterTableCell
+        {
+            min-width:200px;
+            max-width:200px; 
+            display:table-cell; 
+            border:0;
+           
+        }
+    </style>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -38,8 +49,28 @@
     </div>
     <div id="footer" class="pageFooter">
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+            <b>Simplex Sys Inc.</b><br />
+            14 Fountain Lane<br />
+            Jericho, NY- 11753<br />
+            Phone: 516 639 8131<br />
+            Email: sales@simplexsys.co<br />
+                @*<div style="display:table-row">
+                    <div class="pageFooterTableCell">
+                    </div>
+                    <div class="pageFooterTableCell">
+
+                    </div>
+                    <div class="pageFooterTableCell">
+                    </div>
+                    <div class="pageFooterTableCell">
+                    </div>
+                    <div class="pageFooterTableCell">
+                    </div>
+                    <div class="pageFooterTableCell">
+                    </div>
+                </div>*@
+
+</footer>
     </div>
 
     @RenderSection("scripts", required: false)
