@@ -3,6 +3,217 @@
     ViewBag.Title = "Simplex";
 }
 
-<h2>Simplex Sys Index</h2>
+<div class="bodyMainMessage">
+    <h2>BUSINESSES EMPOWERED BY OUR TECHNOLOGY SOLUTIONS.</h2> <br />
+</div>
 
-@(Html.Kendo().DatePicker().Name("datepicker"))
+<div class="bodyMainMessage1">
+    <h3>We combine industry expertise, scalable infrastructure and agile collaboration to provide simple technology solutions for your business.</h3><br />
+</div>
+
+<div style="display:table;">
+    <div style="display:table-row">
+        <div class="mainBodyImageCellFiller">
+        </div>
+        <div class="mainBodyImageCell">
+            <img id="idCustomSoftwareDevelopment" src="@Url.Content("~/Images/CustomSoftwareSolution.jpg")" />
+            <h3>Software Development</h3>
+       </div>
+        <div class="mainBodyImageCellFiller">
+        </div>
+        <div class="mainBodyImageCell">
+            <img id="idSoftwareConsulting" src="@Url.Content("~/Images/ITInfrastructure.jpg")" />
+            <h3>Infrastructure</h3>
+        </div>
+        <div class="mainBodyImageCellFiller">
+        </div>
+        <div class="mainBodyImageCell">
+            <img id="idSoftwareConsulting" src="@Url.Content("~/Images/SoftwareConsulting.jpg")" />
+            <h3>Software Consulting</h3>
+        </div>
+
+
+        @*<div class="mainBodyImageCell">
+            <img id="idITInfrastructure" src="@Url.Content("~/Images/ITInfrastructure.jpg")" />
+            <h3>IT Infrastructure</h3>
+        </div>*@
+
+
+    </div>
+</div>
+
+
+@*<table style="width:100%; height:300px">
+    <tr style="height:300px; ">
+        <td style="width:10px;border:1px solid white;"></td>
+        <td style="width:300px; border:1px solid white; text-align:center;">
+            <section id="idCustomSoftwareDevelopment" class="imageSection1"></section>
+            <h3>Custom Software Development</h3>
+        </td>
+        <td style="width:10px;border:1px solid white;"></td>
+        <td style="width:300px; border:1px solid white;  text-align:center">
+            <section id="idITInfrastructure" class="imageSection2"></section>
+            <h3>IT Infrastructure</h3>
+        </td>
+        <td style="width:10px;border:1px solid white;"></td>
+        <td style="width:300px; border:1px solid white; text-align:center">
+            <section id="idSoftwareConsulting" class="imageSection3"></section>
+            <h3>Software Consulting</h3>
+        </td>
+    </tr>
+</table>*@
+
+
+
+<style>
+
+    .bodyMainMessage{
+      margin-left:0px; 
+      margin-top:0px;
+      color: #ffffff;
+      text-shadow: 0px 0px 0px #ffffff;
+      font-size: 25px;
+      font-family:Corbel;
+      font-weight:bold;
+    }
+
+    .bodyMainMessage1{
+      margin-left:10px; 
+      margin-top:15px;
+      margin-bottom:25px;
+      color: #ffffff;
+      text-shadow: 0px 0px 0px #ffffff;
+      font-size: 15px;
+      font-family:Corbel;
+      font-weight:bold;
+    }
+
+    .mainBodyImageCell
+    {
+        min-width:200px;
+        max-width:200px; 
+        display:table-cell; 
+        border:0;
+           
+    }
+    .mainBodyImageCellFiller
+    {
+        min-width:25px;
+        max-width:25px; 
+        display:table-cell; 
+        border:0;
+    }
+    .mainBodyImageCell img{
+        float: left;
+        width:150px;
+        height:150px;
+        opacity:100;
+        margin-bottom:40px;
+        margin-right:0px;
+    }
+
+
+
+    #menu h2 {
+        font-size: 1em;
+        text-transform: uppercase;
+        padding: 5px 10px;
+    }
+    #template img {
+        margin: 5px 20px 0 0;
+        float: left;
+    }
+    #template {
+        width: 380px;
+    }
+    #template ol {
+        float: left;
+        margin: 0;
+        padding: 10px 10px 0 10px;
+    }
+    #template:after {
+        content: ".";
+        display: block;
+        height: 0;
+        clear: both;
+        visibility: hidden;
+    }
+    #template .k-button {
+        float: left;
+        clear: left;
+        margin: 5px 0 5px 12px;
+    }
+
+    .imageSection1 {
+        position:relative;
+        width: 100%; /* for IE 6 */
+        height: 100%;
+        /*background: url(@Url.Content("~/Images/Vista.gif")) no-repeat;*/
+        background: url(@Url.Content("~/Images/CustomSoftwareSolution.jpg")) no-repeat center;
+        background-size: 100%;
+        /*border-radius: 25px;  Gives any image a round corner */
+        /*border-bottom-left-radius: 10px; */
+        cursor: pointer;
+
+    }
+
+    .setionText {
+       text-align: center;
+    }
+
+    .textSectionOne  {
+        position: relative;
+        display: inline-block;
+        margin-top: 50px; /* Use this to move text on the image */
+        margin-right: 40px; /* Use this to move text on the image */
+        color:red;
+        float: right; /* Use this to move text on the image */
+
+    }
+
+    .imageSection2 {
+        position: relative;
+        width: 100%; /* for IE 6 */
+        height: 100%;
+        /*background: url(@Url.Content("~/Images/Office2007.gif")) no-repeat center;*/
+        background: url(@Url.Content("~/Images/ITInfrastructure.jpg")) no-repeat center;
+        background-size:100%;
+        /*border-radius: 25px;  Gives any image a round corner */
+        cursor: pointer;
+    }
+
+    .textSectionTwo  {
+        position: relative;
+        display: inline-block;
+        margin-top: 50px; /* Use this to move text on the image */
+        margin-right: 40px; /* Use this to move text on the image */
+        color:red;
+        float: right; /* Use this to move text on the image */
+
+    }
+
+
+    .imageSection3 {
+        position: relative;
+        width: 100%; /* for IE 6 */
+        height: 100%;
+        /*background: url(@Url.Content("~/Images/Office2010Silver.gif")) no-repeat;*/
+        background: url(@Url.Content("~/Images/SoftwareConsulting.jpg")) no-repeat center;
+        background-size:100%;
+        /*border-radius: 25px;  Gives any image a round corner */
+        cursor:pointer;
+    }
+
+    .textSectionThree  {
+        position: relative;
+        display: inline-block;
+        margin-top: 50px; /* Use this to move text on the image */
+        margin-right: 40px; /* Use this to move text on the image */
+        color:red;
+        float: right; /* Use this to move text on the image */
+
+    }
+
+
+
+</style>
