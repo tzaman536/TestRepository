@@ -95,3 +95,26 @@ select,
 textarea {
     max-width: 280px;
 }
+
+
+/* TEXT properties of page*/
+   .bodyMainMessage{
+      margin-left:0px; 
+      margin-top:0px;
+      color: #ffffff;
+      text-shadow: 0px 0px 0px #ffffff;
+      font-size: 25px;
+      font-family:Corbel;
+      font-weight:bold;
+    }
+
+    .bodyMainMessage1{
+      margin-left:10px; 
+      margin-top:15px;
+      margin-bottom:25px;
+      color: #ffffff;
+      text-shadow: 0px 0px 0px #ffffff;
+      font-size: 20px;
+      font-family:Corbel;
+      font-weight:bold;
+    }
