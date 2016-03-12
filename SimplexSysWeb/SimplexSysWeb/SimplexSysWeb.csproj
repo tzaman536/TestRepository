@@ -1437,6 +1437,20 @@
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\STACK\SimplexTools\SimplexTool.csproj">
+      <Project>{7c808526-57bf-4dbe-b1f1-ae390a7fcc08}</Project>
+      <Name>SimplexTool</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SimplexBL\SimplexBL.csproj">
+      <Project>{28075290-db7e-40d9-ae0e-f2dce9013252}</Project>
+      <Name>SimplexBL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SimplexModel\SimplexModel.csproj">
+      <Project>{d9ce032f-e957-4d4b-ba3b-143f7a2424f5}</Project>
+      <Name>SimplexModel</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
