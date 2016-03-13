@@ -95,7 +95,7 @@ namespace SimplexSysWeb.Controllers
             }
 
 
-            return Json(new { success = true, message = string.Format("Total client count:  {0}", totalClientCount) }, JsonRequestBehavior.AllowGet);
+            return Json(new { success = true, message = string.Format("Thanks for contacting us. Someone will get back to you soon.") }, JsonRequestBehavior.AllowGet);
         }
 
 
