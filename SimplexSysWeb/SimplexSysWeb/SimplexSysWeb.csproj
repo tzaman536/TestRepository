@@ -554,6 +554,9 @@
     <Content Include="Content\kendo\Uniform\sprite_kpi_2x.png" />
     <Content Include="Content\pageBackgroundImage1.jpg" />
     <Content Include="Content\pageBackgroundImage2.jpg" />
+    <Content Include="Content\pageBackgroundImage3.jpg" />
+    <Content Include="Content\pageBackgroundImage4.jpg" />
+    <Content Include="Content\pageBackgroundImage5.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
