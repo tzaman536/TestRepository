@@ -42,7 +42,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f9fe', end
 
 
     bottom:0;
-    position:absolute;
+    position:fixed;
     width:100%;
     height:12%;
     background-size:100%;
