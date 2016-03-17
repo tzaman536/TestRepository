@@ -103,6 +103,20 @@
 
 <script>
 
+    $(window).resize(function () {
+        
+        //alert(document.getElementById("footer").clientHeight);
+        //document.getElementById('footer').setAttribute("style", "height:10px");
+        if (window.innerWidth <= 800 && window.innerHeight <= 600) {
+            document.getElementById("footer").style.display = "none";
+        }else
+        {
+            document.getElementById("footer").style.display = "table";
+        }
+
+        
+    });
+
     $("#idITInfrastructure").click(function () {
         window.location.href = '@Url.Action("ITInfrastructure", "SimplexSysHome")'
      });
