@@ -20,7 +20,15 @@
 
     it within Excel.</p>
 
+<script>
+    $(document).ready(function () {
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            document.getElementById("footer").style.display = "none";
+            document.getElementById("navBar").style.minHeight = "20px";
+        }
+    });
 
+</script>
 <style>
     body {
         padding-top: 150px;
