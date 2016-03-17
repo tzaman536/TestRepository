@@ -1,6 +1,48 @@
 ﻿@{
     ViewBag.Title = "Simplex";
 }
+<style>
+    .mainBodyImageCell {
+        min-width: 250px;
+        max-width: 250px;
+        display: table-cell;
+        border: 0;
+    }
+
+    .mainBodyImageCellFiller {
+        min-width: 25px;
+        max-width: 25px;
+        display: table-cell;
+        border: 0;
+    }
+
+    .mainBodyImageCell img {
+        width: 200px;
+        height: 200px;
+        opacity: 100;
+        position: relative;
+        border-radius: 15px;
+        cursor: pointer;
+    }
+
+        .mainBodyImageCell img:hover {
+            -webkit-filter: blur(5px);
+            -moz-filter: blur(5px);
+            -o-filter: blur(5px);
+            -ms-filter: blur(5px);
+            filter: blur(5px);
+        }
+
+    .bodySectionHeaderText {
+        color: #ffffff;
+        text-shadow: 0px 0px 0px #ffffff;
+        font-size: 15px;
+        font-family: Corbel;
+        font-weight: bold;
+    }
+</style>
+
+
 
 <div>
     <h2 class="bodyMainMessage">BUSINESSES EMPOWERED BY OUR TECHNOLOGY SOLUTIONS.</h2> <br />
@@ -76,51 +118,3 @@
 
 
 </script>
-<style>
-    .mainBodyImageCell
-    {
-        min-width:250px;
-        max-width:250px; 
-        display:table-cell; 
-        border:0;
-           
-    }
-    .mainBodyImageCellFiller
-    {
-        min-width:25px;
-        max-width:25px; 
-        display:table-cell; 
-        border:0;
-    }
-    .mainBodyImageCell img{
-        width:200px;
-        height:200px;
-        opacity:100;
-        position:relative;
-        border-radius:15px;
-        cursor: pointer;
-        
-
-        
-    }
-    .mainBodyImageCell img:hover{
-        -webkit-filter: blur(5px);
-        -moz-filter: blur(5px);
-        -o-filter: blur(5px);
-        -ms-filter: blur(5px);
-        filter: blur(5px);
-
-    }
-
-    .bodySectionHeaderText{
-      color: #ffffff;
-      text-shadow: 0px 0px 0px #ffffff;
-      font-size: 15px;
-      font-family:Corbel;
-      font-weight:bold;
-      
-    }
-
-  
-</style>
-

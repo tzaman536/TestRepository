@@ -7,6 +7,7 @@
     width:100%;
     height:100%;
     background-size:100%;
+    
    
 }
 
@@ -43,7 +44,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f9fe', end
     bottom:0;
     position:absolute;
     width:100%;
-    height:130px;
+    height:12%;
     background-size:100%;
     display:table;
 
@@ -56,6 +57,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f9fe', end
     font-family:Corbel;
     font-weight:bolder;
 
+    
+
+}
+.container
+{
+    position:relative;
 }
 
 .navbar-inverse .navbar-nav > li > a {
