@@ -6,6 +6,7 @@ using System.Net.Mail;
 using System.Configuration;
 using System.Net;
 using log4net;
+using Simplex.Tools.AppSettings;
 
 namespace PhenixTools.Mail
 {
@@ -18,14 +19,21 @@ namespace PhenixTools.Mail
             try
             {
                 logger.Info("Sending mail.....");
+                string mailFrom = AppSettingsHandler.GetAppSettingsValue("MAIL_FROM");
+                string smtpServer = AppSettingsHandler.GetAppSettingsValue("SMTP_SERVER");
+                string smtpPort = AppSettingsHandler.GetAppSettingsValue("SMTP_PORT");
+                string mailCred = AppSettingsHandler.GetAppSettingsValue("MAIL_FROM_CRED");
+
+
+                
                 MailMessage msg = new MailMessage();
                 msg.Subject = subject;
-                msg.From = new MailAddress(ConfigurationManager.AppSettings["MAIL_FROM"]);
+                msg.From = new MailAddress(mailFrom);
                 msg.Body = body;
                 msg.To.Add(new MailAddress(to));
                 SmtpClient smtp = new SmtpClient();
-                smtp.Host = ConfigurationManager.AppSettings["SMTP_SERVER"];
-                smtp.Port = int.Parse(ConfigurationManager.AppSettings["SMTP_PORT"]);
+                smtp.Host = smtpServer;
+                smtp.Port = int.Parse(smtpPort);
                 smtp.UseDefaultCredentials = false;
                 smtp.EnableSsl = true;
                 //SMTP_PORT = 25
@@ -33,8 +41,14 @@ namespace PhenixTools.Mail
                 // smtp server name : localhost
                 // userid: send@simplexsys.co
                 //NetworkCredential nc = new NetworkCredential(send@simplexsys.co, "send");
-                NetworkCredential nc = new NetworkCredential(ConfigurationManager.AppSettings["MAIL_FROM"], ConfigurationManager.AppSettings["MAIL_FROM_CRED"]);
+                NetworkCredential nc = new NetworkCredential(mailFrom, mailCred);
                 smtp.Credentials = nc;
+
+                logger.InfoFormat("Mail from: {0}", mailFrom);
+                logger.InfoFormat("SMTP Server: {0}",smtpServer);
+                logger.InfoFormat("SMTP Port: {0}", smtpPort);
+                logger.InfoFormat("Mail Cred: {0}", mailCred);
+
                 smtp.Send(msg);
             }
             catch (Exception ex)
