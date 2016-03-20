@@ -156,3 +156,58 @@ textarea {
 
 /* End Button Style*/
 
+/* BEGIN Product Detail  and Review Cart Page Style*/
+        .backToHomePage
+        {
+            color: #244062;
+            text-shadow: 0px 0px 0px #244062;
+            text-decoration:underline;
+            font-size: 14px;
+            font-family:Corbel;
+            font-weight:bold;
+           
+        }
+        .productName
+        {
+            color: #244062;
+            text-shadow: 0px 0px 0px #244062;
+            font-size: 18px;
+            font-family:Corbel;
+            font-weight:bolder;
+        }
+
+        .reviewCart{
+            color: #244062;
+            text-shadow: 0px 0px 0px #244062;
+            font-size: 16px;
+            font-family:Corbel;
+            font-weight:bolder;
+            vertical-align: middle;
+        }
+        .productDescription
+        {
+            color: #244062;
+            text-shadow: 0px 0px 0px #244062;
+            font-size: 14px;
+            font-family:Corbel;
+            font-weight:normal;
+        }
+
+        .unitPrice
+        {
+            color: darkred;
+            text-shadow: 0px 0px 0px darkred;
+            font-size: 14px;
+            font-family:Corbel;
+            font-weight:bolder;
+        }
+
+        .unitInStock
+        {
+            color: #244062;
+            text-shadow: 0px 0px 0px #244062;
+            font-size: 14px;
+            font-family:Corbel;
+            font-weight:normal;
+        }
+/* END Product Detail Page Style*/
