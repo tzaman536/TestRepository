@@ -29,18 +29,22 @@
 
 @model IEnumerable<AmzWholeSaleWeb.Controllers.ProductImage>
 @*@Html.ActionLink("Take me back to home page", "Index", "AmzHome")*@
-<a href=@ViewBag.HomeView> Take me back to home page</a>
+<a class="backToHomePage" href=@ViewBag.HomeView> Take me back to home page</a>
+<br />
+<br />
 <div>
-    <input id="addToCartButton" type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_addtocart_96x21.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" onclick="addOneItemToCart()">
+    @*<input id="addToCartButton" type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_addtocart_96x21.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" onclick="addOneItemToCart()">*@
+    <button id="addToCartButton" class="button_AddToCart" onclick="addOneItemToCart()">Add to Cart</button>
+
 </div>
 <div>
     <div>
-        <h3>@ViewBag.Product.ProductName</h3>
-        <h4>
+        <h3 class="productName">@ViewBag.Product.ProductName</h3>
+        <h4 class="productDescription">
             @ViewBag.Product.ProductDescription
         </h4>
-        <h5 style="color:orangered">Unit Price: @ViewBag.Product.UnitPrice</h5>
-        <h5>Units In Stock: @ViewBag.Product.UnitsInStock</h5>
+        <h5 class="unitPrice">Unit Price: @ViewBag.Product.UnitPrice</h5>
+        <h5 class="unitInStock">Units In Stock: @ViewBag.Product.UnitsInStock</h5>
     </div>
     <script type="text/x-kendo-tmpl" id="template">
         <div class="product">
@@ -61,11 +65,12 @@
         )
     </div>
     <div>
-        <h5>@ViewBag.Product.ProductLongDescription</h5>
+        <h5 class="productDescription">@ViewBag.Product.ProductLongDescription</h5>
     </div>
     <br />
     <div>
-        <input id="addToCartButton" type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_addtocart_96x21.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" onclick="addOneItemToCart()">
+        @*<input id="addToCartButton" type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_addtocart_96x21.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" onclick="addOneItemToCart()">*@
+        <button id="addToCartButton" class="button_AddToCart" onclick="addOneItemToCart()">Add to Cart</button>
     </div>
 </div>
 
@@ -118,6 +123,51 @@
     }
 </script>
 <style>
+        .backToHomePage
+        {
+            color: #244062;
+            text-shadow: 0px 0px 0px #244062;
+            text-decoration:underline;
+            font-size: 14px;
+            font-family:Corbel;
+            font-weight:bold;
+           
+        }
+        .productName
+        {
+            color: #244062;
+            text-shadow: 0px 0px 0px #244062;
+            font-size: 18px;
+            font-family:Corbel;
+            font-weight:bolder;
+        }
+
+        .productDescription
+        {
+            color: #244062;
+            text-shadow: 0px 0px 0px #244062;
+            font-size: 14px;
+            font-family:Corbel;
+            font-weight:normal;
+        }
+
+        .unitPrice
+        {
+            color: darkred;
+            text-shadow: 0px 0px 0px darkred;
+            font-size: 14px;
+            font-family:Corbel;
+            font-weight:bolder;
+        }
+
+        .unitInStock
+        {
+            color: #244062;
+            text-shadow: 0px 0px 0px #244062;
+            font-size: 14px;
+            font-family:Corbel;
+            font-weight:normal;
+        }
 
         .imageBig img{
             float: left;
