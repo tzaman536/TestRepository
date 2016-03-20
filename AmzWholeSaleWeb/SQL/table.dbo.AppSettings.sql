@@ -15,10 +15,25 @@ ALTER TABLE dbo.AppSettings
 ADD CONSTRAINT PK_AppKey PRIMARY KEY (AppKey)
 GO
 
+/* AMZ Wholesale
+delete AMZ.dbo.AppSettings
+insert into AMZ.dbo.AppSettings(AppKey,AppValue) values ('PayPalBusiness','tamimzaman10@yahoo.com')
+insert into AMZ.dbo.AppSettings(AppKey,AppValue) values ('PayPalReturnUrl','http://www.amzwholesale.com')
+insert into AMZ.dbo.AppSettings(AppKey,AppValue) values ('TechSupportEmail','tzaman536@gmail.com')
+insert into AMZ.dbo.AppSettings(AppKey,AppValue) values ('HomeView','http://www.amzwholesale.com')
+insert into AMZ.dbo.AppSettings(AppKey,AppValue) values ('HomeController','AmzHome')
+select * from AMZ.dbo.AppSettings
+*/
 
-insert into AppSettings(AppKey,AppValue) values ('PayPalBusiness','tamimzaman104334e354@yahoo.com')
-insert into AppSettings(AppKey,AppValue) values ('PayPalReturnUrl','http://www.massdatausa.com')
-insert into AppSettings(AppKey,AppValue) values ('TechSupportEmail','tzaman536@gmail.com')
-insert into AppSettings(AppKey,AppValue) values ('HomeView','http://www.massdatausa.com')
-insert into AppSettings(AppKey,AppValue) values ('HomeController','AmzHome')
 
+/* MASSDATAUSA
+insert into MASSDATAUSA.dbo.AppSettings(AppKey,AppValue) values ('PayPalBusiness','sales@massdataus.com')
+insert into MASSDATAUSA.dbo.AppSettings(AppKey,AppValue) values ('PayPalReturnUrl','http://www.massdatausa.com')
+insert into MASSDATAUSA.dbo.AppSettings(AppKey,AppValue) values ('TechSupportEmail','tzaman536@gmail.com')
+insert into MASSDATAUSA.dbo.AppSettings(AppKey,AppValue) values ('HomeView','http://www.massdatausa.com')
+insert into MASSDATAUSA.dbo.AppSettings(AppKey,AppValue) values ('HomeController','AmzHome')
+update t
+set AppValue = 'sales@massdataus.com'
+where AppKey = 'PayPalBusiness'
+select * from MASSDATAUSA.dbo.AppSettings
+*/
