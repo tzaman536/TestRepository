@@ -23,8 +23,7 @@
 </h3>
 <br />
 <a class="backToHomePage" href=@ViewBag.HomeView> Take me back to home page</a>
-
-
+<br />
 
 
 <script type="text/x-kendo-tmpl" id="template">
@@ -53,12 +52,13 @@
     .ClientTemplateId("template")
     .DataSource(dataSource => dataSource
         .Model(model => model.Id("ProductID"))
-        .PageSize(99)
+        //.PageSize(99)
         //.Create(create => create.Action("Editing_Create", "ListView"))
         .Read(read => read.Action("CartItems_Read", "Shared"))
     //.Update(update => update.Action("Editing_Update", "ListView"))
     //.Destroy(destroy => destroy.Action("Editing_Destroy", "ListView"))
-    ).Pageable()
+    )
+    //.Pageable()
     .Editable()
     .Navigatable()
     .Selectable()
@@ -379,6 +379,9 @@
         box-sizing: border-box;
         border-top: 0;
         position: relative;
+
+        border-color:white;
+
     }
 
         .product-view img {

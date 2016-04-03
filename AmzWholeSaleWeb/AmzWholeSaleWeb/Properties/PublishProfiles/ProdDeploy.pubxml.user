@@ -19,7 +19,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/21/2016 12:46:41</publishTime>
     </File>
     <File Include="bin/AmzWholeSaleWeb.dll">
-      <publishTime>03/06/2016 07:13:32</publishTime>
+      <publishTime>03/20/2016 10:38:45</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.dll">
       <publishTime>01/23/2016 07:24:13</publishTime>
@@ -154,7 +154,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/20/2016 18:26:38</publishTime>
     </File>
     <File Include="bin/SimplexTools.dll">
-      <publishTime>02/28/2016 13:54:51</publishTime>
+      <publishTime>03/20/2016 06:26:41</publishTime>
     </File>
     <File Include="bin/System.Web.Helpers.dll">
       <publishTime>01/23/2016 07:24:12</publishTime>
@@ -184,7 +184,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/23/2016 07:24:13</publishTime>
     </File>
     <File Include="Content/amzwholesale/Site.css">
-      <publishTime>03/06/2016 07:11:23</publishTime>
+      <publishTime>03/20/2016 09:07:53</publishTime>
     </File>
     <File Include="Content/bootstrap.css">
       <publishTime>03/05/2016 14:41:41</publishTime>
@@ -1476,8 +1476,11 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Content/kendo/Uniform/sprite_kpi_2x.png">
       <publishTime>01/12/2016 16:42:22</publishTime>
     </File>
+    <File Include="Content/massdata/MassDataLogo.jpg">
+      <publishTime>03/20/2016 09:35:29</publishTime>
+    </File>
     <File Include="Content/massdata/Site.css">
-      <publishTime>03/06/2016 06:35:28</publishTime>
+      <publishTime>03/20/2016 09:05:02</publishTime>
     </File>
     <File Include="Content/products/1.jpg">
       <publishTime>01/30/2016 10:24:43</publishTime>
@@ -4000,7 +4003,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/28/2016 16:50:55</publishTime>
     </File>
     <File Include="Views/MassDataHome/Contact.cshtml">
-      <publishTime>02/28/2016 16:50:29</publishTime>
+      <publishTime>03/20/2016 07:58:38</publishTime>
     </File>
     <File Include="Views/MassDataHome/Index.cshtml">
       <publishTime>03/05/2016 14:36:42</publishTime>
@@ -4015,13 +4018,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/28/2016 18:20:35</publishTime>
     </File>
     <File Include="Views/ProductAdmin/ManageProduct.cshtml">
-      <publishTime>02/20/2016 19:07:19</publishTime>
+      <publishTime>03/11/2016 12:06:32</publishTime>
     </File>
     <File Include="Views/ProductAdmin/ViewTransactions.cshtml">
       <publishTime>02/20/2016 18:32:48</publishTime>
     </File>
     <File Include="Views/ProductDetail/Index.cshtml">
-      <publishTime>03/05/2016 14:09:11</publishTime>
+      <publishTime>03/20/2016 08:52:28</publishTime>
     </File>
     <File Include="Views/ReferenceData/Index.cshtml">
       <publishTime>02/21/2016 12:16:11</publishTime>
@@ -4072,13 +4075,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/23/2016 07:24:16</publishTime>
     </File>
     <File Include="Views/Shared/MassData/_Layout.cshtml">
-      <publishTime>03/05/2016 14:41:41</publishTime>
+      <publishTime>03/20/2016 09:40:36</publishTime>
     </File>
     <File Include="Views/Shared/ProductNotFound.cshtml">
       <publishTime>02/28/2016 13:41:45</publishTime>
     </File>
     <File Include="Views/Shared/ReviewCart.cshtml">
-      <publishTime>02/28/2016 13:37:26</publishTime>
+      <publishTime>03/20/2016 10:36:06</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
       <publishTime>02/27/2016 13:16:24</publishTime>
@@ -4090,10 +4093,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/24/2016 15:07:03</publishTime>
     </File>
     <File Include="Views/_ViewStart.cshtml">
-      <publishTime>03/06/2016 06:43:15</publishTime>
+      <publishTime>03/20/2016 08:11:42</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>03/06/2016 07:13:34</publishTime>
+      <publishTime>03/20/2016 10:38:55</publishTime>
     </File>
   </ItemGroup>
 </Project>
