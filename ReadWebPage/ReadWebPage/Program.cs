@@ -13,8 +13,8 @@ namespace ReadWebPage
     class Company
     {
         public string CompanyName { get; set; }
+        public string CompanyAddress { get; set; }
         public DateTime FilingDate { get; set; }
-        public string Address { get; set; }
         public string DOSID { get; set; }
 
     }
@@ -85,11 +85,7 @@ namespace ReadWebPage
                         c.DOSID = w.Replace("amp;", "");
                         break;
                     }
-
                 }
-
-
-
 
             }
             catch (Exception ex)
@@ -165,7 +161,7 @@ namespace ReadWebPage
                                             if (row.InnerText.Contains("Chief Executive Officer"))
                                                 break;
 
-                                            c.Address = row.InnerText.Replace("amp;", "");
+                                            c.CompanyAddress = row.InnerText.Replace("amp;", "");
                                         }
                                     }
 
