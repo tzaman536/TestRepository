@@ -19,9 +19,17 @@ namespace ReadWebPage
         public string CompanyAddress { get; set; }
         public DateTime FilingDate { get; set; }
         public string DOSID { get; set; }
+        public string CareOf { get; set; }
+        public string AddressLine1 { get; set; }
+        public string Town { get; set; }
+        public string State { get; set; }
+        public string Zip { get; set; }
+
+
         public bool MailSent { get; set; }
         public DateTime AddDate { get; set; }
         public string AddedBy { get; set; }
+
 
     }
 
@@ -458,10 +466,142 @@ namespace ReadWebPage
             }
         }
 
+
+        static void EnrichCompanyAddress(string inputLine, ref Company updateCompany)
+        {
+            string[] lines = inputLine.Split('\n');
+            int i = 0;
+            string corpType = string.Empty;
+            List<string> addressFragmentList = new List<string>();
+            foreach (var l in lines)
+            {
+                
+                if (string.IsNullOrEmpty(l))
+                    continue;
+
+                if(l.Trim().ToUpper().Equals("LLC") || l.Trim().ToUpper().Equals("INC"))
+                {
+                    corpType = l;
+                }
+
+                addressFragmentList.Add(l);
+            }
+
+            if(string.IsNullOrEmpty(updateCompany.CareOf))
+                updateCompany.CareOf = addressFragmentList.ElementAtOrDefault(0);
+
+            updateCompany.AddressLine1 = addressFragmentList.ElementAtOrDefault(1);
+            updateCompany.Town = addressFragmentList.ElementAtOrDefault(2);
+            if (!string.IsNullOrEmpty(corpType))
+            {
+                updateCompany.CareOf = string.Format("{0} {1}", updateCompany.CareOf, corpType);
+            }
+
+        }
+
+        static void ParseAddress()
+        {
+            IEnumerable<Company> companies = GetLoadedCompanies();
+
+            foreach(Company c in companies)
+            {
+                Company updateCompany = c;
+                string[] addressFregment = c.CompanyAddress.Split(',');
+                if (addressFregment.Length == 5)
+                {
+                    updateCompany.CareOf = addressFregment.ElementAtOrDefault(0);
+                    updateCompany.AddressLine1 = addressFregment.ElementAtOrDefault(1);
+                    updateCompany.Town = addressFregment.ElementAtOrDefault(2);
+                    updateCompany.State = addressFregment.ElementAtOrDefault(3);
+                    updateCompany.Zip = addressFregment.ElementAtOrDefault(4);
+
+                } else  if (addressFregment.Length == 4 || addressFregment.Length == 3)
+                {
+                    EnrichCompanyAddress(addressFregment[0], ref updateCompany);
+                    if(string.IsNullOrEmpty(updateCompany.AddressLine1) && addressFregment.Length == 4)
+                    {
+                        if(addressFregment.ElementAt(1) != null)
+                        {
+                            EnrichCompanyAddress(addressFregment.ElementAt(1), ref updateCompany);
+                        }
+                       
+                    }
+                }
+                else if (addressFregment.Length == 2)
+                {
+
+                }
+                else if (addressFregment.Length == 1)
+                {
+                    continue;
+                }
+                else
+                {
+
+                }
+
+                if (string.IsNullOrEmpty(updateCompany.Town))
+                {
+                    if (addressFregment.Length == 4)
+                    {
+                        if (addressFregment.ElementAt(1) != null)
+                        {
+                            updateCompany.Town = addressFregment.ElementAtOrDefault(1);
+                        }
+                    }
+                }
+
+                if (string.IsNullOrEmpty(updateCompany.State))
+                {
+                    if (addressFregment.Length == 4)
+                    {
+                        if (addressFregment.ElementAt(2) != null)
+                        {
+                            updateCompany.State = addressFregment.ElementAt(2).Trim();
+                        }
+                    }
+                    if (addressFregment.Length == 3)
+                    {
+                        if (addressFregment.ElementAt(1) != null)
+                        {
+                            updateCompany.State = addressFregment.ElementAt(1).Trim();
+                        }
+                    }
+                }
+
+                if (string.IsNullOrEmpty(updateCompany.Zip))
+                {
+                        if (addressFregment.Length == 4)
+                        {
+                            if (addressFregment.ElementAt(3) != null)
+                            {
+                                updateCompany.Zip = addressFregment.ElementAt(3).Replace("\n", "").Trim();
+                            }
+                        }
+                        if (addressFregment.Length == 3)
+                        {
+                            if (addressFregment.ElementAt(2) != null)
+                            {
+                                updateCompany.Zip = addressFregment.ElementAt(2).Replace("\n", "").Trim();
+                            }
+                        }
+
+                }
+
+                Console.WriteLine("CareOf:{0}\r\nAddress:{1}\r\nTown:{2}\r\nState:{3}\r\nZip:{4}\r\n\r\n",updateCompany.CareOf,updateCompany.AddressLine1,updateCompany.Town, updateCompany.State, updateCompany.Zip);
+                string h = "hello";
+
+            }
+            string hello = "hello";
+
+        }
+
         static void Main(string[] args)
         {
-            PopulateDictDOSID();
-            ContainsSearch();
+            //PopulateDictDOSID();
+            //ContainsSearch();
+
+            ParseAddress();
 
             Console.WriteLine("Press any key to continue");
             Console.ReadLine();
