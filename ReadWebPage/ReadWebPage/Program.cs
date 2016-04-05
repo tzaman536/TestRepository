@@ -1,7 +1,10 @@
-﻿using HtmlAgilityPack;
+﻿using Dapper;
+using HtmlAgilityPack;
 using mshtml;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -16,12 +19,101 @@ namespace ReadWebPage
         public string CompanyAddress { get; set; }
         public DateTime FilingDate { get; set; }
         public string DOSID { get; set; }
+        public bool MailSent { get; set; }
+        public DateTime AddDate { get; set; }
+        public string AddedBy { get; set; }
 
     }
 
     class Program
     {
         static List<Company> companyList = new List<Company>();
+
+        public static IEnumerable<Company> GetLoadedCompanies()
+        {
+            IEnumerable<Company> resultList = null;
+
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+            {
+                conn.Open();
+                try
+                {
+                    resultList = conn.Query<Company>(@"
+                    SELECT * 
+                    FROM Phenix.dbo.RegisteredCompanies");
+                }
+                catch (Exception ex)
+                {
+                }
+
+            }
+
+
+            return resultList;
+
+        }
+
+
+        public static void AddCompanyInfo(Company ci)
+        {
+            ci.AddedBy = Environment.UserName;
+            ci.AddDate = DateTime.UtcNow;
+            ci.MailSent = false;
+
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+            {
+                conn.Open();
+                try
+                {
+                    IEnumerable<Company> resultList = conn.Query<Company>(@"
+                        INSERT INTO [Phenix].[dbo].[RegisteredCompanies]
+                                    ([CompanyName]
+                                    ,[CompanyAddress]
+                                    ,[FilingDate]
+                                    ,[DOSID]
+                                    ,[MailSent]
+                                    ,[AddDate]
+                                    ,[AddedBy]
+                                    )
+                                VALUES
+                                    (@CompanyName
+                                    ,@CompanyAddress
+                                    ,@FilingDate
+                                    ,@DOSID
+                                    ,@MailSent
+                                    ,@AddDate
+                                    ,@AddedBy)
+                    ", new
+                    {
+                        ci.CompanyName
+                            ,
+                        ci.CompanyAddress
+                            ,
+                        ci.FilingDate
+                            ,
+                        ci.DOSID
+                            ,
+                        ci.MailSent
+                            ,
+                        ci.AddDate
+                            ,
+                        ci.AddedBy
+                    }
+                     );
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    //Console.ReadLine();
+                }
+
+            }
+
+
+
+        }
+
+
 
         public static void EnrichCompany(string innterText, ref Company c)
         {
@@ -161,14 +253,26 @@ namespace ReadWebPage
                                             if (row.InnerText.Contains("Chief Executive Officer"))
                                                 break;
 
-                                            c.CompanyAddress = row.InnerText.Replace("amp;", "");
+                                            
+
+                                            if(string.IsNullOrEmpty(c.CompanyAddress))
+                                            {
+                                                c.CompanyAddress = row.InnerText.Replace("amp;", "");
+                                            }
+                                            if(c.CompanyAddress.Contains("NONE"))
+                                            {
+
+                                            }
                                         }
                                     }
 
                                 }
                             }
                             if (!string.IsNullOrEmpty(c.CompanyName))
+                            {
                                 companyList.Add(c);
+                                AddCompanyInfo(c);
+                            }
 
                         }
                     }
@@ -182,7 +286,7 @@ namespace ReadWebPage
 
         }
 
-        static void ProcessPage(string companyStartsWith, string pageNumber)
+        static void ProcessPageStartsWith(string companyStartsWith, string pageNumber)
         {
             try
             {
@@ -226,14 +330,64 @@ namespace ReadWebPage
             }
         }
 
-        static void Main(string[] args)
+
+        static void ProcessPageContains(string companyContainsWith, string pageNumber)
+        {
+            try
+            {
+                using (var client = new WebClient())
+                {
+
+                    //string result = client.DownloadString("https://appext20.dos.ny.gov/corp_public/CORPSEARCH.SELECT_ENTITY?p_srch_results_page=20&p_entity_name=b&p_name_type=A&p_search_type=BEGINS");
+                    string result = client.DownloadString(string.Format("https://appext20.dos.ny.gov/corp_public/CORPSEARCH.SELECT_ENTITY?p_srch_results_page={0}&p_entity_name={1}&p_name_type=A&p_search_type=CONTAINS", pageNumber, companyContainsWith));
+                    // TODO: do something with the downloaded result from the remote
+                    // web site
+                    //Console.WriteLine(result);
+
+                    Match m;
+                    string HRefPattern = "href\\s*=\\s*(?:[\"'](?<1>[^\"']*)[\"']|(?<1>\\S+))";
+
+                    try
+                    {
+                        m = Regex.Match(result, HRefPattern,
+                                        RegexOptions.IgnoreCase | RegexOptions.Compiled);
+                        while (m.Success)
+                        {
+                            if (m.Groups[1] != null && m.Groups[1].Value.Contains("CORPSEARCH"))
+                            {
+                                Console.WriteLine("Found href " + m.Groups[1] + " at "
+                                   + m.Groups[1].Index);
+
+                                ReadCompanyInfo(m.Groups[1].Value);
+                            }
+                            m = m.NextMatch();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("The matching operation timed out.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+
+        static void StartsWithSearch()
         {
             //https://appext20.dos.ny.gov/corp_public/CORPSEARCH.SELECT_ENTITY?p_srch_results_page=20&p_entity_name=b&p_name_type=A&p_search_type=BEGINS
 
+            List<string> startingLetters = new List<string>() { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
 
-            for (int i = 1; i < 21; i++)
+            foreach (var l in startingLetters)
             {
-                ProcessPage("AA", i.ToString());
+                for (int i = 1; i < 21; i++)
+                {
+                    ProcessPageStartsWith(l, i.ToString());
+                }
             }
 
             var orderByDateList = companyList.OrderByDescending(x => x.FilingDate);
@@ -241,6 +395,31 @@ namespace ReadWebPage
             {
                 Console.WriteLine(string.Format("{0} {1}", c.CompanyName, c.FilingDate));
             }
+
+        }
+
+        static void ContainsSearch()
+        {
+            List<string> startingLetters = new List<string>() { "MEDI", "PAIN"};
+
+            foreach (var l in startingLetters)
+            {
+                for (int i = 1; i < 21; i++)
+                {
+                    ProcessPageContains(l, i.ToString());
+                }
+            }
+
+            var orderByDateList = companyList.OrderByDescending(x => x.FilingDate);
+            foreach (var c in orderByDateList)
+            {
+                Console.WriteLine(string.Format("{0} {1}", c.CompanyName, c.FilingDate));
+            }
+
+        }
+        static void Main(string[] args)
+        {
+            ContainsSearch();
             Console.WriteLine("Press any key to continue");
             Console.ReadLine();
         }
