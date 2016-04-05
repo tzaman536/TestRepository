@@ -28,6 +28,8 @@ namespace ReadWebPage
     class Program
     {
         static List<Company> companyList = new List<Company>();
+        static Dictionary<string, string> dictDOSID = new Dictionary<string, string>();
+
 
         public static IEnumerable<Company> GetLoadedCompanies()
         {
@@ -47,6 +49,27 @@ namespace ReadWebPage
                 }
 
             }
+            return resultList;
+        }
+
+        public static IEnumerable<string> GetDOSID()
+        {
+            IEnumerable<string> resultList = null;
+
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+            {
+                conn.Open();
+                try
+                {
+                    resultList = conn.Query<string>(@"
+                    SELECT DOSID
+                    FROM Phenix.dbo.RegisteredCompanies");
+                }
+                catch (Exception ex)
+                {
+                }
+
+            }
 
 
             return resultList;
@@ -56,9 +79,16 @@ namespace ReadWebPage
 
         public static void AddCompanyInfo(Company ci)
         {
+
             ci.AddedBy = Environment.UserName;
             ci.AddDate = DateTime.UtcNow;
             ci.MailSent = false;
+            ci.CompanyAddress.Trim();
+            ci.CompanyName.Trim();
+            ci.DOSID.Trim();
+
+            if (dictDOSID.ContainsKey(ci.DOSID))
+                return;
 
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
             {
@@ -400,7 +430,7 @@ namespace ReadWebPage
 
         static void ContainsSearch()
         {
-            List<string> startingLetters = new List<string>() { "MEDI", "PAIN"};
+            List<string> startingLetters = new List<string>() { "MEDI", "PAIN", "DOCT"};
 
             foreach (var l in startingLetters)
             {
@@ -417,9 +447,22 @@ namespace ReadWebPage
             }
 
         }
+
+        static void PopulateDictDOSID()
+        {
+            IEnumerable<string> dosids = GetDOSID();
+            foreach(string i in dosids)
+            {
+                if (!dictDOSID.ContainsKey(i))
+                    dictDOSID.Add(i, i);
+            }
+        }
+
         static void Main(string[] args)
         {
+            PopulateDictDOSID();
             ContainsSearch();
+
             Console.WriteLine("Press any key to continue");
             Console.ReadLine();
         }
