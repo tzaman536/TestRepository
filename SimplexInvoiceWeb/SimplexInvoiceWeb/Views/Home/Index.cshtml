@@ -8,6 +8,23 @@
     <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
 
     @(Html.Kendo().DatePicker().Name("datepicker"))
+
+
+    @(Html.Kendo().ComboBox()
+          .Name("size")
+          .Placeholder("Select size...")
+          .BindTo(new List<string>() {
+              "X-Small",
+              "Small",
+              "Medium",
+              "Large",
+              "X-Large",
+              "2X-Large"
+          })
+          .SelectedIndex(0)
+          .Suggest(true)
+          .HtmlAttributes(new { style = "width:100%;" })
+    )
 </div>
 
 <div class="row">
