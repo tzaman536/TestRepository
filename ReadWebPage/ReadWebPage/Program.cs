@@ -15,6 +15,7 @@ namespace ReadWebPage
 {
     class Company
     {
+        public int RegisteredCompanyId { get; set; }
         public string CompanyName { get; set; }
         public string CompanyAddress { get; set; }
         public DateTime FilingDate { get; set; }
@@ -84,6 +85,45 @@ namespace ReadWebPage
 
         }
 
+
+        public static void UpdateCompanyInfo(Company ci)
+        {
+            if(!string.IsNullOrEmpty(ci.AddressLine1))
+                ci.AddressLine1.Replace('\n', ' ');
+
+            if (!string.IsNullOrEmpty(ci.CareOf))
+                ci.CareOf.Replace('\n', ' ');
+            if (!string.IsNullOrEmpty(ci.Town))
+                ci.Town.Replace('\n', ' ');
+            if (!string.IsNullOrEmpty(ci.State))
+                ci.State.Replace('\n', ' ');
+            if (!string.IsNullOrEmpty(ci.Zip))
+                ci.Zip.Replace('\n', ' ');
+
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+            {
+                conn.Open();
+                try
+                {
+                    IEnumerable<Company> resultList = conn.Query<Company>(@"
+                        UPDATE [Phenix].[dbo].[RegisteredCompanies]
+                                    SET CareOf = @CareOf
+                                        ,AddressLine1 = @AddressLine1
+                                        ,Town = @Town
+                                        ,State = @State
+                                        ,Zip = @Zip
+                        WHERE RegisteredCompanyId = @RegisteredCompanyId
+                    ", ci);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    //Console.ReadLine();
+                }
+
+            }
+
+        }
 
         public static void AddCompanyInfo(Company ci)
         {
@@ -529,7 +569,7 @@ namespace ReadWebPage
                 }
                 else if (addressFregment.Length == 2)
                 {
-
+                    continue;
                 }
                 else if (addressFregment.Length == 1)
                 {
@@ -537,7 +577,7 @@ namespace ReadWebPage
                 }
                 else
                 {
-
+                    continue;
                 }
 
                 if (string.IsNullOrEmpty(updateCompany.Town))
@@ -589,6 +629,7 @@ namespace ReadWebPage
                 }
 
                 Console.WriteLine("CareOf:{0}\r\nAddress:{1}\r\nTown:{2}\r\nState:{3}\r\nZip:{4}\r\n\r\n",updateCompany.CareOf,updateCompany.AddressLine1,updateCompany.Town, updateCompany.State, updateCompany.Zip);
+                UpdateCompanyInfo(updateCompany);
                 string h = "hello";
 
             }

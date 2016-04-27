@@ -3,33 +3,56 @@
     ViewBag.Title = "CustomSoftware";
 }
 
+<button onclick="printDiv('printableArea')">Click me</button>
+
 <h2 class="bodyMainMessage">Custom Software Development</h2>
 
-<p class="bodyMainMessage1">
-    SymplexSys is recognized as an expert in providing custom web application development, exceptional
+<div id="printableArea">
+    <p class="bodyMainMessage1">
+        SymplexSys is recognized as an expert in providing custom web application development, exceptional
 
-    programming, enhancement, efficienct and quality-end product. We pride ourselves in developing
+        programming, enhancement, efficienct and quality-end product. We pride ourselves in developing
 
-    strategies that tackle the most difficult technical requirements and business challenges for any size
+        strategies that tackle the most difficult technical requirements and business challenges for any size
 
-    entities.
+        entities.
 
-    Custom software development can make drastic improvements in many areas of business. It can
+        Custom software development can make drastic improvements in many areas of business. It can
 
-    improve efficiency by streamlining day to day business operations and identifying areas where you can
+        improve efficiency by streamlining day to day business operations and identifying areas where you can
 
-    improve productivity, standardize business practices and automate tedius tasks.
+        improve productivity, standardize business practices and automate tedius tasks.
 
-    Our objective is to deliver exceptional results that drive the value of a clients business. Our software
+        Our objective is to deliver exceptional results that drive the value of a clients business. Our software
 
-    engineers work with you every step of the way to solve your complex problems. Our collaborative
+        engineers work with you every step of the way to solve your complex problems. Our collaborative
 
-    efforts across organizations foster creating thinking delivering results.
+        efforts across organizations foster creating thinking delivering results.
 
 
-</p>
-
+    </p>
+</div>
 <script>
+
+    function myFunction(){
+        window.print();
+    }
+
+
+    function printDiv(divName) {
+        var printContents = document.getElementById(divName).innerHTML;
+        alert(printContents);
+        var originalContents = document.body.innerHTML;
+
+        document.body.innerHTML = printContents;
+
+        window.print();
+
+        document.body.innerHTML = originalContents;
+    }
+
+    
+
     $(document).ready(function () {
         if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
             document.getElementById("footer").style.display = "none";
