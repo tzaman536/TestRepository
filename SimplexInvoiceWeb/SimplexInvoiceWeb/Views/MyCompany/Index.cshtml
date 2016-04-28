@@ -24,6 +24,8 @@
                         <div class="editor-field"><input type="text" id="contactPerson" name="Contact Person" class="k-textbox" required data-bind="value: contactPerson" /></div>
                         <div class="editor-label"><label for="addressLine1">Address Line 1:</label></div>
                         <div class="editor-field"><input id="addressLine1" name="Address Line 1" class="k-textbox" data-bind="value: addressLine1" /></div>
+                        <div class="editor-label"><label for="addressLine2">Address Line 2 (optional):</label></div>
+                        <div class="editor-field"><input id="addressLine2" name="Address Line 2" class="k-textbox" data-bind="value: addressLine2" /></div>
                         <div class="editor-label"><label for="email">Email:</label></div>
                         <div class="editor-field"><input type="text" id="email" name="Email Address" class="k-textbox" required data-bind="value: emailAddress" /></div>
                         <div class="editor-label"><label for="mobile">Mobile Phone:</label></div>
@@ -77,6 +79,7 @@
                     "CompanyName": this.get("companyName"),
                     "ContactPerson": this.get("contactPerson"),
                     "AddressLine1": this.get("addressLine1"),
+                    "AddressLine2": this.get("addressLine2"),
                     "Email": this.get("emailAddress"),
                     "MobileNumber": this.get("mobileNumber"),
                     "OfficeNumber": this.get("officeNumber"),
@@ -120,6 +123,7 @@
                 companyName: '@Html.Raw(Json.Encode(Model.CompanyName))'.replace(/['"]+/g, ''),
                 contactPerson: '@Html.Raw(Json.Encode(Model.ContactPerson))'.replace(/['"]+/g, ''),
                 addressLine1: '@Html.Raw(Json.Encode(Model.AddressLine1))'.replace(/['"]+/g, ''),
+                addressLine2: '@Html.Raw(Json.Encode(Model.AddressLine2))'.replace(/['"]+/g, ''),
                 emailAddress: '@Html.Raw(Json.Encode(Model.Email))'.replace(/['"]+/g, ''),
                 mobileNumber: '@Html.Raw(Json.Encode(Model.MobileNumber))'.replace(/['"]+/g, ''),
                 officeNumber: '@Html.Raw(Json.Encode(Model.OfficeNumber))'.replace(/['"]+/g, ''),
@@ -133,6 +137,7 @@
                     this.set("companyName", '@Html.Raw(Json.Encode(Model.CompanyName))'.replace(/['"]+/g, ''));
                     this.set("contactPerson", '@Html.Raw(Json.Encode(Model.ContactPerson))'.replace(/['"]+/g, ''));
                     this.set("addressLine1", '@Html.Raw(Json.Encode(Model.AddressLine1))'.replace(/['"]+/g, ''));
+                    this.set("addressLine2", '@Html.Raw(Json.Encode(Model.AddressLine2))'.replace(/['"]+/g, ''));
                     this.set("emailAddress", '@Html.Raw(Json.Encode(Model.Email))'.replace(/['"]+/g, ''));
                     this.set("mobileNumber", '@Html.Raw(Json.Encode(Model.MobileNumber))'.replace(/['"]+/g, ''));
                     this.set("officeNumber", '@Html.Raw(Json.Encode(Model.OfficeNumber))'.replace(/['"]+/g, ''));
