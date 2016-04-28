@@ -16,7 +16,7 @@ namespace SimplexInvoiceWeb.Controllers
         {
             Company c = new Company();
             c.CompanyName = string.Empty;
-            c.FirstName = string.Empty;
+            c.ContactPerson = string.Empty;
             c.LastName = string.Empty;
             c.Email = string.Empty;
             c.MobileNumber = string.Empty;
@@ -27,8 +27,9 @@ namespace SimplexInvoiceWeb.Controllers
         }
 
         [HttpPost]
-        public ActionResult ContactUs([DataSourceRequest]DataSourceRequest request, string jsonStringCompany)
+        public ActionResult SaveCompanyInfo([DataSourceRequest]DataSourceRequest request, string jsonStringCompany)
         {
+
 
             int totalClientCount = 0;
             var json_serializer = new JavaScriptSerializer();

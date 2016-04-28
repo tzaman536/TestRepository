@@ -20,8 +20,8 @@
                         <h2 class="bodyMainMessage1">Please fill in your contact detail below. Someone will get back to you soon.</h2>
                         <div class="editor-label"><label for="cname">Company Name:</label></div>
                         <div class="editor-field"><input type="text" id="cname" name="Company Name" class="k-textbox" required data-bind="value: companyName" /></div>
-                        <div class="editor-label"><label for="fname">First Name:</label></div>
-                        <div class="editor-field"><input type="text" id="fname" name="First Name" class="k-textbox" required data-bind="value: firstName" /></div>
+                        <div class="editor-label"><label for="contactPerson">Contact Person:</label></div>
+                        <div class="editor-field"><input type="text" id="contactPerson" name="Contact Person" class="k-textbox" required data-bind="value: contactPerson" /></div>
                         <div class="editor-label"><label for="lname">Last Name:</label></div>
                         <div class="editor-field"><input id="lname" name="Last Name" class="k-textbox" data-bind="value: lastName" /></div>
                         <div class="editor-label"><label for="email">Email:</label></div>
@@ -75,7 +75,7 @@
 
                 var company = {
                     "CompanyName": this.get("companyName"),
-                    "FirstName": this.get("firstName"),
+                    "ContactPerson": this.get("contactPerson"),
                     "LastName": this.get("lastName"),
                     "Email": this.get("emailAddress"),
                     "MobileNumber": this.get("mobileNumber"),
@@ -91,7 +91,7 @@
                 $.ajax({
                     type: "POST",
                     traditional: true,
-                    url: '@Url.Action("ContactUs", "MyCompany")',
+                    url: '@Url.Action("SaveCompanyInfo", "MyCompany")',
                     async: true,
                     data: parms,
                     dataType: "json",
@@ -118,7 +118,7 @@
         function Init() {
             var viewModel = kendo.observable({
                 companyName: '@Html.Raw(Json.Encode(Model.CompanyName))'.replace(/['"]+/g, ''),
-                firstName: '@Html.Raw(Json.Encode(Model.FirstName))'.replace(/['"]+/g, ''),
+                contactPerson: '@Html.Raw(Json.Encode(Model.ContactPerson))'.replace(/['"]+/g, ''),
                 lastName: '@Html.Raw(Json.Encode(Model.LastName))'.replace(/['"]+/g, ''),
                 emailAddress: '@Html.Raw(Json.Encode(Model.Email))'.replace(/['"]+/g, ''),
                 mobileNumber: '@Html.Raw(Json.Encode(Model.MobileNumber))'.replace(/['"]+/g, ''),
@@ -131,7 +131,7 @@
                     this.set("confirmed", false);
                     this.set("agreed", false);
                     this.set("companyName", '@Html.Raw(Json.Encode(Model.CompanyName))'.replace(/['"]+/g, ''));
-                    this.set("firstName", '@Html.Raw(Json.Encode(Model.FirstName))'.replace(/['"]+/g, ''));
+                    this.set("contactPerson", '@Html.Raw(Json.Encode(Model.ContactPerson))'.replace(/['"]+/g, ''));
                     this.set("lastName", '@Html.Raw(Json.Encode(Model.LastName))'.replace(/['"]+/g, ''));
                     this.set("emailAddress", '@Html.Raw(Json.Encode(Model.Email))'.replace(/['"]+/g, ''));
                     this.set("mobileNumber", '@Html.Raw(Json.Encode(Model.MobileNumber))'.replace(/['"]+/g, ''));
