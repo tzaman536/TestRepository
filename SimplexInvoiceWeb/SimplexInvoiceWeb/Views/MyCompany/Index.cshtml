@@ -5,7 +5,59 @@
 @{
     ViewBag.Title = "My Company";
 }
-
+<div id="example1">
+    <div class="demo-section k-content">
+        <div data-bind="invisible: isPrimitive">
+            <input data-role="dropdownlist"
+                   data-auto-bind="false"
+                   data-text-field="ProductName"
+                   data-value-field="ProductID"
+                   data-bind="value: selectedProduct,
+                              source: products,
+                              visible: isVisible,
+                              enabled: isEnabled,
+                              events: {
+                                change: onChange,
+                                open: onOpen,
+                                close: onClose
+                              }"
+                   style="width: 100%;" />
+        </div>
+    </div>
+    <script>
+    var viewModel = kendo.observable({
+        selectedProduct: null,
+        isPrimitive: false,
+        isVisible: true,
+        isEnabled: true,
+        primitiveChanged: function() {
+            this.set("selectedProduct", null);
+        },
+        displaySelectedProduct: function() {
+            var selectedProduct = this.get("selectedProduct");
+            return kendo.stringify(selectedProduct, null, 4);
+        },
+        onOpen: function() {
+            alert("event :: open");
+        },
+        onChange: function() {
+            alert("event :: change (" + this.displaySelectedProduct() + ")");
+        },
+        onClose: function() {
+            alert("event :: close");
+        },
+        products: new kendo.data.DataSource({
+            transport: {
+                read: {
+                    url: ('@Url.Action("GetProductDataJson","MyClients")'),
+                    dataType: "json"
+                }
+            }
+        })
+    });
+    kendo.bind($("#example1"), viewModel);
+    </script>
+</div>
 
 
 <div id="example">
