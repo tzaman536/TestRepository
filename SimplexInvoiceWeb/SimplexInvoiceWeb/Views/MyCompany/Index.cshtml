@@ -29,21 +29,7 @@
                         <div class="editor-field"><input id="city" name="City" class="k-textbox" data-bind="value: city" /></div>
                         <div class="editor-label"><label for="state">State:</label></div>
                         <div class="editor-field">
-                            @(Html.Kendo().ComboBox()
-                                          .Name("size")
-                                          .Placeholder("Select size...")
-                                          .BindTo(new List<string>() {
-                                              "X-Small",
-                                              "Small",
-                                              "Medium",
-                                              "Large",
-                                              "X-Large",
-                                              "2X-Large"
-                                          })
-                                          .SelectedIndex(0)
-                                          .Suggest(true)
-                                          .HtmlAttributes(new { style = "width:250px;" })
-                            )
+                            <input id="ddlStates" value="Choose one" style="width:150px;" />
                         </div>
                         <div class="editor-label"><label for="zip">Zip:</label></div>
                         <div class="editor-field"><input id="zip" name="Zip" class="k-textbox" data-bind="value: zip" /></div>
@@ -84,8 +70,37 @@
                 document.getElementById("footer").style.display = "none";
                 document.getElementById("navBar").style.minHeight = "20px";
             }
+
+            loadStateNames();
         });
 
+        function LookupHandler(jqXHR) {
+
+            if (jqXHR.status == 200)
+                return;
+
+            FailureHandler(jqXHR);
+        }
+
+        function loadStateNames() {
+            $("#ddlStates").kendoDropDownList({
+                dataSource: {
+                    type: "json",
+                    transport: {
+                        read: {
+                            url: '@Url.Action("GetStates", "MyCompany")',
+                            complete: LookupHandler
+                        }
+                    }
+                },
+                //change: onCaseNameChange,
+                //dataBound: onCaseListDataBound,
+                // change: Module1.ddl_fund_Change,
+                optionLabel: 'Choose one'
+            });
+
+
+        }
 
         function saveCompanyInfo(e) {
             e.preventDefault();
@@ -95,8 +110,8 @@
             if (validator.validate()) {
                 //alert("call db here");
 
-                var size = $("#size").data("kendoComboBox");
-                alert(size.value());
+                //var state = $("#ddlStates").data("kendoComboBox");
+                //alert(ddlStates.value);
 
                 var company = {
                     "CompanyName": this.get("companyName"),
@@ -104,7 +119,7 @@
                     "AddressLine1": this.get("addressLine1"),
                     "AddressLine2": this.get("addressLine2"),
                     "City": this.get("city"),
-                    "State": size.value(),
+                    "State": ddlStates.value,
                     "Zip": this.get("zip"),
                     "Email": this.get("emailAddress"),
                     "MobileNumber": this.get("mobileNumber"),

@@ -1,4 +1,5 @@
-﻿using Kendo.Mvc.UI;
+﻿using Kendo.Mvc.Extensions;
+using Kendo.Mvc.UI;
 using SimplexInvoiceBL;
 using SimplexInvoiceModel;
 using System;
@@ -64,6 +65,15 @@ namespace SimplexInvoiceWeb.Controllers
 
 
             return Json(new { success = true, message = string.Format("Thanks for contacting us. Someone will get back to you soon.") }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult GetStates()
+        {
+
+ 
+            List<string> cases = new List<string>() { "BT", "NY", "NJ" };
+            return Json(cases, JsonRequestBehavior.AllowGet);
+
         }
 
     }
