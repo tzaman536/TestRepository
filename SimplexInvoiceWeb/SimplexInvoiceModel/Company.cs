@@ -8,6 +8,8 @@ namespace SimplexInvoiceModel
 {
     public class Company
     {
+        public int CompanyId { get; set; }
+        public string CompanyType { get; set; }
         public string CompanyName { get; set; }
         public string ContactPerson { get; set; }
         public string AddressLine1 { get; set; }
@@ -21,6 +23,8 @@ namespace SimplexInvoiceModel
         public string FaxNumber { get; set; }
         public string CreatedBy { get; set; }
         public DateTime CreatedAt { get; set; }
+        public string ModifiedBy { get; set; }
+        public DateTime ModifiedAt { get; set; }
 
     }
 }
