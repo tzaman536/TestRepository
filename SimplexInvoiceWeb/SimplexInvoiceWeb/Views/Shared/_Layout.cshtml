@@ -46,19 +46,20 @@
     </div>
     <div class="container body-content">
         @RenderBody()
+        <div id="footer" class="pageFooter">
+            <footer>
+                <b>Simplex Sys Inc.</b><br />
+                14 Fountain Lane<br />
+                Jericho, NY- 11753<br />
+                Phone: 516 639 8131<br />
+                Email: sales@simplexsys.co<br />
+
+            </footer>
+
+        </div>
+
+
     </div>
-    <div id="footer" class="pageFooter">
-        <footer>
-            <b>Simplex Sys Inc.</b><br />
-            14 Fountain Lane<br />
-            Jericho, NY- 11753<br />
-            Phone: 516 639 8131<br />
-            Email: sales@simplexsys.co<br />
-
-        </footer>
-
-    </div>
-
     @RenderSection("scripts", required: false)
 </body>
 </html>

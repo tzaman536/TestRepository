@@ -1426,6 +1426,10 @@
       <Project>{7c808526-57bf-4dbe-b1f1-ae390a7fcc08}</Project>
       <Name>SimplexTool</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SimplexInvoiceModel\SimplexInvoiceModel.csproj">
+      <Project>{9532ba36-fc43-4289-90cb-9f7dfa9a4ea9}</Project>
+      <Name>SimplexInvoiceModel</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

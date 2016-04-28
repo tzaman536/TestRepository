@@ -11,6 +11,11 @@ namespace SimplexInvoiceWeb.Controllers
         // GET: Invoices
         public ActionResult Index()
         {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
             return View();
         }
     }
