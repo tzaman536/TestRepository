@@ -28,7 +28,7 @@ namespace SimplexInvoiceWeb.Controllers
             c.Email = string.Empty;
             c.MobileNumber = string.Empty;
             c.OfficeNumber = string.Empty;
-            c.Message = string.Empty;
+            c.FaxNumber = string.Empty;
 
             return View(c);
         }

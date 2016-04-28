@@ -18,7 +18,7 @@ namespace SimplexInvoiceModel
         public string Email { get; set; }
         public string MobileNumber { get; set; }
         public string OfficeNumber { get; set; }
-        public string Message { get; set; }
+        public string FaxNumber { get; set; }
         public string CreatedBy { get; set; }
         public DateTime CreatedAt { get; set; }
 

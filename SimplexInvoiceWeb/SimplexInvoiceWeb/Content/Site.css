@@ -22,3 +22,35 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.input-name{
+            min-width:250px;
+            max-height:25px;
+            margin-bottom:3px;
+        }
+
+.input-city{
+        min-width:75px;
+        max-height:25px;
+        margin-bottom:3px;
+    }
+
+
+.input-phone{
+            min-width:150px;
+            max-height:25px;
+            margin-bottom:3px;
+        }
+
+.input-zip{
+            min-width:100px;
+            max-height:25px;
+            margin-bottom:3px;
+        }
+
+.input-dropdown{
+            min-width:150px;
+            max-height:25px;
+            margin-bottom:10px;
+    
+}
