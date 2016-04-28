@@ -17,7 +17,11 @@ namespace SimplexInvoiceWeb.Controllers
             Company c = new Company();
             c.CompanyName = string.Empty;
             c.ContactPerson = string.Empty;
-            c.LastName = string.Empty;
+            c.AddressLine1 = string.Empty;
+            c.AddressLine2 = string.Empty;
+            c.City = string.Empty;
+            c.State = string.Empty;
+            c.Zip = string.Empty;
             c.Email = string.Empty;
             c.MobileNumber = string.Empty;
             c.OfficeNumber = string.Empty;

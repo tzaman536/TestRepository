@@ -22,8 +22,8 @@
                         <div class="editor-field"><input type="text" id="cname" name="Company Name" class="k-textbox" required data-bind="value: companyName" /></div>
                         <div class="editor-label"><label for="contactPerson">Contact Person:</label></div>
                         <div class="editor-field"><input type="text" id="contactPerson" name="Contact Person" class="k-textbox" required data-bind="value: contactPerson" /></div>
-                        <div class="editor-label"><label for="lname">Last Name:</label></div>
-                        <div class="editor-field"><input id="lname" name="Last Name" class="k-textbox" data-bind="value: lastName" /></div>
+                        <div class="editor-label"><label for="addressLine1">Address Line 1:</label></div>
+                        <div class="editor-field"><input id="addressLine1" name="Address Line 1" class="k-textbox" data-bind="value: addressLine1" /></div>
                         <div class="editor-label"><label for="email">Email:</label></div>
                         <div class="editor-field"><input type="text" id="email" name="Email Address" class="k-textbox" required data-bind="value: emailAddress" /></div>
                         <div class="editor-label"><label for="mobile">Mobile Phone:</label></div>
@@ -76,7 +76,7 @@
                 var company = {
                     "CompanyName": this.get("companyName"),
                     "ContactPerson": this.get("contactPerson"),
-                    "LastName": this.get("lastName"),
+                    "AddressLine1": this.get("addressLine1"),
                     "Email": this.get("emailAddress"),
                     "MobileNumber": this.get("mobileNumber"),
                     "OfficeNumber": this.get("officeNumber"),
@@ -119,7 +119,7 @@
             var viewModel = kendo.observable({
                 companyName: '@Html.Raw(Json.Encode(Model.CompanyName))'.replace(/['"]+/g, ''),
                 contactPerson: '@Html.Raw(Json.Encode(Model.ContactPerson))'.replace(/['"]+/g, ''),
-                lastName: '@Html.Raw(Json.Encode(Model.LastName))'.replace(/['"]+/g, ''),
+                addressLine1: '@Html.Raw(Json.Encode(Model.AddressLine1))'.replace(/['"]+/g, ''),
                 emailAddress: '@Html.Raw(Json.Encode(Model.Email))'.replace(/['"]+/g, ''),
                 mobileNumber: '@Html.Raw(Json.Encode(Model.MobileNumber))'.replace(/['"]+/g, ''),
                 officeNumber: '@Html.Raw(Json.Encode(Model.OfficeNumber))'.replace(/['"]+/g, ''),
@@ -132,7 +132,7 @@
                     this.set("agreed", false);
                     this.set("companyName", '@Html.Raw(Json.Encode(Model.CompanyName))'.replace(/['"]+/g, ''));
                     this.set("contactPerson", '@Html.Raw(Json.Encode(Model.ContactPerson))'.replace(/['"]+/g, ''));
-                    this.set("lastName", '@Html.Raw(Json.Encode(Model.LastName))'.replace(/['"]+/g, ''));
+                    this.set("addressLine1", '@Html.Raw(Json.Encode(Model.AddressLine1))'.replace(/['"]+/g, ''));
                     this.set("emailAddress", '@Html.Raw(Json.Encode(Model.Email))'.replace(/['"]+/g, ''));
                     this.set("mobileNumber", '@Html.Raw(Json.Encode(Model.MobileNumber))'.replace(/['"]+/g, ''));
                     this.set("officeNumber", '@Html.Raw(Json.Encode(Model.OfficeNumber))'.replace(/['"]+/g, ''));
