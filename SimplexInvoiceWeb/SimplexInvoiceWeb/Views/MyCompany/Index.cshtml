@@ -5,59 +5,6 @@
 @{
     ViewBag.Title = "My Company";
 }
-<div id="example1">
-    <div class="demo-section k-content">
-        <div data-bind="invisible: isPrimitive">
-            <input data-role="dropdownlist"
-                   data-auto-bind="false"
-                   data-text-field="ProductName"
-                   data-value-field="ProductID"
-                   data-bind="value: selectedProduct,
-                              source: products,
-                              visible: isVisible,
-                              enabled: isEnabled,
-                              events: {
-                                change: onChange,
-                                open: onOpen,
-                                close: onClose
-                              }"
-                   style="width: 100%;" />
-        </div>
-    </div>
-    <script>
-    var viewModel = kendo.observable({
-        selectedProduct: null,
-        isPrimitive: false,
-        isVisible: true,
-        isEnabled: true,
-        primitiveChanged: function() {
-            this.set("selectedProduct", null);
-        },
-        displaySelectedProduct: function() {
-            var selectedProduct = this.get("selectedProduct");
-            return kendo.stringify(selectedProduct, null, 4);
-        },
-        onOpen: function() {
-            alert("event :: open");
-        },
-        onChange: function() {
-            alert("event :: change (" + this.displaySelectedProduct() + ")");
-        },
-        onClose: function() {
-            alert("event :: close");
-        },
-        products: new kendo.data.DataSource({
-            transport: {
-                read: {
-                    url: ('@Url.Action("GetProductDataJson","MyClients")'),
-                    dataType: "json"
-                }
-            }
-        })
-    });
-    kendo.bind($("#example1"), viewModel);
-    </script>
-</div>
 
 
 <div id="example">
@@ -81,7 +28,23 @@
                         <div class="editor-label"><label for="city">City:</label></div>
                         <div class="editor-field"><input id="city" name="City" class="k-textbox" data-bind="value: city" /></div>
                         <div class="editor-label"><label for="state">State:</label></div>
-                        <div class="editor-field"><input id="state" name="State" class="k-textbox" data-bind="value: state" /></div>
+                        <div class="editor-field">
+                            @(Html.Kendo().ComboBox()
+                                          .Name("size")
+                                          .Placeholder("Select size...")
+                                          .BindTo(new List<string>() {
+                                              "X-Small",
+                                              "Small",
+                                              "Medium",
+                                              "Large",
+                                              "X-Large",
+                                              "2X-Large"
+                                          })
+                                          .SelectedIndex(0)
+                                          .Suggest(true)
+                                          .HtmlAttributes(new { style = "width:250px;" })
+                            )
+                        </div>
                         <div class="editor-label"><label for="zip">Zip:</label></div>
                         <div class="editor-field"><input id="zip" name="Zip" class="k-textbox" data-bind="value: zip" /></div>
                         <div class="editor-label"><label for="email">Email:</label></div>
@@ -132,6 +95,8 @@
             if (validator.validate()) {
                 //alert("call db here");
 
+                var size = $("#size").data("kendoComboBox");
+                alert(size.value());
 
                 var company = {
                     "CompanyName": this.get("companyName"),
@@ -139,7 +104,7 @@
                     "AddressLine1": this.get("addressLine1"),
                     "AddressLine2": this.get("addressLine2"),
                     "City": this.get("city"),
-                    "State": this.get("state"),
+                    "State": size.value(),
                     "Zip": this.get("zip"),
                     "Email": this.get("emailAddress"),
                     "MobileNumber": this.get("mobileNumber"),
