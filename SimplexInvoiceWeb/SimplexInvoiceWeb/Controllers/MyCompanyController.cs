@@ -1,4 +1,5 @@
 ﻿using Kendo.Mvc.UI;
+using SimplexInvoiceBL;
 using SimplexInvoiceModel;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace SimplexInvoiceWeb.Controllers
 {
     public class MyCompanyController : Controller
     {
+        InvoiceHelper helper = new InvoiceHelper();
         // GET: MyCompany
         public ActionResult Index()
         {
