@@ -25,18 +25,28 @@ namespace SimplexInvoiceWeb.Controllers
 
             logger.Info("Simplex Invoice MyCompanyController.Index()");
 
-            Company c = new Company();
-            c.CompanyName = string.Empty;
-            c.ContactPerson = string.Empty;
-            c.AddressLine1 = string.Empty;
-            c.AddressLine2 = string.Empty;
-            c.City = string.Empty;
-            c.State = string.Empty;
-            c.Zip = string.Empty;
-            c.Email = string.Empty;
-            c.MobileNumber = string.Empty;
-            c.OfficeNumber = string.Empty;
-            c.FaxNumber = string.Empty;
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+
+            Company c = ch.GetCompanyRegisteredByUser(User.Identity.Name);
+            if (c == null)
+            {
+                c = new Company();
+                c.CompanyName = string.Empty;
+                c.ContactPerson = string.Empty;
+                c.AddressLine1 = string.Empty;
+                c.AddressLine2 = string.Empty;
+                c.City = string.Empty;
+                c.State = "Choose one";
+                c.Zip = string.Empty;
+                c.Email = string.Empty;
+                c.MobileNumber = string.Empty;
+                c.OfficeNumber = string.Empty;
+                c.FaxNumber = string.Empty;
+            }
 
             
 

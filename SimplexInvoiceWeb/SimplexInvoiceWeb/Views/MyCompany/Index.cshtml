@@ -23,7 +23,7 @@
                         <div class="editor-field"><input id="city" name="City" class="k-textbox input-city" required data-bind="value: city" /></div>
                         <div class="editor-label"><label for="state">State:</label></div>
                         <div class="editor-field">
-                            <input id="ddlStates" value="Choose one" class="input-dropdown"   />
+                            <input id="ddlStates" value="Choose one" class="input-dropdown"    />
                         </div>
                         <div class="editor-label"><label for="zip">Zip:</label></div>
                         <div class="editor-field"><input id="zip" name="Zip" class="k-textbox input-zip" required data-bind="value: zip" /></div>
@@ -50,6 +50,7 @@
                                     <button data-bind="click: startOver" class="button_StartOver">Start Over</button>
                                 </div>
                             </div>
+                            <div id="loader" style="display:none;">Loading..please wait</div>
                         </div>
                         <br />
                     </td>
@@ -59,6 +60,8 @@
         </form>
     </div>
 
+    
+
     <script>
 
         $(document).ready(function () {
@@ -66,8 +69,9 @@
                 document.getElementById("footer").style.display = "none";
                 document.getElementById("navBar").style.minHeight = "20px";
             }
-
+            //$('#loader').show();
             loadStateNames();
+            Init();
         });
 
         function LookupHandler(jqXHR) {
@@ -92,9 +96,8 @@
                 //change: onCaseNameChange,
                 //dataBound: onCaseListDataBound,
                 // change: Module1.ddl_fund_Change,
-                optionLabel: 'Choose one'
+                optionLabel: '@Html.Raw(Json.Encode(Model.State))'.replace(/['"]+/g, '')
             });
-
 
         }
 
@@ -103,11 +106,16 @@
 
             var validator = $("#example").kendoValidator().data("kendoValidator");
 
+            
+            if (!ddlStates.value) {
+                alert("Pick a valid state: " + ddlStates.value);
+                return;
+            }
+
+
             if (validator.validate()) {
                 //alert("call db here");
 
-                //var state = $("#ddlStates").data("kendoComboBox");
-                //alert(ddlStates.value);
 
                 var company = {
                     "CompanyName": this.get("companyName"),
@@ -136,13 +144,16 @@
                     data: parms,
                     dataType: "json",
                     beforeSend: function (xhr) {
+                        $('#loader').show();
                     },
                     success: function (response, textStatus, jqXHR) {
                         alert(response.message);
+                        $('#loader').hide();
+
                     },
                     error: function (XMLHttpRequest, textStatus, errorThrown) {
                         alert("Error found during execution");
-
+                        $('#loader').hide();
                     }
                 });
 
@@ -153,16 +164,19 @@
         }
 
 
-        $(document).ready(Init);
+        //$(document).ready(Init);
 
         function Init() {
+
+            ddlStates.value = '@Html.Raw(Json.Encode(Model.State))'.replace(/['"]+/g, '');
+            alert(ddlStates.value);
+
             var viewModel = kendo.observable({
                 companyName: '@Html.Raw(Json.Encode(Model.CompanyName))'.replace(/['"]+/g, ''),
                 contactPerson: '@Html.Raw(Json.Encode(Model.ContactPerson))'.replace(/['"]+/g, ''),
                 addressLine1: '@Html.Raw(Json.Encode(Model.AddressLine1))'.replace(/['"]+/g, ''),
                 addressLine2: '@Html.Raw(Json.Encode(Model.AddressLine2))'.replace(/['"]+/g, ''),
                 city: '@Html.Raw(Json.Encode(Model.City))'.replace(/['"]+/g, ''),
-                state: '@Html.Raw(Json.Encode(Model.State))'.replace(/['"]+/g, ''),
                 zip: '@Html.Raw(Json.Encode(Model.Zip))'.replace(/['"]+/g, ''),
                 emailAddress: '@Html.Raw(Json.Encode(Model.Email))'.replace(/['"]+/g, ''),
                 mobileNumber: '@Html.Raw(Json.Encode(Model.MobileNumber))'.replace(/['"]+/g, ''),
@@ -178,7 +192,7 @@
                     this.set("contactPerson", '@Html.Raw(Json.Encode(Model.ContactPerson))'.replace(/['"]+/g, ''));
                     this.set("addressLine1", '@Html.Raw(Json.Encode(Model.AddressLine1))'.replace(/['"]+/g, ''));
                     this.set("city", '@Html.Raw(Json.Encode(Model.City))'.replace(/['"]+/g, ''));
-                    this.set("state", '@Html.Raw(Json.Encode(Model.State))'.replace(/['"]+/g, ''));
+                    @*this.set("ddlStates", '@Html.Raw(Json.Encode(Model.State))'.replace(/['"]+/g, ''));*@
                     this.set("zip", '@Html.Raw(Json.Encode(Model.Zip))'.replace(/['"]+/g, ''));
                     this.set("emailAddress", '@Html.Raw(Json.Encode(Model.Email))'.replace(/['"]+/g, ''));
                     this.set("mobileNumber", '@Html.Raw(Json.Encode(Model.MobileNumber))'.replace(/['"]+/g, ''));
@@ -188,7 +202,7 @@
             });
 
 
-
+            
 
             kendo.bind($("#example"), viewModel);
         }
