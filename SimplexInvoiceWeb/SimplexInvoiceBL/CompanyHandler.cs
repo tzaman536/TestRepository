@@ -12,7 +12,7 @@ namespace SimplexInvoiceBL
 {
     public class CompanyHandler
     {
-        public int Add(Company c)
+        public int Add(LogisticsCompany c)
         {
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
             {
@@ -35,7 +35,7 @@ namespace SimplexInvoiceBL
             }
         }
 
-        public int Update(Company c)
+        public int Update(LogisticsCompany c)
         {
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
             {
@@ -63,12 +63,12 @@ namespace SimplexInvoiceBL
         }
 
 
-        public Company GetCompanyRegisteredByUser(string inputUser)
+        public LogisticsCompany GetCompanyRegisteredByUser(string inputUser)
         {
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
             {
                 conn.Open();
-                var result = conn.Query<Company>(@"
+                var result = conn.Query<LogisticsCompany>(@"
                                                 select *
                                                 from [SimplexInvoice].[invoice].[Company]
                                                 where SimplexInvoiceUserId = @inputUser

@@ -9,7 +9,11 @@ using System.Threading.Tasks;
 
 namespace SimplexInvoiceModel
 {
-    public class Company
+    public interface ICompany
+    {
+
+    }
+    public class Company: ICompany
     {
         
         public int CompanyId { get; set; }
@@ -32,5 +36,9 @@ namespace SimplexInvoiceModel
     }
 
 
+    public class LogisticsCompany : Company
+    {
+
+    }
 
 }

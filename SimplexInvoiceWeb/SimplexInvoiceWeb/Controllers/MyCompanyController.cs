@@ -31,10 +31,10 @@ namespace SimplexInvoiceWeb.Controllers
             }
 
 
-            Company c = ch.GetCompanyRegisteredByUser(User.Identity.Name);
+            LogisticsCompany c = (LogisticsCompany)ch.GetCompanyRegisteredByUser(User.Identity.Name);
             if (c == null)
             {
-                c = new Company();
+                c = new LogisticsCompany();
                 c.CompanyName = string.Empty;
                 c.ContactPerson = string.Empty;
                 c.AddressLine1 = string.Empty;
@@ -65,13 +65,13 @@ namespace SimplexInvoiceWeb.Controllers
 
             string message = "Company saved.";
             var json_serializer = new JavaScriptSerializer();
-            Company c = json_serializer.Deserialize<Company>(jsonStringCompany);
+            LogisticsCompany c = json_serializer.Deserialize<LogisticsCompany>(jsonStringCompany);
             c.SimplexInvoiceUserId = User.Identity.Name;
             c.CreatedBy = User.Identity.Name;
             logger.InfoFormat("Saving company...");
             try
             {
-                var existingCompany = ch.GetCompanyRegisteredByUser(User.Identity.Name);
+                var existingCompany = (LogisticsCompany)ch.GetCompanyRegisteredByUser(User.Identity.Name);
                 if(existingCompany == null)
                     c.CompanyId = ch.Add(c);
                 else
