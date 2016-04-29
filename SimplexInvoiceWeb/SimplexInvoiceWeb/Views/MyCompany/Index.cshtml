@@ -39,9 +39,22 @@
                         @*<div class="editor-field"><input type="text" id="message" name="Message" class="k-textbox" required data-bind="value: clientMessage"/></div>*@
                         @*<div class="editor-field"><input type="textarea" id="message" name="Message" required data-bind="value: clientMessage" class="k-textbox" style="height: 200px; width: 140px/"</div>*@
                         @*<textarea id="message" name="Message" data-bind="value: clientMessage" class="k-textbox" style="height: 200px; width: 400px;"></textarea>*@
+                        <div style="display:table; margin-left: 10px;">
+                            <div style="display:table-row">
+                                <div style="display:table-cell; padding-right:5px;">
+                                    <div class="editor-label"><label for="complimentaryWait">Complimentary Weight:</label></div>
+                                    <div class="editor-field"><input type="text" id="compWeight" name="Complimentary Weight" class="k-textbox" required data-bind="value: complimentaryWeight" /></div>
+                                </div>
+                                <div style="display:table-cell;">
+                                    <div class="editor-label"><label for="weightRate">Weight Rate cents per pound:</label></div>
+                                    <div class="editor-field"><input type="text" id="weightRate" name="Weight Rate" class="k-textbox" required data-bind="value: weightRate" /></div>
+                                </div>
+                            </div>
+                            <div id="loader" style="display:none; font:bold; color:darkblue">Saving.... Please wait</div>
+                        </div>
                         <br />
                         <br />
-                        <div style="display:table; margin-left: 216px;">
+                        <div style="display:table; margin-left: 216px; margin-top:10px;">
                             <div style="display:table-row">
                                 <div style="display:table-cell; padding-right:5px;">
                                     <button data-bind="click: register" class="button_Save">Save</button>
@@ -130,6 +143,9 @@
                     "MobileNumber": this.get("mobileNumber"),
                     "OfficeNumber": this.get("officeNumber"),
                     "FaxNumber": this.get("faxNumber"),
+                    "ComplimentaryWeight": this.get("complimentaryWeight"),
+                    "WeightRate": this.get("weightRate")
+
                 };
 
                 var parms = {
@@ -170,7 +186,7 @@
         function Init() {
 
             ddlStates.value = '@Html.Raw(Json.Encode(Model.State))'.replace(/['"]+/g, '');
-            
+
 
             var viewModel = kendo.observable({
                 companyName: '@Html.Raw(Json.Encode(Model.CompanyName))'.replace(/['"]+/g, ''),
@@ -183,6 +199,9 @@
                 mobileNumber: '@Html.Raw(Json.Encode(Model.MobileNumber))'.replace(/['"]+/g, ''),
                 officeNumber: '@Html.Raw(Json.Encode(Model.OfficeNumber))'.replace(/['"]+/g, ''),
                 faxNumber: '@Html.Raw(Json.Encode(Model.FaxNumber))'.replace(/['"]+/g, ''),
+                complimentaryWeight: '@Html.Raw(Json.Encode(Model.ComplimentaryWeight))'.replace(/['"]+/g, ''),
+                weightRate: '@Html.Raw(Json.Encode(Model.WeightRate))'.replace(/['"]+/g, ''),
+
                 agreed: false,
                 confirmed: false,
                 register: saveCompanyInfo,
@@ -199,6 +218,8 @@
                     this.set("mobileNumber", '@Html.Raw(Json.Encode(Model.MobileNumber))'.replace(/['"]+/g, ''));
                     this.set("officeNumber", '@Html.Raw(Json.Encode(Model.OfficeNumber))'.replace(/['"]+/g, ''));
                     this.set("faxNumber", '@Html.Raw(Json.Encode(Model.FaxNumber))'.replace(/['"]+/g, ''));
+                    this.set("complimentaryWeight", '@Html.Raw(Json.Encode(Model.ComplimentaryWeight))'.replace(/['"]+/g, ''));
+                    this.set("weightRate", '@Html.Raw(Json.Encode(Model.WeightRate))'.replace(/['"]+/g, ''));
                 }
             });
 

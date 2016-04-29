@@ -38,6 +38,8 @@ namespace SimplexInvoiceModel
 
     public class LogisticsCompany : Company
     {
+        public int ComplimentaryWeight { get; set; }
+        public int WeightRate { get; set; }
 
     }
 
