@@ -170,7 +170,7 @@
         function Init() {
 
             ddlStates.value = '@Html.Raw(Json.Encode(Model.State))'.replace(/['"]+/g, '');
-            alert(ddlStates.value);
+            
 
             var viewModel = kendo.observable({
                 companyName: '@Html.Raw(Json.Encode(Model.CompanyName))'.replace(/['"]+/g, ''),
