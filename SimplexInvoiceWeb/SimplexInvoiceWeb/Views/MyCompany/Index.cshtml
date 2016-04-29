@@ -96,7 +96,8 @@
                 //change: onCaseNameChange,
                 //dataBound: onCaseListDataBound,
                 // change: Module1.ddl_fund_Change,
-                optionLabel: '@Html.Raw(Json.Encode(Model.State))'.replace(/['"]+/g, '')
+                optionLabel: '@Html.Raw(Json.Encode(Model.State))'.replace(/['"]+/g, ''),
+                value: '@Html.Raw(Json.Encode(Model.State))'.replace(/['"]+/g, '')
             });
 
         }
@@ -106,8 +107,8 @@
 
             var validator = $("#example").kendoValidator().data("kendoValidator");
 
-            
-            if (!ddlStates.value) {
+
+            if (!ddlStates.value ) {
                 alert("Pick a valid state: " + ddlStates.value);
                 return;
             }
@@ -202,7 +203,7 @@
             });
 
 
-            
+
 
             kendo.bind($("#example"), viewModel);
         }
