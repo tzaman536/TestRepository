@@ -46,7 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CompanyHandler.cs" />
-    <Compile Include="InvoiceHelper.cs" />
+    <Compile Include="SimplexInvoiceHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

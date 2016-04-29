@@ -17,7 +17,7 @@ namespace SimplexInvoiceWeb.Controllers
         private static readonly ILog logger = LogManager.GetLogger(typeof(MyCompanyController));
 
 
-        InvoiceHelper helper = new InvoiceHelper();
+        SimplexInvoiceHelper helper = new SimplexInvoiceHelper();
         CompanyHandler ch = new CompanyHandler();
         // GET: MyCompany
         public ActionResult Index()
@@ -87,11 +87,7 @@ namespace SimplexInvoiceWeb.Controllers
 
         public ActionResult GetStates()
         {
-
- 
-            List<string> cases = new List<string>() { "BT", "NY", "NJ" };
-            return Json(cases, JsonRequestBehavior.AllowGet);
-
+            return Json(SimplexInvoiceHelper.GetStates(), JsonRequestBehavior.AllowGet);
         }
 
     }
