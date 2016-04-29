@@ -20,11 +20,11 @@ namespace SimplexInvoiceBL
                 var result = conn.Query<int>(@"
                     insert into invoice.Company(SimplexInvoiceUserId,CompanyName,ContactPerson,
 	                                            AddressLine1,AddressLine2,City,State,Zip,Email,
-	                                            MobileNumber,OfficeNumber,FaxNumber,
+	                                            MobileNumber,OfficeNumber,FaxNumber,ComplimentaryWeight,WeightRate,
 	                                            CreatedBy,CreatedAt)
                                            values(@SimplexInvoiceUserId,@CompanyName,@ContactPerson,
 	                                            @AddressLine1,@AddressLine2,@City,@State,@Zip,@Email,
-	                                            @MobileNumber,@OfficeNumber,@FaxNumber,
+	                                            @MobileNumber,@OfficeNumber,@FaxNumber,@ComplimentaryWeight,@WeightRate,
 	                                            @CreatedBy,getdate());
                    SELECT SCOPE_IDENTITY()
 
@@ -53,6 +53,8 @@ namespace SimplexInvoiceBL
                         ,MobileNumber = @MobileNumber
                         ,OfficeNumber = @OfficeNumber
                         ,FaxNumber = @FaxNumber
+                        ,ComplimentaryWeight = @ComplimentaryWeight
+                        ,WeightRate = @WeightRate
                         ,ModifiedBy = @ModifiedBy
                         ,ModifiedAt = getdate()
                     where CompanyId = @CompanyId

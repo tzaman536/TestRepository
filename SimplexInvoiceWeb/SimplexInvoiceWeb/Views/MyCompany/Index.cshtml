@@ -35,23 +35,13 @@
                         <div class="editor-field"><input type="text" id="office" name="Office Number" class="k-textbox input-phone" data-bind="value: officeNumber" data-role='maskedtextbox' data-mask="999-000-0000" /></div>
                         <div class="editor-label"><label for="fax">Fax:</label></div>
                         <div class="editor-field"><input type="text" id="fax" name="Fax Number" class="k-textbox input-phone" data-bind="value: faxNumber" data-role='maskedtextbox' data-mask="999-000-0000" /></div>
-                        @*<div class="editor-label"><label for="message">Message:</label></div>*@
-                        @*<div class="editor-field"><input type="text" id="message" name="Message" class="k-textbox" required data-bind="value: clientMessage"/></div>*@
-                        @*<div class="editor-field"><input type="textarea" id="message" name="Message" required data-bind="value: clientMessage" class="k-textbox" style="height: 200px; width: 140px/"</div>*@
-                        @*<textarea id="message" name="Message" data-bind="value: clientMessage" class="k-textbox" style="height: 200px; width: 400px;"></textarea>*@
-                        <div style="display:table; margin-left: 10px;">
-                            <div style="display:table-row">
-                                <div style="display:table-cell; padding-right:5px;">
-                                    <div class="editor-label"><label for="complimentaryWait">Complimentary Weight:</label></div>
-                                    <div class="editor-field"><input type="text" id="compWeight" name="Complimentary Weight" class="k-textbox" required data-bind="value: complimentaryWeight" /></div>
-                                </div>
-                                <div style="display:table-cell;">
-                                    <div class="editor-label"><label for="weightRate">Weight Rate cents per pound:</label></div>
-                                    <div class="editor-field"><input type="text" id="weightRate" name="Weight Rate" class="k-textbox" required data-bind="value: weightRate" /></div>
-                                </div>
-                            </div>
-                            <div id="loader" style="display:none; font:bold; color:darkblue">Saving.... Please wait</div>
-                        </div>
+                        <br />
+                        <br />
+                        <div class="editor-label"><label for="complimentaryWait">Complimentary Weight:</label></div>
+                        <div class="editor-field"><input type="text" id="compWeight" name="Complimentary Weight" class="k-textbox input-weight" required data-bind="value: complimentaryWeight" /></div>
+                        <div class="editor-label"><label for="weightRate">Weight rate cents per pound:</label></div>
+                        <div class="editor-field"><input type="text" id="weightRate" name="Weight Rate" class="k-textbox input-weight" required data-bind="value: weightRate" /></div>
+
                         <br />
                         <br />
                         <div style="display:table; margin-left: 216px; margin-top:10px;">
@@ -234,7 +224,7 @@
        
         .inputFormTable {
             position: relative;
-            width: 700px; /* for IE 6 */
+            width: 900px; /* for IE 6 */
             min-height: 500px;
             border-radius: 25px; /* Gives any image a round corner */
             /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#cedce7+0,596a72+100 */

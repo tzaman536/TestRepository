@@ -46,6 +46,8 @@ namespace SimplexInvoiceWeb.Controllers
                 c.MobileNumber = string.Empty;
                 c.OfficeNumber = string.Empty;
                 c.FaxNumber = string.Empty;
+                c.ComplimentaryWeight = 100;
+                c.WeightRate = 2;
             }
 
             
