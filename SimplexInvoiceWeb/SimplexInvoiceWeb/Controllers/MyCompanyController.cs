@@ -1,5 +1,6 @@
 ﻿using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
+using log4net;
 using SimplexInvoiceBL;
 using SimplexInvoiceModel;
 using System;
@@ -13,10 +14,17 @@ namespace SimplexInvoiceWeb.Controllers
 {
     public class MyCompanyController : Controller
     {
+        private static readonly ILog logger = LogManager.GetLogger(typeof(MyCompanyController));
+
+
         InvoiceHelper helper = new InvoiceHelper();
+        CompanyHandler ch = new CompanyHandler();
         // GET: MyCompany
         public ActionResult Index()
         {
+
+            logger.Info("Simplex Invoice MyCompanyController.Index()");
+
             Company c = new Company();
             c.CompanyName = string.Empty;
             c.ContactPerson = string.Empty;
@@ -30,6 +38,8 @@ namespace SimplexInvoiceWeb.Controllers
             c.OfficeNumber = string.Empty;
             c.FaxNumber = string.Empty;
 
+            
+
             return View(c);
         }
 
@@ -37,34 +47,42 @@ namespace SimplexInvoiceWeb.Controllers
         public ActionResult SaveCompanyInfo([DataSourceRequest]DataSourceRequest request, string jsonStringCompany)
         {
 
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
 
-            int totalClientCount = 0;
+
+            string message = "Company saved.";
             var json_serializer = new JavaScriptSerializer();
             Company c = json_serializer.Deserialize<Company>(jsonStringCompany);
+            c.SimplexInvoiceUserId = User.Identity.Name;
+            c.CreatedBy = User.Identity.Name;
+            logger.InfoFormat("Saving company...");
+            try
+            {
+                var existingCompany = ch.GetCompanyRegisteredByUser(User.Identity.Name);
+                if(existingCompany == null)
+                    c.CompanyId = ch.Add(c);
+                else
+                {
+                    c.CompanyId = existingCompany.CompanyId;
+                    logger.InfoFormat("Company exists. Updating company.");
+                    c.ModifiedBy = User.Identity.Name;
+                    logger.InfoFormat("{0} rows updated.",ch.Update(c));
+                }
 
-            //daContactDetail.SaveClientContactDetail(c);
+                logger.InfoFormat("Company saved.");
 
-            //IEnumerable<ClientContactInfo> clients = daContactDetail.GetClientContactDetail();
-            //if (clients != null)
-            //    totalClientCount = clients.Count();
+            }
+            catch (Exception ex)
+            {
+                message = string.Format("Failed to save company. Error: {0}",ex.Message);
+                logger.Fatal(ex);
+            }
 
-            //if (!c.Email.Contains("@") || !c.Email.Contains("."))
-            //{
-            //    return Json(new { success = true, message = string.Format("Invalid email address: {0}", c.Email) }, JsonRequestBehavior.AllowGet);
-            //}
-
-            //try
-            //{
-
-            //    PhenixMail.SendMail(string.Format("Client {0} requesting information ", c.FirstName), c.Message, ConfigurationManager.AppSettings["MAIL_SALES_TEAM"]);
-            //}
-            //catch (Exception ex)
-            //{
-            //    PhenixMail.SendMail("HomeController.ContactUs()-ERROR", string.Format("{0}", ex.Message), ConfigurationManager.AppSettings["MAIL_SALES_TEAM"]);
-            //}
-
-
-            return Json(new { success = true, message = string.Format("Thanks for contacting us. Someone will get back to you soon.") }, JsonRequestBehavior.AllowGet);
+            
+            return Json(new { success = true, message = message }, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult GetStates()

@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Dapper;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,8 +11,9 @@ namespace SimplexInvoiceModel
 {
     public class Company
     {
+        
         public int CompanyId { get; set; }
-        public string CompanyType { get; set; }
+        public string SimplexInvoiceUserId { get; set; }
         public string CompanyName { get; set; }
         public string ContactPerson { get; set; }
         public string AddressLine1 { get; set; }
@@ -25,6 +29,8 @@ namespace SimplexInvoiceModel
         public DateTime CreatedAt { get; set; }
         public string ModifiedBy { get; set; }
         public DateTime ModifiedAt { get; set; }
-
     }
+
+
+
 }
