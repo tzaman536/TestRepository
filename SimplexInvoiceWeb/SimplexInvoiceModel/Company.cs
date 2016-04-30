@@ -40,6 +40,7 @@ namespace SimplexInvoiceModel
     {
         public int ComplimentaryWeight { get; set; }
         public int WeightRate { get; set; }
+        public decimal BasePickupCharge { get; set; }
 
     }
 

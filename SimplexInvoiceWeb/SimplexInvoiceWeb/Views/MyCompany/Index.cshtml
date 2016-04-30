@@ -41,6 +41,8 @@
                         <div class="editor-field"><input type="text" id="compWeight" name="Complimentary Weight" class="k-textbox input-weight" required data-bind="value: complimentaryWeight" /></div>
                         <div class="editor-label"><label for="weightRate">Weight rate cents per pound:</label></div>
                         <div class="editor-field"><input type="text" id="weightRate" name="Weight Rate" class="k-textbox input-weight" required data-bind="value: weightRate" /></div>
+                        <div class="editor-label"><label for="basePickup">Base pickup charge:</label></div>
+                        <div class="editor-field"><input type="text" id="basePickup" name="Base Pickup" class="k-textbox input-weight" required data-bind="value: basePickupCharge" /></div>
 
                         <br />
                         <br />
@@ -134,7 +136,9 @@
                     "OfficeNumber": this.get("officeNumber"),
                     "FaxNumber": this.get("faxNumber"),
                     "ComplimentaryWeight": this.get("complimentaryWeight"),
-                    "WeightRate": this.get("weightRate")
+                    "WeightRate": this.get("weightRate"),
+                    "basePickupCharge": this.get("basePickupCharge")
+
 
                 };
 
@@ -191,6 +195,7 @@
                 faxNumber: '@Html.Raw(Json.Encode(Model.FaxNumber))'.replace(/['"]+/g, ''),
                 complimentaryWeight: '@Html.Raw(Json.Encode(Model.ComplimentaryWeight))'.replace(/['"]+/g, ''),
                 weightRate: '@Html.Raw(Json.Encode(Model.WeightRate))'.replace(/['"]+/g, ''),
+                basePickupCharge: '@Html.Raw(Json.Encode(Model.BasePickupCharge))'.replace(/['"]+/g, ''),
 
                 agreed: false,
                 confirmed: false,
@@ -210,6 +215,7 @@
                     this.set("faxNumber", '@Html.Raw(Json.Encode(Model.FaxNumber))'.replace(/['"]+/g, ''));
                     this.set("complimentaryWeight", '@Html.Raw(Json.Encode(Model.ComplimentaryWeight))'.replace(/['"]+/g, ''));
                     this.set("weightRate", '@Html.Raw(Json.Encode(Model.WeightRate))'.replace(/['"]+/g, ''));
+                    this.set("basePickupCharge", '@Html.Raw(Json.Encode(Model.BasePickupCharge))'.replace(/['"]+/g, ''));
                 }
             });
 

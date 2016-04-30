@@ -21,11 +21,11 @@ namespace SimplexInvoiceBL
                     insert into invoice.Company(SimplexInvoiceUserId,CompanyName,ContactPerson,
 	                                            AddressLine1,AddressLine2,City,State,Zip,Email,
 	                                            MobileNumber,OfficeNumber,FaxNumber,ComplimentaryWeight,WeightRate,
-	                                            CreatedBy,CreatedAt)
+	                                            BasePickupCharge,CreatedBy,CreatedAt)
                                            values(@SimplexInvoiceUserId,@CompanyName,@ContactPerson,
 	                                            @AddressLine1,@AddressLine2,@City,@State,@Zip,@Email,
 	                                            @MobileNumber,@OfficeNumber,@FaxNumber,@ComplimentaryWeight,@WeightRate,
-	                                            @CreatedBy,getdate());
+	                                            @BasePickupCharge,@CreatedBy,getdate());
                    SELECT SCOPE_IDENTITY()
 
                    
@@ -54,6 +54,7 @@ namespace SimplexInvoiceBL
                         ,OfficeNumber = @OfficeNumber
                         ,FaxNumber = @FaxNumber
                         ,ComplimentaryWeight = @ComplimentaryWeight
+                        ,BasePickupCharge = @BasePickupCharge
                         ,WeightRate = @WeightRate
                         ,ModifiedBy = @ModifiedBy
                         ,ModifiedAt = getdate()

@@ -48,6 +48,7 @@ namespace SimplexInvoiceWeb.Controllers
                 c.FaxNumber = string.Empty;
                 c.ComplimentaryWeight = 100;
                 c.WeightRate = 2;
+                c.BasePickupCharge = 25;
             }
 
             
