@@ -90,6 +90,20 @@ namespace SimplexInvoiceWeb.Controllers
                 c.BasePickupCharge = 25;
             }
 
+            LogisticsCompany puFrom = new LogisticsCompany();
+            puFrom.CompanyName = "PU FROM Company";
+            puFrom.City = "New York";
+            puFrom.AddressLine1 = "PU Address";
+
+            LogisticsCompany billTo = new LogisticsCompany();
+            billTo.CompanyName = "Bill To";
+            billTo.City = "New Jersey";
+            billTo.AddressLine1 = "Bill to Address";
+
+
+            ViewData["PU_FROM"] = c;
+            ViewData["BILL_TO"] = billTo;
+
             return View(c);
         }
 

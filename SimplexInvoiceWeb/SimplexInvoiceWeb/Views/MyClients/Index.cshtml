@@ -5,6 +5,9 @@
     ViewBag.Title = "My Clients";
 }
 
+
+   
+
 <div style="display:table; margin-left: 1px; margin-top:10px;">
     <div style="display:table-row">
         <div style="display:table-cell; padding-right:5px;">
@@ -70,69 +73,7 @@
                 </div>
             </div>
         </div>
-        <div style="display:table-cell;">
-            <div id="billing">
-                <div id="inputFormContainer" style="margin-left:1px; margin-top:1px;">
-                    <form id="registration">
-                        <table class="inputFormTable">
-                            <tr>
-                                <td>
-                                    <h2 class="bodyMainMessage1">Client Setup:</h2>
-                                    <div class="editor-label"><label for="cname">Company Name:</label></div>
-                                    <div class="editor-field"><input type="text" id="cname" name="Company Name" class="k-textbox input-name" required data-bind="value: companyName" /></div>
-                                    <div class="editor-label"><label for="contactPerson">Contact Person:</label></div>
-                                    <div class="editor-field"><input type="text" id="contactPerson" name="Contact Person" class="k-textbox input-name" required data-bind="value: contactPerson" /></div>
-                                    <div class="editor-label"><label for="addressLine1">Address Line 1:</label></div>
-                                    <div class="editor-field"><input id="addressLine1" name="Address Line 1" class="k-textbox input-name" required data-bind="value: addressLine1" /></div>
-                                    <div class="editor-label"><label for="addressLine2">Address Line 2 (optional):</label></div>
-                                    <div class="editor-field"><input id="addressLine2" name="Address Line 2" class="k-textbox input-name" data-bind="value: addressLine2" /></div>
-                                    <div class="editor-label"><label for="city">City:</label></div>
-                                    <div class="editor-field"><input id="city" name="City" class="k-textbox input-city" required data-bind="value: city" /></div>
-                                    <div class="editor-label"><label for="state">State:</label></div>
-                                    <div class="editor-field">
-                                        <input id="ddlStates" value="Choose one" class="input-dropdown" />
-                                    </div>
-                                    <div class="editor-label"><label for="zip">Zip:</label></div>
-                                    <div class="editor-field"><input id="zip" name="Zip" class="k-textbox input-zip" required data-bind="value: zip" /></div>
-                                    <div class="editor-label"><label for="email">Email:</label></div>
-                                    <div class="editor-field"><input type="text" id="email" name="Email Address" class="k-textbox input-name" required data-bind="value: emailAddress" /></div>
-                                    <div class="editor-label"><label for="mobile">Mobile Phone:</label></div>
-                                    <div class="editor-field"><input type="text" id="mobile" name="Mobile Number" class="k-textbox input-phone" data-bind="value: mobileNumber" data-role='maskedtextbox' data-mask="999-000-0000" /></div>
-                                    <div class="editor-label"><label for="mobile">Office Phone:</label></div>
-                                    <div class="editor-field"><input type="text" id="office" name="Office Number" class="k-textbox input-phone" data-bind="value: officeNumber" data-role='maskedtextbox' data-mask="999-000-0000" /></div>
-                                    <div class="editor-label"><label for="fax">Fax:</label></div>
-                                    <div class="editor-field"><input type="text" id="fax" name="Fax Number" class="k-textbox input-phone" data-bind="value: faxNumber" data-role='maskedtextbox' data-mask="999-000-0000" /></div>
-                                    <br />
-                                    <br />
-                                    <div class="editor-label"><label for="complimentaryWait">Complimentary Weight:</label></div>
-                                    <div class="editor-field"><input type="text" id="compWeight" name="Complimentary Weight" class="k-textbox input-weight" required data-bind="value: complimentaryWeight" /></div>
-                                    <div class="editor-label"><label for="weightRate">Weight rate cents per pound:</label></div>
-                                    <div class="editor-field"><input type="text" id="weightRate" name="Weight Rate" class="k-textbox input-weight" required data-bind="value: weightRate" /></div>
-                                    <div class="editor-label"><label for="basePickup">Base pickup charge:</label></div>
-                                    <div class="editor-field"><input type="text" id="basePickup" name="Base Pickup" class="k-textbox input-weight" required data-bind="value: basePickupCharge" /></div>
-
-                                    <br />
-                                    <br />
-                                    <div style="display:table; margin-left: 216px; margin-top:10px;">
-                                        <div style="display:table-row">
-                                            <div style="display:table-cell; padding-right:5px;">
-                                                <button data-bind="click: register" class="button_Save">Save</button>
-                                            </div>
-                                            <div style="display:table-cell;">
-                                                <button data-bind="click: startOver" class="button_StartOver">Start Over</button>
-                                            </div>
-                                        </div>
-                                        <div id="loader" style="display:none; font:bold; color:darkblue">Saving.... Please wait</div>
-                                    </div>
-                                    <br />
-                                </td>
-                            </tr>
-                        </table>
-
-                    </form>
-                </div>
-            </div>
-        </div>
+        
     </div>
     <div id="loader" style="display:none; font:bold; color:darkblue">Saving.... Please wait</div>
 </div>
@@ -253,6 +194,10 @@
         //$(document).ready(Init);
 
         function Init() {
+
+            var puForm = @Html.Raw(Json.Encode(ViewData["PU_FROM"]));
+            //var companyName = ViewData["PU_FROM"];
+            alert(puForm.CompanyName);
 
             ddlStates.value = '@Html.Raw(Json.Encode(Model.State))'.replace(/['"]+/g, '');
 
