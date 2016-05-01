@@ -1,4 +1,7 @@
-﻿using System;
+﻿using log4net;
+using SimplexInvoiceBL;
+using SimplexInvoiceModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -16,6 +19,11 @@ namespace SimplexInvoiceWeb.Controllers
     }
     public class MyClientsController : Controller
     {
+        private static readonly ILog logger = LogManager.GetLogger(typeof(MyCompanyController));
+
+
+        SimplexInvoiceHelper helper = new SimplexInvoiceHelper();
+        CompanyHandler ch = new CompanyHandler();
 
 
         private Product[] products = {
@@ -54,7 +62,35 @@ namespace SimplexInvoiceWeb.Controllers
         // GET: MyClients
         public ActionResult Index()
         {
-            return View();
+            logger.Info("Simplex Invoice MyCompanyController.Index()");
+
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+
+            LogisticsCompany c = (LogisticsCompany)ch.GetCompanyRegisteredByUser(User.Identity.Name);
+            if (c == null)
+            {
+                c = new LogisticsCompany();
+                c.CompanyName = string.Empty;
+                c.ContactPerson = string.Empty;
+                c.AddressLine1 = string.Empty;
+                c.AddressLine2 = string.Empty;
+                c.City = string.Empty;
+                c.State = "Choose one";
+                c.Zip = string.Empty;
+                c.Email = string.Empty;
+                c.MobileNumber = string.Empty;
+                c.OfficeNumber = string.Empty;
+                c.FaxNumber = string.Empty;
+                c.ComplimentaryWeight = 100;
+                c.WeightRate = 2;
+                c.BasePickupCharge = 25;
+            }
+
+            return View(c);
         }
 
         public JsonResult GetProductDataJson()
