@@ -1,6 +1,6 @@
 ﻿@using Kendo.Mvc.UI
 @using SimplexInvoiceModel;
-@model LogisticsCompany
+@*@model LogisticsCompany*@
 @{
     ViewBag.Title = "My Clients";
 }
@@ -11,7 +11,7 @@
 <div style="display:table; margin-left: 1px; margin-top:10px;">
     <div style="display:table-row">
         <div style="display:table-cell; padding-right:5px;">
-            <div id="pufrom">
+            <div id="puform">
                 <div id="inputFormContainer" style="margin-left:1px; margin-top:1px;">
                     <form id="registration">
                         <table class="inputFormTable">
@@ -104,6 +104,8 @@
         }
 
         function loadStateNames() {
+            var puForm = @Html.Raw(Json.Encode(ViewData["PU_FROM"]));
+
             $("#ddlStates").kendoDropDownList({
                 dataSource: {
                     type: "json",
@@ -117,8 +119,8 @@
                 //change: onCaseNameChange,
                 //dataBound: onCaseListDataBound,
                 // change: Module1.ddl_fund_Change,
-                optionLabel: '@Html.Raw(Json.Encode(Model.State))'.replace(/['"]+/g, ''),
-                value: '@Html.Raw(Json.Encode(Model.State))'.replace(/['"]+/g, '')
+                optionLabel: puForm.State,
+                value: puForm.State
             });
 
         }
@@ -199,23 +201,23 @@
             //var companyName = ViewData["PU_FROM"];
             alert(puForm.CompanyName);
 
-            ddlStates.value = '@Html.Raw(Json.Encode(Model.State))'.replace(/['"]+/g, '');
-
+            ddlStates.value = puForm.Sate;
+            cname.value = puForm.CompanyName;
 
             var viewModel = kendo.observable({
-                companyName: '@Html.Raw(Json.Encode(Model.CompanyName))'.replace(/['"]+/g, ''),
-                contactPerson: '@Html.Raw(Json.Encode(Model.ContactPerson))'.replace(/['"]+/g, ''),
-                addressLine1: '@Html.Raw(Json.Encode(Model.AddressLine1))'.replace(/['"]+/g, ''),
-                addressLine2: '@Html.Raw(Json.Encode(Model.AddressLine2))'.replace(/['"]+/g, ''),
-                city: '@Html.Raw(Json.Encode(Model.City))'.replace(/['"]+/g, ''),
-                zip: '@Html.Raw(Json.Encode(Model.Zip))'.replace(/['"]+/g, ''),
-                emailAddress: '@Html.Raw(Json.Encode(Model.Email))'.replace(/['"]+/g, ''),
-                mobileNumber: '@Html.Raw(Json.Encode(Model.MobileNumber))'.replace(/['"]+/g, ''),
-                officeNumber: '@Html.Raw(Json.Encode(Model.OfficeNumber))'.replace(/['"]+/g, ''),
-                faxNumber: '@Html.Raw(Json.Encode(Model.FaxNumber))'.replace(/['"]+/g, ''),
-                complimentaryWeight: '@Html.Raw(Json.Encode(Model.ComplimentaryWeight))'.replace(/['"]+/g, ''),
-                weightRate: '@Html.Raw(Json.Encode(Model.WeightRate))'.replace(/['"]+/g, ''),
-                basePickupCharge: '@Html.Raw(Json.Encode(Model.BasePickupCharge))'.replace(/['"]+/g, ''),
+                companyName: puForm.CompanyName,
+                contactPerson: puForm.ContactPerson,
+                addressLine1: puForm.AddressLine1,
+                addressLine2: puForm.AddressLine2,
+                city: puForm.City,
+                zip: puForm.Zip,
+                emailAddress: puForm.Email,
+                mobileNumber: puForm.MobileNumber,
+                officeNumber: puForm.OfficeNumber,
+                faxNumber: puForm.FaxNumber,
+                complimentaryWeight: puForm.ComplimentaryWeight,
+                weightRate: puForm.WeightRate,
+                basePickupCharge: puForm.BasePickupCharge,
 
                 agreed: false,
                 confirmed: false,
@@ -223,19 +225,18 @@
                 startOver: function () {
                     this.set("confirmed", false);
                     this.set("agreed", false);
-                    this.set("companyName", '@Html.Raw(Json.Encode(Model.CompanyName))'.replace(/['"]+/g, ''));
-                    this.set("contactPerson", '@Html.Raw(Json.Encode(Model.ContactPerson))'.replace(/['"]+/g, ''));
-                    this.set("addressLine1", '@Html.Raw(Json.Encode(Model.AddressLine1))'.replace(/['"]+/g, ''));
-                    this.set("city", '@Html.Raw(Json.Encode(Model.City))'.replace(/['"]+/g, ''));
-                    @*this.set("ddlStates", '@Html.Raw(Json.Encode(Model.State))'.replace(/['"]+/g, ''));*@
-                    this.set("zip", '@Html.Raw(Json.Encode(Model.Zip))'.replace(/['"]+/g, ''));
-                    this.set("emailAddress", '@Html.Raw(Json.Encode(Model.Email))'.replace(/['"]+/g, ''));
-                    this.set("mobileNumber", '@Html.Raw(Json.Encode(Model.MobileNumber))'.replace(/['"]+/g, ''));
-                    this.set("officeNumber", '@Html.Raw(Json.Encode(Model.OfficeNumber))'.replace(/['"]+/g, ''));
-                    this.set("faxNumber", '@Html.Raw(Json.Encode(Model.FaxNumber))'.replace(/['"]+/g, ''));
-                    this.set("complimentaryWeight", '@Html.Raw(Json.Encode(Model.ComplimentaryWeight))'.replace(/['"]+/g, ''));
-                    this.set("weightRate", '@Html.Raw(Json.Encode(Model.WeightRate))'.replace(/['"]+/g, ''));
-                    this.set("basePickupCharge", '@Html.Raw(Json.Encode(Model.BasePickupCharge))'.replace(/['"]+/g, ''));
+                    this.set("companyName", puForm.CompanyName);
+                    this.set("contactPerson", puForm.ContactPerson);
+                    this.set("addressLine1", puForm.AddressLine1);
+                    this.set("city", puForm.City);
+                    this.set("zip", puForm.Zip);
+                    this.set("emailAddress", puForm.Email);
+                    this.set("mobileNumber", puForm.MobileNumber);
+                    this.set("officeNumber", puForm.OfficeNumber);
+                    this.set("faxNumber", puForm.FaxNumber);
+                    this.set("complimentaryWeight", puForm.ComplimentaryWeight);
+                    this.set("weightRate", puForm.WeightRate);
+                    this.set("basePickupCharge", puForm.BasePickupCharge);
                 }
             });
 

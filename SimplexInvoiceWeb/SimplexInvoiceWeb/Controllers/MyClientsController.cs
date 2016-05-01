@@ -104,7 +104,7 @@ namespace SimplexInvoiceWeb.Controllers
             ViewData["PU_FROM"] = c;
             ViewData["BILL_TO"] = billTo;
 
-            return View(c);
+            return View();
         }
 
         public JsonResult GetProductDataJson()
