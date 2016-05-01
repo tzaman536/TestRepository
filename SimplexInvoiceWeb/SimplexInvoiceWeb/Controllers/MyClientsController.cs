@@ -101,7 +101,7 @@ namespace SimplexInvoiceWeb.Controllers
             billTo.AddressLine1 = "Bill to Address";
 
 
-            ViewData["PU_FROM"] = c;
+            ViewData["PU_FROM"] = puFrom;
             ViewData["BILL_TO"] = billTo;
 
             return View();

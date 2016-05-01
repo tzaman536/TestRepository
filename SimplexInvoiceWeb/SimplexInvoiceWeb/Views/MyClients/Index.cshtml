@@ -202,6 +202,7 @@
             alert(puForm.CompanyName);
 
             ddlStates.value = puForm.Sate;
+            //Leave following line. Without this line viewmode binding doesn't work for some reason
             cname.value = puForm.CompanyName;
 
             var viewModel = kendo.observable({
