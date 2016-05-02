@@ -43,6 +43,8 @@
                                     <div class="editor-label"><label for="fax">Fax:</label></div>
                                     <div class="editor-field"><input type="text" id="fax" name="Fax Number" class="k-textbox input-phone" data-bind="value: faxNumber" data-role='maskedtextbox' data-mask="999-000-0000" /></div>
                                     <br />
+                                    <div class="editor-field"><input type="checkbox" id="sameAsClientAddress" value="sameAsClient"  > Same as above </div>
+                                    
                                     <br />
                                     <div class="editor-label"><label for="billToName">Bill To Name:</label></div>
                                     <div class="editor-field"><input type="text" id="billToName" name="Bill To Name" class="k-textbox input-name" required data-bind="value: billToName" /></div>
@@ -101,9 +103,21 @@
             //$('#loader').show();
             loadStateNames();
             loadBillToStateNames();
+
+            $('#sameAsClientAddress').click(function(){
+                var atLeastOneIsChecked = $('#sameAsClientAddress:checkbox:checked').length > 0;
+                if (atLeastOneIsChecked) {
+                    fillSameAsClientAddress();
+                }
+            }); 
+
             Init();
         });
 
+        function fillSameAsClientAddress()
+        {
+            alert("Fill billing address here");
+        }
         function LookupHandler(jqXHR) {
 
             if (jqXHR.status == 200)
@@ -238,7 +252,7 @@
 
             var puForm = @Html.Raw(Json.Encode(ViewData["PU_FORM"]));
             //var companyName = ViewData["PU_FROM"];
-            alert(puForm.CompanyName);
+            //alert(puForm.CompanyName);
 
             ddlStates.value = puForm.Sate;
             ddlBillToStates.value = puForm.BillToState;
