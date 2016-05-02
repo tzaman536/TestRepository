@@ -41,6 +41,16 @@ namespace SimplexInvoiceModel
         public int ComplimentaryWeight { get; set; }
         public int WeightRate { get; set; }
         public decimal BasePickupCharge { get; set; }
+    }
+
+    public class ClientCompany:Company
+    {
+        public string BillToName { get; set; }
+        public string BillToAddressLine1 { get; set; }
+        public string BillToAddressLine2 { get; set; }
+        public string BillToCity { get; set; }
+        public string BillToState { get; set; }
+        public string BillToZip { get; set; }
 
     }
 

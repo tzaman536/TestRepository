@@ -44,12 +44,12 @@
                                     <div class="editor-field"><input type="text" id="fax" name="Fax Number" class="k-textbox input-phone" data-bind="value: faxNumber" data-role='maskedtextbox' data-mask="999-000-0000" /></div>
                                     <br />
                                     <br />
-                                    <div class="editor-label"><label for="complimentaryWait">Complimentary Weight:</label></div>
-                                    <div class="editor-field"><input type="text" id="compWeight" name="Complimentary Weight" class="k-textbox input-weight" required data-bind="value: complimentaryWeight" /></div>
-                                    <div class="editor-label"><label for="weightRate">Weight rate cents per pound:</label></div>
-                                    <div class="editor-field"><input type="text" id="weightRate" name="Weight Rate" class="k-textbox input-weight" required data-bind="value: weightRate" /></div>
-                                    <div class="editor-label"><label for="basePickup">Base pickup charge:</label></div>
-                                    <div class="editor-field"><input type="text" id="basePickup" name="Base Pickup" class="k-textbox input-weight" required data-bind="value: basePickupCharge" /></div>
+                                    <div class="editor-label"><label for="billToName">Bill To Name:</label></div>
+                                    <div class="editor-field"><input type="text" id="billToName" name="Bill To Name" class="k-textbox input-name" required data-bind="value: billToName" /></div>
+                                    <div class="editor-label"><label for="billToAddressLine1">Bill To Address Line 1:</label></div>
+                                    <div class="editor-field"><input type="text" id="billToAddressLine1" name="Bill To Address Line 1" class="k-textbox input-name" required data-bind="value: billToAddressLine1" /></div>
+                                    <div class="editor-label"><label for="billToAddressLine2">Bill To Address Line 2:</label></div>
+                                    <div class="editor-field"><input type="text" id="billToAddressLine2" name="Bill To Address Line 2" class="k-textbox input-name" required data-bind="value: billToAddressLine2" /></div>
 
                                     <br />
                                     <br />
@@ -104,8 +104,8 @@
         }
 
         function loadStateNames() {
-            var puForm = @Html.Raw(Json.Encode(ViewData["PU_FROM"]));
-
+            var puForm = @Html.Raw(Json.Encode(ViewData["PU_FORM"]));
+            
             $("#ddlStates").kendoDropDownList({
                 dataSource: {
                     type: "json",
@@ -153,22 +153,22 @@
                     "MobileNumber": this.get("mobileNumber"),
                     "OfficeNumber": this.get("officeNumber"),
                     "FaxNumber": this.get("faxNumber"),
-                    "ComplimentaryWeight": this.get("complimentaryWeight"),
-                    "WeightRate": this.get("weightRate"),
-                    "basePickupCharge": this.get("basePickupCharge")
+                    "BillToName": this.get("billToName"),
+                    "BillToAddressLine1": this.get("billToAddressLine1"),
+                    "BillToAddressLine2": this.get("billToAddressLine2")
 
 
                 };
 
                 var parms = {
-                    jsonStringCompany: JSON.stringify(company)
+                    clientCompanyString: JSON.stringify(company)
                 };
 
 
                 $.ajax({
                     type: "POST",
                     traditional: true,
-                    url: '@Url.Action("SaveCompanyInfo", "MyCompany")',
+                    url: '@Url.Action("SaveClientInfo", "MyClients")',
                     async: true,
                     data: parms,
                     dataType: "json",
@@ -197,7 +197,7 @@
 
         function Init() {
 
-            var puForm = @Html.Raw(Json.Encode(ViewData["PU_FROM"]));
+            var puForm = @Html.Raw(Json.Encode(ViewData["PU_FORM"]));
             //var companyName = ViewData["PU_FROM"];
             alert(puForm.CompanyName);
 
@@ -216,9 +216,9 @@
                 mobileNumber: puForm.MobileNumber,
                 officeNumber: puForm.OfficeNumber,
                 faxNumber: puForm.FaxNumber,
-                complimentaryWeight: puForm.ComplimentaryWeight,
-                weightRate: puForm.WeightRate,
-                basePickupCharge: puForm.BasePickupCharge,
+                billToName: puForm.BillToName,
+                billToAddressLine1: puForm.BillToAddressLine1,
+                billToAddressLine2: puForm.BillToAddressLine2,
 
                 agreed: false,
                 confirmed: false,
@@ -235,9 +235,9 @@
                     this.set("mobileNumber", puForm.MobileNumber);
                     this.set("officeNumber", puForm.OfficeNumber);
                     this.set("faxNumber", puForm.FaxNumber);
-                    this.set("complimentaryWeight", puForm.ComplimentaryWeight);
-                    this.set("weightRate", puForm.WeightRate);
-                    this.set("basePickupCharge", puForm.BasePickupCharge);
+                    this.set("billToName", puForm.BillToName);
+                    this.set("billToAddressLine1", puForm.BillToAddressLine1);
+                    this.set("billToAddressLine2", puForm.BillToAddressLine2);
                 }
             });
 
