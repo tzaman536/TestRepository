@@ -50,6 +50,14 @@
                                     <div class="editor-field"><input type="text" id="billToAddressLine1" name="Bill To Address Line 1" class="k-textbox input-name" required data-bind="value: billToAddressLine1" /></div>
                                     <div class="editor-label"><label for="billToAddressLine2">Bill To Address Line 2:</label></div>
                                     <div class="editor-field"><input type="text" id="billToAddressLine2" name="Bill To Address Line 2" class="k-textbox input-name" required data-bind="value: billToAddressLine2" /></div>
+                                    <div class="editor-label"><label for="billTocity">Bill To City:</label></div>
+                                    <div class="editor-field"><input id="billToCity" name="Bill To City" class="k-textbox input-city" required data-bind="value: billToCity" /></div>
+                                    <div class="editor-label"><label for="billToState">Bill To State:</label></div>
+                                    <div class="editor-field">
+                                        <input id="ddlBillToStates" value="Choose one" class="input-dropdown" />
+                                    </div>
+                                    <div class="editor-label"><label for="billToZip">Bill To Zip:</label></div>
+                                    <div class="editor-field"><input id="billToZip" name="Bill To Zip" class="k-textbox input-zip" required data-bind="value: billToZip" /></div>
 
                                     <br />
                                     <br />
@@ -92,6 +100,7 @@
             }
             //$('#loader').show();
             loadStateNames();
+            loadBillToStateNames();
             Init();
         });
 
@@ -125,6 +134,29 @@
 
         }
 
+        function loadBillToStateNames() {
+            var puForm = @Html.Raw(Json.Encode(ViewData["PU_FORM"]));
+            
+            $("#ddlBillToStates").kendoDropDownList({
+                dataSource: {
+                    type: "json",
+                    transport: {
+                        read: {
+                            url: '@Url.Action("GetStates", "MyCompany")',
+                            complete: LookupHandler
+                        }
+                    }
+                },
+                //change: onCaseNameChange,
+                //dataBound: onCaseListDataBound,
+                // change: Module1.ddl_fund_Change,
+                optionLabel: puForm.BillToState,
+                value: puForm.BillToState
+            });
+
+        }
+
+
         function saveCompanyInfo(e) {
             e.preventDefault();
 
@@ -136,6 +168,10 @@
                 return;
             }
 
+            if (!ddlBillToStates.value ) {
+                alert("Pick a valid bill to state: " + ddlBillToStates.value);
+                return;
+            }
 
             if (validator.validate()) {
                 //alert("call db here");
@@ -155,7 +191,10 @@
                     "FaxNumber": this.get("faxNumber"),
                     "BillToName": this.get("billToName"),
                     "BillToAddressLine1": this.get("billToAddressLine1"),
-                    "BillToAddressLine2": this.get("billToAddressLine2")
+                    "BillToAddressLine2": this.get("billToAddressLine2"),
+                    "BillToCity": this.get("billToCity"),
+                    "BillToState": ddlBillToStates.value,
+                    "BillToZip": this.get("billToZip")
 
 
                 };
@@ -202,6 +241,7 @@
             alert(puForm.CompanyName);
 
             ddlStates.value = puForm.Sate;
+            ddlBillToStates.value = puForm.BillToState;
             //Leave following line. Without this line viewmode binding doesn't work for some reason
             cname.value = puForm.CompanyName;
 
@@ -219,6 +259,8 @@
                 billToName: puForm.BillToName,
                 billToAddressLine1: puForm.BillToAddressLine1,
                 billToAddressLine2: puForm.BillToAddressLine2,
+                billToCity: puForm.BillToCity,
+                billToZip: puForm.BillToZip,
 
                 agreed: false,
                 confirmed: false,
@@ -238,6 +280,8 @@
                     this.set("billToName", puForm.BillToName);
                     this.set("billToAddressLine1", puForm.BillToAddressLine1);
                     this.set("billToAddressLine2", puForm.BillToAddressLine2);
+                    this.set("billToCity", puForm.BillToCity);
+                    this.set("billToZip", puForm.BillToZip);
                 }
             });
 
