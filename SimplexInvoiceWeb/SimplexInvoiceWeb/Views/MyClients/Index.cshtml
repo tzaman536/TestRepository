@@ -132,6 +132,10 @@
             //alert(puForm.CompanyName);
 
             ddlBillToStates.value = ddlStates.value;
+            //ddlBillToStates.optionLabel = ddlStates.value;
+            var ddl = $("#ddlBillToStates").data("kendoDropDownList");
+            ddl.value(ddlStates.value);
+
             //Leave following line. Without this line viewmode binding doesn't work for some reason
             cname.value = document.getElementById("cname").value;
 
