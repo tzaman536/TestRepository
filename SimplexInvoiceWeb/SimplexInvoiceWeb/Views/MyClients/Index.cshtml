@@ -51,7 +51,7 @@
                                     <div class="editor-label"><label for="billToAddressLine1">Bill To Address Line 1:</label></div>
                                     <div class="editor-field"><input type="text" id="billToAddressLine1" name="Bill To Address Line 1" class="k-textbox input-name" required data-bind="value: billToAddressLine1" /></div>
                                     <div class="editor-label"><label for="billToAddressLine2">Bill To Address Line 2:</label></div>
-                                    <div class="editor-field"><input type="text" id="billToAddressLine2" name="Bill To Address Line 2" class="k-textbox input-name" required data-bind="value: billToAddressLine2" /></div>
+                                    <div class="editor-field"><input type="text" id="billToAddressLine2" name="Bill To Address Line 2" class="k-textbox input-name"  data-bind="value: billToAddressLine2" /></div>
                                     <div class="editor-label"><label for="billTocity">Bill To City:</label></div>
                                     <div class="editor-field"><input id="billToCity" name="Bill To City" class="k-textbox input-city" required data-bind="value: billToCity" /></div>
                                     <div class="editor-label"><label for="billToState">Bill To State:</label></div>
@@ -109,7 +109,7 @@
                 if (atLeastOneIsChecked) {
                     fillSameAsClientAddress();
                 }
-            }); 
+            });
 
             Init();
         });
@@ -117,6 +117,71 @@
         function fillSameAsClientAddress()
         {
             alert("Fill billing address here");
+
+            //document.getElementById("billToName").value =  document.getElementById("cname").value;
+            //document.getElementById("billToAddressLine1").value =  document.getElementById("addressLine1").value;
+            //document.getElementById("billToAddressLine2").value =  document.getElementById("addressLine2").value;
+            //document.getElementById("billToCity").value =  document.getElementById("city").value;
+            //document.getElementById("billToZip").value =  document.getElementById("zip").value;
+            //ddlBillToStates.value = ddlStates.value;
+            //ddlBillToStates.text = ddlStates.value;
+
+
+            var puForm = @Html.Raw(Json.Encode(ViewData["PU_FORM"]));
+            //var companyName = ViewData["PU_FROM"];
+            //alert(puForm.CompanyName);
+
+            ddlBillToStates.value = ddlStates.value;
+            //Leave following line. Without this line viewmode binding doesn't work for some reason
+            cname.value = document.getElementById("cname").value;
+
+            var viewModel = kendo.observable({
+                companyName: document.getElementById("cname").value,
+                contactPerson: document.getElementById("contactPerson").value,
+                addressLine1: document.getElementById("addressLine1").value,
+                addressLine2: document.getElementById("addressLine2").value,
+                city: document.getElementById("city").value,
+                zip: document.getElementById("zip").value,
+                emailAddress: document.getElementById("email").value,
+                mobileNumber: document.getElementById("mobile").value,
+                officeNumber: document.getElementById("office").value,
+                faxNumber: document.getElementById("fax").value,
+                billToName: document.getElementById("cname").value,
+                billToAddressLine1: document.getElementById("addressLine1").value,
+                billToAddressLine2: document.getElementById("addressLine2").value,
+                billToCity: document.getElementById("city").value,
+                billToZip: document.getElementById("zip").value,
+
+                agreed: false,
+                confirmed: false,
+                register: saveCompanyInfo,
+                startOver: function () {
+                    this.set("confirmed", false);
+                    this.set("agreed", false);
+                    this.set("companyName", puForm.CompanyName);
+                    this.set("contactPerson", puForm.ContactPerson);
+                    this.set("addressLine1", puForm.AddressLine1);
+                    this.set("city", puForm.City);
+                    this.set("zip", puForm.Zip);
+                    this.set("emailAddress", puForm.Email);
+                    this.set("mobileNumber", puForm.MobileNumber);
+                    this.set("officeNumber", puForm.OfficeNumber);
+                    this.set("faxNumber", puForm.FaxNumber);
+                    this.set("billToName", puForm.BillToName);
+                    this.set("billToAddressLine1", puForm.BillToAddressLine1);
+                    this.set("billToAddressLine2", puForm.BillToAddressLine2);
+                    this.set("billToCity", puForm.BillToCity);
+                    this.set("billToZip", puForm.BillToZip);
+                }
+            });
+
+
+
+
+            kendo.bind($("#puform"), viewModel);
+
+
+
         }
         function LookupHandler(jqXHR) {
 
@@ -128,7 +193,7 @@
 
         function loadStateNames() {
             var puForm = @Html.Raw(Json.Encode(ViewData["PU_FORM"]));
-            
+
             $("#ddlStates").kendoDropDownList({
                 dataSource: {
                     type: "json",
@@ -150,7 +215,7 @@
 
         function loadBillToStateNames() {
             var puForm = @Html.Raw(Json.Encode(ViewData["PU_FORM"]));
-            
+
             $("#ddlBillToStates").kendoDropDownList({
                 dataSource: {
                     type: "json",
