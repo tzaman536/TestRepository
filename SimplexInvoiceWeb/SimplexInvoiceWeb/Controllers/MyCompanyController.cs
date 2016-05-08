@@ -18,7 +18,7 @@ namespace SimplexInvoiceWeb.Controllers
 
 
         SimplexInvoiceHelper helper = new SimplexInvoiceHelper();
-        CompanyHandler ch = new CompanyHandler();
+        LogisticsCompanyHandler ch = new LogisticsCompanyHandler();
         // GET: MyCompany
         public ActionResult Index()
         {
