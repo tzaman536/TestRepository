@@ -60,6 +60,14 @@
                                     </div>
                                     <div class="editor-label"><label for="billToZip">Bill To Zip:</label></div>
                                     <div class="editor-field"><input id="billToZip" name="Bill To Zip" class="k-textbox input-zip" required data-bind="value: billToZip" /></div>
+                                    <br />
+                                    <div class="editor-label"><label for="complimentaryWait">Complimentary Weight:</label></div>
+                                    <div class="editor-field"><input type="text" id="compWeight" name="Complimentary Weight" class="k-textbox input-weight" required data-bind="value: complimentaryWeight" /></div>
+                                    <div class="editor-label"><label for="weightRate">Weight rate cents per pound:</label></div>
+                                    <div class="editor-field"><input type="text" id="weightRate" name="Weight Rate" class="k-textbox input-weight" required data-bind="value: weightRate" /></div>
+                                    <div class="editor-label"><label for="basePickup">Base pickup charge:</label></div>
+                                    <div class="editor-field"><input type="text" id="basePickup" name="Base Pickup" class="k-textbox input-weight" required data-bind="value: basePickupCharge" /></div>
+                                    <br />
 
                                     <br />
                                     <br />
@@ -155,6 +163,10 @@
                 billToAddressLine2: document.getElementById("addressLine2").value,
                 billToCity: document.getElementById("city").value,
                 billToZip: document.getElementById("zip").value,
+                complimentaryWeight : document.getElementById("compWeight").value,
+                weightRate : document.getElementById("weightRate").value,
+                basePickupCharge : document.getElementById("basePickup").value,
+
 
                 agreed: false,
                 confirmed: false,
@@ -277,8 +289,10 @@
                     "BillToAddressLine2": this.get("billToAddressLine2"),
                     "BillToCity": this.get("billToCity"),
                     "BillToState": ddlBillToStates.value,
-                    "BillToZip": this.get("billToZip")
-
+                    "BillToZip": this.get("billToZip"),
+                    "ComplimentaryWeight": this.get("complimentaryWeight"),
+                    "WeightRate": this.get("weightRate"),
+                    "BasePickupCharge": this.get("basePickupCharge")
 
                 };
 
@@ -344,6 +358,10 @@
                 billToAddressLine2: puForm.BillToAddressLine2,
                 billToCity: puForm.BillToCity,
                 billToZip: puForm.BillToZip,
+                complimentaryWeight: puForm.ComplimentaryWeight,
+                weightRate: puForm.WeightRate,
+                basePickupCharge: puForm.BasePickupCharge,
+
 
                 agreed: false,
                 confirmed: false,
@@ -365,6 +383,10 @@
                     this.set("billToAddressLine2", puForm.BillToAddressLine2);
                     this.set("billToCity", puForm.BillToCity);
                     this.set("billToZip", puForm.BillToZip);
+                    this.set("complimentaryWeight", puForm.ComplimentaryWeight);
+                    this.set("weightRate", puForm.WeightRate);
+                    this.set("basePickupCharge", puForm.BasePickupCharge);
+
                 }
             });
 

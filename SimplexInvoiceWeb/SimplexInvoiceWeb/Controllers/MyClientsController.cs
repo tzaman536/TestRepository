@@ -40,7 +40,7 @@ namespace SimplexInvoiceWeb.Controllers
             }
 
             ClientCompany c = null;
-                        
+
             if (c == null)
             {
                 c = new ClientCompany();
@@ -55,7 +55,14 @@ namespace SimplexInvoiceWeb.Controllers
                 c.MobileNumber = string.Empty;
                 c.OfficeNumber = string.Empty;
                 c.FaxNumber = string.Empty;
-           
+            }
+
+            LogisticsCompany lc = ch.GetCompanyRegisteredByUser(User.Identity.Name);
+            if(lc != null)
+            {
+                c.WeightRate = lc.WeightRate;
+                c.ComplimentaryWeight = lc.ComplimentaryWeight;
+                c.BasePickupCharge = lc.BasePickupCharge;
             }
 
 

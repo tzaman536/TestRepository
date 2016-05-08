@@ -51,6 +51,10 @@ namespace SimplexInvoiceModel
         public string BillToCity { get; set; }
         public string BillToState { get; set; }
         public string BillToZip { get; set; }
+        public int ComplimentaryWeight { get; set; }
+        public int WeightRate { get; set; }
+        public decimal BasePickupCharge { get; set; }
+
 
     }
 
