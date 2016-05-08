@@ -93,12 +93,12 @@ namespace SimplexInvoiceBL
             {
                 conn.Open();
                 var result = conn.Query<int>(@"
-                    insert into invoice.[MyClients](SimplexInvoiceUserId,CompanyName,ContactPerson,
+                    insert into invoice.[MyClients](SimplexInvoiceUserId,CompanyId,CompanyName,ContactPerson,
 	                                            AddressLine1,AddressLine2,City,State,Zip,Email,
 	                                            MobileNumber,OfficeNumber,FaxNumber,ComplimentaryWeight,WeightRate,
                                                 BillToName,BillToAddressLine1,BillToAddressLine2,BillToCity,BillToState,BillToZip,
 	                                            BasePickupCharge,CreatedBy,CreatedAt)
-                                           values(@SimplexInvoiceUserId,@CompanyName,@ContactPerson,
+                                           values(@SimplexInvoiceUserId,@CompanyId,@CompanyName,@ContactPerson,
 	                                            @AddressLine1,@AddressLine2,@City,@State,@Zip,@Email,
 	                                            @MobileNumber,@OfficeNumber,@FaxNumber,@ComplimentaryWeight,@WeightRate,
                                                 @BillToName,@BillToAddressLine1,@BillToAddressLine2,@BillToCity,@BillToState,@BillToZip,
@@ -177,6 +177,22 @@ namespace SimplexInvoiceBL
                 return result.FirstOrDefault();
             }
         }
+
+        public IEnumerable<ClientCompany> GetClientCompanies(int companyId)
+        {
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+            {
+                conn.Open();
+                var result = conn.Query<ClientCompany>(@"
+                                                select *
+                                                from [SimplexInvoice].[invoice].[MyClients]
+                                                where CompanyId = @companyId
+                                            ", new { companyId });
+
+                return result;
+            }
+        }
+
 
 
     }

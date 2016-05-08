@@ -10,9 +10,7 @@
 
 <div style="display:table; margin-left: 1px; margin-top:10px;">
     <div style="display:table-row">
-        <div style="display:table-cell; padding-right:5px;">
-            <div id="puform">
-                <div id="inputFormContainer" style="margin-left:1px; margin-top:1px;">
+        <div id="puform" style="display:table-cell; padding-right:5px;">
                     <form id="registration">
                         <table class="inputFormTable">
                             <tr>
@@ -88,13 +86,11 @@
                         </table>
 
                     </form>
-                </div>
-            </div>
         </div>
         <div style="display:table-cell; padding-right:5px;min-width:50px;">
 
         </div>
-        <div id="allProducts" style="display:table-cell;min-width:1200px;margin-left:1px; margin-top:1px;">
+        <div id="allProducts" style="display:table-cell;min-width:1200px;margin-left:1px; margin-top:1px; vertical-align:top; ">
             @(Html.Kendo().Grid<ClientCompany>()
             .Name("ProductGrid")
             .Columns(columns =>
@@ -132,7 +128,7 @@
                 //.Model(model => model.Id(p => p.ProductID))
                 .Model(model =>
                 {
-                    model.Id(p => p.CompanyId);
+                    model.Id(p => p.ClientCompanyId);
                     model.Field(p => p.CompanyName).Editable(false);
                     model.Field(p => p.Email).Editable(false);
                     model.Field(p => p.WeightRate).Editable(false);
@@ -144,10 +140,10 @@
                 })
 
 
-                                .Create("Editing_Create", "ProductAdmin")
-                                .Read("Editing_Read", "ProductAdmin")
-                                .Update("Editing_Update", "ProductAdmin")
-                                .Destroy("Editing_Destroy", "ProductAdmin")
+                                .Create("Editing_Create", "MyClients")
+                                .Read("Editing_Read", "MyClients")
+                                .Update("Editing_Update", "MyClients")
+                                .Destroy("Editing_Destroy", "MyClients")
                             )
             )
         </div>
@@ -180,6 +176,55 @@
             Init();
         });
 
+        
+        
+        function error_handler(e) {
+            if (e.errors) {
+                var message = "Errors:\n";
+                $.each(e.errors, function (key, value) {
+                    if ('errors' in value) {
+                        $.each(value.errors, function() {
+                            message += this + "\n";
+                        });
+                    }
+                });
+                alert(message);
+            }
+        }
+
+
+
+        function onChange(arg) {
+            var grid = $("#ProductGrid").data("kendoGrid");
+            var selectedItem = grid.dataItem(grid.select());
+            //alert(selectedItem);
+
+
+            @*document.getElementById("selectedItemImageOriginal").src = "@Url.Content("~/content/products/{0}?{1}")".format(selectedItem.OriginalImageId, new Date().getTime());
+            document.getElementById("selectedItemImageOne").src = "@Url.Content("~/content/products/{0}?{1}")".format(selectedItem.ImageIdOne, new Date().getTime());
+            document.getElementById("selectedItemImageTwo").src = "@Url.Content("~/content/products/{0}?{1}")".format(selectedItem.ImageIdTwo, new Date().getTime());
+            document.getElementById("selectedItemImageThree").src = "@Url.Content("~/content/products/{0}?{1}")".format(selectedItem.ImageIdThree, new Date().getTime());
+            document.getElementById("selectedItemImageFour").src = "@Url.Content("~/content/products/{0}?{1}")".format(selectedItem.ImageIdFour, new Date().getTime());
+            document.getElementById("selectedItemImageFive").src = "@Url.Content("~/content/products/{0}?{1}")".format(selectedItem.ImageIdFive, new Date().getTime());
+
+            document.getElementById("idProductID").value = selectedItem.ProductID;*@
+
+        }
+
+        function onRequestEnd(e) {
+
+            if (e.type == "update" && !e.response.Errors) {
+                alert("product updated");
+            }
+
+            if (e.type == "destroy" && !e.response.Errors) {
+                alert("Producdt deleted");
+            }
+
+        }
+
+        
+        
         function fillSameAsClientAddress()
         {
             alert("Fill billing address here");

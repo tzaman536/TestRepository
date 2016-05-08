@@ -45,6 +45,7 @@ namespace SimplexInvoiceModel
 
     public class ClientCompany:Company
     {
+        public int ClientCompanyId { get; set; }
         public string BillToName { get; set; }
         public string BillToAddressLine1 { get; set; }
         public string BillToAddressLine2 { get; set; }
