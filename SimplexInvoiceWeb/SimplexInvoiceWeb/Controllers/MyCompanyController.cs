@@ -98,6 +98,159 @@ namespace SimplexInvoiceWeb.Controllers
             return Json(new { success = true, message = message }, JsonRequestBehavior.AllowGet);
         }
 
+
+        public ActionResult Editing_Read([DataSourceRequest] DataSourceRequest request)
+        {
+            List<ClientCompany> result = new List<ClientCompany>();
+
+            return Json(result.ToDataSourceResult(request));
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Editing_Create([DataSourceRequest] DataSourceRequest request, ClientCompany company)
+        {
+
+            //var addedProduct = productHandler.AddProduct(product);
+            //if (addedProduct != null)
+            //{
+            //    ViewBag.Message = "Record saved";
+            //    ViewBag.ErrorFound = false;
+
+            //    product.ProductID = addedProduct.ProductID;
+            //}
+            //else
+            //{
+            //    ViewBag.Message = "Failed to save record";
+            //    ViewBag.ErrorFound = true;
+
+            //}
+
+
+            return Json(new[] { company }.ToDataSourceResult(request, ModelState));
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Editing_Update([DataSourceRequest] DataSourceRequest request, ClientCompany company)
+        {
+            //productHandler.UpdateProduct(product);
+
+            return Json(new[] { company }.ToDataSourceResult(request, ModelState));
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Editing_Destroy([DataSourceRequest] DataSourceRequest request, ClientCompany company)
+        {
+            string destinationFilePath = System.Web.HttpContext.Current.Server.MapPath("~/Content/products");
+
+            try
+            {
+                //string fileToDelete = string.Format(@"{0}\{1}", destinationFilePath, product.OriginalImageId);
+                //FileInfo fi = new FileInfo(fileToDelete);
+                //if (fi.Exists)
+                //{
+                //    try
+                //    {
+                //        fi.Delete();
+                //    }
+                //    catch { }
+                //}
+                //fileToDelete = string.Format(@"{0}\{1}", destinationFilePath, product.SmallImageId);
+                //fi = new FileInfo(fileToDelete);
+                //if (fi.Exists)
+                //{
+                //    try
+                //    {
+                //        fi.Delete();
+                //    }
+                //    catch { }
+                //}
+                //fileToDelete = string.Format(@"{0}\{1}", destinationFilePath, product.MediumImageId);
+                //fi = new FileInfo(fileToDelete);
+                //if (fi.Exists)
+                //{
+                //    try
+                //    {
+                //        fi.Delete();
+                //    }
+                //    catch { }
+                //}
+                //fileToDelete = string.Format(@"{0}\{1}", destinationFilePath, product.LargeImageId);
+                //fi = new FileInfo(fileToDelete);
+                //if (fi.Exists)
+                //{
+                //    try
+                //    {
+                //        fi.Delete();
+                //    }
+                //    catch { }
+                //}
+                //fileToDelete = string.Format(@"{0}\{1}", destinationFilePath, product.ImageIdOne);
+                //fi = new FileInfo(fileToDelete);
+                //if (fi.Exists)
+                //{
+                //    try
+                //    {
+                //        fi.Delete();
+                //    }
+                //    catch { }
+
+                //}
+                //fileToDelete = string.Format(@"{0}\{1}", destinationFilePath, product.ImageIdTwo);
+                //fi = new FileInfo(fileToDelete);
+                //if (fi.Exists)
+                //{
+                //    try
+                //    {
+                //        fi.Delete();
+                //    }
+                //    catch { }
+                //}
+                //fileToDelete = string.Format(@"{0}\{1}", destinationFilePath, product.ImageIdThree);
+                //fi = new FileInfo(fileToDelete);
+                //if (fi.Exists)
+                //{
+                //    try
+                //    {
+                //        fi.Delete();
+                //    }
+                //    catch { }
+                //}
+                //fileToDelete = string.Format(@"{0}\{1}", destinationFilePath, product.ImageIdFour);
+                //fi = new FileInfo(fileToDelete);
+                //if (fi.Exists)
+                //{
+                //    try
+                //    {
+                //        fi.Delete();
+                //    }
+                //    catch { }
+                //}
+                //fileToDelete = string.Format(@"{0}\{1}", destinationFilePath, product.ImageIdFive);
+                //fi = new FileInfo(fileToDelete);
+                //if (fi.Exists)
+                //{
+                //    try
+                //    {
+                //        fi.Delete();
+                //    }
+                //    catch { }
+                //}
+
+
+
+            }
+            catch (Exception ex)
+            {
+                logger.Fatal(ex);
+            }
+
+
+            //productHandler.DeleteProduct(product);
+
+            return Json(new[] { company }.ToDataSourceResult(request, ModelState));
+        }
+
+
         public ActionResult GetStates()
         {
             return Json(SimplexInvoiceHelper.GetStates(), JsonRequestBehavior.AllowGet);
