@@ -92,7 +92,7 @@
         </div>
         <div id="allProducts" style="display:table-cell;min-width:1200px;margin-left:1px; margin-top:1px; vertical-align:top; ">
             @(Html.Kendo().Grid<ClientCompany>()
-            .Name("ProductGrid")
+            .Name("ClientGrid")
             .Columns(columns =>
             {
                 columns.Bound(p => p.CompanyName).Width(100);
@@ -195,7 +195,7 @@
 
 
         function onChange(arg) {
-            var grid = $("#ProductGrid").data("kendoGrid");
+            var grid = $("#ClientGrid").data("kendoGrid");
             var selectedItem = grid.dataItem(grid.select());
             //alert(selectedItem);
 
@@ -417,7 +417,7 @@
                     success: function (response, textStatus, jqXHR) {
                         alert(response.message);
                         $('#loader').hide();
-
+                        $("#ClientGrid").data("kendoGrid").dataSource.read();
                     },
                     error: function (XMLHttpRequest, textStatus, errorThrown) {
                         alert("Error found during execution");
