@@ -176,8 +176,8 @@
             Init();
         });
 
-        
-        
+
+
         function error_handler(e) {
             if (e.errors) {
                 var message = "Errors:\n";
@@ -197,7 +197,34 @@
         function onChange(arg) {
             var grid = $("#ClientGrid").data("kendoGrid");
             var selectedItem = grid.dataItem(grid.select());
-            //alert(selectedItem);
+            //alert(selectedItem.CompanyName);
+
+
+            var parms = {
+                clientCompanyString: selectedItem.CompanyName
+            };
+
+
+            $.ajax({
+                type: "GET",
+                traditional: true,
+                url: '@Url.Action("GetClientInfo", "MyClients")',
+                async: true,
+                data: parms,
+                dataType: "json",
+                beforeSend: function (xhr) {
+                    $('#loader').show();
+                },
+                success: function (response, textStatus, jqXHR) {
+                    //alert(response.message.CompanyName);
+                    $('#loader').hide();
+                    Init(response.message);
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert("Error found during execution");
+                    $('#loader').hide();
+                }
+            });
 
 
             @*document.getElementById("selectedItemImageOriginal").src = "@Url.Content("~/content/products/{0}?{1}")".format(selectedItem.OriginalImageId, new Date().getTime());
@@ -223,8 +250,8 @@
 
         }
 
-        
-        
+
+
         function fillSameAsClientAddress()
         {
             alert("Fill billing address here");
@@ -434,9 +461,11 @@
 
         //$(document).ready(Init);
 
-        function Init() {
+        function Init(e) {
 
-            var puForm = @Html.Raw(Json.Encode(ViewData["PU_FORM"]));
+            var puForm = e;
+            if(puForm==null)
+                 puForm = @Html.Raw(Json.Encode(ViewData["PU_FORM"]));
             //var companyName = ViewData["PU_FROM"];
             //alert(puForm.CompanyName);
 

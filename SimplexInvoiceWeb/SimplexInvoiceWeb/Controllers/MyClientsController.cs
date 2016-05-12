@@ -104,7 +104,8 @@ namespace SimplexInvoiceWeb.Controllers
                 }
                 else
                 {
-                    c.ClientCompanyId = existingCompany.CompanyId;
+                    c.CompanyId = existingCompany.CompanyId;
+                    c.ClientCompanyId = existingCompany.ClientCompanyId;
                     logger.InfoFormat("Company exists. Updating client company.");
                     c.ModifiedBy = User.Identity.Name;
                     logger.InfoFormat("{0} rows updated.", clientCompanyHandler.Update(c));
@@ -122,6 +123,42 @@ namespace SimplexInvoiceWeb.Controllers
 
             return Json(new { success = true, message = message }, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpGet]
+        public ActionResult GetClientInfo([DataSourceRequest]DataSourceRequest request, string clientCompanyString)
+        {
+
+            
+            string message = "Getting company";
+            ClientCompany c = clientCompanyHandler.GetCompanyByName(clientCompanyString); 
+
+            if (c == null)
+            {
+                c = new ClientCompany();
+                c.CompanyName = clientCompanyString;
+                c.ContactPerson = string.Empty;
+                c.AddressLine1 = string.Empty;
+                c.AddressLine2 = string.Empty;
+                c.City = string.Empty;
+                c.State = "NY";
+                c.Zip = string.Empty;
+                c.Email = string.Empty;
+                c.MobileNumber = string.Empty;
+                c.OfficeNumber = string.Empty;
+                c.FaxNumber = string.Empty;
+                c.WeightRate = 3;
+                c.ComplimentaryWeight = 1000;
+                c.BasePickupCharge = 56;
+
+            }
+
+
+
+
+
+            return Json(new { success = true, message = c }, JsonRequestBehavior.AllowGet);
+        }
+
 
         public ActionResult Editing_Read([DataSourceRequest] DataSourceRequest request)
         {

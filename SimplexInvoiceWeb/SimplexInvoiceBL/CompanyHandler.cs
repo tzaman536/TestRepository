@@ -141,7 +141,7 @@ namespace SimplexInvoiceBL
                         ,WeightRate = @WeightRate
                         ,ModifiedBy = @ModifiedBy
                         ,ModifiedAt = getdate()
-                    where CompanyId = @CompanyId
+                    where ClientCompanyId = @ClientCompanyId
                                             ", c);
 
                 return result;
