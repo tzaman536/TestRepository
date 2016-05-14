@@ -141,83 +141,6 @@
                     
                 </div>
             </div>
-            <form id="registration">
-                <table class="inputFormTable">
-                    <tr>
-                        <td>
-                            
-
-                            <h2 class="bodyMainMessage1">Client Setup:</h2>
-                            <div class="editor-label"><label for="cname">Company Name: <div></div></label></div>
-                            <div class="editor-field"><input type="text" id="cname" name="Company Name" class="k-textbox input-name" required data-bind="value: companyName" /></div>
-                            <div class="editor-label"><label for="contactPerson">Contact Person:</label></div>
-                            <div class="editor-field"><input type="text" id="contactPerson" name="Contact Person" class="k-textbox input-name" required data-bind="value: contactPerson" /></div>
-                            <div class="editor-label"><label for="addressLine1">Address Line 1:</label></div>
-                            <div class="editor-field"><input id="addressLine1" name="Address Line 1" class="k-textbox input-name" required data-bind="value: addressLine1" /></div>
-                            <div class="editor-label"><label for="addressLine2">Address Line 2 (optional):</label></div>
-                            <div class="editor-field"><input id="addressLine2" name="Address Line 2" class="k-textbox input-name" data-bind="value: addressLine2" /></div>
-                            <div class="editor-label"><label for="city">City:</label></div>
-                            <div class="editor-field"><input id="city" name="City" class="k-textbox input-city" required data-bind="value: city" /></div>
-                            <div class="editor-label"><label for="state">State:</label></div>
-                            <div class="editor-field">
-                                <input id="ddlStates" value="Choose one" class="input-dropdown" />
-                            </div>
-                            <div class="editor-label"><label for="zip">Zip:</label></div>
-                            <div class="editor-field"><input id="zip" name="Zip" class="k-textbox input-zip" required data-bind="value: zip" /></div>
-                            <div class="editor-label"><label for="email">Email:</label></div>
-                            <div class="editor-field"><input type="text" id="email" name="Email Address" class="k-textbox input-name" required data-bind="value: emailAddress" /></div>
-                            <div class="editor-label"><label for="mobile">Mobile Phone:</label></div>
-                            <div class="editor-field"><input type="text" id="mobile" name="Mobile Number" class="k-textbox input-phone" data-bind="value: mobileNumber" data-role='maskedtextbox' data-mask="999-000-0000" /></div>
-                            <div class="editor-label"><label for="mobile">Office Phone:</label></div>
-                            <div class="editor-field"><input type="text" id="office" name="Office Number" class="k-textbox input-phone" data-bind="value: officeNumber" data-role='maskedtextbox' data-mask="999-000-0000" /></div>
-                            <div class="editor-label"><label for="fax">Fax:</label></div>
-                            <div class="editor-field"><input type="text" id="fax" name="Fax Number" class="k-textbox input-phone" data-bind="value: faxNumber" data-role='maskedtextbox' data-mask="999-000-0000" /></div>
-                            <br />
-                            <div class="editor-field"><input type="checkbox" id="sameAsClientAddress" value="sameAsClient"> Same as above </div>
-
-                            <br />
-                            <div class="editor-label"><label for="billToName">Bill To Name:</label></div>
-                            <div class="editor-field"><input type="text" id="billToName" name="Bill To Name" class="k-textbox input-name" required data-bind="value: billToName" /></div>
-                            <div class="editor-label"><label for="billToAddressLine1">Bill To Address Line 1:</label></div>
-                            <div class="editor-field"><input type="text" id="billToAddressLine1" name="Bill To Address Line 1" class="k-textbox input-name" required data-bind="value: billToAddressLine1" /></div>
-                            <div class="editor-label"><label for="billToAddressLine2">Bill To Address Line 2:</label></div>
-                            <div class="editor-field"><input type="text" id="billToAddressLine2" name="Bill To Address Line 2" class="k-textbox input-name" data-bind="value: billToAddressLine2" /></div>
-                            <div class="editor-label"><label for="billTocity">Bill To City:</label></div>
-                            <div class="editor-field"><input id="billToCity" name="Bill To City" class="k-textbox input-city" required data-bind="value: billToCity" /></div>
-                            <div class="editor-label"><label for="billToState">Bill To State:</label></div>
-                            <div class="editor-field">
-                                <input id="ddlBillToStates" value="Choose one" class="input-dropdown" />
-                            </div>
-                            <div class="editor-label"><label for="billToZip">Bill To Zip:</label></div>
-                            <div class="editor-field"><input id="billToZip" name="Bill To Zip" class="k-textbox input-zip" required data-bind="value: billToZip" /></div>
-                            <br />
-                            <div class="editor-label"><label for="complimentaryWait">Complimentary Weight:</label></div>
-                            <div class="editor-field"><input type="text" id="compWeight" name="Complimentary Weight" class="k-textbox input-weight" required data-bind="value: complimentaryWeight" /></div>
-                            <div class="editor-label"><label for="weightRate">Weight rate cents per pound:</label></div>
-                            <div class="editor-field"><input type="text" id="weightRate" name="Weight Rate" class="k-textbox input-weight" required data-bind="value: weightRate" /></div>
-                            <div class="editor-label"><label for="basePickup">Base pickup charge:</label></div>
-                            <div class="editor-field"><input type="text" id="basePickup" name="Base Pickup" class="k-textbox input-weight" required data-bind="value: basePickupCharge" /></div>
-                            <br />
-
-                            <br />
-                            <br />
-                            <div style="display:table; margin-left: 216px; margin-top:10px;">
-                                <div style="display:table-row">
-                                    <div style="display:table-cell; padding-right:5px;">
-                                        <button data-bind="click: register" class="button_Save">Save</button>
-                                    </div>
-                                    <div style="display:table-cell;">
-                                        <button data-bind="click: startOver" class="button_StartOver">Start Over</button>
-                                    </div>
-                                </div>
-                                <div id="loader" style="display:none; font:bold; color:darkblue">Saving.... Please wait</div>
-                            </div>
-                            <br />
-                        </td>
-                    </tr>
-                </table>
-
-            </form>
         </div>
     </div>
 </div>
@@ -232,29 +155,20 @@
                 document.getElementById("footer").style.display = "none";
                 document.getElementById("navBar").style.minHeight = "20px";
             }
-            //$('#loader').show();
-            loadStateNames();
-            loadBillToStateNames();
 
-            $('#sameAsClientAddress').click(function(){
-                var atLeastOneIsChecked = $('#sameAsClientAddress:checkbox:checked').length > 0;
-                if (atLeastOneIsChecked) {
-                    fillSameAsClientAddress();
-                }
-            });
+            //LoadInvoice();
 
-            LoadInvoice();
-
-            Init();
         });
 
-        function LoadInvoice()
+        function LoadInvoice(e)
         {
-            document.getElementById("divCompanyNameAndAddress").innerHTML = "TIGER LOGISTICS INC." 
+            @*var myCompany = @Html.Raw(Json.Encode(ViewData["MY_COMPANY"]));*@
+            
+            document.getElementById("divCompanyNameAndAddress").innerHTML = e.CompanyName 
                                                                             + "</br>" 
-                                                                            + "P.O. BOX 128"
+                                                                            + e.AddressLine1
                                                                             + "</br>" 
-                                                                            + "JAMAICA" + "NY" + "11753"
+                                                                            + "JAMAICA" + " " + "NY" + "11753"
                                                                             + "</br>";
 
             document.getElementById("divCompanyPhoneAndFax").innerHTML = "TEL: " + "(516) 639 8131" + "</br>" 
@@ -265,27 +179,6 @@
 
 
 
-        function printDivWorking()
-        {
-            //Get the HTML of div
-            var divElements = document.getElementById("divInvoice").innerHTML;
-            //Get the HTML of whole page
-            var oldPage = document.body.innerHTML;
-
-            //Reset the page's HTML with div's HTML only
-            document.body.innerHTML = 
-              "<html><head><title></title></head><body>" +
-              divElements 
-              +      "<style>dl{ width: 100%; overflow: hidden;background: rgb(206,220,231);padding: 0;margin: 0;} dt {float: left;width: 50%;background: rgb(206,220,231);padding: 0; margin: 0;}dd {float: left;width: 50%;background: rgb(206,220,231);padding: 0;margin: 0;} </style>" 
-              + "</body>";
-
-            //Print Page
-            window.print();
-
-            //Restore orignal HTML
-            document.body.innerHTML = oldPage;
-
-        }
 
         function printDiv()
         {
@@ -346,7 +239,7 @@
                 success: function (response, textStatus, jqXHR) {
                     //alert(response.message.CompanyName);
                     $('#loader').hide();
-                    Init(response.message);
+                    LoadInvoice(response.message);
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
                     alert("Error found during execution");
@@ -354,15 +247,6 @@
                 }
             });
 
-
-            @*document.getElementById("selectedItemImageOriginal").src = "@Url.Content("~/content/products/{0}?{1}")".format(selectedItem.OriginalImageId, new Date().getTime());
-            document.getElementById("selectedItemImageOne").src = "@Url.Content("~/content/products/{0}?{1}")".format(selectedItem.ImageIdOne, new Date().getTime());
-            document.getElementById("selectedItemImageTwo").src = "@Url.Content("~/content/products/{0}?{1}")".format(selectedItem.ImageIdTwo, new Date().getTime());
-            document.getElementById("selectedItemImageThree").src = "@Url.Content("~/content/products/{0}?{1}")".format(selectedItem.ImageIdThree, new Date().getTime());
-            document.getElementById("selectedItemImageFour").src = "@Url.Content("~/content/products/{0}?{1}")".format(selectedItem.ImageIdFour, new Date().getTime());
-            document.getElementById("selectedItemImageFive").src = "@Url.Content("~/content/products/{0}?{1}")".format(selectedItem.ImageIdFive, new Date().getTime());
-
-            document.getElementById("idProductID").value = selectedItem.ProductID;*@
 
         }
 
@@ -380,83 +264,7 @@
 
 
 
-        function fillSameAsClientAddress()
-        {
-            alert("Fill billing address here");
-
-            //document.getElementById("billToName").value =  document.getElementById("cname").value;
-            //document.getElementById("billToAddressLine1").value =  document.getElementById("addressLine1").value;
-            //document.getElementById("billToAddressLine2").value =  document.getElementById("addressLine2").value;
-            //document.getElementById("billToCity").value =  document.getElementById("city").value;
-            //document.getElementById("billToZip").value =  document.getElementById("zip").value;
-            //ddlBillToStates.value = ddlStates.value;
-            //ddlBillToStates.text = ddlStates.value;
-
-
-            var puForm = @Html.Raw(Json.Encode(ViewData["PU_FORM"]));
-            //var companyName = ViewData["PU_FROM"];
-            //alert(puForm.CompanyName);
-
-            ddlBillToStates.value = ddlStates.value;
-            //ddlBillToStates.optionLabel = ddlStates.value;
-            var ddl = $("#ddlBillToStates").data("kendoDropDownList");
-            ddl.value(ddlStates.value);
-
-            //Leave following line. Without this line viewmode binding doesn't work for some reason
-            cname.value = document.getElementById("cname").value;
-
-            var viewModel = kendo.observable({
-                companyName: document.getElementById("cname").value,
-                contactPerson: document.getElementById("contactPerson").value,
-                addressLine1: document.getElementById("addressLine1").value,
-                addressLine2: document.getElementById("addressLine2").value,
-                city: document.getElementById("city").value,
-                zip: document.getElementById("zip").value,
-                emailAddress: document.getElementById("email").value,
-                mobileNumber: document.getElementById("mobile").value,
-                officeNumber: document.getElementById("office").value,
-                faxNumber: document.getElementById("fax").value,
-                billToName: document.getElementById("cname").value,
-                billToAddressLine1: document.getElementById("addressLine1").value,
-                billToAddressLine2: document.getElementById("addressLine2").value,
-                billToCity: document.getElementById("city").value,
-                billToZip: document.getElementById("zip").value,
-                complimentaryWeight : document.getElementById("compWeight").value,
-                weightRate : document.getElementById("weightRate").value,
-                basePickupCharge : document.getElementById("basePickup").value,
-
-
-                agreed: false,
-                confirmed: false,
-                register: saveCompanyInfo,
-                startOver: function () {
-                    this.set("confirmed", false);
-                    this.set("agreed", false);
-                    this.set("companyName", puForm.CompanyName);
-                    this.set("contactPerson", puForm.ContactPerson);
-                    this.set("addressLine1", puForm.AddressLine1);
-                    this.set("city", puForm.City);
-                    this.set("zip", puForm.Zip);
-                    this.set("emailAddress", puForm.Email);
-                    this.set("mobileNumber", puForm.MobileNumber);
-                    this.set("officeNumber", puForm.OfficeNumber);
-                    this.set("faxNumber", puForm.FaxNumber);
-                    this.set("billToName", puForm.BillToName);
-                    this.set("billToAddressLine1", puForm.BillToAddressLine1);
-                    this.set("billToAddressLine2", puForm.BillToAddressLine2);
-                    this.set("billToCity", puForm.BillToCity);
-                    this.set("billToZip", puForm.BillToZip);
-                }
-            });
-
-
-
-
-            kendo.bind($("#puform"), viewModel);
-
-
-
-        }
+        
         function LookupHandler(jqXHR) {
 
             if (jqXHR.status == 200)
@@ -465,196 +273,6 @@
             FailureHandler(jqXHR);
         }
 
-        function loadStateNames() {
-            var puForm = @Html.Raw(Json.Encode(ViewData["PU_FORM"]));
-
-            $("#ddlStates").kendoDropDownList({
-                dataSource: {
-                    type: "json",
-                    transport: {
-                        read: {
-                            url: '@Url.Action("GetStates", "MyCompany")',
-                            complete: LookupHandler
-                        }
-                    }
-                },
-                //change: onCaseNameChange,
-                //dataBound: onCaseListDataBound,
-                // change: Module1.ddl_fund_Change,
-                optionLabel: puForm.State,
-                value: puForm.State
-            });
-
-        }
-
-        function loadBillToStateNames() {
-            var puForm = @Html.Raw(Json.Encode(ViewData["PU_FORM"]));
-
-            $("#ddlBillToStates").kendoDropDownList({
-                dataSource: {
-                    type: "json",
-                    transport: {
-                        read: {
-                            url: '@Url.Action("GetStates", "MyCompany")',
-                            complete: LookupHandler
-                        }
-                    }
-                },
-                //change: onCaseNameChange,
-                //dataBound: onCaseListDataBound,
-                // change: Module1.ddl_fund_Change,
-                optionLabel: puForm.BillToState,
-                value: puForm.BillToState
-            });
-
-        }
-
-
-        function saveCompanyInfo(e) {
-            e.preventDefault();
-
-            var validator = $("#puform").kendoValidator().data("kendoValidator");
-
-
-            if (!ddlStates.value ) {
-                alert("Pick a valid state: " + ddlStates.value);
-                return;
-            }
-
-            if (!ddlBillToStates.value ) {
-                alert("Pick a valid bill to state: " + ddlBillToStates.value);
-                return;
-            }
-
-            if (validator.validate()) {
-                //alert("call db here");
-
-
-                var company = {
-                    "CompanyName": this.get("companyName"),
-                    "ContactPerson": this.get("contactPerson"),
-                    "AddressLine1": this.get("addressLine1"),
-                    "AddressLine2": this.get("addressLine2"),
-                    "City": this.get("city"),
-                    "State": ddlStates.value,
-                    "Zip": this.get("zip"),
-                    "Email": this.get("emailAddress"),
-                    "MobileNumber": this.get("mobileNumber"),
-                    "OfficeNumber": this.get("officeNumber"),
-                    "FaxNumber": this.get("faxNumber"),
-                    "BillToName": this.get("billToName"),
-                    "BillToAddressLine1": this.get("billToAddressLine1"),
-                    "BillToAddressLine2": this.get("billToAddressLine2"),
-                    "BillToCity": this.get("billToCity"),
-                    "BillToState": ddlBillToStates.value,
-                    "BillToZip": this.get("billToZip"),
-                    "ComplimentaryWeight": this.get("complimentaryWeight"),
-                    "WeightRate": this.get("weightRate"),
-                    "BasePickupCharge": this.get("basePickupCharge")
-
-                };
-
-                var parms = {
-                    clientCompanyString: JSON.stringify(company)
-                };
-
-
-                $.ajax({
-                    type: "POST",
-                    traditional: true,
-                    url: '@Url.Action("SaveClientInfo", "MyClients")',
-                    async: true,
-                    data: parms,
-                    dataType: "json",
-                    beforeSend: function (xhr) {
-                        $('#loader').show();
-                    },
-                    success: function (response, textStatus, jqXHR) {
-                        //alert(response.message);
-                        $('#loader').hide();
-                        $("#AllInvoicesGrid").data("kendoGrid").dataSource.read();
-                    },
-                    error: function (XMLHttpRequest, textStatus, errorThrown) {
-                        alert("Error found during execution");
-                        $('#loader').hide();
-                    }
-                });
-
-                this.set("confirmed", true);
-            }
-
-
-        }
-
-
-        //$(document).ready(Init);
-
-        function Init(e) {
-
-            var puForm = e;
-            if(puForm==null)
-                 puForm = @Html.Raw(Json.Encode(ViewData["PU_FORM"]));
-            //var companyName = ViewData["PU_FROM"];
-            //alert(puForm.CompanyName);
-
-            ddlStates.value = puForm.Sate;
-            ddlBillToStates.value = puForm.BillToState;
-            //Leave following line. Without this line viewmode binding doesn't work for some reason
-            cname.value = puForm.CompanyName;
-
-            var viewModel = kendo.observable({
-                companyName: puForm.CompanyName,
-                contactPerson: puForm.ContactPerson,
-                addressLine1: puForm.AddressLine1,
-                addressLine2: puForm.AddressLine2,
-                city: puForm.City,
-                zip: puForm.Zip,
-                emailAddress: puForm.Email,
-                mobileNumber: puForm.MobileNumber,
-                officeNumber: puForm.OfficeNumber,
-                faxNumber: puForm.FaxNumber,
-                billToName: puForm.BillToName,
-                billToAddressLine1: puForm.BillToAddressLine1,
-                billToAddressLine2: puForm.BillToAddressLine2,
-                billToCity: puForm.BillToCity,
-                billToZip: puForm.BillToZip,
-                complimentaryWeight: puForm.ComplimentaryWeight,
-                weightRate: puForm.WeightRate,
-                basePickupCharge: puForm.BasePickupCharge,
-
-
-                agreed: false,
-                confirmed: false,
-                register: saveCompanyInfo,
-                startOver: function () {
-                    this.set("confirmed", false);
-                    this.set("agreed", false);
-                    this.set("companyName", puForm.CompanyName);
-                    this.set("contactPerson", puForm.ContactPerson);
-                    this.set("addressLine1", puForm.AddressLine1);
-                    this.set("city", puForm.City);
-                    this.set("zip", puForm.Zip);
-                    this.set("emailAddress", puForm.Email);
-                    this.set("mobileNumber", puForm.MobileNumber);
-                    this.set("officeNumber", puForm.OfficeNumber);
-                    this.set("faxNumber", puForm.FaxNumber);
-                    this.set("billToName", puForm.BillToName);
-                    this.set("billToAddressLine1", puForm.BillToAddressLine1);
-                    this.set("billToAddressLine2", puForm.BillToAddressLine2);
-                    this.set("billToCity", puForm.BillToCity);
-                    this.set("billToZip", puForm.BillToZip);
-                    this.set("complimentaryWeight", puForm.ComplimentaryWeight);
-                    this.set("weightRate", puForm.WeightRate);
-                    this.set("basePickupCharge", puForm.BasePickupCharge);
-
-                }
-            });
-
-
-
-
-            kendo.bind($("#puform"), viewModel);
-        }
     </script>
 
     <style>

@@ -58,6 +58,8 @@ namespace SimplexInvoiceWeb.Controllers
 
 
 
+            ViewData["MY_COMPANY"] = lc;
+
             return View();
         }
     }
