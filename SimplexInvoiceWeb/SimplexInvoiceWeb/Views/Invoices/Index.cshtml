@@ -5,6 +5,8 @@
     ViewBag.Title = "Invoices";
 }
 
+@*<link rel="stylesheet" href="~/Content/PrintSetup.css" type="text/css" />*@
+
 <div id="divMenuAndGrid" style="display:table; margin-left: 1px; margin-top:10px;">
     <div style="display:table-row">
         <div id="divMenu" style="display:table-cell; padding-right:5px;min-width:300px;">
@@ -80,6 +82,30 @@
         <div id="puform" style="display:table-cell; padding-right:5px;">
             <div id="divInvoice">
                 <div style="width:250px;">
+                    <style>
+                        dl { 
+                            width: 100%; 
+                            overflow: hidden;
+                            background: rgb(206,220,231);
+                            padding: 0;margin: 0;
+
+                        } 
+                        dt {
+                            float: left;
+                            width: 50%;
+                            background: rgb(206,220,231);
+                            padding: 0; margin: 0;
+
+                        }
+                        dd {
+                            float: left;
+                            width: 50%;
+                            background: rgb(206,220,231);
+                            padding: 0;
+                            margin: 0;
+
+                        }
+                    </style>
                     <dl>
                         <dt>Coffee:</dt>
                         <dd>Black hot drink</dd>
@@ -193,7 +219,7 @@
             Init();
         });
 
-        function printDiv()
+        function printDivWorking()
         {
             //Get the HTML of div
             var divElements = document.getElementById("divInvoice").innerHTML;
@@ -203,9 +229,8 @@
             //Reset the page's HTML with div's HTML only
             document.body.innerHTML = 
               "<html><head><title></title></head><body>" +
-              divElements + 
-              "<style>dl{ width: 100%; overflow: hidden;background: rgb(206,220,231);padding: 0;margin: 0;} dt {float: left;width: 50%;background: rgb(206,220,231);padding: 0; margin: 0;}dd {float: left;width: 50%;background: rgb(206,220,231);padding: 0;margin: 0;} </style>" +
-
+              divElements 
+              +      "<style>dl{ width: 100%; overflow: hidden;background: rgb(206,220,231);padding: 0;margin: 0;} dt {float: left;width: 50%;background: rgb(206,220,231);padding: 0; margin: 0;}dd {float: left;width: 50%;background: rgb(206,220,231);padding: 0;margin: 0;} </style>" 
               + "</body>";
 
             //Print Page
@@ -216,6 +241,25 @@
 
         }
 
+        function printDiv()
+        {
+            //Get the HTML of div
+            var divElements = document.getElementById("divInvoice").innerHTML;
+            //Get the HTML of whole page
+            var oldPage = document.body.innerHTML;
+
+            //Reset the page's HTML with div's HTML only
+            document.body.innerHTML = 
+              "<html><head><title></title></head><body>" +
+              divElements 
+              + "</body>";
+
+            //Print Page
+            window.print();
+
+            //Restore orignal HTML
+            document.body.innerHTML = oldPage;
+        }
         function error_handler(e) {
             if (e.errors) {
                 var message = "Errors:\n";
@@ -568,7 +612,6 @@
     </script>
 
     <style>
-        dl { width: 100%; overflow: hidden;background: rgb(206,220,231);padding: 0;margin: 0;} dt {float: left;width: 50%;background: rgb(206,220,231);padding: 0; margin: 0;}dd {float: left;width: 50%;background: rgb(206,220,231);padding: 0;margin: 0;}
         .inputFormTable {
             position: relative;
             width: 500px; /* for IE 6 */
