@@ -5,16 +5,97 @@
     ViewBag.Title = "Invoices";
 }
 
+<div id="divMenuAndGrid" style="display:table; margin-left: 1px; margin-top:10px;">
+    <div style="display:table-row">
+        <div id="divMenu" style="display:table-cell; padding-right:5px;min-width:300px;">
+            
+        </div>
+        <div style="display:table-cell; padding-right:5px;min-width:50px;">
+
+        </div>
+        <div id="divAllInvoices" style="display:table-cell;min-width:1200px;margin-left:1px; margin-top:1px; vertical-align:top; ">
+            @(Html.Kendo().Grid<ClientCompany>()
+            .Name("AllInvoicesGrid")
+            .Columns(columns =>
+            {
+                columns.Bound(p => p.CompanyName).Width(100);
+                columns.Bound(p => p.Email).Width(100);
+                columns.Bound(p => p.WeightRate).Width(255);
+                columns.Bound(p => p.BasePickupCharge).Width(85);
+                columns.Bound(p => p.State).Width(85);
+                columns.Bound(p => p.MobileNumber).Width(85);
+                columns.Command(command => { command.Edit(); command.Destroy(); }).Width(250);
+            })
+            .ToolBar(toolbar =>
+            {
+                //toolbar.Create();
+                //toolbar.Save();
+            })
+            //.Editable(editable => editable.Mode(GridEditMode.InCell))
+            .Editable(editable => editable.Mode(GridEditMode.InLine))
+            //.Pageable()
+            .Filterable()
+            .Navigatable()
+            .Sortable()
+            .Selectable(selectable => selectable
+                    .Mode(GridSelectionMode.Single)
+                    .Type(GridSelectionType.Row))
+            //.Scrollable()
+            .Events(events => events.Change("onChange"))
+            .DataSource(dataSource => dataSource
+                .Ajax()
+                .Batch(false)
+                .PageSize(1000)
+                .ServerOperation(false)
+                .Events(events => events.Error("error_handler").RequestEnd("onRequestEnd"))
+                //.Model(model => model.Id(p => p.ProductID))
+                .Model(model =>
+                {
+                    model.Id(p => p.ClientCompanyId);
+                    model.Field(p => p.CompanyName).Editable(false);
+                    model.Field(p => p.Email).Editable(false);
+                    model.Field(p => p.WeightRate).Editable(false);
+                    model.Field(p => p.BasePickupCharge).Editable(false);
+                    model.Field(p => p.State).Editable(true);
+                    model.Field(p => p.MobileNumber).Editable(false);
+                    model.Field(p => p.ContactPerson).Editable(false);
+
+                })
+
+
+                                .Create("Editing_Create", "MyClients")
+                                .Read("Editing_Read", "MyClients")
+                                .Update("Editing_Update", "MyClients")
+                                .Destroy("Editing_Destroy", "MyClients")
+                            )
+            )
+        </div>
+        <div id="loader" style="display:none; font:bold; color:darkblue">Saving.... Please wait</div>
+    </div>
+</div>
+
 
 <div style="display:table; margin-left: 1px; margin-top:10px;">
     <div style="display:table-row">
         <div id="puform" style="display:table-cell; padding-right:5px;">
+            <div id="divInvoice">
+                <div style="width:250px;">
+                    <dl>
+                        <dt>Coffee:</dt>
+                        <dd>Black hot drink</dd>
+                        <dt>Milk:</dt>
+                        <dd>White cold drink</dd>
+                    </dl>
+                </div>
+            </div>
             <form id="registration">
                 <table class="inputFormTable">
                     <tr>
                         <td>
+                            
+
                             <h2 class="bodyMainMessage1">Client Setup:</h2>
-                            <div class="editor-label"><label for="cname">Company Name:</label></div>
+                            <div class="editor-label"><label for="cname">Company Name: <div></div></label></div>
                             <div class="editor-field"><input type="text" id="cname" name="Company Name" class="k-textbox input-name" required data-bind="value: companyName" /></div>
                             <div class="editor-label"><label for="contactPerson">Contact Person:</label></div>
                             <div class="editor-field"><input type="text" id="contactPerson" name="Contact Person" class="k-textbox input-name" required data-bind="value: contactPerson" /></div>
@@ -85,67 +166,6 @@
 
             </form>
         </div>
-        <div style="display:table-cell; padding-right:5px;min-width:50px;">
-
-        </div>
-        <div id="allProducts" style="display:table-cell;min-width:1200px;margin-left:1px; margin-top:1px; vertical-align:top; ">
-            @(Html.Kendo().Grid<ClientCompany>()
-            .Name("ClientGrid")
-            .Columns(columns =>
-            {
-                columns.Bound(p => p.CompanyName).Width(100);
-                columns.Bound(p => p.Email).Width(100);
-                columns.Bound(p => p.WeightRate).Width(255);
-                columns.Bound(p => p.BasePickupCharge).Width(85);
-                columns.Bound(p => p.State).Width(85);
-                columns.Bound(p => p.MobileNumber).Width(85);
-                columns.Command(command => { command.Edit(); command.Destroy(); }).Width(250);
-            })
-            .ToolBar(toolbar =>
-            {
-                //toolbar.Create();
-                //toolbar.Save();
-            })
-            //.Editable(editable => editable.Mode(GridEditMode.InCell))
-            .Editable(editable => editable.Mode(GridEditMode.InLine))
-            //.Pageable()
-            .Filterable()
-            .Navigatable()
-            .Sortable()
-            .Selectable(selectable => selectable
-                    .Mode(GridSelectionMode.Single)
-                    .Type(GridSelectionType.Row))
-            //.Scrollable()
-            .Events(events => events.Change("onChange"))
-            .DataSource(dataSource => dataSource
-                .Ajax()
-                .Batch(false)
-                .PageSize(1000)
-                .ServerOperation(false)
-                .Events(events => events.Error("error_handler").RequestEnd("onRequestEnd"))
-                //.Model(model => model.Id(p => p.ProductID))
-                .Model(model =>
-                {
-                    model.Id(p => p.ClientCompanyId);
-                    model.Field(p => p.CompanyName).Editable(false);
-                    model.Field(p => p.Email).Editable(false);
-                    model.Field(p => p.WeightRate).Editable(false);
-                    model.Field(p => p.BasePickupCharge).Editable(false);
-                    model.Field(p => p.State).Editable(true);
-                    model.Field(p => p.MobileNumber).Editable(false);
-                    model.Field(p => p.ContactPerson).Editable(false);
-
-                })
-
-
-                                .Create("Editing_Create", "MyClients")
-                                .Read("Editing_Read", "MyClients")
-                                .Update("Editing_Update", "MyClients")
-                                .Destroy("Editing_Destroy", "MyClients")
-                            )
-            )
-        </div>
-        <div id="loader" style="display:none; font:bold; color:darkblue">Saving.... Please wait</div>
     </div>
 </div>
 
@@ -176,14 +196,17 @@
         function printDiv()
         {
             //Get the HTML of div
-            var divElements = document.getElementById("puform").innerHTML;
+            var divElements = document.getElementById("divInvoice").innerHTML;
             //Get the HTML of whole page
             var oldPage = document.body.innerHTML;
 
             //Reset the page's HTML with div's HTML only
             document.body.innerHTML = 
-              "<html><head><title></title></head><body>" + 
-              divElements + "</body>";
+              "<html><head><title></title></head><body>" +
+              divElements + 
+              "<style>dl{ width: 100%; overflow: hidden;background: rgb(206,220,231);padding: 0;margin: 0;} dt {float: left;width: 50%;background: rgb(206,220,231);padding: 0; margin: 0;}dd {float: left;width: 50%;background: rgb(206,220,231);padding: 0;margin: 0;} </style>" +
+
+              + "</body>";
 
             //Print Page
             window.print();
@@ -210,7 +233,7 @@
 
 
         function onChange(arg) {
-            var grid = $("#ClientGrid").data("kendoGrid");
+            var grid = $("#AllInvoicesGrid").data("kendoGrid");
             var selectedItem = grid.dataItem(grid.select());
             //alert(selectedItem.CompanyName);
 
@@ -459,7 +482,7 @@
                     success: function (response, textStatus, jqXHR) {
                         //alert(response.message);
                         $('#loader').hide();
-                        $("#ClientGrid").data("kendoGrid").dataSource.read();
+                        $("#AllInvoicesGrid").data("kendoGrid").dataSource.read();
                     },
                     error: function (XMLHttpRequest, textStatus, errorThrown) {
                         alert("Error found during execution");
@@ -545,6 +568,7 @@
     </script>
 
     <style>
+        dl { width: 100%; overflow: hidden;background: rgb(206,220,231);padding: 0;margin: 0;} dt {float: left;width: 50%;background: rgb(206,220,231);padding: 0; margin: 0;}dd {float: left;width: 50%;background: rgb(206,220,231);padding: 0;margin: 0;}
         .inputFormTable {
             position: relative;
             width: 500px; /* for IE 6 */
