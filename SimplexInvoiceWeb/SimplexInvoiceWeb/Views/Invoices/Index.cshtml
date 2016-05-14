@@ -80,8 +80,10 @@
 <div style="display:table; margin-left: 1px; margin-top:10px;">
     <div style="display:table-row">
         <div id="puform" style="display:table-cell; padding-right:5px;">
+
+
             <div id="divInvoice">
-                <div style="width:250px;">
+                <div style="min-width:800px;  background: rgb(206,220,231)">
                     <style>
                         dl { 
                             width: 100%; 
@@ -105,13 +107,38 @@
                             margin: 0;
 
                         }
+
                     </style>
-                    <dl>
-                        <dt>Coffee:</dt>
-                        <dd>Black hot drink</dd>
-                        <dt>Milk:</dt>
-                        <dd>White cold drink</dd>
-                    </dl>
+
+                    <div id="divInvoiceDetail" style="display:table; margin-left: 1px; margin-top:10px;">
+                        <div style="display:table-row">
+                            <div id="divCompanyNameAndAddress" style="display:table-cell; padding-right:5px;min-width:300px;">
+
+                            </div>
+                            <div style="display:table-cell; padding-right:5px;min-width:250px;">
+
+                            </div>
+                            <div id="divCompanyPhoneAndFax" style="display:table-cell;margin-left:1px; margin-top:1px; vertical-align:top; ">
+                            </div>
+                        </div>
+                        <div style="display:table-row">
+                            <div id="mistDtDDSection" style="display:table-cell; padding-right:5px;min-width:300px;">
+                                <dl>
+                                    <dt>Coffee:</dt>
+                                    <dd>Black hot drink</dd>
+                                    <dt>Milk:</dt>
+                                    <dd>White cold drink</dd>
+                                </dl>
+                            </div>
+                            <div style="display:table-cell; padding-right:5px;min-width:50px;">
+
+                            </div>
+                            <div style="display:table-cell;min-width:1200px;margin-left:1px; margin-top:1px; vertical-align:top; ">
+                            </div>
+                        </div>
+
+                    </div>
+                    
                 </div>
             </div>
             <form id="registration">
@@ -216,8 +243,27 @@
                 }
             });
 
+            LoadInvoice();
+
             Init();
         });
+
+        function LoadInvoice()
+        {
+            document.getElementById("divCompanyNameAndAddress").innerHTML = "TIGER LOGISTICS INC." 
+                                                                            + "</br>" 
+                                                                            + "P.O. BOX 128"
+                                                                            + "</br>" 
+                                                                            + "JAMAICA" + "NY" + "11753"
+                                                                            + "</br>";
+
+            document.getElementById("divCompanyPhoneAndFax").innerHTML = "TEL: " + "(516) 639 8131" + "</br>" 
+                                                                         + "FAX: " + "(516) 639 8132 ";
+            
+        }
+
+
+
 
         function printDivWorking()
         {
