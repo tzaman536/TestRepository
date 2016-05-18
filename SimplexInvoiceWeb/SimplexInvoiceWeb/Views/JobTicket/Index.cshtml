@@ -14,7 +14,7 @@
                 </dt>
                 <dd>
                     @(Html.Kendo().DropDownList()
-                      .Name("products")
+                      .Name("clients")
                       .DataTextField("ClientName")
                       .DataValueField("ClientID")
                       .DataSource(source =>
@@ -33,46 +33,28 @@
                     )
                 </dd>
                 <dt>
-                    Product Name (150 characters max):
+                    Quantity:
                 </dt>
                 <dd>
-                    <input type="text" class="k-textbox productName" id="idProductName" name="productName" required />
+                    <input type="number" class="k-textbox numberOfUnits" id="idQuantity" name="unitPrice" data-role='maskedtextbox' required />
                 </dd>
                 <dt>
-                    Product Description (255 characters max):
+                    Weight:
                 </dt>
                 <dd>
-                    <textarea id="idProductDescription" name="productDescription" class="k-textbox productDescription" rows="4" cols="20" required></textarea>
+                    <input type="number" class="k-textbox numberOfUnits" id="idWeight" name="unitInStock" data-role='maskedtextbox' required />
                 </dd>
                 <dt>
-                    Unit Price:
+                    Instructions (255 characters max):
                 </dt>
                 <dd>
-                    @*<input type="number" class="k-textbox numberOfUnits" id="idUnitPrice" name="unitPrice" data-role='maskedtextbox' required/>*@
-                    <input type="number" class="k-textbox numberOfUnits" id="idUnitPrice" name="unitPrice" data-role='maskedtextbox' required />
+                    <input type="text" class="k-textbox instruction" id="idInstruction" name="instruction"  />
                 </dd>
                 <dt>
-                    In Stock:
+                    &nbsp;
                 </dt>
                 <dd>
-                    <input type="number" class="k-textbox numberOfUnits" id="idUnitInStock" name="unitInStock" data-role='maskedtextbox' required />
-                </dd>
-                <dt>
-                    Product Long Description (Unlimited character):
-                </dt>
-                <dd>
-                    <div class="box wide">
-                        <div class="box-col">
-                            <textarea id="idProductLongDescription" name="productLongDescription" class="k-textbox productLongDescription" rows="4" cols="20" required></textarea>
-                        </div>
-
-                    </div>
-                </dd>
-                <dt>
-                    Click to save job ticket..
-                </dt>
-                <dd>
-                    <input id="btn_UploadProduct" type="submit" class="k-button" value="Save" />
+                    <input id="btn_UploadProduct" type="submit" class="k-button" value="Add Job Ticket" />
                 </dd>
 
             </dl>
@@ -87,7 +69,8 @@
 <script>
 
     $(document).ready(function () {
-        $("#idUnitPrice").kendoNumericTextBox();
+        $("#idQuantity").kendoNumericTextBox();
+        $("#idWeight").kendoNumericTextBox();
         validateUploadForm();
 
     });
@@ -111,3 +94,10 @@
     }
 
 </script>
+<style>
+        .instruction{
+        min-width:250px; 
+        min-height:10px;
+    }
+
+</style>
