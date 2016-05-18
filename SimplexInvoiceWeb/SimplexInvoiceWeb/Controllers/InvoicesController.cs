@@ -27,6 +27,9 @@ namespace SimplexInvoiceWeb.Controllers
                 return RedirectToAction("Login", "Account");
             }
 
+
+            
+
             ClientCompany c = null;
 
             if (c == null)

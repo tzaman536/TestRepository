@@ -20,6 +20,12 @@ namespace SimplexInvoiceWeb.Controllers
         public string Category { get; set; }
         public double Price { get; set; }
     }
+
+    public class ClientDDL
+    {
+        public string ClientName { get; set; }
+        public int ClientID { get; set; }
+    }
     public class MyClientsController : Controller
     {
         private static readonly ILog logger = LogManager.GetLogger(typeof(MyCompanyController));
@@ -314,6 +320,21 @@ namespace SimplexInvoiceWeb.Controllers
             //productHandler.DeleteProduct(product);
 
             return Json(new[] { company }.ToDataSourceResult(request, ModelState));
+        }
+
+
+        public ActionResult GetClientNames()
+        {
+            List<ClientDDL> result = new List<ClientDDL>();
+
+            for (int i = 0; i< 5; i++)
+            {
+                ClientDDL c = new ClientDDL() { ClientName = "Hello" + i.ToString(), ClientID = i };
+                result.Add(c);
+            }
+            
+
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
 
     }

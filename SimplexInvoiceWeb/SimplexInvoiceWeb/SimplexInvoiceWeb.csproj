@@ -206,6 +206,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InvoicesController.cs" />
+    <Compile Include="Controllers\JobTicketController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MyClientsController.cs" />
     <Compile Include="Controllers\MyCompanyController.cs" />
@@ -1415,6 +1416,7 @@
     <Content Include="Views\MyCompany\Index.cshtml" />
     <Content Include="Views\MyClients\Index.cshtml" />
     <Content Include="Views\Invoices\Index.cshtml" />
+    <Content Include="Views\JobTicket\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

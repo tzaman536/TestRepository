@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "Job Ticket";
+}
+
+<h2>Add Job Ticket</h2>
+<div id="divJobTicketDetail" style="display:table; margin-left: 1px; margin-top:10px;">
+    <div style="display:table-row">
+        <div id="divClientNameDDLTax" style="display:table-cell; padding-right:5px; min-width:100px;">
+            Client Name:
+        </div>
+        <div style="display:table-cell; padding-right:5px;min-width:250px;">
+            <div class="demo-section k-content">
+                @(Html.Kendo().DropDownList()
+                      .Name("products")
+                      .DataTextField("ClientName")
+                      .DataValueField("ClientID")
+                      .DataSource(source =>
+                      {
+                          source.Read(read =>
+                          {
+                              read.Action("GetClientNames", "MyClients");
+                          });
+                      })
+                      .Events(e =>
+                        {
+                            e.Select("onSelectClientName");
+                        })
+
+                      .HtmlAttributes(new { style = "width: 250px;" })
+                )
+            </div>
+        </div>
+        <div id="divCompanyPhoneAndFax" style="display:table-cell;margin-left:1px; margin-top:1px; vertical-align:top; ">
+        </div>
+    </div>
+    <div style="display:table-row">
+        <div id="mistDtDDSection" style="display:table-cell; padding-right:5px;">
+            <dl>
+                <dt>Coffee:</dt>
+                <dd>Black hot drink</dd>
+                <dt>Milk:</dt>
+                <dd>White cold drink</dd>
+            </dl>
+        </div>
+        <div style="display:table-cell; padding-right:5px;min-width:50px;">
+
+        </div>
+        <div style="display:table-cell;min-width:1200px;margin-left:1px; margin-top:1px; vertical-align:top; ">
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+<script>
+
+    function onSelectClientName(e) {
+        alert(e.item[0].innerText);
+    }
+
+</script>
