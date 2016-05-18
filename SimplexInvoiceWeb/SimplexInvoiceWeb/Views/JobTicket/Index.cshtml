@@ -35,16 +35,11 @@
         </div>
     </div>
     <div style="display:table-row">
-        <div id="mistDtDDSection" style="display:table-cell; padding-right:5px;">
-            <dl>
-                <dt>Coffee:</dt>
-                <dd>Black hot drink</dd>
-                <dt>Milk:</dt>
-                <dd>White cold drink</dd>
-            </dl>
+        <div id="divQty" style="display:table-cell; padding-right:5px;">
+            Quantity:
         </div>
         <div style="display:table-cell; padding-right:5px;min-width:50px;">
-
+            <input 
         </div>
         <div style="display:table-cell;min-width:1200px;margin-left:1px; margin-top:1px; vertical-align:top; ">
         </div>
@@ -52,12 +47,113 @@
 
 </div>
 
+<div style="widows: 100%; display:table;">
+    <div style="display:table-row">
+        <div id="idProductUploadForm" style="min-width:900px; display:table-cell;">
+            <dl>
+                @*<dt>
+                        Product Image:
+                    </dt>
+                    <dd>
+                        <input id="inputFile" class="k-textbox fileUploadBox" type="file" name="files" />
+                        <input id="inputFile" class="k-textbox fileUploadBox" type="file" name="files" />
+                        <input id="inputFile" class="k-textbox fileUploadBox" type="file" name="files" />
+                        <input id="inputFile" class="k-textbox fileUploadBox" type="file" name="files" />
+                        <input id="inputFile" class="k-textbox fileUploadBox" type="file" name="files" />
+                        <input id="inputFile" class="k-textbox fileUploadBox" type="file" name="files" />
+                    </dd>*@
+                <dt>
+                    Product Name (150 characters max):
+                </dt>
+                <dd>
+                    <input type="text" class="k-textbox productName" id="idProductName" name="productName" required />
+                </dd>
+                <dt>
+                    Product Description (255 characters max):
+                </dt>
+                <dd>
+                    <textarea id="idProductDescription" name="productDescription" class="k-textbox productDescription" rows="4" cols="20" required></textarea>
+                </dd>
+                <dt>
+                    Unit Price:
+                </dt>
+                <dd>
+                    @*<input type="number" class="k-textbox numberOfUnits" id="idUnitPrice" name="unitPrice" data-role='maskedtextbox' required/>*@
+                    <input type="number" class="k-textbox numberOfUnits" id="idUnitPrice" name="unitPrice" data-role='maskedtextbox' required />
+                </dd>
+                <dt>
+                    In Stock:
+                </dt>
+                <dd>
+                    <input type="number" class="k-textbox numberOfUnits" id="idUnitInStock" name="unitInStock" data-role='maskedtextbox' required />
+                </dd>
+                <dt>
+                    Product Long Description (Unlimited character):
+                </dt>
+                <dd>
+                    <div class="box wide">
+                        <div class="box-col">
+                            <textarea id="idProductLongDescription" name="productLongDescription" class="k-textbox productLongDescription" rows="4" cols="20" required></textarea>
+                        </div>
+
+                    </div>
+                </dd>
+            </dl>
+        </div>
+        <div style="max-width:300px; display:table-cell;">
+            <br />
+
+            <br />
+
+            @*<div>
+                    @(Html.Kendo().DropDownList()
+                          .Name("SectionProductAdd")
+                          .DataTextField("SectionName")
+                          .DataValueField("SectionName")
+                          .Events(ev => ev.DataBound("SectionListDataBound"))
+                          .DataSource(source =>
+                          {
+                              source.Read(read =>
+                              {
+                                  read.Action("GetSections", "Shared");
+                              });
+                          })
+                          .HtmlAttributes(new { style = "width: 100px" })
+                    )
+                </div>*@
+            <br />
+            <input id="btn_UploadProduct" type="submit" class="k-button" value="Upload" />
+
+            @*@Html.Partial("AdminMenu")*@
+        </div>
+    </div>
+</div>
 
 
 
 
 
 <script>
+
+    $(document).ready(function () {
+        $("#idUnitPrice").kendoNumericTextBox();
+        validateUploadForm();
+
+    });
+
+
+    function validateUploadForm() {
+
+
+        $("#btn_UploadProduct").bind("click", function () {
+            alert("Save data here");
+
+            var validator = $("#idProductUploadForm").kendoValidator().data("kendoValidator");
+            if (!validator.validate()) {
+                return false;
+            }
+        });
+    }
 
     function onSelectClientName(e) {
         alert(e.item[0].innerText);
