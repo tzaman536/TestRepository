@@ -36,13 +36,13 @@
                     Quantity:
                 </dt>
                 <dd>
-                    <input type="number" class="k-textbox numberOfUnits" id="idQuantity" name="unitPrice" data-role='maskedtextbox' required />
+                    <input type="number" class="k-textbox numberOfUnits" id="idQuantity" name="Quantity" data-role='maskedtextbox' required />
                 </dd>
                 <dt>
                     Weight:
                 </dt>
                 <dd>
-                    <input type="number" class="k-textbox numberOfUnits" id="idWeight" name="unitInStock" data-role='maskedtextbox' required />
+                    <input type="number" class="k-textbox numberOfUnits" id="idWeight" name="Weight" data-role='maskedtextbox' required />
                 </dd>
                 <dt>
                     Instructions (255 characters max):
@@ -54,7 +54,7 @@
                     &nbsp;
                 </dt>
                 <dd>
-                    <input id="btn_UploadProduct" type="submit" class="k-button" value="Add Job Ticket" />
+                    <input id="btn_SaveJobTicket" type="submit" class="k-button" value="Add Job Ticket" />
                 </dd>
 
             </dl>
@@ -79,13 +79,14 @@
     function validateUploadForm() {
 
 
-        $("#btn_UploadProduct").bind("click", function () {
-            alert("Save data here");
-
+        $("#btn_SaveJobTicket").bind("click", function () {
             var validator = $("#idProductUploadForm").kendoValidator().data("kendoValidator");
             if (!validator.validate()) {
                 return false;
             }
+            alert("Save data here");
+
+
         });
     }
 
