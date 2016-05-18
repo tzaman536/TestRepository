@@ -16,7 +16,7 @@
 }
 
 dl { 
-    width: 100%; 
+    width: 750px; 
     overflow: hidden;
     background: rgb(206,220,231);
     padding: 0;margin: 0;
@@ -27,7 +27,7 @@ dt {
     width: 50%;
     background: rgb(206,220,231);
     padding: 0; margin: 0;
-
+    text-align:right;
 }
 dd {
     float: left;

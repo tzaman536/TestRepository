@@ -45,7 +45,67 @@
                     <input type="number" class="k-textbox numberOfUnits" id="idWeight" name="Weight" data-role='maskedtextbox' required />
                 </dd>
                 <dt>
-                    Instructions (255 characters max):
+                    Base Pickup Charge:
+                </dt>
+                <dd>
+                    <input type="number" class="k-textbox numberOfUnits" id="idBasePickupCharge" name="Base PU" data-role='maskedtextbox' required />
+                </dd>
+                <dt>
+                    Toll:
+                </dt>
+                <dd>
+                    <input type="number" class="k-textbox numberOfUnits" id="idToll" name="Toll" data-role='maskedtextbox' required />
+                </dd>
+                <dt>
+                    Pickup From:
+                </dt>
+                <dd>
+                    @(Html.Kendo().DropDownList()
+                      .Name("pickUpLocation")
+                      .DataTextField("Location")
+                      .DataValueField("LocationID")
+                      .DataSource(source =>
+                      {
+                          source.Read(read =>
+                          {
+                              read.Action("GetPickupAndDeliveryLocation", "ReferenceData");
+                          });
+                      })
+                      .Events(e =>
+                        {
+                            e.Select("onSelectPickupFrom");
+                        })
+
+                      .HtmlAttributes(new { style = "width: 250px;" })
+                    )
+                    <textarea id="idPickupFrom" name="Pickup From" class="k-textbox addressArea" rows="4" cols="20" required></textarea>
+                </dd>
+                <dt>
+                    Deliver To:
+                </dt>
+                <dd>
+                    @(Html.Kendo().DropDownList()
+                      .Name("deliveryLocation")
+                      .DataTextField("Location")
+                      .DataValueField("LocationID")
+                      .DataSource(source =>
+                      {
+                          source.Read(read =>
+                          {
+                              read.Action("GetPickupAndDeliveryLocation", "ReferenceData");
+                          });
+                      })
+                      .Events(e =>
+                        {
+                            e.Select("onSelectDeliverTo");
+                        })
+
+                      .HtmlAttributes(new { style = "width: 250px;" })
+                    )
+                    <textarea id="idDeliverTo" name="Deliver To" class="k-textbox addressArea" rows="4" cols="20" required></textarea>
+                </dd>
+                <dt>
+                    Instructions:
                 </dt>
                 <dd>
                     <input type="text" class="k-textbox instruction" id="idInstruction" name="instruction"  />
@@ -69,8 +129,6 @@
 <script>
 
     $(document).ready(function () {
-        $("#idQuantity").kendoNumericTextBox();
-        $("#idWeight").kendoNumericTextBox();
         validateUploadForm();
 
     });
@@ -93,12 +151,24 @@
     function onSelectClientName(e) {
         alert(e.item[0].innerText);
     }
+    function onSelectPickupFrom(e) {
+        //alert(e.item[0].innerText);
+        document.getElementById("idPickupFrom").value = e.item[0].innerText;
+    }
+    function onSelectDeliverTo(e) {
+        //alert(e.item[0].innerText);
+        document.getElementById("idDeliverTo").value = e.item[0].innerText;
+    }
 
 </script>
 <style>
         .instruction{
         min-width:250px; 
-        min-height:10px;
+        min-height:5px;
+    }
+        .addressArea{
+        min-width:250px; 
+        max-height:50px;
     }
 
 </style>
