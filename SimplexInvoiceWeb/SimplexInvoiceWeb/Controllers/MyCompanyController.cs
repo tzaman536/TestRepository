@@ -69,20 +69,21 @@ namespace SimplexInvoiceWeb.Controllers
             string message = "Company saved.";
             var json_serializer = new JavaScriptSerializer();
             LogisticsCompany c = json_serializer.Deserialize<LogisticsCompany>(jsonStringCompany);
-            c.SimplexInvoiceUserId = User.Identity.Name;
             c.CreatedBy = User.Identity.Name;
             logger.InfoFormat("Saving company...");
             try
             {
                 var existingCompany = (LogisticsCompany)ch.GetCompanyRegisteredByUser(User.Identity.Name);
-                if(existingCompany == null)
-                    c.CompanyId = ch.Add(c);
+                if (existingCompany == null)
+                {
+                    c.CompanyId = ch.Add(c, User.Identity.Name);
+                }
                 else
                 {
                     c.CompanyId = existingCompany.CompanyId;
                     logger.InfoFormat("Company exists. Updating company.");
                     c.ModifiedBy = User.Identity.Name;
-                    logger.InfoFormat("{0} rows updated.",ch.Update(c));
+                    logger.InfoFormat("{0} rows updated.", ch.Update(c));
                 }
 
                 logger.InfoFormat("Company saved.");

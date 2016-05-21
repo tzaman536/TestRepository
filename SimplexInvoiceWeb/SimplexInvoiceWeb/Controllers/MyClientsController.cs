@@ -94,7 +94,6 @@ namespace SimplexInvoiceWeb.Controllers
             var json_serializer = new JavaScriptSerializer();
            
             ClientCompany c = json_serializer.Deserialize<ClientCompany>(clientCompanyString);
-            c.SimplexInvoiceUserId = User.Identity.Name;
             c.CreatedBy = User.Identity.Name;
             logger.InfoFormat("Saving company...");
             if (lc == null)
@@ -102,7 +101,7 @@ namespace SimplexInvoiceWeb.Controllers
 
             try
             {
-                var existingCompany = clientCompanyHandler.GetCompanyByName(c.CompanyName);
+                var existingCompany = clientCompanyHandler.GetCompanyByName(c.CompanyName, lc);
                 if (existingCompany == null)
                 {
                     c.CompanyId = lc.CompanyId;
@@ -136,7 +135,10 @@ namespace SimplexInvoiceWeb.Controllers
 
             
             string message = "Getting company";
-            ClientCompany c = clientCompanyHandler.GetCompanyByName(clientCompanyString); 
+            if (lc == null)
+                lc = ch.GetCompanyRegisteredByUser(User.Identity.Name);
+
+            ClientCompany c = clientCompanyHandler.GetCompanyByName(clientCompanyString,lc); 
 
             if (c == null)
             {

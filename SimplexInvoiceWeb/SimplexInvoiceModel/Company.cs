@@ -17,7 +17,6 @@ namespace SimplexInvoiceModel
     {
         
         public int CompanyId { get; set; }
-        public string SimplexInvoiceUserId { get; set; }
         public string CompanyName { get; set; }
         public string ContactPerson { get; set; }
         public string AddressLine1 { get; set; }

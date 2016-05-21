@@ -12,17 +12,17 @@ namespace SimplexInvoiceBL
 {
     public class LogisticsCompanyHandler
     {
-        public int Add(LogisticsCompany c)
+        public int Add(LogisticsCompany c, string currentUser)
         {
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
             {
                 conn.Open();
                 var result = conn.Query<int>(@"
-                    insert into invoice.Company(SimplexInvoiceUserId,CompanyName,ContactPerson,
+                    insert into invoice.Company(CompanyName,ContactPerson,
 	                                            AddressLine1,AddressLine2,City,State,Zip,Email,
 	                                            MobileNumber,OfficeNumber,FaxNumber,ComplimentaryWeight,WeightRate,
 	                                            BasePickupCharge,CreatedBy,CreatedAt)
-                                           values(@SimplexInvoiceUserId,@CompanyName,@ContactPerson,
+                                           values(@CompanyName,@ContactPerson,
 	                                            @AddressLine1,@AddressLine2,@City,@State,@Zip,@Email,
 	                                            @MobileNumber,@OfficeNumber,@FaxNumber,@ComplimentaryWeight,@WeightRate,
 	                                            @BasePickupCharge,@CreatedBy,getdate());
@@ -31,9 +31,18 @@ namespace SimplexInvoiceBL
                    
                                             ", c);
 
+                var result1 = conn.Query<int>(@"
+                                            insert into invoice.UserCompany(UserId, CompanyId, CreatedBy, CreatedAt)
+                                            values(@CurrentUser, @CompanyId, @EnvUser, getdate());
+                                            ", new { CurrentUser = currentUser , CompanyId = result.FirstOrDefault(), EnvUser = Environment.UserName });
+
+                
+
+
                 return result.FirstOrDefault();
             }
         }
+
 
         public int Update(LogisticsCompany c)
         {
@@ -73,8 +82,9 @@ namespace SimplexInvoiceBL
                 conn.Open();
                 var result = conn.Query<LogisticsCompany>(@"
                                                 select *
-                                                from [SimplexInvoice].[invoice].[Company]
-                                                where SimplexInvoiceUserId = @inputUser
+                                                from [invoice].[Company] c
+                                                inner join invoice.UserCompany uc on c.CompanyId = uc.CompanyId
+                                                where uc.UserId = @inputUser
                                             ", new { inputUser });
 
                 return result.FirstOrDefault();
@@ -93,12 +103,12 @@ namespace SimplexInvoiceBL
             {
                 conn.Open();
                 var result = conn.Query<int>(@"
-                    insert into invoice.[MyClients](SimplexInvoiceUserId,CompanyId,CompanyName,ContactPerson,
+                    insert into invoice.[MyClients](CompanyId,CompanyName,ContactPerson,
 	                                            AddressLine1,AddressLine2,City,State,Zip,Email,
 	                                            MobileNumber,OfficeNumber,FaxNumber,ComplimentaryWeight,WeightRate,
                                                 BillToName,BillToAddressLine1,BillToAddressLine2,BillToCity,BillToState,BillToZip,
 	                                            BasePickupCharge,CreatedBy,CreatedAt)
-                                           values(@SimplexInvoiceUserId,@CompanyId,@CompanyName,@ContactPerson,
+                                           values(@CompanyId,@CompanyName,@ContactPerson,
 	                                            @AddressLine1,@AddressLine2,@City,@State,@Zip,@Email,
 	                                            @MobileNumber,@OfficeNumber,@FaxNumber,@ComplimentaryWeight,@WeightRate,
                                                 @BillToName,@BillToAddressLine1,@BillToAddressLine2,@BillToCity,@BillToState,@BillToZip,
@@ -163,7 +173,7 @@ namespace SimplexInvoiceBL
             }
         }
 
-        public ClientCompany GetCompanyByName(string companyName)
+        public ClientCompany GetCompanyByName(string companyName, LogisticsCompany lc)
         {
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
             {
@@ -172,7 +182,8 @@ namespace SimplexInvoiceBL
                                                 select *
                                                 from [SimplexInvoice].[invoice].[MyClients]
                                                 where CompanyName = @companyName
-                                            ", new { companyName });
+                                                  and CompanyId = companyId
+                                            ", new { companyName, companyId = lc.CompanyId });
 
                 return result.FirstOrDefault();
             }
