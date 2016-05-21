@@ -33,6 +33,27 @@
                     )
                 </dd>
                 <dt>
+                    Job Date:
+                </dt>
+                <dd>
+                    @(Html.Kendo().DatePicker()
+                      .Name("datepickerJobDate")
+                      .Value(DateTime.Today)
+                      .HtmlAttributes(new { style = "width: 250px;" })
+                    )
+                </dd>
+                <dt>
+                    Delivery Date:
+                </dt>
+                <dd>
+                    @(Html.Kendo().DatePicker()
+                      .Name("datepickerDeliveryDate")
+                      .Value(DateTime.Today)
+                      .HtmlAttributes(new { style = "width: 250px;" })
+                    )
+                </dd>
+
+                <dt>
                     Quantity:
                 </dt>
                 <dd>
@@ -51,11 +72,37 @@
                     <input type="number" class="k-textbox numberOfUnits" id="idBasePickupCharge" name="Base PU" data-role='maskedtextbox' required />
                 </dd>
                 <dt>
+                    Milage:
+                </dt>
+                <dd>
+                    <input type="number" class="k-textbox numberOfUnits" id="idMilage" name="Milage" data-role='maskedtextbox'/>
+                </dd>
+                <dt>
                     Toll:
                 </dt>
                 <dd>
                     <input type="number" class="k-textbox numberOfUnits" id="idToll" name="Toll" data-role='maskedtextbox' required />
                 </dd>
+                <dt>
+                    Fuel Surcharge:
+                </dt>
+                <dd>
+                    <input type="number" class="k-textbox numberOfUnits" id="idFuelSurcharge" name="Fuel Charge" data-role='maskedtextbox' required />
+                </dd>
+
+                <dt>
+                    Waiting Time:
+                </dt>
+                <dd>
+                    <input type="number" class="k-textbox numberOfUnits" id="idWaitingTime" name="Wait Time" data-role='maskedtextbox' />
+                </dd>
+                <dt>
+                    Misc. Service:
+                </dt>
+                <dd>
+                    <input type="number" class="k-textbox numberOfUnits" id="idMiscService" name="Misc. Service" data-role='maskedtextbox' />
+                </dd>
+
                 <dt>
                     Pickup From:
                 </dt>
@@ -111,6 +158,67 @@
                     <input type="text" class="k-textbox instruction" id="idInstruction" name="instruction"  />
                 </dd>
                 <dt>
+                    Service Type:
+                </dt>
+                <dd>
+                    @(Html.Kendo().DropDownList()
+                      .Name("serviceTypeDDL")
+                      .DataTextField("Name")
+                      .DataValueField("ServiceTypeID")
+                      .DataSource(source =>
+                      {
+                          source.Read(read =>
+                          {
+                              read.Action("GetSeviceTypes", "ReferenceData");
+                          });
+                      })
+                      .Events(e =>
+                        {
+                            e.Select("onSelectServiceType");
+                        })
+
+                      .HtmlAttributes(new { style = "width: 250px;" })
+                    )
+                    
+                </dd>
+                <dt>
+                    Delivery Agent:
+                </dt>
+                <dd>
+                    @(Html.Kendo().DropDownList()
+                      .Name("deliveryAgentDDL")
+                      .DataTextField("Name")
+                      .DataValueField("DeliveryAgentID")
+                      .DataSource(source =>
+                      {
+                          source.Read(read =>
+                          {
+                              read.Action("GetDeliveryAgent", "ReferenceData");
+                          });
+                      })
+                      .Events(e =>
+                        {
+                            e.Select("onSelectDeliveryAgent");
+                        })
+
+                      .HtmlAttributes(new { style = "width: 250px;" })
+                    )
+
+                </dd>
+                <dt>
+                    POD:
+                </dt>
+                <dd>
+                    <input type="text" class="k-textbox instruction" id="idPOD" name="POD" />
+                </dd>
+                <dt>
+                    Comments:
+                </dt>
+                <dd>
+                    <input type="text" class="k-textbox instruction" id="idComment" name="Comment" />
+                </dd>
+
+                <dt>
                     &nbsp;
                 </dt>
                 <dd>
@@ -159,6 +267,15 @@
         //alert(e.item[0].innerText);
         document.getElementById("idDeliverTo").value = e.item[0].innerText;
     }
+    function onSelectServiceType(e) {
+        //alert(e.item[0].innerText);
+        //document.getElementById("idPickupFrom").value = e.item[0].innerText;
+    }
+    function onSelectDeliveryAgent(e) {
+        //alert(e.item[0].innerText);
+        //document.getElementById("idPickupFrom").value = e.item[0].innerText;
+    }
+
 
 </script>
 <style>
