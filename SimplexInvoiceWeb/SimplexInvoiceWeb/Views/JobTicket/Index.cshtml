@@ -53,60 +53,16 @@
                     )
                 </dd>
 
-                <dt>
-                    Quantity:
-                </dt>
-                <dd>
-                    <input type="number" class="k-textbox numberOfUnits" id="idQuantity" name="Quantity" data-role='maskedtextbox' required />
-                </dd>
-                <dt>
-                    Weight:
-                </dt>
-                <dd>
-                    <input type="number" class="k-textbox numberOfUnits" id="idWeight" name="Weight" data-role='maskedtextbox' required />
-                </dd>
-                <dt>
-                    Base Pickup Charge:
-                </dt>
-                <dd>
-                    <input type="number" class="k-textbox numberOfUnits" id="idBasePickupCharge" name="Base PU" data-role='maskedtextbox' required />
-                </dd>
-                <dt>
-                    Milage:
-                </dt>
-                <dd>
-                    <input type="number" class="k-textbox numberOfUnits" id="idMilage" name="Milage" data-role='maskedtextbox'/>
-                </dd>
-                <dt>
-                    Toll:
-                </dt>
-                <dd>
-                    <input type="number" class="k-textbox numberOfUnits" id="idToll" name="Toll" data-role='maskedtextbox' required />
-                </dd>
-                <dt>
-                    Fuel Surcharge:
-                </dt>
-                <dd>
-                    <input type="number" class="k-textbox numberOfUnits" id="idFuelSurcharge" name="Fuel Charge" data-role='maskedtextbox' required />
-                </dd>
-
-                <dt>
-                    Waiting Time:
-                </dt>
-                <dd>
-                    <input type="number" class="k-textbox numberOfUnits" id="idWaitingTime" name="Wait Time" data-role='maskedtextbox' />
-                </dd>
-                <dt>
-                    Misc. Service:
-                </dt>
-                <dd>
-                    <input type="number" class="k-textbox numberOfUnits" id="idMiscService" name="Misc. Service" data-role='maskedtextbox' />
-                </dd>
-
-                <dt>
-                    Pickup From:
-                </dt>
-                <dd>
+                <dt>Quantity:</dt><dd><input type="number" class="k-textbox numberOfUnits" id="idQuantity" name="Quantity" data-role='maskedtextbox' required /></dd>
+                <dt>Weight:</dt><dd><input type="number" class="k-textbox numberOfUnits" id="idWeight" name="Weight" data-role='maskedtextbox' required /></dd>
+                <dt>Base Pickup Charge:</dt><dd><input type="number" class="k-textbox numberOfUnits" id="idBasePickupCharge" name="Base PU" data-role='maskedtextbox' required /></dd>
+                <dt>Milage:</dt><dd><input type="number" class="k-textbox numberOfUnits" id="idMilage" name="Milage" data-role='maskedtextbox'/></dd>
+                <dt>Toll:</dt><dd><input type="number" class="k-textbox numberOfUnits" id="idToll" name="Toll" data-role='maskedtextbox' required /></dd>
+                <dt>Fuel Surcharge:</dt><dd><input type="number" class="k-textbox numberOfUnits" id="idFuelSurcharge" name="Fuel Charge" data-role='maskedtextbox' required /></dd>
+                <dt>Misc. Service:</dt><dd><input type="number" class="k-textbox numberOfUnits" id="idMiscService" name="Misc. Service" data-role='maskedtextbox' /></dd>
+                <dt>Total Charge:</dt><dd><input type="number" class="k-textbox numberOfUnits" id="idTotalCharge" name="Total Charge" data-role='maskedtextbox' /></dd>
+                <dt>Waiting Time:</dt><dd><input type="number" class="k-textbox numberOfUnits" id="idWaitingTime" name="Wait Time" data-role='maskedtextbox' /></dd>
+                <dt>Pickup From:</dt><dd>
                     @(Html.Kendo().DropDownList()
                       .Name("pickUpLocation")
                       .DataTextField("Location")
@@ -127,9 +83,7 @@
                     )
                     <textarea id="idPickupFrom" name="Pickup From" class="k-textbox addressArea" rows="4" cols="20" required></textarea>
                 </dd>
-                <dt>
-                    Deliver To:
-                </dt>
+                <dt>Deliver To:</dt>
                 <dd>
                     @(Html.Kendo().DropDownList()
                       .Name("deliveryLocation")
@@ -151,15 +105,8 @@
                     )
                     <textarea id="idDeliverTo" name="Deliver To" class="k-textbox addressArea" rows="4" cols="20" required></textarea>
                 </dd>
-                <dt>
-                    Instructions:
-                </dt>
-                <dd>
-                    <input type="text" class="k-textbox instruction" id="idInstruction" name="instruction"  />
-                </dd>
-                <dt>
-                    Service Type:
-                </dt>
+                <dt>Instructions:</dt><dd><input type="text" class="k-textbox instruction" id="idInstruction" name="instruction"  /></dd>
+                <dt>Service Type:</dt>
                 <dd>
                     @(Html.Kendo().DropDownList()
                       .Name("serviceTypeDDL")
@@ -179,11 +126,8 @@
 
                       .HtmlAttributes(new { style = "width: 250px;" })
                     )
-                    
                 </dd>
-                <dt>
-                    Delivery Agent:
-                </dt>
+                <dt>Delivery Agent:</dt>
                 <dd>
                     @(Html.Kendo().DropDownList()
                       .Name("deliveryAgentDDL")
@@ -203,28 +147,10 @@
 
                       .HtmlAttributes(new { style = "width: 250px;" })
                     )
-
                 </dd>
-                <dt>
-                    POD:
-                </dt>
-                <dd>
-                    <input type="text" class="k-textbox instruction" id="idPOD" name="POD" />
-                </dd>
-                <dt>
-                    Comments:
-                </dt>
-                <dd>
-                    <input type="text" class="k-textbox instruction" id="idComment" name="Comment" />
-                </dd>
-
-                <dt>
-                    &nbsp;
-                </dt>
-                <dd>
-                    <input id="btn_SaveJobTicket" type="submit" class="k-button" value="Add Job Ticket" />
-                </dd>
-
+                <dt>POD:</dt><dd><input type="text" class="k-textbox instruction" id="idPOD" name="POD" /></dd>
+                <dt>Comments:</dt><dd><input type="text" class="k-textbox instruction" id="idComment" name="Comment" /></dd>
+                <dt>&nbsp;</dt><dd><input id="btn_SaveJobTicket" type="submit" class="k-button" value="Add Job Ticket" /></dd>
             </dl>
         </div>
     </div>
