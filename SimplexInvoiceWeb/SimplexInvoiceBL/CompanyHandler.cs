@@ -182,7 +182,7 @@ namespace SimplexInvoiceBL
                                                 select *
                                                 from [SimplexInvoice].[invoice].[MyClients]
                                                 where CompanyName = @companyName
-                                                  and CompanyId = companyId
+                                                  and CompanyId = @companyId
                                             ", new { companyName, companyId = lc.CompanyId });
 
                 return result.FirstOrDefault();
