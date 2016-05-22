@@ -10,6 +10,11 @@ using System.Web.Script.Serialization;
 
 namespace SimplexInvoiceWeb.Controllers
 {
+    public class TotalCharge
+    {
+        public int Charge { get; set; }
+    }
+
     public class JobTicketController : Controller
     {
         LogisticsCompanyHandler lch = new LogisticsCompanyHandler();
@@ -46,9 +51,33 @@ namespace SimplexInvoiceWeb.Controllers
 
             ClientCompany c = cch.GetCompanyByName(inputClient, lc);
 
+            TotalCharge tc = new TotalCharge() { Charge = 600 };
             //decimal totalCharges = inputQuantity * inputWeight * 
 
-            return Json(new { success = true, message = 500 }, JsonRequestBehavior.AllowGet);
+            return Json(new { success = true, message = tc }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult GetClientDefaults([DataSourceRequest]DataSourceRequest request, string inputClient)
+        {
+
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+
+            if (string.IsNullOrEmpty(inputClient))
+                return Json(new { success = true, message = 0 }, JsonRequestBehavior.AllowGet);
+
+            if (lc == null)
+                lc = lch.GetCompanyRegisteredByUser(User.Identity.Name);
+
+            ClientCompany c = cch.GetCompanyByName(inputClient, lc);
+
+            
+
+            return Json(new { success = true, message = c }, JsonRequestBehavior.AllowGet);
         }
 
     }

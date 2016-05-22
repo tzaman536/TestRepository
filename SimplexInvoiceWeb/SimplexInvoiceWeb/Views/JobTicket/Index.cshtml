@@ -21,7 +21,7 @@
                       {
                           source.Read(read =>
                           {
-                              read.Action("GetClientNames", "MyClients");
+                              read.Action("GetClientNames", "ReferenceData");
                           });
                       })
                       .Events(e =>
@@ -164,8 +164,12 @@
 
     $(document).ready(function () {
         validateUploadForm();
+        
 
     });
+
+
+    
 
     function calcTotalCharge(value) {
 
@@ -227,7 +231,7 @@
                 //$('#loader').show();
             },
             success: function (response, textStatus, jqXHR) {
-                document.getElementById("idTotalCharge").value = response.message;
+                document.getElementById("idTotalCharge").value = response.message.Charge;
                 //alert(response.message);
 
             },
@@ -252,7 +256,32 @@
     }
 
     function onSelectClientName(e) {
-        alert(e.item[0].innerText);
+        //alert(e.item[0].innerText);
+
+        var parms = {
+            inputClient: e.item[0].innerText
+        };
+
+
+        $.ajax({
+            type: "POST",
+            traditional: true,
+            url: '@Url.Action("GetClientDefaults", "JobTicket")',
+            async: true,
+            data: parms,
+            dataType: "json",
+            beforeSend: function (xhr) {
+                //$('#loader').show();
+            },
+            success: function (response, textStatus, jqXHR) {
+                document.getElementById("idBasePickupCharge").value = response.message.BasePickupCharge;
+                //alert(response.message);
+
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert("Error found during execution");
+            }
+        });
     }
     function onSelectPickupFrom(e) {
         //alert(e.item[0].innerText);

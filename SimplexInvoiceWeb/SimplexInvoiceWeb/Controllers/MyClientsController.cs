@@ -32,8 +32,8 @@ namespace SimplexInvoiceWeb.Controllers
 
 
         SimplexInvoiceHelper helper = new SimplexInvoiceHelper();
-        LogisticsCompanyHandler ch = new LogisticsCompanyHandler();
-        ClientsCompanyHandler clientCompanyHandler = new ClientsCompanyHandler();
+        LogisticsCompanyHandler lch = new LogisticsCompanyHandler();
+        ClientsCompanyHandler cch = new ClientsCompanyHandler();
         LogisticsCompany lc;
 
 
@@ -66,7 +66,7 @@ namespace SimplexInvoiceWeb.Controllers
                 c.FaxNumber = string.Empty;
             }
 
-            lc = ch.GetCompanyRegisteredByUser(User.Identity.Name);
+            lc = lch.GetCompanyRegisteredByUser(User.Identity.Name);
             if(lc != null)
             {
                 c.WeightRate = lc.WeightRate;
@@ -97,15 +97,15 @@ namespace SimplexInvoiceWeb.Controllers
             c.CreatedBy = User.Identity.Name;
             logger.InfoFormat("Saving company...");
             if (lc == null)
-                lc = ch.GetCompanyRegisteredByUser(User.Identity.Name);
+                lc = lch.GetCompanyRegisteredByUser(User.Identity.Name);
 
             try
             {
-                var existingCompany = clientCompanyHandler.GetCompanyByName(c.CompanyName, lc);
+                var existingCompany = cch.GetCompanyByName(c.CompanyName, lc);
                 if (existingCompany == null)
                 {
                     c.CompanyId = lc.CompanyId;
-                    c.ClientCompanyId = clientCompanyHandler.Add(c);
+                    c.ClientCompanyId = cch.Add(c);
                 }
                 else
                 {
@@ -113,7 +113,7 @@ namespace SimplexInvoiceWeb.Controllers
                     c.ClientCompanyId = existingCompany.ClientCompanyId;
                     logger.InfoFormat("Company exists. Updating client company.");
                     c.ModifiedBy = User.Identity.Name;
-                    logger.InfoFormat("{0} rows updated.", clientCompanyHandler.Update(c));
+                    logger.InfoFormat("{0} rows updated.", cch.Update(c));
                 }
 
                 logger.InfoFormat("Company saved.");
@@ -136,9 +136,9 @@ namespace SimplexInvoiceWeb.Controllers
             
             string message = "Getting company";
             if (lc == null)
-                lc = ch.GetCompanyRegisteredByUser(User.Identity.Name);
+                lc = lch.GetCompanyRegisteredByUser(User.Identity.Name);
 
-            ClientCompany c = clientCompanyHandler.GetCompanyByName(clientCompanyString,lc); 
+            ClientCompany c = cch.GetCompanyByName(clientCompanyString,lc); 
 
             if (c == null)
             {
@@ -171,11 +171,11 @@ namespace SimplexInvoiceWeb.Controllers
         public ActionResult Editing_Read([DataSourceRequest] DataSourceRequest request)
         {
             if (lc == null)
-                lc = ch.GetCompanyRegisteredByUser(User.Identity.Name);
+                lc = lch.GetCompanyRegisteredByUser(User.Identity.Name);
 
 
 
-            IEnumerable<ClientCompany> result = clientCompanyHandler.GetClientCompanies(lc.CompanyId);
+            IEnumerable<ClientCompany> result = cch.GetClientCompanies(lc.CompanyId);
 
             return Json(result.ToDataSourceResult(request));
         }
@@ -325,19 +325,7 @@ namespace SimplexInvoiceWeb.Controllers
         }
 
 
-        public ActionResult GetClientNames()
-        {
-            List<ClientDDL> result = new List<ClientDDL>();
-
-            for (int i = 0; i< 5; i++)
-            {
-                ClientDDL c = new ClientDDL() { ClientName = "Hello" + i.ToString(), ClientID = i };
-                result.Add(c);
-            }
-            
-
-            return Json(result, JsonRequestBehavior.AllowGet);
-        }
+        
 
     }
 }

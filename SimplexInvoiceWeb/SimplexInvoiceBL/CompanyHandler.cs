@@ -91,6 +91,24 @@ namespace SimplexInvoiceBL
             }
         }
 
+        public IEnumerable<ClientCompany> GetClients(LogisticsCompany lc)
+        {
+            if (lc == null)
+                return null;
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+            {
+                conn.Open();
+                var result = conn.Query<ClientCompany>(@"
+                                                select*
+                                                from invoice.MyClients
+                                                where CompanyId = @companyId
+                   
+                                            ", new { companyId = lc.CompanyId });
+
+                return result;
+            }
+        }
+
     }
 
     public class ClientsCompanyHandler

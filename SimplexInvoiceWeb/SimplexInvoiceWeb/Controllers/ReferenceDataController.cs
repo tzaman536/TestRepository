@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SimplexInvoiceBL;
+using SimplexInvoiceModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -25,6 +27,11 @@ namespace SimplexInvoiceWeb.Controllers
 
     public class ReferenceDataController : Controller
     {
+
+        LogisticsCompanyHandler lch = new LogisticsCompanyHandler();
+        ClientsCompanyHandler cch = new ClientsCompanyHandler();
+        LogisticsCompany lc;
+
         // GET: ReferenceData
         public ActionResult Index()
         {
@@ -67,6 +74,32 @@ namespace SimplexInvoiceWeb.Controllers
             for (int i = 0; i < 5; i++)
             {
                 DeliveryAgent c = new DeliveryAgent() { Name = "Delivery Agent - " + i.ToString(), DeliveryAgentID = i };
+                result.Add(c);
+            }
+
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+
+        public ActionResult GetClientNames()
+        {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+
+            if (lc == null)
+                lc = lch.GetCompanyRegisteredByUser(User.Identity.Name);
+
+
+            var clients =  lch.GetClients(lc);
+            List<ClientDDL> result = new List<ClientDDL>();
+
+            foreach(var cl in clients)
+            {
+                ClientDDL c = new ClientDDL() { ClientName = cl.CompanyName , ClientID = cl.ClientCompanyId };
                 result.Add(c);
             }
 
