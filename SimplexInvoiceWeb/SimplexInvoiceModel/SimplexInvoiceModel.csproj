@@ -47,7 +47,7 @@
   <ItemGroup>
     <Compile Include="Company.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Transaction.cs" />
+    <Compile Include="JobTicket.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

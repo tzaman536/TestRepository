@@ -84,6 +84,32 @@ namespace SimplexInvoiceWeb.Controllers
 
 
         [HttpPost]
+        public ActionResult SaveJobTicket([DataSourceRequest]DataSourceRequest request, string inputJobTicket)
+        {
+
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            var json_serializer = new JavaScriptSerializer();
+            JobTicket ticket = json_serializer.Deserialize<JobTicket>(inputJobTicket);
+
+
+            
+            if (lc == null)
+                lc = lch.GetCompanyRegisteredByUser(User.Identity.Name);
+
+
+            // Save to db here
+            // Assign job ticket number to the object
+            // return jobTicket
+
+            return Json(new { success = true, message = ticket }, JsonRequestBehavior.AllowGet);
+        }
+
+
+
+        [HttpPost]
         public ActionResult GetClientDefaults([DataSourceRequest]DataSourceRequest request, string inputClient)
         {
 
