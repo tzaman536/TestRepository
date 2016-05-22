@@ -53,13 +53,13 @@
                     )
                 </dd>
 
-                <dt>Quantity:</dt><dd><input type="number" class="k-textbox numberOfUnits" id="idQuantity" name="Quantity" data-role='maskedtextbox' required /></dd>
-                <dt>Weight:</dt><dd><input type="number" class="k-textbox numberOfUnits" id="idWeight" name="Weight" data-role='maskedtextbox' required /></dd>
-                <dt>Base Pickup Charge:</dt><dd><input type="number" class="k-textbox numberOfUnits" id="idBasePickupCharge" name="Base PU" data-role='maskedtextbox' required /></dd>
-                <dt>Milage:</dt><dd><input type="number" class="k-textbox numberOfUnits" id="idMilage" name="Milage" data-role='maskedtextbox'/></dd>
-                <dt>Toll:</dt><dd><input type="number" class="k-textbox numberOfUnits" id="idToll" name="Toll" data-role='maskedtextbox' required /></dd>
-                <dt>Fuel Surcharge:</dt><dd><input type="number" class="k-textbox numberOfUnits" id="idFuelSurcharge" name="Fuel Charge" data-role='maskedtextbox' required /></dd>
-                <dt>Misc. Service:</dt><dd><input type="number" class="k-textbox numberOfUnits" id="idMiscService" name="Misc. Service" data-role='maskedtextbox' /></dd>
+                <dt>Quantity:</dt><dd><input type="number" class="k-textbox numberOfUnits" id="idQuantity" name="Quantity" data-role='maskedtextbox' onchange="calcTotalCharge(this.value)" required /></dd>
+                <dt>Weight:</dt><dd><input type="number" class="k-textbox numberOfUnits" id="idWeight" name="Weight" data-role='maskedtextbox' onchange="calcTotalCharge(this.value)" required /></dd>
+                <dt>Base Pickup Charge:</dt><dd><input type="number" class="k-textbox numberOfUnits" id="idBasePickupCharge" name="Base PU" data-role='maskedtextbox' onchange="calcTotalCharge(this.value)" required /></dd>
+                <dt>Milage:</dt><dd><input type="number" class="k-textbox numberOfUnits" id="idMilage" name="Milage" data-role='maskedtextbox' onchange="calcTotalCharge(this.value)"/></dd>
+                <dt>Toll:</dt><dd><input type="number" class="k-textbox numberOfUnits" id="idToll" name="Toll" data-role='maskedtextbox' onchange="calcTotalCharge(this.value)" required /></dd>
+                <dt>Fuel Surcharge:</dt><dd><input type="number" class="k-textbox numberOfUnits" id="idFuelSurcharge" name="Fuel Charge" data-role='maskedtextbox' onchange="calcTotalCharge(this.value)" required /></dd>
+                <dt>Misc. Service:</dt><dd><input type="number" class="k-textbox numberOfUnits" id="idMiscService" name="Misc. Service" data-role='maskedtextbox'/></dd>
                 <dt>Total Charge:</dt><dd><input type="number" class="k-textbox numberOfUnits" id="idTotalCharge" name="Total Charge" data-role='maskedtextbox' /></dd>
                 <dt>Waiting Time:</dt><dd><input type="number" class="k-textbox numberOfUnits" id="idWaitingTime" name="Wait Time" data-role='maskedtextbox' /></dd>
                 <dt>Pickup From:</dt><dd>
@@ -167,6 +167,75 @@
 
     });
 
+    function calcTotalCharge(value) {
+
+        var inputQuantity = document.getElementById("idQuantity").value;
+        if (inputQuantity == null || inputQuantity == "")
+            inputQuantity = 0;
+        var inputWeight = document.getElementById("idWeight").value;
+        if (inputWeight == null || inputWeight == "")
+            inputWeight = 0;
+        var inputBasePickupCharge = document.getElementById("idBasePickupCharge").value;
+        if (inputBasePickupCharge == null || inputBasePickupCharge == "")
+            inputBasePickupCharge = 0;
+
+        var inputMilage = document.getElementById("idMilage").value;
+        if (inputMilage == null || inputMilage == "")
+            inputMilage = 0;
+
+        var inputToll = document.getElementById("idToll").value;
+        if (inputToll == null || inputToll == "")
+            inputToll = 0;
+
+        var inputFuelSurcharge = document.getElementById("idFuelSurcharge").value;
+        if (inputFuelSurcharge == null || inputFuelSurcharge == "")
+            inputFuelSurcharge = 0;
+
+        var inputMiscCharges = document.getElementById("idMiscService").value;
+        if (inputMiscCharges == null || inputMiscCharges == "")
+            inputMiscCharges = 0;
+
+        
+        var inputClient = $("#clients").data("kendoDropDownList").text();
+        if (inputClient == null || inputClient == "")
+        {
+            alert("Please pick a valid client");
+            //return;
+        }
+
+
+        var parms = {
+            inputQuantity: inputQuantity
+            , inputWeight: inputWeight
+            , inputBasePickupCharge: inputBasePickupCharge
+            , inputMilage: inputMilage
+            , inputToll: inputToll
+            , inputFuelSurcharge: inputFuelSurcharge
+            , inputMiscCharges: inputMiscCharges
+            , inputClient : inputClient
+        };
+
+
+        $.ajax({
+            type: "POST",
+            traditional: true,
+            url: '@Url.Action("CalcTotalCharge", "JobTicket")',
+            async: true,
+            data: parms,
+            dataType: "json",
+            beforeSend: function (xhr) {
+                //$('#loader').show();
+            },
+            success: function (response, textStatus, jqXHR) {
+                document.getElementById("idTotalCharge").value = response.message;
+                //alert(response.message);
+
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert("Error found during execution");
+            }
+        });
+    }
 
     function validateUploadForm() {
 
