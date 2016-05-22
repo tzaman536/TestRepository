@@ -12,7 +12,25 @@ namespace SimplexInvoiceWeb.Controllers
 {
     public class TotalCharge
     {
-        public int Charge { get; set; }
+        public decimal InputQuantity { get; set; }
+        public decimal InputWeight { get; set; }
+        public decimal InputBasePickupCharge { get; set; }
+        public decimal InputMilage { get; set; }
+        public decimal InputToll { get; set; }
+        public decimal InputFuelSurcharge { get; set; }
+        public decimal InputMiscCharges { get; set; }
+        public string InputClient { get; set; }
+        public decimal Charge { get; set; }
+
+        public void Calc(decimal weightRate, decimal complimentaryWeight)
+        {
+            decimal weight = InputWeight - complimentaryWeight;
+            if (weight < 0)
+                weight = 0;
+
+            Charge = weight * weightRate + InputBasePickupCharge + InputMilage + InputToll + InputFuelSurcharge + InputMiscCharges;
+        }
+
     }
 
     public class JobTicketController : Controller
@@ -32,30 +50,38 @@ namespace SimplexInvoiceWeb.Controllers
             return View();
         }
 
+        
+
         [HttpPost]
-        public ActionResult CalcTotalCharge([DataSourceRequest]DataSourceRequest request, decimal inputQuantity, decimal inputWeight, decimal inputBasePickupCharge, decimal inputMilage
-                                            ,decimal inputToll, decimal inputFuelSurcharge,decimal inputMiscCharges, string inputClient)
+        public ActionResult CalcTotalCharge([DataSourceRequest]DataSourceRequest request, string inputChargeParameters)
         {
 
             if (!User.Identity.IsAuthenticated)
             {
                 return RedirectToAction("Login", "Account");
             }
+            var json_serializer = new JavaScriptSerializer();
+            TotalCharge chargeInput = json_serializer.Deserialize<TotalCharge>(inputChargeParameters);
 
 
-            if (string.IsNullOrEmpty(inputClient))
+            if (string.IsNullOrEmpty(chargeInput.InputClient))
                 return Json(new { success = true, message = 0 }, JsonRequestBehavior.AllowGet);
 
             if (lc == null)
                 lc = lch.GetCompanyRegisteredByUser(User.Identity.Name);
 
-            ClientCompany c = cch.GetCompanyByName(inputClient, lc);
+            ClientCompany c = cch.GetCompanyByName(chargeInput.InputClient, lc);
 
-            TotalCharge tc = new TotalCharge() { Charge = 600 };
+            chargeInput.Calc(c.WeightRate, c.ComplimentaryWeight);
+            
+            
+
+
             //decimal totalCharges = inputQuantity * inputWeight * 
 
-            return Json(new { success = true, message = tc }, JsonRequestBehavior.AllowGet);
+            return Json(new { success = true, message = chargeInput }, JsonRequestBehavior.AllowGet);
         }
+
 
         [HttpPost]
         public ActionResult GetClientDefaults([DataSourceRequest]DataSourceRequest request, string inputClient)

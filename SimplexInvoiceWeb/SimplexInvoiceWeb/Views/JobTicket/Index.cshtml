@@ -59,7 +59,7 @@
                 <dt>Milage:</dt><dd><input type="number" class="k-textbox numberOfUnits" id="idMilage" name="Milage" data-role='maskedtextbox' onchange="calcTotalCharge(this.value)"/></dd>
                 <dt>Toll:</dt><dd><input type="number" class="k-textbox numberOfUnits" id="idToll" name="Toll" data-role='maskedtextbox' onchange="calcTotalCharge(this.value)" required /></dd>
                 <dt>Fuel Surcharge:</dt><dd><input type="number" class="k-textbox numberOfUnits" id="idFuelSurcharge" name="Fuel Charge" data-role='maskedtextbox' onchange="calcTotalCharge(this.value)" required /></dd>
-                <dt>Misc. Service:</dt><dd><input type="number" class="k-textbox numberOfUnits" id="idMiscService" name="Misc. Service" data-role='maskedtextbox'/></dd>
+                <dt>Misc. Service:</dt><dd><input type="number" class="k-textbox numberOfUnits" id="idMiscService" name="Misc. Service" data-role='maskedtextbox' onchange="calcTotalCharge(this.value)"/></dd>
                 <dt>Total Charge:</dt><dd><input type="number" class="k-textbox numberOfUnits" id="idTotalCharge" name="Total Charge" data-role='maskedtextbox' /></dd>
                 <dt>Waiting Time:</dt><dd><input type="number" class="k-textbox numberOfUnits" id="idWaitingTime" name="Wait Time" data-role='maskedtextbox' /></dd>
                 <dt>Pickup From:</dt><dd>
@@ -169,7 +169,6 @@
     });
 
 
-    
 
     function calcTotalCharge(value) {
 
@@ -199,25 +198,30 @@
         if (inputMiscCharges == null || inputMiscCharges == "")
             inputMiscCharges = 0;
 
-        
+
         var inputClient = $("#clients").data("kendoDropDownList").text();
-        if (inputClient == null || inputClient == "")
-        {
+        if (inputClient == null || inputClient == "") {
             alert("Please pick a valid client");
             //return;
         }
 
 
-        var parms = {
-            inputQuantity: inputQuantity
-            , inputWeight: inputWeight
-            , inputBasePickupCharge: inputBasePickupCharge
-            , inputMilage: inputMilage
-            , inputToll: inputToll
-            , inputFuelSurcharge: inputFuelSurcharge
-            , inputMiscCharges: inputMiscCharges
-            , inputClient : inputClient
+        var chargeParameters = {
+            "InputQuantity": inputQuantity,
+            "InputWeight": inputWeight,
+            "InputBasePickupCharge": inputBasePickupCharge,
+            "InputMilage": inputMilage,
+            "InputToll": inputToll,
+            "InputFuelSurcharge": inputFuelSurcharge,
+            "InputMiscCharges": inputMiscCharges,
+            "InputClient": inputClient,
         };
+
+        var parms = {
+            inputChargeParameters: JSON.stringify(chargeParameters)
+        };
+
+
 
 
         $.ajax({
@@ -240,6 +244,8 @@
             }
         });
     }
+
+
 
     function validateUploadForm() {
 
