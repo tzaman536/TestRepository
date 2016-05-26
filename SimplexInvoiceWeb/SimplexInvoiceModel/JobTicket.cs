@@ -14,7 +14,7 @@ namespace SimplexInvoiceModel
     {
         public int JobTicketId { get; set; }
         public string ClientName { get; set; }
-        public int ClientId { get; set; }
+        public int ClientCompanyId { get; set; }
         public DateTime JobDate { get; set; }
         public DateTime DeliveryDate { get; set; }
         public int Quantity { get; set; }

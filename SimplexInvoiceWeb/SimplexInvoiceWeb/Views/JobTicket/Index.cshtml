@@ -296,7 +296,9 @@
                     //$('#loader').show();
                 },
                 success: function (response, textStatus, jqXHR) {
-                    document.getElementById("idTotalCharge").value = response.message.Charge;
+                    alert("Job ticket saved");
+                    location.reload();
+
                     //alert(response.message);
 
                 },

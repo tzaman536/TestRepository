@@ -38,6 +38,7 @@ namespace SimplexInvoiceWeb.Controllers
         LogisticsCompanyHandler lch = new LogisticsCompanyHandler();
         ClientsCompanyHandler cch = new ClientsCompanyHandler();
         LogisticsCompany lc;
+        JobTicketHandler jch = new JobTicketHandler();
 
         // GET: JobTicket
         public ActionResult Index()
@@ -94,12 +95,19 @@ namespace SimplexInvoiceWeb.Controllers
             var json_serializer = new JavaScriptSerializer();
             JobTicket ticket = json_serializer.Deserialize<JobTicket>(inputJobTicket);
 
-
             
+
+
+
             if (lc == null)
                 lc = lch.GetCompanyRegisteredByUser(User.Identity.Name);
 
+            var clientCompany = cch.GetCompanyByName(ticket.ClientName,lc);
+            ticket.CreatedBy = User.Identity.Name;
+            ticket.CompanyId = lc.CompanyId;
+            ticket.ClientCompanyId = clientCompany.ClientCompanyId;
 
+            ticket.JobTicketId = jch.Add(ticket, User.Identity.Name);
             // Save to db here
             // Assign job ticket number to the object
             // return jobTicket
