@@ -1419,6 +1419,7 @@
     <Content Include="Views\MyClients\Index.cshtml" />
     <Content Include="Views\Invoices\Index.cshtml" />
     <Content Include="Views\JobTicket\Index.cshtml" />
+    <Content Include="Views\Shared\_MainMenu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

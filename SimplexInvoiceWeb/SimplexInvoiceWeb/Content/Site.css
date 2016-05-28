@@ -4,7 +4,7 @@
 }
 
 .navbar-header{
-    min-height:100px;
+    max-height:100px;
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#c5deea+0,8abbd7+31,066dab+100;Web+2.0+Blue+3D+%231 */
     background: rgb(197,222,234); /* Old browsers */
     background: -moz-linear-gradient(top,  rgba(197,222,234,1) 0%, rgba(138,187,215,1) 31%, rgba(6,109,171,1) 100%); /* FF3.6-15 */
@@ -16,7 +16,7 @@
   
 }
 .navbar-nav{
-    min-height:100px;
+    max-height:100px;
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#c5deea+0,8abbd7+31,066dab+100;Web+2.0+Blue+3D+%231 */
     background: rgb(197,222,234); /* Old browsers */
     background: -moz-linear-gradient(top,  rgba(197,222,234,1) 0%, rgba(138,187,215,1) 31%, rgba(6,109,171,1) 100%); /* FF3.6-15 */
@@ -47,6 +47,43 @@
     background: -webkit-linear-gradient(top, rgba(197,222,234,1) 0%,rgba(138,187,215,1) 31%,rgba(6,109,171,1) 100%); /* Chrome10-25,Safari5.1-6 */
     background: linear-gradient(to bottom, rgba(197,222,234,1) 0%,rgba(138,187,215,1) 31%,rgba(6,109,171,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c5deea', endColorstr='#066dab',GradientType=0 ); /* IE6-9 */
+}
+
+/*Color of Logo Section text "SIMPLEX INVOICE"*/
+.navbar-inverse .navbar-brand {
+  color: forestgreen;
+}
+
+/*Color of Logo Section text "SIMPLEX INVOICE" on hover or focus*/
+.navbar-inverse .navbar-brand:hover,
+.navbar-inverse .navbar-brand:focus {
+  color: orchid;
+  background-color: transparent;
+}
+
+.navbar-inverse .navbar-text {
+  color: darkred;
+}
+
+/* Navbar link*/
+.navbar-inverse .navbar-nav > li > a {
+  color: darkblue;
+  font-weight:bold;
+}
+
+/* Navbar link on focus*/
+.navbar-inverse .navbar-nav > li > a:hover,
+.navbar-inverse .navbar-nav > li > a:focus {
+  color: lightblue ;
+  background-color: transparent;
+  
+}
+
+.navbar-inverse .navbar-nav > .active > a,
+.navbar-inverse .navbar-nav > .active > a:hover,
+.navbar-inverse .navbar-nav > .active > a:focus {
+  color: orangered;
+  background-color: #080808;
 }
 
 .jumbotron{
