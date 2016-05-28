@@ -1,4 +1,9 @@
 Arvixe
+In this e-mail, you will find information on how to setup your domain name, web publishing/FTP software 
+and your e-mail client. For further information and clarification please contact us with your domain name and username. 
+We are here for you 24/7/365 at support@arvixe.com through email, 1-888-927-8493 through the phone and through live chat 
+at our website http://www.arvixe.com.
+
 
 Control Panel Login http://tigerlily.arvixe.com/Default.aspx?pid=Home
 Username: coalesc1
