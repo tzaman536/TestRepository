@@ -125,7 +125,7 @@
 }
 
 dl { 
-    width: 750px; 
+    width: 440px; 
     overflow: hidden;
     background: rgb(206,220,231);
     padding: 0;margin: 0;
@@ -133,17 +133,19 @@ dl {
 } 
 dt {
     float: left;
-    width: 50%;
+    width: 25%;
     background: rgb(206,220,231);
     padding: 0; margin: 0;
     text-align:right;
+    font-size:11px;
 }
 dd {
     float: left;
-    width: 50%;
+    width: 75%;
     background: rgb(206,220,231);
     padding: 0;
     margin: 0;
+    font-size:11px;
 
 }
 
@@ -198,3 +200,11 @@ textarea {
             max-height:25px;
             margin-bottom:3px;
         }
+
+.first-line{
+    margin-top:75px; 
+}
+.page-description{
+    font-size:15px; 
+    font-weight:bold;
+}

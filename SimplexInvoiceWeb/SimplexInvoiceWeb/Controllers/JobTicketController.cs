@@ -43,10 +43,10 @@ namespace SimplexInvoiceWeb.Controllers
         // GET: JobTicket
         public ActionResult Index()
         {
-            if (!User.Identity.IsAuthenticated)
-            {
-                return RedirectToAction("Login", "Account");
-            }
+            //if (!User.Identity.IsAuthenticated)
+            //{
+            //    return RedirectToAction("Login", "Account");
+            //}
 
             return View();
         }
