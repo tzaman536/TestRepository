@@ -60,7 +60,7 @@
                 <dt>Toll:</dt><dd><input type="number" class="k-textbox numberOfUnits" id="idToll" name="Toll" data-role='maskedtextbox' onchange="calcTotalCharge(this.value)" required /></dd>
                 <dt>Fuel Surcharge:</dt><dd><input type="number" class="k-textbox numberOfUnits" id="idFuelSurcharge" name="Fuel Charge" data-role='maskedtextbox' onchange="calcTotalCharge(this.value)" required /></dd>
                 <dt>Misc. Service:</dt><dd><input type="number" class="k-textbox numberOfUnits" id="idMiscService" name="Misc. Service" data-role='maskedtextbox' onchange="calcTotalCharge(this.value)"/></dd>
-                <dt>Total Charge:</dt><dd><input type="number" class="k-textbox numberOfUnits" id="idTotalCharge" name="Total Charge" data-role='maskedtextbox' /></dd>
+                <dt class="total-row" >Total Charge:</dt><dd class="total-row"><input type="number" class="k-textbox numberOfUnits" id="idTotalCharge" name="Total Charge" data-role='maskedtextbox' /></dd>
                 <dt>Waiting Time:</dt><dd><input type="number" class="k-textbox numberOfUnits" id="idWaitingTime" name="Wait Time" data-role='maskedtextbox' /></dd>
                 <dt>Pickup From:</dt><dd>
                     @(Html.Kendo().DropDownList()
@@ -369,4 +369,8 @@
         max-height:50px;
     }
 
+    .total-row{
+        font-weight:bolder;
+        font-size:12px;
+    }
 </style>
