@@ -22,10 +22,10 @@ namespace SimplexInvoiceBL
                 {
                     conn.Open();
                     var result = conn.Query<int>(@"
-                    insert into invoice.JobTickets(ClientCompanyId,JobDate,DeliveryDate,Quantity,[Weight],Milage,Toll,FuelSurcharge,
+                    insert into invoice.JobTickets(CompanyId,ClientCompanyId,JobDate,DeliveryDate,Quantity,[Weight],Milage,Toll,FuelSurcharge,
                                                     MiscFee,TotalCharge,WaitTime,PickupFrom,DeliverTo,Instruction,ServiceType,
                                                     DeliveryAgent,POD,Comments,CreatedBy,CreatedAt)
-                                           values(@ClientCompanyId,@JobDate,@DeliveryDate,@Quantity,@Weight,@Milage,@Toll,@FuelSurcharge,
+                                           values(@CompanyId,@ClientCompanyId,@JobDate,@DeliveryDate,@Quantity,@Weight,@Milage,@Toll,@FuelSurcharge,
                                                     @MiscFee,@TotalCharge,@WaitTime,@PickupFrom,@DeliverTo,@Instruction,@ServiceType,
                                                     @DeliveryAgent,@POD,@Comments,@CreatedBy,getdate());
                                            SELECT SCOPE_IDENTITY()
@@ -40,6 +40,30 @@ namespace SimplexInvoiceBL
             {
                 logger.Fatal(ex);
                 return 0;
+            }
+        }
+
+        public IEnumerable<JobTicket> GetTodaysTickes(LogisticsCompany lc)
+        {
+            try
+            {
+                using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+                {
+                    conn.Open();
+                    return conn.Query<JobTicket>(@"
+                                                    select mc.CompanyName as ClientName, jt.*
+                                                    from invoice.JobTickets jt
+                                                    inner join invoice.MyClients mc on jt.ClientCompanyId = mc.ClientCompanyId
+                                                    where jt.CreatedAt >= (cast(GETDATE()-6 as date))                                                
+                                                      and CompanyId = @CompanyId
+                                            ", new { CompanyId = lc.CompanyId });
+
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.Fatal(ex);
+                return null;
             }
         }
 

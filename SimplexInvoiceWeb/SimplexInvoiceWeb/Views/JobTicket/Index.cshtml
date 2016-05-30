@@ -150,19 +150,20 @@
                 </dd>
                 <dt>POD:</dt><dd><input type="text" class="k-textbox instruction" id="idPOD" name="POD" /></dd>
                 <dt>Comments:</dt><dd><input type="text" class="k-textbox instruction" id="idComment" name="Comment" /></dd>
-                <dt>&nbsp;</dt><dd><input id="btn_SaveJobTicket" type="submit" class="k-button" value="Add Job Ticket" /></dd>
+                <dt>&nbsp;</dt><dd><input id="btn_SaveJobTicket" type="submit" class="k-button" value="Save" /></dd>
             </dl>
         </div>
         <div id="idJobTicketBookedToday" style="display:table-cell;min-width:500px; vertical-align:top; box-sizing: border-box; padding-right: 10px;">
-            @(Html.Kendo().Grid<ClientCompany>()
+            @(Html.Kendo().Grid<JobTicket>()
                     .Name("ClientGrid")
                     .Columns(columns =>
                     {
-                        columns.Bound(p => p.CompanyName).Width(100);
-                        columns.Bound(p => p.Email).Width(100);
-                        columns.Bound(p => p.WeightRate).Width(255);
-                        columns.Bound(p => p.State).Width(85);
-                        columns.Command(command => { command.Edit(); command.Destroy(); }).Width(250);
+                        columns.Bound(p => p.JobTicketId).Width(100);
+                        columns.Bound(p => p.ClientName).Width(100);
+                        columns.Bound(p => p.ServiceType).Width(100);
+                        columns.Bound(p => p.PickupFrom).Width(255);
+                        columns.Bound(p => p.DeliverTo).Width(85);
+                        ////columns.Command(command => { command.Edit(); command.Destroy(); }).Width(250);
                     })
                     .ToolBar(toolbar =>
                     {
@@ -189,24 +190,15 @@
                         //.Model(model => model.Id(p => p.ProductID))
                         .Model(model =>
                         {
-                            model.Id(p => p.ClientCompanyId);
-                            model.Field(p => p.CompanyName).Editable(false);
-                            model.Field(p => p.Email).Editable(false);
-                            model.Field(p => p.WeightRate).Editable(false);
-                            model.Field(p => p.BasePickupCharge).Editable(false);
-                            model.Field(p => p.State).Editable(true);
-                            model.Field(p => p.MobileNumber).Editable(false);
-                            model.Field(p => p.ContactPerson).Editable(false);
+                            model.Id(p => p.JobTicketId);
+                            model.Field(p => p.ClientName).Editable(false);
+                            model.Field(p => p.ServiceType).Editable(false);
+                            model.Field(p => p.PickupFrom).Editable(false);
+                            model.Field(p => p.DeliverTo).Editable(false);
 
                         })
-
-
-                                        .Create("Editing_Create", "MyClients")
-                                        .Read("Editing_Read", "MyClients")
-                                        .Update("Editing_Update", "MyClients")
-                                        .Destroy("Editing_Destroy", "MyClients")
-                                    )
-                        )
+                        .Read("Editing_Read", "JobTicket")
+                      ))
         </div>
     </div>
 </div>
@@ -368,7 +360,7 @@
 
 
         $("#btn_SaveJobTicket").bind("click", function () {
-            var validator = $("#idProductUploadForm").kendoValidator().data("kendoValidator");
+            var validator = $("#idJobTicketUploadForm").kendoValidator().data("kendoValidator");
             if (!validator.validate()) {
                 return false;
             }

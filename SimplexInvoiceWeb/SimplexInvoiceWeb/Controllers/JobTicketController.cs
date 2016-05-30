@@ -1,4 +1,5 @@
-﻿using Kendo.Mvc.UI;
+﻿using Kendo.Mvc.Extensions;
+using Kendo.Mvc.UI;
 using SimplexInvoiceBL;
 using SimplexInvoiceModel;
 using System;
@@ -38,7 +39,7 @@ namespace SimplexInvoiceWeb.Controllers
         LogisticsCompanyHandler lch = new LogisticsCompanyHandler();
         ClientsCompanyHandler cch = new ClientsCompanyHandler();
         LogisticsCompany lc;
-        JobTicketHandler jch = new JobTicketHandler();
+        JobTicketHandler jth = new JobTicketHandler();
 
         // GET: JobTicket
         public ActionResult Index()
@@ -107,7 +108,7 @@ namespace SimplexInvoiceWeb.Controllers
             ticket.CompanyId = lc.CompanyId;
             ticket.ClientCompanyId = clientCompany.ClientCompanyId;
 
-            ticket.JobTicketId = jch.Add(ticket, User.Identity.Name);
+            ticket.JobTicketId = jth.Add(ticket, User.Identity.Name);
             // Save to db here
             // Assign job ticket number to the object
             // return jobTicket
@@ -139,6 +140,20 @@ namespace SimplexInvoiceWeb.Controllers
 
             return Json(new { success = true, message = c }, JsonRequestBehavior.AllowGet);
         }
+
+
+        public ActionResult Editing_Read([DataSourceRequest] DataSourceRequest request)
+        {
+            if (lc == null)
+                lc = lch.GetCompanyRegisteredByUser(User.Identity.Name);
+
+
+
+            IEnumerable<JobTicket> result = jth.GetTodaysTickes(lc);
+
+            return Json(result.ToDataSourceResult(request));
+        }
+
 
     }
 }

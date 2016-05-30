@@ -214,3 +214,27 @@ textarea {
     margin-top:5px;
     
 }
+
+/* Kendo GRID*/
+.k-grid
+{
+    font-size:11px;
+}
+.k-grid th.k-header,
+.k-grid-header
+{
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#356aa0+0,356aa0+100;Blue+Flat */
+    background: rgb(53,106,160); /* Old browsers */
+    background: -moz-linear-gradient(top,  rgba(53,106,160,1) 0%, rgba(53,106,160,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  rgba(53,106,160,1) 0%,rgba(53,106,160,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  rgba(53,106,160,1) 0%,rgba(53,106,160,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#356aa0', endColorstr='#356aa0',GradientType=0 ); /* IE6-9 */
+
+}
+
+.k-grid th.k-header,
+.k-grid th.k-header .k-link
+{
+    color:white;
+    text-align:center;
+}
