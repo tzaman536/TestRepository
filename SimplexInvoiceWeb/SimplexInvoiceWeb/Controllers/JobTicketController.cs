@@ -154,6 +154,15 @@ namespace SimplexInvoiceWeb.Controllers
             return Json(result.ToDataSourceResult(request));
         }
 
+        [HttpGet]
+        public ActionResult GetJobTicketInfo([DataSourceRequest]DataSourceRequest request, int jobTicketId)
+        {
+
+            
+            return Json(new { success = true, message = jth.GetJobTicket(jobTicketId) }, JsonRequestBehavior.AllowGet);
+        }
+
+
 
     }
 }

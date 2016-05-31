@@ -155,7 +155,7 @@
         </div>
         <div id="idJobTicketBookedToday" style="display:table-cell;min-width:500px; vertical-align:top; box-sizing: border-box; padding-right: 10px;">
             @(Html.Kendo().Grid<JobTicket>()
-                    .Name("ClientGrid")
+                    .Name("JobTicketGrid")
                     .Columns(columns =>
                     {
                         columns.Bound(p => p.JobTicketId).Width(100);
@@ -171,7 +171,7 @@
                         //toolbar.Save();
                     })
                     //.Editable(editable => editable.Mode(GridEditMode.InCell))
-                    .Editable(editable => editable.Mode(GridEditMode.InLine))
+                    //.Editable(editable => editable.Mode(GridEditMode.InLine))
                     //.Pageable()
                     .Filterable()
                     .Navigatable()
@@ -209,21 +209,29 @@
 
 <script>
 
+    function Init(e)
+    {
+        document.getElementById("idTotalCharge").value = e.TotalCharge;
+        $("#clients").data("kendoDropDownList").select(function (dataItem) {
+            return dataItem.ClientName === e.ClientName;
+                });
+    }
+
     
     function onChange(arg) {
-        @*var grid = $("#ClientGrid").data("kendoGrid");
+        var grid = $("#JobTicketGrid").data("kendoGrid");
         var selectedItem = grid.dataItem(grid.select());
 
 
         var parms = {
-            clientCompanyString: selectedItem.CompanyName
+            jobTicketId: selectedItem.JobTicketId
         };
 
 
         $.ajax({
             type: "GET",
             traditional: true,
-            url: '@Url.Action("GetClientInfo", "MyClients")',
+            url: '@Url.Action("GetJobTicketInfo", "JobTicket")',
             async: true,
             data: parms,
             dataType: "json",
@@ -233,12 +241,13 @@
             success: function (response, textStatus, jqXHR) {
                 $('#loader').hide();
                 Init(response.message);
+                //alert(response.message.ClientName)
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 alert("Error found during execution");
                 $('#loader').hide();
             }
-        });*@
+        });
 
 
 

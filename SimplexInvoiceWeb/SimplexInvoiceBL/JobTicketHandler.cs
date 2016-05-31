@@ -55,7 +55,7 @@ namespace SimplexInvoiceBL
                                                     from invoice.JobTickets jt
                                                     inner join invoice.MyClients mc on jt.ClientCompanyId = mc.ClientCompanyId
                                                     where jt.CreatedAt >= (cast(GETDATE()-6 as date))                                                
-                                                      and CompanyId = @CompanyId
+                                                      and jt.CompanyId = @CompanyId
                                             ", new { CompanyId = lc.CompanyId });
 
                 }
@@ -67,5 +67,28 @@ namespace SimplexInvoiceBL
             }
         }
 
+
+        public JobTicket GetJobTicket(int jobTicketId)
+        {
+            try
+            {
+                using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+                {
+                    conn.Open();
+                    return conn.Query<JobTicket>(@"
+                                                    select mc.CompanyName as ClientName, jt.*
+                                                    from invoice.JobTickets jt
+                                                    inner join invoice.MyClients mc on jt.ClientCompanyId = mc.ClientCompanyId
+                                                    where jt.JobTicketId = @jobTicketId
+                                            ", new { jobTicketId = jobTicketId }).ElementAtOrDefault(0);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.Fatal(ex);
+                return null;
+            }
+        }
     }
 }
