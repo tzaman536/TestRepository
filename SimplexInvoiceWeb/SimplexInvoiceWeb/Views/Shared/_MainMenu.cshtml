@@ -10,9 +10,9 @@
                       children.Add().Text("Manage Ticket")
                                   .Items(innerChildren =>
                                   {
-                                      innerChildren.Add().Text("New Ticket");
-                                      innerChildren.Add().Text("Today's tickets");
-                                      innerChildren.Add().Text("Search Tickets");
+                                      innerChildren.Add().Text("New Ticket").Action("Index","JobTicket");
+                                      innerChildren.Add().Text("Today's tickets").Action("Index","JobTicket");
+                                      innerChildren.Add().Text("Search Tickets").Action("SearchTicket","JobTicket");
                                       innerChildren.Add().Text("Ticket Summary").Action("Index","Home");
                                   });
 

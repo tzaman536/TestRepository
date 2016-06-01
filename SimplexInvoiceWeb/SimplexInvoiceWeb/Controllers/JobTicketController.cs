@@ -44,15 +44,24 @@ namespace SimplexInvoiceWeb.Controllers
         // GET: JobTicket
         public ActionResult Index()
         {
-            //if (!User.Identity.IsAuthenticated)
-            //{
-            //    return RedirectToAction("Login", "Account");
-            //}
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
 
             return View();
         }
 
-        
+        public ActionResult SearchTicket()
+        {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            return View();
+        }
+
 
         [HttpPost]
         public ActionResult CalcTotalCharge([DataSourceRequest]DataSourceRequest request, string inputChargeParameters)
@@ -96,19 +105,28 @@ namespace SimplexInvoiceWeb.Controllers
             var json_serializer = new JavaScriptSerializer();
             JobTicket ticket = json_serializer.Deserialize<JobTicket>(inputJobTicket);
 
-            
-
-
 
             if (lc == null)
                 lc = lch.GetCompanyRegisteredByUser(User.Identity.Name);
 
-            var clientCompany = cch.GetCompanyByName(ticket.ClientName,lc);
-            ticket.CreatedBy = User.Identity.Name;
-            ticket.CompanyId = lc.CompanyId;
+            var clientCompany = cch.GetCompanyByName(ticket.ClientName, lc);
             ticket.ClientCompanyId = clientCompany.ClientCompanyId;
 
-            ticket.JobTicketId = jth.Add(ticket, User.Identity.Name);
+
+            if (ticket.JobTicketId == 0)
+            {
+
+                ticket.CreatedBy = User.Identity.Name;
+                ticket.CompanyId = lc.CompanyId;
+                
+                ticket.JobTicketId = jth.Add(ticket, User.Identity.Name);
+            }
+            else
+            {
+                ticket.ModifiedBy = User.Identity.Name;
+                jth.Update(ticket);
+
+            }
             // Save to db here
             // Assign job ticket number to the object
             // return jobTicket
@@ -144,12 +162,15 @@ namespace SimplexInvoiceWeb.Controllers
 
         public ActionResult Editing_Read([DataSourceRequest] DataSourceRequest request)
         {
+
             if (lc == null)
                 lc = lch.GetCompanyRegisteredByUser(User.Identity.Name);
 
 
 
             IEnumerable<JobTicket> result = jth.GetTodaysTickes(lc);
+            if (result == null)
+                result = new List<JobTicket>();
 
             return Json(result.ToDataSourceResult(request));
         }

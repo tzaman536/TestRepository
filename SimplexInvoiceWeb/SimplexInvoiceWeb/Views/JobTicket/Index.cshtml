@@ -3,11 +3,13 @@
     ViewBag.Title = "Job Ticket";
 }
 
-<h2 class="first-line page-description">Add Job Ticket</h2>
+<h2 class="first-line page-description">Add Job Ticket <a id="restInputForm" onclick="resetInputForm()"> [ Click to reset input form]</a></h2>
 
 <div style="display:table;">
     <div style="display:table-row">
         <div id="idJobTicketUploadForm" style="min-width:500px; display:table-cell;">
+            <input type="hidden" id="idJobTicketId" name="JobTicketId" value="0"/>
+            <input type="hidden" id="idCompanyId" name="CompanyId" value="0" />
             <dl>
                 <dt>
                         Client:
@@ -61,7 +63,7 @@
                 <dt>Fuel Surcharge:</dt><dd><input type="number" class="k-textbox numberOfUnits" id="idFuelSurcharge" name="Fuel Charge" data-role='maskedtextbox' onchange="calcTotalCharge(this.value)" required /></dd>
                 <dt>Misc. Service:</dt><dd><input type="number" class="k-textbox numberOfUnits" id="idMiscService" name="Misc. Service" data-role='maskedtextbox' onchange="calcTotalCharge(this.value)"/></dd>
                 <dt class="total-row" >Total Charge:</dt><dd class="total-row"><input type="number" class="k-textbox numberOfUnits" id="idTotalCharge" name="Total Charge" data-role='maskedtextbox' /></dd>
-                <dt>Waiting Time:</dt><dd><input type="number" class="k-textbox numberOfUnits" id="idWaitingTime" name="Wait Time" data-role='maskedtextbox' /></dd>
+                <dt>Waiting Time:</dt><dd><input type="number" class="k-textbox instruction" id="idWaitingTime" name="Wait Time" data-role='maskedtextbox' /></dd>
                 <dt>Pickup From:</dt><dd>
                     @(Html.Kendo().DropDownList()
                       .Name("pickUpLocation")
@@ -209,12 +211,51 @@
 
 <script>
 
+    function resetInputForm()
+    {
+        location.reload();
+    }
     function Init(e)
     {
-        document.getElementById("idTotalCharge").value = e.TotalCharge;
+        
+        document.getElementById("idJobTicketId").value = e.JobTicketId;
+        document.getElementById("idCompanyId").value = e.CompanyId;
+        
         $("#clients").data("kendoDropDownList").select(function (dataItem) {
             return dataItem.ClientName === e.ClientName;
-                });
+        });
+        $("#datepickerJobDate").data("kendoDatePicker").value(e.JobDate);
+        $("#datepickerDeliveryDate").data("kendoDatePicker").value(e.DeliveryDate);
+        
+        document.getElementById("idQuantity").value = e.Quantity;
+        document.getElementById("idWeight").value = e.Weight;
+        document.getElementById("idBasePickupCharge").value = e.BasePickupCharge;
+        document.getElementById("idMilage").value = e.Milage;
+        document.getElementById("idToll").value = e.Toll;
+        document.getElementById("idFuelSurcharge").value = e.FuelSurcharge;
+        document.getElementById("idMiscService").value = e.MiscFee
+        document.getElementById("idTotalCharge").value = e.TotalCharge;
+        document.getElementById("idWaitingTime").value = e.WaitTime;
+        
+        $("#pickUpLocation").data("kendoDropDownList").select(function (dataItem) {
+            return dataItem.Location === e.PickupFrom;
+        });
+        document.getElementById("idPickupFrom").value = e.PickupFrom;
+        
+        $("#deliveryLocation").data("kendoDropDownList").select(function (dataItem) {
+            return dataItem.Location === e.DeliverTo;
+        });
+        document.getElementById("idDeliverTo").value = e.DeliverTo;
+        document.getElementById("idInstruction").value = e.Instruction;
+        $("#serviceTypeDDL").data("kendoDropDownList").select(function (dataItem) {
+            return dataItem.Name === e.ServiceType;
+        });
+        $("#deliveryAgentDDL").data("kendoDropDownList").select(function (dataItem) {
+            return dataItem.Name === e.DeliveryAgent;
+        });
+        document.getElementById("idPOD").value = e.POD;
+        document.getElementById("idComment").value = e.Comments;
+        
     }
 
     
@@ -375,6 +416,8 @@
             }
 
             var jobTicket = {
+                "JobTicketId": document.getElementById("idJobTicketId").value,
+                "CompanyId": document.getElementById("idCompanyId").value,
                 "ClientName" : $("#clients").data("kendoDropDownList").text(),
                 "JobDate": $("#datepickerJobDate").data("kendoDatePicker").value(),
                 "DeliveryDate": $("#datepickerDeliveryDate").data("kendoDatePicker").value(),
