@@ -25,6 +25,12 @@ namespace SimplexInvoiceWeb.Controllers
         public int DeliveryAgentID { get; set; }
     }
 
+    public class State
+    {
+        public string StateId { get; set; }
+        public string StateCode { get; set; }
+    }
+
     public class ReferenceDataController : Controller
     {
 
@@ -106,5 +112,28 @@ namespace SimplexInvoiceWeb.Controllers
 
             return Json(result, JsonRequestBehavior.AllowGet);
         }
+
+        public ActionResult GetStates()
+        {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            IEnumerable<string> states = SimplexInvoiceHelper.GetStates();
+
+            List<State> result = new List<State>();
+
+            foreach (var st in states)
+            {
+                State c = new State() { StateId = st, StateCode = st };
+                result.Add(c);
+            }
+
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+
     }
 }
