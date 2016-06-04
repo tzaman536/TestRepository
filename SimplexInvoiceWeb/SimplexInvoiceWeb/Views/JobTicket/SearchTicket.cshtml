@@ -109,7 +109,7 @@
                             model.Field(p => p.DeliverTo).Editable(false);
 
                         })
-                        .Read("Editing_Read", "JobTicket")
+                        .Read(read => read.Action("Search_Read", "JobTicket").Data("getUserInput"))
                       ))
         </div>
     </div>
@@ -150,13 +150,74 @@
             });*@
         }
 
-        function searchTicket() {
-            
-            alert(document.getElementById("idInputJobDate").value);
-            alert(document.getElementById("idInputClientName").value);
-            
-
+        function getUserInput(){
+            return {
+                jobDate: document.getElementById("idInputJobDate").value,
+                clientName: document.getElementById("idInputClientName").value
+            }
         }
+
+        function searchTicket() {
+            $('#JobTicketGrid').data('kendoGrid').dataSource.read();
+        }
+
+        function onChange(arg) {
+            @*var grid = $("#JobTicketGrid").data("kendoGrid");
+            var selectedItem = grid.dataItem(grid.select());
+
+
+            var parms = {
+                jobTicketId: selectedItem.JobTicketId
+            };
+
+
+            $.ajax({
+                type: "GET",
+                traditional: true,
+                url: '@Url.Action("GetJobTicketInfo", "JobTicket")',
+                async: true,
+                data: parms,
+                dataType: "json",
+                beforeSend: function (xhr) {
+                    $('#loader').show();
+                },
+                success: function (response, textStatus, jqXHR) {
+                    $('#loader').hide();
+                    Init(response.message);
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert("Error found during execution");
+                    $('#loader').hide();
+                }
+            });*@
+        }
+
+        function onRequestEnd(e) {
+            if (e.type == "update" && !e.response.Errors) {
+                alert("product updated");
+            }
+
+            if (e.type == "destroy" && !e.response.Errors) {
+                alert("Producdt deleted");
+            }
+        }
+
+        function error_handler(e) {
+            if (e.errors) {
+                var message = "Errors:\n";
+                $.each(e.errors, function (key, value) {
+                    if ('errors' in value) {
+                        $.each(value.errors, function () {
+                            message += this + "\n";
+                        });
+                    }
+                });
+                alert(message);
+            }
+        }
+
+
+
 
 </script>
 <style>

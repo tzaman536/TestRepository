@@ -159,6 +159,32 @@ namespace SimplexInvoiceWeb.Controllers
             return Json(new { success = true, message = c }, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult Search_Read([DataSourceRequest] DataSourceRequest request, string jobDate, string clientName)
+        {
+
+            if (lc == null)
+                lc = lch.GetCompanyRegisteredByUser(User.Identity.Name);
+
+
+
+            IEnumerable<JobTicket> result = jth.GetAllTickets(lc);
+            if (result == null)
+                result = new List<JobTicket>();
+
+            if(!jobDate.Equals("UNSELECTED"))
+            {
+                result = result.Where(x => x.JobDate.ToString("MM/dd/yyyy").Equals(jobDate));
+            }
+
+            if (!clientName.Equals("UNSELECTED"))
+            {
+                result = result.Where(x => x.ClientName.Equals(clientName));
+            }
+
+
+            return Json(result.ToDataSourceResult(request));
+        }
+
 
         public ActionResult Editing_Read([DataSourceRequest] DataSourceRequest request)
         {

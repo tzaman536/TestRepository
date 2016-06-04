@@ -110,6 +110,30 @@ namespace SimplexInvoiceBL
             }
         }
 
+        public IEnumerable<JobTicket> GetAllTickets(LogisticsCompany lc)
+        {
+            try
+            {
+                using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+                {
+                    conn.Open();
+                    return conn.Query<JobTicket>(@"
+                                                    select mc.CompanyName as ClientName, jt.*
+                                                    from invoice.JobTickets jt
+                                                    inner join invoice.MyClients mc on jt.ClientCompanyId = mc.ClientCompanyId
+                                                    where jt.CompanyId = @CompanyId
+                                            ", new { CompanyId = lc.CompanyId });
+
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.Fatal(ex);
+                return null;
+            }
+        }
+
+
 
         public JobTicket GetJobTicket(int jobTicketId)
         {
