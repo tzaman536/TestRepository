@@ -17,7 +17,7 @@ namespace SimplexInvoiceWeb.Controllers
 
         SimplexInvoiceHelper helper = new SimplexInvoiceHelper();
         LogisticsCompanyHandler ch = new LogisticsCompanyHandler();
-        ClientsCompanyHandler clientCompanyHandler = new ClientsCompanyHandler();
+        ClientsCompanyHandler cch = new ClientsCompanyHandler();
         LogisticsCompany lc;
         JobTicketHandler jth = new JobTicketHandler();
 
@@ -44,10 +44,17 @@ namespace SimplexInvoiceWeb.Controllers
             Invoice invoice = new Invoice();
             lc = ch.GetCompanyRegisteredByUser(User.Identity.Name);
             var jobTicket = jth.GetJobTicket(jobTicketId);
-            invoice.MyCompanyAddress = string.Format("{0}</br>{1}</br>{2}, {3} {4} </br>", lc.CompanyName,lc.AddressLine1,lc.City,lc.State,lc.Zip);
-            invoice.MyCompanyContactInfo = string.Format("TEL: {0} </br> FAX: {1} </br>", lc.MobileNumber, lc.FaxNumber);
-            invoice.JobDate = string.Format("DATE: {0}",jobTicket.JobDate.ToString("MM/DD/yyyy"));
+            invoice.MyCompanyAddress = string.Format("{0}<br />{1}<br />{2}, {3} {4} <br />", lc.CompanyName,lc.AddressLine1,lc.City,lc.State,lc.Zip);
+            invoice.MyCompanyContactInfo = string.Format("TEL: {0} <br /> FAX: {1} <br />", lc.MobileNumber, lc.FaxNumber);
+            invoice.JobDate = string.Format("DATE: {0}",jobTicket.JobDate.ToString("MM/dd/yyyy"));
             invoice.JobNumber = string.Format("JOB NUMBER: {0}", jobTicket.JobTicketId);
+            var clientCompany =  cch.GetClientCompanyById(jobTicket.ClientCompanyId, lc);
+            
+            invoice.BillTo = string.Format(@"BILL TO :&nbsp;&nbsp;{0}
+                                            <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            {1}
+                                            <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            {2}&nbsp;&nbsp;{3}&nbsp;{4}<br />", clientCompany.BillToName, clientCompany.BillToAddressLine1, clientCompany.BillToCity,clientCompany.State,clientCompany.BillToZip);
             return Json(new { success = true, message = invoice }, JsonRequestBehavior.AllowGet);
         }
 

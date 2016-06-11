@@ -12,6 +12,6 @@ namespace SimplexInvoiceModel
         public string MyCompanyContactInfo { get; set; }
         public string JobDate { get; set; }
         public string JobNumber { get; set; }
-
+        public string BillTo { get; set; }
     }
 }

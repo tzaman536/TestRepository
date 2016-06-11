@@ -101,7 +101,7 @@ namespace SimplexInvoiceWeb.Controllers
 
             try
             {
-                var existingCompany = cch.GetCompanyByName(c.CompanyName, lc);
+                var existingCompany = cch.GetClientCompanyByName(c.CompanyName, lc);
                 if (existingCompany == null)
                 {
                     c.CompanyId = lc.CompanyId;
@@ -138,7 +138,7 @@ namespace SimplexInvoiceWeb.Controllers
             if (lc == null)
                 lc = lch.GetCompanyRegisteredByUser(User.Identity.Name);
 
-            ClientCompany c = cch.GetCompanyByName(clientCompanyString,lc); 
+            ClientCompany c = cch.GetClientCompanyByName(clientCompanyString,lc); 
 
             if (c == null)
             {

@@ -191,7 +191,7 @@ namespace SimplexInvoiceBL
             }
         }
 
-        public ClientCompany GetCompanyByName(string companyName, LogisticsCompany lc)
+        public ClientCompany GetClientCompanyByName(string companyName, LogisticsCompany lc)
         {
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
             {
@@ -202,6 +202,22 @@ namespace SimplexInvoiceBL
                                                 where CompanyName = @companyName
                                                   and CompanyId = @companyId
                                             ", new { companyName, companyId = lc.CompanyId });
+
+                return result.FirstOrDefault();
+            }
+        }
+
+        public ClientCompany GetClientCompanyById(int clientCompanyId, LogisticsCompany lc)
+        {
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+            {
+                conn.Open();
+                var result = conn.Query<ClientCompany>(@"
+                                                select *
+                                                from [SimplexInvoice].[invoice].[MyClients]
+                                                where ClientCompanyId = @clientCompanyId
+                                                  and CompanyId = @companyId
+                                            ", new { clientCompanyId, companyId = lc.CompanyId });
 
                 return result.FirstOrDefault();
             }

@@ -94,7 +94,7 @@ namespace SimplexInvoiceWeb.Controllers
             if (lc == null)
                 lc = lch.GetCompanyRegisteredByUser(User.Identity.Name);
 
-            ClientCompany c = cch.GetCompanyByName(chargeInput.InputClient, lc);
+            ClientCompany c = cch.GetClientCompanyByName(chargeInput.InputClient, lc);
 
             chargeInput.Calc(c.WeightRate, c.ComplimentaryWeight);
             
@@ -122,7 +122,7 @@ namespace SimplexInvoiceWeb.Controllers
             if (lc == null)
                 lc = lch.GetCompanyRegisteredByUser(User.Identity.Name);
 
-            var clientCompany = cch.GetCompanyByName(ticket.ClientName, lc);
+            var clientCompany = cch.GetClientCompanyByName(ticket.ClientName, lc);
             ticket.ClientCompanyId = clientCompany.ClientCompanyId;
 
 
@@ -165,7 +165,7 @@ namespace SimplexInvoiceWeb.Controllers
             if (lc == null)
                 lc = lch.GetCompanyRegisteredByUser(User.Identity.Name);
 
-            ClientCompany c = cch.GetCompanyByName(inputClient, lc);
+            ClientCompany c = cch.GetClientCompanyByName(inputClient, lc);
 
             
 
