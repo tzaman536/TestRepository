@@ -42,7 +42,7 @@ namespace SimplexInvoiceWeb.Controllers
         JobTicketHandler jth = new JobTicketHandler();
 
         // GET: JobTicket
-        public ActionResult Index()
+        public ActionResult Index(int? jobTicketId)
         {
             if (!User.Identity.IsAuthenticated)
             {
@@ -51,6 +51,17 @@ namespace SimplexInvoiceWeb.Controllers
 
             return View();
         }
+
+        public ActionResult EditTicket(int jobTicketId)
+        {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            return View();
+        }
+
 
         public ActionResult SearchTicket()
         {
@@ -173,7 +184,7 @@ namespace SimplexInvoiceWeb.Controllers
 
             if(!jobDate.Equals("UNSELECTED"))
             {
-                result = result.Where(x => x.JobDate.ToString("MM/dd/yyyy").Equals(jobDate));
+                result = result.Where(x => x.JobDate.ToString("d").Equals(jobDate));
             }
 
             if (!clientName.Equals("UNSELECTED"))
