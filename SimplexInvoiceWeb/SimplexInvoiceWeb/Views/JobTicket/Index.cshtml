@@ -3,7 +3,7 @@
     ViewBag.Title = "Job Ticket";
 }
 
-<h2 class="first-line page-description">Add Job Ticket <a id="restInputForm" onclick="resetInputForm()"> [ Click to reset input form]</a></h2>
+<h2 class="first-line page-description">Add/Update Job Ticket <a id="restInputForm" onclick="resetInputForm()"> [ Click to reset input form]</a></h2>
 
 <div style="display:table;">
     <div style="display:table-row">
@@ -217,16 +217,16 @@
     }
     function Init(e)
     {
-        
+
         document.getElementById("idJobTicketId").value = e.JobTicketId;
         document.getElementById("idCompanyId").value = e.CompanyId;
-        
+
         $("#clients").data("kendoDropDownList").select(function (dataItem) {
             return dataItem.ClientName === e.ClientName;
         });
         $("#datepickerJobDate").data("kendoDatePicker").value(e.JobDate);
         $("#datepickerDeliveryDate").data("kendoDatePicker").value(e.DeliveryDate);
-        
+
         document.getElementById("idQuantity").value = e.Quantity;
         document.getElementById("idWeight").value = e.Weight;
         document.getElementById("idBasePickupCharge").value = e.BasePickupCharge;
@@ -236,12 +236,12 @@
         document.getElementById("idMiscService").value = e.MiscFee
         document.getElementById("idTotalCharge").value = e.TotalCharge;
         document.getElementById("idWaitingTime").value = e.WaitTime;
-        
+
         $("#pickUpLocation").data("kendoDropDownList").select(function (dataItem) {
             return dataItem.Location === e.PickupFrom;
         });
         document.getElementById("idPickupFrom").value = e.PickupFrom;
-        
+
         $("#deliveryLocation").data("kendoDropDownList").select(function (dataItem) {
             return dataItem.Location === e.DeliverTo;
         });
@@ -255,42 +255,46 @@
         });
         document.getElementById("idPOD").value = e.POD;
         document.getElementById("idComment").value = e.Comments;
-        
+
     }
 
-    
-    function onChange(arg) {
-        var grid = $("#JobTicketGrid").data("kendoGrid");
-        var selectedItem = grid.dataItem(grid.select());
+
+        function onChange(arg) {
+            var grid = $("#JobTicketGrid").data("kendoGrid");
+            var selectedItem = grid.dataItem(grid.select());
+
+            loadJobTicket(selectedItem.JobTicketId);
 
 
-        var parms = {
-            jobTicketId: selectedItem.JobTicketId
-        };
+
+        }
+
+        function loadJobTicket(jobTicketId) {
+            var parms = {
+                jobTicketId: jobTicketId
+            };
 
 
-        $.ajax({
-            type: "GET",
-            traditional: true,
-            url: '@Url.Action("GetJobTicketInfo", "JobTicket")',
-            async: true,
-            data: parms,
-            dataType: "json",
-            beforeSend: function (xhr) {
-                $('#loader').show();
-            },
-            success: function (response, textStatus, jqXHR) {
-                $('#loader').hide();
-                Init(response.message);
-                //alert(response.message.ClientName)
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                alert("Error found during execution");
-                $('#loader').hide();
-            }
-        });
-
-
+            $.ajax({
+                type: "GET",
+                traditional: true,
+                url: '@Url.Action("GetJobTicketInfo", "JobTicket")',
+                async: true,
+                data: parms,
+                dataType: "json",
+                beforeSend: function (xhr) {
+                    $('#loader').show();
+                },
+                success: function (response, textStatus, jqXHR) {
+                    $('#loader').hide();
+                    Init(response.message);
+                    //alert(response.message.ClientName)
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert("Error found during execution");
+                    $('#loader').hide();
+                }
+            });
 
         }
 
@@ -323,7 +327,10 @@
 
     $(document).ready(function () {
         validateUploadForm();
-        
+        var jobTicketId = @Html.Raw(Json.Encode(ViewData["JOB_TICKET_ID"]));
+        //alert(jobTicketId);
+        if(jobTicketId != null)
+            loadJobTicket(jobTicketId);
 
     });
 
@@ -428,7 +435,7 @@
                 "FuelSurcharge" : document.getElementById("idFuelSurcharge").value,
                 "MiscFee" : document.getElementById("idMiscService").value,
                 "TotalCharge" : document.getElementById("idTotalCharge").value,
-                "WaitTime" : document.getElementById("idWaitingTime").value, 
+                "WaitTime" : document.getElementById("idWaitingTime").value,
                 "PickupFrom" : document.getElementById("idPickupFrom").value,
                 "DeliverTo" : document.getElementById("idDeliverTo").value,
                 "Instruction" : document.getElementById("idInstruction").value,

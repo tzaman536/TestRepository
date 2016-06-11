@@ -97,7 +97,7 @@ namespace SimplexInvoiceBL
                                                     select mc.CompanyName as ClientName, jt.*
                                                     from invoice.JobTickets jt
                                                     inner join invoice.MyClients mc on jt.ClientCompanyId = mc.ClientCompanyId
-                                                    where jt.CreatedAt >= (cast(GETDATE()-6 as date))                                                
+                                                    where (jt.CreatedAt >= (cast(GETDATE()-6 as date)) or jt.ModifiedAt >= (cast(GETDATE()-6 as date)))                                                
                                                       and jt.CompanyId = @CompanyId
                                             ", new { CompanyId = lc.CompanyId });
 

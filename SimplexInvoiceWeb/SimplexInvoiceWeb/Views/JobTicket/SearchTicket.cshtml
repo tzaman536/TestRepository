@@ -83,7 +83,7 @@
                                             @Html.ActionLink(@item.JobTicketId.ToString(), "Index", "JobTicket", new { jobTicketId = @item.JobTicketId })
                                          </text>)
                                       .ClientTemplate("<a href='/JobTicket/Index?jobTicketId=#= JobTicketId#'>Edit Ticket</a>")
-                                      .Title("");
+                                      .Title("ModifyTicket").Width(85);
                     })
                     .ToolBar(toolbar =>
                     {

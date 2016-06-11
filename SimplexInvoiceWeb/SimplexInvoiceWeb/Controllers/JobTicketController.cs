@@ -41,6 +41,7 @@ namespace SimplexInvoiceWeb.Controllers
         LogisticsCompany lc;
         JobTicketHandler jth = new JobTicketHandler();
 
+
         // GET: JobTicket
         public ActionResult Index(int? jobTicketId)
         {
@@ -49,6 +50,7 @@ namespace SimplexInvoiceWeb.Controllers
                 return RedirectToAction("Login", "Account");
             }
 
+            ViewData["JOB_TICKET_ID"] = jobTicketId;
             return View();
         }
 
