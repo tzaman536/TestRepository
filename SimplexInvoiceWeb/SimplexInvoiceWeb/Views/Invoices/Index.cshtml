@@ -156,6 +156,9 @@
                 document.getElementById("navBar").style.minHeight = "20px";
             }
 
+            var jobTicketId = @Html.Raw(Json.Encode(ViewData["JOB_TICKET_ID"]));
+
+            alert(jobTicketId);
             //LoadInvoice();
 
         });
@@ -388,15 +391,15 @@
                 filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#77021d, endColorstr=#3a000d);
             }
 
-        .container {
+        /*.container {
             margin-left: 0;
         }
 
         .body-content {
             margin-left: 0;
-        }
+        }*/
 
-        body {
+        /*body {
             padding-top: 100px;
             padding-bottom: 20px;
             background-image: url(../Content/pageBackgroundImage2.jpg);
@@ -405,5 +408,5 @@
             width: 100%;
             height: 100%;
             background-size: 100%;
-        }
+        }*/
     </style>

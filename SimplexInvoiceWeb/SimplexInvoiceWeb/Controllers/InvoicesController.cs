@@ -20,7 +20,7 @@ namespace SimplexInvoiceWeb.Controllers
         LogisticsCompany lc;
 
         // GET: Invoices
-        public ActionResult Index()
+        public ActionResult Index(int? jobTicketId)
         {
             if (!User.Identity.IsAuthenticated)
             {
@@ -58,10 +58,11 @@ namespace SimplexInvoiceWeb.Controllers
 
 
             ViewData["PU_FORM"] = c;
-
-
-
             ViewData["MY_COMPANY"] = lc;
+
+            ViewData["JOB_TICKET_ID"] = jobTicketId;
+
+
 
             return View();
         }

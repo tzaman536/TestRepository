@@ -84,6 +84,12 @@
                                          </text>)
                                       .ClientTemplate("<a href='/JobTicket/Index?jobTicketId=#= JobTicketId#'>Edit Ticket</a>")
                                       .Title("ModifyTicket").Width(85);
+                        columns.Template(@<text>
+                                        @Html.ActionLink(@item.JobTicketId.ToString(), "Index", "Invoices", new { jobTicketId = @item.JobTicketId })
+                                        </text>)
+                                      .ClientTemplate("<a href='/Invoices/Index?jobTicketId=#= JobTicketId#'>Print Invoice</a>")
+                                      .Title("PrintInvoice").Width(85);
+
                     })
                     .ToolBar(toolbar =>
                     {
