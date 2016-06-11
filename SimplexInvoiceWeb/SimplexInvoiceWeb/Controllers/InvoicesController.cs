@@ -1,4 +1,5 @@
-﻿using log4net;
+﻿using Kendo.Mvc.UI;
+using log4net;
 using SimplexInvoiceBL;
 using SimplexInvoiceModel;
 using System;
@@ -18,6 +19,7 @@ namespace SimplexInvoiceWeb.Controllers
         LogisticsCompanyHandler ch = new LogisticsCompanyHandler();
         ClientsCompanyHandler clientCompanyHandler = new ClientsCompanyHandler();
         LogisticsCompany lc;
+        JobTicketHandler jth = new JobTicketHandler();
 
         // GET: Invoices
         public ActionResult Index(int? jobTicketId)
@@ -27,38 +29,7 @@ namespace SimplexInvoiceWeb.Controllers
                 return RedirectToAction("Login", "Account");
             }
 
-
             
-
-            ClientCompany c = null;
-
-            if (c == null)
-            {
-                c = new ClientCompany();
-                c.CompanyName = string.Empty;
-                c.ContactPerson = string.Empty;
-                c.AddressLine1 = string.Empty;
-                c.AddressLine2 = string.Empty;
-                c.City = string.Empty;
-                c.State = "NY";
-                c.Zip = string.Empty;
-                c.Email = string.Empty;
-                c.MobileNumber = string.Empty;
-                c.OfficeNumber = string.Empty;
-                c.FaxNumber = string.Empty;
-            }
-
-            lc = ch.GetCompanyRegisteredByUser(User.Identity.Name);
-            if (lc != null)
-            {
-                c.WeightRate = lc.WeightRate;
-                c.ComplimentaryWeight = lc.ComplimentaryWeight;
-                c.BasePickupCharge = lc.BasePickupCharge;
-            }
-
-
-            ViewData["PU_FORM"] = c;
-            ViewData["MY_COMPANY"] = lc;
 
             ViewData["JOB_TICKET_ID"] = jobTicketId;
 
@@ -66,5 +37,20 @@ namespace SimplexInvoiceWeb.Controllers
 
             return View();
         }
+
+        [HttpGet]
+        public ActionResult GetInvoice([DataSourceRequest]DataSourceRequest request, int jobTicketId)
+        {
+            Invoice invoice = new Invoice();
+            lc = ch.GetCompanyRegisteredByUser(User.Identity.Name);
+            var jobTicket = jth.GetJobTicket(jobTicketId);
+            invoice.MyCompanyAddress = string.Format("{0}</br>{1}</br>{2}, {3} {4} </br>", lc.CompanyName,lc.AddressLine1,lc.City,lc.State,lc.Zip);
+            invoice.MyCompanyContactInfo = string.Format("TEL: {0} </br> FAX: {1} </br>", lc.MobileNumber, lc.FaxNumber);
+            invoice.JobDate = string.Format("DATE: {0}",jobTicket.JobDate.ToString("MM/DD/yyyy"));
+            invoice.JobNumber = string.Format("JOB NUMBER: {0}", jobTicket.JobTicketId);
+            return Json(new { success = true, message = invoice }, JsonRequestBehavior.AllowGet);
+        }
+
     }
+
 }

@@ -4,77 +4,7 @@
 @{
     ViewBag.Title = "Invoices";
 }
-
-@*<link rel="stylesheet" href="~/Content/PrintSetup.css" type="text/css" />*@
-
-<div id="divMenuAndGrid" style="display:table; margin-left: 1px; margin-top:10px;">
-    <div style="display:table-row">
-        <div id="divMenu" style="display:table-cell; padding-right:5px;min-width:300px;">
-            
-        </div>
-        <div style="display:table-cell; padding-right:5px;min-width:50px;">
-
-        </div>
-        <div id="divAllInvoices" style="display:table-cell;min-width:1200px;margin-left:1px; margin-top:1px; vertical-align:top; ">
-            @(Html.Kendo().Grid<ClientCompany>()
-            .Name("AllInvoicesGrid")
-            .Columns(columns =>
-            {
-                columns.Bound(p => p.CompanyName).Width(100);
-                columns.Bound(p => p.Email).Width(100);
-                columns.Bound(p => p.WeightRate).Width(255);
-                columns.Bound(p => p.BasePickupCharge).Width(85);
-                columns.Bound(p => p.State).Width(85);
-                columns.Bound(p => p.MobileNumber).Width(85);
-                columns.Command(command => { command.Edit(); command.Destroy(); }).Width(250);
-            })
-            .ToolBar(toolbar =>
-            {
-                //toolbar.Create();
-                //toolbar.Save();
-            })
-            //.Editable(editable => editable.Mode(GridEditMode.InCell))
-            .Editable(editable => editable.Mode(GridEditMode.InLine))
-            //.Pageable()
-            .Filterable()
-            .Navigatable()
-            .Sortable()
-            .Selectable(selectable => selectable
-                    .Mode(GridSelectionMode.Single)
-                    .Type(GridSelectionType.Row))
-            //.Scrollable()
-            .Events(events => events.Change("onChange"))
-            .DataSource(dataSource => dataSource
-                .Ajax()
-                .Batch(false)
-                .PageSize(1000)
-                .ServerOperation(false)
-                .Events(events => events.Error("error_handler").RequestEnd("onRequestEnd"))
-                //.Model(model => model.Id(p => p.ProductID))
-                .Model(model =>
-                {
-                    model.Id(p => p.ClientCompanyId);
-                    model.Field(p => p.CompanyName).Editable(false);
-                    model.Field(p => p.Email).Editable(false);
-                    model.Field(p => p.WeightRate).Editable(false);
-                    model.Field(p => p.BasePickupCharge).Editable(false);
-                    model.Field(p => p.State).Editable(true);
-                    model.Field(p => p.MobileNumber).Editable(false);
-                    model.Field(p => p.ContactPerson).Editable(false);
-
-                })
-
-
-                                .Create("Editing_Create", "MyClients")
-                                .Read("Editing_Read", "MyClients")
-                                .Update("Editing_Update", "MyClients")
-                                .Destroy("Editing_Destroy", "MyClients")
-                            )
-            )
-        </div>
-        <div id="loader" style="display:none; font:bold; color:darkblue">Saving.... Please wait</div>
-    </div>
-</div>
+<h2 class="first-line page-description">Print Invoice:</h2>
 
 
 <div style="display:table; margin-left: 1px; margin-top:10px;">
@@ -83,7 +13,7 @@
 
 
             <div id="divInvoice">
-                <div style="min-width:800px;  background: rgb(206,220,231)">
+                <div style="min-width:800px;">
                     <style>
                         dl { 
                             width: 100%; 
@@ -112,33 +42,36 @@
 
                     <div id="divInvoiceDetail" style="display:table; margin-left: 1px; margin-top:10px;">
                         <div style="display:table-row">
-                            <div id="divCompanyNameAndAddress" style="display:table-cell; padding-right:5px;min-width:300px;">
+                            <div id="divMyCompanyNameAndAddress" style="display:table-cell; padding-right:5px;min-width:300px;">
 
                             </div>
                             <div style="display:table-cell; padding-right:5px;min-width:250px;">
 
                             </div>
-                            <div id="divCompanyPhoneAndFax" style="display:table-cell;margin-left:1px; margin-top:1px; vertical-align:top; ">
+                            <div id="divMyCompanyPhoneAndFax" style="display:table-cell;margin-left:1px; margin-top:1px; vertical-align:top; ">
+                            </div>
+                        </div>
+                        <br />
+                        <div style="display:table-row;">
+                            <div id="divJobDate" style="display:table-cell; padding-right:5px;min-width:300px;">
+                            </div>
+                            <div style="display:table-cell; padding-right:5px;min-width:250px;">
+
+                            </div>
+                            <div style="display:table-cell;margin-left:1px; margin-top:1px; vertical-align:top; ">
                             </div>
                         </div>
                         <div style="display:table-row">
-                            <div id="mistDtDDSection" style="display:table-cell; padding-right:5px;min-width:300px;">
-                                <dl>
-                                    <dt>Coffee:</dt>
-                                    <dd>Black hot drink</dd>
-                                    <dt>Milk:</dt>
-                                    <dd>White cold drink</dd>
-                                </dl>
+                            <div id="divJobNumber" style="display:table-cell; padding-right:5px;min-width:300px;">
                             </div>
-                            <div style="display:table-cell; padding-right:5px;min-width:50px;">
+                            <div style="display:table-cell; padding-right:5px;min-width:250px;">
 
                             </div>
-                            <div style="display:table-cell;min-width:1200px;margin-left:1px; margin-top:1px; vertical-align:top; ">
+                            <div style="display:table-cell;margin-left:1px; margin-top:1px; vertical-align:top; ">
                             </div>
                         </div>
 
                     </div>
-                    
                 </div>
             </div>
         </div>
@@ -158,25 +91,22 @@
 
             var jobTicketId = @Html.Raw(Json.Encode(ViewData["JOB_TICKET_ID"]));
 
-            alert(jobTicketId);
+            if(jobTicketId != null)
+                GetInvoice(jobTicketId);
+            //alert(jobTicketId);
             //LoadInvoice();
 
         });
 
         function LoadInvoice(e)
         {
-            @*var myCompany = @Html.Raw(Json.Encode(ViewData["MY_COMPANY"]));*@
-            
-            document.getElementById("divCompanyNameAndAddress").innerHTML = e.CompanyName 
-                                                                            + "</br>" 
-                                                                            + e.AddressLine1
-                                                                            + "</br>" 
-                                                                            + "JAMAICA" + " " + "NY" + "11753"
-                                                                            + "</br>";
+            var myCompany = @Html.Raw(Json.Encode(ViewData["MY_COMPANY"]));
 
-            document.getElementById("divCompanyPhoneAndFax").innerHTML = "TEL: " + "(516) 639 8131" + "</br>" 
-                                                                         + "FAX: " + "(516) 639 8132 ";
             
+            document.getElementById("divMyCompanyNameAndAddress").innerHTML = e.MyCompanyAddress;
+            document.getElementById("divMyCompanyPhoneAndFax").innerHTML = e.MyCompanyContactInfo;
+            document.getElementById("divJobDate").innerHTML = e.JobDate;
+            document.getElementById("divJobNumber").innerHTML = e.JobNumber;
         }
 
 
@@ -218,7 +148,7 @@
 
 
 
-        function onChange(arg) {
+        @*function onChange(arg) {
             var grid = $("#AllInvoicesGrid").data("kendoGrid");
             var selectedItem = grid.dataItem(grid.select());
             //alert(selectedItem.CompanyName);
@@ -251,7 +181,38 @@
             });
 
 
+        }*@
+
+
+        function GetInvoice(jobTicketId) {
+            var parms = {
+                jobTicketId: jobTicketId
+            };
+
+
+            $.ajax({
+                type: "GET",
+                traditional: true,
+                url: '@Url.Action("GetInvoice", "Invoices")',
+                async: true,
+                data: parms,
+                dataType: "json",
+                beforeSend: function (xhr) {
+                    $('#loader').show();
+                },
+                success: function (response, textStatus, jqXHR) {
+                    $('#loader').hide();
+                    LoadInvoice(response.message);
+                    //alert(response.message.ClientName)
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert("Error found during execution");
+                    $('#loader').hide();
+                }
+            });
+
         }
+
 
         function onRequestEnd(e) {
 
