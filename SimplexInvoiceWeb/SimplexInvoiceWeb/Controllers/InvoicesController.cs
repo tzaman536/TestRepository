@@ -55,6 +55,10 @@ namespace SimplexInvoiceWeb.Controllers
                                             {1}
                                             <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             {2}&nbsp;&nbsp;{3}&nbsp;{4}<br />", clientCompany.BillToName, clientCompany.BillToAddressLine1, clientCompany.BillToCity,clientCompany.State,clientCompany.BillToZip);
+
+            //invoice.PUFromAddress = string.Format("{0}<br />{1}<br />{2}, {3} {4} <br />", jobTicket.PickupFrom.CompanyName, lc.AddressLine1, lc.City, lc.State, lc.Zip);
+            //invoice.PUFromContactInfo = string.Format("TEL: {0} <br /> FAX: {1} <br />", lc.MobileNumber, lc.FaxNumber);
+
             return Json(new { success = true, message = invoice }, JsonRequestBehavior.AllowGet);
         }
 

@@ -63,7 +63,7 @@
                 <dt>Fuel Surcharge:</dt><dd><input type="number" class="k-textbox numberOfUnits" id="idFuelSurcharge" name="Fuel Charge" data-role='maskedtextbox' onchange="calcTotalCharge(this.value)" required /></dd>
                 <dt>Misc. Service:</dt><dd><input type="number" class="k-textbox numberOfUnits" id="idMiscService" name="Misc. Service" data-role='maskedtextbox' onchange="calcTotalCharge(this.value)"/></dd>
                 <dt class="total-row" >Total Charge:</dt><dd class="total-row"><input type="number" class="k-textbox numberOfUnits" id="idTotalCharge" name="Total Charge" data-role='maskedtextbox' /></dd>
-                <dt>Waiting Time:</dt><dd><input type="number" class="k-textbox instruction" id="idWaitingTime" name="Wait Time" data-role='maskedtextbox' /></dd>
+                <dt>Waiting Time:</dt><dd><input type="text" class="k-textbox instruction" id="idWaitingTime" name="Wait Time" data-role='maskedtextbox' /></dd>
                 <dt>Pickup From:</dt><dd>
                     @(Html.Kendo().DropDownList()
                       .Name("pickUpLocation")
@@ -85,6 +85,9 @@
                     )
                     <textarea id="idPickupFrom" name="Pickup From" class="k-textbox addressArea" rows="4" cols="20" required></textarea>
                 </dd>
+                <dt>P/U From Contact:</dt><dd><input type="text" class="k-textbox instruction" id="idPUFromContact" name="PU From Contact" data-role='maskedtextbox'  required /></dd>
+                <dt>P/U From Number:</dt><dd><input type="text" class="k-textbox input-phone" id="idPUFromNumber" name="PU From Number" data-role='maskedtextbox' data-mask="999-000-0000" required /></dd>
+                
                 <dt>Deliver To:</dt>
                 <dd>
                     @(Html.Kendo().DropDownList()
@@ -107,6 +110,8 @@
                     )
                     <textarea id="idDeliverTo" name="Deliver To" class="k-textbox addressArea" rows="4" cols="20" required></textarea>
                 </dd>
+                <dt>Deliver To Contact:</dt><dd><input type="text" class="k-textbox instruction" id="idDeliverToContact" name="Deliver To Contact" data-role='maskedtextbox' required /></dd>
+                <dt>Deliver To Number:</dt><dd><input type="text" class="k-textbox input-phone" id="idDeliverToNumber" name="Deliver To Number" data-role='maskedtextbox' data-mask="999-000-0000" required /></dd>
                 <dt>Instructions:</dt><dd><input type="text" class="k-textbox instruction" id="idInstruction" name="instruction"  /></dd>
                 <dt>Service Type:</dt>
                 <dd>
@@ -255,6 +260,12 @@
         });
         document.getElementById("idPOD").value = e.POD;
         document.getElementById("idComment").value = e.Comments;
+
+        document.getElementById("idPUFromContact").value = e.PickupFromContact;
+        document.getElementById("idPUFromNumber").value = e.PickupFromPhone
+        document.getElementById("idDeliverToContact").value = e.DeliverToContact;
+        document.getElementById("idDeliverToNumber").value = e.DeliverToPhone;
+
 
     }
 
@@ -442,7 +453,11 @@
                 "ServiceType" : $("#serviceTypeDDL").data("kendoDropDownList").text(),
                 "DeliveryAgent" : $("#deliveryAgentDDL").data("kendoDropDownList").text(),
                 "POD" : document.getElementById("idPOD").value,
-                "Comments": document.getElementById("idComment").value
+                "Comments": document.getElementById("idComment").value,
+                "PickupFromContact" : document.getElementById("idPUFromContact").value,
+                "PickupFromPhone" : document.getElementById("idPUFromNumber").value,
+                "DeliverToContact" : document.getElementById("idDeliverToContact").value,
+                "DeliverToPhone" : document.getElementById("idDeliverToNumber").value
             }
 
 

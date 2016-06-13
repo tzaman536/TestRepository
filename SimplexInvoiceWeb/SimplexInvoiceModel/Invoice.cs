@@ -13,5 +13,11 @@ namespace SimplexInvoiceModel
         public string JobDate { get; set; }
         public string JobNumber { get; set; }
         public string BillTo { get; set; }
+        public string PUFromAddress { get; set; }
+        public string PUFromContactInfo { get; set; }
+        public string DeliverToAddress { get; set; }
+        public string DeliverToContactInfo { get; set; }
+        public string InvoiceLeftPane { get; set; }
+        public string InvoiceRightPane { get; set; }
     }
 }

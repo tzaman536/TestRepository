@@ -26,6 +26,10 @@ namespace SimplexInvoiceModel
         public string WaitTime { get; set; }
         public string PickupFrom { get; set; }
         public string DeliverTo { get; set; }
+        public string PickupFromContact { get; set; }
+        public string PickupFromPhone { get; set; }
+        public string DeliverToContact { get; set; }
+        public string DeliverToPhone { get; set; }
         public string Instruction { get; set; }
         public string ServiceType { get; set; }
         public string DeliveryAgent { get; set; }

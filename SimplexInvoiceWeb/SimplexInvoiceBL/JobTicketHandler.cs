@@ -24,10 +24,14 @@ namespace SimplexInvoiceBL
                     var result = conn.Query<int>(@"
                     insert into invoice.JobTickets(CompanyId,ClientCompanyId,JobDate,DeliveryDate,Quantity,[Weight],Milage,Toll,FuelSurcharge,
                                                     MiscFee,TotalCharge,WaitTime,PickupFrom,DeliverTo,Instruction,ServiceType,
-                                                    DeliveryAgent,POD,Comments,CreatedBy,CreatedAt)
+                                                    DeliveryAgent,POD,Comments,CreatedBy,CreatedAt,PickupFromContact,PickupFromPhone,DeliverToContact,
+                                                    DeliverToPhone
+                                                    )
                                            values(@CompanyId,@ClientCompanyId,@JobDate,@DeliveryDate,@Quantity,@Weight,@Milage,@Toll,@FuelSurcharge,
                                                     @MiscFee,@TotalCharge,@WaitTime,@PickupFrom,@DeliverTo,@Instruction,@ServiceType,
-                                                    @DeliveryAgent,@POD,@Comments,@CreatedBy,getutcdate());
+                                                    @DeliveryAgent,@POD,@Comments,@CreatedBy,getutcdate(),@PickupFromContact,@PickupFromPhone,@DeliverToContact,
+                                                    @DeliverToPhone
+                                                    );
                                            SELECT SCOPE_IDENTITY()
 
                    
@@ -72,6 +76,10 @@ namespace SimplexInvoiceBL
                                             ,Comments = @Comments
                                             ,ModifiedBy = @ModifiedBy
                                             ,ModifiedAt = getutcdate()
+                                            ,PickupFromContact = @PickupFromContact
+                                            ,PickupFromPhone = @PickupFromPhone
+                                            ,DeliverToContact = @DeliverToContact
+                                            ,DeliverToPhone = @DeliverToPhone
                                         where JobTicketId = @JobTicketId
                                             ", jt);
 

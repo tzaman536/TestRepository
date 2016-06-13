@@ -80,6 +80,18 @@
                             <div style="display:table-cell;margin-left:1px; margin-top:1px; vertical-align:top; ">
                             </div>
                         </div>
+                        <br />
+                        <div style="display:table-row">
+                            <div id="divPUFromNameAndAddress" style="display:table-cell; padding-right:5px;min-width:300px;">
+
+                            </div>
+                            <div style="display:table-cell; padding-right:5px;min-width:250px;">
+
+                            </div>
+                            <div id="divPUFromContactInfo" style="display:table-cell;margin-left:1px; margin-top:1px; vertical-align:top; ">
+                            </div>
+                        </div>
+                        <br />
 
                     </div>
                 </div>
@@ -118,6 +130,8 @@
             document.getElementById("divJobDate").innerHTML = e.JobDate;
             document.getElementById("divJobNumber").innerHTML = e.JobNumber;
             document.getElementById("divBillTo").innerHTML = e.BillTo;
+            document.getElementById("divPUFromNameAndAddress").innerHTML = e.PUFromAddress;
+            document.getElementById("divPUFromContactInfo").innerHTML = e.PUFromContactInfo;
             
         }
 
