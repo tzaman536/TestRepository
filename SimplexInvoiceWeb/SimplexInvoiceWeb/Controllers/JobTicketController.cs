@@ -126,6 +126,9 @@ namespace SimplexInvoiceWeb.Controllers
             ticket.ClientCompanyId = clientCompany.ClientCompanyId;
 
 
+            Address addrPickupFrom = new Address(ticket.PickupFrom);
+            Address addrDeliverTo = new Address(ticket.DeliverTo);
+
             if (ticket.JobTicketId == 0)
             {
 

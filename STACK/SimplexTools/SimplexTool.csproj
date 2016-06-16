@@ -63,6 +63,7 @@
     <Compile Include="Cart\CartHandler.cs" />
     <Compile Include="Cart\CartItems.cs" />
     <Compile Include="Cart\CartView.cs" />
+    <Compile Include="Common\CommonMethods.cs" />
     <Compile Include="File\ImageHandler.cs" />
     <Compile Include="Logger\SimplexLogger.cs" />
     <Compile Include="Mail\SimplexMail.cs" />
