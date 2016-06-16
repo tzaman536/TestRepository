@@ -83,10 +83,10 @@
 
                       .HtmlAttributes(new { style = "width: 250px;" })
                     )
-                    <textarea id="idPickupFrom" name="Pickup From" class="k-textbox addressArea" rows="4" cols="20" required></textarea>
+                    <textarea id="idPickupFrom" name="Pickup From" class="k-textbox addressArea" rows="4" cols="20"  onclick="pickupFromEditStarted()" required></textarea>
                 </dd>
                 <dt>P/U From Contact:</dt><dd><input type="text" class="k-textbox instruction" id="idPUFromContact" name="PU From Contact" data-role='maskedtextbox'  required /></dd>
-                <dt>P/U From Number:</dt><dd><input type="text" class="k-textbox input-phone" id="idPUFromNumber" name="PU From Number" data-role='maskedtextbox' data-mask="999-000-0000" required /></dd>
+                <dt>P/U From Number:</dt><dd><input type="text" id="idPUFromNumber" name="PU From Number" class="k-textbox input-phone" data-role='maskedtextbox' data-mask="999-000-0000" required /></dd>
                 
                 <dt>Deliver To:</dt>
                 <dd>
@@ -108,10 +108,10 @@
 
                       .HtmlAttributes(new { style = "width: 250px;" })
                     )
-                    <textarea id="idDeliverTo" name="Deliver To" class="k-textbox addressArea" rows="4" cols="20" required></textarea>
+                    <textarea id="idDeliverTo" name="Deliver To" class="k-textbox addressArea" rows="4" cols="20" onclick="deliverToEditStarted()" required></textarea>
                 </dd>
                 <dt>Deliver To Contact:</dt><dd><input type="text" class="k-textbox instruction" id="idDeliverToContact" name="Deliver To Contact" data-role='maskedtextbox' required /></dd>
-                <dt>Deliver To Number:</dt><dd><input type="text" class="k-textbox input-phone" id="idDeliverToNumber" name="Deliver To Number" data-role='maskedtextbox' data-mask="999-000-0000" required /></dd>
+                <dt>Deliver To Number:</dt><dd><input type="text" class="k-textbox input-phone" id="idDeliverToNumber" name="Deliver To Number" data-role='maskedtextbox'  required /></dd>
                 <dt>Instructions:</dt><dd><input type="text" class="k-textbox instruction" id="idInstruction" name="instruction"  /></dd>
                 <dt>Service Type:</dt>
                 <dd>
@@ -222,6 +222,7 @@
     }
     function Init(e)
     {
+
 
         document.getElementById("idJobTicketId").value = e.JobTicketId;
         document.getElementById("idCompanyId").value = e.CompanyId;
@@ -342,10 +343,32 @@
         //alert(jobTicketId);
         if(jobTicketId != null)
             loadJobTicket(jobTicketId);
+        else
+        {
+            document.getElementById("idPickupFrom").value = "Line 1: Type name\r\nLine2: Type address \r\nLine 3: Type city stateCode zipcode";
+            document.getElementById("idDeliverTo").value = "Line 1: Type name\r\nLine2: Type address \r\nLine 3: Type city stateCode zipcode";
+        }
+        
+
 
     });
 
+    function pickupFromEditStarted()
+    {
+        if(document.getElementById("idPickupFrom").value.startsWith("Line 1"))
+        {
+            document.getElementById("idPickupFrom").value = "";
+        }
+        
+    }
 
+    function deliverToEditStarted()
+    {
+        if(document.getElementById("idDeliverTo").value.startsWith("Line 1"))
+        {
+            document.getElementById("idDeliverTo").value = "";
+        }
+    }
 
     function calcTotalCharge(value) {
 
