@@ -92,6 +92,17 @@
                             </div>
                         </div>
                         <br />
+                        <div style="display:table-row">
+                            <div id="divDeliverToNameAndAddress" style="display:table-cell; padding-right:5px;min-width:300px;">
+
+                            </div>
+                            <div style="display:table-cell; padding-right:5px;min-width:250px;">
+
+                            </div>
+                            <div id="divDeliverToContactInfo" style="display:table-cell;margin-left:1px; margin-top:1px; vertical-align:top; ">
+                            </div>
+                        </div>
+                        <br />
 
                     </div>
                 </div>
@@ -132,6 +143,8 @@
             document.getElementById("divBillTo").innerHTML = e.BillTo;
             document.getElementById("divPUFromNameAndAddress").innerHTML = e.PUFromAddress;
             document.getElementById("divPUFromContactInfo").innerHTML = e.PUFromContactInfo;
+            document.getElementById("divDeliverToNameAndAddress").innerHTML = e.DeliverToAddress;
+            document.getElementById("divDeliverToContactInfo").innerHTML = e.DeliverToContactInfo;
             
         }
 
