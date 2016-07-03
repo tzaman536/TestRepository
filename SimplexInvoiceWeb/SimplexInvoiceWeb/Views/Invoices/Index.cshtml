@@ -42,6 +42,9 @@
 
                     <div id="divInvoiceDetail" style="display:table; margin-left: 1px; margin-top:10px;">
                         <div style="display:table-row">
+                            <div style="display:table-cell; padding-right:5px;min-width:50px;">
+
+                            </div>
                             <div id="divMyCompanyNameAndAddress" style="display:table-cell; padding-right:5px;min-width:300px;">
 
                             </div>
@@ -53,15 +56,20 @@
                         </div>
                         <br />
                         <div style="display:table-row;">
+                            <div style="display:table-cell; padding-right:5px;min-width:50px;">
+
+                            </div>
                             <div id="divJobDate" style="display:table-cell; padding-right:5px;min-width:300px;">
                             </div>
                             <div style="display:table-cell; padding-right:5px;min-width:250px;">
-
                             </div>
                             <div style="display:table-cell;margin-left:1px; margin-top:1px; vertical-align:top; ">
                             </div>
                         </div>
                         <div style="display:table-row">
+                            <div style="display:table-cell; padding-right:5px;min-width:50px;">
+
+                            </div>
                             <div id="divJobNumber" style="display:table-cell; padding-right:5px;min-width:300px;">
                             </div>
                             <div style="display:table-cell; padding-right:5px;min-width:250px;">
@@ -72,6 +80,9 @@
                         </div>
                         <br />
                         <div style="display:table-row">
+                            <div style="display:table-cell; padding-right:5px;min-width:50px;">
+
+                            </div>
                             <div id="divBillTo" style="display:table-cell; padding-right:5px;min-width:300px;">
                             </div>
                             <div style="display:table-cell; padding-right:5px;min-width:250px;">
@@ -82,6 +93,9 @@
                         </div>
                         <br />
                         <div style="display:table-row">
+                            <div style="display:table-cell; padding-right:5px;min-width:50px;">
+
+                            </div>
                             <div id="divPUFromNameAndAddress" style="display:table-cell; padding-right:5px;min-width:300px;">
 
                             </div>
@@ -93,6 +107,9 @@
                         </div>
                         <br />
                         <div style="display:table-row">
+                            <div style="display:table-cell; padding-right:5px;min-width:50px;">
+
+                            </div>
                             <div id="divDeliverToNameAndAddress" style="display:table-cell; padding-right:5px;min-width:300px;">
 
                             </div>
@@ -100,6 +117,34 @@
 
                             </div>
                             <div id="divDeliverToContactInfo" style="display:table-cell;margin-left:1px; margin-top:1px; vertical-align:top; ">
+                            </div>
+                        </div>
+                        <br />
+                        <div style="display:table-row">
+                            <div style="display:table-cell; padding-right:5px;min-width:50px;">
+
+                            </div>
+                            <div id="divInstruction" style="display:table-cell; padding-right:5px;min-width:300px;">
+
+                            </div>
+                            <div style="display:table-cell; padding-right:5px;min-width:250px;">
+
+                            </div>
+                            <div id="divQtyAndWeight" style="display:table-cell;margin-left:1px; margin-top:1px; vertical-align:top; ">
+                            </div>
+                        </div>
+                        <br />
+                        <div style="display:table-row">
+                            <div style="display:table-cell; padding-right:5px;min-width:50px;">
+
+                            </div>
+                            <div id="divDeliveryDetail" style="display:table-cell; padding-right:5px;min-width:300px;">
+
+                            </div>
+                            <div style="display:table-cell; padding-right:5px;min-width:250px;">
+
+                            </div>
+                            <div id="divChargeDetail" style="display:table-cell;margin-left:1px; margin-top:1px; vertical-align:top; ">
                             </div>
                         </div>
                         <br />
@@ -145,7 +190,11 @@
             document.getElementById("divPUFromContactInfo").innerHTML = e.PUFromContactInfo;
             document.getElementById("divDeliverToNameAndAddress").innerHTML = e.DeliverToAddress;
             document.getElementById("divDeliverToContactInfo").innerHTML = e.DeliverToContactInfo;
-            
+            document.getElementById("divInstruction").innerHTML = "INSTRUCTIONS: " + e.Instructions;
+            document.getElementById("divQtyAndWeight").innerHTML = "<b>QTY: </b>" + e.Qty +  "<br /> <b>WEIGHT: </b>" + e.Weight + "";
+            document.getElementById("divDeliveryDetail").innerHTML = "TYPE OF SERVICE: " + e.TypeOfService +  "<br /> DATE DEL.: " + e.DeliveryDate + "<br /> POD: " + e.POD +  "<br /> DELIVERY AGENT: " + e.DeliveryAgent +  "<br /> COMMENTS : " + e.Comment;
+            document.getElementById("divChargeDetail").innerHTML = "MILAGE: " + e.MilageCharge +  "<br /> TOLL CHARGE :" + e.TollCharge + "<br /> FUEL: " + e.FuelCharge +  "<br /> MISC. SERVICES: " + e.MiscServiceCharge +  "<br /> <b>TOTAL CHARGES :</b> " + e.TotalCharge;
+
         }
 
 

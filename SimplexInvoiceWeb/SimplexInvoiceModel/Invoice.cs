@@ -19,5 +19,19 @@ namespace SimplexInvoiceModel
         public string DeliverToContactInfo { get; set; }
         public string InvoiceLeftPane { get; set; }
         public string InvoiceRightPane { get; set; }
+        public string Instructions { get; set; }
+        public string TypeOfService { get; set; }
+        public string Qty { get; set; }
+        public string Weight { get; set; }
+        public string DeliveryDate { get; set; }
+        public string POD { get; set; }
+        public string DeliveryAgent { get; set; }
+        public string MilageCharge { get; set; }
+        public string TollCharge { get; set; }
+        public string FuelCharge { get; set; }
+        public string MiscServiceCharge { get; set; }
+        public string TotalCharge { get; set; }
+        public string Comment { get; set; }
+
     }
 }

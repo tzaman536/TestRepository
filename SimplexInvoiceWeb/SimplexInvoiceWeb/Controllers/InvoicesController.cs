@@ -60,7 +60,20 @@ namespace SimplexInvoiceWeb.Controllers
             invoice.PUFromContactInfo = string.Format("CONTACT : {0} <br /> PHONE: {1} <br />", jobTicket.PickupFromContact,jobTicket.PickupFromPhone);
             invoice.DeliverToAddress = string.Format("DELIVER TO : </br> {0} <br />", jobTicket.DeliverTo.Replace("\n", "<br />"));
             invoice.DeliverToContactInfo = string.Format("CONTACT : {0} <br /> PHONE: {1} <br />", jobTicket.DeliverToContact, jobTicket.DeliverToPhone);
-
+            invoice.Instructions = jobTicket.Instruction;
+            invoice.TypeOfService = jobTicket.ServiceType;
+            invoice.DeliveryDate = jobTicket.DeliveryDate.ToString("MM/dd/yyyy");
+            invoice.Qty = jobTicket.Quantity.ToString();
+            invoice.POD = jobTicket.POD;
+            invoice.Comment = jobTicket.Comments;
+            invoice.DeliveryAgent = jobTicket.DeliveryAgent;
+            invoice.Weight = jobTicket.Weight.ToString();
+            invoice.MilageCharge = jobTicket.Milage.ToString();
+            invoice.TollCharge = jobTicket.Toll.ToString();
+            invoice.FuelCharge = jobTicket.FuelSurcharge.ToString();
+            invoice.MiscServiceCharge = jobTicket.MiscFee.ToString();
+            invoice.TotalCharge = jobTicket.TotalCharge.ToString();
+            
 
             return Json(new { success = true, message = invoice }, JsonRequestBehavior.AllowGet);
         }
