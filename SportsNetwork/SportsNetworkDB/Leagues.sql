@@ -1,6 +1,6 @@
-﻿CREATE TABLE [dbo].[Table1]
+﻿CREATE TABLE [dbo].[Leagues]
 (
-	[LeagueId] INT NOT NULL , 
+	[LeagueId] INT NOT NULL IDENTITY , 
     [LeagueName] NCHAR(100) NOT NULL, 
     [LeagueDescription] NCHAR(255) NOT NULL, 
     [UserName] NVARCHAR(150) NULL, 

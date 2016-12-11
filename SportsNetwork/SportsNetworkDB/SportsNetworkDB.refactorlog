@@ -28,4 +28,11 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="LeagueLevelId" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="b42a658e-61cc-431e-a681-2684b6b72e50" ChangeDateTime="12/11/2016 13:33:58">
+    <Property Name="ElementName" Value="[dbo].[LeagueAdmin].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[LeagueAdmin]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="LeagueAdminId" />
+  </Operation>
 </Operations>
