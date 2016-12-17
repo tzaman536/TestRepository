@@ -64,6 +64,8 @@
     <Build Include="LeagueTypes.sql" />
     <Build Include="LeagueLevel.sql" />
     <Build Include="LeagueAdmin.sql" />
+    <Build Include="Players.sql" />
+    <Build Include="LeaguePlayers.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="SportsNetworkDB.refactorlog" />

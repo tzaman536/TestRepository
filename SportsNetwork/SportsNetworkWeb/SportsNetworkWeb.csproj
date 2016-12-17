@@ -211,6 +211,7 @@
     <Compile Include="Controllers\MyClientsController.cs" />
     <Compile Include="Controllers\MyCompanyController.cs" />
     <Compile Include="Controllers\ReferenceDataController.cs" />
+    <Compile Include="Controllers\TennisNetworkController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1421,6 +1422,7 @@
     <Content Include="Views\JobTicket\Index.cshtml" />
     <Content Include="Views\Shared\_MainMenu.cshtml" />
     <Content Include="Views\JobTicket\SearchTicket.cshtml" />
+    <Content Include="Views\TennisNetwork\CreateLeague.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

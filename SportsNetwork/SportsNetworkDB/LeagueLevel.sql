@@ -1,6 +1,11 @@
-﻿CREATE TABLE [dbo].[LeagueLevel]
+﻿IF OBJECT_ID('dbo.LeagueLevels', 'U') IS NOT NULL 
+  DROP TABLE dbo.LeagueLevels; 
+
+CREATE TABLE [dbo].[LeagueLevels]
 (
 	[LeagueLevelId] INT NOT NULL IDENTITY , 
-    [Level] NCHAR(10) NOT NULL, 
-    PRIMARY KEY ([Level])
+    [LeagueLevel] NCHAR(10) NOT NULL, 
+    PRIMARY KEY ([LeagueLevel])
 )
+
+

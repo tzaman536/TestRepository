@@ -35,4 +35,25 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="LeagueAdminId" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="3f9a66c6-d2cc-49e6-b361-3e71d3c892ed" ChangeDateTime="12/17/2016 16:32:32">
+    <Property Name="ElementName" Value="[dbo].[Players].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Players]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="PlayerId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="0d3bffe7-39e0-41dc-936a-20f60fccc069" ChangeDateTime="12/17/2016 16:36:52">
+    <Property Name="ElementName" Value="[dbo].[Players].[Location]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Players]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Address" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="96f0dc7f-2b31-4e3e-80c3-ddd657988561" ChangeDateTime="12/17/2016 16:38:05">
+    <Property Name="ElementName" Value="[dbo].[Players].[Zip]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Players]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Phone" />
+  </Operation>
 </Operations>
