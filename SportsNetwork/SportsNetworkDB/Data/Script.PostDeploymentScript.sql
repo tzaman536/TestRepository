@@ -12,19 +12,19 @@ Post-Deployment Script Template
 /************************
 -- League Levels
 ************************/
-insert into LeagueLevel(Level) values('3.0')
-insert into LeagueLevel(Level) values('3.5')
-insert into LeagueLevel(Level) values('4.0')
-insert into LeagueLevel(Level) values('4.5')
-insert into LeagueLevel(Level) values('5.0')
+insert into LeagueLevels(LeagueLevel) values('3.0')
+insert into LeagueLevels(LeagueLevel) values('3.5')
+insert into LeagueLevels(LeagueLevel) values('4.0')
+insert into LeagueLevels(LeagueLevel) values('4.5')
+insert into LeagueLevels(LeagueLevel) values('5.0')
 
 
 /************************
 -- League Types
 ************************/
-insert into LeagueTypes(Type) values('Men''s Singles')
-insert into LeagueTypes(Type) values('Mens''s Doubles')
-insert into LeagueTypes(Type) values('Women''s Singles')
-insert into LeagueTypes(Type) values('Women''s Doubles')
-insert into LeagueTypes(Type) values('Mixed Singles')
-insert into LeagueTypes(Type) values('Mixed Doubles')
+insert into LeagueTypes(LeagueType) values('Men''s Singles')
+insert into LeagueTypes(LeagueType) values('Mens''s Doubles')
+insert into LeagueTypes(LeagueType) values('Women''s Singles')
+insert into LeagueTypes(LeagueType) values('Women''s Doubles')
+insert into LeagueTypes(LeagueType) values('Mixed Singles')
+insert into LeagueTypes(LeagueType) values('Mixed Doubles')

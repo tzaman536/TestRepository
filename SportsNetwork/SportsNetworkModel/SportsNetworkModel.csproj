@@ -7,8 +7,8 @@
     <ProjectGuid>{9532BA36-FC43-4289-90CB-9F7DFA9A4EA9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SimplexInvoiceModel</RootNamespace>
-    <AssemblyName>SimplexInvoiceModel</AssemblyName>
+    <RootNamespace>SportsNetworkModel</RootNamespace>
+    <AssemblyName>SportsNetworkModel</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -50,11 +50,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="League.cs" />
+    <Compile Include="LeagueLevel.cs" />
+    <Compile Include="LeagueTypes.cs" />
     <Compile Include="PickupDeliveryAddress.cs" />
     <Compile Include="Company.cs" />
     <Compile Include="Invoice.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="JobTicket.cs" />
+    <Compile Include="SportsNetwork.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

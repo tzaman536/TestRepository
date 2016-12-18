@@ -4,5 +4,5 @@ CREATE TABLE [dbo].[LeagueTypes]
 (
 	[LeagueTypeId] INT NOT NULL IDENTITY , 
     [LeagueType] NVARCHAR(100) NOT NULL, 
-    PRIMARY KEY ([Type])
+    PRIMARY KEY ([LeagueType])
 )

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using SportsNetworkModel;
 
 namespace SportsNetworkWeb.Controllers
 {
@@ -16,6 +17,10 @@ namespace SportsNetworkWeb.Controllers
 
         public ActionResult CreateLeague()
         {
+
+            ViewData["LeagueTypes"] = LeagueTypes.GetAll();
+            ViewData["LeagueLevels"] = LeagueLevels.GetAll();
+
             return View();
         }
 
