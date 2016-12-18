@@ -14,14 +14,14 @@ namespace SportsNetworkModel
         public int LeagueLevelId { get; set; }
         public string LeagueLevel { get; set; }
 
-        public static IEnumerable<LeagueTypes> GetAll()
+        public static IEnumerable<LeagueLevels> GetAll()
         {
             using (var conn = new SqlConnection(DefaultConnectionString))
             {
                 conn.Open();
                 try
                 {
-                    return conn.Query<LeagueTypes>(@"
+                    return conn.Query<LeagueLevels>(@"
                     SELECT *
                     FROM dbo.LeagueLevels
                     order by LeagueLevel");
