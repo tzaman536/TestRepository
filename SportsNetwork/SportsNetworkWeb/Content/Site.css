@@ -186,6 +186,13 @@ textarea {
     font-weight:bold;
 }
 
+.page-title{
+    font-size:15px; 
+    font-weight:bold;
+    margin-top:80px;
+    margin-bottom:25px;
+}
+
 .margin-top-5px{
     margin-top:5px;
     
@@ -250,3 +257,8 @@ textarea {
             background-image: linear-gradient(to bottom, #82bbd1, #193b61);
             filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#82bbd1, endColorstr=#193b61);
         }
+
+
+.page-title{
+
+}
