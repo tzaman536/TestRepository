@@ -10,9 +10,11 @@ namespace SportsNetworkModel
     public class SportsNetwork
     {
         public static string DefaultConnectionString;
+        public static string SupportEmail;
         static SportsNetwork()
         {
             DefaultConnectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            SupportEmail = ConfigurationManager.AppSettings["SupportEmailAddress"];  
         }
 
     }

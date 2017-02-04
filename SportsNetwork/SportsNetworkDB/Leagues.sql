@@ -6,7 +6,10 @@ CREATE TABLE [dbo].[Leagues]
 	[LeagueId] INT NOT NULL IDENTITY , 
     [LeagueName] NCHAR(100) NOT NULL, 
     [LeagueDescription] NCHAR(255) NOT NULL, 
-    [AddUserName] NVARCHAR(150) NULL, 
-    [AddUpdateDt] DATETIME NULL, 
+	[LeagueTypeId] INT NOT NULL, 
+    [LeagueLevelId] INT NOT NULL, 
+    [AddUserName] NCHAR(100) NOT NULL, 
+    [AddUpdateDt] datetime not null
+
     PRIMARY KEY ([LeagueName])
 )

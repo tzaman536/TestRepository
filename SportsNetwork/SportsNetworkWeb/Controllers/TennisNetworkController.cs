@@ -35,21 +35,33 @@ namespace SportsNetworkWeb.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult League_Create([DataSourceRequest] DataSourceRequest request, League lg)
         {
+            lg.AddUserName = System.Web.HttpContext.Current.Request.LogonUserIdentity.Name;
+            if (string.IsNullOrEmpty(lg.AddUserName))
+            {
+                lg.AddUserName = Environment.UserName;
+            }
 
-
+            League.Add(lg);
             return Json(new[] { lg }.ToDataSourceResult(request, ModelState));
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult League_Update([DataSourceRequest] DataSourceRequest request, League lg)
         {
+            lg.AddUserName = System.Web.HttpContext.Current.Request.LogonUserIdentity.Name;
+            if (string.IsNullOrEmpty(lg.AddUserName))
+            {
+                lg.AddUserName = Environment.UserName;
+            }
 
+            League.Update(lg);
             return Json(new[] { lg }.ToDataSourceResult(request, ModelState));
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult League_Destroy([DataSourceRequest] DataSourceRequest request, League lg)
         {
+            League.Delete(lg);
             return Json(new[] { lg }.ToDataSourceResult(request, ModelState));
         }
 
