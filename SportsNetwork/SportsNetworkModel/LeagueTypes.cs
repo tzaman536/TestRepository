@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using log4net;
+using PhenixTools.Mail;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -31,7 +32,7 @@ namespace SportsNetworkModel
                 }
                 catch (Exception ex)
                 {
-                    //PhenixMail.SendMail("daContactDetail.GetClientContactDetail()-ERROR", string.Format("{0}", ex.Message), ConfigurationManager.AppSettings["MAIL_SALES_TEAM"]);
+                    PhenixMail.SendMail(string.Format("ERROR From: {0}", System.Reflection.MethodBase.GetCurrentMethod().DeclaringType), string.Format("{0}", ex.Message), ConfigurationManager.AppSettings["SupportEmailAddress"]);
                     logger.Fatal(ex);
                 }
 

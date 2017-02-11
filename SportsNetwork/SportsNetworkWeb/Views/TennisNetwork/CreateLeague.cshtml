@@ -9,10 +9,10 @@
     .Name("League")
     .Columns(columns =>
     {
-        columns.Bound(p => p.LeagueName).Width(100);
+        columns.Bound(p => p.LeagueName).Width(255);
         columns.ForeignKey(p => p.LeagueTypeId, (System.Collections.IEnumerable)ViewData["LeagueTypes"], "LeagueTypeId", "LeagueType").Title("League Type");
         columns.ForeignKey(p => p.LeagueLevelId, (System.Collections.IEnumerable)ViewData["LeagueLevels"], "LeagueLevelId", "LeagueLevel").Title("League Level");
-        columns.Bound(p => p.LeagueDescription).Width(200);
+        columns.Bound(p => p.LeagueDescription).Width(255);
         columns.Command(command => { command.Edit(); command.Destroy(); }).Width(250);
     })
     .ToolBar(toolbar =>

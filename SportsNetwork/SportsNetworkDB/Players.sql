@@ -1,10 +1,12 @@
-﻿IF OBJECT_ID('dbo.Players', 'U') IS NOT NULL 
-  DROP TABLE dbo.Players;
+﻿IF OBJECT_ID('SportsNetwork.dbo.Players', 'U') IS NOT NULL 
+  DROP TABLE SportsNetwork.dbo.Players;
 
-CREATE TABLE [dbo].[Players]
+CREATE TABLE [SportsNetwork].[dbo].[Players]
 (
 	[PlayerId] INT NOT  NULL  IDENTITY, 
     [Name] NVARCHAR(200) NOT NULL, 
     [Email] NVARCHAR(256) NOT NULL, 
-    [Phone] NVARCHAR(50) NULL
+    [Phone] NVARCHAR(50) NULL,
+	[AddUserName] nvarchar(100) NOT NULL,
+	[AddUpdateDt] datetime not null
 )

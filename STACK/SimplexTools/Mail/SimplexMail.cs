@@ -19,10 +19,13 @@ namespace PhenixTools.Mail
             try
             {
                 logger.Info("Sending mail.....");
+                
                 string mailFrom = AppSettingsHandler.GetAppSettingsValue("MAIL_FROM");
+
                 string smtpServer = AppSettingsHandler.GetAppSettingsValue("SMTP_SERVER");
                 string smtpPort = AppSettingsHandler.GetAppSettingsValue("SMTP_PORT");
                 string mailCred = AppSettingsHandler.GetAppSettingsValue("MAIL_FROM_CRED");
+
 
 
                 

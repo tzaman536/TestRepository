@@ -1,7 +1,7 @@
-﻿IF OBJECT_ID('dbo.LeaguePlayers', 'U') IS NOT NULL 
-  DROP TABLE dbo.LeaguePlayers
+﻿IF OBJECT_ID('SportsNetwork.dbo.LeaguePlayers', 'U') IS NOT NULL 
+  DROP TABLE SportsNetwork.dbo.LeaguePlayers
 
-CREATE TABLE [dbo].[LeaguePlayers]
+CREATE TABLE SportsNetwork.[dbo].[LeaguePlayers]
 (
 	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
     [LeagueId] INT NOT NULL, 

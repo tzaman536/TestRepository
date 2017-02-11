@@ -1423,6 +1423,8 @@
     <Content Include="Views\Shared\_MainMenu.cshtml" />
     <Content Include="Views\JobTicket\SearchTicket.cshtml" />
     <Content Include="Views\TennisNetwork\CreateLeague.cshtml" />
+    <Content Include="Views\TennisNetwork\CreatePlayer.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\telephone.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

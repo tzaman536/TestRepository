@@ -24,7 +24,7 @@ namespace SportsNetworkModel
         public DateTime AddUpdateDt { get; set; }
 
 
-        public static IEnumerable<League> GetAll()
+        public static IEnumerable<League> GetAll(string adminUserName)
         {
             using (var conn = new SqlConnection(DefaultConnectionString))
             {
@@ -34,11 +34,12 @@ namespace SportsNetworkModel
                     return conn.Query<League>(@"
                     SELECT *
                     FROM dbo.Leagues
-                    order by LeagueName");
+                    WHERE AddUserName = @adminUserName
+                    order by LeagueName", new { adminUserName });
                 }
                 catch (Exception ex)
                 {
-                    //PhenixMail.SendMail("daContactDetail.GetClientContactDetail()-ERROR", string.Format("{0}", ex.Message), ConfigurationManager.AppSettings["MAIL_SALES_TEAM"]);
+                    PhenixMail.SendMail(string.Format("ERROR From: {0}", System.Reflection.MethodBase.GetCurrentMethod().DeclaringType), string.Format("{0}", ex.Message), SupportEmail);
                     logger.Fatal(ex);
                 }
 
@@ -77,7 +78,7 @@ namespace SportsNetworkModel
                 }
                 catch (Exception ex)
                 {
-                    PhenixMail.SendMail(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.ToString() + "ERROR", string.Format("{0}", ex.Message), SupportEmail);
+                    PhenixMail.SendMail(string.Format("ERROR From: {0}", System.Reflection.MethodBase.GetCurrentMethod().DeclaringType), string.Format("{0}", ex.Message), SupportEmail);
                     logger.Fatal(ex);
                     return false;
                 }
@@ -108,7 +109,7 @@ namespace SportsNetworkModel
                 }
                 catch (Exception ex)
                 {
-                    PhenixMail.SendMail(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.ToString() + "ERROR", string.Format("{0}", ex.Message), SupportEmail);
+                    PhenixMail.SendMail(string.Format("ERROR From: {0}", System.Reflection.MethodBase.GetCurrentMethod().DeclaringType), string.Format("{0}", ex.Message), SupportEmail);
                     logger.Fatal(ex);
                     return false;
                 }
@@ -133,7 +134,7 @@ namespace SportsNetworkModel
                 }
                 catch (Exception ex)
                 {
-                    PhenixMail.SendMail(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.ToString() + "ERROR", string.Format("{0}", ex.Message), SupportEmail);
+                    PhenixMail.SendMail(string.Format("ERROR From: {0}", System.Reflection.MethodBase.GetCurrentMethod().DeclaringType), string.Format("{0}", ex.Message), SupportEmail);
                     logger.Fatal(ex);
                     return false;
                 }

@@ -4,10 +4,11 @@
       .Items(items =>
       {
           items.Add()
-                  .Text("Leagues")
+                  .Text("Manage League")
                   .Items(children =>
                   {
-                      children.Add().Text("Create League").Action("CreateLeague", "TennisNetwork");
+                      children.Add().Text("League").Action("CreateLeague", "TennisNetwork");
+                      children.Add().Text("Player").Action("CreatePlayer", "TennisNetwork");
                       children.Add().Text("Manage Ticket")
                                   .Items(innerChildren =>
                                   {

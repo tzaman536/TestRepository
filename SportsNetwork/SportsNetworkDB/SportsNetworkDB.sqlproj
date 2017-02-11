@@ -60,12 +60,13 @@
     <Folder Include="Data" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="Leagues.sql" />
-    <Build Include="LeagueTypes.sql" />
-    <Build Include="LeagueLevel.sql" />
-    <Build Include="LeagueAdmin.sql" />
-    <Build Include="Players.sql" />
-    <Build Include="LeaguePlayers.sql" />
+    <None Include="Leagues.sql" />
+    <None Include="LeagueTypes.sql" />
+    <None Include="LeagueLevel.sql" />
+    <None Include="LeagueAdmin.sql" />
+    <None Include="Players.sql" />
+    <None Include="LeaguePlayers.sql" />
+    <None Include="Data\AppSettings.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="SportsNetworkDB.refactorlog" />
