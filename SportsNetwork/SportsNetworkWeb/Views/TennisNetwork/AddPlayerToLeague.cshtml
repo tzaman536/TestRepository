@@ -1,0 +1,214 @@
+﻿
+@{
+    ViewBag.Title = "Add Player To League";
+}
+<input type="hidden" id="idInputLeagueName" name="InputLeagueName" value="UNSELECTED" />
+
+<div class="page-title">Assign Players To Your League</div>
+
+@(Html.Kendo().DropDownList()
+    .Name("ddlLeagues")
+    .DataTextField("LeagueName")
+    .DataValueField("LeagueId")
+    .DataSource(source =>
+    {
+        source.Read(read =>
+        {
+            read.Action("GetLeagues", "TennisNetwork");
+        });
+    })
+    .Events(e =>
+    {
+        e.Select("onLeagueSelected");
+    })
+
+    .HtmlAttributes(new { style = "width: 250px;" })
+)
+<br />
+<br />
+<br />
+<div class="divTable">
+    <div class="divTableBody">
+        <div class="divTableRow">
+            <div class="divTableCell">&nbsp;</div>
+            <div class="divTableCell">&nbsp;</div>
+            <div class="divTableCell">&nbsp;</div>
+        </div>
+        <div class="divTableRow">
+            <div class="divTableCell">
+                @(Html.Kendo().Grid<SportsNetworkModel.Player>()
+                    .Name("CurrentLeaguePlayer")
+                    .Columns(columns =>
+                    {
+                        columns.Bound(p => p.Name).Title("This League Players").Width(255);
+                    })
+                    .Filterable()
+                    .Navigatable()
+                    .Sortable()
+                    .Selectable(selectable => selectable
+                            .Mode(GridSelectionMode.Single)
+                            .Type(GridSelectionType.Row))
+                    .DataSource(dataSource => dataSource
+                        .Ajax()
+                        .Batch(false)
+                        .PageSize(1000)
+                        .ServerOperation(false)
+                        .Events(events => events.Error("error_handler").RequestEnd("onRequestEnd"))
+                        //.Model(model => model.Id(p => p.ProductID))
+                        .Model(model =>
+                        {
+                            model.Id(p => p.PlayerId);
+                            model.Field(p => p.Name).Editable(false);
+                        })
+                        .Read(read => read.Action("PlayerInLeague_Read", "TennisNetwork").Data("getSelectedLeagueName")))
+                )
+            </div>
+            <div class="divTableCell">&nbsp;</div>
+            <div class="divTableCell">
+                @(Html.Kendo().Grid<SportsNetworkModel.Player>()
+                    .Name("AvailableLeaguePlayer")
+                    .Columns(columns =>
+                    {
+                        columns.Bound(p => p.Name).Title("Available Players").Width(255);
+                    })
+                    .Filterable()
+                    .Navigatable()
+                    .Sortable()
+                    .Selectable(selectable => selectable
+                            .Mode(GridSelectionMode.Single)
+                            .Type(GridSelectionType.Row))
+                    .DataSource(dataSource => dataSource
+                        .Ajax()
+                        .Batch(false)
+                        .PageSize(1000)
+                        .ServerOperation(false)
+                        .Events(events => events.Error("error_handler").RequestEnd("onRequestEnd"))
+                        //.Model(model => model.Id(p => p.ProductID))
+                        .Model(model =>
+                        {
+                            model.Id(p => p.PlayerId);
+                            model.Field(p => p.Name).Editable(true);
+                            model.Field(p => p.Phone).Editable(true);
+                            model.Field(p => p.Email).Editable(true);
+                            model.Field(p => p.AddUpdateDt).Editable(false);
+                            model.Field(p => p.AddUserName).Editable(false);
+
+                        })
+                        .Read("Player_Read", "TennisNetwork"))
+                )
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script>
+    $(document).ready(function () {
+    });
+
+
+    function getSelectedLeagueName()
+    {
+       return {
+           inputLeagueName: document.getElementById("idInputLeagueName").value
+            }
+    }
+    function onLeagueSelected(e) {
+        alert(e.item[0].innerText);
+        document.getElementById("idInputLeagueName").value = e.item[0].innerText;
+
+        $("#CurrentLeaguePlayer").data("kendoGrid").dataSource.read();
+
+            @*var parms = {
+                inputClient: e.item[0].innerText
+            };
+
+
+            $.ajax({
+                type: "POST",
+                traditional: true,
+                url: '@Url.Action("GetClientDefaults", "JobTicket")',
+                async: true,
+                data: parms,
+                dataType: "json",
+                beforeSend: function (xhr) {
+                    //$('#loader').show();
+                },
+                success: function (response, textStatus, jqXHR) {
+                    document.getElementById("idBasePickupCharge").value = response.message.BasePickupCharge;
+                    //alert(response.message);
+
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert("Error found during execution");
+                }
+            });*@        }
+
+
+        function error_handler(e) {
+            if (e.errors) {
+                var message = "Errors:\n";
+                $.each(e.errors, function (key, value) {
+                    if ('errors' in value) {
+                        $.each(value.errors, function() {
+                            message += this + "\n";
+                        });
+                    }
+                });
+                alert(message);
+            }
+        }
+
+
+
+
+        function onRequestEnd(e) {
+
+            if (e.type == "update" && !e.response.Errors) {
+                alert("product updated");
+            }
+
+            if (e.type == "destroy" && !e.response.Errors) {
+                alert("Producdt deleted");
+            }
+
+        }
+</script>
+
+<style>
+    /* DivTable.com */
+.divTable{
+	display: table;
+	width: 100%;
+}
+.divTableRow {
+	display: table-row;
+}
+.divTableHeading {
+	background-color: #EEE;
+	display: table-header-group;
+}
+.divTableCell, .divTableHead {
+	border: 1px solid #999999;
+	display: table-cell;
+	padding: 3px 10px;
+}
+.divTableHeading {
+	background-color: #EEE;
+	display: table-header-group;
+	font-weight: bold;
+}
+.divTableFoot {
+	background-color: #EEE;
+	display: table-footer-group;
+	font-weight: bold;
+}
+.divTableBody {
+	display: table-row-group;
+}
+</style>

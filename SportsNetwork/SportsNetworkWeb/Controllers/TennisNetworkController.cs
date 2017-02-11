@@ -73,6 +73,18 @@ namespace SportsNetworkWeb.Controllers
             League.Delete(lg);
             return Json(new[] { lg }.ToDataSourceResult(request, ModelState));
         }
+
+        public ActionResult GetLeagues()
+        {
+            
+            var result = League.GetAll(User.Identity.Name).ToList();
+
+
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+
         #endregion
 
         #region Create Player
@@ -90,7 +102,7 @@ namespace SportsNetworkWeb.Controllers
         public ActionResult Player_Read([DataSourceRequest] DataSourceRequest request)
         {
             if (!User.Identity.IsAuthenticated) { return RedirectToAction("Login", "Account"); }
-            return Json(Player.GetAll(User.Identity.Name).ToDataSourceResult(request));
+            return Json(Player.GetAll(User.Identity.Name).ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
@@ -129,6 +141,69 @@ namespace SportsNetworkWeb.Controllers
             return Json(new[] { o }.ToDataSourceResult(request, ModelState));
         }
         #endregion
+
+        #region Add Player to League
+        public ActionResult AddPlayerToLeague()
+        {
+
+            if (!User.Identity.IsAuthenticated) { return RedirectToAction("Login", "Account"); }
+
+            //ViewData["LeagueTypes"] = LeagueTypes.GetAll();
+            //ViewData["LeagueLevels"] = LeagueLevels.GetAll();
+
+            return View();
+        }
+
+        public ActionResult PlayerInLeague_Read([DataSourceRequest] DataSourceRequest request, string inputLeagueName)
+        {
+            if (!User.Identity.IsAuthenticated) { return RedirectToAction("Login", "Account"); }
+            return Json(Player.GetAll(User.Identity.Name).ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
+        }
+
+
+        public ActionResult AddPlayerToLeague_Read([DataSourceRequest] DataSourceRequest request)
+        {
+            if (!User.Identity.IsAuthenticated) { return RedirectToAction("Login", "Account"); }
+            return Json(Player.GetAll(User.Identity.Name).ToDataSourceResult(request));
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult AddPlayerToLeague_Create([DataSourceRequest] DataSourceRequest request, Player o)
+        {
+            if (!User.Identity.IsAuthenticated) { return RedirectToAction("Login", "Account"); }
+            o.AddUserName = User.Identity.Name;
+            if (string.IsNullOrEmpty(o.AddUserName))
+            {
+                o.AddUserName = System.Web.HttpContext.Current.Request.LogonUserIdentity.Name;
+            }
+
+            Player.Add(o);
+            return Json(new[] { o }.ToDataSourceResult(request, ModelState));
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult AddPlayerToLeague_Update([DataSourceRequest] DataSourceRequest request, Player o)
+        {
+            if (!User.Identity.IsAuthenticated) { return RedirectToAction("Login", "Account"); }
+            o.AddUserName = User.Identity.Name;
+            if (string.IsNullOrEmpty(o.AddUserName))
+            {
+                o.AddUserName = System.Web.HttpContext.Current.Request.LogonUserIdentity.Name;
+            }
+
+            Player.Update(o);
+            return Json(new[] { o }.ToDataSourceResult(request, ModelState));
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult AddPlayerToLeague_Destroy([DataSourceRequest] DataSourceRequest request, Player o)
+        {
+            if (!User.Identity.IsAuthenticated) { return RedirectToAction("Login", "Account"); }
+            Player.Delete(o);
+            return Json(new[] { o }.ToDataSourceResult(request, ModelState));
+        }
+        #endregion
+
 
 
     }

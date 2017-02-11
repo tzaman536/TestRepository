@@ -7,8 +7,9 @@
                   .Text("Manage League")
                   .Items(children =>
                   {
-                      children.Add().Text("League").Action("CreateLeague", "TennisNetwork");
-                      children.Add().Text("Player").Action("CreatePlayer", "TennisNetwork");
+                      children.Add().Text("Leagues").Action("CreateLeague", "TennisNetwork");
+                      children.Add().Text("Players").Action("CreatePlayer", "TennisNetwork");
+                      children.Add().Text("Add Players To League").Action("AddPlayerToLeague", "TennisNetwork");
                       children.Add().Text("Manage Ticket")
                                   .Items(innerChildren =>
                                   {
