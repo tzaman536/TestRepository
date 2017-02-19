@@ -63,7 +63,21 @@
                         .Read(read => read.Action("PlayerInLeague_Read", "TennisNetwork").Data("getSelectedLeagueName")))
                 )
             </div>
-            <div class="divTableCell">&nbsp;</div>
+            <div class="divTableCell">
+                @(Html.Kendo().Button()
+                    .Name("textButtonAdd")
+                    .Content("  Add ")
+                    .HtmlAttributes(new { type = "button" })
+                    .Events(ev => ev.Click("onAddClick")))
+                <br/>
+                <br />
+                @(Html.Kendo().Button()
+                    .Name("textButtonRemove")
+                    .Content("Remove")
+                    .HtmlAttributes(new { type = "button" })
+                    .Events(ev => ev.Click("onRemoveClick")))
+
+            </div>
             <div class="divTableCell">
                 @(Html.Kendo().Grid<SportsNetworkModel.Player>()
                     .Name("AvailableLeaguePlayer")
@@ -94,7 +108,8 @@
                             model.Field(p => p.AddUserName).Editable(false);
 
                         })
-                        .Read("Player_Read", "TennisNetwork"))
+                        .Read(read => read.Action("PlayerNotInLeague_Read", "TennisNetwork").Data("getSelectedLeagueName")))
+
                 )
 
 
@@ -111,7 +126,32 @@
     $(document).ready(function () {
     });
 
+    function onAddClick(e) {
+        var gview = $("#AvailableLeaguePlayer").data("kendoGrid");
+        var selectedItem = gview.dataItem(gview.select());
+        if (selectedItem == null) {
+            alert("Please select a player to add.")
+        }
+        else {
+            var playerId = selectedItem.PlayerId;
+            alert(playerId);
+        }
 
+        
+
+    }
+    function onRemoveClick(e) {
+        var gview = $("#CurrentLeaguePlayer").data("kendoGrid");
+        var selectedItem = gview.dataItem(gview.select());
+        if (selectedItem == null) {
+            alert("Please select a player to remove.")
+        }
+        else {
+            var playerId = selectedItem.PlayerId;
+            alert(playerId);
+        }
+
+    }
     function getSelectedLeagueName()
     {
        return {
@@ -123,6 +163,9 @@
         document.getElementById("idInputLeagueName").value = e.item[0].innerText;
 
         $("#CurrentLeaguePlayer").data("kendoGrid").dataSource.read();
+        $("#AvailableLeaguePlayer").data("kendoGrid").dataSource.read();
+        
+
 
             @*var parms = {
                 inputClient: e.item[0].innerText
@@ -147,7 +190,8 @@
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
                     alert("Error found during execution");
                 }
-            });*@        }
+            });*@
+    }
 
 
         function error_handler(e) {

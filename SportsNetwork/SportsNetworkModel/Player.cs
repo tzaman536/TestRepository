@@ -47,7 +47,6 @@ namespace SportsNetworkModel
 
 
 
-
         public static bool Add(Player o)
         {
 

@@ -157,15 +157,35 @@ namespace SportsNetworkWeb.Controllers
         public ActionResult PlayerInLeague_Read([DataSourceRequest] DataSourceRequest request, string inputLeagueName)
         {
             if (!User.Identity.IsAuthenticated) { return RedirectToAction("Login", "Account"); }
-            return Json(Player.GetAll(User.Identity.Name).ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
+            return Json(League.GetAllPlayersInLeague(User.Identity.Name,inputLeagueName).ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
         }
 
-
-        public ActionResult AddPlayerToLeague_Read([DataSourceRequest] DataSourceRequest request)
+        
+        public ActionResult PlayerNotInLeague_Read([DataSourceRequest] DataSourceRequest request, string inputLeagueName)
         {
             if (!User.Identity.IsAuthenticated) { return RedirectToAction("Login", "Account"); }
-            return Json(Player.GetAll(User.Identity.Name).ToDataSourceResult(request));
+            return Json(League.GetAllPlayersNotInLeague(User.Identity.Name, inputLeagueName).ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
         }
+
+
+        public ActionResult AddPlayerToLeague_AddPlayer([DataSourceRequest] DataSourceRequest request, string inputLeagueName,int playerId)
+        {
+            if (!User.Identity.IsAuthenticated) { return RedirectToAction("Login", "Account"); }
+            League.AddPlayerToLeague(User.Identity.Name, inputLeagueName, playerId);
+            
+            string message = "Saved";
+            return Json(message.ToDataSourceResult(request));
+        }
+        public ActionResult AddPlayerToLeague_RemovePlayer([DataSourceRequest] DataSourceRequest request, string inputLeagueName, int playerId)
+        {
+            if (!User.Identity.IsAuthenticated) { return RedirectToAction("Login", "Account"); }
+            League.RemovePlayerFromLeague(User.Identity.Name, inputLeagueName, playerId);
+
+            string message = "Saved";
+            return Json(message.ToDataSourceResult(request));
+        }
+
+
 
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult AddPlayerToLeague_Create([DataSourceRequest] DataSourceRequest request, Player o)

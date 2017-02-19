@@ -49,6 +49,127 @@ namespace SportsNetworkModel
 
         }
 
+        public static IEnumerable<Player> GetAllPlayersInLeague(string adminUserName, string leagueName)
+        {
+            using (var conn = new SqlConnection(DefaultConnectionString))
+            {
+                conn.Open();
+                try
+                {
+                    return conn.Query<Player>(@"
+                    select p.*
+                    from Players p
+                    inner join LeaguePlayers lp on p.PlayerId = lp.PlayerId
+                    inner join Leagues l on lp.LeagueId = l.LeagueId
+                    where l.LeagueName = @leagueName
+                      and l.AddUserName = @adminUserName
+                    order by Name", new { adminUserName, leagueName });
+                }
+                catch (Exception ex)
+                {
+                    PhenixMail.SendMail(string.Format("ERROR From: {0}", System.Reflection.MethodBase.GetCurrentMethod().DeclaringType), string.Format("{0}", ex.Message), SupportEmail);
+                    logger.Fatal(ex);
+                }
+
+            }
+
+            return null;
+
+        }
+
+        public static IEnumerable<Player> GetAllPlayersNotInLeague(string adminUserName, string leagueName)
+        {
+            using (var conn = new SqlConnection(DefaultConnectionString))
+            {
+                conn.Open();
+                try
+                {
+                    return conn.Query<Player>(@"
+                    select p.*
+                    from Players p
+                    left join (select lp.PlayerId
+                               from LeaguePlayers lp 
+                               inner join Leagues l on lp.LeagueId = l.LeagueId
+                               where l.LeagueName = @leagueName
+                                 and l.AddUserName = @adminUserName
+                              ) x on p.PlayerId = x.PlayerId
+                    where x.PlayerId is null
+                      and p.AddUserName = @adminUserName
+                    order by Name", new { adminUserName, leagueName });
+                }
+                catch (Exception ex)
+                {
+                    PhenixMail.SendMail(string.Format("ERROR From: {0}", System.Reflection.MethodBase.GetCurrentMethod().DeclaringType), string.Format("{0}", ex.Message), SupportEmail);
+                    logger.Fatal(ex);
+                }
+
+            }
+
+            return null;
+
+        }
+
+        public static bool AddPlayerToLeague(string adminUserName, string leagueName, int playerId)
+        {
+
+
+            using (var conn = new SqlConnection(DefaultConnectionString))
+            {
+                conn.Open();
+                try
+                {
+                    conn.Execute(@"
+                        INSERT INTO SportsNetwork.[dbo].LeaguePlayers
+                        ([LeagueId],[PlayerId])
+                        select LeagueId, @playerId
+                        from SportsNetwork.dbo.Leagues
+                        where LeagueName =  @leagueName
+                          and AddUserName = @adminUserName
+                    ", new { adminUserName, leagueName, playerId });
+                }
+                catch (Exception ex)
+                {
+                    PhenixMail.SendMail(string.Format("ERROR From: {0}", System.Reflection.MethodBase.GetCurrentMethod().DeclaringType), string.Format("{0}", ex.Message), SupportEmail);
+                    logger.Fatal(ex);
+                    return false;
+                }
+
+            }
+            return true;
+        }
+
+        public static bool RemovePlayerFromLeague(string adminUserName, string leagueName, int playerId)
+        {
+
+
+            using (var conn = new SqlConnection(DefaultConnectionString))
+            {
+                conn.Open();
+                try
+                {
+                    conn.Execute(@"
+                        DELETE lp
+                        FROM SportsNetwork.[dbo].LeaguePlayers lp
+                        INNER JOIN SportsNetwork.dbo.Leagues l on lp.LeagueId = l.LeagueId
+                        INNER JOIN SportsNetwork.dbo.Players p on p.PlayerId = lp.PlayerId
+                        where l.LeagueName =  @leagueName
+                          and l.AddUserName = @adminUserName
+                          and p.PlayerId = @playerId
+                          
+                    ", new { adminUserName, leagueName, playerId });
+                }
+                catch (Exception ex)
+                {
+                    PhenixMail.SendMail(string.Format("ERROR From: {0}", System.Reflection.MethodBase.GetCurrentMethod().DeclaringType), string.Format("{0}", ex.Message), SupportEmail);
+                    logger.Fatal(ex);
+                    return false;
+                }
+
+            }
+
+            return true;
+
+        }
 
 
 
