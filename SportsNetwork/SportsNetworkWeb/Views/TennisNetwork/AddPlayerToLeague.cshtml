@@ -19,9 +19,8 @@
     })
     .Events(e =>
     {
-        e.Select("onLeagueSelected");
+        e.Select("onLeagueSelected").DataBound("dataBound");
     })
-
     .HtmlAttributes(new { style = "width: 250px;" })
 )
 <br />
@@ -126,6 +125,17 @@
     $(document).ready(function () {
     });
 
+    function dataBound(e) {
+        var ds = this.dataSource.data();
+        if (ds.length > 0)
+        {
+            document.getElementById("idInputLeagueName").value = ds[0].LeagueName;
+            $("#CurrentLeaguePlayer").data("kendoGrid").dataSource.read();
+            $("#AvailableLeaguePlayer").data("kendoGrid").dataSource.read();
+        }
+        
+    }
+
     function onAddClick(e) {
         var gview = $("#AvailableLeaguePlayer").data("kendoGrid");
         var selectedItem = gview.dataItem(gview.select());
@@ -135,11 +145,40 @@
         else {
             var playerId = selectedItem.PlayerId;
             alert(playerId);
+            alert(document.getElementById("idInputLeagueName").value);
+
+            var parms = {
+                inputLeagueName: document.getElementById("idInputLeagueName").value,
+                playerId: playerId
+            };
+
+
+            $.ajax({
+                type: "POST",
+                traditional: true,
+                url: '@Url.Action("AddPlayerToLeague_AddPlayer", "TennisNetwork")',
+                async: true,
+                data: parms,
+                dataType: "json",
+                beforeSend: function (xhr) {
+                    //$('#loader').show();
+                },
+                success: function (response, textStatus, jqXHR) {
+                    //alert(response);
+
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert("Error found during execution");
+                }
+            });
+
+
         }
 
-        
+
 
     }
+
     function onRemoveClick(e) {
         var gview = $("#CurrentLeaguePlayer").data("kendoGrid");
         var selectedItem = gview.dataItem(gview.select());
@@ -148,7 +187,31 @@
         }
         else {
             var playerId = selectedItem.PlayerId;
-            alert(playerId);
+            //alert(playerId);
+              var parms = {
+                inputLeagueName: document.getElementById("idInputLeagueName").value,
+                playerId : playerId
+            };
+
+
+            $.ajax({
+                type: "POST",
+                traditional: true,
+                url: '@Url.Action("AddPlayerToLeague_RemovePlayer", "TennisNetwork")',
+                async: true,
+                data: parms,
+                dataType: "json",
+                beforeSend: function (xhr) {
+                    //$('#loader').show();
+                },
+                success: function (response, textStatus, jqXHR) {
+                    //alert(response.message);
+
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    //alert("Error found during execution");
+                }
+            });
         }
 
     }
@@ -159,38 +222,15 @@
             }
     }
     function onLeagueSelected(e) {
-        alert(e.item[0].innerText);
-        document.getElementById("idInputLeagueName").value = e.item[0].innerText;
+        if (e.item) {
+            var dataItem = this.dataItem(e.item);
+            document.getElementById("idInputLeagueName").value = dataItem.LeagueName;
+        }
+        
 
         $("#CurrentLeaguePlayer").data("kendoGrid").dataSource.read();
         $("#AvailableLeaguePlayer").data("kendoGrid").dataSource.read();
-        
 
-
-            @*var parms = {
-                inputClient: e.item[0].innerText
-            };
-
-
-            $.ajax({
-                type: "POST",
-                traditional: true,
-                url: '@Url.Action("GetClientDefaults", "JobTicket")',
-                async: true,
-                data: parms,
-                dataType: "json",
-                beforeSend: function (xhr) {
-                    //$('#loader').show();
-                },
-                success: function (response, textStatus, jqXHR) {
-                    document.getElementById("idBasePickupCharge").value = response.message.BasePickupCharge;
-                    //alert(response.message);
-
-                },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    alert("Error found during execution");
-                }
-            });*@
     }
 
 
@@ -218,7 +258,7 @@
             }
 
             if (e.type == "destroy" && !e.response.Errors) {
-                alert("Producdt deleted");
+                alert("Product deleted");
             }
 
         }

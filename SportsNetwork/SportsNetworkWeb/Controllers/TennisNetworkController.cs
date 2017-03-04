@@ -10,6 +10,10 @@ using PhenixTools.Mail;
 
 namespace SportsNetworkWeb.Controllers
 {
+    public class Message
+    {
+        public string AlertMessage { get; set; }
+    }
     public class TennisNetworkController : Controller
     {
 
@@ -170,10 +174,18 @@ namespace SportsNetworkWeb.Controllers
 
         public ActionResult AddPlayerToLeague_AddPlayer([DataSourceRequest] DataSourceRequest request, string inputLeagueName,int playerId)
         {
+            string message = "Saved";
+
+            if (inputLeagueName.Equals("UNSELECTED"))
+            {
+                message = "Please select a league";
+                return Json(message.ToDataSourceResult(request));
+            }
+
             if (!User.Identity.IsAuthenticated) { return RedirectToAction("Login", "Account"); }
             League.AddPlayerToLeague(User.Identity.Name, inputLeagueName, playerId);
+
             
-            string message = "Saved";
             return Json(message.ToDataSourceResult(request));
         }
         public ActionResult AddPlayerToLeague_RemovePlayer([DataSourceRequest] DataSourceRequest request, string inputLeagueName, int playerId)
