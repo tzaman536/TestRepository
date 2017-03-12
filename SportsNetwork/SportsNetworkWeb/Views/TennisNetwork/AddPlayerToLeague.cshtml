@@ -125,13 +125,19 @@
     $(document).ready(function () {
     });
 
+
+    function reloadData()
+    {
+        $("#CurrentLeaguePlayer").data("kendoGrid").dataSource.read();
+        $("#AvailableLeaguePlayer").data("kendoGrid").dataSource.read();
+
+    }
     function dataBound(e) {
         var ds = this.dataSource.data();
         if (ds.length > 0)
         {
             document.getElementById("idInputLeagueName").value = ds[0].LeagueName;
-            $("#CurrentLeaguePlayer").data("kendoGrid").dataSource.read();
-            $("#AvailableLeaguePlayer").data("kendoGrid").dataSource.read();
+            reloadData();
         }
         
     }
@@ -144,8 +150,8 @@
         }
         else {
             var playerId = selectedItem.PlayerId;
-            alert(playerId);
-            alert(document.getElementById("idInputLeagueName").value);
+            //alert(playerId);
+            //alert(document.getElementById("idInputLeagueName").value);
 
             var parms = {
                 inputLeagueName: document.getElementById("idInputLeagueName").value,
@@ -157,7 +163,7 @@
                 type: "POST",
                 traditional: true,
                 url: '@Url.Action("AddPlayerToLeague_AddPlayer", "TennisNetwork")',
-                async: true,
+                async: false,
                 data: parms,
                 dataType: "json",
                 beforeSend: function (xhr) {
@@ -165,18 +171,13 @@
                 },
                 success: function (response, textStatus, jqXHR) {
                     //alert(response);
-
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
                     alert("Error found during execution");
                 }
             });
-
-
         }
-
-
-
+        reloadData();
     }
 
     function onRemoveClick(e) {
@@ -198,7 +199,7 @@
                 type: "POST",
                 traditional: true,
                 url: '@Url.Action("AddPlayerToLeague_RemovePlayer", "TennisNetwork")',
-                async: true,
+                async: false,
                 data: parms,
                 dataType: "json",
                 beforeSend: function (xhr) {
@@ -206,14 +207,13 @@
                 },
                 success: function (response, textStatus, jqXHR) {
                     //alert(response.message);
-
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
                     //alert("Error found during execution");
                 }
             });
         }
-
+        reloadData();
     }
     function getSelectedLeagueName()
     {

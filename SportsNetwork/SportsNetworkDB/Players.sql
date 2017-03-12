@@ -10,3 +10,8 @@ CREATE TABLE [SportsNetwork].[dbo].[Players]
 	[AddUserName] nvarchar(100) NOT NULL,
 	[AddUpdateDt] datetime not null
 )
+GO
+
+ALTER TABLE [SportsNetwork].[dbo].[Players]
+ADD CONSTRAINT PK_Players PRIMARY KEY (Email,AddUserName);
+GO

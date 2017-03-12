@@ -10,6 +10,8 @@ CREATE TABLE [SportsNetwork].[dbo].[Leagues]
     [LeagueLevelId] INT NOT NULL, 
     [AddUserName] NCHAR(100) NOT NULL, 
     [AddUpdateDt] datetime not null
-
-    PRIMARY KEY ([LeagueName])
 )
+go
+
+ALTER TABLE [SportsNetwork].[dbo].[Leagues]
+ADD CONSTRAINT PK_Leagues PRIMARY KEY (LeagueName,AddUserName);

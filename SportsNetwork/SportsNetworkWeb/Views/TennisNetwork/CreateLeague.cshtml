@@ -36,7 +36,7 @@
         .Batch(false)
         .PageSize(1000)
         .ServerOperation(false)
-        .Events(events => events.Error("error_handler").RequestEnd("onRequestEnd"))
+        .Events(events => events.Error("error_handler").RequestEnd("onTableEditRequestEnd"))
         //.Model(model => model.Id(p => p.ProductID))
         .Model(model =>
         {
@@ -80,21 +80,11 @@
     }
 
     function onChange(arg) {
-        var grid = $("#League").data("kendoGrid");
-        var selectedItem = grid.dataItem(grid.select());
+        //var grid = $("#League").data("kendoGrid");
+        //var selectedItem = grid.dataItem(grid.select());
 
     }
 
-    function onRequestEnd(e) {
 
-        if (e.type == "update" && !e.response.Errors) {
-            alert("product updated");
-        }
-
-        if (e.type == "destroy" && !e.response.Errors) {
-            alert("Producdt deleted");
-        }
-
-    }
 
 </script>

@@ -67,6 +67,7 @@
     <None Include="Players.sql" />
     <None Include="LeaguePlayers.sql" />
     <None Include="Data\AppSettings.sql" />
+    <None Include="SQLCommandHelp.txt" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="SportsNetworkDB.refactorlog" />
