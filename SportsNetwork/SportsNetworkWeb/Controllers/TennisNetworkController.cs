@@ -46,7 +46,7 @@ namespace SportsNetworkWeb.Controllers
 
             if (!User.Identity.IsAuthenticated) { return RedirectToAction("Login", "Account"); }
             lg.AddUserName = User.Identity.Name;
-            
+
             if (string.IsNullOrEmpty(lg.AddUserName))
             {
                 lg.AddUserName = System.Web.HttpContext.Current.Request.LogonUserIdentity.Name;
@@ -80,7 +80,7 @@ namespace SportsNetworkWeb.Controllers
 
         public ActionResult GetLeagues()
         {
-            
+
             var result = League.GetAll(User.Identity.Name).ToList();
 
 
@@ -161,10 +161,10 @@ namespace SportsNetworkWeb.Controllers
         public ActionResult PlayerInLeague_Read([DataSourceRequest] DataSourceRequest request, string inputLeagueName)
         {
             if (!User.Identity.IsAuthenticated) { return RedirectToAction("Login", "Account"); }
-            return Json(League.GetAllPlayersInLeague(User.Identity.Name,inputLeagueName).ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
+            return Json(League.GetAllPlayersInLeague(User.Identity.Name, inputLeagueName).ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
         }
 
-        
+
         public ActionResult PlayerNotInLeague_Read([DataSourceRequest] DataSourceRequest request, string inputLeagueName)
         {
             if (!User.Identity.IsAuthenticated) { return RedirectToAction("Login", "Account"); }
@@ -172,7 +172,7 @@ namespace SportsNetworkWeb.Controllers
         }
 
 
-        public ActionResult AddPlayerToLeague_AddPlayer([DataSourceRequest] DataSourceRequest request, string inputLeagueName,int playerId)
+        public ActionResult AddPlayerToLeague_AddPlayer([DataSourceRequest] DataSourceRequest request, string inputLeagueName, int playerId)
         {
             string message = "Saved";
 
@@ -185,7 +185,7 @@ namespace SportsNetworkWeb.Controllers
             if (!User.Identity.IsAuthenticated) { return RedirectToAction("Login", "Account"); }
             League.AddPlayerToLeague(User.Identity.Name, inputLeagueName, playerId);
 
-            
+
             return Json(message.ToDataSourceResult(request));
         }
         public ActionResult AddPlayerToLeague_RemovePlayer([DataSourceRequest] DataSourceRequest request, string inputLeagueName, int playerId)
@@ -234,6 +234,69 @@ namespace SportsNetworkWeb.Controllers
             Player.Delete(o);
             return Json(new[] { o }.ToDataSourceResult(request, ModelState));
         }
+        #endregion
+
+        #region Create Location
+        public ActionResult CreateLocation()
+        {
+            if (!User.Identity.IsAuthenticated) { return RedirectToAction("Login", "Account"); }
+            return View();
+        }
+
+        public ActionResult Location_Read([DataSourceRequest] DataSourceRequest request)
+        {
+            if (!User.Identity.IsAuthenticated) { return RedirectToAction("Login", "Account"); }
+            return Json(Location.GetMyLocations(User.Identity.Name).ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Location_Create([DataSourceRequest] DataSourceRequest request, Location o)
+        {
+            if (!User.Identity.IsAuthenticated) { return RedirectToAction("Login", "Account"); }
+            o.AddUserName = User.Identity.Name;
+            if (string.IsNullOrEmpty(o.AddUserName))
+            {
+                o.AddUserName = System.Web.HttpContext.Current.Request.LogonUserIdentity.Name;
+            }
+
+            Location.Add(o);
+            return Json(new[] { o }.ToDataSourceResult(request, ModelState));
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Location_Update([DataSourceRequest] DataSourceRequest request, Location o)
+        {
+            if (!User.Identity.IsAuthenticated) { return RedirectToAction("Login", "Account"); }
+            o.AddUserName = User.Identity.Name;
+            if (string.IsNullOrEmpty(o.AddUserName))
+            {
+                o.AddUserName = System.Web.HttpContext.Current.Request.LogonUserIdentity.Name;
+            }
+
+            Location.Update(o);
+            return Json(new[] { o }.ToDataSourceResult(request, ModelState));
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Location_Destroy([DataSourceRequest] DataSourceRequest request, Location o)
+        {
+            if (!User.Identity.IsAuthenticated) { return RedirectToAction("Login", "Account"); }
+            Location.Delete(o);
+            return Json(new[] { o }.ToDataSourceResult(request, ModelState));
+        }
+        #endregion
+
+        #region Schedule Singles Game
+        public ActionResult ScheduleSinglesGame()
+        {
+
+            if (!User.Identity.IsAuthenticated) { return RedirectToAction("Login", "Account"); }
+            ViewData["LeagueTypes"] = LeagueTypes.GetAll();
+            ViewData["LeagueLevels"] = LeagueLevels.GetAll();
+
+            return View();
+        }
+
         #endregion
 
 

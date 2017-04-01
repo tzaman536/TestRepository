@@ -1427,6 +1427,8 @@
     <Content Include="Views\TennisNetwork\CreatePlayer.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\telephone.cshtml" />
     <Content Include="Views\TennisNetwork\AddPlayerToLeague.cshtml" />
+    <Content Include="Views\TennisNetwork\ScheduleSinglesGame.cshtml" />
+    <Content Include="Views\TennisNetwork\CreateLocation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

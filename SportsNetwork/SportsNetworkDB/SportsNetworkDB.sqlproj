@@ -75,4 +75,7 @@
   <ItemGroup>
     <PostDeploy Include="Data\Script.PostDeploymentScript.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <Build Include="Locations.sql" />
+  </ItemGroup>
 </Project>

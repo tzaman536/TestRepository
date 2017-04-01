@@ -53,12 +53,14 @@
     <Compile Include="League.cs" />
     <Compile Include="LeagueLevel.cs" />
     <Compile Include="LeagueTypes.cs" />
+    <Compile Include="Location.cs" />
     <Compile Include="PickupDeliveryAddress.cs" />
     <Compile Include="Company.cs" />
     <Compile Include="Invoice.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="JobTicket.cs" />
+    <Compile Include="Schedule.cs" />
     <Compile Include="SportsNetwork.cs" />
   </ItemGroup>
   <ItemGroup>
