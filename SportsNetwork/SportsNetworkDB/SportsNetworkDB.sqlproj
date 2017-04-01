@@ -77,5 +77,6 @@
   </ItemGroup>
   <ItemGroup>
     <Build Include="Locations.sql" />
+    <Build Include="Team.sql" />
   </ItemGroup>
 </Project>
