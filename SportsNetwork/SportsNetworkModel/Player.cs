@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Linq;
 
 namespace SportsNetworkModel
 {
@@ -67,6 +68,9 @@ namespace SportsNetworkModel
                                                 ,@Phone
                                                 ,@AddUserName
                                                 ,getutcdate())
+
+                        INSERT INTO [SportsNetwork].[dbo].[Teams] (TeamName,TeamDetail,TeamType,AddUserName,AddUpdateDt)
+                        VALUES (@Email,@Email,1,@AddUserName,getutcdate())
                     ", o);
                 }
                 catch (Exception ex)
@@ -89,6 +93,12 @@ namespace SportsNetworkModel
                 conn.Open();
                 try
                 {
+                    var playerBeforeUpdate = conn.Query<Player>(@"
+                    SELECT *
+                    FROM dbo.Players
+                    WHERE PlayerId = @PlayerId
+                    ", o).FirstOrDefault();
+
                     conn.Execute(@"
                         UPDATE [dbo].Players
                         SET [Name] = @Name
@@ -98,6 +108,18 @@ namespace SportsNetworkModel
                             ,[AddUpdateDt] = getutcdate()
                         WHERE PlayerId = @PlayerId
                     ", o);
+
+                    if(playerBeforeUpdate != null && !playerBeforeUpdate.Email.Equals(o.Email))
+                    {
+                        conn.Execute(@"
+                        UPDATE [SportsNetwork].[dbo].[Teams]
+                        SET [TeamName] = @NewEmail
+                        WHERE TeamName = @OldEmail
+                          AND TeamType = 1
+                    ", new { OldEmail = playerBeforeUpdate.Email, NewEmail = o.Email  });
+
+                    }
+
                 }
                 catch (Exception ex)
                 {
@@ -120,6 +142,11 @@ namespace SportsNetworkModel
                 try
                 {
                     conn.Execute(@"
+                    
+                        DELETE [SportsNetwork].[dbo].[Teams]
+                        WHERE TeamName = @Email 
+                        AND TeamType = 1
+
                         DELETE [dbo].Players
                         WHERE PlayerId = @PlayerId
                     ", o);
