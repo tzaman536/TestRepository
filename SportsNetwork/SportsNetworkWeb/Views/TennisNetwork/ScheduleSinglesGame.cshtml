@@ -29,89 +29,51 @@
 <div class="divTable">
     <div class="divTableBody">
         <div class="divTableRow">
-            <div class="divTableCell">&nbsp;</div>
-            <div class="divTableCell">&nbsp;</div>
-            <div class="divTableCell">&nbsp;</div>
-        </div>
-        <div class="divTableRow">
             <div class="divTableCell">
-                @(Html.Kendo().Grid<SportsNetworkModel.Player>()
-                    .Name("CurrentLeaguePlayer")
-                    .Columns(columns =>
+                @(Html.Kendo().Grid<SportsNetworkModel.Schedule>()
+                .Name("Schedule")
+                .Columns(columns =>
+                {
+                    columns.ForeignKey(p => p.TeamOneId, (System.Collections.IEnumerable)ViewData["Teams"], "TeamId", "Name").Title("Player One");
+                    columns.ForeignKey(p => p.TeamTwoId, (System.Collections.IEnumerable)ViewData["Teams"], "TeamId", "Name").Title("Player Two");
+                    columns.Bound(p => p.GameTime).Width(255);
+                    columns.ForeignKey(p => p.LocationId, (System.Collections.IEnumerable)ViewData["Locations"], "LocationId", "LocationName").Title("Location");
+                    columns.Command(command => { command.Edit(); command.Destroy(); }).Width(250);
+                })
+                .ToolBar(toolbar =>
+                {
+                    toolbar.Create();
+                    //toolbar.Save();
+                })
+                //.Editable(editable => editable.Mode(GridEditMode.InCell))
+                .Editable(editable => editable.Mode(GridEditMode.InLine))
+                //.Pageable()
+                .Filterable()
+                .Navigatable()
+                .Sortable()
+                .Selectable(selectable => selectable
+                        .Mode(GridSelectionMode.Single)
+                        .Type(GridSelectionType.Row))
+                //.Scrollable()
+                .Events(events => events.Change("onChange"))
+                .DataSource(dataSource => dataSource
+                    .Ajax()
+                    .Batch(false)
+                    .PageSize(1000)
+                    .ServerOperation(false)
+                    .Events(events => events.Error("error_handler").RequestEnd("onTableEditRequestEnd"))
+                    //.Model(model => model.Id(p => p.ProductID))
+                    .Model(model =>
                     {
-                        columns.Bound(p => p.Name).Title("This League Players").Width(255);
+                        model.Id(p => p.ScheduleId);
                     })
-                    .Filterable()
-                    .Navigatable()
-                    .Sortable()
-                    .Selectable(selectable => selectable
-                            .Mode(GridSelectionMode.Single)
-                            .Type(GridSelectionType.Row))
-                    .DataSource(dataSource => dataSource
-                        .Ajax()
-                        .Batch(false)
-                        .PageSize(1000)
-                        .ServerOperation(false)
-                        .Events(events => events.Error("error_handler").RequestEnd("onRequestEnd"))
-                        //.Model(model => model.Id(p => p.ProductID))
-                        .Model(model =>
-                        {
-                            model.Id(p => p.PlayerId);
-                            model.Field(p => p.Name).Editable(false);
-                        })
-                        .Read(read => read.Action("PlayerInLeague_Read", "TennisNetwork").Data("getSelectedLeagueName")))
-                )
-            </div>
-            <div class="divTableCell">
-                @(Html.Kendo().Button()
-                    .Name("textButtonAdd")
-                    .Content("  Add ")
-                    .HtmlAttributes(new { type = "button" })
-                    .Events(ev => ev.Click("onAddClick")))
-                <br />
-                <br />
-                @(Html.Kendo().Button()
-                    .Name("textButtonRemove")
-                    .Content("Remove")
-                    .HtmlAttributes(new { type = "button" })
-                    .Events(ev => ev.Click("onRemoveClick")))
+                    .Read(read => read.Action("Schedule_Read", "TennisNetwork").Data("getSelectedLeagueName"))
+                    .Create(create => create.Action("Schedule_Create", "TennisNetwork").Data("getSelectedLeagueName"))
+                    .Update(update => update.Action("Schedule_Update", "TennisNetwork").Data("getSelectedLeagueName"))
 
-            </div>
-            <div class="divTableCell">
-                @(Html.Kendo().Grid<SportsNetworkModel.Player>()
-                    .Name("AvailableLeaguePlayer")
-                    .Columns(columns =>
-                    {
-                        columns.Bound(p => p.Name).Title("Available Players").Width(255);
-                    })
-                    .Filterable()
-                    .Navigatable()
-                    .Sortable()
-                    .Selectable(selectable => selectable
-                            .Mode(GridSelectionMode.Single)
-                            .Type(GridSelectionType.Row))
-                    .DataSource(dataSource => dataSource
-                        .Ajax()
-                        .Batch(false)
-                        .PageSize(1000)
-                        .ServerOperation(false)
-                        .Events(events => events.Error("error_handler").RequestEnd("onRequestEnd"))
-                        //.Model(model => model.Id(p => p.ProductID))
-                        .Model(model =>
-                        {
-                            model.Id(p => p.PlayerId);
-                            model.Field(p => p.Name).Editable(true);
-                            model.Field(p => p.Phone).Editable(true);
-                            model.Field(p => p.Email).Editable(true);
-                            model.Field(p => p.AddUpdateDt).Editable(false);
-                            model.Field(p => p.AddUserName).Editable(false);
-
-                        })
-                        .Read(read => read.Action("PlayerNotInLeague_Read", "TennisNetwork").Data("getSelectedLeagueName")))
-
-                )
-
-
+                    .Destroy("Schedule_Destroy", "TennisNetwork")
+                                )
+                            )
             </div>
         </div>
     </div>
@@ -128,95 +90,21 @@
 
     function reloadData()
     {
-        $("#CurrentLeaguePlayer").data("kendoGrid").dataSource.read();
-        $("#AvailableLeaguePlayer").data("kendoGrid").dataSource.read();
 
     }
     function dataBound(e) {
-        var ds = this.dataSource.data();
-        if (ds.length > 0)
-        {
-            document.getElementById("idInputLeagueName").value = ds[0].LeagueName;
-            reloadData();
-        }
+        //var ds = this.dataSource.data();
+        //if (ds.length > 0)
+        //{
+        //    document.getElementById("idInputLeagueName").value = ds[0].LeagueName;
+        //    reloadData();
+        //}
 
     }
 
-    function onAddClick(e) {
-        var gview = $("#AvailableLeaguePlayer").data("kendoGrid");
-        var selectedItem = gview.dataItem(gview.select());
-        if (selectedItem == null) {
-            alert("Please select a player to add.")
-        }
-        else {
-            var playerId = selectedItem.PlayerId;
-            //alert(playerId);
-            //alert(document.getElementById("idInputLeagueName").value);
-
-            var parms = {
-                inputLeagueName: document.getElementById("idInputLeagueName").value,
-                playerId: playerId
-            };
-
-
-            $.ajax({
-                type: "POST",
-                traditional: true,
-                url: '@Url.Action("AddPlayerToLeague_AddPlayer", "TennisNetwork")',
-                async: false,
-                data: parms,
-                dataType: "json",
-                beforeSend: function (xhr) {
-                    //$('#loader').show();
-                },
-                success: function (response, textStatus, jqXHR) {
-                    //alert(response);
-                },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    alert("Error found during execution");
-                }
-            });
-        }
-        reloadData();
-    }
-
-    function onRemoveClick(e) {
-        var gview = $("#CurrentLeaguePlayer").data("kendoGrid");
-        var selectedItem = gview.dataItem(gview.select());
-        if (selectedItem == null) {
-            alert("Please select a player to remove.")
-        }
-        else {
-            var playerId = selectedItem.PlayerId;
-            //alert(playerId);
-              var parms = {
-                inputLeagueName: document.getElementById("idInputLeagueName").value,
-                playerId : playerId
-            };
-
-
-            $.ajax({
-                type: "POST",
-                traditional: true,
-                url: '@Url.Action("AddPlayerToLeague_RemovePlayer", "TennisNetwork")',
-                async: false,
-                data: parms,
-                dataType: "json",
-                beforeSend: function (xhr) {
-                    //$('#loader').show();
-                },
-                success: function (response, textStatus, jqXHR) {
-                    //alert(response.message);
-                },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    //alert("Error found during execution");
-                }
-            });
-        }
-        reloadData();
-    }
     function getSelectedLeagueName()
     {
+       alert(document.getElementById("idInputLeagueName").value);
        return {
            inputLeagueName: document.getElementById("idInputLeagueName").value
             }
@@ -226,11 +114,6 @@
             var dataItem = this.dataItem(e.item);
             document.getElementById("idInputLeagueName").value = dataItem.LeagueName;
         }
-
-
-        $("#CurrentLeaguePlayer").data("kendoGrid").dataSource.read();
-        $("#AvailableLeaguePlayer").data("kendoGrid").dataSource.read();
-
     }
 
 

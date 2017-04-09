@@ -53,11 +53,11 @@ namespace SportsNetworkModel
                 try
                 {
                     return conn.Query<Location>(@"
-                    SELECT LocationName,LoctionDetail,AddressLink, 0 as SortOrder
+                    SELECT LocationId,LocationName,LoctionDetail, 0 as SortOrder
                     from [SportsNetwork].[dbo].[Locations]
                     WHERE AddUserName = @adminUserName
                     union 
-                    SELECT LocationName,LoctionDetail,AddressLink, 1 as SortOrder
+                    SELECT LocationId,LocationName,LoctionDetail, 1 as SortOrder
                     from [SportsNetwork].[dbo].[Locations]
                     WHERE AddUserName not in ( @adminUserName )
                     ORDER BY SortOrder

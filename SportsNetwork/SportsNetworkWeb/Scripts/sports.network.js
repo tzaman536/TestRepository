@@ -1,5 +1,6 @@
 ﻿function onTableEditRequestEnd(e) {
 
+    //alert("Hello");
     //if (e.type == "update" && !e.response.Errors) {
     //    alert("Updated");
     //}

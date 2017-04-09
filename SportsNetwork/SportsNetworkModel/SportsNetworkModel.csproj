@@ -62,6 +62,7 @@
     <Compile Include="JobTicket.cs" />
     <Compile Include="Schedule.cs" />
     <Compile Include="SportsNetwork.cs" />
+    <Compile Include="Team.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

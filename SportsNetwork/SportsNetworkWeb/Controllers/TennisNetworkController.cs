@@ -291,11 +291,56 @@ namespace SportsNetworkWeb.Controllers
         {
 
             if (!User.Identity.IsAuthenticated) { return RedirectToAction("Login", "Account"); }
-            ViewData["LeagueTypes"] = LeagueTypes.GetAll();
-            ViewData["LeagueLevels"] = LeagueLevels.GetAll();
+            ViewData["Teams"] = Team.GetSinglesTeams(User.Identity.Name);
+            ViewData["Locations"] = Location.GetAllLocations(User.Identity.Name);
 
             return View();
         }
+
+        public ActionResult Schedule_Read([DataSourceRequest] DataSourceRequest request, string inputLeagueName)
+        {
+            if (!User.Identity.IsAuthenticated) { return RedirectToAction("Login", "Account"); }
+            return Json(Schedule.GetAll(User.Identity.Name,inputLeagueName).ToDataSourceResult(request));
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Schedule_Create([DataSourceRequest] DataSourceRequest request, Schedule o, string inputLeagueName)
+        {
+
+            if (!User.Identity.IsAuthenticated) { return RedirectToAction("Login", "Account"); }
+            o.AddUserName = User.Identity.Name;
+
+            if (string.IsNullOrEmpty(o.AddUserName))
+            {
+                o.AddUserName = System.Web.HttpContext.Current.Request.LogonUserIdentity.Name;
+            }
+
+            Schedule.Add(o);
+            return Json(new[] { o }.ToDataSourceResult(request, ModelState));
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Schedule_Update([DataSourceRequest] DataSourceRequest request, League lg, string inputLeagueName)
+        {
+            if (!User.Identity.IsAuthenticated) { return RedirectToAction("Login", "Account"); }
+            lg.AddUserName = User.Identity.Name;
+            if (string.IsNullOrEmpty(lg.AddUserName))
+            {
+                lg.AddUserName = System.Web.HttpContext.Current.Request.LogonUserIdentity.Name;
+            }
+
+            League.Update(lg);
+            return Json(new[] { lg }.ToDataSourceResult(request, ModelState));
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Schedule_Destroy([DataSourceRequest] DataSourceRequest request, League lg)
+        {
+            if (!User.Identity.IsAuthenticated) { return RedirectToAction("Login", "Account"); }
+            League.Delete(lg);
+            return Json(new[] { lg }.ToDataSourceResult(request, ModelState));
+        }
+
 
         #endregion
 
