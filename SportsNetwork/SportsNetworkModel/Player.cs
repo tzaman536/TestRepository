@@ -46,6 +46,32 @@ namespace SportsNetworkModel
 
         }
 
+        public static IEnumerable<Player> GetPlayWithAnyonePlayers(string adminUserName)
+        {
+            using (var conn = new SqlConnection(DefaultConnectionString))
+            {
+                conn.Open();
+                try
+                {
+                    return conn.Query<Player>(@"
+                    SELECT *
+                    FROM dbo.Players
+                    WHERE coalesce(PlayWithAnyone,0) = 1
+                      and Email not in (@adminUserName)
+                    order by Name", new { adminUserName });
+                }
+                catch (Exception ex)
+                {
+                    PhenixMail.SendMail(string.Format("ERROR From: {0}", System.Reflection.MethodBase.GetCurrentMethod().DeclaringType), string.Format("{0}", ex.Message), SupportEmail);
+                    logger.Fatal(ex);
+                }
+
+            }
+
+            return null;
+
+        }
+
 
 
         public static bool Add(Player o)

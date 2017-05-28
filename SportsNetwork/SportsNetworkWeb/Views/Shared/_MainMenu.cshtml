@@ -25,6 +25,7 @@
                  .Text("Schedule Games")
                  .Items(children =>
                  {
+                     children.Add().Text("Let's Play").Action("LetsPlay", "TennisNetwork");
                      children.Add().Text("Schedule Singles").Action("ScheduleSinglesGame","TennisNetwork");
                      children.Add().Text("Schedule Doubles").Action("ScheduleDoublesGame", "TennisNetwork");
                      //children.Add().Text("Schedule Singles")

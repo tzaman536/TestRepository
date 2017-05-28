@@ -33,7 +33,7 @@ namespace SportsNetworkModel
                 {
                     return conn.Query<Schedule>(@"
                     select *
-                    from SportsNetwork.dbo.Schedule ", new { adminUserName, leagueName });
+                    from SportsNetwork.dbo.Schedules ", new { adminUserName, leagueName });
                 }
                 catch (Exception ex)
                 {
@@ -70,6 +70,7 @@ namespace SportsNetworkModel
                                                 ,@TeamTwoId
                                                 ,@GameTime
                                                 ,@LocationId
+                                                ,@LeagueId
                                                 ,@AddUserName
                                                 ,getutcdate())
                     ", o);

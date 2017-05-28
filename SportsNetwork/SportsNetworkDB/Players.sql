@@ -7,6 +7,7 @@ CREATE TABLE [SportsNetwork].[dbo].[Players]
     [Name] NVARCHAR(200) NOT NULL, 
     [Email] NVARCHAR(256) NOT NULL, 
     [Phone] NVARCHAR(50) NULL,
+	[PlayWithAnyone] bit NULL,
 	[AddUserName] nvarchar(100) NOT NULL,
 	[AddUpdateDt] datetime not null
 )

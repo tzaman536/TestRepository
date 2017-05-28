@@ -85,6 +85,7 @@
 
 <script>
     $(document).ready(function () {
+        //$("#Schedule").data("kendoGrid").dataSource.read();
     });
 
 
@@ -104,16 +105,25 @@
 
     function getSelectedLeagueName()
     {
-       alert(document.getElementById("idInputLeagueName").value);
+
+       var ddlLeagues = $("#ddlLeagues").data("kendoDropDownList").dataItem();
+       if (ddlLeagues != null) {
+           return {
+               inputLeagueName: $("#ddlLeagues").data("kendoDropDownList").dataItem().LeagueName
+           }
+       }
+
        return {
            inputLeagueName: document.getElementById("idInputLeagueName").value
-            }
+       }
     }
     function onLeagueSelected(e) {
         if (e.item) {
             var dataItem = this.dataItem(e.item);
             document.getElementById("idInputLeagueName").value = dataItem.LeagueName;
         }
+
+        $("#Schedule").data("kendoGrid").dataSource.read();
     }
 
 
@@ -132,7 +142,9 @@
         }
 
 
+        function onChange(e) {
 
+        }
 
         function onRequestEnd(e) {
 

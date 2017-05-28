@@ -344,6 +344,37 @@ namespace SportsNetworkWeb.Controllers
 
         #endregion
 
+        #region LetsPlay
+        public ActionResult LetsPlay()
+        {
+
+            if (!User.Identity.IsAuthenticated) { return RedirectToAction("Login", "Account"); }
+            ViewData["Teams"] = Team.GetSinglesTeams(User.Identity.Name);
+            ViewData["Locations"] = Location.GetAllLocations(User.Identity.Name);
+
+            return View();
+        }
+
+        public ActionResult LetsPlay_Read([DataSourceRequest] DataSourceRequest request, string inputLeagueName)
+        {
+            if (!User.Identity.IsAuthenticated) { return RedirectToAction("Login", "Account"); }
+            return Json(Schedule.GetAll(User.Identity.Name, inputLeagueName).ToDataSourceResult(request));
+        }
+
+        public ActionResult AvailablePlayers_Read([DataSourceRequest] DataSourceRequest request)
+        {
+            if (!User.Identity.IsAuthenticated) { return RedirectToAction("Login", "Account"); }
+            return Json(Player.GetPlayWithAnyonePlayers(User.Identity.Name).ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
+        }
+
+
+        public ActionResult PlayersInRequestQueue_Read([DataSourceRequest] DataSourceRequest request, string inputLeagueName)
+        {
+            if (!User.Identity.IsAuthenticated) { return RedirectToAction("Login", "Account"); }
+            return Json(League.GetAllPlayersNotInLeague(User.Identity.Name, inputLeagueName).ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
+        }
+
+        #endregion
 
 
     }
