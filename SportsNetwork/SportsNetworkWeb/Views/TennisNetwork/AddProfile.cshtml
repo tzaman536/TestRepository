@@ -31,18 +31,22 @@
                     <span class="k-invalid-msg" data-for="time"></span>
                 </li>
                 <li>
-                    <label for="email" class="required">Email</label>
-                    @(Html.Kendo().TextBox()
+                    <label for="email" id="email" class="required">Email :</label> <label id="emailValue" >Email :</label>
+                    @*@(Html.Kendo().TextBox()
                               .Name("email")
-                              .HtmlAttributes(new { placeholder = "e.g. myname@example.net", required = "required", type = "email", data_email_msg = "Email format is not valid", style = "width: 220px;" })
-                    )
+                              .HtmlAttributes(new { placeholder = "e.g. myname@example.net", required = "required",  type = "email", data_email_msg = "Email format is not valid", style = "width: 220px;" })
+
+                    )*@
                 </li>
                 <li>
                     <label for="tel" class="required">Phone</label>
-                    @(Html.Kendo().TextBox()
+                    @(Html.Kendo().MaskedTextBox()
                               .Name("phone")
-                              .HtmlAttributes(new { placeholder = "Enter a ten digit number", pattern = "\\d{10}", required = "required", type = "tel", validationmessage = "Enter at least ten digits", style = "width: 220px;" })
+                              .Mask("(999) 000-0000")
+                              .HtmlAttributes(new { placeholder = "Enter your phone number",  required = "required", type = "tel", validationmessage = "Enter a 10 digit number", style = "width: 220px;" })
                     )
+
+
                 </li>
                 <li class="accept">
                     <label>Available to all</label>
@@ -58,6 +62,57 @@
     </div>
 </div>
 <script>
+
+    $(document).ready(function () {
+        var cu = getCurrencyUserInformation();
+        $("#playerName").val(cu.Name).change();
+        $("#phone").val(cu.Phone).change();
+        document.getElementById("emailValue").innerText = cu.Email;
+        $("#playerLevel").data("kendoDropDownList").select(function (dataItem) {
+            return dataItem.Text === cu.PlayerLevel;
+        });
+        $("#playWithAnyone").prop('checked', cu.PlayWithAnyone);
+
+        
+    });
+
+
+
+    function getCurrencyUserInformation() {
+        var obj = {
+                Name:'Unknown',
+                Phone:'5551234567',
+                PlayWithAnyone: true,
+                Email: 'Unknown',
+                PlayerLevel: 'Unknown'
+        };
+
+        $.ajax({
+            type: "POST",
+            traditional: true,
+            url: '@Url.Action("GetCurrencyUserInformation", "TennisNetwork")',
+            async: false,
+            data: null,
+            dataType: "json",
+            beforeSend: function (xhr) {
+            },
+            success: function (response, textStatus, jqXHR) {
+                //alert(response.message.Email);
+                obj.Email = response.message.Email;
+                obj.Phone = response.message.Phone;
+                obj.Name = response.message.Name;
+                obj.PlayWithAnyone = response.message.PlayWithAnyone;
+                obj.PlayerLevel = response.message.PlayerLevel;
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert("Couldn't get current user information");
+                return null;
+            }
+        });
+
+        return obj;
+    }
+
     $(function () {
         var validator = $("#ticketsForm").kendoValidator().data("kendoValidator");
         var status = $(".status");
@@ -66,9 +121,9 @@
             event.preventDefault();
             if (validator.validate()) {
 
-                
+
                 alert(document.getElementById("playWithAnyone").value);
-                
+
                 var playWithAnyone = document.getElementById("playWithAnyone").value;
 
                 if (playWithAnyone == null || playWithAnyone == "")
@@ -95,7 +150,7 @@
                     type: "POST",
                     traditional: true,
                     url: '@Url.Action("AddMyProfile", "TennisNetwork")',
-                    async: true,
+                    async: false,
                     data: parms,
                     dataType: "json",
                     beforeSend: function (xhr) {
@@ -105,7 +160,7 @@
                         //alert(response.message);
                         status.text(response.message).removeClass("invalid").addClass("valid");
 
-                        
+
                     },
                     error: function (XMLHttpRequest, textStatus, errorThrown) {
                         alert("Error found during execution");

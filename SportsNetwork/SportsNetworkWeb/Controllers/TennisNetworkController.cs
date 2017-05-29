@@ -15,6 +15,16 @@ namespace SportsNetworkWeb.Controllers
     {
         public string AlertMessage { get; set; }
     }
+
+    public class CurrencyUser
+    {
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public string Phone { get; set; }
+        public bool PlayWithAnyone { get; set; }
+        public string PlayerLevel { get; set; }
+
+    }
     public class TennisNetworkController : Controller
     {
 
@@ -23,6 +33,33 @@ namespace SportsNetworkWeb.Controllers
         {
             return View();
         }
+
+        #region Reference Data
+        [HttpPost]
+        public ActionResult GetCurrencyUserInformation([DataSourceRequest]DataSourceRequest request)
+        {
+
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            var json_serializer = new JavaScriptSerializer();
+
+            var cu = new CurrencyUser() { Email = User.Identity.Name };
+            var p = Player.GetPlayer(User.Identity.Name).FirstOrDefault();
+            if (p != null)
+            {
+                cu.Name = p.Name;
+                cu.Email = p.Email;
+                cu.Phone = p.Phone;
+                cu.PlayWithAnyone = p.PlayWithAnyone;
+                cu.PlayerLevel = p.PlayerLevel;
+            }
+            return Json(new { success = true, message = cu }, JsonRequestBehavior.AllowGet);
+        }
+
+        #endregion
+
 
         #region Create League
         public ActionResult CreateLeague()
@@ -410,6 +447,7 @@ namespace SportsNetworkWeb.Controllers
             var playerExist = Player.GetPlayer(p.Email);
             if (playerExist.Any())
             {
+                p.PlayerId = playerExist.FirstOrDefault().PlayerId;
                 Player.Update(p);
             }
             else
