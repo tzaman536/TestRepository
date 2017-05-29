@@ -18,6 +18,8 @@ namespace SportsNetworkModel
         public string Name { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
+        public bool PlayWithAnyone { get; set; }
+        public string PlayerLevel { get; set; }
         public string AddUserName { get; set; }
         public DateTime AddUpdateDt { get; set; }
 
@@ -45,6 +47,32 @@ namespace SportsNetworkModel
             return null;
 
         }
+
+
+        public static IEnumerable<Player> GetPlayer(string email)
+        {
+            using (var conn = new SqlConnection(DefaultConnectionString))
+            {
+                conn.Open();
+                try
+                {
+                    return conn.Query<Player>(@"
+                    SELECT *
+                    FROM dbo.Players
+                    WHERE Email = @email", new { email });
+                }
+                catch (Exception ex)
+                {
+                    PhenixMail.SendMail(string.Format("ERROR From: {0}", System.Reflection.MethodBase.GetCurrentMethod().DeclaringType), string.Format("{0}", ex.Message), SupportEmail);
+                    logger.Fatal(ex);
+                }
+
+            }
+
+            return null;
+
+        }
+
 
         public static IEnumerable<Player> GetPlayWithAnyonePlayers(string adminUserName)
         {
@@ -87,11 +115,15 @@ namespace SportsNetworkModel
                         INSERT INTO [dbo].Players([Name]
                                                 ,[Email]
                                                 ,[Phone]
+                                                ,[PlayWithAnyone]
+                                                ,[PlayerLevel]
                                                 ,[AddUserName]
                                                 ,[AddUpdateDt])
                                         VALUES (@Name
                                                 ,@Email
                                                 ,@Phone
+                                                ,@PlayWithAnyone
+                                                ,@PlayerLevel
                                                 ,@AddUserName
                                                 ,getutcdate())
 
@@ -130,6 +162,8 @@ namespace SportsNetworkModel
                         SET [Name] = @Name
                             ,[Email] = @Email
                             ,[Phone] = @Phone
+                            ,[PlayWithAnyone] = @PlayWithAnyone
+                            ,[PlayerLevel] = @PlayerLevel
                             ,[AddUserName] = @AddUserName
                             ,[AddUpdateDt] = getutcdate()
                         WHERE PlayerId = @PlayerId

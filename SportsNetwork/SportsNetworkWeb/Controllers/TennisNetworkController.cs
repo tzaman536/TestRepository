@@ -7,6 +7,7 @@ using SportsNetworkModel;
 using Kendo.Mvc.UI;
 using Kendo.Mvc.Extensions;
 using PhenixTools.Mail;
+using System.Web.Script.Serialization;
 
 namespace SportsNetworkWeb.Controllers
 {
@@ -376,6 +377,56 @@ namespace SportsNetworkWeb.Controllers
 
         #endregion
 
+        #region Add profile
+        public ActionResult AddProfile()
+        {
+
+            if (!User.Identity.IsAuthenticated) { return RedirectToAction("Login", "Account"); }
+
+            //ViewData["LeagueTypes"] = LeagueTypes.GetAll();
+            //ViewData["LeagueLevels"] = LeagueLevels.GetAll();
+
+            return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult AddMyProfile([DataSourceRequest]DataSourceRequest request, string inputPlayer)
+        {
+
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            var json_serializer = new JavaScriptSerializer();
+            Player p = json_serializer.Deserialize<Player>(inputPlayer);
+
+            p.AddUserName = User.Identity.Name;
+            if (string.IsNullOrEmpty(p.AddUserName))
+            {
+                p.AddUserName = System.Web.HttpContext.Current.Request.LogonUserIdentity.Name;
+            }
+
+            var playerExist = Player.GetPlayer(p.Email);
+            if (playerExist.Any())
+            {
+                Player.Update(p);
+            }
+            else
+            {
+                Player.Add(p);
+            }
+
+
+
+
+            //decimal totalCharges = inputQuantity * inputWeight * 
+
+            return Json(new { success = true, message = "Profile updated" }, JsonRequestBehavior.AllowGet);
+        }
+
+
+        #endregion
 
     }
 }
