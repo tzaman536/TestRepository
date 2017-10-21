@@ -1,0 +1,284 @@
+﻿@using SimplexInvoiceModel;
+@{
+    ViewBag.Title = "SearchTicket";
+}
+<input type="hidden" id="idInputJobDate" name="InputJobDate" value="UNSELECTED" />
+<input type="hidden" id="idInputClientName" name="InputClientName" value="UNSELECTED" />
+
+<h2 class="first-line page-description">Search Job Ticket</h2>
+
+<div style="display:table;">
+    <div style="display:table-row; min-width:1165px;">
+        <div id="idSearchInputPanel" class="search-input-panel">
+            <div style="display:table;">
+                <div style="display:table-row">
+                    <div style="display:table-cell;vertical-align:top; box-sizing: border-box; padding-right: 10px; padding-left:10px;">
+                        <dl>
+                            <dt>
+                                Client:
+                            </dt>
+                            <dd>
+                                @(Html.Kendo().DropDownList()
+                      .Name("clients")
+                      .DataTextField("ClientName")
+                      .DataValueField("ClientID")
+                      .DataSource(source =>
+                      {
+                          source.Read(read =>
+                          {
+                              read.Action("GetClientNames", "ReferenceData");
+                          });
+                      })
+                      .Events(e =>
+                        {
+                            e.Select("onSelectClientName");
+                        })
+
+                      .HtmlAttributes(new { style = "width: 260px;" })
+                                )
+                            </dd>
+                        </dl>
+                    </div>
+                    <div style="display:table-cell;vertical-align:top; box-sizing: border-box; padding-right: 10px; padding-left:10px;">
+                        <dl>
+                            <dt>
+                                Job Date:
+                            </dt>
+                            <dd>
+                                @(Html.Kendo().DatePicker()
+                      .Name("datepickerJobDate")
+                      .Value(DateTime.Today)
+                       .Events(e =>
+                          {
+                              e.Change("dateChanged");
+                          })
+                      .HtmlAttributes(new { style = "width: 100px;" })
+                                )
+                            </dd>
+                        </dl>
+                    </div>
+                    <div style="display:table-cell;vertical-align:top; box-sizing: border-box; padding-right: 10px; padding-left:10px;">
+                        <input id="btn_SearchJobTicket" type="submit" class="button_Save button-border" onclick="searchTicket()" value="Search" />
+                    </div>
+                    <div style="display:table-cell;vertical-align:top; box-sizing: border-box; padding-right: 10px; padding-left:10px;">
+                        <input id="btn_ShowAll" type="submit" class="button_Save button-border" onclick="searchTicketShowAll()" value="Show All" />
+                    </div>
+                </div>
+             </div>
+        </div>
+    </div>
+    <div style="display:table-row">
+        <div id="idJobTicketBookedToday" style="display:table-cell;min-width:1165px; vertical-align:top; box-sizing: border-box; padding-right: 10px; padding-left:10px; padding-top:15px;">
+            @(Html.Kendo().Grid<JobTicket>()
+                    .Name("JobTicketGrid")
+                    .Columns(columns =>
+                    {
+                        columns.Bound(p => p.JobTicketId).Width(100);
+                        columns.Bound(p => p.ClientName).Width(100);
+                        columns.Bound(p => p.ServiceType).Width(100);
+                        columns.Bound(p => p.PickupFrom).Width(255);
+                        columns.Bound(p => p.DeliverTo).Width(85);
+                        ////columns.Command(command => { command.Edit(); command.Destroy(); }).Width(250);
+                        columns.Template(@<text>
+                                            @Html.ActionLink(@item.JobTicketId.ToString(), "Index", "JobTicket", new { jobTicketId = @item.JobTicketId })
+                                         </text>)
+                                      .ClientTemplate("<a href='/JobTicket/Index?jobTicketId=#= JobTicketId#'>Edit Ticket</a>")
+                                      .Title("ModifyTicket").Width(85);
+                        columns.Template(@<text>
+                                        @Html.ActionLink(@item.JobTicketId.ToString(), "Index", "Invoices", new { jobTicketId = @item.JobTicketId })
+                                        </text>)
+                                      .ClientTemplate("<a href='/Invoices/Index?jobTicketId=#= JobTicketId#'>Print Invoice</a>")
+                                      .Title("PrintInvoice").Width(85);
+
+                    })
+                    .ToolBar(toolbar =>
+                    {
+                        //toolbar.Create();
+                        //toolbar.Save();
+                    })
+                    //.Editable(editable => editable.Mode(GridEditMode.InCell))
+                    //.Editable(editable => editable.Mode(GridEditMode.InLine))
+                    //.Pageable()
+                    .Filterable()
+                    .Navigatable()
+                    .Sortable()
+                    .Selectable(selectable => selectable
+                            .Mode(GridSelectionMode.Single)
+                            .Type(GridSelectionType.Row))
+                    //.Scrollable()
+                    .Events(events => events.Change("onChange"))
+                    .DataSource(dataSource => dataSource
+                        .Ajax()
+                        .Batch(false)
+                        .PageSize(1000)
+                        .ServerOperation(false)
+                        .Events(events => events.Error("error_handler").RequestEnd("onRequestEnd"))
+                        //.Model(model => model.Id(p => p.ProductID))
+                        .Model(model =>
+                        {
+                            model.Id(p => p.JobTicketId);
+                            model.Field(p => p.ClientName).Editable(false);
+                            model.Field(p => p.ServiceType).Editable(false);
+                            model.Field(p => p.PickupFrom).Editable(false);
+                            model.Field(p => p.DeliverTo).Editable(false);
+
+                        })
+                        .Read(read => read.Action("Search_Read", "JobTicket").Data("getUserInput"))
+                      ))
+        </div>
+    </div>
+</div>
+
+<script>
+        function dateChanged(){
+            document.getElementById("idInputJobDate").value = kendo.toString(this.value(), 'd');
+        }
+
+        function onSelectClientName(e) {
+        //alert(e.item[0].innerText);
+            document.getElementById("idInputClientName").value = e.item[0].innerText;
+
+            @*var parms = {
+                inputClient: e.item[0].innerText
+            };
+
+
+            $.ajax({
+                type: "POST",
+                traditional: true,
+                url: '@Url.Action("GetClientDefaults", "JobTicket")',
+                async: true,
+                data: parms,
+                dataType: "json",
+                beforeSend: function (xhr) {
+                    
+                },
+                success: function (response, textStatus, jqXHR) {
+                    document.getElementById("idBasePickupCharge").value = response.message.BasePickupCharge;
+                    
+
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert("Error found during execution");
+                }
+            });*@
+        }
+
+        function getUserInput(){
+            return {
+                jobDate: document.getElementById("idInputJobDate").value,
+                clientName: document.getElementById("idInputClientName").value
+            }
+        }
+
+        function searchTicket() {
+            $('#JobTicketGrid').data('kendoGrid').dataSource.read();
+        }
+        function searchTicketShowAll(){
+            document.getElementById("idInputJobDate").value ="UNSELECTED";
+            document.getElementById("idInputClientName").value ="UNSELECTED";
+            $('#JobTicketGrid').data('kendoGrid').dataSource.read();
+        }
+
+        function onChange(arg) {
+            @*var grid = $("#JobTicketGrid").data("kendoGrid");
+            var selectedItem = grid.dataItem(grid.select());
+
+
+            var parms = {
+                jobTicketId: selectedItem.JobTicketId
+            };
+
+
+            $.ajax({
+                type: "GET",
+                traditional: true,
+                url: '@Url.Action("GetJobTicketInfo", "JobTicket")',
+                async: true,
+                data: parms,
+                dataType: "json",
+                beforeSend: function (xhr) {
+                    $('#loader').show();
+                },
+                success: function (response, textStatus, jqXHR) {
+                    $('#loader').hide();
+                    Init(response.message);
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert("Error found during execution");
+                    $('#loader').hide();
+                }
+            });*@
+        }
+
+        function onRequestEnd(e) {
+            if (e.type == "update" && !e.response.Errors) {
+                alert("product updated");
+            }
+
+            if (e.type == "destroy" && !e.response.Errors) {
+                alert("Producdt deleted");
+            }
+        }
+
+        function error_handler(e) {
+            if (e.errors) {
+                var message = "Errors:\n";
+                $.each(e.errors, function (key, value) {
+                    if ('errors' in value) {
+                        $.each(value.errors, function () {
+                            message += this + "\n";
+                        });
+                    }
+                });
+                alert(message);
+            }
+        }
+
+
+
+
+</script>
+<style>
+    .search-input-panel{
+        max-width:1165px;
+        display:table-cell;
+        border-radius: 5px; /* Gives any image a round corner */
+        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#cedce7+0,596a72+100 */
+        background: rgb(206,220,231); /* Old browsers */
+        background: -moz-linear-gradient(top, rgba(206,220,231,1) 0%, rgba(89,106,114,1) 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(top, rgba(206,220,231,1) 0%,rgba(89,106,114,1) 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom, rgba(206,220,231,1) 0%,rgba(89,106,114,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cedce7', endColorstr='#596a72',GradientType=0 ); /* IE6-9 */
+
+    }
+    .button-border{
+        margin-top:5px;
+        margin-bottom:5px;
+    }
+
+    dl { 
+        width: 440px; 
+        overflow: hidden;
+        /*background: rgb(206,220,231);*/
+        padding: 0px;margin: 0px;
+        text-align:left;
+    } 
+    dt {
+        float: left;
+        width: 25%;
+        /*background: rgb(206,220,231);*/
+        padding: 0px; margin: 0px;
+        text-align:right;
+        font-size:11px;
+    }
+    dd {
+        float: left;
+        width: 75%;
+        /*background: rgb(206,220,231);*/
+        padding: 0px;
+        margin: 0px;
+        font-size:11px;
+    }
+
+</style>

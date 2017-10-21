@@ -21,6 +21,13 @@ Home Page:
 https://customers.arvixe.com/
 uid: tzaman536@gmail.com pwd: Changeme123
 
+Check email:
+https://mailtigerlily.arvixe.com/
+
+
+New Domain Registration Note:
+Update name server to ns1.tigerlily.arvixe.com and ns21.tigerlily.arvixe.com by going into Domain -> Manage Name Server
+
 
 To Create a DB
 Log into control panel and create a DB

@@ -639,8 +639,8 @@ namespace ReadWebPage
 
         static void Main(string[] args)
         {
-            //PopulateDictDOSID();
-            //ContainsSearch();
+            PopulateDictDOSID();
+            ContainsSearch();
 
             ParseAddress();
 

@@ -1,0 +1,83 @@
+﻿<div id="megaStore">
+    @(Html.Kendo().Menu()
+      .Name("Menu")
+      .Items(items =>
+      {
+          items.Add()
+                  .Text("Manage League")
+                  .Items(children =>
+                  {
+                      children.Add().Text("Leagues").Action("CreateLeague", "TennisNetwork");
+                      children.Add().Text("Players").Action("CreatePlayer", "TennisNetwork");
+                      children.Add().Text("Add Players To League").Action("AddPlayerToLeague", "TennisNetwork");
+                      //children.Add().Text("Manage Ticket")
+                      //            .Items(innerChildren =>
+                      //            {
+                      //                innerChildren.Add().Text("New Ticket").Action("Index","JobTicket");
+                      //                innerChildren.Add().Text("Today's tickets").Action("Index","JobTicket");
+                      //                innerChildren.Add().Text("Search Tickets").Action("SearchTicket","JobTicket");
+                      //                innerChildren.Add().Text("Ticket Summary").Action("Index","Home");
+                      //            });
+
+                  });
+
+          items.Add()
+                 .Text("Schedule Games")
+                 .Items(children =>
+                 {
+                     children.Add().Text("Let's Play").Action("LetsPlay", "TennisNetwork");
+                     children.Add().Text("My Profile").Action("AddProfile", "TennisNetwork");
+                     children.Add().Text("Schedule Singles").Action("ScheduleSinglesGame","TennisNetwork");
+                     children.Add().Text("Schedule Doubles").Action("ScheduleDoublesGame", "TennisNetwork");
+                     //children.Add().Text("Schedule Singles")
+                     //            .Items(innerChildren =>
+                     //            {
+                     //                innerChildren.Add().Text("Unpaid Invoices");
+                     //                innerChildren.Add().Text("Search Invoice");
+                     //            });
+
+                 });
+
+          items.Add()
+                .Text("Admin")
+                .Items(children =>
+                {
+                    children.Add().Text("Locations").Action("CreateLocation", "TennisNetwork");
+
+                });
+
+      })
+    )
+
+</div>
+<style>
+   
+    #megaStore {
+        /*max-width: 600px;*/
+        margin: 0px auto;
+        padding-top: 0px;
+        /*background: url('../../content/web/menu/header.jpg') no-repeat center 0;*/
+    }
+
+    .k-menu
+    {
+        border:0px;
+
+            /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#e4efc0+0,abbd73+100;Olive+3D+%232 */
+        background: rgb(228,239,192); /* Old browsers */
+        background: -moz-linear-gradient(top,  rgba(228,239,192,1) 0%, rgba(171,189,115,1) 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(top,  rgba(228,239,192,1) 0%,rgba(171,189,115,1) 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom,  rgba(228,239,192,1) 0%,rgba(171,189,115,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e4efc0', endColorstr='#abbd73',GradientType=0 ); /* IE6-9 */
+
+    }
+    
+    .k-menu .k-link 
+    {
+        font-size:11px;
+        text-decoration:none;
+        font-weight:bold;
+        border:0px;
+    }
+
+</style>
