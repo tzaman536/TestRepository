@@ -49,13 +49,11 @@ textarea {
 /*  PAGE  */
 /* TZ This is the seeting for main page top image*/
 .image-head{
-    position:absolute;
-    left:0px;
-    top:0px;
     min-height: 400px;
     min-width: 1100px;
     background-image: url('../../Content/Images/MainPage3.png');
     background-repeat: no-repeat;
+    background-size:100%;
 }
 
 
