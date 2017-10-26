@@ -276,6 +276,8 @@ table {
   }
   .navbar {
     display: none;
+
+    
   }
   .table td,
   .table th {
@@ -3233,6 +3235,7 @@ input[type="button"].btn-block {
 }
 
 .dropdown-menu {
+
   position: absolute;
   top: 100%;
   left: 0;
@@ -4146,18 +4149,21 @@ textarea.input-group-sm > .input-group-btn > .btn {
 .container > .navbar-collapse {
   margin-right: -15px;
   margin-left: -15px;
+  min-height: 97px;
+  
 }
 
 @media (min-width: 768px) {
   .container > .navbar-header,
   .container > .navbar-collapse {
-    margin-right: 0;
+    margin-right: 0px;
     margin-left: 0;
   }
 }
 
 .navbar-static-top {
   border-width: 0 0 1px;
+  
 }
 
 @media (min-width: 768px) {
@@ -4206,6 +4212,8 @@ textarea.input-group-sm > .input-group-btn > .btn {
 @media (min-width: 768px) {
   .navbar > .container .navbar-brand {
     margin-left: -15px;
+    background-color:orange;
+
   }
 }
 
@@ -4934,7 +4942,7 @@ a.list-group-item.active > .badge,
   font-weight: 200;
   line-height: 2.1428571435;
   color: inherit;
-  background-color: #eeeeee;
+  background-color: whitesmoke;
 }
 
 .jumbotron h1 {

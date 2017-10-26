@@ -1,22 +1,235 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "RNZSS";
 }
 
-<div class="jumbotron">
-    <h1>Welcome to Sports Network</h1>
-    <p class="lead">Write something here. How This software can help a logistic company handle its transactions better.</p>
+<table border="0" class="page-table">
+    <tr class="main-page-top_row">
+        <td width="200px"></td>
+        <td style="height:400px;">
+            <div id="image-head" class="image-head">
+                <div class="centering-hack">
+                    @*<h1>Something HTML</h1> Uncomment this if you want to add text to picture*@
+                </div>
+            </div>
+        </td>
+        <td width="200px"></td>
+    </tr>
+    <tr>
+        <td colspan="3">
+            <table border="0">
+                <tr>
+                    <td width="200px;"></td>
+                    <td></td>
+                    <td colspan="4">
+                        @*<div class="big-font">WHO WE ARE</div>*@
+                        <h1>WHO WE ARE</h1>
+                        <br />
+                        XYZ company supports this Corporate Vision through Global Engineering, Procurement, Light Manufacturing & Materials Management; Specializing in the Support of U.S. Manufactured Military Equipment & Provisions.
 
-    
-</div>
+                    </td>
+                    <td colspan="2">
+                        <button id="contactUsButton" type="button" class="button"> Contact us </button>
+                        <br />
+                        <br />
+                        <div class="page-group-header-font">E-mail: xyz@abcdd.com</div>
 
-@*@*<div class="row">
-    <div class="col-md-4">
-        <h2>Invoice Printer</h2>
-    </div>
-    <div class="col-md-4">
-        <h2>Manange Job Ticket</h2>
-    </div>
-    <div class="col-md-4">
-        <h2>Reporting</h2>
-    </div>
-</div>*@
+                    </td>
+
+                </tr>
+                <tr>
+                    <td width="200px;"></td>
+                    <td colspan="6"> &nbsp;<br />&nbsp;<br />&nbsp;<br /></td>
+                    <td width="200px;"></td>
+                </tr>
+                <tr>
+                    <td width="200px;"></td>
+                    <td style="min-width:25px;"></td>
+                    <td style="min-width:300px;">
+                        @*<div class="page-group-header-font">
+                                SMALL LINK 1
+                            </div>*@
+                        <h3>
+                            SMALL LINK 1
+                        </h3>
+                    </td>
+                    <td style="min-width:25px;"></td>
+                    <td style="min-width:300px;">
+                        @*<div class="page-group-header-font">
+                                SMALL LINK 2
+                            </div>*@
+                        <h3>
+                            SMALL LINK 2
+                        </h3>
+                    </td>
+                    <td style="min-width:25px;"></td>
+                    <td style="min-width:300px;">
+                        @*<div class="page-group-header-font">
+                                SMALL LINK 3
+                            </div>*@
+                        <h3>
+                            SMALL LINK 3
+                        </h3>
+                    </td>
+                    <td width="200px;"></td>
+                </tr>
+                <tr>
+                    <td colspan="8" style="height:10px;"></td>
+                </tr>
+                <tr>
+                    <td width="200px;"></td>
+                    <td style="min-width:25px;"></td>
+                    <td style="min-width:300px;">
+                        <div id="smallImage1" class="page-link-small-image1">
+                            Link 1 inside div
+                        </div>
+                    </td>
+                    <td style="min-width:25px;"></td>
+                    <td style="min-width:300px;">
+                        <div id="smallImage2" class="page-link-small-image2">
+                            link 2
+                        </div>
+                    </td>
+                    <td style="min-width:25px;"></td>
+                    <td style="min-width:300px;">
+                        <div id="smallImage3" class="page-link-small-image3">
+                            link 3
+                        </div>
+                    </td>
+                    <td width="200px;"></td>
+                </tr>
+                <tr>
+                    <td colspan="8"> &nbsp;<br />&nbsp;<br />&nbsp;<br /></td>
+
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+
+
+
+
+
+<script>
+        $(document).ready(function () {
+            var url = [
+                    '../../Content/Images/MainPage3.png',
+                    '../../Content/Images/MainPage4.png',
+                    '../../Content/Images/MainPage5.png'
+            ];
+
+            var curentImageIndex = 0;
+
+            setInterval(function () {
+                //console.log(url[curentImageIndex])
+                var p = $('.image-head');
+                p.css("background-image", "url(" + url[curentImageIndex++] + ")");
+                p.css("background-repeat", "no-repeat");
+                if (curentImageIndex >= url.length) { curentImageIndex = 0 }
+            }, 60000);
+        });
+
+
+        $('#smallImage1').click(function (e) {
+            alert("Got to page for 1");
+        });
+        $('#smallImage2').click(function (e) {
+            alert("Got to page for 2");
+        });
+        $('#smallImage3').click(function (e) {
+            alert("Got to page for 3");
+        });
+        $('#contactUsButton').click(function (e) {
+            window.location.href = '@Url.Action("Contact", "Home")';
+        });
+
+
+
+</script>
+
+
+<style>
+    .page-link-small-image1 {
+        cursor: pointer;
+        min-height: 100px;
+        min-width: 200px;
+        background-image: url('../../Content/Images/Page1LinkImage.png');
+        background-repeat: no-repeat;
+    }
+
+        .page-link-small-image1:hover {
+            webkit-filter: blur(1px); /* Chrome, Safari, Opera */
+            filter: blur(1px);
+        }
+
+    .page-link-small-image2 {
+        cursor: pointer;
+        min-height: 100px;
+        min-width: 200px;
+        background-image: url('../../Content/Images/Page1LinkImage.png');
+        background-repeat: no-repeat;
+    }
+
+        .page-link-small-image2:hover {
+            webkit-filter: blur(1px); /* Chrome, Safari, Opera */
+            filter: blur(1px);
+        }
+
+    .page-link-small-image3 {
+        cursor: pointer;
+        min-height: 100px;
+        min-width: 200px;
+        background-image: url('../../Content/Images/Page1LinkImage.png');
+        background-repeat: no-repeat;
+    }
+
+        .page-link-small-image3:hover {
+            webkit-filter: blur(1px); /* Chrome, Safari, Opera */
+            filter: blur(1px);
+        }
+
+    .main-page-top_row {
+        /*background-color: #1A5276 !important;*/
+        background: #65a9d7;
+        background: -webkit-gradient(linear, left top, left bottom, from(#3e779d), to(#65a9d7));
+        background: -webkit-linear-gradient(top, #3e779d, #65a9d7);
+        background: -moz-linear-gradient(top, #3e779d, #65a9d7);
+        background: -ms-linear-gradient(top, #3e779d, #65a9d7);
+        background: -o-linear-gradient(top, #3e779d, #65a9d7);
+    }
+
+    .button {
+        border-top: 1px solid #96d1f8;
+        background: #65a9d7;
+        background: -webkit-gradient(linear, left top, left bottom, from(#3e779d), to(#65a9d7));
+        background: -webkit-linear-gradient(top, #3e779d, #65a9d7);
+        background: -moz-linear-gradient(top, #3e779d, #65a9d7);
+        background: -ms-linear-gradient(top, #3e779d, #65a9d7);
+        background: -o-linear-gradient(top, #3e779d, #65a9d7);
+        padding: 11.5px 23px;
+        -webkit-border-radius: 16px;
+        -moz-border-radius: 16px;
+        border-radius: 16px;
+        -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+        -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+        box-shadow: rgba(0,0,0,1) 0 1px 0;
+        text-shadow: rgba(0,0,0,.4) 0 1px 0;
+        color: white;
+        font-size: 16px;
+        font-family: Georgia, serif;
+        text-decoration: none;
+        vertical-align: middle;
+    }
+
+        .button:hover {
+            border-top-color: #28597a;
+            background: #28597a;
+            color: #ccc;
+        }
+
+        .button:active {
+            border-top-color: #1b435e;
+            background: #1b435e;
+        }
+</style>
