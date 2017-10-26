@@ -53,7 +53,7 @@ textarea {
     min-width: 1100px;
     background-image: url('../../Content/Images/MainPage3.png');
     background-repeat: no-repeat;
-    background-size:100%;
+    background-size:100%; /* This streatches the background image to fit the div size*/
 }
 
 
