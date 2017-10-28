@@ -52,9 +52,11 @@ textarea {
 .image-head{
     min-height: 400px;
     min-width: 1100px;
-    background-image: url('../../Content/Images/MainPage3.png');
+    background-image: url('../../Content/Images/MainPage5.png');
     background-repeat: no-repeat;
     background-size:100%; /* This streatches the background image to fit the div size*/
+    height:100%; /* Streatch the div to fit table cell or parent*/
+    width:100%; /* Streatch the div to fit table cell or parent*/
 }
 
 
