@@ -228,9 +228,9 @@
     <Content Include="Content\Images\MainPage3.png" />
     <Content Include="Content\Images\MainPage4.png" />
     <Content Include="Content\Images\MainPage5.png" />
-    <Content Include="Content\Images\PageLinkSmallImage1.png" />
-    <Content Include="Content\Images\PageLinkSmallImage3.png" />
-    <Content Include="Content\Images\PageLinkSmallImage2.png" />
+    <Content Include="Content\Images\NavalLinkSmallImage1.png" />
+    <Content Include="Content\Images\AeroSpaceLinkSmallImage3.png" />
+    <Content Include="Content\Images\ArmoredVehiclesLinkSmallImage2.png" />
     <Content Include="Content\kendo\Black\editor.png" />
     <Content Include="Content\kendo\Black\imagebrowser.png" />
     <Content Include="Content\kendo\Black\indeterminate.gif" />
@@ -1438,6 +1438,9 @@
     <Content Include="Views\TennisNetwork\CreateLocation.cshtml" />
     <Content Include="Views\TennisNetwork\LetsPlay.cshtml" />
     <Content Include="Views\TennisNetwork\AddProfile.cshtml" />
+    <Content Include="Views\Home\Naval.cshtml" />
+    <Content Include="Views\Home\ArmoredVehicles.cshtml" />
+    <Content Include="Views\Home\AeroSpace.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

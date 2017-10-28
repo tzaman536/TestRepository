@@ -73,6 +73,21 @@ a:hover {
 h1 {
   margin: 0.67em 0;
   font-size: 2em;
+  font-weight: bolder;
+  font-family: 'Bernard MT';
+  color: darkolivegreen;
+}
+
+h2 {
+}
+
+h3{
+  margin: 0.67em 0;
+  font-size: 10px;
+  font-weight: bold;
+  font-family: 'Bernard MT';
+  color: darkolivegreen;
+
 }
 
 abbr[title] {

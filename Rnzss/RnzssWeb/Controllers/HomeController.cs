@@ -26,5 +26,27 @@ namespace SimplexInvoiceWeb.Controllers
 
             return View();
         }
+
+        public ActionResult Naval()
+        {
+            ViewBag.Message = "Naval.";
+
+            return View();
+        }
+
+        public ActionResult ArmoredVehicles()
+        {
+            ViewBag.Message = "Armored Vehicles";
+
+            return View();
+        }
+
+        public ActionResult AeroSpace()
+        {
+            ViewBag.Message = "Aero Space";
+
+            return View();
+        }
+
     }
 }

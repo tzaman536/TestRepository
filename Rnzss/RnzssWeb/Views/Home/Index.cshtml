@@ -48,7 +48,7 @@
                                 SMALL LINK 1
                             </div>*@
                         <h3>
-                            AEROSPACE
+                            <u>NAVAL</u>
                         </h3>
                     </td>
                     <td style="min-width:25px;"></td>
@@ -57,7 +57,7 @@
                                 SMALL LINK 2
                             </div>*@
                         <h3>
-                            ARMORED VEHICLES
+                            <u>ARMORED VEHICLES</u>
                         </h3>
                     </td>
                     <td style="min-width:25px;"></td>
@@ -66,7 +66,7 @@
                                 SMALL LINK 3
                             </div>*@
                         <h3>
-                            NAVAL
+                            <u>AERO SPACE</u>
                         </h3>
                     </td>
                     <td width="200px;"></td>
@@ -78,17 +78,17 @@
                     <td width="200px;"></td>
                     <td style="min-width:25px;"></td>
                     <td style="min-width:300px;">
-                        <div id="smallImage1" class="page-link-small-image1">
+                        <div id="naval" class="page-link-small-image1">
                         </div>
                     </td>
                     <td style="min-width:25px;"></td>
                     <td style="min-width:300px;">
-                        <div id="smallImage2" class="page-link-small-image2">
+                        <div id="armoredvehicles" class="page-link-small-image2">
                         </div>
                     </td>
                     <td style="min-width:25px;"></td>
                     <td style="min-width:300px;">
-                        <div id="smallImage3" class="page-link-small-image3">
+                        <div id="aerospace" class="page-link-small-image3">
                         </div>
                     </td>
                     <td width="200px;"></td>
@@ -127,14 +127,14 @@
         });
 
 
-        $('#smallImage1').click(function (e) {
-            alert("Got to page for 1");
+        $('#naval').click(function (e) {
+            window.location.href = '@Url.Action("Naval", "Home")';
         });
-        $('#smallImage2').click(function (e) {
-            alert("Got to page for 2");
+        $('#armoredvehicles').click(function (e) {
+            window.location.href = '@Url.Action("ArmoredVehicles", "Home")';
         });
-        $('#smallImage3').click(function (e) {
-            alert("Got to page for 3");
+        $('#aerospace').click(function (e) {
+            window.location.href = '@Url.Action("AeroSpace", "Home")';
         });
         $('#contactUsButton').click(function (e) {
             window.location.href = '@Url.Action("Contact", "Home")';
@@ -148,9 +148,9 @@
 <style>
     .page-link-small-image1 {
         cursor: pointer;
-        min-height: 100px;
+        min-height: 200px;
         min-width: 200px;
-        background-image: url('../../Content/Images/PageLinkSmallImage1.png');
+        background-image: url('../../Content/Images/NavalLinkSmallImage1.png');
         background-repeat: no-repeat;
     }
 
@@ -161,9 +161,9 @@
 
     .page-link-small-image2 {
         cursor: pointer;
-        min-height: 100px;
+        min-height: 200px;
         min-width: 200px;
-        background-image: url('../../Content/Images/PageLinkSmallImage2.png');
+        background-image: url('../../Content/Images/ArmoredVehiclesLinkSmallImage2.png');
         background-repeat: no-repeat;
     }
 
@@ -174,9 +174,9 @@
 
     .page-link-small-image3 {
         cursor: pointer;
-        min-height: 100px;
+        min-height: 200px;
         min-width: 200px;
-        background-image: url('../../Content/Images/PageLinkSmallImage3.png');
+        background-image: url('../../Content/Images/AeroSpaceLinkSmallImage3.png');
         background-repeat: no-repeat;
     }
 

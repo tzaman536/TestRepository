@@ -11,7 +11,7 @@ Password: Ph9l0ksG57
 
 
 How to FTP files:
-hostname: coalescesoftcom.com
+hostname: tigerlily.arvixe.com  [don't use coalescesoftcom.com]
 UID: coalesc1
 PWD: Ph9l0ksG57
 
