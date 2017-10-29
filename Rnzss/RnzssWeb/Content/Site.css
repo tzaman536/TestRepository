@@ -117,9 +117,9 @@ textarea {
 .navbar-inverse .navbar-nav > li > a {
     color: white;
     font-family: 'Bernard MT';
-    font-size: 23px;
-    margin-top: 20px;
-    margin-left: 80px;
+    font-size: 12px;
+    margin-top: 10px;
+    margin-left: 10px;
 }
 
 /* TZ DEV Table */
@@ -162,4 +162,13 @@ textarea {
     background: -webkit-linear-gradient(top, rgba(181,189,200,1) 0%,rgba(130,140,149,1) 36%,rgba(40,52,59,1) 100%); /* Chrome10-25,Safari5.1-6 */
     background: linear-gradient(to bottom, rgba(181,189,200,1) 0%,rgba(130,140,149,1) 36%,rgba(40,52,59,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b5bdc8', endColorstr='#28343b',GradientType=0 ); /* IE6-9 */
+}
+
+.company-name
+{
+    color: white;
+    font-family: 'Bernard MT';
+    font-size: 23px;
+    margin-top: 20px;
+    margin-left: 80px;
 }
