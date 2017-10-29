@@ -71,12 +71,12 @@ textarea {
     font-size:12px;
 
     /*background-color: #1A5276;*/
-    background: #65a9d7;
-    background: -webkit-gradient(linear, left top, left bottom, from(#3e779d), to(#65a9d7));
-    background: -webkit-linear-gradient(top, #3e779d, #65a9d7);
-    background: -moz-linear-gradient(top, #3e779d, #65a9d7);
-    background: -ms-linear-gradient(top, #3e779d, #65a9d7);
-    background: -o-linear-gradient(top, #3e779d, #65a9d7);
+    background: #020254;
+    background: -webkit-gradient(linear, left top, left bottom, from(#3e779d), to(#020254));
+    background: -webkit-linear-gradient(top, #3e779d, #020254);
+    background: -moz-linear-gradient(top, #3e779d, #020254);
+    background: -ms-linear-gradient(top, #3e779d, #020254);
+    background: -o-linear-gradient(top, #3e779d, #020254);
 
 
     color: #ffffff;
@@ -85,13 +85,12 @@ textarea {
 
 /* TZ change navbar color */
 .navbar-inverse { 
-    /*background-color: #1A5276 !important;*/ 
-    background: #65a9d7;
-    background: -webkit-gradient(linear, left top, left bottom, from(#3e779d), to(#65a9d7));
-    background: -webkit-linear-gradient(top, #3e779d, #65a9d7);
-    background: -moz-linear-gradient(top, #3e779d, #65a9d7);
-    background: -ms-linear-gradient(top, #3e779d, #65a9d7);
-    background: -o-linear-gradient(top, #3e779d, #65a9d7);
+    background-color: #020254;
+    background: -webkit-gradient(linear, left top, left bottom, from(#3e779d), to(#020254));
+    background: -webkit-linear-gradient(top, #3e779d, #020254);
+    background: -moz-linear-gradient(top, #3e779d, #020254);
+    background: -ms-linear-gradient(top, #3e779d, #020254);
+    background: -o-linear-gradient(top, #3e779d, #020254);
 
     border-bottom-color:red;
     border:none;
@@ -154,4 +153,13 @@ textarea {
 
 .largerAtrament{
     font-weight:bold;
+}
+
+.menu-table{
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#b5bdc8+0,828c95+36,28343b+100;Grey+Black+3D */
+    background: rgb(181,189,200); /* Old browsers */
+    background: -moz-linear-gradient(top, rgba(181,189,200,1) 0%, rgba(130,140,149,1) 36%, rgba(40,52,59,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, rgba(181,189,200,1) 0%,rgba(130,140,149,1) 36%,rgba(40,52,59,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(181,189,200,1) 0%,rgba(130,140,149,1) 36%,rgba(40,52,59,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b5bdc8', endColorstr='#28343b',GradientType=0 ); /* IE6-9 */
 }
