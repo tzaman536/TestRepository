@@ -3,6 +3,12 @@
       .Name("Menu")
       .Items(items =>
       {
+          items.Add().Text("Home").Action("Index", "Home");
+          items.Add().Text("About").Action("About", "Home");
+          items.Add().Text("Contact").Action("Contact", "Home");
+          items.Add().Text("Aero Space").Action("AeroSpace", "Home");
+          items.Add().Text("Armored Vehicles").Action("ArmoredVehicles", "Home");
+          items.Add().Text("Naval").Action("Naval", "Home");
           items.Add()
                   .Text("Manage League")
                   .Items(children =>

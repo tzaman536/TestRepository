@@ -14,8 +14,8 @@
     </tr>
     <tr>
         <td colspan="3">
-            <table border="0">
-                <tr>
+            <table border="0" width="100%">
+                @*<tr>
                     <td width="200px;"></td>
                     <td></td>
                     <td colspan="4">
@@ -32,20 +32,20 @@
 
                     </td>
 
+                </tr>*@
+                <tr>
+                    <td width="20%;"></td>
+                    <td colspan="9"> &nbsp;<br />&nbsp;<br />&nbsp;<br /></td>
+                    <td width="20%;"></td>
                 </tr>
                 <tr>
-                    <td width="200px;"></td>
-                    <td colspan="6"> &nbsp;<br />&nbsp;<br />&nbsp;<br /></td>
-                    <td width="200px;"></td>
-                </tr>
-                <tr>
-                    <td width="200px;"></td>
+                    <td width="20%;"></td>
                     <td style="min-width:25px;"></td>
                     <td style="min-width:300px;">
                         @*<div class="page-group-header-font">
                                 SMALL LINK 1
                             </div>*@
-                        <h3>
+                        <h3 class="page-link-small-text">
                             <u>NAVAL</u>
                         </h3>
                     </td>
@@ -54,7 +54,7 @@
                         @*<div class="page-group-header-font">
                                 SMALL LINK 2
                             </div>*@
-                        <h3>
+                        <h3 class="page-link-small-text">
                             <u>ARMORED VEHICLES</u>
                         </h3>
                     </td>
@@ -63,17 +63,18 @@
                         @*<div class="page-group-header-font">
                                 SMALL LINK 3
                             </div>*@
-                        <h3>
+                        <h3 class="page-link-small-text">
                             <u>AERO SPACE</u>
                         </h3>
                     </td>
-                    <td width="200px;"></td>
+                    <td colspan="3"></td>
+                    <td width="20%;"></td>
                 </tr>
                 <tr>
-                    <td colspan="8" style="height:10px;"></td>
+                    <td colspan="11" style="height:10px;"></td>
                 </tr>
                 <tr>
-                    <td width="200px;"></td>
+                    <td width="20%;"></td>
                     <td style="min-width:25px;"></td>
                     <td style="min-width:300px;">
                         <div id="naval" class="page-link-small-image1">
@@ -89,10 +90,16 @@
                         <div id="aerospace" class="page-link-small-image3">
                         </div>
                     </td>
-                    <td width="200px;"></td>
+                    <td style="min-width:25px;"></td>
+                    <td colspan="2">
+                        <button id="contactUsButton" type="button" class="button"> Contact us </button>
+                        <br />
+                        <br />
+                    </td>
+                    <td width="20%;"></td>
                 </tr>
                 <tr>
-                    <td colspan="8"> &nbsp;<br />&nbsp;<br />&nbsp;<br /></td>
+                    <td colspan="11"> &nbsp;<br />&nbsp;<br />&nbsp;<br /></td>
 
                 </tr>
             </table>
@@ -145,12 +152,20 @@
 
 
 <style>
+    .page-link-small-text{
+        text-align: center;
+    }
     .page-link-small-image1 {
         cursor: pointer;
         min-height: 200px;
         min-width: 200px;
         background-image: url('../../Content/Images/NavalLinkSmallImage1.png');
         background-repeat: no-repeat;
+        background-position: center;
+
+        background-color: silver;
+        border-radius:25px;
+        
     }
 
         .page-link-small-image1:hover {
@@ -162,8 +177,13 @@
         cursor: pointer;
         min-height: 200px;
         min-width: 200px;
+        
         background-image: url('../../Content/Images/ArmoredVehiclesLinkSmallImage2.png');
         background-repeat: no-repeat;
+        background-position: center;
+
+        background-color: silver;
+        border-radius:25px;
     }
 
         .page-link-small-image2:hover {
@@ -177,6 +197,11 @@
         min-width: 200px;
         background-image: url('../../Content/Images/AeroSpaceLinkSmallImage3.png');
         background-repeat: no-repeat;
+        background-position: center;
+
+        background-color: silver;
+        border-radius:25px;
+
     }
 
         .page-link-small-image3:hover {
