@@ -32,7 +32,19 @@
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
+        <table border="1" width="100%">
+            <tr>
+                <td width="30%"></td>
+                <td>
+                    <div style="max-height:5px;">
+                        @Html.Partial("_MainMenu")
+                    </div>
+                </td>
+                <td width="30%"></td>
+            </tr>
+        </table>
     </div>
+      
     <div class="body-content ">
         @RenderBody()
         <hr />
