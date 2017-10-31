@@ -196,7 +196,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/21/2017 13:56:08</publishTime>
     </File>
     <File Include="bin/SportsNetworkWeb.dll">
-      <publishTime>10/28/2017 19:29:01</publishTime>
+      <publishTime>10/31/2017 15:30:56</publishTime>
     </File>
     <File Include="bin/sv-SE/Kendo.Mvc.resources.dll">
       <publishTime>01/12/2016 16:42:22</publishTime>
@@ -235,7 +235,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/12/2016 16:42:22</publishTime>
     </File>
     <File Include="Content/bootstrap.css">
-      <publishTime>10/28/2017 18:46:39</publishTime>
+      <publishTime>10/31/2017 13:29:29</publishTime>
     </File>
     <File Include="Content/bootstrap.min.css">
       <publishTime>04/26/2016 19:44:21</publishTime>
@@ -249,17 +249,50 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Content/Images/Logo.png">
       <publishTime>10/26/2017 13:43:31</publishTime>
     </File>
+    <File Include="Content/Images/MainPage1.jpg">
+      <publishTime>10/31/2017 10:35:40</publishTime>
+    </File>
     <File Include="Content/Images/MainPage1.png">
       <publishTime>10/28/2017 19:17:51</publishTime>
+    </File>
+    <File Include="Content/Images/MainPage10.jpg">
+      <publishTime>10/31/2017 15:22:35</publishTime>
+    </File>
+    <File Include="Content/Images/MainPage11.jpg">
+      <publishTime>10/31/2017 15:24:06</publishTime>
+    </File>
+    <File Include="Content/Images/MainPage2.jpg">
+      <publishTime>10/31/2017 10:39:39</publishTime>
+    </File>
+    <File Include="Content/Images/MainPage3.jpg">
+      <publishTime>10/31/2017 11:02:47</publishTime>
     </File>
     <File Include="Content/Images/MainPage3.png">
       <publishTime>10/26/2017 12:33:59</publishTime>
     </File>
+    <File Include="Content/Images/MainPage4.jpg">
+      <publishTime>10/31/2017 11:06:47</publishTime>
+    </File>
     <File Include="Content/Images/MainPage4.png">
       <publishTime>10/26/2017 12:35:36</publishTime>
     </File>
+    <File Include="Content/Images/MainPage5.jpg">
+      <publishTime>10/31/2017 10:51:15</publishTime>
+    </File>
     <File Include="Content/Images/MainPage5.png">
       <publishTime>10/26/2017 12:36:59</publishTime>
+    </File>
+    <File Include="Content/Images/MainPage6.jpg">
+      <publishTime>10/31/2017 09:19:44</publishTime>
+    </File>
+    <File Include="Content/Images/MainPage7.jpg">
+      <publishTime>10/31/2017 11:10:33</publishTime>
+    </File>
+    <File Include="Content/Images/MainPage8.jpg">
+      <publishTime>10/31/2017 11:23:38</publishTime>
+    </File>
+    <File Include="Content/Images/MainPage9.jpg">
+      <publishTime>10/31/2017 15:20:40</publishTime>
     </File>
     <File Include="Content/Images/NavalLinkSmallImage1.png">
       <publishTime>10/26/2017 12:42:45</publishTime>
@@ -1564,7 +1597,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/14/2016 04:52:57</publishTime>
     </File>
     <File Include="Content/Site.css">
-      <publishTime>10/28/2017 19:25:40</publishTime>
+      <publishTime>10/31/2017 15:07:08</publishTime>
     </File>
     <File Include="favicon.ico">
       <publishTime>04/26/2016 19:44:17</publishTime>
@@ -3763,7 +3796,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/28/2017 18:50:31</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>10/28/2017 19:23:35</publishTime>
+      <publishTime>10/31/2017 15:27:56</publishTime>
     </File>
     <File Include="Views/Home/Naval.cshtml">
       <publishTime>10/28/2017 19:05:28</publishTime>
@@ -3844,13 +3877,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/26/2016 19:44:36</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>10/28/2017 18:33:08</publishTime>
+      <publishTime>10/31/2017 14:59:12</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
       <publishTime>10/28/2017 19:09:06</publishTime>
     </File>
     <File Include="Views/Shared/_MainMenu.cshtml">
-      <publishTime>05/28/2017 09:19:46</publishTime>
+      <publishTime>10/31/2017 15:17:44</publishTime>
     </File>
     <File Include="Views/TennisNetwork/AddPlayerToLeague.cshtml">
       <publishTime>03/12/2017 10:00:39</publishTime>
