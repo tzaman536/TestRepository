@@ -4,8 +4,8 @@
 
 <table border="0" class="page-table">
     <tr class="main-page-top_row">
-        <td colspan="3" style="height:450px;">
-            <div id="image-head" class="image-head">
+        <td colspan="3" class="main-page-image-td">
+            <div id="image-head" class="main-page-image-div">
                 <div class="centering-hack">
                     @*<h1>Something HTML</h1> Uncomment this if you want to add text to picture*@
                 </div>
@@ -125,11 +125,11 @@
 
             setInterval(function () {
                 //console.log(url[curentImageIndex])
-                var p = $('.image-head');
+                var p = $('.main-page-image-div');
                 p.css("background-image", "url(" + url[curentImageIndex++] + ")");
                 p.css("background-repeat", "no-repeat");
                 if (curentImageIndex >= url.length) { curentImageIndex = 0 }
-            }, 10000);
+            }, 8000);
         });
 
 

@@ -49,12 +49,18 @@ textarea {
 
 /*  PAGE  */
 /* TZ This is the seeting for main page top image*/
-.image-head{
+.main-page-image-td{
+    height:450px;
+    background-color:red;
+}
+.main-page-image-div{
     min-height: 400px;
     min-width: 1100px;
     background-image: url('../../Content/Images/MainPage5.png');
     background-repeat: no-repeat;
-    background-size:100%; /* This streatches the background image to fit the div size*/
+    background-size: cover; /* Streatch background image to fit the div*/
+    background-position: center center; /* Reposition image to center of div when browser height and width changes*/
+
     height:100%; /* Streatch the div to fit table cell or parent*/
     width:100%; /* Streatch the div to fit table cell or parent*/
 }
