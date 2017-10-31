@@ -50,8 +50,10 @@ textarea {
 /*  PAGE  */
 /* TZ This is the seeting for main page top image*/
 .main-page-image-td{
-    height:450px;
-    background-color:red;
+    height:300px;
+    background-color:transparent; /* if you put color here then that color will show for a split second between images*/
+    
+    padding:0px; /* This removes border between child div and table cell */
 }
 .main-page-image-div{
     min-height: 400px;
@@ -63,6 +65,8 @@ textarea {
 
     height:100%; /* Streatch the div to fit table cell or parent*/
     width:100%; /* Streatch the div to fit table cell or parent*/
+
+    
 }
 
 
