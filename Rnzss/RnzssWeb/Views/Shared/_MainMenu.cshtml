@@ -10,12 +10,14 @@
           items.Add().Text("Armored Vehicles").Action("ArmoredVehicles", "Home");
           items.Add().Text("Naval").Action("Naval", "Home");
           items.Add()
-                  .Text("Manage League")
+                  .Text("Capabilities")
                   .Items(children =>
                   {
-                      children.Add().Text("Leagues").Action("CreateLeague", "TennisNetwork");
-                      children.Add().Text("Players").Action("CreatePlayer", "TennisNetwork");
-                      children.Add().Text("Add Players To League").Action("AddPlayerToLeague", "TennisNetwork");
+                      children.Add().Text("Contract Management").Action("CreateLeague", "TennisNetwork");
+                      children.Add().Text("Short & Long Term Contracts").Action("CreatePlayer", "TennisNetwork");
+                      children.Add().Text("Military Packaging and Crating").Action("AddPlayerToLeague", "TennisNetwork");
+                      children.Add().Text("Quality Control").Action("AddPlayerToLeague", "TennisNetwork");
+                      children.Add().Text("Stocking And Warehousing").Action("AddPlayerToLeague", "TennisNetwork");
                       //children.Add().Text("Manage Ticket")
                       //            .Items(innerChildren =>
                       //            {
@@ -28,13 +30,11 @@
                   });
 
           items.Add()
-                 .Text("Schedule Games")
+                 .Text("Suppliers")
                  .Items(children =>
                  {
-                     children.Add().Text("Let's Play").Action("LetsPlay", "TennisNetwork");
-                     children.Add().Text("My Profile").Action("AddProfile", "TennisNetwork");
-                     children.Add().Text("Schedule Singles").Action("ScheduleSinglesGame","TennisNetwork");
-                     children.Add().Text("Schedule Doubles").Action("ScheduleDoublesGame", "TennisNetwork");
+                     children.Add().Text("Strategic Partner Initiative").Action("LetsPlay", "TennisNetwork");
+                     children.Add().Text("Become A Supplier").Action("AddProfile", "TennisNetwork");
                      //children.Add().Text("Schedule Singles")
                      //            .Items(innerChildren =>
                      //            {
