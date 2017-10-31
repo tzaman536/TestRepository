@@ -35,8 +35,17 @@ body {
 
     margin-bottom:50px;
 
+    text-align:left;
+    padding-left:20px;
+    padding-top:60px;
    
-   
+    font-size: 15px;
+    font-weight: normal;
+    font-family: 'Times New Roman', Times, serif;
+    color: white;
+
+   cursor:pointer;
+
 }
 
 /* Set padding to keep content from hitting the edges */
