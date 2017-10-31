@@ -58,7 +58,7 @@ textarea {
 .main-page-image-div{
     min-height: 400px;
     min-width: 1100px;
-    background-image: url('../../Content/Images/MainPage5.png');
+    background-image: url('../../Content/Images/MainPage5.jpg');
     background-repeat: no-repeat;
     background-size: cover; /* Streatch background image to fit the div*/
     background-position: center center; /* Reposition image to center of div when browser height and width changes*/
