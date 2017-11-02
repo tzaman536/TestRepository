@@ -3,6 +3,25 @@
 
 */
 /*#region Common */
+h3{
+  font-size: 25px;
+  font-weight: bold;
+  font-family: 'Californian FB';
+  color: white;
+
+}
+
+h1 {
+  margin: 0.67em 0;
+  font-size: 2em;
+  font-weight: bolder;
+  font-family: 'Bernard MT';
+  color: darkolivegreen;
+}
+
+h2 {
+}
+
 
 body {
     padding-top: 50px;
@@ -42,7 +61,7 @@ textarea {
     position: fixed;
     bottom:0;
     width:100%;
-    height:60px;  
+    height:25px;  
     font-size:12px;
 
     /*background-color: #1A5276;*/
