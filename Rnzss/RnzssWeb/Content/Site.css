@@ -160,9 +160,6 @@ textarea {
 
 /*#endregion */
 
-/*#region Main Page  */
-.main-page-container {
-}
 
 .main-page-small-box{
 
@@ -198,12 +195,12 @@ textarea {
 
 
 /* TZ page table */
-.page-table{
+.page-container{
     width:100%; 
     position:absolute; 
-    top:98px;   /* Adjust this to take out  the white line between navbar and main page table*/
+ 
     height:100%;
-
+    top:142px;
     background-color: #020254;
     background: -webkit-gradient(linear, left top, left bottom, from(#3e779d), to(#020254));
     background: -webkit-linear-gradient(top, #3e779d, #020254);
