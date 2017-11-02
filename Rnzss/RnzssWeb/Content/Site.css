@@ -15,11 +15,18 @@ h1 {
   margin: 0.67em 0;
   font-size: 2em;
   font-weight: bolder;
-  font-family: 'Bernard MT';
+  font-family: 'Californian FB';
   color: black;
 }
 
 h2 {
+    font-family: 'Californian FB';
+    font-size: 20px;
+}
+
+.li-in-h2{
+    font-family: 'Californian FB';
+    font-size: 20px;
 }
 
 .text-on-gray-background{
@@ -27,13 +34,21 @@ h2 {
 }
 
 .display-text-on-page{
-    background-color:#ffffff;
+    
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f9fcf7+0,f5f9f0+100;L+Green+3D */
+    background: rgb(249,252,247); /* Old browsers */
+    background: -moz-linear-gradient(top, rgba(249,252,247,1) 0%, rgba(245,249,240,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, rgba(249,252,247,1) 0%,rgba(245,249,240,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(249,252,247,1) 0%,rgba(245,249,240,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9fcf7', endColorstr='#f5f9f0',GradientType=0 ); /* IE6-9 */
+
+
     margin-top:50px;
     margin-left:50px;
     margin-right:50px;
     margin-bottom:50px;
 
-    padding-left:50px; /* This adds space between text and left border inside the div*/
+    padding-left:50px;  /*This adds space between text and left border inside the div*/
     padding-right:50px; /* This adds space between text and right border inside the div */
     padding-top:50px; /* This adds space between text and top border inside the div */
     padding-bottom:50px; /* This adds space between text and bottom border inside the div */
@@ -176,37 +191,29 @@ textarea {
 
 /*#endregion */
 
+/*#region MainPage */
 
-.main-page-small-box{
-
-    color:#ffffff;
-
+.main-page-small-box {
+    color: #ffffff;
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#7d7e7d+0,0e0e0e+100;Black+3D */
     background: rgb(125,126,125); /* Old browsers */
     background: -moz-linear-gradient(top, rgba(125,126,125,1) 0%, rgba(14,14,14,1) 100%); /* FF3.6-15 */
     background: -webkit-linear-gradient(top, rgba(125,126,125,1) 0%,rgba(14,14,14,1) 100%); /* Chrome10-25,Safari5.1-6 */
     background: linear-gradient(to bottom, rgba(125,126,125,1) 0%,rgba(14,14,14,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7d7e7d', endColorstr='#0e0e0e',GradientType=0 ); /* IE6-9 */
-
     min-height: 200px;
     min-width: 200px;
-     
-    height:80%; /* Streatch the div to fit table cell or parent*/
-    width:100%; /* Streatch the div to fit table cell or parent*/
-
-    margin-bottom:50px;
-
-    text-align:left;
-    padding-left:20px;
-    padding-top:60px;
-   
+    height: 80%; /* Streatch the div to fit table cell or parent*/
+    width: 100%; /* Streatch the div to fit table cell or parent*/
+    margin-bottom: 50px;
+    text-align: left;
+    padding-left: 20px;
+    padding-top: 60px;
     font-size: 18px;
     font-weight: normal;
     font-family: 'Californian FB';
     color: white;
-
-   cursor:pointer;
-
+    cursor: pointer;
 }
 
 
@@ -293,6 +300,10 @@ textarea {
      
 }
 
+.k-menu .k-item .k-link
+{
+    color:#ffffff; /*White*/
+}
 .k-menu .k-link 
     {
         font-size:11px;
@@ -306,7 +317,7 @@ textarea {
         background: linear-gradient(to bottom, rgba(181,189,200,1) 0%,rgba(130,140,149,1) 36%,rgba(40,52,59,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
         filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b5bdc8', endColorstr='#28343b',GradientType=0 ); /* IE6-9 */
 
-        height:12px;
+        height:13px;
 
 
     }
