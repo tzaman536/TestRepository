@@ -7,7 +7,7 @@ h3{
   font-size: 25px;
   font-weight: bold;
   font-family: 'Californian FB';
-  color: white;
+  color: black;
 
 }
 
@@ -16,12 +16,30 @@ h1 {
   font-size: 2em;
   font-weight: bolder;
   font-family: 'Bernard MT';
-  color: darkolivegreen;
+  color: black;
 }
 
 h2 {
 }
 
+.text-on-gray-background{
+    color: #ffffff;
+}
+
+.display-text-on-page{
+    background-color:#ffffff;
+    margin-top:50px;
+    margin-left:50px;
+    margin-right:50px;
+    margin-bottom:50px;
+
+    padding-left:50px; /* This adds space between text and left border inside the div*/
+    padding-right:50px; /* This adds space between text and right border inside the div */
+    padding-top:50px; /* This adds space between text and top border inside the div */
+    padding-bottom:50px; /* This adds space between text and bottom border inside the div */
+
+    min-height: 70%;
+}
 
 body {
     padding-top: 50px;
@@ -30,8 +48,6 @@ body {
     height:100%;
     font-family: Arial;
     font-size:14px;
-    
-
 }
 
 /* Set padding to keep content from hitting the edges */
