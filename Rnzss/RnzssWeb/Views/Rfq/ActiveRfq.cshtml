@@ -1,6 +1,7 @@
 ﻿@using RnzssWeb.Models
-<div id="rfqentryform" class="page-container">
-    @(Html.Kendo().Grid<RequestForQuote>()
+<div class="page-container">
+    <div id="rfqentryform" class="admin-page-container">
+        @(Html.Kendo().Grid<RequestForQuote>()
                                 .Name("grid-rfq")
                                 .Columns(columns =>
                                 {
@@ -20,7 +21,7 @@
                                 .Pageable()
                                 .Sortable()
                                 .Filterable()
-                                .Scrollable(scr => scr.Height(500))
+                                .Scrollable(scr => scr.Height(800))
                                 .Excel(excel => excel
                                     .AllPages(true)
                                     .FileName("Index Rates Export.xlsx")
@@ -42,9 +43,9 @@
                                     .Update(update => update.Action("Rfq_Update", "Rfq"))
                                     .Destroy(update => update.Action("Rfq_Destroy", "Rfq"))
                                 )
-    )
+        )
+    </div>
 </div>
-
 
 <script>
     function onEdit() {
