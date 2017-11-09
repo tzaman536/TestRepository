@@ -18,7 +18,7 @@ CREATE TABLE [rnz].[ProductInformation](
 	[RFQNo] [nvarchar](200) NULL,
 	[PartName] [nvarchar](200) NULL,
 	[PartNumber] [nvarchar](200) NULL,
-	[PartDescription] [nvarchar](255) NULL,
+	[PartDescription] VARCHAR(MAX),
 	[Quantity] [nvarchar](100) NULL,
 	[CN] [nvarchar](100) NULL,
 	[UpdatedBy] [nvarchar](100) NOT NULL,

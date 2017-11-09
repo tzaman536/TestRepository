@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using log4net;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -9,6 +10,8 @@ namespace RnzssWeb.Models
 {
     public class RequestForQuote
     {
+        private static readonly ILog logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         public int RequestForQuoteId { get; set; }
         public string RFQNo { get; set; }
         public string CompanyName { get; set; }
@@ -48,11 +51,12 @@ namespace RnzssWeb.Models
                     return connection.Query<RequestForQuote>(@"
                                                         select *     
                                                         from [rnz].[RequestForQuote]
+                                                        order by 1 desc
                                                         ", commandTimeout: 0).ToList();
                 }
                 catch (Exception ex)
                 {
-
+                    logger.Fatal(ex);
                 }
 
             }
@@ -75,7 +79,7 @@ namespace RnzssWeb.Models
                 }
                 catch (Exception ex)
                 {
-
+                    logger.Fatal(ex);
                 }
 
             }
@@ -98,6 +102,7 @@ namespace RnzssWeb.Models
                 }
                 catch (Exception ex)
                 {
+                    logger.Fatal(ex);
                     return null;
                 }
 
@@ -139,6 +144,7 @@ namespace RnzssWeb.Models
                     }
                     catch (Exception ex)
                     {
+                        logger.Fatal(ex);
                         return false;
                     }
                 }
@@ -181,6 +187,7 @@ namespace RnzssWeb.Models
                 }
                 catch (Exception ex)
                 {
+                    logger.Fatal(ex);
                     return false;
                 }
             }
@@ -214,6 +221,7 @@ namespace RnzssWeb.Models
                 }
                 catch (Exception ex)
                 {
+                    logger.Fatal(ex);
                     return false;
                 }
 
@@ -248,6 +256,7 @@ namespace RnzssWeb.Models
                 }
                 catch (Exception ex)
                 {
+                    logger.Fatal(ex);
                     return false;
                 }
 

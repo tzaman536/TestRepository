@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using log4net;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -9,6 +10,8 @@ namespace RnzssWeb.Models
 {
     public class ProductInformation
     {
+        private static readonly ILog logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         public int ProductInformationId { get; set; }
         public string RFQNo { get; set; }
         public string PartName { get; set; }
@@ -44,6 +47,7 @@ namespace RnzssWeb.Models
                 }
                 catch (Exception ex)
                 {
+                    logger.Fatal(ex);
                     return false;
                 }
 
@@ -83,6 +87,7 @@ namespace RnzssWeb.Models
                 }
                 catch (Exception ex)
                 {
+                    logger.Fatal(ex);
                     return false;
                 }
 
@@ -133,6 +138,7 @@ namespace RnzssWeb.Models
                 }
                 catch (Exception ex)
                 {
+                    logger.Fatal(ex);
                     return false;
                 }
 
@@ -156,7 +162,7 @@ namespace RnzssWeb.Models
                 }
                 catch (Exception ex)
                 {
-
+                    logger.Fatal(ex);
                 }
 
             }

@@ -18,7 +18,7 @@ namespace RnzssWeb.Controllers
 {
     public class RfqController : Controller
     {
-        private static readonly ILog logger = LogManager.GetLogger(typeof(RfqController));
+        private static readonly ILog logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         // GET: Rfq
         public ActionResult RfqEntry(string RFQNo = null)
         {
@@ -68,6 +68,7 @@ namespace RnzssWeb.Controllers
             }
             catch (Exception ex)
             {
+                logger.Fatal(ex.Message);
             }
 
             return Json(new { success = true, message = result }, JsonRequestBehavior.AllowGet);
@@ -441,6 +442,8 @@ namespace RnzssWeb.Controllers
             }
             catch (Exception ex)
             {
+                logger.Error("Failed to print RFQ:");
+                logger.Fatal(ex);
                 return Json(new { success = false, message = string.Format("Failed to print RFQ. {0} ", ex.Message), JsonRequestBehavior.AllowGet });
             }
 

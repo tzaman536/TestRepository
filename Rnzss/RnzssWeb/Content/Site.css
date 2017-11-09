@@ -3,6 +3,10 @@
 
 */
 /*#region Common */
+.rfqno{
+    font-weight:bold;
+    color:darkred;
+}
 .admin-page-container{
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f9fcf7+0,f5f9f0+100;L+Green+3D */
     background: rgb(249,252,247); /* Old browsers */
@@ -267,11 +271,13 @@ textarea {
 }
 
 .k-grid {
-font-size: 10px;
+    font-size: 10px;
 }
 
 .k-grid td {
     line-height: 1.5em;
+    text-align:left;
+ 
 }
 
 /*#endregion */

@@ -2,7 +2,7 @@
 <div class="page-container">
     <div id="rfqentryform" class="admin-page-container">
         <form>
-            <table border="0" width="1000">
+            <table border="0" width="1000" style="height:auto">
                 <tr>
                     <td width="5%"></td>
                     <td width="90%"><div class="form-data-entry-lable">Request For Quote: <input id="lookUpRfqNo" data-bind="value: lookUpRfqNo" class="k-textbox" /><button id="kendo-find-button" data-bind="click: findRfq" class="button">Find</button></div></td>
@@ -29,7 +29,7 @@
                                     <td width="10px;"></td>
                                     <td><label for="attention">Attention: <input id="attention" data-bind="value: attention" class="k-textbox" /></label></td>
                                     <td width="10px"></td>
-                                    <td colspan="3"><label for="rfqNo">RFQ No: <input id="rfqNo" data-bind="value: rfqNo" disabled="disabled" class="k-textbox" /></label></td>
+                                    <td colspan="3"><label for="rfqNo">RFQ No: <input id="rfqNo" data-bind="value: rfqNo" disabled="disabled" class="rfqno" /></label></td>
                                 </tr>
                                 <tr>
                                     <td width="10px"></td>
@@ -103,9 +103,9 @@
                                 <tr><td height="10px;" colspan="6"></td></tr> @*Empty line*@
                                 <tr>
                                     <td width="10px"></td>
-                                    <td><button data-bind="click: saveWork" class="button">Save</button></td>
-                                    <td width="10px"></td>
                                     <td><button data-bind="click: startOver" class="button">Start Over</button></td>
+                                    <td width="10px"></td>
+                                    <td><button data-bind="click: saveWork" class="button">Save</button></td>
                                     <td width="10px"></td>
                                     <td><button data-bind="click: printRFQ" class="button">Print</button></td>
                                 </tr>
@@ -141,7 +141,7 @@
                                 .Pageable()
                                 .Sortable()
                                 .Filterable()
-                                .Scrollable(scr => scr.Height(150))
+                                .Scrollable(scr => scr.Height(500))
                                 .Excel(excel => excel
                                     .AllPages(true)
                                     .FileName("Index Rates Export.xlsx")
@@ -235,6 +235,16 @@
     }
 
 
+    function restProductForm(){
+        document.getElementById("partNumber").value = "";
+        document.getElementById("partName").value = "";
+        document.getElementById("partDescription").value = "";
+        document.getElementById("quantity").value = "";
+        document.getElementById("cn").value = "NE";
+
+        
+    }
+
     function addProduct(e)
     {
         e.preventDefault();
@@ -251,6 +261,7 @@
                 if (response.success) {
                     reloadProductInformationGrid();
                     document.getElementById("pageMessage").innerHTML = response.UserMessage.Message;
+                    restProductForm();
                 }
                 else
                 {
@@ -335,6 +346,7 @@
                     document.getElementById("rfqNo").value = response.UserMessage.RfqNo
                     reloadProductInformationGrid();
                     document.getElementById("pageMessage").innerHTML = response.UserMessage.Message;
+                    restProductForm();
                 }
                 else {
                     alert(response.UserMessage.Message);
@@ -417,6 +429,7 @@
             phoneNo: rfq.PhoneNo,
             faxNo: rfq.FaxNo,
             email: rfq.Email,
+            comment: rfq.Comment,
             genders: ["Male", "Female"],
             gender: "Male",
             agreed: true,
@@ -424,7 +437,7 @@
             saveWork: saveData,
             partNumber: "",
             partName: "",
-            cn: "",
+            cn: "NE",
             quantity: "",
             partDescription: "",
             lookUpRfqNo: "",
