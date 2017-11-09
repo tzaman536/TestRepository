@@ -3,6 +3,17 @@
 
 */
 /*#region Common */
+
+.interactive-message{
+        font:bolder;
+        font-family:'Times New Roman', Times, serif;
+        font-size:14px;
+        color: blue;
+        text-align:center;
+        width: 100%;
+}
+
+
 h3{
   font-size: 25px;
   font-weight: bold;
@@ -95,25 +106,31 @@ textarea {
     height:25px;  
     font-size:12px;
 
-    /*background-color: #1A5276;*/
-    background: #020254;
+    
+    background: #3f4c6b; /* Old browsers */
+    background: -moz-linear-gradient(top,  #3f4c6b 0%, #3f4c6b 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  #3f4c6b 0%,#3f4c6b 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  #3f4c6b 0%,#3f4c6b 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3f4c6b', endColorstr='#3f4c6b',GradientType=0 ); /* IE6-9 */
+
+    /*background: #020254;
     background: -webkit-gradient(linear, left top, left bottom, from(#3e779d), to(#020254));
     background: -webkit-linear-gradient(top, #3e779d, #020254);
     background: -moz-linear-gradient(top, #3e779d, #020254);
-    background: -o-linear-gradient(top, #3e779d, #020254);
+    background: -o-linear-gradient(top, #3e779d, #020254);*/
 
 
     color: #ffffff;
     
 }
 
-/* TZ change navbar color */
 .navbar-inverse { 
-    background-color: #020254;
-    background: -webkit-gradient(linear, left top, left bottom, from(#3e779d), to(#020254));
-    background: -webkit-linear-gradient(top, #3e779d, #020254);
-    background: -moz-linear-gradient(top, #3e779d, #020254);
-    background: -o-linear-gradient(top, #3e779d, #020254);
+    background: #3f4c6b; /* Old browsers */
+    background: -moz-linear-gradient(top,  #3f4c6b 0%, #3f4c6b 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  #3f4c6b 0%,#3f4c6b 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  #3f4c6b 0%,#3f4c6b 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3f4c6b', endColorstr='#3f4c6b',GradientType=0 ); /* IE6-9 */
+
 
     border-bottom-color:red;
     border:none;
@@ -181,7 +198,7 @@ textarea {
 
 .company-name {
     color: white;
-    font-family: 'Bernard MT';
+    font-family: 'Californian FB';
     font-size: 23px;
     margin-top: 20px;
     margin-left: 80px;
@@ -191,8 +208,44 @@ textarea {
 
 /*#endregion */
 
-/*#region MainPage */
+/*#region Kendo Grid */
+.k-grid-header .k-header
+{
+    background: #3f4c6b; /* Old browsers */
+    background: -moz-linear-gradient(top,  #3f4c6b 0%, #3f4c6b 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  #3f4c6b 0%,#3f4c6b 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  #3f4c6b 0%,#3f4c6b 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3f4c6b', endColorstr='#3f4c6b',GradientType=0 ); /* IE6-9 */
 
+    
+    height:35px;
+    
+}
+
+.k-header .k-link{
+   text-align: center;
+   
+   font-weight:bold;
+   
+}
+
+.k-grid th.k-header,
+.k-grid th.k-header .k-link
+{
+    color:white
+}
+
+.k-grid {
+font-size: 10px;
+}
+
+.k-grid td {
+    line-height: 1.5em;
+}
+
+/*#endregion */
+
+/*#region MainPage */
 .main-page-small-box {
     color: #ffffff;
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#7d7e7d+0,0e0e0e+100;Black+3D */
@@ -217,18 +270,19 @@ textarea {
 }
 
 
-/* TZ page table */
+/* page table */
 .page-container{
     width:100%; 
     position:absolute; 
  
     height:100%;
-    top:142px;
-    background-color: #020254;
-    background: -webkit-gradient(linear, left top, left bottom, from(#3e779d), to(#020254));
-    background: -webkit-linear-gradient(top, #3e779d, #020254);
-    background: -moz-linear-gradient(top, #3e779d, #020254);
-    background: -o-linear-gradient(top, #3e779d, #020254);
+    top:128px;
+
+    background: #3f4c6b; /* Old browsers */
+    background: -moz-linear-gradient(top,  #3f4c6b 0%, #3f4c6b 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  #3f4c6b 0%,#3f4c6b 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  #3f4c6b 0%,#3f4c6b 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3f4c6b', endColorstr='#3f4c6b',GradientType=0 ); /* IE6-9 */
     
 }
 
@@ -296,7 +350,7 @@ textarea {
     background: -webkit-linear-gradient(top, rgba(181,189,200,1) 0%,rgba(130,140,149,1) 36%,rgba(40,52,59,1) 100%); /* Chrome10-25,Safari5.1-6 */
     background: linear-gradient(to bottom, rgba(181,189,200,1) 0%,rgba(130,140,149,1) 36%,rgba(40,52,59,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b5bdc8', endColorstr='#28343b',GradientType=0 ); /* IE6-9 */
-    width:703px
+    width:auto;
      
 }
 
@@ -304,24 +358,24 @@ textarea {
 {
     color:#ffffff; /*White*/
 }
-.k-menu .k-link 
-    {
-        font-size:11px;
-        text-decoration:none;
-        font-weight:bold;
-        border:0px;
+    .k-menu .k-link {
+        font-size: 11px;
+        text-decoration: none;
+        font-weight: bold;
+        border: 0px;
         color: #ffffff;
         background: rgb(181,189,200); /* Old browsers */
         background: -moz-linear-gradient(top, rgba(181,189,200,1) 0%, rgba(130,140,149,1) 36%, rgba(40,52,59,1) 100%); /* FF3.6-15 */
         background: -webkit-linear-gradient(top, rgba(181,189,200,1) 0%,rgba(130,140,149,1) 36%,rgba(40,52,59,1) 100%); /* Chrome10-25,Safari5.1-6 */
         background: linear-gradient(to bottom, rgba(181,189,200,1) 0%,rgba(130,140,149,1) 36%,rgba(40,52,59,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
         filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b5bdc8', endColorstr='#28343b',GradientType=0 ); /* IE6-9 */
-
-        height:13px;
-
-
+        height: 13px;
     }
 
+.k-menu-horizontal /* for all horizontal menus */
+{
+   display: inline-block;
+}
    
 
 
@@ -330,11 +384,11 @@ textarea {
 /*#region Buttons */
 .button {
     border-top: 1px solid #96d1f8;
-    background-color: #020254;
-    background: -webkit-gradient(linear, left top, left bottom, from(#3e779d), to(#020254));
-    background: -webkit-linear-gradient(top, #3e779d, #020254);
-    background: -moz-linear-gradient(top, #3e779d, #020254);
-    background: -o-linear-gradient(top, #3e779d, #020254);
+    background-color: #3f4c6b;
+    background: -webkit-gradient(linear, left top, left bottom, from(#3e779d), to(#3f4c6b));
+    background: -webkit-linear-gradient(top, #3e779d, #3f4c6b);
+    background: -moz-linear-gradient(top, #3e779d, #3f4c6b);
+    background: -o-linear-gradient(top, #3e779d, #3f4c6b);
     padding: 11.5px 23px;
     -webkit-border-radius: 16px;
     -moz-border-radius: 16px;
@@ -344,10 +398,14 @@ textarea {
     box-shadow: rgba(0,0,0,1) 0 1px 0;
     text-shadow: rgba(0,0,0,.4) 0 1px 0;
     color: white;
-    font-size: 16px;
-    font-family: Georgia, serif;
+    font-size: 13px;
+    font-family: 'Californian FB';
     text-decoration: none;
     vertical-align: middle;
+    
+    margin-top:2px;
+    margin-bottom:2px;
+    margin-left:4px;
 }
 
 .button:hover {

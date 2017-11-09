@@ -211,6 +211,7 @@
     <Compile Include="Controllers\MyClientsController.cs" />
     <Compile Include="Controllers\MyCompanyController.cs" />
     <Compile Include="Controllers\ReferenceDataController.cs" />
+    <Compile Include="Controllers\RfqController.cs" />
     <Compile Include="Controllers\TennisNetworkController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1450,6 +1451,8 @@
     <Content Include="Views\Home\Naval.cshtml" />
     <Content Include="Views\Home\ArmoredVehicles.cshtml" />
     <Content Include="Views\Home\AeroSpace.cshtml" />
+    <Content Include="Views\Rfq\RfqEntry.cshtml" />
+    <Content Include="Views\Shared\_RFQEntryForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

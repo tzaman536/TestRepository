@@ -1,0 +1,553 @@
+﻿@using TestWebApplication.Models
+<div id="rfqentryform">
+    <form>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+
+        <table border="1" width="100%">
+            <tr>
+                <td width="5%"></td>
+                <td>Request For Quote: <input id="lookUpRfqNo" data-bind="value: lookUpRfqNo" class="k-textbox" /><button id="kendo-find-button" data-bind="click: findRfq" class="button">Find</button></td>
+                <td width="5%"></td>
+            </tr>
+            <tr>
+                <td width="5%"></td>
+                <td height="20"><div id="pageMessage" class="interactive-message"> </div></td>
+                <td width="5%"></td>
+            <tr>
+                <td width="5%"></td>
+                <td>Seller Information:</td>
+                <td width="5%"></td>
+            </tr>
+            @* Buyers Information Section *@
+            <tr>
+                <td height="100" width="5%"></td>
+                <td>
+                    <div class="demo-section k-content wide">
+                        <table border="1" width="100%">
+                            <tr>
+                                <td width="10px;"></td>
+                                <td><label for="companyName">Company Name: <input id="companyName" data-bind="value: companyName" class="k-textbox large" /></label></td>
+                                <td width="10px;"></td>
+                                <td><label for="attention">Attention: <input id="attention" data-bind="value: attention" class="k-textbox" /></label></td>
+                                <td width="10px"></td>
+                                <td colspan="3"><label for="rfqNo">RFQ No: <input id="rfqNo" data-bind="value: rfqNo" disabled="disabled" class="k-textbox" /></label></td>
+                            </tr>
+                            <tr>
+                                <td width="10px"></td>
+                                <td colspan="6"><label for="companyAddress">Company Address:</label> <textarea id="companyAddress" rows="4" cols="25" style="min-width: 450px;" data-bind="value: companyAddress"> </textarea></td>
+                                <td width="10px"></td>
+                            </tr>
+                            <tr>
+                                <td width="10px"></td>
+                                <td><label for="phoneNo">Phone No: <input id="phoneNo" data-role="maskedtextbox" data-mask="(999) 000-0000" data-bind="value: phoneNo" class="k-textbox" /></label></td>
+                                <td width="10px"></td>
+                                <td><label for="faxNo">Fax No: <input id="faxNo" data-role="maskedtextbox" data-mask="(999) 000-0000" data-bind="value: faxNo" class="k-textbox" /></label></td>
+                                <td width="10px"></td>
+                                <td><label for="email">Email: <input id="email" type="email" data-bind="value: email" class="k-textbox" /></label></td>
+                                <td colspan="2"></td>
+                            </tr>
+                            @*<tr>
+                                    <td width="10px"></td>
+                                    <td><label for="ccPurchase">Credit Card Purchase</label> <input type="checkbox" id="ccPurchase" data-bind="checked: ccPurchase" /></td>
+                                    <td width="10px"></td>
+                                    <td><label for="gvtInspection">Government Source Inspection Required</label> <input type="checkbox" id="gvtInspection" data-bind="checked: gvtInspection" /></td>
+                                    <td width="*"></td>
+                                    <td width="10px"></td>
+                                    <td></td>
+                                    <td width="*"></td>
+                                </tr>*@
+                            <tr>
+                                <td width="10px"></td>
+                                <td colspan="6"><label for="comment">Comment</label> <textarea id="comment" rows="4" cols="50" style="min-width: 900px;" data-bind="value: comment"> </textarea></td>
+                                <td width="*"></td>
+                            </tr>
+
+                        </table>
+                        @* Dropdown list and checkbox example
+                            <ul id="fieldlist">
+                                <li><label for="gender">Gender:</label> <select id="gender" data-bind="source: genders, value: gender"></select></li>
+                                <li> <label for="agree">License Agreement</label> <input type="checkbox" id="agree" data-bind="checked: agreed" /> I have read the licence agreement</li>
+                            </ul>
+                        *@
+                    </div>
+                </td>
+                <td width="5%"></td>
+            </tr>
+            <tr><td height="10px;" colspan="3"></td></tr> @*Empty line*@
+            <tr>
+                <td width="5%"></td>
+                <td>Product Information</td>
+                <td width="5%"></td>
+            </tr>
+            @* Product Information Section *@
+            <tr>
+                <td height="100" width="5%"></td>
+                <td>
+                    <div class="demo-section k-content wide">
+                        <table border="1" width="100%">
+                            <tr>
+                                <td width="10px"></td>
+                                <td><label for="partNumber">Part Number: <input id="partNumber" data-bind="value: partNumber" class="k-textbox" /></label></td>
+                                <td width="10px"></td>
+                                <td><label for="partName">Part Name: <input id="partName" data-bind="value: partName" class="k-textbox" /></label></td>
+                                <td width="10px"></td>
+                                <td><label for="cn">CN: <input id="cn" data-bind="value: cn" class="k-textbox" /></label></td>
+                            </tr>
+                            <tr>
+                                <td width="10px"></td>
+                                <td><label for="quantity">Quantity: <input id="quantity" data-bind="value: quantity" class="k-textbox" /></label></td>
+                                <td width="10px"></td>
+                                <td><label for="partDescription">Description: <input id="partDescription" data-bind="value: partDescription" class="k-textbox" /></label></td>
+                                <td width="10px"></td>
+                                <td><button data-bind="click: addAnotherProduct" class="button">Add Product</button></td>
+                            </tr>
+                            <tr><td height="10px;" colspan="6"></td></tr> @*Empty line*@
+                            <tr>
+                                <td width="10px"></td>
+                                <td><button data-bind="click: saveWork" class="button">Save</button></td>
+                                <td width="10px"></td>
+                                <td><button data-bind="click: startOver" class="button">Start Over</button></td>
+                                <td width="10px"></td>
+                                <td><button data-bind="click: printRFQ" class="button">Print</button></td>
+                            </tr>
+                        </table>
+                        @* Dropdown list and checkbox example
+                            <ul id="fieldlist">
+                                <li><label for="gender">Gender:</label> <select id="gender" data-bind="source: genders, value: gender"></select></li>
+                                <li> <label for="agree">License Agreement</label> <input type="checkbox" id="agree" data-bind="checked: agreed" /> I have read the licence agreement</li>
+                            </ul>
+                        *@
+                    </div>
+                </td>
+                <td width="5%"></td>
+            </tr>
+            <tr><td height="10px;" colspan="3"></td></tr> @*Empty line*@
+            @* Product Information Table for multiple products *@
+            <tr>
+                <td height="100" width="5%"></td>
+                <td>
+                    @(Html.Kendo().Grid<ProductInformation>()
+                                .Name("grid-product-information")
+                                .Columns(columns =>
+                                {
+                                    columns.Bound(p => p.PartNumber).Width(75);
+                                    columns.Bound(p => p.PartName).Width(75);
+                                    columns.Bound(p => p.PartDescription).Width(75);
+                                    columns.Bound(p => p.Quantity).Width(75);
+                                    columns.Bound(p => p.CN).Width(75);
+                                    columns.Command(command => { command.Edit(); command.Destroy(); }).Width(100);
+                                })
+                                //.ToolBar(toolBar => toolBar.Template("<a class='k-button k-button-icontext' onclick='addAnotherProduct()' href='#'></span>Add Another Product</a>"))
+                                .Editable(editable => editable.Mode(GridEditMode.InLine))
+                                .Pageable()
+                                .Sortable()
+                                .Filterable()
+                                .Scrollable(scr => scr.Height(500))
+                                .Excel(excel => excel
+                                    .AllPages(true)
+                                    .FileName("Index Rates Export.xlsx")
+                                    .Filterable(true)
+                                    .ProxyURL(Url.Action("Excel_Export_Save", "Carry"))
+                                )
+                                .Events(events => events.Edit("onEdit"))
+                                .DataSource(dataSource => dataSource
+                                    .Ajax()
+                                    .PageSize(100)
+                                    .Events(events => events.Error("error_handler").RequestEnd("onRequestEnd"))
+                                    .Model(model =>
+                                    {
+                                        model.Id(p => p.ProductInformationId);
+                                    })
+                                    .Read(read => read.Action("RfqProduct_Read", "Home").Data("getRFQNo"))
+                                    .Update(update => update.Action("RfqProduct_Update", "Home"))
+                                    .Destroy(update => update.Action("RfqProduct_Destroy", "Home"))
+                                )
+                    )
+                </td>
+                <td width="5%"></td>
+            </tr>
+
+        </table>
+    </form>
+
+
+
+    @*<div>
+            <h4>Current view model state:</h4>
+            <pre>
+                {
+                    companyName: <span data-bind="text: companyName"></span>,
+                    attention: <span data-bind="text: attention"></span>,
+                    rfqNo: <span data-bind="text: rfqNo"></span>,
+                    companyAddress: <span data-bind="text: companyAddress"></span>,
+                    phoneNo: <span data-bind="text: phoneNo"></span>,
+                    faxNo: <span data-bind="text: faxNo"></span>,
+                    email: <span data-bind="text: email"></span>,
+                    ccPurchase: <span data-bind="text: ccPurchase"></span>,
+                    gvtInspection: <span data-bind="text: gvtInspection"></span>,
+                    comment: <span data-bind="text: comment"></span>,
+                    partName: <span data-bind="text: partName"></span>,
+                    PartNumber: <span data-bind="text: partNumber"></span>,
+                    partDescription: <span data-bind="text: partDescription"></span>,
+                    quantity: <span data-bind="text: quantity"></span>,
+                    cn: <span data-bind="text: cn"></span>,
+
+                }
+            </pre>
+        </div>*@
+
+</div>
+
+
+
+<script>
+    function onEdit() {
+
+    }
+    function error_handler() {
+
+    }
+
+    function onRequestEnd(e) {
+        if (e.type == 'update' || e.type == "create" || e.type == "destroy") {
+            document.getElementById("pageMessage").innerHTML = e.response.myMessage;
+            if (e.response.myMessage.indexOf('ERROR') >= 0) {
+                alert(e.response.myMessage)
+            }
+            else {
+                $('#grid-product-information').data('kendoGrid').dataSource.read();
+                $('#grid-product-information').data('kendoGrid').refresh();
+            }
+
+        }
+    }
+
+
+    function getRFQNo() {
+
+        return {
+            RFQNo: document.getElementById("rfqNo").value
+        }
+    }
+
+    function reloadProductInformationGrid() {
+        $('#grid-product-information').data('kendoGrid').dataSource.read();
+        $('#grid-product-information').data('kendoGrid').refresh();
+    }
+
+
+    function addProduct(e)
+    {
+        e.preventDefault();
+
+        myData = getInputData();
+
+        $.ajax({
+            type: 'POST',
+            data: JSON.stringify(myData),
+            url: '@Url.Action("AddAnotherProduct", "Home")',
+            contentType: 'application/json',
+            dataType: 'json',
+            success: function (response, textStatus, jqXHR) {
+                if (response.success) {
+                    reloadProductInformationGrid();
+                    document.getElementById("pageMessage").innerHTML = response.UserMessage.Message;
+                }
+                else
+                {
+                    alert(response.UserMessage.Message);
+                    document.getElementById("pageMessage").innerHTML = response.UserMessage.Message;
+                }
+            },
+            error: function (response, textStatus, jqXHR) {
+                alert('not good');
+            }
+        });
+
+
+    }
+
+
+    function SampleAjaxGetCall()
+    {
+        var parms = {
+            sessionId: '@(ViewBag.SessionId)'
+        };
+
+
+        $.ajax({
+            type: "GET",
+            traditional: true,
+            url: '@Url.Action("GetInstrumentName", "Home")',
+            async: true,
+            data: parms,
+            dataType: "json",
+            beforeSend: function (xhr) {
+            },
+            success: function (response, textStatus, jqXHR) {
+                alert(response.message);
+                location.reload();
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert( "Couldn't get instrument name");
+            }
+        });
+
+    }
+
+    function getInputData(){
+
+            return {
+                StageId: '@ViewBag.SessionId',
+                CompanyName: document.getElementById("companyName").value,
+                Attention: document.getElementById("attention").value,
+                RFQNo: document.getElementById("rfqNo").value,
+                CompanyAddress: document.getElementById("companyAddress").value,
+                PhoneNo: document.getElementById("phoneNo").value,
+                FaxNo: document.getElementById("faxNo").value,
+                Email: document.getElementById("email").value,
+                //CreditCardPurchase: document.getElementById("ccPurchase").value,
+                //GovernmentSourceInspectionRequired: document.getElementById("gvtInspection").value,
+                Comment: document.getElementById("comment").value,
+                Product: {
+                    PartName: document.getElementById("partName").value,
+                    PartNumber: document.getElementById("partNumber").value,
+                    PartDescription: document.getElementById("partDescription").value,
+                    Quantity: document.getElementById("quantity").value,
+                    CN: document.getElementById("cn").value
+                }
+            }
+    }
+
+
+    function saveData(e) {
+        e.preventDefault();
+
+        myData = getInputData();
+
+        $.ajax({
+            type: 'POST',
+            data: JSON.stringify(myData),
+            url: '@Url.Action("SubmitRfqData", "Home")',
+            contentType: 'application/json',
+            dataType: 'json',
+            success: function (response, textStatus, jqXHR) {
+                if (response.success) {
+                    document.getElementById("rfqNo").value = response.UserMessage.RfqNo
+                    reloadProductInformationGrid();
+                    document.getElementById("pageMessage").innerHTML = response.UserMessage.Message;
+                }
+                else {
+                    alert(response.UserMessage.Message);
+                    document.getElementById("pageMessage").innerHTML = response.UserMessage.Message;
+                }
+            },
+            error: function (response, textStatus, jqXHR) {
+                alert('not good');
+            }
+        });
+
+
+    }
+
+    function printRFQ(e)
+    {
+        e.preventDefault();
+
+        myData = getInputData();
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("PrintRFQ", "Home")',
+            data: JSON.stringify(myData),
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            success: function (response, textStatus, jqXHR) {
+
+                if (response.success) {
+                    //alert(response.fileName);
+                    window.location = '/Home/Download?file=' + response.fileName;
+                }
+                else
+                {
+                    alert(response.message);
+                }
+
+            },
+            error: function (response, textStatus, jqXHR) {
+                alert('Failed to download RFQ');
+            }
+        });
+    }
+
+    function findRfq(e) {
+        e.preventDefault();
+        document.getElementById("rfqNo").value = document.getElementById("lookUpRfqNo").value;
+
+        myData = getInputData();
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("FindRfq", "Home")',
+            data: JSON.stringify(myData),
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            success: function (response, textStatus, jqXHR) {
+
+                if (response.success) {
+                    bindViewModel(response.RFQ);
+                }
+                else {
+                    alert(response.message);
+                }
+
+            },
+            error: function (response, textStatus, jqXHR) {
+                alert('Failed to download RFQ');
+            }
+        });
+
+    }
+
+    function bindViewModel(rfq)
+    {
+
+        var viewModel = kendo.observable({
+            companyName: rfq.CompanyName,
+            attention: rfq.Attention,
+            rfqNo: rfq.RFQNo,
+            companyAddress: rfq.CompanyAddress,
+            phoneNo: rfq.PhoneNo,
+            faxNo: rfq.FaxNo,
+            email: rfq.Email,
+            genders: ["Male", "Female"],
+            gender: "Male",
+            agreed: true,
+            confirmed: true,
+            saveWork: saveData,
+            partNumber: "",
+            partName: "",
+            cn: "",
+            quantity: "",
+            partDescription: "",
+            lookUpRfqNo: "",
+            startOver: function () {
+                //this.set("confirmed", false);
+                //this.set("agreed", false);
+                //this.set("gender", "Male");
+                this.set("companyName", "Some company name");
+                this.set("attention", "Doe");
+                this.set("rfqNo", "rfq123");
+                this.set("companyAddress", "Some company address");
+            },
+            addAnotherProduct: addProduct,
+            printRFQ: printRFQ,
+            findRfq: findRfq
+
+        });
+
+        kendo.bind($("#rfqentryform"), viewModel);
+        // Following binding will allow you to detect change in any field
+        //viewModel.bind("set", function (e) {
+        //    console.log(e.field.value);
+        //});
+
+        reloadProductInformationGrid();
+    }
+
+
+
+
+    $(document).ready(function () {
+
+        document.getElementById("rfqNo").value = @Html.Raw(Json.Encode(ViewData["RFQNo"]));
+
+        myData = getInputData();
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("FindRfq", "Home")',
+            data: JSON.stringify(myData),
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            success: function (response, textStatus, jqXHR) {
+
+                if (response.success) {
+                    bindViewModel(response.RFQ);
+                }
+                else {
+                    alert(response.message);
+                }
+
+            },
+            error: function (response, textStatus, jqXHR) {
+                alert('Failed to download RFQ');
+            }
+        });
+
+
+
+        document.getElementById("pageMessage").innerHTML = "Enter data and click save";
+
+    });
+</script>
+
+
+<style>
+    .demo-section > div {
+        float: left;
+        margin-bottom: 2em;
+    }
+
+    #fieldlist {
+        margin: 0;
+        padding: 0;
+    }
+
+    /*TZ  Increase text box size*/
+    .k-textbox {
+        min-width: 200px;
+        text-align: left;
+        font-weight: normal;
+    }
+
+        .k-textbox.large {
+            min-width: 275px;
+            text-align: left;
+            font-weight: normal;
+            margin-left: 0px;
+        }
+
+
+    .label {
+        text-align: left;
+    }
+
+
+    #fieldlist li {
+        list-style: none;
+        padding-top: .5em; /* TZ: do this to add distance between two Li */
+        padding-left: 1em; /* TZ: do this to add distance between left margin and label */
+        text-align: left;
+    }
+
+    #fieldlist label {
+        display: block;
+        padding-bottom: .3em;
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 12px;
+    }
+
+    .prettyprint {
+        background-color: #fff;
+        border: 1px solid #ccc;
+        overflow: auto;
+        padding: 5px;
+    }
+</style>
+
+
+
+
