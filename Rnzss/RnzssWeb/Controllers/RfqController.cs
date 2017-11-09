@@ -11,10 +11,10 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.SessionState;
-using SportsNetworkWeb.Models;
+using RnzssWeb.Models;
 
 
-namespace SportsNetworkWeb.Controllers
+namespace RnzssWeb.Controllers
 {
     public class RfqController : Controller
     {

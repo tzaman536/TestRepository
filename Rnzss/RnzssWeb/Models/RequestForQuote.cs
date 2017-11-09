@@ -5,7 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Web;
 
-namespace SportsNetworkWeb.Models
+namespace RnzssWeb.Models
 {
     public class RequestForQuote
     {

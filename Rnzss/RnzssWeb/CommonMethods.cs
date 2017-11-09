@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
-namespace SportsNetworkWeb
+namespace RnzssWeb
 {
     public class CommonMethods
     {

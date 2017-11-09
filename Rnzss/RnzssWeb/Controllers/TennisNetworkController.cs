@@ -9,7 +9,7 @@ using Kendo.Mvc.Extensions;
 using PhenixTools.Mail;
 using System.Web.Script.Serialization;
 
-namespace SportsNetworkWeb.Controllers
+namespace RnzssWeb.Controllers
 {
     public class Message
     {
