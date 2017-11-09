@@ -47,7 +47,7 @@ namespace SportsNetworkWeb.Models
                 {
                     return connection.Query<RequestForQuote>(@"
                                                         select *     
-                                                        from [Carry].[RequestForQuote]
+                                                        from [rnz].[RequestForQuote]
                                                         ", commandTimeout: 0).ToList();
                 }
                 catch (Exception ex)
@@ -69,7 +69,7 @@ namespace SportsNetworkWeb.Models
                 {
                     return connection.Query<RequestForQuote>(@"
                                                         select *     
-                                                        from [Carry].[RequestForQuote]
+                                                        from [rnz].[RequestForQuote]
                                                         where RFQNo = @rfqNo
                                                         ", new { rfqNo }, commandTimeout: 0).FirstOrDefault();
                 }
@@ -91,7 +91,7 @@ namespace SportsNetworkWeb.Models
                 try
                 {
                     string sql = @"
-                                        INSERT INTO [FrontOffice].[Carry].[RequestForQuoteIdTable] DEFAULT VALUES;
+                                        INSERT INTO [rnzss].[rnz].[RequestForQuoteIdTable] DEFAULT VALUES;
                                         SELECT CAST(SCOPE_IDENTITY() as int)";
                     var id = connection.Query<int>(sql, commandTimeout: 3000).Single();
                     return string.Format("RZRFQ{0}", id);
@@ -125,7 +125,7 @@ namespace SportsNetworkWeb.Models
                     try
                     {
                         var result = connection.Execute(@"
-                                    UPDATE [Carry].[RequestForQuote]
+                                    UPDATE [rnz].[RequestForQuote]
                                        SET [CompanyName] = @CompanyName
                                           ,[Attention] = @Attention
                                           ,[CompanyAddress] = @CompanyAddress
@@ -154,7 +154,7 @@ namespace SportsNetworkWeb.Models
                 try
                 {
                     var result = connection.Execute(@"
-                                        INSERT INTO [Carry].[RequestForQuote]
+                                        INSERT INTO [rnz].[RequestForQuote]
                                                ([RFQNo]
                                                ,[CompanyName]
                                                ,[Attention]
@@ -208,7 +208,7 @@ namespace SportsNetworkWeb.Models
                 try
                 {
                     var result = connection.Execute(@"
-                                                    DELETE FROM [Carry].[RequestForQuote]
+                                                    DELETE FROM [rnz].[RequestForQuote]
                                                     WHERE RequestForQuoteId = @RequestForQuoteId
                                                         ", p, commandTimeout: 0);
                 }
@@ -234,7 +234,7 @@ namespace SportsNetworkWeb.Models
                 try
                 {
                     var result = connection.Execute(@"
-                                                UPDATE [Carry].[RequestForQuote]
+                                                UPDATE [rnz].[RequestForQuote]
                                                    SET [CompanyName] = @CompanyName
                                                       ,[Attention] = @Attention
                                                       ,[CompanyAddress] = @CompanyAddress

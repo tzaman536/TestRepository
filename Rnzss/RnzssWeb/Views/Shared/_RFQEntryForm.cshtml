@@ -1,12 +1,11 @@
 ﻿@using SportsNetworkWeb.Models
 <div id="rfqentryform">
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
     <form>
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-
         <table border="1" width="100%">
             <tr>
                 <td width="5%"></td>
@@ -162,9 +161,9 @@
                                     {
                                         model.Id(p => p.ProductInformationId);
                                     })
-                                    .Read(read => read.Action("RfqProduct_Read", "Home").Data("getRFQNo"))
-                                    .Update(update => update.Action("RfqProduct_Update", "Home"))
-                                    .Destroy(update => update.Action("RfqProduct_Destroy", "Home"))
+                                    .Read(read => read.Action("RfqProduct_Read", "Rfq").Data("getRFQNo"))
+                                    .Update(update => update.Action("RfqProduct_Update", "Rfq"))
+                                    .Destroy(update => update.Action("RfqProduct_Destroy", "Rfq"))
                                 )
                     )
                 </td>
@@ -249,7 +248,7 @@
         $.ajax({
             type: 'POST',
             data: JSON.stringify(myData),
-            url: '@Url.Action("AddAnotherProduct", "Home")',
+            url: '@Url.Action("AddAnotherProduct", "Rfq")',
             contentType: 'application/json',
             dataType: 'json',
             success: function (response, textStatus, jqXHR) {
@@ -282,7 +281,7 @@
         $.ajax({
             type: "GET",
             traditional: true,
-            url: '@Url.Action("GetInstrumentName", "Home")',
+            url: '@Url.Action("GetInstrumentName", "Rfq")',
             async: true,
             data: parms,
             dataType: "json",
@@ -332,7 +331,7 @@
         $.ajax({
             type: 'POST',
             data: JSON.stringify(myData),
-            url: '@Url.Action("SubmitRfqData", "Home")',
+            url: '@Url.Action("SubmitRfqData", "Rfq")',
             contentType: 'application/json',
             dataType: 'json',
             success: function (response, textStatus, jqXHR) {
@@ -361,7 +360,7 @@
         myData = getInputData();
         $.ajax({
             type: 'POST',
-            url: '@Url.Action("PrintRFQ", "Home")',
+            url: '@Url.Action("PrintRFQ", "Rfq")',
             data: JSON.stringify(myData),
             contentType: 'application/json; charset=utf-8',
             dataType: 'json',
@@ -390,7 +389,7 @@
         myData = getInputData();
         $.ajax({
             type: 'POST',
-            url: '@Url.Action("FindRfq", "Home")',
+            url: '@Url.Action("FindRfq", "Rfq")',
             data: JSON.stringify(myData),
             contentType: 'application/json; charset=utf-8',
             dataType: 'json',
@@ -467,7 +466,7 @@
         myData = getInputData();
         $.ajax({
             type: 'POST',
-            url: '@Url.Action("FindRfq", "Home")',
+            url: '@Url.Action("FindRfq", "Rfq")',
             data: JSON.stringify(myData),
             contentType: 'application/json; charset=utf-8',
             dataType: 'json',

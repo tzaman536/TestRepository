@@ -38,7 +38,7 @@ namespace SportsNetworkWeb.Models
                 try
                 {
                     var result = connection.Execute(@"
-                                                    DELETE FROM [Carry].[ProductInformation]
+                                                    DELETE FROM [rnz].[ProductInformation]
                                                     WHERE ProductInformationId = @ProductInformationId
                                                         ", p, commandTimeout: 0);
                 }
@@ -69,7 +69,7 @@ namespace SportsNetworkWeb.Models
                 try
                 {
                     var result = connection.Execute(@"
-                                                UPDATE [Carry].[ProductInformation]
+                                                UPDATE [rnz].[ProductInformation]
                                                    SET [PartName] = @PartName
                                                       ,[PartNumber] = @PartNumber
                                                       ,[PartDescription] = @PartDescription
@@ -109,7 +109,7 @@ namespace SportsNetworkWeb.Models
                 try
                 {
                     var result = connection.Execute(@"
-                                                        INSERT INTO [Carry].[ProductInformation]
+                                                        INSERT INTO [rnz].[ProductInformation]
                                                                    ([RFQNo]
                                                                    ,[PartName]
                                                                    ,[PartNumber]
@@ -150,7 +150,7 @@ namespace SportsNetworkWeb.Models
                 {
                     return connection.Query<ProductInformation>(@"
                                                         select *     
-                                                        from [Carry].[ProductInformation]
+                                                        from [rnz].[ProductInformation]
                                                         where RFQNo = @rfqNo
                                                         ", new { rfqNo }, commandTimeout: 0);
                 }

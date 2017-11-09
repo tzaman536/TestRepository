@@ -4,8 +4,8 @@
                                 .Name("grid-rfq")
                                 .Columns(columns =>
                                 {
-                                    columns.Bound(p => p.RFQNo).Template(@<text></text>).ClientTemplate("<a href='" + Url.Action("Index", "Home") + "?RFQNo=#=RFQNo#'>#=RFQNo#</a>").Title("RFQ No.").Width(100);
-                                    //columns.Bound(p => p.RFQNo).Template(@<text></text>).ClientTemplate("<a href='" + Url.Action("Index", "Home") + "?RFQNo=#= RFQNo#" + ">#=RFQNo#</a>").Title("RFQ No.");
+                                    columns.Bound(p => p.RFQNo).Template(@<text></text>).ClientTemplate("<a href='" + Url.Action("RfqEntry", "Rfq") + "?RFQNo=#=RFQNo#'>#=RFQNo#</a>").Title("RFQ No.").Width(100);
+                                    //columns.Bound(p => p.RFQNo).Template(@<text></text>).ClientTemplate("<a href='" + Url.Action("Index", "Rfq") + "?RFQNo=#= RFQNo#" + ">#=RFQNo#</a>").Title("RFQ No.");
                                     columns.Bound(p => p.CompanyName).Width(75);
                                     columns.Bound(p => p.Attention).Width(75);
                                     columns.Bound(p => p.CompanyAddress).Width(150);
@@ -38,9 +38,9 @@
                                         model.Field(p => p.RFQNo).Editable(false);
 
                                     })
-                                    .Read(read => read.Action("Rfq_Read", "Home"))
-                                    .Update(update => update.Action("Rfq_Update", "Home"))
-                                    .Destroy(update => update.Action("Rfq_Destroy", "Home"))
+                                    .Read(read => read.Action("Rfq_Read", "Rfq"))
+                                    .Update(update => update.Action("Rfq_Update", "Rfq"))
+                                    .Destroy(update => update.Action("Rfq_Destroy", "Rfq"))
                                 )
     )
 </div>
