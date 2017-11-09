@@ -1,0 +1,91 @@
+﻿@using SportsNetworkWeb.Models
+<div id="rfqentryform" class="page-container">
+    @(Html.Kendo().Grid<RequestForQuote>()
+                                .Name("grid-rfq")
+                                .Columns(columns =>
+                                {
+                                    columns.Bound(p => p.RFQNo).Template(@<text></text>).ClientTemplate("<a href='" + Url.Action("Index", "Home") + "?RFQNo=#=RFQNo#'>#=RFQNo#</a>").Title("RFQ No.").Width(100);
+                                    //columns.Bound(p => p.RFQNo).Template(@<text></text>).ClientTemplate("<a href='" + Url.Action("Index", "Home") + "?RFQNo=#= RFQNo#" + ">#=RFQNo#</a>").Title("RFQ No.");
+                                    columns.Bound(p => p.CompanyName).Width(75);
+                                    columns.Bound(p => p.Attention).Width(75);
+                                    columns.Bound(p => p.CompanyAddress).Width(150);
+                                    columns.Bound(p => p.PhoneNo).Width(75);
+                                    columns.Bound(p => p.FaxNo).Width(75);
+                                    columns.Bound(p => p.Email).Width(75);
+                                    columns.Bound(p => p.Comment).Width(75);
+                                    columns.Command(command => { command.Edit(); command.Destroy(); }).Width(100);
+                                })
+                                //.ToolBar(toolBar => toolBar.Template("<a class='k-button k-button-icontext' onclick='addAnotherProduct()' href='#'></span>Add Another Product</a>"))
+                                .Editable(editable => editable.Mode(GridEditMode.InLine))
+                                .Pageable()
+                                .Sortable()
+                                .Filterable()
+                                .Scrollable(scr => scr.Height(500))
+                                .Excel(excel => excel
+                                    .AllPages(true)
+                                    .FileName("Index Rates Export.xlsx")
+                                    .Filterable(true)
+                                    .ProxyURL(Url.Action("Excel_Export_Save", "Carry"))
+                                )
+                                .Events(events => events.Edit("onEdit"))
+                                .DataSource(dataSource => dataSource
+                                    .Ajax()
+                                    .PageSize(100)
+                                    .Events(events => events.Error("error_handler").RequestEnd("onRequestEnd"))
+                                    .Model(model =>
+                                    {
+                                        model.Id(p => p.RequestForQuoteId);
+                                        model.Field(p => p.RFQNo).Editable(false);
+
+                                    })
+                                    .Read(read => read.Action("Rfq_Read", "Home"))
+                                    .Update(update => update.Action("Rfq_Update", "Home"))
+                                    .Destroy(update => update.Action("Rfq_Destroy", "Home"))
+                                )
+    )
+</div>
+
+
+<script>
+    function onEdit() {
+
+    }
+    function error_handler() {
+
+    }
+
+    function onRequestEnd(e) {
+        if (e.type == 'update' || e.type == "create" || e.type == "destroy") {
+            //document.getElementById("pageMessage").innerHTML = e.response.myMessage;
+            if (e.response.myMessage.indexOf('ERROR') >= 0) {
+                alert(e.response.myMessage)
+            }
+            else {
+                $('#grid-rfq').data('kendoGrid').dataSource.read();
+                $('#grid-rfq').data('kendoGrid').refresh();
+            }
+
+        }
+    }
+    function reloadProductInformationGrid() {
+        $('#grid-rfq').data('kendoGrid').dataSource.read();
+        $('#grid-rfq').data('kendoGrid').refresh();
+    }
+
+
+
+
+
+    $(document).ready(function () {
+        reloadProductInformationGrid();
+    });
+</script>
+
+
+<style>
+</style>
+
+
+
+
+

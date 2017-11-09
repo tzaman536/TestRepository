@@ -48,7 +48,8 @@
                 .Text("Admin")
                 .Items(children =>
                 {
-                    children.Add().Text("Locations").Action("CreateLocation", "TennisNetwork");
+                    children.Add().Text("Enter RFQ").Action("RfqEntry", "Rfq");
+                    children.Add().Text("Active RFQs").Action("ActiveRfq", "Rfq");
 
                 });
 
