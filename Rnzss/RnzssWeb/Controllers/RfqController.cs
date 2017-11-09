@@ -19,8 +19,24 @@ namespace SportsNetworkWeb.Controllers
     public class RfqController : Controller
     {
         // GET: Rfq
-        public ActionResult RfqEntry()
+        public ActionResult RfqEntry(string RFQNo = null)
         {
+            HttpSessionState ss = System.Web.HttpContext.Current.Session;
+            ViewBag.SessionId = ss.SessionID;
+            if (ViewData["CurrentId"] == null)
+            {
+                ViewData["CurrentId"] = ss.SessionID;
+            }
+
+            if (!string.IsNullOrEmpty(RFQNo))
+            {
+                ViewData["RFQNo"] = RFQNo;
+            }
+            else
+            {
+                ViewData["RFQNo"] = "UNKNOWN";
+            }
+
             return View();
         }
 
