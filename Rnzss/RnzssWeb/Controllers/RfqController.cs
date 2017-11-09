@@ -12,12 +12,13 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.SessionState;
 using RnzssWeb.Models;
-
+using log4net;
 
 namespace RnzssWeb.Controllers
 {
     public class RfqController : Controller
     {
+        private static readonly ILog logger = LogManager.GetLogger(typeof(RfqController));
         // GET: Rfq
         public ActionResult RfqEntry(string RFQNo = null)
         {
@@ -36,6 +37,8 @@ namespace RnzssWeb.Controllers
             {
                 ViewData["RFQNo"] = "UNKNOWN";
             }
+
+            logger.InfoFormat("RfqEntry called");
 
             return View();
         }
