@@ -139,6 +139,7 @@ namespace RnzssWeb.Models
                                           ,[Email] = @Email
                                           ,[Comment] = @Comment
                                           ,[UpdatedBy] = @UpdatedBy
+                                          ,[UpdateDate] = getutcdate()
                                      WHERE [RFQNo] = @RFQNo
                                                         ", rfq, commandTimeout: 0);
                     }
@@ -251,6 +252,7 @@ namespace RnzssWeb.Models
                                                       ,[Email] = @Email
                                                       ,[Comment] = @Comment
                                                       ,[UpdatedBy] = @UpdatedBy
+                                                      ,[UpdateDate] = getutcdate()
                                                  WHERE RequestForQuoteId = @RequestForQuoteId
                                                         ", p, commandTimeout: 0);
                 }

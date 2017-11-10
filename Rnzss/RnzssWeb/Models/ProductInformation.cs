@@ -80,7 +80,7 @@ namespace RnzssWeb.Models
                                                       ,[Quantity] = @Quantity
                                                       ,[CN] = @CN
                                                       ,[UpdatedBy] = @UpdatedBy
-                                                      
+                                                      ,[UpdateDate] = getutcdate()
                                                  WHERE ProductInformationId = @ProductInformationId
 
                                                         ", p, commandTimeout: 0);
