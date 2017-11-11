@@ -33,7 +33,7 @@
                                 </tr>
                                 <tr>
                                     <td width="10px"></td>
-                                    <td colspan="6"><label for="companyAddress">Company Address:</label> <textarea id="companyAddress" rows="4" cols="25" style="min-width: 450px;" data-bind="value: companyAddress"> </textarea></td>
+                                    <td colspan="6"><label for="companyAddress">Company Address:</label> <textarea id="companyAddress" rows="4" cols="25" style="min-width: 450px;" data-bind="value: companyAddress"> </textarea><button data-bind="click: parseAddress" class="button">Parse Address</button></td>
                                     <td width="10px"></td>
                                 </tr>
                                 <tr>
@@ -452,8 +452,8 @@
             },
             addAnotherProduct: addProduct,
             printRFQ: printRFQ,
-            findRfq: findRfq
-
+            findRfq: findRfq,
+            parseAddress: parseAddress
         });
 
         kendo.bind($("#rfqentryform"), viewModel);
@@ -465,6 +465,43 @@
         reloadProductInformationGrid();
     }
 
+
+    function parseAddress(e){
+        e.preventDefault();
+        var x;
+        var address=prompt("Please paste company informatino text below","");
+        if (address!=null){
+            //alert(address);
+            //document.getElementById("rfqNo").value = document.getElementById("lookUpRfqNo").value;
+            var parms = {
+                inputAddress: address
+            };
+
+            $.ajax({
+                type: "GET",
+                traditional: true,
+                url: '@Url.Action("ParseAddress", "Rfq")',
+                async: true,
+                data: parms,
+                dataType: "json",
+                beforeSend: function (xhr) {
+                },
+                success: function (response, textStatus, jqXHR) {
+                    
+                    document.getElementById("companyName").value = response.message.CompanyName;
+                    document.getElementById("attention").value = response.message.Attention;
+                    document.getElementById("companyAddress").value = response.message.CompanyAddress;
+                    document.getElementById("phoneNo").value = response.message.PhoneNo;
+                    document.getElementById("faxNo").value = response.message.FaxNo;
+                    document.getElementById("email").value = response.message.Email;
+
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert( "Failed to parse address");
+                }
+            });
+        }
+    }
 
 
 

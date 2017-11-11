@@ -60,4 +60,17 @@ CREATE TABLE [rnz].[RequestForQuoteIdTable](
 
 GO
 
+CREATE TABLE [rnz].[RequestForQuoteEvents](
+	[RequestForQuoteEventId] [int] IDENTITY(1,1) NOT NULL,
+	[RFQNo] [nvarchar](200) NOT NULL,
+	[EventDescription] [nvarchar](255) NOT NULL,
+	[UpdatedBy] [nvarchar](100) NOT NULL,
+	[UpdateDate] [datetime] NOT NULL
+) ON [PRIMARY]
+
+GO
+
+ALTER TABLE [rnz].[RequestForQuoteEvents] ADD  DEFAULT (getutcdate()) FOR [UpdateDate]
+GO
+
 

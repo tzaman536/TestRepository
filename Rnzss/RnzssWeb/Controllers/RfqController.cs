@@ -13,6 +13,9 @@ using System.Web.Mvc;
 using System.Web.SessionState;
 using RnzssWeb.Models;
 using log4net;
+using System.Text.RegularExpressions;
+using iTextSharp.text.pdf;
+using iTextSharp.text.pdf.parser;
 
 namespace RnzssWeb.Controllers
 {
@@ -284,7 +287,7 @@ namespace RnzssWeb.Controllers
         {
             //string fullPath = Path.Combine(Server.MapPath("~/RfqFiles"), "RFQ_Template.xlsx");
 
-            return File(file, "application/vnd.ms-excel", Path.GetFileName(file));
+            return File(file, "application/vnd.ms-excel", System.IO.Path.GetFileName(file));
         }
 
         private static WorksheetPart GetWorksheetPartByName(SpreadsheetDocument document,
@@ -338,8 +341,8 @@ namespace RnzssWeb.Controllers
                     return Json(new { success = false, message = "Please Save the RFQ before clicking download.", JsonRequestBehavior.AllowGet });
                 }
 
-                string sourceFile = Path.Combine(Server.MapPath("~/RfqFiles"), "RFQ_Template.xlsx");
-                string destinationFile = Path.Combine(Server.MapPath("~/RfqFiles"), string.Format("RFQ_{0}.xlsx", rfq.RFQNo));
+                string sourceFile = System.IO.Path.Combine(Server.MapPath("~/RfqFiles"), "RFQ_Template.xlsx");
+                string destinationFile = System.IO.Path.Combine(Server.MapPath("~/RfqFiles"), string.Format("RFQ_{0}.xlsx", rfq.RFQNo));
                 if (System.IO.File.Exists(destinationFile))
                     System.IO.File.Delete(destinationFile);
 
@@ -450,6 +453,151 @@ namespace RnzssWeb.Controllers
         }
 
         #endregion
+
+
+        public void Parse(ref RequestForQuote rfq, string inputAddress)
+        {
+
+            inputAddress = inputAddress.Replace("Associated CAGE Code:", "").Replace("Replacement CAGE Code:", "");
+
+            //var temp = inputAddress.Split("Phone");
+            Match match = Regex.Match(inputAddress, @"^(.*?)Phone:", RegexOptions.None);
+            if (match.Success)
+                rfq.CompanyAddress = match.Value.Replace("Phone:", "");
+
+            match = Regex.Match(inputAddress, @"(?<=Phone:)(.*)(?=Fax:)", RegexOptions.None);
+            if (match.Success)
+                rfq.PhoneNo = match.Value.Trim();
+
+            match = Regex.Match(inputAddress, @"(?<=Fax:)(.*)(?=CAGE Code:)", RegexOptions.None);
+            if (match.Success)
+                rfq.FaxNo = match.Value.Trim();
+
+            match = Regex.Match(inputAddress, @"(?<=Government POC Email:)(.*)(?=Size:)", RegexOptions.None);
+            if (match.Success)
+                rfq.Email = match.Value.Trim();
+
+            match = Regex.Match(inputAddress, @"(?<=Government POC:)(.*)(?=SIC:)", RegexOptions.None);
+            if (match.Success)
+                rfq.Attention = match.Value.Trim();
+
+
+
+        }
+
+        public ActionResult ParseAddress(string inputAddress)
+        {
+            RequestForQuote rfq = new RequestForQuote();
+            Parse(ref rfq, inputAddress);
+
+            
+
+            // Do my stuff here with my parameter
+            //return Json(new { success = true, RFQ = rfq, JsonRequestBehavior.AllowGet });
+            return Json(new { success = true, message = rfq }, JsonRequestBehavior.AllowGet);
+
+        }
+
+        public void ReadPdfFile()
+        {
+            PdfReader reader = new PdfReader(@"C:\Personal\R&Z\Documents\SPE7L118T1092.PDF");
+            string text = string.Empty;
+            for (int page = 1; page <= reader.NumberOfPages; page++)
+            {
+                text += PdfTextExtractor.GetTextFromPage(reader, page);
+            }
+            reader.Close();
+            Console.WriteLine(text);
+        }
+
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult RfqEvent_Create([DataSourceRequest] DataSourceRequest request, RequestForQuoteEvent mo)
+        {
+            string message = "RFQ Event Created";
+            if (mo != null && ModelState.IsValid)
+            {
+                RequestForQuoteEvent.Add(mo);
+            }
+
+            var dsResult = new[] { mo }.ToDataSourceResult(request, ModelState);
+            var result = new
+            {
+                dsResult.AggregateResults,
+                dsResult.Data,
+                dsResult.Errors,
+                dsResult.Total,
+                myMessage = message
+            };
+
+
+            return Json(result);
+        }
+
+
+        public ActionResult RfqEvent_Read([DataSourceRequest] DataSourceRequest request, string rfqNo)
+        {
+            try
+            {
+
+                return new JsonResult()
+                {
+                    Data = RequestForQuoteEvent.GetRfqEvent(rfqNo).ToDataSourceResult(request),
+                    JsonRequestBehavior = JsonRequestBehavior.AllowGet,
+                    MaxJsonLength = Int32.MaxValue
+                };
+                //return Json(result.OrderByDescending(x => x.Currency).ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult RfqEvent_Update([DataSourceRequest] DataSourceRequest request, RequestForQuoteEvent mo)
+        {
+            string message = "Update successful";
+            if (mo != null && ModelState.IsValid)
+            {
+                RequestForQuoteEvent.Update(mo);
+            }
+            var dsResult = new[] { mo }.ToDataSourceResult(request, ModelState);
+            var result = new
+            {
+                dsResult.AggregateResults,
+                dsResult.Data,
+                dsResult.Errors,
+                dsResult.Total,
+                myMessage = message
+            };
+
+
+            return Json(result);
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult RfqEvent_Destroy([DataSourceRequest] DataSourceRequest request, RequestForQuoteEvent mo)
+        {
+            string message = "Delete successful";
+            if (mo != null)
+            {
+                RequestForQuoteEvent.Delete(mo);
+            }
+            var dsResult = new[] { mo }.ToDataSourceResult(request, ModelState);
+            var result = new
+            {
+                dsResult.AggregateResults,
+                dsResult.Data,
+                dsResult.Errors,
+                dsResult.Total,
+                myMessage = message
+            };
+            return Json(result);
+        }
+
+
 
     }
 }

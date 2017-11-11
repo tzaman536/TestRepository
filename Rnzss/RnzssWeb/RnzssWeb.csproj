@@ -52,6 +52,10 @@
       <HintPath>..\packages\DocumentFormat.OpenXml.2.7.2\lib\net40\DocumentFormat.OpenXml.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="itextsharp, Version=5.5.12.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.12\lib\itextsharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Kendo.Mvc">
       <HintPath>..\..\..\..\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Binaries\Mvc5\Kendo.Mvc.dll</HintPath>
     </Reference>
@@ -231,6 +235,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ProductInformation.cs" />
     <Compile Include="Models\RequestForQuote.cs" />
+    <Compile Include="Models\RequestForQuoteEvent.cs" />
     <Compile Include="Models\UserMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
