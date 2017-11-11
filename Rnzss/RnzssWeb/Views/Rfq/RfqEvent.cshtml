@@ -1,16 +1,17 @@
 ﻿@using RnzssWeb.Models
 <div class="page-container">
     <div id="rfqentryform" class="admin-page-container">
-        <label>RFQ No: <input id="inputRFQNo" type="text" value=@ViewBag.RfqNo /></label>
+        <label>RFQ No: <input id="inputRFQNo" type="text" class="rfqno" disabled="disabled"  value=@ViewBag.RfqNo /></label><a href='@Url.Action("ActiveRfq", "Rfq")' class="rz-page-link">[Active Rfq]</a>
 
-        @(Html.Kendo().Grid<RequestForQuoteEvent>()
+        <div class="rnz-grid-container">
+            @(Html.Kendo().Grid<RequestForQuoteEvent>()
                                 .Name("grid-rfq")
                                 .Columns(columns =>
                                 {
-                                    columns.Bound(p => p.RFQNo).Width(75);
                                     columns.Bound(p => p.EventDescription).Width(75);
                                     columns.Bound(p => p.UpdatedBy).Width(75);
                                     columns.Bound(p => p.UpdateDate).Width(75).Format("{0:MM/dd/yyyy hh:mm:ss tt}");
+                                    columns.Bound(p => p.RFQNo).Width(75);
                                     columns.Command(command => { command.Edit(); command.Destroy(); }).Width(100);
                                 })
                                 .ToolBar(toolbar => { toolbar.Create(); toolbar.Excel(); })
@@ -42,9 +43,9 @@
                                     .Update(update => update.Action("RfqEvent_Update", "Rfq"))
                                     .Destroy(update => update.Action("RfqEvent_Destroy", "Rfq"))
                                 )
-        )
+            )
 
-
+        </div>
     </div>
 </div>
 

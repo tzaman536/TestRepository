@@ -5,7 +5,7 @@
             <table border="0" width="1000" style="height:auto">
                 <tr>
                     <td width="5%"></td>
-                    <td width="90%"><div class="form-data-entry-lable">Request For Quote: <input id="lookUpRfqNo" data-bind="value: lookUpRfqNo" class="k-textbox" /><button id="kendo-find-button" data-bind="click: findRfq" class="button">Find</button></div></td>
+                    <td width="90%"><div class="form-data-entry-lable">Request For Quote: <input id="lookUpRfqNo" data-bind="value: lookUpRfqNo" class="k-textbox" /><button id="kendo-find-button" data-bind="click: findRfq" class="button">Find</button><a href='@Url.Action("ActiveRfq", "Rfq")' class="rz-page-link" >[Active Rfq]</a><a href='@Url.Action("RfqEvent", "Rfq", new { RFQNo = @ViewData["RFQNo"] },null)' class="rz-page-link">[Event Log]</a></div></td>
                     <td width="5%"></td>
                 </tr>
                 <tr>
