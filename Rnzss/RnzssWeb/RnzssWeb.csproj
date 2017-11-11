@@ -1473,6 +1473,7 @@
     <Content Include="Views\Rfq\RfqEntry.cshtml" />
     <Content Include="Views\Shared\_RFQEntryForm.cshtml" />
     <Content Include="Views\Rfq\ActiveRfq.cshtml" />
+    <Content Include="Views\Rfq\RfqEvent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

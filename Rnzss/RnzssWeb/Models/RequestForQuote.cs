@@ -26,6 +26,8 @@ namespace RnzssWeb.Models
         public string UpdatedBy { get; set; }
         public DateTime UpdateDate { get; set; }
 
+        public string RfqEvent { get; set; }
+
 
 
         public void Reset()
@@ -49,9 +51,14 @@ namespace RnzssWeb.Models
                 try
                 {
                     return connection.Query<RequestForQuote>(@"
-                                                        select *     
-                                                        from [rnz].[RequestForQuote]
-                                                        order by 1 desc
+                                                        select 
+                                                               rfq.*     
+                                                               ,case when e.RFQNo  is null then 'Start' else 'Continue ' end as RfqEvent 
+                                                        from [rnz].[RequestForQuote] rfq 
+                                                        left join ( select distinct RFQNo from [rnz].RequestForQuoteEvents ) e 
+                                                               on rfq.RFQNo = e.RFQNo
+                                                        order by rfq.[UpdateDate] desc
+
                                                         ", commandTimeout: 0).ToList();
                 }
                 catch (Exception ex)

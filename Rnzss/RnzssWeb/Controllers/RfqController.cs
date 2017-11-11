@@ -61,6 +61,21 @@ namespace RnzssWeb.Controllers
             return View();
         }
 
+        public ActionResult RfqEvent(string RFQNo = null)
+        {
+            if (!string.IsNullOrEmpty(RFQNo))
+            {
+                ViewBag.RfqNo = RFQNo;
+            }
+            else
+            {
+                ViewBag.RfqNo = "UNKNOWN";
+            }
+
+
+            return View();
+        }
+
 
         public ActionResult GetInstrumentName([DataSourceRequest]DataSourceRequest request, string sessionId)
         {
@@ -455,6 +470,7 @@ namespace RnzssWeb.Controllers
         #endregion
 
 
+        #region Parse Address
         public void Parse(ref RequestForQuote rfq, string inputAddress)
         {
 
@@ -510,7 +526,9 @@ namespace RnzssWeb.Controllers
             Console.WriteLine(text);
         }
 
+        #endregion
 
+        #region Rfq Event
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult RfqEvent_Create([DataSourceRequest] DataSourceRequest request, RequestForQuoteEvent mo)
         {
@@ -596,7 +614,7 @@ namespace RnzssWeb.Controllers
             };
             return Json(result);
         }
-
+        #endregion
 
 
     }
