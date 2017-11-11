@@ -41,6 +41,8 @@ CREATE TABLE [rnz].[RequestForQuote](
 	[FaxNo] [nvarchar](100) NULL,
 	[Email] [nvarchar](100) NULL,
 	[Comment] [nvarchar](255) NULL,
+	DueDate date null,
+	SolicitationNumber nvarchar(200) null,
 	[UpdatedBy] [nvarchar](100) NOT NULL,
 	[UpdateDate] [datetime] NOT NULL
 ) ON [PRIMARY]

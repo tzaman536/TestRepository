@@ -10,6 +10,14 @@
                 </tr>
                 <tr>
                     <td width="5%"></td>
+                    <td width="90%"><div class="form-data-entry-lable">Solicitation No: <input id="solicitationNumber" data-bind="value: solicitationNumber" class="k-textbox" /></div><div class="form-data-entry-lable">Due Date: <input id="dueDate" data-role="datepicker" data-bind="visible: isVisible, enabled: isEnabled,  value: dueDate, events: { change: onChange }" style="width: 25px"> </div></td>
+                    <td width="5%"></td>
+                </tr>
+                
+                
+
+                <tr>
+                    <td width="5%"></td>
                     <td height="20"><div id="pageMessage" class="interactive-message"> </div></td>
                     <td width="5%"></td>
                 <tr>
@@ -430,6 +438,7 @@
             faxNo: rfq.FaxNo,
             email: rfq.Email,
             comment: rfq.Comment,
+            solicitationNumber : rfq.SolicitationNumber,
             genders: ["Male", "Female"],
             gender: "Male",
             agreed: true,
@@ -441,6 +450,12 @@
             quantity: "",
             partDescription: "",
             lookUpRfqNo: "",
+            dueDate : rfq.DueDate,
+            isEnabled: true,
+            isVisible: true,
+            onChange: function() {
+                alert( kendo.toString(this.get("dueDate"), "D") );
+            },
             startOver: function () {
                 //this.set("confirmed", false);
                 //this.set("agreed", false);

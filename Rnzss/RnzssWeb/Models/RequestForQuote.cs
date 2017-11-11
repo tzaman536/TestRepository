@@ -21,6 +21,8 @@ namespace RnzssWeb.Models
         public string FaxNo { get; set; }
         public string Email { get; set; }
         public string Comment { get; set; }
+        public DateTime? DueDate { get; set; }
+        public string SolicitationNumber { get; set; }
         public ProductInformation Product { get; set; }
 
         public string UpdatedBy { get; set; }
@@ -145,6 +147,8 @@ namespace RnzssWeb.Models
                                           ,[FaxNo] = @FaxNo
                                           ,[Email] = @Email
                                           ,[Comment] = @Comment
+                                          ,DueDate = @DueDate
+                                          ,SolicitationNumber = @SolicitationNumber
                                           ,[UpdatedBy] = @UpdatedBy
                                           ,[UpdateDate] = getutcdate()
                                      WHERE [RFQNo] = @RFQNo
@@ -178,6 +182,8 @@ namespace RnzssWeb.Models
                                                ,[Email]
                                                ,[Comment]
                                                ,[UpdatedBy]
+                                                ,DueDate
+                                                ,SolicitationNumber
                                                )
                                          VALUES
                                                (@RFQNo
@@ -189,6 +195,8 @@ namespace RnzssWeb.Models
                                                ,@Email
                                                ,@Comment
                                                ,@UpdatedBy
+                                                ,@DueDate
+                                                ,@SolicitationNumber
                                                )
 
                                                         ", rfq, commandTimeout: 0);
@@ -258,6 +266,8 @@ namespace RnzssWeb.Models
                                                       ,[FaxNo] = @FaxNo
                                                       ,[Email] = @Email
                                                       ,[Comment] = @Comment
+                                                      ,DueDate = @DueDate
+                                                      ,SolicitationNumber = @SolicitationNumber
                                                       ,[UpdatedBy] = @UpdatedBy
                                                       ,[UpdateDate] = getutcdate()
                                                  WHERE RequestForQuoteId = @RequestForQuoteId
