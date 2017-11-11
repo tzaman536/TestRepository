@@ -530,7 +530,7 @@ namespace RnzssWeb.Controllers
 
         #region Rfq Event
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult RfqEvent_Create([DataSourceRequest] DataSourceRequest request, RequestForQuoteEvent mo)
+        public ActionResult RfqEvent_Create([DataSourceRequest] DataSourceRequest request, RequestForQuoteEvent mo, string rfqNo)
         {
             string message = "RFQ Event Created";
             if (mo != null && ModelState.IsValid)

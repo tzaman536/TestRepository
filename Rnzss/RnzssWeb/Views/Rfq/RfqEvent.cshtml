@@ -35,9 +35,9 @@
                                         model.Id(p => p.RequestForQuoteEventId);
                                         model.Field(p => p.RFQNo).Editable(false);
                                         model.Field(p => p.UpdateDate).Editable(false);
-
+                                        model.Field(p => p.UpdatedBy).Editable(false);
                                     })
-                                    .Create(read => read.Action("RfqEvent_Create", "Rfq"))
+                                    .Create(read => read.Action("RfqEvent_Create", "Rfq").Data("getParameters"))
                                     .Read(read => read.Action("RfqEvent_Read", "Rfq").Data("getParameters"))
                                     .Update(update => update.Action("RfqEvent_Update", "Rfq"))
                                     .Destroy(update => update.Action("RfqEvent_Destroy", "Rfq"))

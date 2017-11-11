@@ -31,8 +31,9 @@ namespace RnzssWeb.Models
                 {
                     return connection.Query<RequestForQuoteEvent>(@"
                                                         select *     
-                                                        from [[rnz].[RequestForQuoteEvents]
+                                                        from [rnz].[RequestForQuoteEvents]
                                                         where RFQNo = @rfqNo
+                                                        order by [UpdateDate] desc
                                                         ", new { rfqNo }, commandTimeout: 0).ToList();
                 }
                 catch (Exception ex)
@@ -58,7 +59,7 @@ namespace RnzssWeb.Models
                 try
                 {
                     var result = connection.Execute(@"
-                                            INSERT INTO [[rnz].[RequestForQuoteEvents]
+                                            INSERT INTO [rnz].[RequestForQuoteEvents]
                                                        ([RFQNo]
                                                        ,[EventDescription]
                                                        ,[UpdatedBy]
@@ -100,7 +101,7 @@ namespace RnzssWeb.Models
                 try
                 {
                     var result = connection.Execute(@"
-                                                        DELETE FROM [[rnz].[RequestForQuoteEvents]
+                                                        DELETE FROM [rnz].[RequestForQuoteEvents]
                                                               WHERE RequestForQuoteEventId = @RequestForQuoteEventId
                                                         ", p, commandTimeout: 0);
                 }
@@ -127,7 +128,7 @@ namespace RnzssWeb.Models
                 try
                 {
                     var result = connection.Execute(@"
-                                            UPDATE [[rnz].[RequestForQuoteEvents]
+                                            UPDATE [rnz].[RequestForQuoteEvents]
                                                SET [RFQNo] = @RFQNo
                                                   ,[EventDescription] = @EventDescription
                                                   ,[UpdatedBy] = @UpdatedBy
