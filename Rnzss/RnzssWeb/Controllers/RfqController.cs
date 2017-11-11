@@ -416,9 +416,9 @@ namespace RnzssWeb.Controllers
                             int line = 1;
                             foreach (var p in dbProducts)
                             {
-                                #region Line 1
                                 switch (line)
                                 {
+                                    #region Line 1
                                     case 1:
                                         cell = GetCell(worksheetPart.Worksheet, "C", 22);
                                         cell.CellValue = new CellValue(string.Format("{0}", p.PartNumber));
@@ -435,13 +435,75 @@ namespace RnzssWeb.Controllers
                                         cell = GetCell(worksheetPart.Worksheet, "C", 24);
                                         cell.CellValue = new CellValue(string.Format("{0}", p.PartDescription));
                                         cell.DataType = new EnumValue<CellValues>(CellValues.String);
-
-
                                         break;
+                                    #endregion
+
+                                    #region Line 2
+                                    case 2:
+                                        cell = GetCell(worksheetPart.Worksheet, "C", 30);
+                                        cell.CellValue = new CellValue(string.Format("{0}", p.PartNumber));
+                                        cell.DataType = new EnumValue<CellValues>(CellValues.String);
+
+                                        cell = GetCell(worksheetPart.Worksheet, "E", 30);
+                                        cell.CellValue = new CellValue(string.Format("{0}", p.CN));
+                                        cell.DataType = new EnumValue<CellValues>(CellValues.String);
+
+                                        cell = GetCell(worksheetPart.Worksheet, "F", 30);
+                                        cell.CellValue = new CellValue(string.Format("{0}", p.Quantity));
+                                        cell.DataType = new EnumValue<CellValues>(CellValues.String);
+
+                                        cell = GetCell(worksheetPart.Worksheet, "C", 32);
+                                        cell.CellValue = new CellValue(string.Format("{0}", p.PartDescription));
+                                        cell.DataType = new EnumValue<CellValues>(CellValues.String);
+                                        break;
+                                    #endregion
+
+                                    #region Line 3
+                                    case 3:
+                                        cell = GetCell(worksheetPart.Worksheet, "C", 38);
+                                        cell.CellValue = new CellValue(string.Format("{0}", p.PartNumber));
+                                        cell.DataType = new EnumValue<CellValues>(CellValues.String);
+
+                                        cell = GetCell(worksheetPart.Worksheet, "E", 38);
+                                        cell.CellValue = new CellValue(string.Format("{0}", p.CN));
+                                        cell.DataType = new EnumValue<CellValues>(CellValues.String);
+
+                                        cell = GetCell(worksheetPart.Worksheet, "F", 38);
+                                        cell.CellValue = new CellValue(string.Format("{0}", p.Quantity));
+                                        cell.DataType = new EnumValue<CellValues>(CellValues.String);
+
+                                        cell = GetCell(worksheetPart.Worksheet, "C", 40);
+                                        cell.CellValue = new CellValue(string.Format("{0}", p.PartDescription));
+                                        cell.DataType = new EnumValue<CellValues>(CellValues.String);
+                                        break;
+                                    #endregion
+
+                                    #region Line 4
+                                    case 4:
+                                        cell = GetCell(worksheetPart.Worksheet, "C", 46);
+                                        cell.CellValue = new CellValue(string.Format("{0}", p.PartNumber));
+                                        cell.DataType = new EnumValue<CellValues>(CellValues.String);
+
+                                        cell = GetCell(worksheetPart.Worksheet, "E", 46);
+                                        cell.CellValue = new CellValue(string.Format("{0}", p.CN));
+                                        cell.DataType = new EnumValue<CellValues>(CellValues.String);
+
+                                        cell = GetCell(worksheetPart.Worksheet, "F", 46);
+                                        cell.CellValue = new CellValue(string.Format("{0}", p.Quantity));
+                                        cell.DataType = new EnumValue<CellValues>(CellValues.String);
+
+                                        cell = GetCell(worksheetPart.Worksheet, "C", 48);
+                                        cell.CellValue = new CellValue(string.Format("{0}", p.PartDescription));
+                                        cell.DataType = new EnumValue<CellValues>(CellValues.String);
+                                        break;
+
+                                    #endregion
+
                                     default:
                                         break;
                                 }
-                                #endregion
+
+                                line++;
                             }
 
                         }
