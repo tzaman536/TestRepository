@@ -23,74 +23,74 @@
                             
                         </div>
                     </td>
-                <td width="5%"></td>
+                    <td width="5%"></td>
                 </tr>
                 <tr>
                     <td width="5%"></td>
                     <td><div class="form-data-entry-lable">Vendor Information:</div></td>
                     <td width="5%"></td>
                 </tr>
-    @* Buyers Information Section *@
-    <tr>
-        <td height="100" width="5%"></td>
-        <td>
-            <div class="demo-section k-content wide">
-                <table border="0" width="1000">
-                    <tr>
-                        <td width="10px;"></td>
-                        <td><label for="companyName">Company Name: <input id="companyName" data-bind="value: companyName" class="k-textbox large" /></label></td>
-                        <td width="10px;"></td>
-                        <td><label for="attention">Attention: <input id="attention" data-bind="value: attention" class="k-textbox" /></label></td>
-                        <td width="10px"></td>
-                        <td colspan="3"></td>
-                    </tr>
-                    <tr>
-                        <td width="10px"></td>
-                        <td colspan="6"><label for="companyAddress">Company Address:</label> <textarea id="companyAddress" rows="4" cols="25" style="min-width: 450px;" data-bind="value: companyAddress"> </textarea><button data-bind="click: parseAddress" class="button">Parse Address</button></td>
-                        <td width="10px"></td>
-                    </tr>
-                    <tr>
-                        <td width="10px"></td>
-                        <td><label for="phoneNo">Phone No: <input id="phoneNo" data-role="maskedtextbox" data-mask="(999) 000-0000" data-bind="value: phoneNo" class="k-textbox" /></label></td>
-                        <td width="10px"></td>
-                        <td><label for="faxNo">Fax No: <input id="faxNo" data-role="maskedtextbox" data-mask="(999) 000-0000" data-bind="value: faxNo" class="k-textbox" /></label></td>
-                        <td width="10px"></td>
-                        <td><label for="email">Email: <input id="email" type="email" data-bind="value: email" class="k-textbox" /></label></td>
-                        <td colspan="2"></td>
-                    </tr>
-                    @*<tr>
-                            <td width="10px"></td>
-                            <td><label for="ccPurchase">Credit Card Purchase</label> <input type="checkbox" id="ccPurchase" data-bind="checked: ccPurchase" /></td>
-                            <td width="10px"></td>
-                            <td><label for="gvtInspection">Government Source Inspection Required</label> <input type="checkbox" id="gvtInspection" data-bind="checked: gvtInspection" /></td>
-                            <td width="*"></td>
-                            <td width="10px"></td>
-                            <td></td>
-                            <td width="*"></td>
-                        </tr>*@
-                    <tr>
-                        <td width="10px"></td>
-                        <td colspan="6"><label for="comment">Comment</label> <textarea id="comment" rows="4" cols="50" style="min-width: 900px;" data-bind="value: comment"> </textarea></td>
-                        <td width="*"></td>
-                    </tr>
+                @* Buyers Information Section *@
+                <tr>
+                    <td height="100" width="5%"></td>
+                    <td>
+                        <div class="demo-section k-content wide">
+                            <table border="0" width="1000">
+                                <tr>
+                                    <td width="10px;"></td>
+                                    <td><label for="companyName">Company Name: <input id="companyName" data-bind="value: companyName" class="k-textbox large" /></label></td>
+                                    <td width="10px;"></td>
+                                    <td><label for="attention">Attention: <input id="attention" data-bind="value: attention" class="k-textbox" /></label></td>
+                                    <td width="10px"></td>
+                                    <td colspan="3"></td>
+                                </tr>
+                                <tr>
+                                    <td width="10px"></td>
+                                    <td colspan="6"><label for="companyAddress">Company Address:</label> <textarea id="companyAddress" rows="4" cols="25" style="min-width: 450px;" data-bind="value: companyAddress"> </textarea><button data-bind="click: parseAddress" class="button">Parse Address</button></td>
+                                    <td width="10px"></td>
+                                </tr>
+                                <tr>
+                                    <td width="10px"></td>
+                                    <td><label for="phoneNo">Phone No: <input id="phoneNo" data-role="maskedtextbox" data-mask="(999) 000-0000" data-bind="value: phoneNo" class="k-textbox" /></label></td>
+                                    <td width="10px"></td>
+                                    <td><label for="faxNo">Fax No: <input id="faxNo" data-role="maskedtextbox" data-mask="(999) 000-0000" data-bind="value: faxNo" class="k-textbox" /></label></td>
+                                    <td width="10px"></td>
+                                    <td><label for="email">Email: <input id="email" type="email" data-bind="value: email" class="k-textbox" /></label></td>
+                                    <td colspan="2"></td>
+                                </tr>
+                                @*<tr>
+                                        <td width="10px"></td>
+                                        <td><label for="ccPurchase">Credit Card Purchase</label> <input type="checkbox" id="ccPurchase" data-bind="checked: ccPurchase" /></td>
+                                        <td width="10px"></td>
+                                        <td><label for="gvtInspection">Government Source Inspection Required</label> <input type="checkbox" id="gvtInspection" data-bind="checked: gvtInspection" /></td>
+                                        <td width="*"></td>
+                                        <td width="10px"></td>
+                                        <td></td>
+                                        <td width="*"></td>
+                                    </tr>*@
+                                <tr>
+                                    <td width="10px"></td>
+                                    <td colspan="6"><label for="comment">Comment</label> <textarea id="comment" rows="4" cols="50" style="min-width: 900px;" data-bind="value: comment"> </textarea></td>
+                                    <td width="*"></td>
+                                </tr>
 
-                </table>
-                @* Dropdown list and checkbox example
-                    <ul id="fieldlist">
-                        <li><label for="gender">Gender:</label> <select id="gender" data-bind="source: genders, value: gender"></select></li>
-                        <li> <label for="agree">License Agreement</label> <input type="checkbox" id="agree" data-bind="checked: agreed" /> I have read the licence agreement</li>
-                    </ul>
-                *@
-            </div>
-        </td>
-        <td width="5%"></td>
-    </tr>
-    <tr><td height="10px;" colspan="3"></td></tr> @*Empty line*@
-    <tr>
-        <td width="5%"></td>
-        <td><div class="form-data-entry-lable">Product Information<div /></td>
-        <td width="5%"></td>
-    </tr>
+                            </table>
+                            @* Dropdown list and checkbox example
+                                <ul id="fieldlist">
+                                    <li><label for="gender">Gender:</label> <select id="gender" data-bind="source: genders, value: gender"></select></li>
+                                    <li> <label for="agree">License Agreement</label> <input type="checkbox" id="agree" data-bind="checked: agreed" /> I have read the licence agreement</li>
+                                </ul>
+                            *@
+                        </div>
+                    </td>
+                    <td width="5%"></td>
+                </tr>
+                <tr><td height="10px;" colspan="3"></td></tr> @*Empty line*@
+                <tr>
+                    <td width="5%"></td>
+                    <td><div class="form-data-entry-lable">Product Information </div></td>
+                    <td width="5%"></td>
+                </tr>
     @* Product Information Section *@
     <tr>
         <td height="100" width="5%"></td>
