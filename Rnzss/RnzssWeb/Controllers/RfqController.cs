@@ -383,7 +383,7 @@ namespace RnzssWeb.Controllers
 
 
 
-                        cell.CellValue = new CellValue(string.Format("RFQ No. {0} \n # Denia Zaman \n # XYZ Company Inc. \n # 54-25 91st Street \n # New Hyde Park NY 11254", rfq.RFQNo).Replace("\n", Environment.NewLine).Replace("#", "   "));
+                        cell.CellValue = new CellValue(string.Format("RFQ No. {0} \n # Tanweer Zaman \n # R & Z Supply And Services LLC. \n # 14 Fountain Ln \n # Jericho NY 11753", rfq.RFQNo).Replace("\n", Environment.NewLine).Replace("#", "   "));
                         cell.DataType =
                             new EnumValue<CellValues>(CellValues.String);
 
