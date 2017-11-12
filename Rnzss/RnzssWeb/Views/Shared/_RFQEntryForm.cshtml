@@ -51,8 +51,18 @@
                                     <td width="10px;"></td>
                                 </tr>
                                 <tr>
-                                    <td width="10px"></td>
+                                    @*<td width="10px"></td>
                                     <td colspan="6"><label for="companyAddress">Company Address:</label> <textarea id="companyAddress" rows="4" cols="25" style="min-width: 450px;" data-bind="value: companyAddress"> </textarea></td>
+                                    <td width="10px"></td>*@
+                                    <td width="10px"></td>
+                                    <td colspan="6">
+                                        <div id="wrapper">
+                                            <div id="first-large">
+                                                <label for="companyAddress">Company Address:</label> <textarea id="companyAddress" rows="4" cols="25" style="min-width: 250px;" data-bind="value: companyAddress"> </textarea>
+                                            </div>
+                                            <div id="second"><label for="comment">Comment</label> <textarea id="comment" rows="4" cols="25" style="min-width: 250px;" data-bind="value: comment"> </textarea></div>
+                                        </div>
+                                    </td>
                                     <td width="10px"></td>
                                 </tr>
                                 <tr>
@@ -74,11 +84,11 @@
                                         <td></td>
                                         <td width="*"></td>
                                     </tr>*@
-                                <tr>
+                                @*<tr>
                                     <td width="10px"></td>
-                                    <td colspan="6"><label for="comment">Comment</label> <textarea id="comment" rows="4" cols="50" style="min-width: 900px;" data-bind="value: comment"> </textarea></td>
+                                    <td colspan="6"></td>
                                     <td width="*"></td>
-                                </tr>
+                                </tr>*@
 
                             </table>
                             @* Dropdown list and checkbox example
