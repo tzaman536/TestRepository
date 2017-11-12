@@ -14,10 +14,22 @@
     float:left; /* add this */
     border: 0px solid red;
 }
+#first-large {
+    width: 450px;
+    float:left; /* add this */
+    border: 0px solid red;
+}
+
 #second {
     border: 0px solid green;
     float: left; /* add this */
     padding-left:10px;
+}
+#second-large {
+    border: 0px solid green;
+    float: left; /* add this */
+    padding-left:10px;
+    width:550px;
 }
 
 #third {
