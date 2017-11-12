@@ -117,41 +117,91 @@
                 </tr>
                 <tr><td height="10px;" colspan="3"></td></tr> @*Empty line*@
                 <tr>
-                    <td width="5%"></td>
+                    <td width="10px"></td>
                     <td><div class="form-data-entry-lable">Product Information </div></td>
                     <td width="5%"></td>
                 </tr>
+               
+
     @* Product Information Section *@
     <tr>
         <td height="100" width="5%"></td>
         <td>
             <div class="demo-section k-content wide">
-                <table border="0" width="1000">
-                    <tr>
+                <table border="1" width="1000">
+                    @*<tr>
                         <td width="10px"></td>
                         <td><label for="partNumber">Part Number: <input id="partNumber" data-bind="value: partNumber" class="k-textbox" /></label></td>
                         <td width="10px"></td>
                         <td><label for="partName">Part Name: <input id="partName" data-bind="value: partName" class="k-textbox" /></label></td>
                         <td width="10px"></td>
                         <td><label for="cn">CN: <input id="cn" data-bind="value: cn" class="k-textbox" /></label></td>
+                    </tr>*@
+                    <tr>
+                        <td width="10px"></td>
+                        <td colspan="6">
+                            <div id="wrapper">
+                                <div id="first">
+                                    <label for="partNumber">Part Number: <input id="partNumber" data-bind="value: partNumber" class="k-textbox" /></label>
+                                </div>
+                                <div id="second">
+                                    <label for="partName">Part Name: <input id="partName" data-bind="value: partName" class="k-textbox" /></label>
+                                </div>
+                                <div id="second">
+                                    <label for="cn">CN: <input id="cn" data-bind="value: cn" class="k-textbox" /></label>
+                                </div>
+                            </div>
+                        </td>
+                        <td width="10px"></td>
                     </tr>
                     <tr>
                         <td width="10px"></td>
-                        <td><label for="quantity">Quantity: <input id="quantity" data-bind="value: quantity" class="k-textbox" /></label></td>
+                        @*<td><label for="quantity">Quantity: <input id="quantity" data-bind="value: quantity" class="k-textbox" /></label></td>
                         <td width="10px"></td>
                         <td><label for="partDescription">Description: <input id="partDescription" data-bind="value: partDescription" class="k-textbox" /></label></td>
                         <td width="10px"></td>
-                        <td><button data-bind="click: addAnotherProduct" class="button">Add Product</button></td>
+                        <td><button data-bind="click: addAnotherProduct" class="button">Add Product</button></td>*@
+                        <td colspan="6">
+                            <div id="wrapper">
+                                <div id="first">
+                                    <label for="quantity">Quantity: <input id="quantity" data-bind="value: quantity" class="k-textbox" /></label>
+                                </div>
+                                <div id="second">
+                                    <label for="partDescription">Description: <input id="partDescription" data-bind="value: partDescription" class="k-textbox" /></label>
+                                </div>
+                                <div id="second">
+                                    <button data-bind="click: addAnotherProduct" class="button">Add Product</button>
+                                </div>
+                            </div>
+                        </td>
+                        <td width="10px"></td>
                     </tr>
                     <tr><td height="10px;" colspan="6"></td></tr> @*Empty line*@
                     <tr>
+                        <td width="10px"></td>
+                        <td colspan="6">
+                            <div id="wrapper">
+                                <div id="first">
+                                    <button data-bind="click: startOver" class="button">Start Over</button>
+                                </div>
+                                <div id="second">
+                                    <button data-bind="click: saveWork" class="button">Save</button>
+                                </div>
+                                <div id="second">
+                                    <button data-bind="click: printRFQ" class="button">Print</button>
+                                </div>
+                            </div>
+                        </td>
+                        <td width="10px"></td>
+                    </tr>
+                    @*<tr>
                         <td width="10px"></td>
                         <td><button data-bind="click: startOver" class="button">Start Over</button></td>
                         <td width="10px"></td>
                         <td><button data-bind="click: saveWork" class="button">Save</button></td>
                         <td width="10px"></td>
                         <td><button data-bind="click: printRFQ" class="button">Print</button></td>
-                    </tr>
+                    </tr>*@
                 </table>
                 @* Dropdown list and checkbox example
                     <ul id="fieldlist">
