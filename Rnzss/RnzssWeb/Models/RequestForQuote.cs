@@ -231,8 +231,10 @@ namespace RnzssWeb.Models
                 try
                 {
                     var result = connection.Execute(@"
-                                                    DELETE FROM [rnz].[RequestForQuote]
-                                                    WHERE RequestForQuoteId = @RequestForQuoteId
+
+                                                    DELETE [rnz].[ProductInformation] WHERE RFQNo=@RFQNo
+                                                    DELETE rnz.RequestForQuoteEvents  WHERE RFQNo=@RFQNo
+                                                    DELETE FROM [rnz].[RequestForQuote] WHERE RequestForQuoteId = @RequestForQuoteId
                                                         ", p, commandTimeout: 0);
                 }
                 catch (Exception ex)
