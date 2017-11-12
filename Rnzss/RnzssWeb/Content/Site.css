@@ -8,6 +8,7 @@
     width: auto;
     border: 0px solid black;
     overflow: hidden; /* add this to contain floated children */
+    margin-top:5px;
 }
 #first {
     width: 350px;
