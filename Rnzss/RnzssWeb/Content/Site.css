@@ -17,7 +17,15 @@
 #second {
     border: 0px solid green;
     float: left; /* add this */
+    padding-left:10px;
 }
+
+#third {
+    border: 0px solid green;
+    float: left; /* add this */
+    padding-left:10px;
+}
+
 .rz-page-link {
     padding-left:5px;
 }

@@ -17,8 +17,10 @@
                     <td width="5%"></td>
                     <td width="*">
                         <div id="wrapper">
-                            <div id="first" class="form-data-entry-lable">Solicitation No: <input id="solicitationNumber" data-bind="value: solicitationNumber" class="k-textbox" /></div>
-                            <div id="second" class="form-data-entry-lable second">Due Date: <input id="dueDate" data-role="datepicker" data-bind="visible: isVisible, enabled: isEnabled,  value: dueDate, events: { change: onDueDateChange }" style="width: 120px"></div>
+                            <div id="first"><label for="rfqNo">RFQ No: <input id="rfqNo" data-bind="value: rfqNo" disabled="disabled" class="rfqno" /></label></div>
+                            <div id="second" class="form-data-entry-lable">Solicitation No: <input id="solicitationNumber" data-bind="value: solicitationNumber" class="k-textbox" /></div>
+                            <div id="third" class="form-data-entry-lable second">Due Date: <input id="dueDate" data-role="datepicker" data-bind="visible: isVisible, enabled: isEnabled,  value: dueDate, events: { change: onDueDateChange }" style="width: 120px"></div>
+                            
                         </div>
                     </td>
     </div>
@@ -41,7 +43,7 @@
                         <td width="10px;"></td>
                         <td><label for="attention">Attention: <input id="attention" data-bind="value: attention" class="k-textbox" /></label></td>
                         <td width="10px"></td>
-                        <td colspan="3"><label for="rfqNo">RFQ No: <input id="rfqNo" data-bind="value: rfqNo" disabled="disabled" class="rfqno" /></label></td>
+                        <td colspan="3"></td>
                     </tr>
                     <tr>
                         <td width="10px"></td>
