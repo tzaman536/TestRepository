@@ -7,6 +7,8 @@
                                 .Columns(columns =>
                                 {
                                     columns.Bound(p => p.RFQNo).Template(@<text></text>).ClientTemplate("<a href='" + Url.Action("RfqEntry", "Rfq") + "?RFQNo=#=RFQNo#'>#=RFQNo#</a>").Title("RFQ No.").Width(75);
+                                    columns.Bound(p => p.SolicitationNumber).Width(75);
+                                    columns.Bound(p => p.DueDate).Width(75).Format("{0:MM/dd/yyyy}"); 
                                     columns.Bound(p => p.RfqEvent).Template(@<text></text>).ClientTemplate("<a href='" + Url.Action("RfqEvent", "Rfq") + "?RFQNo=#=RFQNo#'>#=RfqEvent#</a>").Title("Rfq Log").Width(50);
                                     columns.Bound(p => p.CompanyName).Width(75);
                                     columns.Bound(p => p.Attention).Width(75);

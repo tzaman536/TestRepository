@@ -141,6 +141,7 @@ namespace RnzssWeb.Controllers
                     rfq.Product.RFQNo = rfq.RFQNo;
                     ProductInformation.Upsert(rfq.Product);
                     message = "RFQ Saved.";
+                    ViewData["RFQNo"] = rfq.RFQNo;
                 }
             }
             else
