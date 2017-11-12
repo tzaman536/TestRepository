@@ -67,12 +67,26 @@
                                 </tr>
                                 <tr>
                                     <td width="10px"></td>
-                                    <td><label for="phoneNo">Phone No: <input id="phoneNo" data-role="maskedtextbox" data-mask="(999) 000-0000" data-bind="value: phoneNo" class="k-textbox" /></label></td>
+                                    @*<td><label for="phoneNo">Phone No: <input id="phoneNo" data-role="maskedtextbox" data-mask="(999) 000-0000" data-bind="value: phoneNo" class="k-textbox" /></label></td>
                                     <td width="10px"></td>
                                     <td><label for="faxNo">Fax No: <input id="faxNo" data-role="maskedtextbox" data-mask="(999) 000-0000" data-bind="value: faxNo" class="k-textbox" /></label></td>
                                     <td width="10px"></td>
                                     <td><label for="email">Email: <input id="email" type="email" data-bind="value: email" class="k-textbox" /></label></td>
-                                    <td colspan="2"></td>
+                                    <td colspan="2"></td>*@
+                                    <td colspan="6">
+                                        <div id="wrapper">
+                                            <div id="first">
+                                                <label for="phoneNo">Phone No: <input id="phoneNo" data-role="maskedtextbox" data-mask="(999) 000-0000" data-bind="value: phoneNo" class="k-textbox" /></label>
+                                            </div>
+                                            <div id="second">
+                                                <label for="faxNo">Fax No: <input id="faxNo" data-role="maskedtextbox" data-mask="(999) 000-0000" data-bind="value: faxNo" class="k-textbox" /></label>
+                                            </div>
+                                            <div id="second">
+                                                <label for="email">Email: <input id="email" type="email" data-bind="value: email" class="k-textbox" /></label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td width="10px"></td>
                                 </tr>
                                 @*<tr>
                                         <td width="10px"></td>

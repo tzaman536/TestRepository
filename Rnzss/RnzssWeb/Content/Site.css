@@ -11,7 +11,7 @@
     margin-top:5px;
 }
 #first {
-    width: 350px;
+    width: 300px;
     float:left; /* add this */
     border: 0px solid red;
 }
