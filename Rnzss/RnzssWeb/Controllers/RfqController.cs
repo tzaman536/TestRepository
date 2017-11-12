@@ -680,5 +680,46 @@ namespace RnzssWeb.Controllers
         #endregion
 
 
+        
+        #region Solicitations
+        public ActionResult AddSolicitation()
+        {
+
+            return View();
+        }
+
+        public ActionResult Solicitations()
+        {
+
+            return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult UploadSolicitation()
+        {
+            if (Request.Files.Count > 0)
+            {
+                var file = Request.Files[0];
+
+
+
+                if (file != null && file.ContentLength > 0)
+                {
+                    var fileName = System.IO.Path.GetFileName(file.FileName);
+                    var path = System.IO.Path.Combine(Server.MapPath("~/SolicitationFiles/"), fileName);
+                    logger.InfoFormat("Saving solicitation as {0}",path);
+
+                    file.SaveAs(path);
+                }
+            }
+            return RedirectToAction("AddSolicitation");
+        }
+
+        #endregion
+
+
+
+
     }
 }

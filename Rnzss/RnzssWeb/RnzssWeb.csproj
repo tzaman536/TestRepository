@@ -1474,9 +1474,12 @@
     <Content Include="Views\Shared\_RFQEntryForm.cshtml" />
     <Content Include="Views\Rfq\ActiveRfq.cshtml" />
     <Content Include="Views\Rfq\RfqEvent.cshtml" />
+    <Content Include="Views\Rfq\AddSolicitation.cshtml" />
+    <Content Include="Views\Rfq\Solicitations.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="SolicitationFiles\" />
     <Folder Include="Views\ReferenceData\" />
   </ItemGroup>
   <ItemGroup>

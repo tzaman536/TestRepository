@@ -1,0 +1,13 @@
+﻿@{
+    ViewBag.Title = "Add Solicitation";
+}
+@using RnzssWeb.Models
+<div class="page-container">
+    <div id="addSolicitationForm" class="admin-page-container">
+            @using (Html.BeginForm("UploadSolicitation", "Rfq", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <input type="file" name="file" />
+                <input type="submit" name="Submit" id="Submit" value="UploadSolicitation" />
+            }
+    </div>
+</div>
