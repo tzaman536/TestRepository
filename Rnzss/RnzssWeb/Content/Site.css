@@ -3,6 +3,21 @@
 
 */
 /*#region Common */
+
+#wrapper {
+    width: auto;
+    border: 0px solid black;
+    overflow: hidden; /* add this to contain floated children */
+}
+#first {
+    width: 350px;
+    float:left; /* add this */
+    border: 0px solid red;
+}
+#second {
+    border: 0px solid green;
+    float: left; /* add this */
+}
 .rz-page-link {
     padding-left:5px;
 }
