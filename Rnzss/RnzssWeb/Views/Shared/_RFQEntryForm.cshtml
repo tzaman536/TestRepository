@@ -2,7 +2,7 @@
 <div class="page-container">
     <div id="rfqentryform" class="admin-page-container">
         <form>
-            <table border="1" width="1000" style="height:auto">
+            <table border="0" width="1000" style="height:auto">
                 <tr>
                     <td width="5%"></td>
                     <td width="*"><div class="form-data-entry-lable">Request For Quote: <input id="lookUpRfqNo" data-bind="value: lookUpRfqNo" class="k-textbox" /><button id="kendo-find-button" data-bind="click: findRfq" class="button">Find</button><a href='@Url.Action("ActiveRfq", "Rfq")' class="rz-page-link">[Active Rfq]</a><a href='@Url.Action("RfqEvent", "Rfq", new { RFQNo = @ViewData["RFQNo"] },null)' class="rz-page-link">[Event Log]</a></div></td>
@@ -128,7 +128,7 @@
         <td height="100" width="5%"></td>
         <td>
             <div class="demo-section k-content wide">
-                <table border="1" width="1000">
+                <table border="0" width="1000">
                     @*<tr>
                         <td width="10px"></td>
                         <td><label for="partNumber">Part Number: <input id="partNumber" data-bind="value: partNumber" class="k-textbox" /></label></td>
@@ -226,6 +226,8 @@
                                     columns.Bound(p => p.PartName).Width(75);
                                     columns.Bound(p => p.PartDescription).Width(75);
                                     columns.Bound(p => p.Quantity).Width(75);
+                                    columns.Bound(p => p.VendorPrice).Width(75).Title("Unit Price");
+                                    columns.Bound(p => p.PkgCost).Width(75).Title("Pkg");
                                     columns.Bound(p => p.CN).Width(75);
                                     columns.Command(command => { command.Edit(); command.Destroy(); }).Width(100);
                                 })

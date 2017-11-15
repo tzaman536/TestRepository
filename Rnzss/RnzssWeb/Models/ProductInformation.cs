@@ -19,6 +19,8 @@ namespace RnzssWeb.Models
         public string PartDescription { get; set; }
         public string Quantity { get; set; }
         public string CN { get; set; }
+        public decimal VendorPrice { get; set; }
+        public decimal PkgCost { get; set; }
         public string UpdatedBy { get; set; }
         public DateTime UpdateDate { get; set; }
 
@@ -79,6 +81,8 @@ namespace RnzssWeb.Models
                                                       ,[PartDescription] = @PartDescription
                                                       ,[Quantity] = @Quantity
                                                       ,[CN] = @CN
+                                                      ,VendorPrice = @VendorPrice
+                                                      ,PkgCost = @PkgCost
                                                       ,[UpdatedBy] = @UpdatedBy
                                                       ,[UpdateDate] = getutcdate()
                                                  WHERE ProductInformationId = @ProductInformationId
@@ -121,6 +125,8 @@ namespace RnzssWeb.Models
                                                                    ,[PartDescription]
                                                                    ,[Quantity]
                                                                    ,[CN]
+                                                                   ,VendorPrice 
+                                                                   ,PkgCost
                                                                    ,[UpdatedBy]
                                                                    )
                                                              VALUES
@@ -130,6 +136,8 @@ namespace RnzssWeb.Models
                                                                    ,@PartDescription
                                                                    ,@Quantity
                                                                    ,@CN
+                                                                   ,@VendorPrice
+                                                                   ,@PkgCost
                                                                    ,@UpdatedBy
                                                                   )
                                                

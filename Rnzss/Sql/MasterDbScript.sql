@@ -21,6 +21,8 @@ CREATE TABLE [rnz].[ProductInformation](
 	[PartDescription] VARCHAR(MAX),
 	[Quantity] [nvarchar](100) NULL,
 	[CN] [nvarchar](100) NULL,
+	VendorPrice decimal(18,2) null,
+	PkgCost decimal(18,2) null,
 	[UpdatedBy] [nvarchar](100) NOT NULL,
 	[UpdateDate] [datetime] NOT NULL
 ) ON [PRIMARY]
