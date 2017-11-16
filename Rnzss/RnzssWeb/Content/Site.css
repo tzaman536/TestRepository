@@ -3,6 +3,101 @@
 
 */
 /*#region Common */
+.rnzss-texbox-large {
+        min-width: 275px;
+        text-align: left;
+        font-weight: normal;
+        margin-left: 0px;
+        margin-top:10px;
+}
+
+.rnzss-texbox-xlarge {
+        min-width: 500px;
+        text-align: left;
+        font-weight: normal;
+        margin-left: 0px;
+        margin-top:10px;
+}
+
+.rTableRowForm { 
+    display: table-row; 
+    margin-top:5px;
+}
+.rTableCellFromLable {
+        display: table-cell; 
+        text-align: right; 
+        margin-top:10px;
+        padding-left:15px;
+}
+.rTableCellFromInput {
+        display: table-cell; 
+        text-align: left; 
+        margin-top:10px;
+}
+.rTableCellFromInputLarge {
+        display: table-cell; 
+        text-align: left; 
+        min-width:500px;
+        margin-top:10px;
+}
+.small-data-entry-form{
+    min-height:200px;
+    min-width:500px;
+    max-width: 900px;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    background-color: antiquewhite;
+}
+.rfq-file-upload-form{
+    min-height:100px;
+    min-width:200px;
+    max-width: 300px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 0px;
+    margin-bottom: 50px;
+    background-color: antiquewhite;
+}
+
+
+.k-textbox.rnzss{
+    margin-top:10px;
+}
+
+.rnzss-fileupload{
+    max-width:600px;
+    min-height:200px;
+    padding-left:0px;
+    margin-top:10px;
+    margin-left:0px;
+}
+
+.rnzss-rfq-fileupload{
+    max-width:500px;
+    min-height:100px;
+    padding-left:0px;
+    margin-top:10px;
+    margin-left:0px;
+}
+
+.rnzss-space
+{
+    margin-left:10px;
+    padding-left:10px;
+    background-color:red;
+}
+
+.page-grid-container{
+    margin-left:10px;
+    margin-top:10px;
+    margin-right:10px;
+    margin-bottom:10px;
+    background-color:red;
+    min-width:500px;
+    min-height:200px;
+}
 
 #wrapper {
     width: auto;

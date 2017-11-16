@@ -231,11 +231,14 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\DocumentStore.cs" />
+    <Compile Include="Models\FileUploadLog.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ProductInformation.cs" />
     <Compile Include="Models\RequestForQuote.cs" />
     <Compile Include="Models\RequestForQuoteEvent.cs" />
+    <Compile Include="Models\Solicitation.cs" />
     <Compile Include="Models\UserMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
