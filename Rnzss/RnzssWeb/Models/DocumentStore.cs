@@ -36,7 +36,7 @@ namespace RnzssWeb.Models
                 try
                 {
                     var result = connection.Execute(@"
-                                                    DELETE FROM [Carry].[DocumentStore]
+                                                    DELETE FROM [rnz].[DocumentStore]
                                                     WHERE DocumentStoreId = @DocumentStoreId
                                                         ", p, commandTimeout: 0);
                 }
@@ -60,7 +60,7 @@ namespace RnzssWeb.Models
                                                         select s.DocumentStoreId
                                                                ,s.LinkId
                                                                ,s.FileBaseName    
-                                                        from [Carry].[DocumentStore] s
+                                                        from [rnz].[DocumentStore] s
                                                         where LinkId = @rfqNo
                                                       
                                                         ", new { rfqNo }, commandTimeout: 0);
@@ -84,7 +84,7 @@ namespace RnzssWeb.Models
                 {
                     var result = connection.Query<DocumentStore>(@"
                                                         select *     
-                                                        from [Carry].[DocumentStore]
+                                                        from [rnz].[DocumentStore]
                                                         where LinkId = @solicitationNo
                                                         ", new { solicitationNo }, commandTimeout: 0).ToList();
                     if (result != null && result.Any())
@@ -111,7 +111,7 @@ namespace RnzssWeb.Models
                 {
                     var result = connection.Query<DocumentStore>(@"
                                                         select *     
-                                                        from [Carry].[DocumentStore]
+                                                        from [rnz].[DocumentStore]
                                                         where DocumentStoreId = @DocumentStoreId
                                                         ", new { DocumentStoreId }, commandTimeout: 0).ToList();
                     if (result != null && result.Any())

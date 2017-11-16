@@ -869,13 +869,13 @@ namespace RnzssWeb.Controllers
                     br.Close();
                     fs.Close();
 
-                    string sql = @"INSERT INTO [Carry].[DocumentStore](LinkId,FileBaseName,FileExtension, ContentType, BinaryData,UpdatedBy) 
+                    string sql = @"INSERT INTO [rnz].[DocumentStore](LinkId,FileBaseName,FileExtension, ContentType, BinaryData,UpdatedBy) 
                                                 VALUES (@LinkId,@FileBaseName, @FileExtension,@ContentType, @BinaryData,@UpdatedBy)";
 
                     var dc = DocumentStore.GetSoliciationDocument(solicitaionNumber);
                     if (dc != null)
                     {
-                        sql = @"UPDATE [Carry].[DocumentStore]
+                        sql = @"UPDATE [rnz].[DocumentStore]
                                 SET LinkId = @LinkId
                                     ,FileBaseName = @FileBaseName
                                     ,FileExtension = @FileExtension
@@ -984,7 +984,7 @@ namespace RnzssWeb.Controllers
                     br.Close();
                     fs.Close();
 
-                    string sql = @"INSERT INTO [Carry].[DocumentStore](LinkId,FileBaseName,FileExtension, ContentType, BinaryData,UpdatedBy) 
+                    string sql = @"INSERT INTO [rnz].[DocumentStore](LinkId,FileBaseName,FileExtension, ContentType, BinaryData,UpdatedBy) 
                                                 VALUES (@LinkId,@FileBaseName, @FileExtension,@ContentType, @BinaryData,@UpdatedBy)";
 
 
@@ -1044,7 +1044,7 @@ namespace RnzssWeb.Controllers
                 string filePath = dc.FileBaseName;
                 string mapPath = GetFilePath("DOWNLOAD", filePath);
                 byte[] fileContents;
-                string selectStmt = "SELECT BinaryData FROM carry.DocumentStore WHERE SolicitationNo = @SolicitationNo";
+                string selectStmt = "SELECT BinaryData FROM rnz.DocumentStore WHERE LinkId = @SolicitationNo";
                 using (SqlConnection connection = new SqlConnection(CommonMethods._connectionString))
                 using (SqlCommand cmdSelect = new SqlCommand(selectStmt, connection))
                 {
@@ -1094,7 +1094,7 @@ namespace RnzssWeb.Controllers
                 string filePath = dc.FileBaseName;
                 string mapPath = GetFilePath("DOWNLOAD", filePath);
                 byte[] fileContents;
-                string selectStmt = "SELECT BinaryData FROM carry.DocumentStore WHERE DocumentStoreId = @DocumentStoreId";
+                string selectStmt = "SELECT BinaryData FROM rnz.DocumentStore WHERE DocumentStoreId = @DocumentStoreId";
                 using (SqlConnection connection = new SqlConnection(CommonMethods._connectionString))
                 using (SqlCommand cmdSelect = new SqlCommand(selectStmt, connection))
                 {

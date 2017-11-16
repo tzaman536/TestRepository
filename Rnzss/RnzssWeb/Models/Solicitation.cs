@@ -42,9 +42,9 @@ namespace RnzssWeb.Models
                 try
                 {
                     var result = connection.Execute(@"
-                                                    DELETE FROM [Carry].[DocumentStore] Where SolicitationNo = @SolicitationNo
+                                                    DELETE FROM [rnz].[DocumentStore] Where SolicitationNo = @SolicitationNo
 
-                                                    DELETE FROM [Carry].[Solicitations]
+                                                    DELETE FROM [rnz].[Solicitations]
                                                     WHERE SolicitationId = @SolicitationId
                                                         ", p, commandTimeout: 0);
                 }
@@ -72,7 +72,7 @@ namespace RnzssWeb.Models
                 try
                 {
                     var result = connection.Execute(@"
-                                                UPDATE [Carry].[Solicitations]
+                                                UPDATE [rnz].[Solicitations]
                                                    SET [SolicitationNo] = @SolicitationNo
                                                       ,[SolicitationDescription] = @SolicitationDescription
 	                                                  ,[AwardQuantity] = @AwardQuantity
@@ -116,7 +116,7 @@ namespace RnzssWeb.Models
                 try
                 {
                     var result = connection.Execute(@"
-                                                        INSERT INTO [Carry].[Solicitations]
+                                                        INSERT INTO [rnz].[Solicitations]
                                                                ([SolicitationNo]
                                                                ,[SolicitationDescription]
                                                                ,[AwardQuantity]
@@ -152,8 +152,8 @@ namespace RnzssWeb.Models
                     return connection.Query<Solicitation>(@"
                                                         select s.*     
                                                                ,case when dc.LinkId is null then '' else 'Solicitation' end as Document
-                                                        from [Carry].[Solicitations] s
-                                                        left join [Carry].[DocumentStore] dc on s.SolicitationNo = dc.LinkId
+                                                        from [rnz].[Solicitations] s
+                                                        left join [rnz].[DocumentStore] dc on s.SolicitationNo = dc.LinkId
                                                        
                                                         ", commandTimeout: 0);
                 }
@@ -176,7 +176,7 @@ namespace RnzssWeb.Models
                 {
                     var result = connection.Query<Solicitation>(@"
                                                         select *     
-                                                        from [Carry].[Solicitations]
+                                                        from [rnz].[Solicitations]
                                                         where solicitationNo = @solicitationNo
                                                         ", new { solicitationNo }, commandTimeout: 0).ToList();
                     if (result != null && result.Any())

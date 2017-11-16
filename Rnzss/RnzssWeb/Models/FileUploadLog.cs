@@ -35,7 +35,7 @@ namespace RnzssWeb.Models
                 try
                 {
                     var result = connection.Execute(@"
-                                                    DELETE FROM [Carry].[FileUploadLog]
+                                                    DELETE FROM [rnz].[FileUploadLog]
                                                     WHERE FileUploadLogId = @FileUploadLogId
                                                         ", p, commandTimeout: 0);
                 }
@@ -67,7 +67,7 @@ namespace RnzssWeb.Models
                 {
                     var result = connection.Execute(@"
 
-                                                UPDATE [Carry].[FileUploadLog]
+                                                UPDATE [rnz].[FileUploadLog]
                                                    SET [FileName] = @FileName
                                                       ,[Message] = @Message
                                                       ,[FileUploaded] = @FileUploaded
@@ -106,7 +106,7 @@ namespace RnzssWeb.Models
                 try
                 {
                     var result = connection.Execute(@"
-                                            INSERT INTO [Carry].[FileUploadLog]
+                                            INSERT INTO [rnz].[FileUploadLog]
                                                        ([FileName]
                                                        ,[Message]
                                                        ,[FileUploaded]
@@ -140,7 +140,7 @@ namespace RnzssWeb.Models
                 {
                     var result = connection.Query<FileUploadLog>(@"
                                                         select *     
-                                                        from [Carry].[FileUploadLog]
+                                                        from [rnz].[FileUploadLog]
                                                         where FileName = @FileName
                                                           and UpdatedBy = @UpdatedBy
                                                         ", p, commandTimeout: 0);
@@ -167,7 +167,7 @@ namespace RnzssWeb.Models
                 {
                     return connection.Query<FileUploadLog>(@"
                                                         select *     
-                                                        from [Carry].[FileUploadLog]
+                                                        from [rnz].[FileUploadLog]
 
                                                         ", commandTimeout: 0);
                 }
@@ -190,7 +190,7 @@ namespace RnzssWeb.Models
                 {
                     return connection.Query<FileUploadLog>(@"
                                                         select *     
-                                                        from [Carry].[FileUploadLog]
+                                                        from [rnz].[FileUploadLog]
                                                         where FileName = @fileName
                                                           and UpdatedBy = @uploadedBy
 
