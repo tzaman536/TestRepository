@@ -54,6 +54,8 @@ GO
 ALTER TABLE [rnz].[RequestForQuote] ADD  DEFAULT (getutcdate()) FOR [UpdateDate]
 GO
 
+ALTER TABLE rnz.RequestForQuote ADD CONSTRAINT Pk_RequestForQuote PRIMARY KEY (RFQNo)  
+GO
 
 
 /****** Object:  Table [rnz].[RequestForQuoteIdTable]    Script Date: 11/9/2017 10:50:44 AM ******/
@@ -123,6 +125,9 @@ CREATE TABLE [rnz].[Solicitations](
 GO
 
 ALTER TABLE [rnz].[Solicitations] ADD  DEFAULT (getutcdate()) FOR [UpdateDate]
+GO
+
+ALTER TABLE rnz.Solicitations ADD CONSTRAINT Pk_Solicitations PRIMARY KEY (SolicitationNo)  
 GO
 
 
