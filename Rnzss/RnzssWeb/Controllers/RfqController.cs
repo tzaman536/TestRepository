@@ -136,7 +136,7 @@ namespace RnzssWeb.Controllers
 
         #region RFQ
         // GET: Rfq
-        public ActionResult RfqEntry(string RFQNo = null)
+        public ActionResult RfqEntry(string RFQNo = null, string SolicitationNo= null)
         {
             HttpSessionState ss = System.Web.HttpContext.Current.Session;
             ViewBag.SessionId = ss.SessionID;
