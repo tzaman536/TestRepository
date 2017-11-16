@@ -15,7 +15,7 @@ GO
 
 CREATE TABLE [rnz].[ProductInformation](
 	[ProductInformationId] [int] IDENTITY(1,1) NOT NULL,
-	[RFQNo] [nvarchar](200) NULL,
+	[RFQNo] [nvarchar](50) NULL,
 	[PartName] [nvarchar](200) NULL,
 	[PartNumber] [nvarchar](200) NULL,
 	[PartDescription] VARCHAR(MAX),
@@ -35,7 +35,7 @@ GO
 
 CREATE TABLE [rnz].[RequestForQuote](
 	[RequestForQuoteId] [int] IDENTITY(1,1) NOT NULL,
-	[RFQNo] [nvarchar](200) NULL,
+	[RFQNo] [nvarchar](50) NULL,
 	[CompanyName] [nvarchar](200) NULL,
 	[Attention] [nvarchar](200) NULL,
 	[CompanyAddress] [nvarchar](255) NULL,
@@ -66,7 +66,7 @@ GO
 
 CREATE TABLE [rnz].[RequestForQuoteEvents](
 	[RequestForQuoteEventId] [int] IDENTITY(1,1) NOT NULL,
-	[RFQNo] [nvarchar](200) NOT NULL,
+	[RFQNo] [nvarchar](50) NOT NULL,
 	[EventDescription] [nvarchar](255) NOT NULL,
 	[UpdatedBy] [nvarchar](100) NOT NULL,
 	[UpdateDate] [datetime] NOT NULL
@@ -76,5 +76,55 @@ GO
 
 ALTER TABLE [rnz].[RequestForQuoteEvents] ADD  DEFAULT (getutcdate()) FOR [UpdateDate]
 GO
+
+CREATE TABLE [rnz].[DocumentStore](
+	[DocumentStoreId] [int] IDENTITY(1,1) NOT NULL,
+	[LinkId] [nvarchar](50) NOT NULL,
+	[FileBaseName] [nvarchar](100) NOT NULL,
+	[FileExtension] [nvarchar](20) NOT NULL,
+	[ContentType] [nvarchar](100) NULL,
+	[BinaryData] [varbinary](max) NULL,
+	[UpdatedBy] [nvarchar](100) NOT NULL,
+	[UpdateDate] [datetime] NOT NULL,
+
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+ALTER TABLE [rnz].[DocumentStore] ADD CONSTRAINT Pk_DocumentStgore PRIMARY KEY (LinkId,FileBaseName,FileExtension)  
+
+ALTER TABLE [rnz].[DocumentStore] ADD  DEFAULT (getutcdate()) FOR [UpdateDate]
+GO
+
+
+CREATE TABLE [rnz].[FileUploadLog](
+	[FileUploadLogId] [int] IDENTITY(1,1) NOT NULL,
+	[FileName] [nvarchar](200) NOT NULL,
+	[Message] [text] NULL,
+	[FileUploaded] [bit] NOT NULL,
+	[UpdatedBy] [nvarchar](100) NOT NULL,
+	[UpdateDate] [datetime] NOT NULL
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+
+ALTER TABLE [rnz].[FileUploadLog] ADD  DEFAULT (getutcdate()) FOR [UpdateDate]
+GO
+CREATE TABLE [rnz].[Solicitations](
+	[SolicitationId] [int] IDENTITY(1,1) NOT NULL,
+	[SolicitationNo] [nvarchar](50) NOT NULL,
+	[SolicitationDescription] [nvarchar](255) NULL,
+	[AwardQuantity] [int] NULL,
+	[AwardAmount] [decimal](18, 0) NULL,
+	[DueDate] [date] NULL,
+	[UpdatedBy] [nvarchar](100) NOT NULL,
+	[UpdateDate] [datetime] NOT NULL
+) ON [PRIMARY]
+
+GO
+
+ALTER TABLE [rnz].[Solicitations] ADD  DEFAULT (getutcdate()) FOR [UpdateDate]
+GO
+
+
 
 
