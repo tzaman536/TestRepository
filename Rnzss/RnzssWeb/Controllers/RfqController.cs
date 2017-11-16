@@ -24,6 +24,117 @@ namespace RnzssWeb.Controllers
     public class RfqController : Controller
     {
         private static readonly ILog logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        #region Common
+        public string GetFilePath(string uploadType, string filename)
+        {
+            string mapPath = Server.MapPath("~/");
+            switch (uploadType)
+            {
+                case "SOLICITATION":
+                    return System.IO.Path.Combine(mapPath, "UploadedFiles", "Solicitations", filename);
+
+                case "PRODUCT":
+                    break;
+                case "RFQ_DOCUMENT":
+                    return System.IO.Path.Combine(mapPath, "UploadedFiles", "RfqDocuments", filename);
+                case "DOWNLOAD":
+                    return System.IO.Path.Combine(mapPath, "DownloadedFiles", filename);
+                default:
+                    return System.IO.Path.Combine(mapPath, filename);
+            }
+
+            return System.IO.Path.Combine(mapPath, filename);
+        }
+
+        public string GetContentType(string fileExtension)
+        {
+            switch (fileExtension.ToLower())
+            {
+                case ".xlsx":
+                    return "application/vnd.ms-excel";
+                case ".pdf":
+                    return "Content-Type: application/pdf";
+                case ".doc":
+                    return "Content-Type: application/vnd.ms-word";
+                case ".jpg":
+                    return "Content-Type: image/jpeg";
+                default:
+                    return "Content-Type: application/pdf";
+            }
+
+
+        }
+
+        [HttpGet]
+        public ActionResult DownloadDocument(int DocumentStoreId)
+        {
+
+            try
+            {
+                var dc = DocumentStore.GetDocument(DocumentStoreId);
+
+                if (dc == null)
+                    return null;
+
+                string filePath = dc.FileBaseName;
+                string mapPath = GetFilePath("DOWNLOAD", filePath);
+                byte[] fileContents;
+                string selectStmt = "SELECT BinaryData FROM rnz.DocumentStore WHERE DocumentStoreId = @DocumentStoreId";
+                using (SqlConnection connection = new SqlConnection(CommonMethods._connectionString))
+                using (SqlCommand cmdSelect = new SqlCommand(selectStmt, connection))
+                {
+                    cmdSelect.Parameters.Add("@DocumentStoreId", SqlDbType.Int).Value = DocumentStoreId;
+                    connection.Open();
+                    fileContents = (byte[])cmdSelect.ExecuteScalar();
+                    connection.Close();
+                }
+
+                if (System.IO.File.Exists(mapPath))
+                {
+                    System.IO.File.Delete(mapPath);
+                }
+
+
+
+                if (fileContents != null)
+                {
+                    using (Stream file = System.IO.File.OpenWrite(mapPath))
+                    {
+                        file.Write(fileContents, 0, fileContents.Length);
+                    }
+                }
+
+                string contectType = GetContentType(dc.FileExtension);
+
+                return File(mapPath, contectType, System.IO.Path.GetFileName(mapPath));
+            }
+            catch (Exception ex)
+            {
+                logger.Fatal(ex);
+            }
+            return null;
+        }
+
+
+        public ActionResult GetInstrumentName([DataSourceRequest]DataSourceRequest request, string sessionId)
+        {
+            string result = "Can't retrieve instrument name";
+            try
+            {
+                result = "Hello From Server";
+            }
+            catch (Exception ex)
+            {
+                logger.Fatal(ex.Message);
+            }
+
+            return Json(new { success = true, message = result }, JsonRequestBehavior.AllowGet);
+        }
+
+        #endregion
+
+        #region RFQ
         // GET: Rfq
         public ActionResult RfqEntry(string RFQNo = null)
         {
@@ -76,22 +187,6 @@ namespace RnzssWeb.Controllers
 
 
             return View();
-        }
-
-
-        public ActionResult GetInstrumentName([DataSourceRequest]DataSourceRequest request, string sessionId)
-        {
-            string result = "Can't retrieve instrument name";
-            try
-            {
-                result = "Hello From Server";
-            }
-            catch (Exception ex)
-            {
-                logger.Fatal(ex.Message);
-            }
-
-            return Json(new { success = true, message = result }, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult AddAnotherProduct(RequestForQuote rfq)
@@ -153,6 +248,7 @@ namespace RnzssWeb.Controllers
             // Do my stuff here with my parameter
             return Json(new { success = true, UserMessage = new UserMessage() { RfqNo = rfq.RFQNo, Message = message }, JsonRequestBehavior.AllowGet });
         }
+
         public ActionResult FindRfq(RequestForQuote rfq)
         {
             rfq.Reset();
@@ -679,16 +775,131 @@ namespace RnzssWeb.Controllers
             };
             return Json(result);
         }
+
+        #endregion
+
+        #region Rfq Document Upload
+        [HttpPost]
+        public ActionResult UploadRfqAttachments(IEnumerable<HttpPostedFileBase> files, string inputRfqNo)
+        {
+            string uploadType = "RFQ_DOCUMENT";
+            if (string.IsNullOrEmpty(inputRfqNo))
+            {
+                return Json(new { success = true, message = "Failed to upload file. Invalid RfqNo", JsonRequestBehavior.AllowGet });
+            }
+            //if (string.IsNullOrEmpty(inputSolicitationNo))
+            //{
+            //    return Json(new { success = true, message = "Failed to upload file. Invalid SolicitationNo", JsonRequestBehavior.AllowGet });
+            //}
+
+            string message = "file uploaded successfully";
+
+
+            FileUploadLog f = new FileUploadLog();
+            try
+            {
+                if (files == null || !files.Any())
+                {
+                    return Json(new { success = true, message = "Please don't forget to attach a document.", JsonRequestBehavior.AllowGet });
+                }
+                foreach (var file in files)
+                {
+                    if (file == null)
+                        continue;
+
+                    f = new FileUploadLog();
+                    f.FileName = file.FileName;
+                    f.FileUploaded = true;
+                    f.Message = "File uploaded";
+                    f.UpdatedBy = Environment.UserName;
+                    string filePath = file.FileName;
+                    string mapPath = GetFilePath(uploadType, filePath);
+
+
+                    file.SaveAs(mapPath);
+
+                    //Here you can write code for save this information in your database if you want
+                    string contentType = GetContentType(System.IO.Path.GetExtension(file.FileName));
+
+                    // Read the file and convert it to Byte Array
+                    FileStream fs = new FileStream(mapPath, FileMode.Open, FileAccess.Read);
+                    BinaryReader br = new BinaryReader(fs);
+                    Byte[] bytes = br.ReadBytes((Int32)fs.Length);
+                    br.Close();
+                    fs.Close();
+
+                    string sql = @"INSERT INTO [rnz].[DocumentStore](LinkId,FileBaseName,FileExtension, ContentType, BinaryData,UpdatedBy) 
+                                                VALUES (@LinkId,@FileBaseName, @FileExtension,@ContentType, @BinaryData,@UpdatedBy)";
+
+
+                    // and store it in the DB, along with other necessary identifying info
+                    using (var sqlConn = new SqlConnection(CommonMethods._connectionString))
+                    {
+
+                        using (var insertRptsGenerated = new SqlCommand(sql))
+                        {
+                            insertRptsGenerated.Connection = sqlConn;
+                            insertRptsGenerated.Parameters.Add
+                            ("@LinkId", SqlDbType.VarChar, 200).Value = inputRfqNo;
+                            insertRptsGenerated.Parameters.Add
+                            ("@FileBaseName", SqlDbType.VarChar, 200).Value = f.FileName;
+                            insertRptsGenerated.Parameters.Add
+                            ("@FileExtension", SqlDbType.VarChar, 20).Value = System.IO.Path.GetExtension(file.FileName);
+                            insertRptsGenerated.Parameters.Add
+                            ("@ContentType", SqlDbType.VarChar, 50).Value = contentType;
+                            insertRptsGenerated.Parameters.Add
+                            ("@BinaryData", SqlDbType.Binary).Value = bytes;
+                            insertRptsGenerated.Parameters.Add
+                            ("@UpdatedBy", SqlDbType.VarChar, 100).Value = Environment.UserName;
+
+
+                            sqlConn.Open();
+                            insertRptsGenerated.ExecuteNonQuery();
+                        }
+                    }
+
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                f.FileUploaded = false;
+                f.Message = message = ex.Message;
+                logger.Fatal(ex);
+            }
+            if (files != null && files.Any())
+                FileUploadLog.Upsert(f);
+            return Json(new { success = true, message = f.Message, JsonRequestBehavior.AllowGet });
+
+        }
+
+        public ActionResult DocumentStoreRfq_Read([DataSourceRequest] DataSourceRequest request, string rfqNo)
+        {
+            try
+            {
+
+                return new JsonResult()
+                {
+                    Data = DocumentStore.GetAllRfqDocuments(rfqNo).ToDataSourceResult(request),
+                    JsonRequestBehavior = JsonRequestBehavior.AllowGet,
+                    MaxJsonLength = Int32.MaxValue
+                };
+                //return Json(result.OrderByDescending(x => x.Currency).ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                logger.Fatal(ex);
+                return null;
+            }
+        }
+
         #endregion
 
 
+        #endregion
         
         #region Solicitations
-        public ActionResult AddSolicitation()
-        {
-
-            return View();
-        }
 
         public ActionResult Solicitations()
         {
@@ -696,123 +907,8 @@ namespace RnzssWeb.Controllers
             return View();
         }
 
-
         [HttpPost]
-        public ActionResult UploadSolicitation()
-        {
-            if (Request.Files.Count > 0)
-            {
-                var file = Request.Files[0];
-
-
-
-                if (file != null && file.ContentLength > 0)
-                {
-                    var fileName = System.IO.Path.GetFileName(file.FileName);
-                    var path = System.IO.Path.Combine(Server.MapPath("~/SolicitationFiles/"), fileName);
-                    logger.InfoFormat("Saving solicitation as {0}",path);
-
-                    file.SaveAs(path);
-                }
-            }
-            return RedirectToAction("AddSolicitation");
-        }
-
-        [HttpPost]
-        public ActionResult UploadFiles(IEnumerable<HttpPostedFileBase> files)
-        {
-            foreach (HttpPostedFileBase file in files)
-            {
-                //string filePath = Path.Combine(TempPath, file.FileName);
-                //System.IO.File.WriteAllBytes(filePath, ReadData(file.InputStream));
-            }
-
-            return Json("All files have been successfully stored.");
-        }
-
-        private byte[] ReadData(Stream stream)
-        {
-            byte[] buffer = new byte[16 * 1024];
-
-            using (MemoryStream ms = new MemoryStream())
-            {
-                int read;
-                while ((read = stream.Read(buffer, 0, buffer.Length)) > 0)
-                {
-                    ms.Write(buffer, 0, read);
-                }
-
-                return ms.ToArray();
-            }
-        }
-
-        #endregion
-
-
-        public ActionResult CheckFileUploadStatus([DataSourceRequest]DataSourceRequest request, string fileName)
-        {
-            string result = "File status unknown. Please contact technology support";
-            try
-            {
-                var f = FileUploadLog.GetFileInfo(fileName, Environment.UserName);
-                if (f != null && f.FileUploaded)
-                {
-                    result = string.Format("{0} file upload successful.", fileName);
-                }
-                else
-                    result = string.Format("Failed to uplod {0}. Error: {1}", fileName, f.Message);
-            }
-            catch (Exception ex)
-            {
-            }
-
-            return Json(new { success = true, message = result }, JsonRequestBehavior.AllowGet);
-        }
-
-
-        public string GetFilePath(string uploadType, string filename)
-        {
-            string mapPath = Server.MapPath("~/");
-            switch (uploadType)
-            {
-                case "SOLICITATION":
-                    return System.IO.Path.Combine(mapPath, "UploadedFiles", "Solicitations", filename);
-
-                case "PRODUCT":
-                    break;
-                case "RFQ_DOCUMENT":
-                    return System.IO.Path.Combine(mapPath, "UploadedFiles", "RfqDocuments", filename);
-                case "DOWNLOAD":
-                    return System.IO.Path.Combine(mapPath, "DownloadedFiles", filename);
-                default:
-                    return System.IO.Path.Combine(mapPath, filename);
-            }
-
-            return System.IO.Path.Combine(mapPath, filename);
-        }
-
-        public string GetContentType(string fileExtension)
-        {
-            switch (fileExtension.ToLower())
-            {
-                case ".xlsx":
-                    return "application/vnd.ms-excel";
-                case ".pdf":
-                    return "Content-Type: application/pdf";
-                case ".doc":
-                    return "Content-Type: application/vnd.ms-word";
-                case ".jpg":
-                    return "Content-Type: image/jpeg";
-                default:
-                    return "Content-Type: application/pdf";
-            }
-
-
-        }
-
-
-        [HttpPost]
-        public ActionResult Submit(IEnumerable<HttpPostedFileBase> files, string uploadType, string solicitaionNumber, string solicitaionDescription, string awardQuantity, string awardAmount, string dueDate)
+        public ActionResult SaveSolicitation(IEnumerable<HttpPostedFileBase> files, string uploadType, string solicitaionNumber, string solicitaionDescription, string awardQuantity, string awardAmount, string dueDate)
         {
             string message = "file uploaded successfully";
             DateTime dt;
@@ -926,6 +1022,7 @@ namespace RnzssWeb.Controllers
             {
                 f.FileUploaded = false;
                 f.Message = message = ex.Message;
+                logger.Fatal(ex);
             }
             if (files != null && files.Any())
                 FileUploadLog.Upsert(f);
@@ -933,102 +1030,6 @@ namespace RnzssWeb.Controllers
             return Json(new { success = true, message = f.Message, JsonRequestBehavior.AllowGet });
 
         }
-
-
-        [HttpPost]
-        public ActionResult UploadRfqAttachments(IEnumerable<HttpPostedFileBase> files, string inputRfqNo)
-        {
-            string uploadType = "RFQ_DOCUMENT";
-            if (string.IsNullOrEmpty(inputRfqNo))
-            {
-                return Json(new { success = true, message = "Failed to upload file. Invalid RfqNo", JsonRequestBehavior.AllowGet });
-            }
-            //if (string.IsNullOrEmpty(inputSolicitationNo))
-            //{
-            //    return Json(new { success = true, message = "Failed to upload file. Invalid SolicitationNo", JsonRequestBehavior.AllowGet });
-            //}
-
-            string message = "file uploaded successfully";
-
-
-            FileUploadLog f = new FileUploadLog();
-            try
-            {
-                if (files == null || !files.Any())
-                {
-                    return Json(new { success = true, message = "Please don't forget to attach a document.", JsonRequestBehavior.AllowGet });
-                }
-                foreach (var file in files)
-                {
-                    if (file == null)
-                        continue;
-
-                    f = new FileUploadLog();
-                    f.FileName = file.FileName;
-                    f.FileUploaded = true;
-                    f.Message = "File uploaded";
-                    f.UpdatedBy = Environment.UserName;
-                    string filePath = file.FileName;
-                    string mapPath = GetFilePath(uploadType, filePath);
-
-
-                    file.SaveAs(mapPath);
-
-                    //Here you can write code for save this information in your database if you want
-                    string contentType = GetContentType(System.IO.Path.GetExtension(file.FileName));
-
-                    // Read the file and convert it to Byte Array
-                    FileStream fs = new FileStream(mapPath, FileMode.Open, FileAccess.Read);
-                    BinaryReader br = new BinaryReader(fs);
-                    Byte[] bytes = br.ReadBytes((Int32)fs.Length);
-                    br.Close();
-                    fs.Close();
-
-                    string sql = @"INSERT INTO [rnz].[DocumentStore](LinkId,FileBaseName,FileExtension, ContentType, BinaryData,UpdatedBy) 
-                                                VALUES (@LinkId,@FileBaseName, @FileExtension,@ContentType, @BinaryData,@UpdatedBy)";
-
-
-                    // and store it in the DB, along with other necessary identifying info
-                    using (var sqlConn = new SqlConnection(CommonMethods._connectionString))
-                    {
-
-                        using (var insertRptsGenerated = new SqlCommand(sql))
-                        {
-                            insertRptsGenerated.Connection = sqlConn;
-                            insertRptsGenerated.Parameters.Add
-                            ("@LinkId", SqlDbType.VarChar, 200).Value = inputRfqNo;
-                            insertRptsGenerated.Parameters.Add
-                            ("@FileBaseName", SqlDbType.VarChar, 200).Value = f.FileName;
-                            insertRptsGenerated.Parameters.Add
-                            ("@FileExtension", SqlDbType.VarChar, 20).Value = System.IO.Path.GetExtension(file.FileName);
-                            insertRptsGenerated.Parameters.Add
-                            ("@ContentType", SqlDbType.VarChar, 50).Value = contentType;
-                            insertRptsGenerated.Parameters.Add
-                            ("@BinaryData", SqlDbType.Binary).Value = bytes;
-                            insertRptsGenerated.Parameters.Add
-                            ("@UpdatedBy", SqlDbType.VarChar, 100).Value = Environment.UserName;
-
-
-                            sqlConn.Open();
-                            insertRptsGenerated.ExecuteNonQuery();
-                        }
-                    }
-
-
-
-                }
-            }
-            catch (Exception ex)
-            {
-                f.FileUploaded = false;
-                f.Message = message = ex.Message;
-            }
-            if (files != null && files.Any())
-                FileUploadLog.Upsert(f);
-            return Json(new { success = true, message = f.Message, JsonRequestBehavior.AllowGet });
-
-        }
-
 
         [HttpGet]
         public ActionResult DownloadSolicitation(string solicitationNo = null)
@@ -1075,61 +1076,10 @@ namespace RnzssWeb.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                logger.Fatal(ex);
             }
             return null;
         }
-
-        [HttpGet]
-        public ActionResult DownloadDocument(int DocumentStoreId)
-        {
-
-            try
-            {
-                var dc = DocumentStore.GetDocument(DocumentStoreId);
-
-                if (dc == null)
-                    return null;
-
-                string filePath = dc.FileBaseName;
-                string mapPath = GetFilePath("DOWNLOAD", filePath);
-                byte[] fileContents;
-                string selectStmt = "SELECT BinaryData FROM rnz.DocumentStore WHERE DocumentStoreId = @DocumentStoreId";
-                using (SqlConnection connection = new SqlConnection(CommonMethods._connectionString))
-                using (SqlCommand cmdSelect = new SqlCommand(selectStmt, connection))
-                {
-                    cmdSelect.Parameters.Add("@DocumentStoreId", SqlDbType.Int).Value = DocumentStoreId;
-                    connection.Open();
-                    fileContents = (byte[])cmdSelect.ExecuteScalar();
-                    connection.Close();
-                }
-
-                if (System.IO.File.Exists(mapPath))
-                {
-                    System.IO.File.Delete(mapPath);
-                }
-
-
-
-                if (fileContents != null)
-                {
-                    using (Stream file = System.IO.File.OpenWrite(mapPath))
-                    {
-                        file.Write(fileContents, 0, fileContents.Length);
-                    }
-                }
-
-                string contectType = GetContentType(dc.FileExtension);
-
-                return File(mapPath, contectType, System.IO.Path.GetFileName(mapPath));
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            return null;
-        }
-
 
         public ActionResult Solicitation_Read([DataSourceRequest] DataSourceRequest request)
         {
@@ -1146,6 +1096,7 @@ namespace RnzssWeb.Controllers
             }
             catch (Exception ex)
             {
+                logger.Fatal(ex);
                 return null;
             }
         }
@@ -1193,26 +1144,9 @@ namespace RnzssWeb.Controllers
             return Json(result);
         }
 
+        #endregion
 
-        public ActionResult DocumentStoreRfq_Read([DataSourceRequest] DataSourceRequest request, string rfqNo)
-        {
-            try
-            {
-
-                return new JsonResult()
-                {
-                    Data = DocumentStore.GetAllRfqDocuments(rfqNo).ToDataSourceResult(request),
-                    JsonRequestBehavior = JsonRequestBehavior.AllowGet,
-                    MaxJsonLength = Int32.MaxValue
-                };
-                //return Json(result.OrderByDescending(x => x.Currency).ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
-            }
-            catch (Exception ex)
-            {
-                return null;
-            }
-        }
-
+        #region Document Store
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult DocumentStore_Destroy([DataSourceRequest] DataSourceRequest request, DocumentStore mo)
         {
@@ -1232,6 +1166,7 @@ namespace RnzssWeb.Controllers
             };
             return Json(result);
         }
+        #endregion
 
 
     }

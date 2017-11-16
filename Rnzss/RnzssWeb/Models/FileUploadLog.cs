@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using log4net;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -9,6 +10,8 @@ namespace RnzssWeb.Models
 {
     public class FileUploadLog
     {
+        private static readonly ILog logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         public int FileUploadLogId { get; set; }
         public string FileName { get; set; }
         public string Message { get; set; }
@@ -41,6 +44,7 @@ namespace RnzssWeb.Models
                 }
                 catch (Exception ex)
                 {
+                    logger.Fatal(ex);
                     return false;
                 }
 
@@ -79,6 +83,7 @@ namespace RnzssWeb.Models
                 }
                 catch (Exception ex)
                 {
+                    logger.Fatal(ex);
                     return false;
                 }
 
@@ -123,6 +128,7 @@ namespace RnzssWeb.Models
                 }
                 catch (Exception ex)
                 {
+                    logger.Fatal(ex);
                     return false;
                 }
 
@@ -151,12 +157,13 @@ namespace RnzssWeb.Models
                 }
                 catch (Exception ex)
                 {
+                    logger.Fatal(ex);
                     return null;
                 }
 
             }
 
-            return null;
+            
 
         }
         public static IEnumerable<FileUploadLog> GetAll()
@@ -173,7 +180,7 @@ namespace RnzssWeb.Models
                 }
                 catch (Exception ex)
                 {
-
+                    logger.Fatal(ex);
                 }
 
             }
@@ -198,7 +205,7 @@ namespace RnzssWeb.Models
                 }
                 catch (Exception ex)
                 {
-
+                    logger.Fatal(ex);
                 }
 
             }
