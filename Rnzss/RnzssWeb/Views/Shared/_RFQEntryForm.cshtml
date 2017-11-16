@@ -631,6 +631,28 @@
 
     function bindViewModel(rfq)
     {
+        var tempSolicitationNo="";
+        var tempDueDate = rfq.DueDate;
+
+        var solicitation = @Html.Raw(Json.Encode(ViewData["Solicitation"]));
+        if(rfq.RFQNo == null)
+        {
+            if(solicitation != null)
+                tempSolicitationNo = solicitation.SolicitationNo;
+        }
+        else {tempSolicitationNo=rfq.SolicitationNumber}
+
+        if(rfq.DueDate == null){
+            if(solicitation != null)
+            {
+                tempDueDate = solicitation.DueDate;
+            }
+        }
+        else{
+            tempDueDate = rfq.DueDate;
+        }
+       
+
 
         var viewModel = kendo.observable({
             companyName: rfq.CompanyName,
@@ -641,7 +663,7 @@
             faxNo: rfq.FaxNo,
             email: rfq.Email,
             comment: rfq.Comment,
-            solicitationNumber : rfq.SolicitationNumber,
+            solicitationNumber : tempSolicitationNo,
             genders: ["Male", "Female"],
             gender: "Male",
             agreed: true,
@@ -653,7 +675,7 @@
             quantity: "",
             partDescription: "",
             lookUpRfqNo: "",
-            dueDate : rfq.DueDate,
+            dueDate : tempDueDate,
             isEnabled: true,
             isVisible: true,
             onDueDateChange: function() {
@@ -726,7 +748,12 @@
 
     $(document).ready(function () {
 
+
+
+
+
         document.getElementById("rfqNo").value = @Html.Raw(Json.Encode(ViewData["RFQNo"]));
+
 
         myData = getInputData();
         $.ajax({

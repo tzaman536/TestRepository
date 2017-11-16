@@ -154,6 +154,16 @@ namespace RnzssWeb.Controllers
                 ViewData["RFQNo"] = "UNKNOWN";
             }
 
+            if(!string.IsNullOrEmpty(SolicitationNo))
+            {
+                Solicitation s = Solicitation.GetSolicitation(SolicitationNo);
+                if(s != null)
+                {
+                    ViewData["Solicitation"] = s;
+                }
+                
+            }
+
             logger.InfoFormat("RfqEntry called");
 
             return View();
