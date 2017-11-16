@@ -34,6 +34,7 @@
         text-align: left; 
         margin-top:10px;
 }
+
 .rTableCellFromInputLarge {
         display: table-cell; 
         text-align: left; 
@@ -41,13 +42,14 @@
         margin-top:10px;
 }
 .small-data-entry-form{
-    min-height:200px;
+    min-height:70px;
+    max-height:275px;
     min-width:500px;
     max-width: 900px;
-    margin-left: 50px;
+    margin-left: 10px;
     margin-right: 50px;
-    margin-top: 50px;
-    margin-bottom: 50px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     background-color: antiquewhite;
 }
 .rfq-file-upload-form{
@@ -94,7 +96,7 @@
     margin-top:10px;
     margin-right:10px;
     margin-bottom:10px;
-    background-color:red;
+    background-color:white;
     min-width:500px;
     min-height:200px;
 }
