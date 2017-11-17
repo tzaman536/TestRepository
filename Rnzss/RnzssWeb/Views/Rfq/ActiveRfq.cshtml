@@ -98,11 +98,8 @@
 
 
 
-
-
-    $(document).ready(function () {
-
-        $("#searchbox").keyup(function () {
+    function initSearch(){
+         $("#searchbox").keyup(function () {
             var val = $('#searchbox').val();
             $("#grid-rfq").data("kendoGrid").dataSource.filter({
                 logic: "or",
@@ -128,7 +125,12 @@
 
 
         });
+    }
 
+    $(document).ready(function () {
+
+       
+        initSearch();
         reloadProductInformationGrid();
     });
 </script>

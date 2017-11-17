@@ -55,6 +55,17 @@
                 </div>
             </div>
             <div id="rfqGridContainer" class="page-grid-container">
+                <div id="searchgrid">
+                    <div id="wrapper">
+                        <div id="first">
+                            <input type="search" id="searchbox" style="width: 100%;" />
+                        </div>
+                        <div id="second">
+                            <div class="demo-hint">Type solicitation number here</div>
+                        </div>
+                    </div>
+                </div>
+
                 @(Html.Kendo().Grid<Solicitation>()
                                 .Name("grid-solicitation")
                                 .Columns(columns =>
@@ -225,9 +236,29 @@
 
     }
 
+    function initSearch()
+    {
+        $("#searchbox").keyup(function () {
+            var val = $('#searchbox').val();
+            $("#grid-solicitation").data("kendoGrid").dataSource.filter({
+                logic: "or",
+                filters: [
+                    {
+                        field: "SolicitationNo",
+                        operator: "contains",
+                        value: val
+                    }
+
+                ]
+            });
+
+
+        });
+    }
     $(document).ready(function () {
         bindViewModel();
         reloadSolicitationGrid();
+        initSearch();
     });
 
 
