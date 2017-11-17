@@ -4,6 +4,20 @@
 @using RnzssWeb.Models
 <div class="page-container">
     <div id="rfqentryform" class="admin-page-container">
+        <div id="searchgrid">
+            <div id="wrapper">
+                <div id="first">
+                    <input type="search" id="searchbox" style="width: 100%;" />
+                </div>
+                <div id="second">
+                    <div class="demo-hint">Type RFQ number, solicitation number or company name here</div>
+                </div>
+            </div>
+
+        </div>
+
+
+
         <div class="rnz-grid-container">
             @(Html.Kendo().Grid<RequestForQuote>()
                                 .Name("grid-rfq")
@@ -87,6 +101,34 @@
 
 
     $(document).ready(function () {
+
+        $("#searchbox").keyup(function () {
+            var val = $('#searchbox').val();
+            $("#grid-rfq").data("kendoGrid").dataSource.filter({
+                logic: "or",
+                filters: [
+                    {
+                        field: "RFQNo",
+                        operator: "contains",
+                        value: val
+                    },
+                    {
+                        field: "SolicitationNumber",
+                        operator: "contains",
+                        value: val
+                    },
+                    {
+                        field: "CompanyName",
+                        operator: "contains",
+                        value: val
+                    }
+
+                ]
+            });
+
+
+        });
+
         reloadProductInformationGrid();
     });
 </script>
