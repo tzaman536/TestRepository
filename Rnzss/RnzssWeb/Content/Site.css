@@ -171,6 +171,29 @@
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9fcf7', endColorstr='#f5f9f0',GradientType=0 ); /* IE6-9 */
 
 
+    margin-top:30px;
+    margin-left:30px;
+    margin-right:30px;
+    margin-bottom:30px;
+
+    padding-left:30px;  /*This adds space between text and left border inside the div*/
+    padding-right:10px; /* This adds space between text and right border inside the div */
+    padding-top:10px; /* This adds space between text and top border inside the div */
+    padding-bottom:10px; /* This adds space between text and bottom border inside the div */
+
+    height:95%;
+    width:95%;
+}
+
+.admin-page-container-rfq-entry{
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f9fcf7+0,f5f9f0+100;L+Green+3D */
+    background: rgb(249,252,247); /* Old browsers */
+    background: -moz-linear-gradient(top, rgba(249,252,247,1) 0%, rgba(245,249,240,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, rgba(249,252,247,1) 0%,rgba(245,249,240,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(249,252,247,1) 0%,rgba(245,249,240,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9fcf7', endColorstr='#f5f9f0',GradientType=0 ); /* IE6-9 */
+
+
     margin-top:50px;
     margin-left:30px;
     margin-right:30px;
