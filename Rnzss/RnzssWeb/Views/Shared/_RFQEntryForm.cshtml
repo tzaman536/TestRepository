@@ -1,7 +1,7 @@
 ﻿@using RnzssWeb.Models
 <div class="page-container-admin">
     <div id="rfqentryform" class="admin-page-container-rfq-entry">
-        @*<form>*@
+        <form id="addNewRfqForm" method="post" name="addNewRfqForm">
         <table border="0" width="1000" style="height:auto">
             <tr>
                 <td width="5%"></td>
@@ -18,7 +18,7 @@
                 <td width="*">
                     <div id="wrapper">
                         <div id="first"><label for="rfqNo">RFQ No: <input id="rfqNo" data-bind="value: rfqNo" disabled="disabled" class="rfqno" /></label></div>
-                        <div id="second" class="form-data-entry-lable">Solicitation No: <input id="solicitationNumber" data-bind="value: solicitationNumber" class="k-textbox" /></div>
+                        <div id="second" class="form-data-entry-lable">Solicitation No: <input type="text" name="solicitaionNumber" id="solicitationNumber" data-bind="value: solicitationNumber" class="k-textbox" required validationMessage="SolicitaionNumber is rquired" /></div>
                         <div id="third" class="form-data-entry-lable second">Due Date: <input id="dueDate" data-role="datepicker" data-bind="visible: isVisible, enabled: isEnabled,  value: dueDate, events: { change: onDueDateChange }" style="width: 120px"></div>
                     </div>
                 </td>
@@ -251,7 +251,6 @@
             <tr>
                 <td colspan="3" style="min-height:10px;">
                     <div class="rfq-file-upload-container">
-                        <form id="solicitationForm" method="post" name="solicitationForm">
                             <input type="hidden" name="inputRfqNo" id="inputRfqNo" value="" />
                             <div class="rTable">
                                 <div class="rTableRow">
@@ -312,14 +311,14 @@
                             </div>
 
 
-                        </form>
+                        
 
                     </div>
 
                 </td>
             </tr>
         </table>
-        @*</form>*@
+        </form>
 
 
 
@@ -392,23 +391,7 @@
     {
         document.getElementById("inputRfqNo").value = document.getElementById("rfqNo").value;
 
-
-        //if(!isEmpty(document.getElementById("rfqNo").value))
-        //{
-        //}
-        //if(!isEmpty(document.getElementById("solicitationNumber").value))
-        //{
-        //}
-
-
-
-        //kendoValidator = $("form").getKendoValidator();
-
-        //if (!kendoValidator.validate()) {
-        //    return false;
-        //}
-
-        $('#solicitationForm').submit(function (e) {
+        $('#addNewRfqForm').submit(function (e) {
             e.preventDefault();
             e.stopImmediatePropagation();
 
@@ -426,8 +409,9 @@
                     // here in result you will get your data
 
                     document.getElementById("fileUplaodMessage").innerHTML = result.message;
-                    document.getElementById("solicitationForm").reset();
+                    //document.getElementById("solicitationForm").reset();
                     reloadUploadedDocumentsGrid();
+                    $(".k-widget.k-upload").find("ul").remove();
                 },
                 error: function (result) {
                 }
@@ -578,6 +562,14 @@
 
     function saveData(e) {
         e.preventDefault();
+
+        kendoValidator = $("form").getKendoValidator();
+
+        if (!kendoValidator.validate()) {
+            // If the form is valid, the Validator will return true
+            return false;
+        }
+
 
         myData = getInputData();
 
@@ -747,6 +739,10 @@
         //    console.log(e.field.value);
         //});
 
+        $("form").kendoValidator({
+            validateOnBlur: false // Disable the default validation on blur
+        });
+
         reloadProductInformationGrid();
 
     }
@@ -826,6 +822,9 @@
 
         document.getElementById("pageMessage").innerHTML = "Enter data and click save to add a new RFQ or type RFQ No. above and click find to edit an existing RFQ";
         reloadUploadedDocumentsGrid();
+
+        
+
     });
 </script>
 

@@ -131,5 +131,24 @@ ALTER TABLE rnz.Solicitations ADD CONSTRAINT Pk_Solicitations PRIMARY KEY (Solic
 GO
 
 
+CREATE TABLE [rnz].[Vendors](
+	[VendorId] [int] IDENTITY(1,1) NOT NULL,
+	[CompanyName] [nvarchar](200) NOT NULL,
+	[Attention] [nvarchar](200) NULL,
+	[CompanyAddress] [nvarchar](255) NULL,
+	[PhoneNo] [nvarchar](100) NULL,
+	[FaxNo] [nvarchar](100) NULL,
+	[Email] [nvarchar](100) NULL,
+	[UpdatedBy] [nvarchar](100) NOT NULL,
+	[UpdateDate] [datetime] NOT NULL
+) ON [PRIMARY]
+
+GO
+
+ALTER TABLE [rnz].[Vendors] ADD  DEFAULT (getutcdate()) FOR [UpdateDate]
+GO
+
+ALTER TABLE rnz.Vendors ADD CONSTRAINT Pk_Vendors PRIMARY KEY (CompanyName)  
+GO
 
 
