@@ -1478,6 +1478,8 @@
     <Content Include="Views\Rfq\ActiveRfq.cshtml" />
     <Content Include="Views\Rfq\RfqEvent.cshtml" />
     <Content Include="Views\Rfq\Solicitations.cshtml" />
+    <Content Include="Views\Home\Expertise.cshtml" />
+    <Content Include="Views\Home\Ourfocus.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

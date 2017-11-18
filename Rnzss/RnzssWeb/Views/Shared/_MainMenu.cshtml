@@ -6,43 +6,40 @@
           items.Add().Text("Home").Action("Index", "Home");
           items.Add().Text("About").Action("About", "Home");
           items.Add().Text("Contact").Action("Contact", "Home");
-          items.Add().Text("Aero Space").Action("AeroSpace", "Home");
-          items.Add().Text("Armored Vehicles").Action("ArmoredVehicles", "Home");
-          items.Add().Text("Naval").Action("Naval", "Home");
-          items.Add()
-                  .Text("Capabilities")
-                  .Items(children =>
-                  {
-                      children.Add().Text("Contract Management").Action("CreateLeague", "TennisNetwork");
-                      children.Add().Text("Short & Long Term Contracts").Action("CreatePlayer", "TennisNetwork");
-                      children.Add().Text("Military Packaging and Crating").Action("AddPlayerToLeague", "TennisNetwork");
-                      children.Add().Text("Quality Control").Action("AddPlayerToLeague", "TennisNetwork");
-                      children.Add().Text("Stocking And Warehousing").Action("AddPlayerToLeague", "TennisNetwork");
-                      //children.Add().Text("Manage Ticket")
-                      //            .Items(innerChildren =>
-                      //            {
-                      //                innerChildren.Add().Text("New Ticket").Action("Index","JobTicket");
-                      //                innerChildren.Add().Text("Today's tickets").Action("Index","JobTicket");
-                      //                innerChildren.Add().Text("Search Tickets").Action("SearchTicket","JobTicket");
-                      //                innerChildren.Add().Text("Ticket Summary").Action("Index","Home");
-                      //            });
+          //items.Add()
+          //        .Text("Capabilities")
+          //        .Items(children =>
+          //        {
+          //            children.Add().Text("Contract Management").Action("CreateLeague", "TennisNetwork");
+          //            children.Add().Text("Short & Long Term Contracts").Action("CreatePlayer", "TennisNetwork");
+          //            children.Add().Text("Military Packaging and Crating").Action("AddPlayerToLeague", "TennisNetwork");
+          //            children.Add().Text("Quality Control").Action("AddPlayerToLeague", "TennisNetwork");
+          //            children.Add().Text("Stocking And Warehousing").Action("AddPlayerToLeague", "TennisNetwork");
+          //children.Add().Text("Manage Ticket")
+          //            .Items(innerChildren =>
+          //            {
+          //                innerChildren.Add().Text("New Ticket").Action("Index","JobTicket");
+          //                innerChildren.Add().Text("Today's tickets").Action("Index","JobTicket");
+          //                innerChildren.Add().Text("Search Tickets").Action("SearchTicket","JobTicket");
+          //                innerChildren.Add().Text("Ticket Summary").Action("Index","Home");
+          //            });
 
-                  });
+          //});
 
-          items.Add()
-                 .Text("Suppliers")
-                 .Items(children =>
-                 {
-                     children.Add().Text("Strategic Partner Initiative").Action("LetsPlay", "TennisNetwork");
-                     children.Add().Text("Become A Supplier").Action("AddProfile", "TennisNetwork");
-                     //children.Add().Text("Schedule Singles")
-                     //            .Items(innerChildren =>
-                     //            {
-                     //                innerChildren.Add().Text("Unpaid Invoices");
-                     //                innerChildren.Add().Text("Search Invoice");
-                     //            });
+          //items.Add()
+          //       .Text("Suppliers")
+          //       .Items(children =>
+          //       {
+          //           children.Add().Text("Strategic Partner Initiative").Action("LetsPlay", "TennisNetwork");
+          //           children.Add().Text("Become A Supplier").Action("AddProfile", "TennisNetwork");
+          //           //children.Add().Text("Schedule Singles")
+          //           //            .Items(innerChildren =>
+          //           //            {
+          //           //                innerChildren.Add().Text("Unpaid Invoices");
+          //           //                innerChildren.Add().Text("Search Invoice");
+          //           //            });
 
-                 });
+          //       });
 
           items.Add()
                 .Text("Admin")

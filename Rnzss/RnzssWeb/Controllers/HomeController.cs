@@ -48,5 +48,19 @@ namespace SimplexInvoiceWeb.Controllers
             return View();
         }
 
+        public ActionResult Expertise()
+        {
+            ViewBag.Message = "Extertise";
+
+            return View();
+        }
+
+        public ActionResult Ourfocus()
+        {
+            ViewBag.Message = "Out Focus";
+
+            return View();
+        }
+
     }
 }

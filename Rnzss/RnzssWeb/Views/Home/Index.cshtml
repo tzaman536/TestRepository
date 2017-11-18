@@ -25,7 +25,7 @@
                 <tr>
                     <td width="20%;"></td>
                     <td class="main-page-td-containing-small-box">
-                        <div id="naval" class="main-page-small-box">
+                        <div id="expertise" class="main-page-small-box">
                             <h3 class="text-on-gray-background">Expertise</h3>
                             Strategic sourcing and partnerships<br />
                             Supporting US DOD and OEM’s<br />
@@ -36,7 +36,7 @@
                     </td>
                     <td class="main-page-space-between-small-box-td"></td>
                     <td style="min-width:300px;">
-                        <div id="armoredvehicles" class="main-page-small-box">
+                        <div id="army" class="main-page-small-box">
                             <h3 class="text-on-gray-background">Army Support</h3>
                             We provide parts for the following systems:<br />
                             &nbsp;&nbsp;&nbsp;M113<br/>
@@ -49,7 +49,7 @@
                     </td>
                     <td class="main-page-space-between-small-box-td"></td>
                     <td style="min-width:300px;">
-                        <div id="aerospace" class="main-page-small-box">
+                        <div id="naval" class="main-page-small-box">
                             <h3 class="text-on-gray-background">Navy Support</h3>
                             &nbsp;&nbsp;&nbsp;Electronics<br />
                             &nbsp;&nbsp;&nbsp;Radar<br />
@@ -71,7 +71,7 @@
                     </td>
                     <td class="main-page-space-between-small-box-td"></td>
                     <td style="min-width:300px;">
-                        <div id="aerospace" class="main-page-small-box">
+                        <div id="ourfocus" class="main-page-small-box">
                             <h3 class="text-on-gray-background">Our Focus</h3>
                             Hardware: Nut, Bolts, Pins, Washers, Seals
                             <br />
@@ -129,12 +129,20 @@
         $('#naval').click(function (e) {
             window.location.href = '@Url.Action("Naval", "Home")';
         });
-        $('#armoredvehicles').click(function (e) {
+        $('#army').click(function (e) {
             window.location.href = '@Url.Action("ArmoredVehicles", "Home")';
         });
         $('#aerospace').click(function (e) {
             window.location.href = '@Url.Action("AeroSpace", "Home")';
         });
+        $('#expertise').click(function (e) {
+            window.location.href = '@Url.Action("Expertise", "Home")';
+        });
+        $('#ourfocus').click(function (e) {
+            window.location.href = '@Url.Action("Ourfocus", "Home")';
+        });
+
+    
         $('#contactUsButton').click(function (e) {
             window.location.href = '@Url.Action("Contact", "Home")';
         });
