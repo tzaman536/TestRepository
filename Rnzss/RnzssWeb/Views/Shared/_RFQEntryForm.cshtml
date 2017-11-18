@@ -19,7 +19,7 @@
                     <div id="wrapper">
                         <div id="first"><label for="rfqNo">RFQ No: <input id="rfqNo" data-bind="value: rfqNo" disabled="disabled" class="rfqno" /></label></div>
                         <div id="second" class="form-data-entry-lable">Solicitation No: <input type="text" name="solicitaionNumber" id="solicitationNumber" data-bind="value: solicitationNumber" class="k-textbox" required validationMessage="SolicitaionNumber is rquired" /></div>
-                        <div id="third" class="form-data-entry-lable second">Due Date: <input id="dueDate" data-role="datepicker" data-bind="visible: isVisible, enabled: isEnabled,  value: dueDate, events: { change: onDueDateChange }" style="width: 120px"></div>
+                        <div id="third" class="form-data-entry-lable second">Due Date: <input id="dueDate" name="dueDate" data-role="datepicker" data-bind="visible: isVisible, enabled: isEnabled,  value: dueDate, events: { change: onDueDateChange }" style="width: 120px" required validationMessage="Due date is rquired"></div>
                     </div>
                 </td>
                 <td width="5%"></td>
@@ -43,7 +43,7 @@
                                     <td width="10px"></td>*@
                                 <td colspan="6" width="*">
                                     <div id="wrapper">
-                                        <div id="first-large"><label for="companyName">Company Name: <input id="companyName" data-bind="value: companyName" class="k-textbox large" /></label></div>
+                                        <div id="first-large"><label for="companyName">Company Name: <input id="companyName" name="companyName" data-bind="value: companyName" class="k-textbox large" required validationMessage="Vendor name is rquired"/></label></div>
                                         <div id="second"><label for="attention">Attention: <input id="attention" data-bind="value: attention" class="k-textbox" /></label></div>
                                         <div id="second"><button data-bind="click: parseAddress" class="button">Parse Address</button></div>
                                     </div>
@@ -126,7 +126,7 @@
                                 <td colspan="6">
                                     <div id="wrapper">
                                         <div id="first">
-                                            <label for="partNumber">Part Number: <input id="partNumber" data-bind="value: partNumber" class="k-textbox" /></label>
+                                            <label for="partNumber">Part Number: <input id="partNumber" name="partNumber" data-bind="value: partNumber" class="k-textbox" required validationMessage="Part number is rquired" /></label>
                                         </div>
                                         <div id="second">
                                             <label for="partName">Part Name: <input id="partName" data-bind="value: partName" class="k-textbox" /></label>
@@ -148,7 +148,7 @@
                                 <td colspan="6">
                                     <div id="wrapper">
                                         <div id="first">
-                                            <label for="quantity">Quantity: <input id="quantity" data-bind="value: quantity" class="k-textbox" /></label>
+                                            <label for="quantity">Quantity: <input id="quantity" name="quantity" data-bind="value: quantity" class="k-textbox" required validationMessage="quantity is rquired"/></label>
                                         </div>
                                         <div id="second">
                                             <label for="partDescription">Description: <input id="partDescription" data-bind="value: partDescription" class="k-textbox" /></label>
