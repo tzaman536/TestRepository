@@ -32,6 +32,7 @@ namespace RnzssWeb.Models
 
 
 
+
         public void Reset()
         {
             RequestForQuoteId = 0;
@@ -46,6 +47,137 @@ namespace RnzssWeb.Models
         }
 
 
+        public static int GetNextPkgRfqId(string cloneFromRfq)
+        {
+            cloneFromRfq = cloneFromRfq + "PKG";
+            var pkgRfqs = GetAllStartMatch(cloneFromRfq);
+            if (pkgRfqs != null && pkgRfqs.Any())
+            {
+                return pkgRfqs.Count() + 1;
+            }
+            return 1;
+        }
+        /* TZ */
+        public static IEnumerable<RequestForQuote> GetAllStartMatch(string startMatchString)
+        {
+            using (IDbConnection connection = CommonMethods.OpenConnection())
+            {
+                try
+                {
+                    return connection.Query<RequestForQuote>(string.Format(@"
+
+                                                        select 
+                                                               rfq.*     
+                                                        from [rnz].[RequestForQuote] rfq 
+                                                        where RFQNo like '{0}%'
+                                                        ", startMatchString), commandTimeout: 0).ToList();
+                }
+                catch (Exception ex)
+                {
+
+                }
+
+            }
+
+            return null;
+
+        }
+        /* TZ */
+        public static string CreatePackagingRfq(string cloneFromRfq)
+        {
+            try
+            {
+                int nextPkgRfqId = GetNextPkgRfqId(cloneFromRfq);
+                var pkgRfq = GetRfq(cloneFromRfq);
+                if (pkgRfq != null)
+                {
+                    string pkgRfqNo = string.Format("{0}PKG{1}", cloneFromRfq, nextPkgRfqId);
+                    if (string.IsNullOrEmpty(pkgRfqNo))
+                    {
+                        return null;
+                    }
+
+                    pkgRfq.RFQNo = pkgRfqNo;
+                    pkgRfq.RequestForQuoteId = 0;
+                    if (Add(ref pkgRfq))
+                    {
+                        //Copy products here 
+                        var products = ProductInformation.GetAll(cloneFromRfq);
+                        if (products != null && products.Any())
+                        {
+                            foreach (var p in products)
+                            {
+                                p.ProductInformationId = 0;
+                                p.RFQNo = pkgRfqNo;
+                                ProductInformation.Upsert(p);
+                            }
+                        }
+
+
+                        return pkgRfq.RFQNo;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return string.Empty;
+        }
+
+        public static bool Add(ref RequestForQuote rfq)
+        {
+
+            rfq.UpdatedBy = Environment.UserName;
+
+
+            #region Add RFQ
+            using (IDbConnection connection = CommonMethods.OpenConnection())
+            {
+                try
+                {
+                    var result = connection.Execute(@"
+                                        INSERT INTO [rnz].[RequestForQuote]
+                                               ([RFQNo]
+                                               ,[CompanyName]
+                                               ,[Attention]
+                                               ,[CompanyAddress]
+                                               ,[PhoneNo]
+                                               ,[FaxNo]
+                                               ,[Email]
+                                               ,[Comment]
+                                               ,[UpdatedBy]
+                                               ,DueDate
+                                               ,SolicitationNumber
+                                               )
+                                         VALUES
+                                               (@RFQNo
+                                               ,@CompanyName
+                                               ,@Attention
+                                               ,@CompanyAddress
+                                               ,@PhoneNo
+                                               ,@FaxNo
+                                               ,@Email
+                                               ,@Comment
+                                               ,@UpdatedBy
+                                               ,@DueDate
+                                               ,@SolicitationNumber
+                                               )
+
+                                                        ", rfq, commandTimeout: 0);
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
+            }
+            #endregion
+
+            return true;
+
+
+        }
         public static IEnumerable<RequestForQuote> GetAll()
         {
             using (IDbConnection connection = CommonMethods.OpenConnection())
@@ -147,16 +279,14 @@ namespace RnzssWeb.Models
                                           ,[FaxNo] = @FaxNo
                                           ,[Email] = @Email
                                           ,[Comment] = @Comment
+                                          ,[UpdatedBy] = @UpdatedBy
                                           ,DueDate = @DueDate
                                           ,SolicitationNumber = @SolicitationNumber
-                                          ,[UpdatedBy] = @UpdatedBy
-                                          ,[UpdateDate] = getutcdate()
                                      WHERE [RFQNo] = @RFQNo
                                                         ", rfq, commandTimeout: 0);
                     }
                     catch (Exception ex)
                     {
-                        logger.Fatal(ex);
                         return false;
                     }
                 }
@@ -166,49 +296,7 @@ namespace RnzssWeb.Models
                 return true;
             }
 
-            #region Add RFQ
-            using (IDbConnection connection = CommonMethods.OpenConnection())
-            {
-                try
-                {
-                    var result = connection.Execute(@"
-                                        INSERT INTO [rnz].[RequestForQuote]
-                                               ([RFQNo]
-                                               ,[CompanyName]
-                                               ,[Attention]
-                                               ,[CompanyAddress]
-                                               ,[PhoneNo]
-                                               ,[FaxNo]
-                                               ,[Email]
-                                               ,[Comment]
-                                               ,[UpdatedBy]
-                                                ,DueDate
-                                                ,SolicitationNumber
-                                               )
-                                         VALUES
-                                               (@RFQNo
-                                               ,@CompanyName
-                                               ,@Attention
-                                               ,@CompanyAddress
-                                               ,@PhoneNo
-                                               ,@FaxNo
-                                               ,@Email
-                                               ,@Comment
-                                               ,@UpdatedBy
-                                                ,@DueDate
-                                                ,@SolicitationNumber
-                                               )
-
-                                                        ", rfq, commandTimeout: 0);
-                }
-                catch (Exception ex)
-                {
-                    logger.Fatal(ex);
-                    return false;
-                }
-            }
-            #endregion
-
+            Add(ref rfq);
             return true;
 
 
