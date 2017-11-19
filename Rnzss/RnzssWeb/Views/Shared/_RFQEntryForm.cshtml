@@ -603,11 +603,10 @@
     {
         e.preventDefault();
 
-        myData = getInputData();
         $.ajax({
             type: 'POST',
             url: '@Url.Action("PrintRFQ", "Rfq")',
-            data: JSON.stringify(myData),
+            data: getRFQNo(),
             contentType: 'application/json; charset=utf-8',
             dataType: 'json',
             success: function (response, textStatus, jqXHR) {
@@ -645,7 +644,7 @@
                     bindViewModel(response.RFQ);
                 }
                 else {
-                    alert(response.message);
+                    
                 }
 
             },

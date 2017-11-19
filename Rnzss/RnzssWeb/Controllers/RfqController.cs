@@ -275,15 +275,24 @@ namespace RnzssWeb.Controllers
             return Json(new { success = true, UserMessage = new UserMessage() { RfqNo = rfq.RFQNo, Message = message }, JsonRequestBehavior.AllowGet });
         }
 
-        public ActionResult FindRfq(RequestForQuote rfq)
+        public ActionResult FindRfq(string RFQNo)
         {
-            rfq.Reset();
-            rfq.CompanyName = "hello";
+            
+            if (!string.IsNullOrEmpty(RFQNo) && RFQNo.Equals("UNKNOWN"))
+            {
+                RequestForQuote r = new RequestForQuote();
+                r.Reset();
 
-            rfq = RequestForQuote.GetRfq(rfq.RFQNo);
+                return Json(new { success = true, RFQ = r, JsonRequestBehavior.AllowGet });
+            }
+            var rfq = RequestForQuote.GetRfq(RFQNo);
+
             if (rfq == null)
             {
                 rfq = new RequestForQuote();
+                rfq.Reset();
+                // Do my stuff here with my parameter
+                return Json(new { success = true, RFQ = rfq, JsonRequestBehavior.AllowGet });
             }
 
             // Do my stuff here with my parameter
