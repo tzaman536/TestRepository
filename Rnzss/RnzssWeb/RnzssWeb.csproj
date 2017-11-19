@@ -240,6 +240,7 @@
     <Compile Include="Models\RequestForQuoteEvent.cs" />
     <Compile Include="Models\Solicitation.cs" />
     <Compile Include="Models\UserMessage.cs" />
+    <Compile Include="Models\Vendor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
