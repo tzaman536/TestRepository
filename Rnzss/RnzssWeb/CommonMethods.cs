@@ -10,10 +10,15 @@ namespace RnzssWeb
     public class CommonMethods
     {
         public static string _connectionString;
+        public static bool IsDebugMode = false;
 
         static CommonMethods()
         {
             _connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+#if DEBUG
+            IsDebugMode = true;
+#endif
+
 
         }
         public static IDbConnection OpenConnection()

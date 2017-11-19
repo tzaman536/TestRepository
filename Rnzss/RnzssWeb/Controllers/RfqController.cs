@@ -138,6 +138,12 @@ namespace RnzssWeb.Controllers
         // GET: Rfq
         public ActionResult RfqEntry(string RFQNo = null, string SolicitationNo= null)
         {
+            if (!CommonMethods.IsDebugMode && !User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+
             HttpSessionState ss = System.Web.HttpContext.Current.Session;
             ViewBag.SessionId = ss.SessionID;
             if (ViewData["CurrentId"] == null)
@@ -173,6 +179,11 @@ namespace RnzssWeb.Controllers
 
         public ActionResult ActiveRfq()
         {
+            if (!CommonMethods.IsDebugMode && !User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
             HttpSessionState ss = System.Web.HttpContext.Current.Session;
 
 
@@ -186,6 +197,11 @@ namespace RnzssWeb.Controllers
 
         public ActionResult RfqEvent(string RFQNo = null)
         {
+            if (!CommonMethods.IsDebugMode && !User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
             if (!string.IsNullOrEmpty(RFQNo))
             {
                 ViewBag.RfqNo = RFQNo;
@@ -913,6 +929,10 @@ namespace RnzssWeb.Controllers
 
         public ActionResult Solicitations()
         {
+            if (!CommonMethods.IsDebugMode && !User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
 
             return View();
         }
