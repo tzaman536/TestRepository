@@ -47,6 +47,13 @@ namespace RnzssWeb.Models
 
         }
 
+        public static void LogEvent(string rfqNo, string eventDescription)
+        {
+            RequestForQuoteEvent e = new RequestForQuoteEvent() { RFQNo = rfqNo, EventDescription = eventDescription };
+            Add(e);
+
+        }
+
         public static bool Add(RequestForQuoteEvent rfq)
         {
 

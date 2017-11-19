@@ -186,7 +186,7 @@ namespace RnzssWeb.Models
                     return connection.Query<RequestForQuote>(@"
                                                         select 
                                                                rfq.*     
-                                                               ,case when e.RFQNo  is null then 'Start' else 'Continue ' end as RfqEvent 
+                                                               ,case when e.RFQNo  is null then 'Start' else 'View Log' end as RfqEvent 
                                                         from [rnz].[RequestForQuote] rfq 
                                                         left join ( select distinct RFQNo from [rnz].RequestForQuoteEvents ) e 
                                                                on rfq.RFQNo = e.RFQNo

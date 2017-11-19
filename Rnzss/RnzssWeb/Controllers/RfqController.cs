@@ -634,15 +634,13 @@ namespace RnzssWeb.Controllers
                         }
                         #endregion
 
-
-
                         // Save the worksheet.
                         worksheetPart.Worksheet.Save();
 
                     }
                 }
 
-
+                RequestForQuoteEvent.LogEvent(rfq.RFQNo, string.Format("RFQ printed by {0}", System.Web.HttpContext.Current.User.Identity.Name));
                 return Json(new { success = true, fileName = destinationFile, JsonRequestBehavior.AllowGet });
             }
             catch (Exception ex)

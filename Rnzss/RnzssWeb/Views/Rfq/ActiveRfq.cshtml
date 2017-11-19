@@ -34,6 +34,7 @@
                                     //columns.Bound(p => p.FaxNo).Width(75);
                                     columns.Bound(p => p.Email).Width(75);
                                     columns.Bound(p => p.Comment).Width(75);
+                                    columns.Bound(p => p.UpdatedBy).Width(75);
                                     columns.Bound(p => p.UpdateDate).Width(100).Format("{0:MM/dd/yyyy hh:mm:ss tt}");
                                     columns.Command(command => { command.Edit(); command.Destroy(); }).Width(100);
                                 })
