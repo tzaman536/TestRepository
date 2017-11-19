@@ -223,7 +223,7 @@
 
 .interactive-message{
         font:bolder;
-        font-family:'Times New Roman', Times, serif;
+        font-family:'Palatino';
         font-size:14px;
         color: blue;
         text-align:center;
@@ -283,7 +283,7 @@ body {
     padding-bottom: 0px;
     /*overflow: scroll;   This makes the page scrollable when content is more than 1 page*/
     height:100%;
-    font-family: Arial;
+    font-family: 'Palatino';
     font-size:14px;
 }
 
@@ -334,7 +334,11 @@ textarea {
     color: #ffffff;
     
 }
+.navbar-right{
+    font-family: 'Palatino';
+    font-size: 30px;
 
+}
 .navbar-inverse { 
     background: #3f4c6b; /* Old browsers */
     background: -moz-linear-gradient(top,  #3f4c6b 0%, #3f4c6b 100%); /* FF3.6-15 */
@@ -367,8 +371,8 @@ textarea {
 /* TZ NAV BAR link text*/
 .navbar-inverse .navbar-nav > li > a {
     color: white;
-    font-family: 'Bernard MT';
-    font-size: 12px;
+    font-family: 'Palatino';
+    font-size: 16px;
     margin-top: 10px;
     margin-left: 10px;
 }
@@ -386,17 +390,17 @@ textarea {
 /*TZ Font*/
 .big-font{
     font-weight:bolder;
-    font-family: sans-serif;
+    font-family: 'Palatino';
     font-size:x-large;
 }
 .page-text-font{
     font-weight:normal;
-    font-family: sans-serif;
+    font-family: 'Palatino';
     font-size:large;
 }
 .page-group-header-font{
     font-weight:bolder;
-    font-family: sans-serif;
+    font-family: 'Palatino';
     font-size:15px;
     text-decoration: underline;
     
