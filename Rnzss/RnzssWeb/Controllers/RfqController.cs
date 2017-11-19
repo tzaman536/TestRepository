@@ -753,6 +753,7 @@ namespace RnzssWeb.Controllers
             }
             catch (Exception ex)
             {
+                logger.Fatal(ex);
                 return null;
             }
         }
@@ -1228,6 +1229,7 @@ namespace RnzssWeb.Controllers
             }
             catch (Exception ex)
             {
+                logger.Fatal(ex);
                 return Json(new { success = true, message = um }, JsonRequestBehavior.AllowGet);
             }
 

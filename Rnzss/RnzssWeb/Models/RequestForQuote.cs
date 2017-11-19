@@ -72,7 +72,7 @@ namespace RnzssWeb.Models
                 }
                 catch (Exception ex)
                 {
-
+                    logger.Fatal(ex);
                 }
 
             }
@@ -118,7 +118,7 @@ namespace RnzssWeb.Models
             }
             catch (Exception ex)
             {
-
+                logger.Fatal(ex);
             }
 
             return string.Empty;
@@ -167,6 +167,7 @@ namespace RnzssWeb.Models
                 }
                 catch (Exception ex)
                 {
+                    logger.Fatal(ex);
                     return false;
                 }
             }
@@ -292,6 +293,7 @@ namespace RnzssWeb.Models
                         }
                         catch (Exception ex)
                         {
+                            logger.Fatal(ex);
                             return false;
                         }
                     }

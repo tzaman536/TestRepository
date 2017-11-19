@@ -121,6 +121,7 @@ namespace RnzssWeb.Models
                 }
                 catch (Exception ex)
                 {
+                    logger.Fatal(ex);
                     return false;
                 }
             }

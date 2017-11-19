@@ -1,4 +1,5 @@
-﻿using System;
+﻿using log4net;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -9,6 +10,8 @@ namespace RnzssWeb
 {
     public class CommonMethods
     {
+        private static readonly ILog logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         public static string _connectionString;
         public static bool IsDebugMode = false;
 
@@ -42,6 +45,7 @@ namespace RnzssWeb
             }
             catch (Exception ex)
             {
+                logger.Fatal(ex);
             }
             return null;
         }
