@@ -50,7 +50,7 @@ namespace RnzssWeb.Models
         public static bool Add(RequestForQuoteEvent rfq)
         {
 
-            rfq.UpdatedBy = Environment.UserName;
+            rfq.UpdatedBy = System.Web.HttpContext.Current.User.Identity.Name;
 
 
             #region Add RFQ Event
@@ -87,7 +87,7 @@ namespace RnzssWeb.Models
         public static bool Delete(RequestForQuoteEvent p)
         {
 
-            p.UpdatedBy = Environment.UserName;
+            p.UpdatedBy = System.Web.HttpContext.Current.User.Identity.Name;
 
             // TODO: Check if this RFQNo and part number exists alreayd then call update and return from here
             //if (ProductExists(p.RFQNo,p.PartNumber))
@@ -119,7 +119,7 @@ namespace RnzssWeb.Models
         public static bool Update(RequestForQuoteEvent p)
         {
 
-            p.UpdatedBy = Environment.UserName;
+            p.UpdatedBy = System.Web.HttpContext.Current.User.Identity.Name;
 
 
 

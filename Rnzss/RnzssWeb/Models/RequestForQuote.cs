@@ -127,7 +127,7 @@ namespace RnzssWeb.Models
         public static bool Add(ref RequestForQuote rfq)
         {
 
-            rfq.UpdatedBy = Environment.UserName;
+            rfq.UpdatedBy = System.Web.HttpContext.Current.User.Identity.Name;
 
 
             #region Add RFQ
@@ -262,7 +262,7 @@ namespace RnzssWeb.Models
 
 
 
-                rfq.UpdatedBy = Environment.UserName;
+                rfq.UpdatedBy = System.Web.HttpContext.Current.User.Identity.Name;
                 if (string.IsNullOrEmpty(rfq.RFQNo))
                 {
                     rfq.RFQNo = GetNextRfqId();
@@ -317,7 +317,7 @@ namespace RnzssWeb.Models
         public static bool Delete(RequestForQuote p)
         {
 
-            p.UpdatedBy = Environment.UserName;
+            p.UpdatedBy = System.Web.HttpContext.Current.User.Identity.Name;
 
             // TODO: Check if this RFQNo and part number exists alreayd then call update and return from here
             //if (ProductExists(p.RFQNo,p.PartNumber))
@@ -352,7 +352,7 @@ namespace RnzssWeb.Models
         public static bool Update(RequestForQuote p)
         {
 
-            p.UpdatedBy = Environment.UserName;
+            p.UpdatedBy = System.Web.HttpContext.Current.User.Identity.Name;
 
 
 

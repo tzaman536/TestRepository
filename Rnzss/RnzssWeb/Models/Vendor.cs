@@ -89,7 +89,7 @@ namespace RnzssWeb.Models
         public static bool Add(ref Vendor v)
         {
 
-            v.UpdatedBy = Environment.UserName;
+            v.UpdatedBy = System.Web.HttpContext.Current.User.Identity.Name;
 
 
             #region Add RFQ
@@ -134,7 +134,7 @@ namespace RnzssWeb.Models
         public static bool Upsert(Vendor v)
         {
 
-            v.UpdatedBy = Environment.UserName;
+            v.UpdatedBy = System.Web.HttpContext.Current.User.Identity.Name;
 
             var existingVendor = VendorExists(v.CompanyName);
             if (existingVendor != null)

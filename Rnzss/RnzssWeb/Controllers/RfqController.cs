@@ -218,7 +218,7 @@ namespace RnzssWeb.Controllers
         public ActionResult AddAnotherProduct(RequestForQuote rfq)
         {
             string message = "Product added";
-            rfq.UpdatedBy = Environment.UserName;
+            rfq.UpdatedBy = System.Web.HttpContext.Current.User.Identity.Name;
             if (rfq.Product.PartNumber != null)
             {
                 if (!string.IsNullOrEmpty(rfq.RFQNo))
@@ -837,7 +837,7 @@ namespace RnzssWeb.Controllers
                     f.FileName = file.FileName;
                     f.FileUploaded = true;
                     f.Message = "File uploaded";
-                    f.UpdatedBy = Environment.UserName;
+                    f.UpdatedBy = System.Web.HttpContext.Current.User.Identity.Name;
                     string filePath = file.FileName;
                     string mapPath = GetFilePath(uploadType, filePath);
 
@@ -876,7 +876,7 @@ namespace RnzssWeb.Controllers
                             insertRptsGenerated.Parameters.Add
                             ("@BinaryData", SqlDbType.Binary).Value = bytes;
                             insertRptsGenerated.Parameters.Add
-                            ("@UpdatedBy", SqlDbType.VarChar, 100).Value = Environment.UserName;
+                            ("@UpdatedBy", SqlDbType.VarChar, 100).Value = System.Web.HttpContext.Current.User.Identity.Name;
 
 
                             sqlConn.Open();
@@ -978,7 +978,7 @@ namespace RnzssWeb.Controllers
                     f.FileName = string.Format("{0}{1}", s.SolicitationNo, System.IO.Path.GetExtension(file.FileName));
                     f.FileUploaded = true;
                     f.Message = "File uploaded";
-                    f.UpdatedBy = Environment.UserName;
+                    f.UpdatedBy = System.Web.HttpContext.Current.User.Identity.Name;
                     string filePath = solicitaionNumber + System.IO.Path.GetExtension(file.FileName);
                     string mapPath = GetFilePath(uploadType, filePath);
 
@@ -1032,7 +1032,7 @@ namespace RnzssWeb.Controllers
                             insertRptsGenerated.Parameters.Add
                             ("@BinaryData", SqlDbType.Binary).Value = bytes;
                             insertRptsGenerated.Parameters.Add
-                            ("@UpdatedBy", SqlDbType.VarChar, 100).Value = Environment.UserName;
+                            ("@UpdatedBy", SqlDbType.VarChar, 100).Value = System.Web.HttpContext.Current.User.Identity.Name;
 
                             if (dc != null)
                             {

@@ -31,7 +31,7 @@ namespace RnzssWeb.Models
         public static bool Delete(Solicitation p)
         {
 
-            p.UpdatedBy = Environment.UserName;
+            p.UpdatedBy = System.Web.HttpContext.Current.User.Identity.Name;
 
             // TODO: Check if this RFQNo and part number exists alreayd then call update and return from here
             //if (ProductExists(p.RFQNo,p.PartNumber))
@@ -65,7 +65,7 @@ namespace RnzssWeb.Models
         public static bool Update(Solicitation p)
         {
 
-            p.UpdatedBy = Environment.UserName;
+            p.UpdatedBy = System.Web.HttpContext.Current.User.Identity.Name;
             if (p.DueDate == DateTime.MinValue)
                 p.DueDate = null;
 
@@ -103,7 +103,7 @@ namespace RnzssWeb.Models
         public static bool Upsert(Solicitation p)
         {
 
-            p.UpdatedBy = Environment.UserName;
+            p.UpdatedBy = System.Web.HttpContext.Current.User.Identity.Name;
 
             var sol = Solicitation.GetSolicitation(p.SolicitationNo);
             if (sol != null)
