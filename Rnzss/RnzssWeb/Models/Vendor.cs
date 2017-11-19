@@ -47,7 +47,7 @@ namespace RnzssWeb.Models
         public static bool Update(Vendor v)
         {
 
-            v.UpdatedBy = Environment.UserName;
+            v.UpdatedBy = System.Web.HttpContext.Current.User.Identity.Name;
 
             // TODO: Check if this RFQNo and part number exists alreayd then call update and return from here
             //if (ProductExists(p.RFQNo,p.PartNumber))
@@ -68,7 +68,6 @@ namespace RnzssWeb.Models
                                                     ,[PhoneNo] = @PhoneNo
                                                     ,[FaxNo] = @FaxNo
                                                     ,[Email] = @Email
-                                                    ,[Comment] = @Comment
                                                     ,[UpdatedBy] = @UpdatedBy
                                                       ,[UpdateDate] = getutcdate()
                                                  WHERE VendorId = @VendorId
