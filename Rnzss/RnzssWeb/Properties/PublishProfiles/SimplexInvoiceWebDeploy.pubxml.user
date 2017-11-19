@@ -187,7 +187,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/12/2016 16:42:22</publishTime>
     </File>
     <File Include="bin/SimplexInvoiceBL.dll">
-      <publishTime>11/19/2017 12:24:41</publishTime>
+      <publishTime>11/19/2017 13:12:35</publishTime>
     </File>
     <File Include="bin/SimplexInvoiceModel.dll">
       <publishTime>10/01/2016 12:52:32</publishTime>
@@ -196,13 +196,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/01/2016 12:52:42</publishTime>
     </File>
     <File Include="bin/SimplexTools.dll">
-      <publishTime>11/19/2017 12:24:40</publishTime>
+      <publishTime>11/19/2017 13:12:34</publishTime>
     </File>
     <File Include="bin/SportsNetworkModel.dll">
-      <publishTime>11/19/2017 12:24:41</publishTime>
+      <publishTime>11/19/2017 13:12:35</publishTime>
     </File>
     <File Include="bin/SportsNetworkWeb.dll">
-      <publishTime>11/19/2017 12:24:48</publishTime>
+      <publishTime>11/19/2017 13:12:42</publishTime>
     </File>
     <File Include="bin/sv-SE/Kendo.Mvc.resources.dll">
       <publishTime>01/12/2016 16:42:22</publishTime>
@@ -241,7 +241,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/12/2016 16:42:22</publishTime>
     </File>
     <File Include="Content/bootstrap.css">
-      <publishTime>11/02/2017 11:33:45</publishTime>
+      <publishTime>11/19/2017 12:45:26</publishTime>
     </File>
     <File Include="Content/bootstrap.min.css">
       <publishTime>04/26/2016 19:44:21</publishTime>
@@ -1606,7 +1606,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/14/2016 04:52:57</publishTime>
     </File>
     <File Include="Content/Site.css">
-      <publishTime>11/18/2017 12:19:53</publishTime>
+      <publishTime>11/19/2017 13:05:47</publishTime>
     </File>
     <File Include="favicon.ico">
       <publishTime>04/26/2016 19:44:17</publishTime>
@@ -3910,7 +3910,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/26/2016 19:44:36</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>11/17/2017 03:38:27</publishTime>
+      <publishTime>11/19/2017 13:00:52</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
       <publishTime>11/19/2017 11:10:33</publishTime>
@@ -3949,7 +3949,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/26/2016 19:44:17</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>11/19/2017 12:25:28</publishTime>
+      <publishTime>11/19/2017 13:13:10</publishTime>
     </File>
   </ItemGroup>
 </Project>

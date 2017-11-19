@@ -33,11 +33,6 @@ namespace RnzssWeb.Models
 
             p.UpdatedBy = System.Web.HttpContext.Current.User.Identity.Name;
 
-            // TODO: Check if this RFQNo and part number exists alreayd then call update and return from here
-            //if (ProductExists(p.RFQNo,p.PartNumber))
-            //{
-            //    return true;
-            //}
 
 
             using (IDbConnection connection = CommonMethods.OpenConnection())
@@ -45,7 +40,7 @@ namespace RnzssWeb.Models
                 try
                 {
                     var result = connection.Execute(@"
-                                                    DELETE FROM [rnz].[DocumentStore] Where SolicitationNo = @SolicitationNo
+                                                    DELETE FROM [rnz].[DocumentStore] Where LinkId = @SolicitationNo
 
                                                     DELETE FROM [rnz].[Solicitations]
                                                     WHERE SolicitationId = @SolicitationId

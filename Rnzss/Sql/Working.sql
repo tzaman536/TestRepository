@@ -1,9 +1,13 @@
-declare @RfqNo nvarchar(200) ='RZRFQ10113'
+declare @RfqNo nvarchar(200) ='RZRFQ10116'
 
 
 select * from [rnz].[ProductInformation] WHERE RFQNo=@RfqNo
 select * from rnz.RequestForQuoteEvents  WHERE RFQNo=@RfqNo
 select * from [rnz].[RequestForQuote] WHERE RFQNo=@RfqNo
+select * from rnz.DocumentStore WHERE LinkId=@RfqNo
+
+
+select * from [rnz].[Vendors]
 
 select * from [rnz].[RequestForQuote] order by 1 desc
 select * from [rnz].Solicitations
