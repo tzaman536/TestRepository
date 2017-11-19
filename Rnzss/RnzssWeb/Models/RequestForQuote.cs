@@ -24,15 +24,14 @@ namespace RnzssWeb.Models
         public DateTime? DueDate { get; set; }
         public string SolicitationNumber { get; set; }
         public ProductInformation Product { get; set; }
+        public int VendorId { get; set; }
 
         public string UpdatedBy { get; set; }
+
         public DateTime UpdateDate { get; set; }
 
         public string RfqEvent { get; set; }
-
-
-
-
+        
         public void Reset()
         {
             RequestForQuoteId = 0;
@@ -45,8 +44,7 @@ namespace RnzssWeb.Models
             Comment = "";
             UpdatedBy = "";
         }
-
-
+        
         public static int GetNextPkgRfqId(string cloneFromRfq)
         {
             cloneFromRfq = cloneFromRfq + "PKG";
@@ -178,6 +176,7 @@ namespace RnzssWeb.Models
 
 
         }
+
         public static IEnumerable<RequestForQuote> GetAll()
         {
             using (IDbConnection connection = CommonMethods.OpenConnection())
@@ -255,22 +254,28 @@ namespace RnzssWeb.Models
 
         public static bool Upsert(ref RequestForQuote rfq)
         {
-
-            rfq.UpdatedBy = Environment.UserName;
-
-            if (string.IsNullOrEmpty(rfq.RFQNo))
+            try
             {
-                rfq.RFQNo = GetNextRfqId();
-            }
-            else
-            {
-                // Call update method here 
-                #region Update RFQ
-                using (IDbConnection connection = CommonMethods.OpenConnection())
+                // Save vendir information
+                Vendor v = rfq.GetVendor();
+                Vendor.Upsert(v);
+
+
+
+                rfq.UpdatedBy = Environment.UserName;
+                if (string.IsNullOrEmpty(rfq.RFQNo))
                 {
-                    try
+                    rfq.RFQNo = GetNextRfqId();
+                }
+                else
+                {
+                    // Call update method here 
+                    #region Update RFQ
+                    using (IDbConnection connection = CommonMethods.OpenConnection())
                     {
-                        var result = connection.Execute(@"
+                        try
+                        {
+                            var result = connection.Execute(@"
                                     UPDATE [rnz].[RequestForQuote]
                                        SET [CompanyName] = @CompanyName
                                           ,[Attention] = @Attention
@@ -284,20 +289,27 @@ namespace RnzssWeb.Models
                                           ,SolicitationNumber = @SolicitationNumber
                                      WHERE [RFQNo] = @RFQNo
                                                         ", rfq, commandTimeout: 0);
+                        }
+                        catch (Exception ex)
+                        {
+                            return false;
+                        }
                     }
-                    catch (Exception ex)
-                    {
-                        return false;
-                    }
+
+                    #endregion
+
+                    return true;
                 }
 
-                #endregion
-
+                Add(ref rfq);
                 return true;
-            }
 
-            Add(ref rfq);
-            return true;
+            }
+            catch (Exception ex)
+            {
+                logger.Fatal(ex);
+                return false;
+            }
 
 
         }
@@ -336,6 +348,7 @@ namespace RnzssWeb.Models
             return true;
 
         }
+
         public static bool Update(RequestForQuote p)
         {
 
@@ -374,6 +387,20 @@ namespace RnzssWeb.Models
             return true;
 
         }
+
+        public Vendor GetVendor()
+        {
+            return new Vendor() {
+                CompanyName = CompanyName
+                ,Attention = Attention
+                ,CompanyAddress = CompanyAddress
+                ,PhoneNo = PhoneNo
+                ,FaxNo = FaxNo
+                ,Email = Email
+                ,VendorId = VendorId
+            };
+        }
+
 
     }
 }
