@@ -286,6 +286,7 @@ namespace RnzssWeb.Models
                                           ,[Email] = @Email
                                           ,[Comment] = @Comment
                                           ,[UpdatedBy] = @UpdatedBy
+                                          ,[UpdateDate] = getutcdate()
                                           ,DueDate = @DueDate
                                           ,SolicitationNumber = @SolicitationNumber
                                      WHERE [RFQNo] = @RFQNo
