@@ -195,5 +195,28 @@ namespace RnzssWeb.Models
             return null;
 
         }
+
+        public static IEnumerable<Vendor> GetVendorLike(string matchString)
+        {
+            using (IDbConnection connection = CommonMethods.OpenConnection())
+            {
+                try
+                {
+                    return connection.Query<Vendor>(string.Format(@"
+                                                        select *     
+                                                        from [rnz].[Vendors]
+                                                        where CompanyName like '%{0}%'
+                                                        ", matchString), commandTimeout: 0);
+                }
+                catch (Exception ex)
+                {
+                    logger.Fatal(ex);
+                }
+
+            }
+
+            return null;
+
+        }
     }
 }

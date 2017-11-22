@@ -299,6 +299,59 @@ namespace RnzssWeb.Controllers
             return Json(new { success = true, RFQ = rfq, JsonRequestBehavior.AllowGet });
         }
 
+        public ActionResult CreatePkgRFQ([DataSourceRequest]DataSourceRequest request, string RFQNo)
+        {
+            UserMessage um = new UserMessage();
+            try
+            {
+
+
+                if (string.IsNullOrEmpty(RFQNo))
+                {
+                    um.Message = "Please select a valid RFQNo to create a packaging RFQ";
+                    return Json(new { success = false, message = um }, JsonRequestBehavior.AllowGet);
+                }
+
+                if (RFQNo.Contains("PKG"))
+                {
+                    um.Message = "Please select a valid RFQNo to create a packaging RFQ";
+                    return Json(new { success = false, message = um }, JsonRequestBehavior.AllowGet);
+                }
+
+
+                string pkgRfqNo = RequestForQuote.CreatePackagingRfq(RFQNo);
+                um.RfqNo = pkgRfqNo;
+                um.Message = string.Format("Created packaging RFQ {0}", pkgRfqNo);
+                um.RfqNo = pkgRfqNo;
+
+
+
+
+                return Json(new { success = true, message = um }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                logger.Fatal(ex);
+                return Json(new { success = true, message = um }, JsonRequestBehavior.AllowGet);
+            }
+
+        }
+
+        public ActionResult GetVendor([DataSourceRequest]DataSourceRequest request, string vendorName)
+        {
+            Vendor v = null;
+            var match = Vendor.GetVendorLike(vendorName);
+
+
+            if (match != null && match.Any())
+            {
+                v = match.FirstOrDefault();
+            }
+
+
+            return Json(new { success = true, message = v }, JsonRequestBehavior.AllowGet);
+        }
+
 
         #region RFQ Info Grid
         public ActionResult Rfq_Read([DataSourceRequest] DataSourceRequest request)
@@ -1206,42 +1259,8 @@ namespace RnzssWeb.Controllers
         }
         #endregion
 
-        public ActionResult CreatePkgRFQ([DataSourceRequest]DataSourceRequest request, string RFQNo)
-        {
-            UserMessage um = new UserMessage();
-            try
-            {
-
-
-                if (string.IsNullOrEmpty(RFQNo))
-                {
-                    um.Message = "Please select a valid RFQNo to create a packaging RFQ";
-                    return Json(new { success = false, message = um }, JsonRequestBehavior.AllowGet);
-                }
-
-                if (RFQNo.Contains("PKG"))
-                {
-                    um.Message = "Please select a valid RFQNo to create a packaging RFQ";
-                    return Json(new { success = false, message = um }, JsonRequestBehavior.AllowGet);
-                }
-
-
-                string pkgRfqNo = RequestForQuote.CreatePackagingRfq(RFQNo);
-                um.RfqNo = pkgRfqNo;
-                um.Message = string.Format("Created packaging RFQ {0}", pkgRfqNo);
-                um.RfqNo = pkgRfqNo;
 
 
 
-
-                return Json(new { success = true, message = um }, JsonRequestBehavior.AllowGet);
-            }
-            catch (Exception ex)
-            {
-                logger.Fatal(ex);
-                return Json(new { success = true, message = um }, JsonRequestBehavior.AllowGet);
-            }
-
-        }
     }
 }

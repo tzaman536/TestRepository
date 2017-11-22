@@ -748,7 +748,7 @@
 
     }
 
-
+    // Parse address
     function parseAddress(e){
         e.preventDefault();
         var x;
@@ -786,9 +786,54 @@
         }
     }
 
+    // Lookup and prefill vendor when user tab out of company name
+    $("input").keydown(function (e) {
+
+        if (e.which == 9)
+        {
+            if(e.target.id === "companyName")
+            {
+                var parms = {
+                    vendorName: e.target.value
+                };
+
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("GetVendor", "Rfq")',
+                    data:  JSON.stringify(parms),
+                    contentType: 'application/json; charset=utf-8',
+                    dataType: 'json',
+                    success: function (response, textStatus, jqXHR) {
+
+                        if (response.success) {
+                            if(response.message != null)
+                            {
+                                document.getElementById("companyName").value = response.message.CompanyName;
+                                document.getElementById("attention").value = response.message.Attention;
+                                document.getElementById("companyAddress").value = response.message.CompanyAddress;
+                                document.getElementById("phoneNo").value = response.message.PhoneNo;
+                                document.getElementById("faxNo").value = response.message.FaxNo;
+                                document.getElementById("email").value = response.message.Email;
+                            }
+                               
+                        }
+                        else {
+                            alert(response.message);
+                        }
+
+                    },
+                    error: function (response, textStatus, jqXHR) {
+                        alert('Failed to get vendor information');
+                    }
+                });
+
+            }
+        }
+    });
 
 
-    $(document).ready(function () {
+   // Document Ready Section
+  $(document).ready(function () {
 
 
 
@@ -827,6 +872,7 @@
         
 
     });
+
 </script>
 
 
