@@ -63,13 +63,13 @@ namespace RnzssWeb.Models
 
             p.UpdatedBy = System.Web.HttpContext.Current.User.Identity.Name;
 
-            // TODO: Check if this RFQNo and part number exists alreayd then call update and return from here
-            //if (ProductExists(p.RFQNo,p.PartNumber))
-            //{
-            //    return true;
-            //}
 
-
+            var dbProduct = GetProduct(p.ProductInformationId);
+            if(dbProduct.VendorPrice != p.VendorPrice)
+            {
+                RequestForQuote.UpdateRfqStatus(p.RFQNo, RfqStatusList.ReadyToBid);
+            }
+         
             using (IDbConnection connection = CommonMethods.OpenConnection())
             {
                 try
@@ -167,6 +167,29 @@ namespace RnzssWeb.Models
                                                         from [rnz].[ProductInformation]
                                                         where RFQNo = @rfqNo
                                                         ", new { rfqNo }, commandTimeout: 0);
+                }
+                catch (Exception ex)
+                {
+                    logger.Fatal(ex);
+                }
+
+            }
+
+            return null;
+
+        }
+
+        public static ProductInformation GetProduct(int productId)
+        {
+            using (IDbConnection connection = CommonMethods.OpenConnection())
+            {
+                try
+                {
+                    return connection.Query<ProductInformation>(@"
+                                                        select *     
+                                                        from [rnz].[ProductInformation]
+                                                        where ProductInformationId = @productId
+                                                        ", new { productId }, commandTimeout: 0).FirstOrDefault();
                 }
                 catch (Exception ex)
                 {

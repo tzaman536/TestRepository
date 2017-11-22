@@ -213,8 +213,8 @@
                                     columns.Bound(p => p.PartName).Width(75);
                                     columns.Bound(p => p.PartDescription).Width(75);
                                     columns.Bound(p => p.Quantity).Width(75);
-                                    columns.Bound(p => p.VendorPrice).Width(75).Title("Unit Price");
-                                    columns.Bound(p => p.PkgCost).Width(75).Title("Pkg");
+                                    columns.Bound(p => p.VendorPrice).Width(75).Title("Vendor Unit Price");
+                                    columns.Bound(p => p.PkgCost).Width(75).Title("Packaging Cost");
                                     columns.Bound(p => p.CN).Width(75);
                                     columns.Command(command => { command.Edit(); command.Destroy(); }).Width(100);
                                 })

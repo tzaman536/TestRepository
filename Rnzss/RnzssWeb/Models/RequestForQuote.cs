@@ -188,6 +188,7 @@ namespace RnzssWeb.Models
 
         public static IEnumerable<RequestForQuote> GetAll()
         {
+            string closedRfqStatusCode = RfqStatusList.Closed.ToString();
             using (IDbConnection connection = CommonMethods.OpenConnection())
             {
                 try
@@ -199,9 +200,10 @@ namespace RnzssWeb.Models
                                                         from [rnz].[RequestForQuote] rfq 
                                                         left join ( select distinct RFQNo from [rnz].RequestForQuoteEvents ) e 
                                                                on rfq.RFQNo = e.RFQNo
+                                                        where RfqStatus not in (@closedRfqStatusCode)
                                                         order by rfq.[UpdateDate] desc
 
-                                                        ", commandTimeout: 0).ToList();
+                                                        ", new { closedRfqStatusCode }, commandTimeout: 0).ToList();
                 }
                 catch (Exception ex)
                 {
@@ -396,14 +398,32 @@ namespace RnzssWeb.Models
                     return false;
 
 
-                if (status == RfqStatusList.Sent)
-                {
-                    if (rfq.RfqStatus.Equals(RfqStatusList.Open.ToString()))
-                    {
-                        rfq.RfqStatus = status.ToString();
-                        return Update(rfq);
-                    }
+
+                switch(status){
+                    case RfqStatusList.Sent:
+                        if (rfq.RfqStatus.Equals(RfqStatusList.Open.ToString()))
+                        {
+                            rfq.RfqStatus = status.ToString();
+                            return Update(rfq);
+                        }
+                        break;
+                    case RfqStatusList.ReadyToBid:
+                        if (rfq.RfqStatus.Equals(RfqStatusList.Open.ToString()) ||
+                            rfq.RfqStatus.Equals(RfqStatusList.Sent.ToString())
+                            )
+                        {
+                            rfq.RfqStatus = status.ToString();
+                            return Update(rfq);
+                        }
+                        break;
+
+                    default:
+                        return false;
                 }
+
+
+                
+
 
             }
             catch (Exception ex)
