@@ -56,6 +56,14 @@ namespace RnzssWeb.Models
         }
         public static IEnumerable<DocumentStore> GetAllRfqDocuments(string rfqNo)
         {
+            string solicitationNumber = CommonMethods.KW_Unknown;
+
+            var rfq = RequestForQuote.GetRfq(rfqNo);
+            if (rfq != null && !string.IsNullOrEmpty(rfq.SolicitationNumber))
+                solicitationNumber = rfq.SolicitationNumber;
+
+            
+
             using (IDbConnection connection = CommonMethods.OpenConnection())
             {
                 try
@@ -66,8 +74,14 @@ namespace RnzssWeb.Models
                                                                ,s.FileBaseName    
                                                         from [rnz].[DocumentStore] s
                                                         where LinkId = @rfqNo
-                                                      
-                                                        ", new { rfqNo }, commandTimeout: 0);
+                                                        union
+                                                        select s.DocumentStoreId
+                                                               ,s.LinkId
+                                                               ,s.FileBaseName    
+                                                        from [rnz].[DocumentStore] s
+                                                        where LinkId = @solicitationNumber
+
+                                                        ", new { rfqNo, solicitationNumber }, commandTimeout: 0);
                 }
                 catch (Exception ex)
                 {

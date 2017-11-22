@@ -13,6 +13,9 @@ namespace RnzssWeb
     {
         private static readonly ILog logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
+        public const string KW_Unknown = "Unknown";
+
+
         public static string _connectionString;
         public static bool IsDebugMode = false;
 
