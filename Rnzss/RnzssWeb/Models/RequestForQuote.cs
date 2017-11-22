@@ -133,7 +133,7 @@ namespace RnzssWeb.Models
 
             if(string.IsNullOrEmpty(rfq.RfqStatus))
             {
-                rfq.RfqStatus = RnzssWeb.RfqStatus.Open.ToString();
+                rfq.RfqStatus = RnzssWeb.RfqStatusList.Open.ToString();
             }
 
             #region Add RFQ
@@ -381,6 +381,38 @@ namespace RnzssWeb.Models
                 ,Email = Email
                 ,VendorId = VendorId
             };
+        }
+
+        public static bool UpdateRfqStatus(string rfqNo, RfqStatusList status)
+        {
+            try
+            {
+                if(string.IsNullOrEmpty(rfqNo))
+                {
+                    return false;
+                }
+                var rfq = GetRfq(rfqNo);
+                if (rfq == null)
+                    return false;
+
+
+                if (status == RfqStatusList.Sent)
+                {
+                    if (rfq.RfqStatus.Equals(RfqStatusList.Open.ToString()))
+                    {
+                        rfq.RfqStatus = status.ToString();
+                        return Update(rfq);
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                logger.Fatal(ex);
+                return false;
+            }
+
+            return false;
         }
 
 

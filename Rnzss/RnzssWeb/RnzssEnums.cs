@@ -5,7 +5,7 @@ using System.Web;
 
 namespace RnzssWeb
 {
-    public enum RfqStatus
+    public enum RfqStatusList
     {
         Open
          , Sent

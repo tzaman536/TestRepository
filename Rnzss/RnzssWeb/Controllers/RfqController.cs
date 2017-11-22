@@ -706,6 +706,7 @@ namespace RnzssWeb.Controllers
                 }
 
                 RequestForQuoteEvent.LogEvent(rfq.RFQNo, string.Format("RFQ printed by {0}", System.Web.HttpContext.Current.User.Identity.Name));
+                RequestForQuote.UpdateRfqStatus(rfq.RFQNo, RfqStatusList.Sent);
                 return Json(new { success = true, fileName = destinationFile, JsonRequestBehavior.AllowGet });
             }
             catch (Exception ex)

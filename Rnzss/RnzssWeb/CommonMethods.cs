@@ -53,7 +53,7 @@ namespace RnzssWeb
 
         public static List<RnzssDropDownItem> GetRfqStatusList()
         {
-            var statusList = Enum.GetNames(typeof(RfqStatus));
+            var statusList = Enum.GetNames(typeof(RfqStatusList));
             List<RnzssDropDownItem> result = new List<RnzssDropDownItem>();
             foreach (var s in statusList)
             {
