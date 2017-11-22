@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web;
+using RnzssWeb;
 
 namespace RnzssWeb.Models
 {
@@ -23,6 +24,7 @@ namespace RnzssWeb.Models
         public string Comment { get; set; }
         public DateTime? DueDate { get; set; }
         public string SolicitationNumber { get; set; }
+        public string RfqStatus { get; set; }
         public ProductInformation Product { get; set; }
         public int VendorId { get; set; }
 
@@ -129,6 +131,10 @@ namespace RnzssWeb.Models
 
             rfq.UpdatedBy = System.Web.HttpContext.Current.User.Identity.Name;
 
+            if(string.IsNullOrEmpty(rfq.RfqStatus))
+            {
+                rfq.RfqStatus = RnzssWeb.RfqStatus.Open.ToString();
+            }
 
             #region Add RFQ
             using (IDbConnection connection = CommonMethods.OpenConnection())
@@ -148,6 +154,7 @@ namespace RnzssWeb.Models
                                                ,[UpdatedBy]
                                                ,DueDate
                                                ,SolicitationNumber
+                                               ,RfqStatus
                                                )
                                          VALUES
                                                (@RFQNo
@@ -161,6 +168,7 @@ namespace RnzssWeb.Models
                                                ,@UpdatedBy
                                                ,@DueDate
                                                ,@SolicitationNumber
+                                               ,@RfqStatus
                                                )
 
                                                         ", rfq, commandTimeout: 0);
@@ -271,37 +279,7 @@ namespace RnzssWeb.Models
                 else
                 {
                     // Call update method here 
-                    #region Update RFQ
-                    using (IDbConnection connection = CommonMethods.OpenConnection())
-                    {
-                        try
-                        {
-                            var result = connection.Execute(@"
-                                    UPDATE [rnz].[RequestForQuote]
-                                       SET [CompanyName] = @CompanyName
-                                          ,[Attention] = @Attention
-                                          ,[CompanyAddress] = @CompanyAddress
-                                          ,[PhoneNo] = @PhoneNo
-                                          ,[FaxNo] = @FaxNo
-                                          ,[Email] = @Email
-                                          ,[Comment] = @Comment
-                                          ,[UpdatedBy] = @UpdatedBy
-                                          ,[UpdateDate] = getutcdate()
-                                          ,DueDate = @DueDate
-                                          ,SolicitationNumber = @SolicitationNumber
-                                     WHERE [RFQNo] = @RFQNo
-                                                        ", rfq, commandTimeout: 0);
-                        }
-                        catch (Exception ex)
-                        {
-                            logger.Fatal(ex);
-                            return false;
-                        }
-                    }
-
-                    #endregion
-
-                    return true;
+                    return Update(rfq);
                 }
 
                 Add(ref rfq);
@@ -374,6 +352,7 @@ namespace RnzssWeb.Models
                                                       ,[Comment] = @Comment
                                                       ,DueDate = @DueDate
                                                       ,SolicitationNumber = @SolicitationNumber
+                                                      ,RfqStatus = @RfqStatus
                                                       ,[UpdatedBy] = @UpdatedBy
                                                       ,[UpdateDate] = getutcdate()
                                                  WHERE RequestForQuoteId = @RequestForQuoteId

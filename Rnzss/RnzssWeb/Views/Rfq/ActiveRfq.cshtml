@@ -24,9 +24,10 @@
                                 .Columns(columns =>
                                 {
                                     columns.Bound(p => p.RFQNo).Template(@<text></text>).ClientTemplate("<a href='" + Url.Action("RfqEntry", "Rfq") + "?RFQNo=#=RFQNo#'>#=RFQNo#</a>").Title("RFQ No.").Width(75);
-                                    columns.Bound(p => p.SolicitationNumber).Width(75);
-                                    columns.Bound(p => p.DueDate).Width(75).Format("{0:MM/dd/yyyy}"); 
-                                    columns.Bound(p => p.RfqEvent).Template(@<text></text>).ClientTemplate("<a href='" + Url.Action("RfqEvent", "Rfq") + "?RFQNo=#=RFQNo#'>#=RfqEvent#</a>").Title("Rfq Log").Width(50);
+                                columns.Bound(p => p.SolicitationNumber).Width(75);
+                                columns.Bound(p => p.DueDate).Width(75).Format("{0:MM/dd/yyyy}");
+                                columns.ForeignKey(p => p.RfqStatus, (System.Collections.IEnumerable)ViewData["RfqStatus"], "Name", "Name").Width(100);
+                                columns.Bound(p => p.RfqEvent).Template(@<text></text>).ClientTemplate("<a href='" + Url.Action("RfqEvent", "Rfq") + "?RFQNo=#=RFQNo#'>#=RfqEvent#</a>").Title("Rfq Log").Width(50);
                                     columns.Bound(p => p.CompanyName).Width(75);
                                     columns.Bound(p => p.Attention).Width(75);
                                     //columns.Bound(p => p.CompanyAddress).Width(150);
@@ -50,16 +51,18 @@
                                     .Filterable(true)
                                     .ProxyURL(Url.Action("Excel_Export_Save", "Carry"))
                                 )
-                                .Events(events => events.Edit("onEdit"))
+                                .ClientDetailTemplateId("template")
+                                .Events(events => events.Edit("onEdit").DataBound("dataBound"))
                                 .DataSource(dataSource => dataSource
                                     .Ajax()
-                                    .PageSize(100)
+                                    .PageSize(1000)
                                     .Events(events => events.Error("error_handler").RequestEnd("onRequestEnd"))
                                     .Model(model =>
                                     {
                                         model.Id(p => p.RequestForQuoteId);
                                         model.Field(p => p.RFQNo).Editable(false);
                                         model.Field(p => p.UpdateDate).Editable(false);
+                                        model.Field(p => p.DueDate).Editable(false);
                                         model.Field(p => p.RfqEvent).Editable(false);
                                     })
                                     .Read(read => read.Action("Rfq_Read", "Rfq"))
@@ -67,11 +70,119 @@
                                     .Destroy(update => update.Action("Rfq_Destroy", "Rfq"))
                                 )
             )
+            <script id="template" type="text/kendo-tmpl">
+                @(Html.Kendo().TabStrip()
+                .Name("tabStrip_#=RFQNo#")
+                .SelectedIndex(0)
+                .Animation(animation => animation.Open(open => open.Fade(FadeDirection.In)))
+                .Items(items =>
+                {
+                    items.Add().Text("Products").Content(@<text>
+                    @(Html.Kendo().Grid<ProductInformation>()
+                        .Name("grid-rfq-products_#=RFQNo#") // template expression, to be evaluated in the master context
+                        .Columns(columns =>
+                        {
+                            columns.Bound(o => o.PartNumber).Width(75);
+                            columns.Bound(o => o.Quantity).Width(75);
+                            columns.Bound(o => o.PartDescription).Width(75);
+                            columns.Bound(o => o.PartName).Width(75);
+                            columns.Bound(o => o.Quantity).Width(75);
+                            columns.Bound(o => o.VendorPrice).Width(75);
+                            columns.Bound(o => o.PkgCost).Width(75);
+                            columns.Bound(o => o.UpdatedBy).Title("Updated By").Width(56);
+                            columns.Bound(o => o.UpdateDate).Width(56).Format("{0:MM/dd/yyyy hh:mm:ss tt}");
+                        })
+                        .DataSource(dataSource => dataSource
+                            .Ajax()
+                            //.PageSize(5)
+                            .Read(read => read.Action("RfqProduct_Read", "Rfq", new { rfqNo = "#=RFQNo#" }))
+                        )
+                        //.Pageable()
+                        .Sortable()
+                        .ToClientTemplate())
+                    </text>);
+
+                })
+                .Items(items =>
+                {
+                    items.Add().Text("Documents").Content(@<text>
+                    @(Html.Kendo().Grid<DocumentStore>()
+                            .Name("grid-rfq-doc_#=RFQNo#") // template expression, to be evaluated in the master context
+                            .Events(events =>
+                            {
+                                events.Change("onRowSelected");
+                            })
+                            .Columns(columns =>
+                            {
+                                //columns.Bound(p => p.FileBaseName).ClientTemplate("<a href='" + Url.Action("DownloadDocument", "Rfq") + "?DocumentStoreId=#=DocumentStoreId#'>#=FileBaseName#</a>").Title("Document.").Width(100);
+                                columns.Bound(p => p.FileBaseName).Title("Document").Width(100).HtmlAttributes(new { style = "width: 140px; color:blue; " });
+                            })
+                               .Selectable(selectable => selectable
+                                            .Mode(GridSelectionMode.Single))
+                                .DataSource(dataSource => dataSource
+                                .Ajax()
+                                //.PageSize(5)
+                                .Model(model =>
+                                {
+                                    model.Id(p => p.DocumentStoreId);
+                                })
+                                .Read(read => read.Action("DocumentStoreRfq_Read", "Rfq", new { rfqNo = "#=RFQNo#" }))
+                            )
+                            //.Pageable()
+                            .Sortable()
+                            .ToClientTemplate())
+                    </text>);
+
+                })
+                .Items(items =>
+                {
+                    items.Add().Text("RFQ Log").Content(@<text>
+                    @(Html.Kendo().Grid<RequestForQuoteEvent>()
+                            .Name("grid-rfq-logs_#=RFQNo#") // template expression, to be evaluated in the master context
+                            .Columns(columns =>
+                            {
+                                columns.Bound(o => o.EventDescription).Width(110);
+                                columns.Bound(o => o.UpdatedBy).Title("Updated By").Width(56);
+                                columns.Bound(o => o.UpdateDate).Width(56).Format("{0:MM/dd/yyyy hh:mm:ss tt}");
+                            })
+                            .DataSource(dataSource => dataSource
+                                .Ajax()
+                                //.PageSize(5)
+                                .Read(read => read.Action("RfqEvent_Read", "Rfq", new { rfqNo = "#=RFQNo#" }))
+                            )
+                            //.Pageable()
+                            .Sortable()
+                            .ToClientTemplate())
+                    </text>);
+
+                })
+                .ToClientTemplate())
+            </script>
         </div>
     </div>
 </div>
 
 <script>
+    function onRowSelected(e) {
+        var row = this.select();
+        if (row.length > 0) {
+            selectedRow = e.sender.select();
+            var item = e.sender.dataItem(selectedRow);
+
+            // TODO ajax call to downlaod document here
+
+
+
+            //window.location = '/Home/DownloadDocument?DocumentStoreId=1'
+            var link = '@Url.Action("DownloadDocument", "Rfq", new { DocumentStoreId = "InputDocumentStoreId" })';
+            link = link.replace("InputDocumentStoreId", item.DocumentStoreId);
+            window.location = link;
+
+
+
+        }
+    }
+
     function onEdit() {
 
     }
@@ -97,7 +208,9 @@
         $('#grid-rfq').data('kendoGrid').refresh();
     }
 
-
+    function dataBound() {
+        this.expandRow(this.tbody.find("tr.k-master-row").first());
+    }
 
     function initSearch(){
          $("#searchbox").keyup(function () {
@@ -130,7 +243,7 @@
 
     $(document).ready(function () {
 
-       
+
         initSearch();
         reloadProductInformationGrid();
     });
@@ -138,9 +251,28 @@
 
 
 <style>
+    .k-detail-cell .k-tabstrip .k-content {
+        padding: 0.2em;
+    }
+
+    .employee-details ul {
+        list-style: none;
+        font-style: italic;
+        margin: 15px;
+        padding: 0;
+    }
+
+        .employee-details ul li {
+            margin: 0;
+            line-height: 1.7em;
+        }
+
+    .employee-details label {
+        display: inline-block;
+        width: 90px;
+        padding-right: 10px;
+        text-align: right;
+        font-style: normal;
+        font-weight: bold;
+    }
 </style>
-
-
-
-
-

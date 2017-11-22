@@ -1,4 +1,5 @@
 ﻿using log4net;
+using RnzssWeb.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -49,5 +50,18 @@ namespace RnzssWeb
             }
             return null;
         }
+
+        public static List<RnzssDropDownItem> GetRfqStatusList()
+        {
+            var statusList = Enum.GetNames(typeof(RfqStatus));
+            List<RnzssDropDownItem> result = new List<RnzssDropDownItem>();
+            foreach (var s in statusList)
+            {
+                result.Add(new RnzssDropDownItem() { Name = s });
+            }
+
+            return result;
+        }
+
     }
 }

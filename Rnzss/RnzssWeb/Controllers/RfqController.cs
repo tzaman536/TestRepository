@@ -192,6 +192,9 @@ namespace RnzssWeb.Controllers
             {
                 ViewData["CurrentId"] = ss.SessionID;
             }
+
+            ViewData["RfqStatus"] = CommonMethods.GetRfqStatusList();
+
             return View();
         }
 
@@ -1258,9 +1261,6 @@ namespace RnzssWeb.Controllers
             return Json(result);
         }
         #endregion
-
-
-
-
+        
     }
 }

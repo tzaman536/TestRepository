@@ -238,10 +238,12 @@
     <Compile Include="Models\ProductInformation.cs" />
     <Compile Include="Models\RequestForQuote.cs" />
     <Compile Include="Models\RequestForQuoteEvent.cs" />
+    <Compile Include="Models\RnzssDropDownItem.cs" />
     <Compile Include="Models\Solicitation.cs" />
     <Compile Include="Models\UserMessage.cs" />
     <Compile Include="Models\Vendor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RnzssEnums.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
