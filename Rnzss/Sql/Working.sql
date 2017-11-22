@@ -1,3 +1,4 @@
+use rnzss
 declare @RfqNo nvarchar(200) ='RZRFQ10116'
 
 
