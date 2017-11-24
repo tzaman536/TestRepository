@@ -186,24 +186,34 @@ namespace RnzssWeb.Models
 
         }
 
-        public static IEnumerable<RequestForQuote> GetAll()
+        public static IEnumerable<RequestForQuote> GetAll(bool includeClosedRfq = false)
         {
             string closedRfqStatusCode = RfqStatusList.Closed.ToString();
+            string sql = string.Format(@" select 
+                                rfq.*     
+                                ,case when e.RFQNo  is null then 'Start' else 'View Log' end as RfqEvent 
+                            from [rnz].[RequestForQuote] rfq 
+                            left join ( select distinct RFQNo from [rnz].RequestForQuoteEvents ) e 
+                                    on rfq.RFQNo = e.RFQNo
+                            where RfqStatus not in ('{0}')
+                            order by rfq.[UpdateDate] desc", closedRfqStatusCode);
+
+            if(includeClosedRfq)
+            {
+                sql = string.Format(@" select 
+                                rfq.*     
+                                ,case when e.RFQNo  is null then 'Start' else 'View Log' end as RfqEvent 
+                            from [rnz].[RequestForQuote] rfq 
+                            left join ( select distinct RFQNo from [rnz].RequestForQuoteEvents ) e 
+                                    on rfq.RFQNo = e.RFQNo
+                            order by rfq.[UpdateDate] desc");
+            }
+
             using (IDbConnection connection = CommonMethods.OpenConnection())
             {
                 try
                 {
-                    return connection.Query<RequestForQuote>(@"
-                                                        select 
-                                                               rfq.*     
-                                                               ,case when e.RFQNo  is null then 'Start' else 'View Log' end as RfqEvent 
-                                                        from [rnz].[RequestForQuote] rfq 
-                                                        left join ( select distinct RFQNo from [rnz].RequestForQuoteEvents ) e 
-                                                               on rfq.RFQNo = e.RFQNo
-                                                        where RfqStatus not in (@closedRfqStatusCode)
-                                                        order by rfq.[UpdateDate] desc
-
-                                                        ", new { closedRfqStatusCode }, commandTimeout: 0).ToList();
+                    return connection.Query<RequestForQuote>(sql, commandTimeout: 0).ToList();
                 }
                 catch (Exception ex)
                 {

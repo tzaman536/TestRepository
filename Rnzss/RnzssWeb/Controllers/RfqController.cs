@@ -357,14 +357,14 @@ namespace RnzssWeb.Controllers
 
 
         #region RFQ Info Grid
-        public ActionResult Rfq_Read([DataSourceRequest] DataSourceRequest request)
+        public ActionResult Rfq_Read([DataSourceRequest] DataSourceRequest request, bool includeClosedRfq)
         {
             try
             {
 
                 return new JsonResult()
                 {
-                    Data = RequestForQuote.GetAll().ToDataSourceResult(request),
+                    Data = RequestForQuote.GetAll(includeClosedRfq).ToDataSourceResult(request),
                     JsonRequestBehavior = JsonRequestBehavior.AllowGet,
                     MaxJsonLength = Int32.MaxValue
                 };

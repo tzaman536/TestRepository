@@ -10,7 +10,8 @@
                     <input type="search" id="searchbox" style="width: 100%;" value="Company name, Solicitation or RFQ No." onfocus="if (this.value == 'Company name, Solicitation or RFQ No.') this.value = ''"  />
                 </div>
                 <div id="second">
-                    <div class="demo-hint"></div>
+                    <input type="checkbox" id="includeClosedRFQ" onchange="includeClosedRFQChanged()"/><label for="includeClosedRFQ">Include Closed RFQ</label>
+
                 </div>
             </div>
 
@@ -65,7 +66,7 @@
                                         model.Field(p => p.DueDate).Editable(false);
                                         model.Field(p => p.RfqEvent).Editable(false);
                                     })
-                                    .Read(read => read.Action("Rfq_Read", "Rfq"))
+                                    .Read(read => read.Action("Rfq_Read", "Rfq").Data("getInput"))
                                     .Update(update => update.Action("Rfq_Update", "Rfq"))
                                     .Destroy(update => update.Action("Rfq_Destroy", "Rfq"))
                                 )
@@ -168,19 +169,17 @@
         if (row.length > 0) {
             selectedRow = e.sender.select();
             var item = e.sender.dataItem(selectedRow);
-
             // TODO ajax call to downlaod document here
-
-
-
             //window.location = '/Home/DownloadDocument?DocumentStoreId=1'
             var link = '@Url.Action("DownloadDocument", "Rfq", new { DocumentStoreId = "InputDocumentStoreId" })';
             link = link.replace("InputDocumentStoreId", item.DocumentStoreId);
             window.location = link;
-
-
-
         }
+    }
+
+    function includeClosedRFQChanged() {
+        
+        reloadProductInformationGrid();
     }
 
     function onEdit() {
@@ -188,6 +187,12 @@
     }
     function error_handler() {
 
+    }
+
+    function getInput() {
+        return {
+            IncludeClosedRfq: document.getElementById("includeClosedRFQ").checked
+        }
     }
 
     function onRequestEnd(e) {
@@ -245,7 +250,7 @@
 
 
         initSearch();
-        reloadProductInformationGrid();
+        //reloadProductInformationGrid();
     });
 </script>
 
