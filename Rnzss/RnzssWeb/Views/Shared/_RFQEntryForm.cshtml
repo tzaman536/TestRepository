@@ -663,7 +663,7 @@
         var tempSolicitationNo="";
         var tempDueDate = rfq.DueDate;
         var tempQty = rfq.Quantity;
-
+        var tempPartNumber = rfq.PartNumber;
         var solicitation = @Html.Raw(Json.Encode(ViewData["Solicitation"]));
         if(rfq.RFQNo == null)
         {
@@ -690,6 +690,14 @@
             }
         }
 
+        if(rfq.PartNumber == null)
+        {
+            if(solicitation != null)
+            {
+                tempPartNumber = solicitation.SolicitationDescription;
+            }
+        }
+
 
         var viewModel = kendo.observable({
             companyName: rfq.CompanyName,
@@ -706,7 +714,7 @@
             agreed: true,
             confirmed: true,
             saveWork: saveData,
-            partNumber: "",
+            partNumber: tempPartNumber,
             partName: "",
             cn: "NE",
             quantity: tempQty,
