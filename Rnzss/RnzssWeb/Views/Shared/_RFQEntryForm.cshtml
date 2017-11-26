@@ -200,6 +200,7 @@
                 </td>
                 <td width="5%"></td>
             </tr>
+            
             <tr><td height="10px;" colspan="3"></td></tr> @*Empty line*@
             @* Product Information Table for multiple products *@
             <tr>
@@ -213,8 +214,10 @@
                                     columns.Bound(p => p.PartName).Width(75);
                                     columns.Bound(p => p.PartDescription).Width(75);
                                     columns.Bound(p => p.Quantity).Width(75);
-                                    columns.Bound(p => p.VendorPrice).Width(75).Title("Vendor Unit Price");
-                                    columns.Bound(p => p.PkgCost).Width(75).Title("Packaging Cost");
+                                    columns.Bound(p => p.VendorPrice).Width(75).Title("Vendor<br /> Unit<br /> Price");
+                                    columns.Bound(p => p.PkgCost).Width(75).Title("Packaging<br />Cost");
+                                    columns.Bound(p => p.DeliverIn).Width(75);
+                                    columns.ForeignKey(p => p.DeliverInUnit, (System.Collections.IEnumerable)ViewData["DeliverInUnit"], "Name", "Name").Width(100).Title("D/W/M");
                                     columns.Bound(p => p.CN).Width(75);
                                     columns.Command(command => { command.Edit(); command.Destroy(); }).Width(100);
                                 })

@@ -3,6 +3,8 @@ use rnzss
 declare @RfqNo nvarchar(200) ='RZRFQ10124'
 
 
+
+
 select * from [rnz].[ProductInformation] WHERE RFQNo=@RfqNo
 select * from [rnz].[RequestForQuote] WHERE RFQNo=@RfqNo
 select * from rnz.RequestForQuoteEvents  WHERE RFQNo=@RfqNo

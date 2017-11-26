@@ -23,6 +23,8 @@ CREATE TABLE [rnz].[ProductInformation](
 	[CN] [nvarchar](100) NULL,
 	VendorPrice decimal(18,2) null,
 	PkgCost decimal(18,2) null,
+	DeliverIn int null,
+	DeliverInUnit nvarchar(10) null,
 	[UpdatedBy] [nvarchar](100) NOT NULL,
 	[UpdateDate] [datetime] NOT NULL
 ) ON [PRIMARY]

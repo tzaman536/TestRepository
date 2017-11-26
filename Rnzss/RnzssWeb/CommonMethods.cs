@@ -65,6 +65,18 @@ namespace RnzssWeb
 
             return result;
         }
+        public static List<RnzssDropDownItem> GetDeliveryInUnitList()
+        {
+            var list = Enum.GetNames(typeof(DeliveryInUnitList));
+            List<RnzssDropDownItem> result = new List<RnzssDropDownItem>();
+            foreach (var s in list)
+            {
+                result.Add(new RnzssDropDownItem() { Name = s });
+            }
+
+            return result;
+        }
+        
 
     }
 }

@@ -170,6 +170,8 @@ namespace RnzssWeb.Controllers
                 
             }
 
+            ViewData["DeliverInUnit"] = CommonMethods.GetDeliveryInUnitList();
+
             logger.InfoFormat("RfqEntry called");
 
             return View();

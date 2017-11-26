@@ -14,4 +14,13 @@ namespace RnzssWeb
          , Awarded
          , Closed
     }
+
+    public enum DeliveryInUnitList
+    {
+        D
+     , W
+     , M
+     , Y
+    }
+
 }

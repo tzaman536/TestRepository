@@ -23,6 +23,9 @@ namespace RnzssWeb.Models
         public decimal PkgCost { get; set; }
         public string UpdatedBy { get; set; }
         public DateTime UpdateDate { get; set; }
+        public int DeliverIn { get; set; }
+        public string DeliverInUnit { get; set; }
+
 
 
 
@@ -85,6 +88,8 @@ namespace RnzssWeb.Models
                                                       ,PkgCost = @PkgCost
                                                       ,[UpdatedBy] = @UpdatedBy
                                                       ,[UpdateDate] = getutcdate()
+                                                      ,DeliverIn = @DeliverIn
+                                                      ,DeliverInUnit = @DeliverInUnit
                                                  WHERE ProductInformationId = @ProductInformationId
 
                                                         ", p, commandTimeout: 0);
@@ -112,6 +117,9 @@ namespace RnzssWeb.Models
             //    return true;
             //}
 
+            if (string.IsNullOrEmpty(p.DeliverInUnit))
+                p.DeliverInUnit = DeliveryInUnitList.D.ToString();
+
 
             using (IDbConnection connection = CommonMethods.OpenConnection())
             {
@@ -128,6 +136,8 @@ namespace RnzssWeb.Models
                                                                    ,VendorPrice 
                                                                    ,PkgCost
                                                                    ,[UpdatedBy]
+                                                                   ,DeliverIn
+                                                                   ,DeliverInUnit
                                                                    )
                                                              VALUES
                                                                    (@RFQNo
@@ -139,6 +149,8 @@ namespace RnzssWeb.Models
                                                                    ,@VendorPrice
                                                                    ,@PkgCost
                                                                    ,@UpdatedBy
+                                                                   ,@DeliverIn
+                                                                   ,@DeliverInUnit
                                                                   )
                                                
 

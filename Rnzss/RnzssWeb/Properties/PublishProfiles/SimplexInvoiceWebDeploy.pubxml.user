@@ -202,7 +202,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/22/2017 11:00:38</publishTime>
     </File>
     <File Include="bin/SportsNetworkWeb.dll">
-      <publishTime>11/22/2017 11:00:48</publishTime>
+      <publishTime>11/26/2017 14:46:34</publishTime>
     </File>
     <File Include="bin/sv-SE/Kendo.Mvc.resources.dll">
       <publishTime>01/12/2016 16:42:22</publishTime>
@@ -3853,7 +3853,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/08/2016 11:29:57</publishTime>
     </File>
     <File Include="Views/Rfq/ActiveRfq.cshtml">
-      <publishTime>11/22/2017 08:55:34</publishTime>
+      <publishTime>11/24/2017 16:07:03</publishTime>
     </File>
     <File Include="Views/Rfq/AddSolicitation.cshtml">
       <publishTime>11/16/2017 13:07:38</publishTime>
@@ -3865,7 +3865,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/11/2017 15:09:18</publishTime>
     </File>
     <File Include="Views/Rfq/Solicitations.cshtml">
-      <publishTime>11/18/2017 10:41:38</publishTime>
+      <publishTime>11/24/2017 15:41:42</publishTime>
     </File>
     <File Include="Views/Shared/AdminMenuHorizontal.cshtml">
       <publishTime>04/27/2016 22:13:10</publishTime>
@@ -3916,10 +3916,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/19/2017 11:10:33</publishTime>
     </File>
     <File Include="Views/Shared/_MainMenu.cshtml">
-      <publishTime>11/22/2017 11:00:26</publishTime>
+      <publishTime>11/26/2017 13:11:33</publishTime>
     </File>
     <File Include="Views/Shared/_RFQEntryForm.cshtml">
-      <publishTime>11/22/2017 09:53:20</publishTime>
+      <publishTime>11/26/2017 14:06:15</publishTime>
     </File>
     <File Include="Views/TennisNetwork/AddPlayerToLeague.cshtml">
       <publishTime>03/12/2017 10:00:39</publishTime>
