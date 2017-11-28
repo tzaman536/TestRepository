@@ -202,7 +202,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/22/2017 11:00:38</publishTime>
     </File>
     <File Include="bin/SportsNetworkWeb.dll">
-      <publishTime>11/26/2017 14:46:34</publishTime>
+      <publishTime>11/27/2017 21:34:09</publishTime>
     </File>
     <File Include="bin/sv-SE/Kendo.Mvc.resources.dll">
       <publishTime>01/12/2016 16:42:22</publishTime>
@@ -1606,7 +1606,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/14/2016 04:52:57</publishTime>
     </File>
     <File Include="Content/Site.css">
-      <publishTime>11/19/2017 13:05:47</publishTime>
+      <publishTime>11/27/2017 20:54:56</publishTime>
     </File>
     <File Include="favicon.ico">
       <publishTime>04/26/2016 19:44:17</publishTime>
@@ -3919,7 +3919,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/26/2017 13:11:33</publishTime>
     </File>
     <File Include="Views/Shared/_RFQEntryForm.cshtml">
-      <publishTime>11/26/2017 14:06:15</publishTime>
+      <publishTime>11/27/2017 21:08:08</publishTime>
     </File>
     <File Include="Views/TennisNetwork/AddPlayerToLeague.cshtml">
       <publishTime>03/12/2017 10:00:39</publishTime>

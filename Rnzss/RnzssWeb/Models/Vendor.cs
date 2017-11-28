@@ -196,17 +196,32 @@ namespace RnzssWeb.Models
 
         }
 
-        public static IEnumerable<Vendor> GetVendorLike(string matchString)
+        public static IEnumerable<Vendor> GetVendorLike(string matchString, bool applySmartMatch=true)
         {
             using (IDbConnection connection = CommonMethods.OpenConnection())
             {
                 try
                 {
-                    return connection.Query<Vendor>(string.Format(@"
+                     var result = connection.Query<Vendor>(string.Format(@"
                                                         select *     
                                                         from [rnz].[Vendors]
                                                         where CompanyName like '%{0}%'
                                                         ", matchString), commandTimeout: 0);
+
+                    if(applySmartMatch)
+                    {
+                        if (result != null && result.Count() > 1)
+                        {
+                            var r1 = result.Where(x => x.CompanyName.ToLower().StartsWith(matchString.ToLower()));
+                            if (r1 != null && r1.Any())
+                                return r1;
+                        }
+                        return result;
+                    }
+                    else
+                    {
+                        return result;
+                    }
                 }
                 catch (Exception ex)
                 {
