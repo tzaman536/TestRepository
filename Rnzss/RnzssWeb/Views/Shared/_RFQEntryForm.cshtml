@@ -274,7 +274,9 @@
                 {
                     document.getElementById("pageMessage").innerHTML = response.message.Message;
                     document.getElementById("lookUpRfqNo").value = response.message.RfqNo;
-                    findRfq();
+                    document.getElementById("rfqNo").value = response.message.RfqNo;
+                    //findRfq();
+                    window.location = '/Rfq/RfqEntry?RFQNo=' + response.message.RfqNo;
 
                 }
                 else{
