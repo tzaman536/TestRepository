@@ -548,7 +548,9 @@
             success: function (response, textStatus, jqXHR) {
 
                 if (response.success) {
-                    bindViewModel(response.RFQ);
+                    //bindViewModel(response.RFQ);
+                    //alert(response.RFQ.RfqNo);
+                    window.location = '/Rfq/RfqEntry?RFQNo=' + response.RFQ.RFQNo;
                 }
                 else {
 
