@@ -2,211 +2,181 @@
 <div class="page-container-admin">
     <div id="rfqentryform" class="admin-page-container-rfq-entry">
         <form id="addNewRfqForm" method="post" name="addNewRfqForm">
-        <table border="0" width="1000" style="height:auto">
-            <tr>
-                <td width="5%"></td>
-                <td width="*"><div class="form-data-entry-lable">Request For Quote: <input id="lookUpRfqNo" data-bind="value: lookUpRfqNo" class="k-textbox" /><button id="kendo-find-button" data-bind="click: findRfq" class="button">Find</button><a href='@Url.Action("ActiveRfq", "Rfq")' class="rz-page-link">[Active Rfq]</a><a href='@Url.Action("RfqEvent", "Rfq", new { RFQNo = @ViewData["RFQNo"] },null)' class="rz-page-link">[Event Log]</a></div></td>
-                <td width="5%"></td>
-            </tr>
-            <tr>
-                <td width="5%"></td>
-                <td height="20"><div id="pageMessage" class="interactive-message"> </div></td>
-                <td width="5%"></td>
-            </tr>
-            <tr>
-                <td width="5%"></td>
-                <td width="*">
-                    <div id="wrapper">
-                        <div id="first"><label for="rfqNo">RFQ No: <input id="rfqNo" data-bind="value: rfqNo" disabled="disabled" class="rfqno" /></label></div>
-                        <div id="second" class="form-data-entry-lable">Solicitation No: <input type="text" name="solicitaionNumber" id="solicitationNumber" data-bind="value: solicitationNumber" class="k-textbox" required validationMessage="SolicitaionNumber is rquired" /></div>
-                        <div id="third" class="form-data-entry-lable second">Due Date: <input id="dueDate" name="dueDate" data-role="datepicker" data-bind="visible: isVisible, enabled: isEnabled,  value: dueDate, events: { change: onDueDateChange }" style="width: 120px" required validationMessage="Due date is rquired"></div>
-                    </div>
-                </td>
-                <td width="5%"></td>
-            </tr>
-            <tr>
-                <td width="5%"></td>
-                <td><div class="form-data-entry-lable">Vendor Information:</div></td>
-                <td width="5%"></td>
-            </tr>
-            @* Buyers Information Section *@
-            <tr>
-                <td height="100" width="5%"></td>
-                <td>
-                    <div class="demo-section k-content wide">
-                        <table border="0" width="1000">
-                            <tr>
-                                <td width="10px;"></td>
-                                @*<td><label for="companyName">Company Name: <input id="companyName" data-bind="value: companyName" class="k-textbox large" /></label></td>
-                                    <td width="10px;"></td>
-                                    <td><label for="attention">Attention: <input id="attention" data-bind="value: attention" class="k-textbox" /></label></td>
-                                    <td width="10px"></td>*@
-                                <td colspan="6" width="*">
-                                    <div id="wrapper">
-                                        <div id="first-large"><label for="companyName">Company Name: <input id="companyName" name="companyName" data-bind="value: companyName" class="k-textbox large" required validationMessage="Vendor name is rquired"/></label></div>
-                                        <div id="second"><label for="attention">Attention: <input id="attention" data-bind="value: attention" class="k-textbox" /></label></div>
-                                        <div id="second"><button data-bind="click: parseAddress" class="button">Parse Address</button></div>
-                                    </div>
-                                </td>
-                                <td width="10px;"></td>
-                            </tr>
-                            <tr>
-                                @*<td width="10px"></td>
-                                    <td colspan="6"><label for="companyAddress">Company Address:</label> <textarea id="companyAddress" rows="4" cols="25" style="min-width: 450px;" data-bind="value: companyAddress"> </textarea></td>
-                                    <td width="10px"></td>*@
-                                <td width="10px"></td>
-                                <td colspan="6">
-                                    <div id="wrapper">
-                                        <div id="first-large">
-                                            <label for="companyAddress">Company Address:</label> <textarea id="companyAddress" rows="4" cols="25" style="min-width: 250px;" data-bind="value: companyAddress"> </textarea>
-                                        </div>
-                                        <div id="second"><label for="comment">Comment</label> <textarea id="comment" rows="4" cols="25" style="min-width: 250px;" data-bind="value: comment"> </textarea></div>
-                                    </div>
-                                </td>
-                                <td width="10px"></td>
-                            </tr>
-                            <tr>
-                                <td width="10px"></td>
-                                @*<td><label for="phoneNo">Phone No: <input id="phoneNo" data-role="maskedtextbox" data-mask="(999) 000-0000" data-bind="value: phoneNo" class="k-textbox" /></label></td>
-                                    <td width="10px"></td>
-                                    <td><label for="faxNo">Fax No: <input id="faxNo" data-role="maskedtextbox" data-mask="(999) 000-0000" data-bind="value: faxNo" class="k-textbox" /></label></td>
-                                    <td width="10px"></td>
-                                    <td><label for="email">Email: <input id="email" type="email" data-bind="value: email" class="k-textbox" /></label></td>
-                                    <td colspan="2"></td>*@
-                                <td colspan="6">
+            <table border="0" width="1400" style="height:auto">
+                <tr>
+                    <td width="*"><div class="form-data-entry-lable">Request For Quote: <input id="lookUpRfqNo" data-bind="value: lookUpRfqNo" class="k-textbox" />&nbsp;&nbsp;<button id="kendo-find-button" data-bind="click: findRfq" class="k-button action-button">Find</button><a href='@Url.Action("ActiveRfq", "Rfq")' class="rz-page-link">[Active Rfq]</a><a href='@Url.Action("RfqEvent", "Rfq", new { RFQNo = @ViewData["RFQNo"] },null)' class="rz-page-link">[Event Log]</a></div></td>
+                </tr>
+                <tr>
+                    <td height="20"><div id="pageMessage" class="interactive-message"> </div></td>
+                </tr>
+                <tr>
+                    <td width="*">
+                        <div id="wrapper">
+                            <div id="first"><label for="rfqNo">RFQ No: <input id="rfqNo" data-bind="value: rfqNo" disabled="disabled" class="rfqno" /></label></div>
+                            <div id="second" class="form-data-entry-lable">Solicitation No: <input type="text" name="solicitaionNumber" id="solicitationNumber" data-bind="value: solicitationNumber" class="k-textbox" required validationMessage="SolicitaionNumber is rquired" /></div>
+                            <div id="third" class="form-data-entry-lable second">Due Date: <input id="dueDate" name="dueDate" data-role="datepicker" data-bind="visible: isVisible, enabled: isEnabled,  value: dueDate, events: { change: onDueDateChange }" style="width: 120px" required validationMessage="Due date is rquired"></div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><div class="form-data-entry-lable">Vendor Information:</div></td>
+                </tr>
+                @* Vendor Information Section *@
+                <tr>
+                    <td width="*">
+                        <div id="wrapper">
+                            <div id="first-large-rfqentry">
+                                <div class="demo-section k-content wide">
+                                    <table border="0" width="750">
+                                        <tr>
+                                            <td colspan="1" width="*">
+                                                <div id="wrapper">
+                                                    <div id="first-large"><label for="companyName">Company Name: <input id="companyName" name="companyName" data-bind="value: companyName" class="k-textbox large" required validationMessage="Vendor name is rquired" /></label></div>
+                                                    <div id="second"><label for="attention">Attention: <input id="attention" data-bind="value: attention" class="k-textbox" /></label></div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="1">
+                                                <div id="wrapper">
+                                                    <div id="first-large">
+                                                        <label for="companyAddress">Address:</label><textarea id="companyAddress" rows="4" cols="25" class="rnzss-text-area" data-bind="value: companyAddress"> </textarea>
+                                                    </div>
+                                                    <div id="second"><label for="comment">Comment:</label><textarea id="comment" rows="4" cols="25" class="rnzss-text-area" data-bind="value: comment"> </textarea></div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="1">
+                                                <div id="wrapper">
+                                                    <div id="first">
+                                                        <label for="phoneNo">Phone No: <input id="phoneNo" data-role="maskedtextbox" data-mask="(999) 000-0000" data-bind="value: phoneNo" class="k-textbox" /></label>
+                                                    </div>
+                                                    <div id="second">
+                                                        <label for="faxNo">Fax No: <input id="faxNo" data-role="maskedtextbox" data-mask="(999) 000-0000" data-bind="value: faxNo" class="k-textbox" /></label>
+                                                    </div>
+                                                    <div id="second">
+                                                        <label for="email">Email: <input id="email" type="email" data-bind="value: email" class="k-textbox" /></label>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div id="second-large-rfqentry">
+                                <div class="rfq-file-upload-form">
                                     <div id="wrapper">
                                         <div id="first">
-                                            <label for="phoneNo">Phone No: <input id="phoneNo" data-role="maskedtextbox" data-mask="(999) 000-0000" data-bind="value: phoneNo" class="k-textbox" /></label>
+                                            <input type="hidden" name="inputRfqNo" id="inputRfqNo" value="" />
+                                            @(Html.Kendo().Upload()
+                                                            .Name("files")
+                                                            .HtmlAttributes(new { aria_label = "files" })
+                                            )
                                         </div>
                                         <div id="second">
-                                            <label for="faxNo">Fax No: <input id="faxNo" data-role="maskedtextbox" data-mask="(999) 000-0000" data-bind="value: faxNo" class="k-textbox" /></label>
-                                        </div>
-                                        <div id="second">
-                                            <label for="email">Email: <input id="email" type="email" data-bind="value: email" class="k-textbox" /></label>
+                                            <button type="submit" class="k-button save-button" onclick="validateForm()">Upload</button>
                                         </div>
                                     </div>
-                                </td>
-                                <td width="10px"></td>
-                            </tr>
-                        </table>
-                        @* Dropdown list and checkbox example
-                            <ul id="fieldlist">
-                                <li><label for="gender">Gender:</label> <select id="gender" data-bind="source: genders, value: gender"></select></li>
-                                <li> <label for="agree">License Agreement</label> <input type="checkbox" id="agree" data-bind="checked: agreed" /> I have read the licence agreement</li>
-                            </ul>
-                        *@
-                    </div>
-                </td>
-                <td width="5%"></td>
-            </tr>
-            <tr><td height="10px;" colspan="3"></td></tr> @*Empty line*@
-            <tr>
-                <td width="10px"></td>
-                <td><div class="form-data-entry-lable">Product Information </div></td>
-                <td width="5%"></td>
-            </tr>
+                                    @(Html.Kendo().Grid<DocumentStore>()
+                                            .Name("grid-uploaded-documents")
+                                            .Columns(columns =>
+                                            {
+                                                columns.Bound(p => p.FileBaseName).Template(@<text></text>).ClientTemplate("<a href='" + Url.Action("DownloadDocument", "Rfq") + "?DocumentStoreId=#=DocumentStoreId#'>#=FileBaseName#</a>").Title("Document.").Width(100);
+                                                columns.Command(command => { command.Destroy(); }).Width(75);
+                                            })
+                                            //.ToolBar(toolBar => toolBar.Template("<a class='k-button k-button-icontext' onclick='addAnotherProduct()' href='#'></span>Add Another Product</a>"))
+                                            .Editable(editable => editable.Mode(GridEditMode.InLine))
+                                            //.Pageable()
+                                            .Sortable()
+                                            .Filterable()
+                                            .Scrollable(scr => scr.Height(150))
+                                            .Excel(excel => excel
+                                                .AllPages(true)
+                                                .FileName("Index Rates Export.xlsx")
+                                                .Filterable(true)
+                                                .ProxyURL(Url.Action("Excel_Export_Save", "Carry"))
+                                            )
+                                            .Events(events => events.Edit("onEdit"))
+                                            .DataSource(dataSource => dataSource
+                                                .Ajax()
+                                                //.PageSize(100)
+                                                .Events(events => events.Error("error_handler").RequestEnd("onRequestEnd"))
+                                                .Model(model =>
+                                                {
+                                                    model.Id(p => p.DocumentStoreId);
+                                                })
+                                                .Read(read => read.Action("DocumentStoreRfq_Read", "Rfq").Data("getRFQNo"))
+                                                .Destroy(update => update.Action("DocumentStore_Destroy", "Rfq"))
+                                            )
+                                    )
+                                </div>
+                            </div>
+                        </div>
+
+                    </td>
+                </tr>
+                <tr><td height="10px;" colspan="1"></td></tr> @*Empty line*@
+                <tr>
+                    <td><div class="form-data-entry-lable">Product Information </div></td>
+                </tr>
 
 
-            @* Product Information Section *@
-            <tr>
-                <td height="100" width="5%"></td>
-                <td>
-                    <div class="demo-section k-content wide">
-                        <table border="0" width="1000">
-                            @*<tr>
-                                    <td width="10px"></td>
-                                    <td><label for="partNumber">Part Number: <input id="partNumber" data-bind="value: partNumber" class="k-textbox" /></label></td>
-                                    <td width="10px"></td>
-                                    <td><label for="partName">Part Name: <input id="partName" data-bind="value: partName" class="k-textbox" /></label></td>
-                                    <td width="10px"></td>
-                                    <td><label for="cn">CN: <input id="cn" data-bind="value: cn" class="k-textbox" /></label></td>
-                                </tr>*@
-                            <tr>
-                                <td width="10px"></td>
-                                <td colspan="6">
-                                    <div id="wrapper">
-                                        <div id="first">
-                                            <label for="partNumber">Part Number: <input id="partNumber" name="partNumber" data-bind="value: partNumber" class="k-textbox"  /></label>
-                                        </div>
-                                        <div id="second">
-                                            <label for="partName">Part Name: <input id="partName" data-bind="value: partName" class="k-textbox" /></label>
-                                        </div>
-                                        <div id="second">
-                                            <label for="cn">CN: <input id="cn" data-bind="value: cn" class="k-textbox" /></label>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td width="10px"></td>
-                            </tr>
-                            <tr>
-                                <td width="10px"></td>
-                                @*<td><label for="quantity">Quantity: <input id="quantity" data-bind="value: quantity" class="k-textbox" /></label></td>
-                                    <td width="10px"></td>
-                                    <td><label for="partDescription">Description: <input id="partDescription" data-bind="value: partDescription" class="k-textbox" /></label></td>
-                                    <td width="10px"></td>
-                                    <td><button data-bind="click: addAnotherProduct" class="button">Add Product</button></td>*@
-                                <td colspan="6">
-                                    <div id="wrapper">
-                                        <div id="first">
-                                            <label for="quantity">Quantity: <input id="quantity" name="quantity" data-bind="value: quantity" class="k-textbox" /></label>
-                                        </div>
-                                        <div id="second">
-                                            <label for="partDescription">Description: <input id="partDescription" data-bind="value: partDescription" class="k-textbox" /></label>
-                                        </div>
-                                        <div id="second">
-                                            <button data-bind="click: addAnotherProduct" class="button">Add Product</button>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td width="10px"></td>
-                            </tr>
-                            <tr><td height="10px;" colspan="6"></td></tr> @*Empty line*@
-                            <tr>
-                                <td width="10px"></td>
-                                <td colspan="6">
-                                    <div id="wrapper">
-                                        <div id="first">
-                                            <button data-bind="click: startOver" class="button">Start Over</button>
-                                        </div>
-                                        <div id="second">
-                                            <button data-bind="click: saveWork" class="button">Save</button>
-                                        </div>
-                                        <div id="second">
-                                            <button data-bind="click: printRFQ" class="button">Print</button>
-                                        </div>
-                                        <div id="second">
-                                            <button data-bind="click: addPkgRFQ" class="button">Add Pkg. RFQ</button>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td width="10px"></td>
-                            </tr>
-                            @*<tr>
-                                    <td width="10px"></td>
-                                    <td><button data-bind="click: startOver" class="button">Start Over</button></td>
-                                    <td width="10px"></td>
-                                    <td><button data-bind="click: saveWork" class="button">Save</button></td>
-                                    <td width="10px"></td>
-                                    <td><button data-bind="click: printRFQ" class="button">Print</button></td>
-                                </tr>*@
-                        </table>
-                        @* Dropdown list and checkbox example
-                            <ul id="fieldlist">
-                                <li><label for="gender">Gender:</label> <select id="gender" data-bind="source: genders, value: gender"></select></li>
-                                <li> <label for="agree">License Agreement</label> <input type="checkbox" id="agree" data-bind="checked: agreed" /> I have read the licence agreement</li>
-                            </ul>
-                        *@
-                    </div>
-                </td>
-                <td width="5%"></td>
-            </tr>
-            
-            <tr><td height="10px;" colspan="3"></td></tr> @*Empty line*@
-            @* Product Information Table for multiple products *@
-            <tr>
-                <td height="100" width="5%"></td>
-                <td>
-                    @(Html.Kendo().Grid<ProductInformation>()
+                @* Product Information Section *@
+                <tr>
+                    <td width="*">
+                        <div id="wrapper">
+                            <div id="first-large-rfqentry">
+                                <div class="demo-section k-content wide">
+                                    <table border="0" width="750">
+                                        <tr>
+                                            <td colspan="6">
+                                                <div id="wrapper">
+                                                    <div id="first">
+                                                        <label for="partNumber">Part Number: <input id="partNumber" name="partNumber" data-bind="value: partNumber" class="k-textbox" /></label>
+                                                    </div>
+                                                    <div id="second">
+                                                        <label for="partName">Part Name: <input id="partName" data-bind="value: partName" class="k-textbox" /></label>
+                                                    </div>
+                                                    <div id="second">
+                                                        <label for="cn">CN: <input id="cn" data-bind="value: cn" class="k-textbox" /></label>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="6">
+                                                <div id="wrapper">
+                                                    <div id="first">
+                                                        <label for="quantity">Quantity: <input id="quantity" name="quantity" data-bind="value: quantity" class="k-textbox" /></label>
+                                                    </div>
+                                                    <div id="second">
+                                                        <label for="partDescription">Description: <input id="partDescription" data-bind="value: partDescription" class="k-textbox" /></label>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div id="second-large-rfqentry">
+                                <div class="rfq-command-buttons">
+                                    <button data-bind="click: saveWork" class="k-button save-button">Save</button>
+                                    <button data-bind="click: addAnotherProduct" class="k-button save-button">Add Product</button>
+                                    <button data-bind="click: printRFQ" class="k-button action-button">Print</button>
+                                    <button data-bind="click: addPkgRFQ" class="k-button action-button">Add Pkg. RFQ</button>
+                                    <button data-bind="click: parseAddress" class="k-button action-button">Parse Address</button>
+                                    <button data-bind="click: startOver" class="k-button warning-button">Start Over</button>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr><td height="10px;" colspan="1"></td></tr> @*Empty line*@
+                @* Product Information Table for multiple products *@
+                <tr>
+                    <td>
+                        @(Html.Kendo().Grid<ProductInformation>()
                                 .Name("grid-product-information")
                                 .Columns(columns =>
                                 {
@@ -223,7 +193,7 @@
                                 })
                                 //.ToolBar(toolBar => toolBar.Template("<a class='k-button k-button-icontext' onclick='addAnotherProduct()' href='#'></span>Add Another Product</a>"))
                                 .Editable(editable => editable.Mode(GridEditMode.InLine))
-                                .Pageable()
+                                //.Pageable()
                                 .Sortable()
                                 .Filterable()
                                 .Scrollable(scr => scr.Height(500))
@@ -236,7 +206,7 @@
                                 .Events(events => events.Edit("onEdit"))
                                 .DataSource(dataSource => dataSource
                                     .Ajax()
-                                    .PageSize(100)
+                                    //.PageSize(100)
                                     .Events(events => events.Error("error_handler").RequestEnd("onRequestEnd"))
                                     .Model(model =>
                                     {
@@ -246,81 +216,11 @@
                                     .Update(update => update.Action("RfqProduct_Update", "Rfq"))
                                     .Destroy(update => update.Action("RfqProduct_Destroy", "Rfq"))
                                 )
-                    )
-                </td>
-                <td width="5%"></td>
-            </tr>
+                        )
+                    </td>
+                </tr>
 
-            <tr>
-                <td colspan="3" style="min-height:10px;">
-                    <div class="rfq-file-upload-container">
-                            <input type="hidden" name="inputRfqNo" id="inputRfqNo" value="" />
-                            <div class="rTable">
-                                <div class="rTableRow">
-                                    <div class="rTableCell">
-                                        <div id="solicitationDataEntryForm" class="rfq-file-upload-form">
-                                            <div>Attach File:</div>
-                                            <div class="rnzss-rfq-fileupload">
-                                                @(Html.Kendo().Upload()
-                                                            .Name("files")
-                                                            .HtmlAttributes(new { aria_label = "files" })
-                                                )
-                                            </div>
-                                            <div id="wrapper">
-                                                <div id="first-large"><button type="submit" class="button" onclick="validateForm()">Upload</button></div>
-                                                <div id="second">
-                                                    <div id="fileUplaodMessage" class="interactive-message"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="rTableCell">
-                                        <div class="rfq-uploaded-file-grid">
-                                            @(Html.Kendo().Grid<DocumentStore>()
-                                                    .Name("grid-uploaded-documents")
-                                                    .Columns(columns =>
-                                                    {
-                                                        columns.Bound(p => p.FileBaseName).Template(@<text></text>).ClientTemplate("<a href='" + Url.Action("DownloadDocument", "Rfq") + "?DocumentStoreId=#=DocumentStoreId#'>#=FileBaseName#</a>").Title("Document.").Width(100);
-                                                        columns.Command(command => { command.Destroy(); }).Width(75);
-                                                    })
-                                                    //.ToolBar(toolBar => toolBar.Template("<a class='k-button k-button-icontext' onclick='addAnotherProduct()' href='#'></span>Add Another Product</a>"))
-                                                    .Editable(editable => editable.Mode(GridEditMode.InLine))
-                                                    .Pageable()
-                                                    .Sortable()
-                                                    .Filterable()
-                                                    .Scrollable(scr => scr.Height(200))
-                                                    .Excel(excel => excel
-                                                        .AllPages(true)
-                                                        .FileName("Index Rates Export.xlsx")
-                                                        .Filterable(true)
-                                                        .ProxyURL(Url.Action("Excel_Export_Save", "Carry"))
-                                                    )
-                                                    .Events(events => events.Edit("onEdit"))
-                                                    .DataSource(dataSource => dataSource
-                                                        .Ajax()
-                                                        .PageSize(100)
-                                                        .Events(events => events.Error("error_handler").RequestEnd("onRequestEnd"))
-                                                        .Model(model =>
-                                                        {
-                                                            model.Id(p => p.DocumentStoreId);
-                                                        })
-                                                        .Read(read => read.Action("DocumentStoreRfq_Read", "Rfq").Data("getRFQNo"))
-                                                        .Destroy(update => update.Action("DocumentStore_Destroy", "Rfq"))
-                                                    )
-                                            )
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                        
-
-                    </div>
-
-                </td>
-            </tr>
-        </table>
+            </table>
         </form>
 
 
@@ -411,7 +311,7 @@
                 success: function (result) {
                     // here in result you will get your data
 
-                    document.getElementById("fileUplaodMessage").innerHTML = result.message;
+                    //document.getElementById("fileUplaodMessage").innerHTML = result.message;
                     //document.getElementById("solicitationForm").reset();
                     reloadUploadedDocumentsGrid();
                     $(".k-widget.k-upload").find("ul").remove();
@@ -633,7 +533,7 @@
     }
 
     function findRfq(e) {
-        
+
         document.getElementById("rfqNo").value = document.getElementById("lookUpRfqNo").value;
 
         myData = getInputData();
@@ -649,7 +549,7 @@
                     bindViewModel(response.RFQ);
                 }
                 else {
-                    
+
                 }
 
             },
@@ -733,10 +633,19 @@
                 //this.set("confirmed", false);
                 //this.set("agreed", false);
                 //this.set("gender", "Male");
-                this.set("companyName", "Some company name");
-                this.set("attention", "Doe");
-                this.set("rfqNo", "rfq123");
-                this.set("companyAddress", "Some company address");
+                this.set("rfqNo", "");
+                this.set("solicitationNumber", "");
+                this.set("dueDate", "");
+                this.set("companyName", "");
+                this.set("attention", "");
+                this.set("comment", "");
+                this.set("phoneNo", "");
+                this.set("faxNo", "");
+                this.set("email", "");
+                this.set("partNumber", "");
+                this.set("partName", "");
+                this.set("quantity", "");
+                this.set("partDescription", "");
             },
             addAnotherProduct: addProduct,
             printRFQ: printRFQ,
@@ -826,7 +735,7 @@
                                 document.getElementById("faxNo").value = response.message.FaxNo;
                                 document.getElementById("email").value = response.message.Email;
                             }
-                               
+
                         }
                         else {
                             alert(response.message);
@@ -880,7 +789,7 @@
         document.getElementById("pageMessage").innerHTML = "Enter data and click save to add a new RFQ or type RFQ No. above and click find to edit an existing RFQ";
         reloadUploadedDocumentsGrid();
 
-        
+
 
     });
 
