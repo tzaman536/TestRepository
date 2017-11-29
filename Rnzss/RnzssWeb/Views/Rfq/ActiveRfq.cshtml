@@ -3,6 +3,7 @@
 }
 @using RnzssWeb.Models
 <div class="page-container">
+    <input type="hidden" id="inputRFQNo" value="unknown" />
     <div id="rfqentryform" class="admin-page-container">
         <div id="searchgrid">
             <div id="wrapper">
@@ -53,7 +54,7 @@
                                     .ProxyURL(Url.Action("Excel_Export_Save", "Carry"))
                                 )
                                 .ClientDetailTemplateId("template")
-                                .Events(events => events.Edit("onEdit").DataBound("dataBound"))
+                                .Events(events => events.Edit("onEdit").DataBound("dataBound").Change("onRfqRowSelected"))
                                 .DataSource(dataSource => dataSource
                                     .Ajax()
                                     .PageSize(1000)
@@ -145,11 +146,25 @@
                                 columns.Bound(o => o.EventDescription).Width(110);
                                 columns.Bound(o => o.UpdatedBy).Title("Updated By").Width(56);
                                 columns.Bound(o => o.UpdateDate).Width(56).Format("{0:MM/dd/yyyy hh:mm:ss tt}");
+                                //columns.Command(command => { command.Edit(); command.Destroy(); }).Width(100);
                             })
+                            //.ToolBar(toolbar => { toolbar.Create(); })
+                            //.Editable(editable => editable.Mode(GridEditMode.InLine))
+
                             .DataSource(dataSource => dataSource
                                 .Ajax()
                                 //.PageSize(5)
+                                .Model(model =>
+                                {
+                                    model.Id(p => p.RequestForQuoteEventId);
+                                    model.Field(p => p.RFQNo).Editable(false);
+                                    model.Field(p => p.UpdateDate).Editable(false);
+                                    model.Field(p => p.UpdatedBy).Editable(false);
+                                })
                                 .Read(read => read.Action("RfqEvent_Read", "Rfq", new { rfqNo = "#=RFQNo#" }))
+                            //.Create(read => read.Action("RfqEvent_Create", "Rfq").Data("getParameters"))
+                            //.Update(update => update.Action("RfqEvent_Update", "Rfq"))
+                            //.Destroy(update => update.Action("RfqEvent_Destroy", "Rfq"))
                             )
                             //.Pageable()
                             .Sortable()
@@ -164,6 +179,24 @@
 </div>
 
 <script>
+    function getParameters() {
+        return {
+            rfqNo: document.getElementById("inputRFQNo").value
+        }
+    }
+
+    function onRfqRowSelected(e) {
+        var row = this.select();
+        if (row.length > 0) {
+            selectedRow = e.sender.select();
+            var item = e.sender.dataItem(selectedRow);
+            document.getElementById("inputRFQNo").value = item.RfqNo;
+
+        }
+
+
+    }
+
     function onRowSelected(e) {
         var row = this.select();
         if (row.length > 0) {
@@ -174,6 +207,7 @@
             var link = '@Url.Action("DownloadDocument", "Rfq", new { DocumentStoreId = "InputDocumentStoreId" })';
             link = link.replace("InputDocumentStoreId", item.DocumentStoreId);
             window.location = link;
+            
         }
     }
 
@@ -183,7 +217,6 @@
     }
 
     function onEdit() {
-
     }
     function error_handler() {
 

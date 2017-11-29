@@ -347,6 +347,18 @@ namespace RnzssWeb.Models
 
             p.UpdatedBy = System.Web.HttpContext.Current.User.Identity.Name;
 
+            if(p.RequestForQuoteId ==0)
+            {
+                if (string.IsNullOrEmpty(p.RFQNo))
+                    return false;
+
+                var rfq = RequestForQuote.GetRfq(p.RFQNo);
+                p.RequestForQuoteId = rfq.RequestForQuoteId;
+                if (string.IsNullOrEmpty(p.RfqStatus))
+                    p.RfqStatus = rfq.RfqStatus;
+            }
+
+
 
 
             using (IDbConnection connection = CommonMethods.OpenConnection())
