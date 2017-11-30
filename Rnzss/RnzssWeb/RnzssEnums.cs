@@ -23,4 +23,12 @@ namespace RnzssWeb
      , Y
     }
 
+    public enum SolicitaionStatusList
+    {
+       Open
+     ,Awarded
+     ,Synch
+    }
+    
+
 }

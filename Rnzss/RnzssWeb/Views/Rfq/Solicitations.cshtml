@@ -75,7 +75,7 @@
                                     columns.Bound(p => p.SolicitationDescription).Width(100);
                                     columns.Bound(p => p.Document).Template(@<text></text>).ClientTemplate("<a href='" + Url.Action("DownloadSolicitation", "Rfq") + "?solicitationNo=#=SolicitationNo#'>#=Document#</a>").Title("Document.").Width(100);
                                     columns.Bound(p => p.SolicitationNo).Template(@<text></text>).ClientTemplate("<a href='" + Url.Action("RfqEntry", "Rfq") + "?SolicitationNo=#=SolicitationNo#'>Add RFQ</a>").Title("Add Rfq").Width(75);
-                                    columns.Bound(p => p.SolicitaionStatus).Width(75);
+                                    columns.ForeignKey(p => p.SolicitaionStatus, (System.Collections.IEnumerable)ViewData["SolicitationStatus"], "Name", "Name").Width(100).Title("Solicitation</br>Status");
                                     columns.Bound(p => p.UpdatedBy).Width(150);
                                     columns.Bound(p => p.AwardQuantity).Width(75);
                                     columns.Bound(p => p.AwardAmount).Width(75);
@@ -202,8 +202,8 @@
                 alert(e.response.myMessage)
             }
             else {
-                $('#grid-rfq').data('kendoGrid').dataSource.read();
-                $('#grid-rfq').data('kendoGrid').refresh();
+                $('#grid-solicitation').data('kendoGrid').dataSource.read();
+                $('#grid-solicitation').data('kendoGrid').refresh();
             }
 
         }

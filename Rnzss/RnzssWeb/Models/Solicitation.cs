@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Net;
+using System.Text.RegularExpressions;
 
 namespace RnzssWeb.Models
 {
@@ -78,6 +80,7 @@ namespace RnzssWeb.Models
 	                                                  ,[AwardQuantity] = @AwardQuantity
 	                                                  ,[AwardAmount] = @AwardAmount
 	                                                  ,[DueDate] = @DueDate
+                                                      ,[SolicitaionStatus] = @SolicitaionStatus
                                                       ,[UpdatedBy] = @UpdatedBy
                                                       ,[UpdateDate] = getutcdate()
                                                  WHERE SolicitationId = @SolicitationId
@@ -101,6 +104,12 @@ namespace RnzssWeb.Models
 
             p.UpdatedBy = System.Web.HttpContext.Current.User.Identity.Name;
 
+            if(string.IsNullOrEmpty(p.SolicitaionStatus))
+            {
+                p.SolicitaionStatus = SolicitaionStatusList.Open.ToString();
+            }
+
+
             var sol = Solicitation.GetSolicitation(p.SolicitationNo);
             if (sol != null)
             {
@@ -123,6 +132,7 @@ namespace RnzssWeb.Models
                                                                ,[AwardQuantity]
 	                                                           ,[AwardAmount]
 	                                                           ,[DueDate]
+                                                               ,SolicitaionStatus
                                                                ,[UpdatedBy])
                                                          VALUES
                                                                (@SolicitationNo
@@ -130,6 +140,7 @@ namespace RnzssWeb.Models
                                                                ,@AwardQuantity
                                                                ,@AwardAmount
                                                                ,@DueDate
+                                                               ,@SolicitaionStatus
                                                                ,@UpdatedBy)
                                                         ", p, commandTimeout: 0);
                 }
@@ -194,6 +205,39 @@ namespace RnzssWeb.Models
             }
 
             return null;
+
+        }
+
+
+        private static bool AcceptAllCertifications(object sender, System.Security.Cryptography.X509Certificates.X509Certificate certification, System.Security.Cryptography.X509Certificates.X509Chain chain, System.Net.Security.SslPolicyErrors sslPolicyErrors)
+        {
+            return true;
+        }
+
+        public static void IgnoreBadCertificates()
+        {
+            System.Net.ServicePointManager.ServerCertificateValidationCallback = new System.Net.Security.RemoteCertificateValidationCallback(AcceptAllCertifications);
+        }
+        public static void SynchSolicitation()
+        {
+
+            using (IDbConnection connection = CommonMethods.OpenConnection())
+            {
+                try
+                {
+                    var result = connection.Execute(@"
+                                                UPDATE [rnz].[Solicitations]
+                                                    SET [SolicitaionStatus] = @SolicitaionStatusSynch
+                                                    WHERE SolicitaionStatus = @SolicitaionStatusOpen
+
+                                                        ", new { SolicitaionStatusSynch = SolicitaionStatusList.Synch.ToString(), SolicitaionStatusOpen = SolicitaionStatusList.Open.ToString() }, commandTimeout: 0);
+                }
+                catch (Exception ex)
+                {
+                    logger.Fatal(ex);
+                }
+
+            }
 
         }
     }

@@ -196,6 +196,8 @@ namespace RnzssWeb.Controllers
             }
 
             ViewData["RfqStatus"] = CommonMethods.GetRfqStatusList();
+            ViewData["SolicitationStatus"] = CommonMethods.GetSolicitationStatusList();
+
 
             return View();
         }
@@ -1000,6 +1002,7 @@ namespace RnzssWeb.Controllers
             {
                 return RedirectToAction("Login", "Account");
             }
+            ViewData["SolicitationStatus"] = CommonMethods.GetSolicitationStatusList();
 
             return View();
         }
@@ -1535,6 +1538,7 @@ namespace RnzssWeb.Controllers
                 {
                     case "SYNCH_SOLICITATION_STATUS":
                         um.Message = "Runing task to synchronize solicitation status. Please review status in solicitation page.";
+                        Solicitation.SynchSolicitation();
                         break;
                     default:
                         um.Message = "Please choose a valid task to run.";

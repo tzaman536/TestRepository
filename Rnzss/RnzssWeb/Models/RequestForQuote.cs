@@ -31,6 +31,7 @@ namespace RnzssWeb.Models
         public DateTime UpdateDate { get; set; }
         public string RfqEvent { get; set; }
         public string PONo { get; set; }
+        public string SolicitaionStatus { get; set; }
 
 
         public void Reset()
@@ -191,9 +192,11 @@ namespace RnzssWeb.Models
             string sql = string.Format(@" select 
                                 rfq.*     
                                 ,case when e.RFQNo  is null then 'Start' else 'View Log' end as RfqEvent 
+                                ,coalesce(s.SolicitaionStatus,'Synch') as SolicitaionStatus
                             from [rnz].[RequestForQuote] rfq 
                             left join ( select distinct RFQNo from [rnz].RequestForQuoteEvents ) e 
                                     on rfq.RFQNo = e.RFQNo
+                            left join (select distinct solicitationno as SolicitationNumber,SolicitaionStatus from [rnz].Solicitations t) s on rfq.SolicitationNumber = s.SolicitationNumber
                             where RfqStatus not in ('{0}')
                             order by rfq.[UpdateDate] desc", closedRfqStatusCode);
 
@@ -202,9 +205,11 @@ namespace RnzssWeb.Models
                 sql = string.Format(@" select 
                                 rfq.*     
                                 ,case when e.RFQNo  is null then 'Start' else 'View Log' end as RfqEvent 
+                                ,coalesce(s.SolicitaionStatus,'Synch') as SolicitaionStatus
                             from [rnz].[RequestForQuote] rfq 
                             left join ( select distinct RFQNo from [rnz].RequestForQuoteEvents ) e 
                                     on rfq.RFQNo = e.RFQNo
+                            left join (select distinct solicitationno as SolicitationNumber,SolicitaionStatus from [rnz].Solicitations t) s on rfq.SolicitationNumber = s.SolicitationNumber
                             order by rfq.[UpdateDate] desc");
             }
 
@@ -388,6 +393,10 @@ namespace RnzssWeb.Models
                 }
 
             }
+
+            var sol = Solicitation.GetSolicitation(p.SolicitationNumber);
+            sol.SolicitaionStatus = p.SolicitaionStatus;
+            Solicitation.Update(sol);
 
             return true;
 
