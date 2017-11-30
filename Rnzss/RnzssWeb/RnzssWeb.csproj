@@ -708,6 +708,7 @@
     <Content Include="Content\kendo\kendo.uniform.mobile.min.css.map" />
     <None Include="Properties\PublishProfiles\SimplexInvoiceWebDeploy.pubxml" />
     <Content Include="RfqFiles\RFQ_Template.xlsx" />
+    <Content Include="RfqFiles\PO_Template.xlsx" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

@@ -164,6 +164,7 @@
                                     <button data-bind="click: saveWork" class="k-button save-button">Save</button>
                                     <button data-bind="click: addAnotherProduct" class="k-button save-button">Add Product</button>
                                     <button data-bind="click: printRFQ" class="k-button action-button">Print</button>
+                                    <button data-bind="click: printPO" class="k-button action-button">Print PO</button>
                                     <button data-bind="click: addPkgRFQ" class="k-button action-button">Add Pkg. RFQ</button>
                                     <button data-bind="click: parseAddress" class="k-button action-button">Parse Address</button>
                                     <button data-bind="click: startOver" class="k-button warning-button">Start Over</button>
@@ -254,6 +255,37 @@
 
 
 <script>
+
+    function printPO(e)
+    {
+        e.preventDefault();
+
+        myData = getInputData();
+
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("PrintPO", "Rfq")',
+            data: JSON.stringify(myData),
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            success: function (response, textStatus, jqXHR) {
+
+                if (response.success) {
+                    //alert(response.fileName);
+                    window.location = '/Rfq/Download?file=' + response.fileName;
+                }
+                else
+                {
+                    alert(response.message);
+                }
+
+            },
+            error: function (response, textStatus, jqXHR) {
+                alert('Failed to print RFQ');
+            }
+        });
+    }
+
     function addPkgRFQ()
     {
         //var parms = {
@@ -653,6 +685,7 @@
             },
             addAnotherProduct: addProduct,
             printRFQ: printRFQ,
+            printPO: printPO,
             findRfq: findRfq,
             parseAddress: parseAddress,
             addPkgRFQ: addPkgRFQ
