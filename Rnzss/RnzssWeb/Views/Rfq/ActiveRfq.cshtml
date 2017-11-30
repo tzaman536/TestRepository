@@ -37,7 +37,7 @@
                                     columns.Bound(p => p.UpdateDate).Width(100).Format("{0:MM/dd/yyyy hh:mm:ss tt}");
                                     columns.Command(command => { command.Edit(); command.Destroy(); }).Width(100);
                                 })
-                                //.ToolBar(toolBar => toolBar.Template("<a class='k-button k-button-icontext' onclick='addAnotherProduct()' href='#'></span>Add Another Product</a>"))
+                                .ToolBar(toolbar => { toolbar.Excel(); })
                                 .Editable(editable => editable.Mode(GridEditMode.InLine))
                                 .Pageable()
                                 .Sortable()
@@ -45,7 +45,7 @@
                                 .Scrollable(scr => scr.Height(800))
                                 .Excel(excel => excel
                                     .AllPages(true)
-                                    .FileName("Index Rates Export.xlsx")
+                                    .FileName("ActiveRFQ.xlsx")
                                     .Filterable(true)
                                     .ProxyURL(Url.Action("Excel_Export_Save", "Carry"))
                                 )
