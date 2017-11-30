@@ -8,10 +8,10 @@
         <div id="searchgrid">
             <div id="wrapper">
                 <div id="first">
-                    <input type="search" id="searchbox" style="width: 100%;" value="Company name, Solicitation or RFQ No." onfocus="if (this.value == 'Company name, Solicitation or RFQ No.') this.value = ''"  />
+                    <input type="search" id="searchbox" style="width: 100%;" value="Company name, Solicitation or RFQ No." onfocus="if (this.value == 'Company name, Solicitation or RFQ No.') this.value = ''" />
                 </div>
                 <div id="second">
-                    <input type="checkbox" id="includeClosedRFQ" onchange="includeClosedRFQChanged()"/><label for="includeClosedRFQ">Include Closed RFQ</label>
+                    <input type="checkbox" id="includeClosedRFQ" onchange="includeClosedRFQChanged()" /><label for="includeClosedRFQ">Include Closed RFQ</label>
 
                 </div>
             </div>
@@ -25,16 +25,12 @@
                                 .Name("grid-rfq")
                                 .Columns(columns =>
                                 {
-                                    columns.Bound(p => p.RFQNo).Template(@<text></text>).ClientTemplate("<a href='" + Url.Action("RfqEntry", "Rfq") + "?RFQNo=#=RFQNo#'>#=RFQNo#</a>").Title("RFQ No.").Width(75);
+                                    columns.Bound(p => p.RFQNo).Template(@<text></text>).ClientTemplate("<a href='" + Url.Action("RfqEntry", "Rfq") + "?RFQNo=#=RFQNo#'>#=RFQNo#</a>").Title("RFQNo.").Width(75);
                                 columns.Bound(p => p.SolicitationNumber).Width(75);
                                 columns.Bound(p => p.DueDate).Width(75).Format("{0:MM/dd/yyyy}");
                                 columns.ForeignKey(p => p.RfqStatus, (System.Collections.IEnumerable)ViewData["RfqStatus"], "Name", "Name").Width(100);
                                 columns.Bound(p => p.RfqEvent).Template(@<text></text>).ClientTemplate("<a href='" + Url.Action("RfqEvent", "Rfq") + "?RFQNo=#=RFQNo#'>#=RfqEvent#</a>").Title("Rfq Log").Width(50);
                                     columns.Bound(p => p.CompanyName).Width(75);
-                                    columns.Bound(p => p.Attention).Width(75);
-                                    //columns.Bound(p => p.CompanyAddress).Width(150);
-                                    //columns.Bound(p => p.PhoneNo).Width(75);
-                                    //columns.Bound(p => p.FaxNo).Width(75);
                                     columns.Bound(p => p.Email).Width(75);
                                     columns.Bound(p => p.Comment).Width(75);
                                     columns.Bound(p => p.UpdatedBy).Width(75);
@@ -123,14 +119,14 @@
                                             .Mode(GridSelectionMode.Single))
                                 .DataSource(dataSource => dataSource
                                 .Ajax()
-                                //.PageSize(5)
+                                .PageSize(15)
                                 .Model(model =>
                                 {
                                     model.Id(p => p.DocumentStoreId);
                                 })
                                 .Read(read => read.Action("DocumentStoreRfq_Read", "Rfq", new { rfqNo = "#=RFQNo#" }))
                             )
-                            //.Pageable()
+                            .Pageable()
                             .Sortable()
                             .ToClientTemplate())
                     </text>);
@@ -146,14 +142,14 @@
                                 columns.Bound(o => o.EventDescription).Width(110);
                                 columns.Bound(o => o.UpdatedBy).Title("Updated By").Width(56);
                                 columns.Bound(o => o.UpdateDate).Width(56).Format("{0:MM/dd/yyyy hh:mm:ss tt}");
-                                //columns.Command(command => { command.Edit(); command.Destroy(); }).Width(100);
+                                columns.Command(command => { command.Edit(); command.Destroy(); }).Width(100);
                             })
-                            //.ToolBar(toolbar => { toolbar.Create(); })
-                            //.Editable(editable => editable.Mode(GridEditMode.InLine))
+                            .ToolBar(toolbar => { toolbar.Create(); })
+                            .Editable(editable => editable.Mode(GridEditMode.InLine))
 
                             .DataSource(dataSource => dataSource
                                 .Ajax()
-                                //.PageSize(5)
+                                .PageSize(15)
                                 .Model(model =>
                                 {
                                     model.Id(p => p.RequestForQuoteEventId);
@@ -161,12 +157,12 @@
                                     model.Field(p => p.UpdateDate).Editable(false);
                                     model.Field(p => p.UpdatedBy).Editable(false);
                                 })
-                                .Read(read => read.Action("RfqEvent_Read", "Rfq", new { rfqNo = "#=RFQNo#" }))
-                            //.Create(read => read.Action("RfqEvent_Create", "Rfq").Data("getParameters"))
-                            //.Update(update => update.Action("RfqEvent_Update", "Rfq"))
-                            //.Destroy(update => update.Action("RfqEvent_Destroy", "Rfq"))
+                             .Read(read => read.Action("RfqEvent_Read", "Rfq", new { rfqNo = "#=RFQNo#" }))
+                            .Create(read => read.Action("RfqEvent_Create", "Rfq").Data("getParameters"))
+                            .Update(update => update.Action("RfqEvent_Update", "Rfq"))
+                            .Destroy(update => update.Action("RfqEvent_Destroy", "Rfq"))
                             )
-                            //.Pageable()
+                            .Pageable()
                             .Sortable()
                             .ToClientTemplate())
                     </text>);
@@ -207,12 +203,12 @@
             var link = '@Url.Action("DownloadDocument", "Rfq", new { DocumentStoreId = "InputDocumentStoreId" })';
             link = link.replace("InputDocumentStoreId", item.DocumentStoreId);
             window.location = link;
-            
+
         }
     }
 
     function includeClosedRFQChanged() {
-        
+
         reloadProductInformationGrid();
     }
 
@@ -279,11 +275,20 @@
         });
     }
 
+    function grid_detailExpand(e) {
+        console.log(e.masterRow, e.detailRow);
+        var grid = $("#grid-rfq").data("kendoGrid");
+        var model = grid.dataItem(e.masterRow);
+        //alert(model.RFQNo);
+        document.getElementById("inputRFQNo").value = model.RFQNo;
+    }
+
     $(document).ready(function () {
-
-
         initSearch();
         //reloadProductInformationGrid();
+        var grid = $("#grid-rfq").data("kendoGrid");
+        grid.bind("detailExpand", grid_detailExpand);
+
     });
 </script>
 
