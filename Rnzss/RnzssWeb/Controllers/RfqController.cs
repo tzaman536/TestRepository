@@ -1285,6 +1285,8 @@ namespace RnzssWeb.Controllers
 
 
                 RequestForQuote dbRfq = RequestForQuote.GetRfq(rfq.RFQNo);
+                RequestForQuote.UpdatePONo(ref dbRfq);
+
                 IEnumerable<ProductInformation> dbProducts = ProductInformation.GetAll(rfq.RFQNo);
 
                 using (SpreadsheetDocument spreadSheet = SpreadsheetDocument.Open(destinationFile, true))
@@ -1295,13 +1297,25 @@ namespace RnzssWeb.Controllers
                     if (worksheetPart != null)
                     {
                         Cell cell = null;
+                        #region Update PO Number
+                        cell = GetCell(worksheetPart.Worksheet,
+                                                 "F", 9);
+
+
+
+                        cell.CellValue = new CellValue(string.Format("PO No. {0}", dbRfq.PONo).Replace("\n", Environment.NewLine).Replace("#", "   "));
+                        cell.DataType =
+                            new EnumValue<CellValues>(CellValues.String);
+
+                        #endregion
+
                         #region Our company info
                         cell = GetCell(worksheetPart.Worksheet,
                                                  "F", 11);
 
 
 
-                        cell.CellValue = new CellValue(string.Format("RFQ No. {0} \n # Tanweer Zaman \n # R & Z Supply And Services LLC. \n # 14 Fountain Ln \n # Jericho NY 11753", rfq.RFQNo).Replace("\n", Environment.NewLine).Replace("#", "   "));
+                        cell.CellValue = new CellValue(string.Format("# Tanweer Zaman \n # R & Z Supply And Services LLC. \n # 14 Fountain Ln \n # Jericho NY 11753").Replace("\n", Environment.NewLine).Replace("#", "   "));
                         cell.DataType =
                             new EnumValue<CellValues>(CellValues.String);
 
@@ -1357,7 +1371,7 @@ namespace RnzssWeb.Controllers
 
 
                         // Do not indent or add space.It will add space during print
-                        cell.CellValue = new CellValue(string.Format("# Tanweer Zaman \n # R & Z Supply And Services LLC. \n # 14 Fountain Ln \n # Jericho NY 11753", rfq.RFQNo).Replace("\n", Environment.NewLine).Replace("#", "   "));
+                        cell.CellValue = new CellValue(string.Format("# Tanweer Zaman \n # R & Z Supply And Services LLC. \n # 14 Fountain Ln \n # Jericho NY 11753", dbRfq.RFQNo).Replace("\n", Environment.NewLine).Replace("#", "   "));
                         cell.DataType =
                             new EnumValue<CellValues>(CellValues.String);
 

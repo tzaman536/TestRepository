@@ -27,13 +27,12 @@ namespace RnzssWeb.Models
         public string RfqStatus { get; set; }
         public ProductInformation Product { get; set; }
         public int VendorId { get; set; }
-
         public string UpdatedBy { get; set; }
-
         public DateTime UpdateDate { get; set; }
-
         public string RfqEvent { get; set; }
-        
+        public string PONo { get; set; }
+
+
         public void Reset()
         {
             RequestForQuoteId = 0;
@@ -377,6 +376,55 @@ namespace RnzssWeb.Models
                                                       ,DueDate = @DueDate
                                                       ,SolicitationNumber = @SolicitationNumber
                                                       ,RfqStatus = @RfqStatus
+                                                      ,[UpdatedBy] = @UpdatedBy
+                                                      ,[UpdateDate] = getutcdate()
+                                                 WHERE RequestForQuoteId = @RequestForQuoteId
+                                                        ", p, commandTimeout: 0);
+                }
+                catch (Exception ex)
+                {
+                    logger.Fatal(ex);
+                    return false;
+                }
+
+            }
+
+            return true;
+
+        }
+
+        public static bool UpdatePONo(ref RequestForQuote p)
+        {
+
+            p.UpdatedBy = System.Web.HttpContext.Current.User.Identity.Name;
+
+            if (string.IsNullOrEmpty(p.RFQNo))
+                return false;
+
+            if (p.RequestForQuoteId == 0)
+            {
+                if (string.IsNullOrEmpty(p.RFQNo))
+                    return false;
+
+                var rfq = RequestForQuote.GetRfq(p.RFQNo);
+                p.RequestForQuoteId = rfq.RequestForQuoteId;
+            }
+
+            if (!string.IsNullOrEmpty(p.PONo))
+                return true;
+
+
+            p.PONo = string.Format("PO{0}", p.RFQNo);
+
+
+
+            using (IDbConnection connection = CommonMethods.OpenConnection())
+            {
+                try
+                {
+                    var result = connection.Execute(@"
+                                                UPDATE [rnz].[RequestForQuote]
+                                                   SET PONo = @PONo
                                                       ,[UpdatedBy] = @UpdatedBy
                                                       ,[UpdateDate] = getutcdate()
                                                  WHERE RequestForQuoteId = @RequestForQuoteId

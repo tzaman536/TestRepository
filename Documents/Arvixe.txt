@@ -32,6 +32,10 @@ Update name server to ns1.tigerlily.arvixe.com and ns21.tigerlily.arvixe.com by 
 To Create a DB
 Log into control panel and create a DB
 
+How to backup database
+https://blog.arvixe.com/how-to-backup-your-database-using-websitepanel/
+
+
 
 To unlock your registrar lock and proceed with making changes to your domain:
 
