@@ -83,6 +83,7 @@
                                     columns.Bound(p => p.UpdateDate).Width(75).Format("{0:MM/dd/yyyy hh:mm:ss tt}");
                                     columns.Command(command => { command.Edit(); command.Destroy(); }).Width(100);
                                 })
+                                .ToolBar(toolbar => { toolbar.Excel(); })
                                 .Selectable(selectable => selectable
                                 .Type(GridSelectionType.Row))
                                 //.ToolBar(toolBar => toolBar.Template("<a class='k-button k-button-icontext' onclick='addAnotherProduct()' href='#'></span>Add Another Product</a>"))
