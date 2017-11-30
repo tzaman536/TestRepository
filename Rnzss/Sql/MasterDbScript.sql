@@ -48,6 +48,7 @@ CREATE TABLE [rnz].[RequestForQuote](
 	DueDate date null,
 	SolicitationNumber nvarchar(200) null,
 	RfqStatus nvarchar(50) NOT NULL,
+	PONo nvarchar(50) null,
 	[UpdatedBy] [nvarchar](100) NOT NULL,
 	[UpdateDate] [datetime] NOT NULL
 ) ON [PRIMARY]
