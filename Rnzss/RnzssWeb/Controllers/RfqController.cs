@@ -136,7 +136,7 @@ namespace RnzssWeb.Controllers
 
         #region RFQ
         // GET: Rfq
-        public ActionResult RfqEntry(string RFQNo = null, string SolicitationNo= null)
+        public ActionResult RfqEntry(string RFQNo = null, string SolicitationNo = null)
         {
             if (!CommonMethods.IsDebugMode && !User.Identity.IsAuthenticated)
             {
@@ -160,14 +160,14 @@ namespace RnzssWeb.Controllers
                 ViewData["RFQNo"] = "UNKNOWN";
             }
 
-            if(!string.IsNullOrEmpty(SolicitationNo))
+            if (!string.IsNullOrEmpty(SolicitationNo))
             {
                 Solicitation s = Solicitation.GetSolicitation(SolicitationNo);
-                if(s != null)
+                if (s != null)
                 {
                     ViewData["Solicitation"] = s;
                 }
-                
+
             }
 
             ViewData["DeliverInUnit"] = CommonMethods.GetDeliveryInUnitList();
@@ -282,7 +282,7 @@ namespace RnzssWeb.Controllers
 
         public ActionResult FindRfq(string RFQNo)
         {
-            
+
             if (!string.IsNullOrEmpty(RFQNo) && RFQNo.Equals("UNKNOWN"))
             {
                 RequestForQuote r = new RequestForQuote();
@@ -759,7 +759,7 @@ namespace RnzssWeb.Controllers
             RequestForQuote rfq = new RequestForQuote();
             Parse(ref rfq, inputAddress);
 
-            
+
 
             // Do my stuff here with my parameter
             //return Json(new { success = true, RFQ = rfq, JsonRequestBehavior.AllowGet });
@@ -991,7 +991,7 @@ namespace RnzssWeb.Controllers
 
 
         #endregion
-        
+
         #region Solicitations
 
         public ActionResult Solicitations()
@@ -1240,6 +1240,8 @@ namespace RnzssWeb.Controllers
             };
             return Json(result);
         }
+
+
 
         #endregion
 
@@ -1509,5 +1511,48 @@ namespace RnzssWeb.Controllers
         }
         #endregion
 
+
+        #region Dashboard
+
+        public ActionResult Dashboard()
+        {
+            if (!CommonMethods.IsDebugMode && !User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+
+            
+            return View();
+        }
+
+        public ActionResult ExecuteTask([DataSourceRequest]DataSourceRequest request, string taskName)
+        {
+            UserMessage um = new UserMessage();
+            try
+            {
+                switch(taskName)
+                {
+                    case "SYNCH_SOLICITATION_STATUS":
+                        um.Message = "Runing task to synchronize solicitation status. Please review status in solicitation page.";
+                        break;
+                    default:
+                        um.Message = "Please choose a valid task to run.";
+                        break;
+                }
+                    
+
+
+                return Json(new { success = true, message = um }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                logger.Fatal(ex);
+                return Json(new { success = true, message = um }, JsonRequestBehavior.AllowGet);
+            }
+
+        }
+
+        #endregion
     }
 }

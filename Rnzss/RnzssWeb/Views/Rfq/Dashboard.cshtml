@@ -1,0 +1,51 @@
+﻿@using RnzssWeb.Models
+@{
+    ViewBag.Title = "Dashboard";
+}
+<div class="page-container">
+    <div id="addSolicitationForm" class="admin-page-container">
+        <div id="pageMessage" class="interactive-message"> </div>
+
+        <div class="rfq-command-buttons">
+            <button onclick="ExecuteTask('SYNCH_SOLICITATION_STATUS')" class="k-button action-button">Synch Solicitation Status</button>
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    function ExecuteTask(taskName)
+    {
+        var myData =  {
+
+                taskName: taskName
+        }
+
+
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("ExecuteTask", "Rfq")',
+            data: JSON.stringify(myData),
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            success: function (response, textStatus, jqXHR) {
+
+                if (response.success) {
+                    document.getElementById("pageMessage").innerHTML = response.message.Message;
+                }
+                else
+                {
+                    alert(response.message);
+                }
+
+            },
+            error: function (response, textStatus, jqXHR) {
+                alert('Failed to print RFQ');
+            }
+        });
+    }
+</script>
+

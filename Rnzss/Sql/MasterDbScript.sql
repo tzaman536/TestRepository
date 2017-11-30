@@ -143,6 +143,7 @@ CREATE TABLE [rnz].[Vendors](
 	[PhoneNo] [nvarchar](100) NULL,
 	[FaxNo] [nvarchar](100) NULL,
 	[Email] [nvarchar](100) NULL,
+	SolicitaionStatus nvarchar(50) null,
 	[UpdatedBy] [nvarchar](100) NOT NULL,
 	[UpdateDate] [datetime] NOT NULL
 ) ON [PRIMARY]

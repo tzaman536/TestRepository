@@ -23,6 +23,7 @@ namespace RnzssWeb.Models
 
 
         public string Document { get; set; }
+        public string SolicitaionStatus { get; set; }
         public string UpdatedBy { get; set; }
         public DateTime UpdateDate { get; set; }
 
