@@ -28,6 +28,7 @@ namespace RnzssWeb
        Open
      ,Awarded
      ,Synch
+     ,Cancelled
     }
     
 

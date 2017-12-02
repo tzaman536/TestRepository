@@ -179,7 +179,7 @@
 
     function formatSolicitationStatus(status) {
 
-        if (status === 'Awarded') {
+        if (status === 'Awarded' || status === 'Cancelled') {
             return '<div style="background-color: darkred; color:white; text-align: center; ">' + status + '</div>';
         }
         else if (status === 'Synch'){
