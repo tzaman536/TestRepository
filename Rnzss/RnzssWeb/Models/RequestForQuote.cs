@@ -192,7 +192,7 @@ namespace RnzssWeb.Models
             string sql = string.Format(@" select 
                                 rfq.*     
                                 ,case when e.RFQNo  is null then 'Start' else 'View Log' end as RfqEvent 
-                                ,coalesce(s.SolicitaionStatus,'Synch') as SolicitaionStatus
+                                ,coalesce(s.SolicitaionStatus,rfq.SolicitaionStatus,'Synch') as SolicitaionStatus
                             from [rnz].[RequestForQuote] rfq 
                             left join ( select distinct RFQNo from [rnz].RequestForQuoteEvents ) e 
                                     on rfq.RFQNo = e.RFQNo
@@ -205,7 +205,7 @@ namespace RnzssWeb.Models
                 sql = string.Format(@" select 
                                 rfq.*     
                                 ,case when e.RFQNo  is null then 'Start' else 'View Log' end as RfqEvent 
-                                ,coalesce(s.SolicitaionStatus,'Synch') as SolicitaionStatus
+                                ,coalesce(s.SolicitaionStatus,rfq.SolicitaionStatus,'Synch') as SolicitaionStatus
                             from [rnz].[RequestForQuote] rfq 
                             left join ( select distinct RFQNo from [rnz].RequestForQuoteEvents ) e 
                                     on rfq.RFQNo = e.RFQNo
@@ -351,7 +351,7 @@ namespace RnzssWeb.Models
 
             p.UpdatedBy = System.Web.HttpContext.Current.User.Identity.Name;
 
-            if(p.RequestForQuoteId ==0)
+            if(p.RequestForQuoteId ==0 )
             {
                 if (string.IsNullOrEmpty(p.RFQNo))
                     return false;
@@ -361,6 +361,8 @@ namespace RnzssWeb.Models
                 if (string.IsNullOrEmpty(p.RfqStatus))
                     p.RfqStatus = rfq.RfqStatus;
             }
+
+           
 
 
 
@@ -383,6 +385,7 @@ namespace RnzssWeb.Models
                                                       ,RfqStatus = @RfqStatus
                                                       ,[UpdatedBy] = @UpdatedBy
                                                       ,[UpdateDate] = getutcdate()
+                                                      ,SolicitaionStatus = @SolicitaionStatus
                                                  WHERE RequestForQuoteId = @RequestForQuoteId
                                                         ", p, commandTimeout: 0);
                 }
@@ -395,8 +398,11 @@ namespace RnzssWeb.Models
             }
 
             var sol = Solicitation.GetSolicitation(p.SolicitationNumber);
-            sol.SolicitaionStatus = p.SolicitaionStatus;
-            Solicitation.Update(sol);
+            if (sol != null)
+            {
+                sol.SolicitaionStatus = p.SolicitaionStatus;
+                Solicitation.Update(sol);
+            }
 
             return true;
 

@@ -202,7 +202,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/22/2017 11:00:38</publishTime>
     </File>
     <File Include="bin/SportsNetworkWeb.dll">
-      <publishTime>11/28/2017 20:56:46</publishTime>
+      <publishTime>11/30/2017 16:42:52</publishTime>
     </File>
     <File Include="bin/sv-SE/Kendo.Mvc.resources.dll">
       <publishTime>01/12/2016 16:42:22</publishTime>
@@ -1628,6 +1628,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="packages.config">
       <publishTime>11/11/2017 11:40:42</publishTime>
+    </File>
+    <File Include="RfqFiles/PO_Template.xlsx">
+      <publishTime>11/29/2017 20:48:05</publishTime>
     </File>
     <File Include="RfqFiles/RFQ_Template.xlsx">
       <publishTime>11/09/2017 11:23:10</publishTime>
@@ -3853,10 +3856,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/08/2016 11:29:57</publishTime>
     </File>
     <File Include="Views/Rfq/ActiveRfq.cshtml">
-      <publishTime>11/28/2017 20:55:05</publishTime>
+      <publishTime>11/30/2017 15:47:10</publishTime>
     </File>
     <File Include="Views/Rfq/AddSolicitation.cshtml">
       <publishTime>11/16/2017 13:07:38</publishTime>
+    </File>
+    <File Include="Views/Rfq/Dashboard.cshtml">
+      <publishTime>11/30/2017 11:08:10</publishTime>
     </File>
     <File Include="Views/Rfq/RfqEntry.cshtml">
       <publishTime>11/09/2017 10:34:15</publishTime>
@@ -3865,7 +3871,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/11/2017 15:09:18</publishTime>
     </File>
     <File Include="Views/Rfq/Solicitations.cshtml">
-      <publishTime>11/27/2017 22:15:32</publishTime>
+      <publishTime>11/30/2017 16:01:18</publishTime>
     </File>
     <File Include="Views/Shared/AdminMenuHorizontal.cshtml">
       <publishTime>04/27/2016 22:13:10</publishTime>
@@ -3916,10 +3922,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/19/2017 11:10:33</publishTime>
     </File>
     <File Include="Views/Shared/_MainMenu.cshtml">
-      <publishTime>11/26/2017 13:11:33</publishTime>
+      <publishTime>11/30/2017 10:51:09</publishTime>
     </File>
     <File Include="Views/Shared/_RFQEntryForm.cshtml">
-      <publishTime>11/28/2017 05:54:45</publishTime>
+      <publishTime>11/30/2017 08:23:05</publishTime>
     </File>
     <File Include="Views/TennisNetwork/AddPlayerToLeague.cshtml">
       <publishTime>03/12/2017 10:00:39</publishTime>
