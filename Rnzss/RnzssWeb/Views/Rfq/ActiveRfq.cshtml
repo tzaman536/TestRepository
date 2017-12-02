@@ -26,13 +26,14 @@
                                 .Columns(columns =>
                                 {
                                     columns.Bound(p => p.RFQNo).Template(@<text></text>).ClientTemplate("<a href='" + Url.Action("RfqEntry", "Rfq") + "?RFQNo=#=RFQNo#'>#=RFQNo#</a>").Title("RFQNo.").Width(75);
-                                columns.Bound(p => p.SolicitationNumber).Width(75);
-                                columns.Bound(p => p.DueDate).Width(75).Format("{0:MM/dd/yyyy}");
-                                columns.ForeignKey(p => p.RfqStatus, (System.Collections.IEnumerable)ViewData["RfqStatus"], "Name", "Name").Width(100);
-                                columns.Bound(p => p.RfqEvent).Template(@<text></text>).ClientTemplate("<a href='" + Url.Action("RfqEvent", "Rfq") + "?RFQNo=#=RFQNo#'>#=RfqEvent#</a>").Title("Rfq Log").Width(50);
+                                    columns.ForeignKey(p => p.RfqStatus, (System.Collections.IEnumerable)ViewData["RfqStatus"], "Name", "Name").Width(100);
+                                    columns.Bound(p => p.SolicitationNumber).Width(75);
+                                    columns.Bound(p => p.DueDate).Width(75).Format("{0:MM/dd/yyyy}");
+                                    //columns.Bound(p => p.RfqEvent).Template(@<text></text>).ClientTemplate("<a href='" + Url.Action("RfqEvent", "Rfq") + "?RFQNo=#=RFQNo#'>#=RfqEvent#</a>").Title("Rfq Log").Width(50);
                                     columns.Bound(p => p.CompanyName).Width(75);
                                     columns.Bound(p => p.Email).Width(75);
-                                    columns.ForeignKey(p => p.SolicitaionStatus, (System.Collections.IEnumerable)ViewData["SolicitationStatus"], "Name", "Name").Width(100).Title("Solicitation</br>Status");
+                                    columns.ForeignKey(p => p.SolicitaionStatus, (System.Collections.IEnumerable)ViewData["SolicitationStatus"], "Name", "Name").Width(100).Title("Solicitation</br>Status").ClientTemplate("#= formatSolicitationStatus(SolicitaionStatus)#");
+                                    columns.Bound(p => p.Comment).Width(75);
                                     columns.Bound(p => p.UpdatedBy).Width(75);
                                     columns.Bound(p => p.UpdateDate).Width(100).Format("{0:MM/dd/yyyy hh:mm:ss tt}");
                                     columns.Command(command => { command.Edit(); command.Destroy(); }).Width(100);
@@ -175,6 +176,20 @@
 </div>
 
 <script>
+
+    function formatSolicitationStatus(status) {
+
+        if (status === 'Awarded') {
+            return '<div style="background-color: darkred; color:white; text-align: center; ">' + status + '</div>';
+        }
+        else if (status === 'Synch'){
+            return '<div style="background-color: grey; color:white; text-align: center; ">' + status + '</div>';
+        }
+        else {
+            return '<div style="background-color: darkgreen; color:white; text-align: center; ">' + status + '</div>';
+        }
+    }
+
     function getParameters() {
         return {
             rfqNo: document.getElementById("inputRFQNo").value
