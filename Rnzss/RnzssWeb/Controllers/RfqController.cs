@@ -1558,5 +1558,108 @@ namespace RnzssWeb.Controllers
         }
 
         #endregion
+
+
+        #region Vendors
+
+        public ActionResult Vendors()
+        {
+            if (!CommonMethods.IsDebugMode && !User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+
+            return View();
+        }
+
+        public ActionResult Vendors_Create([DataSourceRequest] DataSourceRequest request, Vendor mo, string rfqNo)
+        {
+            string message = "Vendor Created";
+            if (mo != null && ModelState.IsValid)
+            {
+                Vendor.Add(ref mo);
+            }
+
+            var dsResult = new[] { mo }.ToDataSourceResult(request, ModelState);
+            var result = new
+            {
+                dsResult.AggregateResults,
+                dsResult.Data,
+                dsResult.Errors,
+                dsResult.Total,
+                myMessage = message
+            };
+
+
+            return Json(result);
+        }
+
+
+        public ActionResult Vendors_Read([DataSourceRequest] DataSourceRequest request)
+        {
+            try
+            {
+
+                return new JsonResult()
+                {
+                    Data = Vendor.GetAll().ToDataSourceResult(request),
+                    JsonRequestBehavior = JsonRequestBehavior.AllowGet,
+                    MaxJsonLength = Int32.MaxValue
+                };
+                //return Json(result.OrderByDescending(x => x.Currency).ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                logger.Fatal(ex);
+                return null;
+            }
+        }
+
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Vendors_Update([DataSourceRequest] DataSourceRequest request, Vendor mo)
+        {
+            string message = "Update successful";
+            if (mo != null && ModelState.IsValid)
+            {
+                Vendor.Update(mo);
+            }
+            var dsResult = new[] { mo }.ToDataSourceResult(request, ModelState);
+            var result = new
+            {
+                dsResult.AggregateResults,
+                dsResult.Data,
+                dsResult.Errors,
+                dsResult.Total,
+                myMessage = message
+            };
+
+
+            return Json(result);
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Vendors_Destroy([DataSourceRequest] DataSourceRequest request, Vendor mo)
+        {
+            string message = "Delete successful";
+            if (mo != null)
+            {
+                Vendor.Delete(mo);
+            }
+            var dsResult = new[] { mo }.ToDataSourceResult(request, ModelState);
+            var result = new
+            {
+                dsResult.AggregateResults,
+                dsResult.Data,
+                dsResult.Errors,
+                dsResult.Total,
+                myMessage = message
+            };
+            return Json(result);
+        }
+
+        #endregion
+
     }
 }

@@ -71,7 +71,6 @@ namespace RnzssWeb.Models
                                                     ,[UpdatedBy] = @UpdatedBy
                                                       ,[UpdateDate] = getutcdate()
                                                  WHERE VendorId = @VendorId
-
                                                         ", v, commandTimeout: 0);
                 }
                 catch (Exception ex)
@@ -116,7 +115,6 @@ namespace RnzssWeb.Models
                                                ,@Email
                                                ,@UpdatedBy
                                                )
-
                                                         ", v, commandTimeout: 0);
                 }
                 catch (Exception ex)
@@ -143,7 +141,7 @@ namespace RnzssWeb.Models
                 v.VendorId = existingVendor.VendorId;
                 return Update(v);
             }
-           
+
 
             Add(ref v);
 
@@ -161,7 +159,7 @@ namespace RnzssWeb.Models
                                                         select *     
                                                         from [rnz].[Vendors]
                                                         where CompanyName = @companyName
-                                                        ", new {companyName }, commandTimeout: 0).FirstOrDefault();
+                                                        ", new { companyName }, commandTimeout: 0).FirstOrDefault();
                 }
                 catch (Exception ex)
                 {
@@ -183,7 +181,7 @@ namespace RnzssWeb.Models
                     return connection.Query<Vendor>(@"
                                                         select *     
                                                         from [rnz].[Vendors]
-                                                        ",  commandTimeout: 0);
+                                                        ", commandTimeout: 0);
                 }
                 catch (Exception ex)
                 {
@@ -196,19 +194,19 @@ namespace RnzssWeb.Models
 
         }
 
-        public static IEnumerable<Vendor> GetVendorLike(string matchString, bool applySmartMatch=true)
+        public static IEnumerable<Vendor> GetVendorLike(string matchString, bool applySmartMatch = true)
         {
             using (IDbConnection connection = CommonMethods.OpenConnection())
             {
                 try
                 {
-                     var result = connection.Query<Vendor>(string.Format(@"
+                    var result = connection.Query<Vendor>(string.Format(@"
                                                         select *     
                                                         from [rnz].[Vendors]
                                                         where CompanyName like '%{0}%'
                                                         ", matchString), commandTimeout: 0);
 
-                    if(applySmartMatch)
+                    if (applySmartMatch)
                     {
                         if (result != null && result.Count() > 1)
                         {
