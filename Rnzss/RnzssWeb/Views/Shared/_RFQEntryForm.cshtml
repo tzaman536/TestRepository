@@ -709,35 +709,43 @@
     function parseAddress(e){
         e.preventDefault();
         var x;
-        var address=prompt("Please paste company informatino text below","");
+        var address=prompt("Please paste company informatino text below","").replace("<","");
+
+        //alert(address);
+
         if (address!=null){
-            //alert(address);
-            //document.getElementById("rfqNo").value = document.getElementById("lookUpRfqNo").value;
             var parms = {
                 inputAddress: address
             };
 
+        
             $.ajax({
-                type: "GET",
-                traditional: true,
+                type: 'POST',
                 url: '@Url.Action("ParseAddress", "Rfq")',
-                async: true,
-                data: parms,
-                dataType: "json",
-                beforeSend: function (xhr) {
-                },
+                data:  JSON.stringify(parms),
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
                 success: function (response, textStatus, jqXHR) {
 
-                    document.getElementById("companyName").value = response.message.CompanyName;
-                    document.getElementById("attention").value = response.message.Attention;
-                    document.getElementById("companyAddress").value = response.message.CompanyAddress;
-                    document.getElementById("phoneNo").value = response.message.PhoneNo;
-                    document.getElementById("faxNo").value = response.message.FaxNo;
-                    document.getElementById("email").value = response.message.Email;
+                    if (response.success) {
+                        if(response.message != null)
+                        {
+                            document.getElementById("companyName").value = response.message.CompanyName;
+                            document.getElementById("attention").value = response.message.Attention;
+                            document.getElementById("companyAddress").value = response.message.CompanyAddress;
+                            document.getElementById("phoneNo").value = response.message.PhoneNo;
+                            document.getElementById("faxNo").value = response.message.FaxNo;
+                            document.getElementById("email").value = response.message.Email;
+                        }
+
+                    }
+                    else {
+                        alert(response.message);
+                    }
 
                 },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    alert( "Failed to parse address");
+                error: function (response, textStatus, jqXHR) {
+                    alert('Failed to parse vendor information');
                 }
             });
         }
