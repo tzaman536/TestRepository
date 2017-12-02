@@ -189,29 +189,29 @@ namespace RnzssWeb.Models
         public static IEnumerable<RequestForQuote> GetAll(bool includeClosedRfq = false)
         {
             string closedRfqStatusCode = RfqStatusList.Closed.ToString();
-            string sql = string.Format(@" select 
+            string sql = string.Format(@" 
+                              select 
                                 rfq.*     
-                                ,case when e.RFQNo  is null then 'Start' else 'View Log' end as RfqEvent 
                                 ,coalesce(s.SolicitaionStatus,rfq.SolicitaionStatus,'Synch') as SolicitaionStatus
+                                ,e.RfqEvent
                             from [rnz].[RequestForQuote] rfq 
-                            left join ( select distinct RFQNo from [rnz].RequestForQuoteEvents ) e 
-                                    on rfq.RFQNo = e.RFQNo
+                            left join ( 
+										select  
+											re.RFQNo,EventDescription as  RfqEvent
+										from [rnz].RequestForQuoteEvents re
+										inner join (select RFQNo, max(RequestForQuoteEventId) as RequestForQuoteEventId from [rnz].RequestForQuoteEvents group by RFQNo ) me 
+										on re.RequestForQuoteEventId = me.RequestForQuoteEventId
+									  ) e on rfq.RFQNo = e.RFQNo
                             left join (select distinct solicitationno as SolicitationNumber,SolicitaionStatus from [rnz].Solicitations t) s on rfq.SolicitationNumber = s.SolicitationNumber
-                            where RfqStatus not in ('{0}')
-                            order by rfq.[UpdateDate] desc", closedRfqStatusCode);
+                          
+                        ", closedRfqStatusCode);
 
-            if(includeClosedRfq)
+            if(!includeClosedRfq)
             {
-                sql = string.Format(@" select 
-                                rfq.*     
-                                ,case when e.RFQNo  is null then 'Start' else 'View Log' end as RfqEvent 
-                                ,coalesce(s.SolicitaionStatus,rfq.SolicitaionStatus,'Synch') as SolicitaionStatus
-                            from [rnz].[RequestForQuote] rfq 
-                            left join ( select distinct RFQNo from [rnz].RequestForQuoteEvents ) e 
-                                    on rfq.RFQNo = e.RFQNo
-                            left join (select distinct solicitationno as SolicitationNumber,SolicitaionStatus from [rnz].Solicitations t) s on rfq.SolicitationNumber = s.SolicitationNumber
-                            order by rfq.[UpdateDate] desc");
+                sql = sql + string.Format(" where RfqStatus not in ('{0}')",closedRfqStatusCode);
             }
+
+            sql = sql + "  order by rfq.[UpdateDate] desc";
 
             using (IDbConnection connection = CommonMethods.OpenConnection())
             {
