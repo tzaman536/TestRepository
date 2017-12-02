@@ -726,40 +726,23 @@ namespace RnzssWeb.Controllers
 
 
         #region Parse Address
-        public void Parse(ref RequestForQuote rfq, string inputAddress)
-        {
-
-            inputAddress = inputAddress.Replace("Associated CAGE Code:", "").Replace("Replacement CAGE Code:", "");
-
-            //var temp = inputAddress.Split("Phone");
-            Match match = Regex.Match(inputAddress, @"^(.*?)Phone:", RegexOptions.None);
-            if (match.Success)
-                rfq.CompanyAddress = match.Value.Replace("Phone:", "");
-
-            match = Regex.Match(inputAddress, @"(?<=Phone:)(.*)(?=Fax:)", RegexOptions.None);
-            if (match.Success)
-                rfq.PhoneNo = match.Value.Trim();
-
-            match = Regex.Match(inputAddress, @"(?<=Fax:)(.*)(?=CAGE Code:)", RegexOptions.None);
-            if (match.Success)
-                rfq.FaxNo = match.Value.Trim();
-
-            match = Regex.Match(inputAddress, @"(?<=Government POC Email:)(.*)(?=Size:)", RegexOptions.None);
-            if (match.Success)
-                rfq.Email = match.Value.Trim();
-
-            match = Regex.Match(inputAddress, @"(?<=Government POC:)(.*)(?=SIC:)", RegexOptions.None);
-            if (match.Success)
-                rfq.Attention = match.Value.Trim();
-
-
-
-        }
 
         public ActionResult ParseAddress(string inputAddress)
         {
             RequestForQuote rfq = new RequestForQuote();
-            Parse(ref rfq, inputAddress);
+
+            InputHtml o = new InputHtml();
+            o.Source = RnzssDataSourceList.RfqEntry.ToString();
+            if (!string.IsNullOrEmpty(inputAddress))
+            {
+                o.HtmlText = inputAddress;
+
+                if (InputHtml.Add(ref o))
+                {
+                    o.ParseStatus = InputHtml.Parse(ref rfq, inputAddress);
+                    InputHtml.SetParseStatus(o);
+                }
+            }
 
 
 

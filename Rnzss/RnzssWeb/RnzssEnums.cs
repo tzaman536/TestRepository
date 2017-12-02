@@ -31,5 +31,8 @@ namespace RnzssWeb
      ,Cancelled
     }
     
-
+    public enum RnzssDataSourceList
+    {
+        RfqEntry
+    }
 }

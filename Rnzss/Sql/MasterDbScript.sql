@@ -157,4 +157,17 @@ GO
 ALTER TABLE rnz.Vendors ADD CONSTRAINT Pk_Vendors PRIMARY KEY (CompanyName)  
 GO
 
+CREATE TABLE [rnz].[InputHtml](
+	[InputHtmlId] [int] IDENTITY(1,1) NOT NULL,
+	[Source] [nvarchar](50) NOT NULL,
+	[HtmlText] [nvarchar](max) NOT NULL,
+	[ParseStatus] bit NULL,
+	[UpdatedBy] [nvarchar](100) NOT NULL,
+	[UpdateDate] [datetime] NOT NULL
+) ON [PRIMARY]
+
+GO
+ALTER TABLE [rnz].[InputHtml] ADD  DEFAULT (getutcdate()) FOR [UpdateDate]
+GO
+
 
