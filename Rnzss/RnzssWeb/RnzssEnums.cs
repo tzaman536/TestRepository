@@ -29,6 +29,7 @@ namespace RnzssWeb
      ,Awarded
      ,Synch
      ,Cancelled
+     ,Removed
     }
     
     public enum RnzssDataSourceList
