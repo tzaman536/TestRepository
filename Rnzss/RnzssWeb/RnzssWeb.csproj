@@ -1487,6 +1487,7 @@
     <Content Include="Views\Home\Ourfocus.cshtml" />
     <Content Include="Views\Rfq\Dashboard.cshtml" />
     <Content Include="Views\Rfq\Vendors.cshtml" />
+    <Content Include="Views\Rfq\InputHtmlTable.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

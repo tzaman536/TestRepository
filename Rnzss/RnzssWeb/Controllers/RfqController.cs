@@ -1497,7 +1497,6 @@ namespace RnzssWeb.Controllers
         }
         #endregion
 
-
         #region Dashboard
 
         public ActionResult Dashboard()
@@ -1541,7 +1540,6 @@ namespace RnzssWeb.Controllers
         }
 
         #endregion
-
 
         #region Vendors
 
@@ -1640,6 +1638,39 @@ namespace RnzssWeb.Controllers
                 myMessage = message
             };
             return Json(result);
+        }
+
+        #endregion
+
+        #region InputHtml
+        public ActionResult InputHtmlTable()
+        {
+            if (!CommonMethods.IsDebugMode && !User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+
+            return View();
+        }
+
+        public ActionResult InputHtml_Read([DataSourceRequest] DataSourceRequest request)
+        {
+            try
+            {
+
+                return new JsonResult()
+                {
+                    Data = InputHtml.GetAll().ToDataSourceResult(request),
+                    JsonRequestBehavior = JsonRequestBehavior.AllowGet,
+                    MaxJsonLength = Int32.MaxValue
+                };
+            }
+            catch (Exception ex)
+            {
+                logger.Fatal(ex);
+                return null;
+            }
         }
 
         #endregion
