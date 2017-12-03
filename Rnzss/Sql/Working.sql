@@ -1,5 +1,32 @@
 use rnzss
-select * from rnz.[InputHtml]
+
+
+  select 
+    rfq.*     
+    ,coalesce(s.SolicitaionStatus,rfq.SolicitaionStatus,'Synch') as SolicitaionStatus
+    ,e.RfqEvent
+from [rnz].[RequestForQuote] rfq 
+left join ( 
+			select  
+				re.RFQNo,EventDescription as  RfqEvent
+			from [rnz].RequestForQuoteEvents re
+			inner join (select RFQNo, max(RequestForQuoteEventId) as RequestForQuoteEventId from [rnz].RequestForQuoteEvents group by RFQNo ) me 
+			on re.RequestForQuoteEventId = me.RequestForQuoteEventId
+		  ) e on rfq.RFQNo = e.RFQNo
+left join (select distinct solicitationno as SolicitationNumber,SolicitaionStatus from [rnz].Solicitations t) s on rfq.SolicitationNumber = s.SolicitationNumber
+
+order by rfq.[UpdateDate]
+
+
+select  
+	re.RFQNo,EventDescription as  RfqEvent
+from [rnz].RequestForQuoteEvents re
+inner join (select RFQNo, max(RequestForQuoteEventId) as RequestForQuoteEventId from [rnz].RequestForQuoteEvents group by RFQNo ) me 
+on re.RequestForQuoteEventId = me.RequestForQuoteEventId
+
+
+select * 
+from rnz.[InputHtml] t
 
 declare @RfqNo nvarchar(200) ='RZRFQ10009'
 
