@@ -25,10 +25,10 @@
                                 .Name("grid-rfq")
                                 .Columns(columns =>
                                 {
-                                    columns.Bound(p => p.RFQNo).Template(@<text></text>).ClientTemplate("<a href='" + Url.Action("RfqEntry", "Rfq") + "?RFQNo=#=RFQNo#'>#=RFQNo#</a>").Title("RFQNo.").Width(35);
-                                    columns.ForeignKey(p => p.RfqStatus, (System.Collections.IEnumerable)ViewData["RfqStatus"], "Name", "Name").Width(35);
-                                    columns.Bound(p => p.SolicitationNumber).Width(50);
-                                    columns.Bound(p => p.DueDate).Width(35).Format("{0:MM/dd/yyyy}");
+                                    columns.Bound(p => p.RFQNo).Template(@<text></text>).ClientTemplate("<a href='" + Url.Action("RfqEntry", "Rfq") + "?RFQNo=#=RFQNo#'>#=RFQNo#</a>").Title("RFQNo.").Width(60);
+                                    columns.ForeignKey(p => p.RfqStatus, (System.Collections.IEnumerable)ViewData["RfqStatus"], "Name", "Name").Width(35).Title("RFQ</br>Status");
+                                    columns.Bound(p => p.SolicitationNumber).Width(70).Title("Solicitation</br>Number");
+                                    columns.Bound(p => p.DueDate).Width(50).Format("{0:MM/dd/yyyy}").Title("Due</br>Date");
                                     columns.Bound(p => p.RfqEvent).Width(125);
                                     columns.Bound(p => p.CompanyName).Width(80);
                                     columns.Bound(p => p.Email).Width(70);
