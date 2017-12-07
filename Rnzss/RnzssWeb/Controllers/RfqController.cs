@@ -767,6 +767,25 @@ namespace RnzssWeb.Controllers
         #endregion
 
         #region Rfq Event
+        public ActionResult FollowUpEmailSent([DataSourceRequest] DataSourceRequest request, string rfqNo)
+        {
+            string myMessage = "Email sent";
+            if (!string.IsNullOrEmpty(rfqNo))
+            {
+                RequestForQuoteEvent ev = new RequestForQuoteEvent();
+                ev.RFQNo = rfqNo;
+                ev.EventDescription = string.Format("Follow up email sent on {0} ", DateTime.Today.ToString("MM/dd/yyyy"));
+                RequestForQuoteEvent.Add(ev);
+            }
+
+            else
+            {
+                myMessage = "Invalid RFQ no";
+            }
+
+            return Json(new { success = true, message = myMessage }, JsonRequestBehavior.AllowGet);
+        }
+
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult RfqEvent_Create([DataSourceRequest] DataSourceRequest request, RequestForQuoteEvent mo, string rfqNo)
         {

@@ -38,7 +38,11 @@
                                     columns.Bound(p => p.UpdateDate).Width(65).Format("{0:MM/dd/yyyy hh:mm:ss tt}");
                                     columns.Command(command => { command.Edit(); command.Destroy(); }).Width(100);
                                 })
-                                .ToolBar(toolbar => { toolbar.Excel(); })
+                                .ToolBar(toolbar =>
+                                {
+                                    toolbar.Excel();
+                                    
+                                })
                                 .Editable(editable => editable.Mode(GridEditMode.InLine))
                                 .Pageable()
                                 .Sortable()
@@ -76,7 +80,7 @@
                 .Animation(animation => animation.Open(open => open.Fade(FadeDirection.In)))
                 .Items(items =>
                 {
-                    items.Add().Text("Products").Content(@<text>
+                items.Add().Text("Products").Content(@<text>
                     @(Html.Kendo().Grid<ProductInformation>()
                         .Name("grid-rfq-products_#=RFQNo#") // template expression, to be evaluated in the master context
                         .Columns(columns =>
@@ -145,7 +149,11 @@
                                 columns.Bound(o => o.UpdateDate).Width(56).Format("{0:MM/dd/yyyy hh:mm:ss tt}");
                                 columns.Command(command => { command.Edit(); command.Destroy(); }).Width(100);
                             })
-                            .ToolBar(toolbar => { toolbar.Create(); })
+                            .ToolBar(toolbar =>
+                            {
+                                toolbar.Create();
+                                toolbar.Custom().Text("Email Sent").HtmlAttributes(new { href = "javascript:followUpEmailSent('#=RFQNo#');" });
+                            })
                             .Editable(editable => editable.Mode(GridEditMode.InLine))
 
                             .DataSource(dataSource => dataSource
@@ -176,7 +184,38 @@
 </div>
 
 <script>
+    function followUpEmailSent(rfq){
+        var parms = {
+            rfqNo: rfq
+        };
 
+
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("FollowUpEmailSent", "Rfq")',
+            data: JSON.stringify(parms),
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            success: function (response, textStatus, jqXHR) {
+
+                if (response.success) {
+                    if (response.message != null) {
+                        $('#grid-rfq-logs_' + rfq).data('kendoGrid').dataSource.read();
+                        $('#grid-rfq-logs_' + rfq).data('kendoGrid').refresh();
+
+                    }
+
+                }
+                else {
+                    alert(response.message);
+                }
+
+            },
+            error: function (response, textStatus, jqXHR) {
+                alert('Failed to parse vendor information');
+            }
+        });
+    }
     function formatSolicitationStatus(status) {
 
         if (status === 'Awarded' || status === 'Cancelled' || status === 'Removed') {
