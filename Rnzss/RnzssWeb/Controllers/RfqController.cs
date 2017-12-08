@@ -611,7 +611,7 @@ namespace RnzssWeb.Controllers
                                 #region Line 1
                                 case 1:
                                     cell = GetCell(worksheetPart.Worksheet, "C", 22);
-                                    cell.CellValue = new CellValue(string.Format("{0}", p.PartNumber));
+                                    cell.CellValue = new CellValue(string.Format("{0}  {1}", p.PartNumber,p.PartName));
                                     cell.DataType = new EnumValue<CellValues>(CellValues.String);
 
                                     cell = GetCell(worksheetPart.Worksheet, "E", 22);
