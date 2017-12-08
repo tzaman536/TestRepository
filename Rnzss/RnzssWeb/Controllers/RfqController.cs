@@ -21,6 +21,7 @@ using System.Data;
 using System.Web.Helpers;
 using System.Net.Mail;
 using System.Net;
+using GemBox.Spreadsheet;
 
 namespace RnzssWeb.Controllers
 {
@@ -705,7 +706,28 @@ namespace RnzssWeb.Controllers
                 }
             }
 
-            return destinationFile;
+            bool pdfCreated = false;
+            string destinationPDFFile = System.IO.Path.Combine(Server.MapPath("~/RfqFiles"), string.Format("RFQ_{0}.pdf", RFQNo));
+
+            try
+            {
+                //Call SpreadsheetInfo.SetLicense() method before using any other class from GemBox.Spreadsheet library. Free version serial key is: FREE-LIMITED-KEY
+                SpreadsheetInfo.SetLicense("FREE-LIMITED-KEY");
+                ExcelFile.Load(destinationFile).Save(destinationPDFFile);
+                pdfCreated = true;
+            }
+            catch (Exception ex)
+            {
+                logger.Fatal(ex);
+            }
+            if (pdfCreated)
+            {
+                return destinationPDFFile;
+            }
+            else
+            {
+                return destinationFile;
+            }
         }
 
 
