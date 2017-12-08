@@ -720,8 +720,7 @@ namespace RnzssWeb.Controllers
 
 
                 string destinationFile = GenerateRFQFile(rfq.RFQNo);
-                RequestForQuoteEvent.LogEvent(rfq.RFQNo, string.Format("RFQ printed by {0}", System.Web.HttpContext.Current.User.Identity.Name));
-                RequestForQuote.UpdateRfqStatus(rfq.RFQNo, RfqStatusList.Sent);
+               
                 return Json(new { success = true, fileName = destinationFile, JsonRequestBehavior.AllowGet });
             }
             catch (Exception ex)
@@ -1009,9 +1008,42 @@ namespace RnzssWeb.Controllers
         {
             try
             {
+                if(string.IsNullOrEmpty(RFQNo))
+                {
+                    return Json(new { success = false, message = "Invalid RFQ no" }, JsonRequestBehavior.AllowGet);
+                }
 
+                RequestForQuote dbRfq = RequestForQuote.GetRfq(RFQNo);
+                if(dbRfq == null)
+                {
+                    return Json(new { success = false, message = "Can't find this RFQ" }, JsonRequestBehavior.AllowGet);
+                }
 
-                using (MailMessage mm = new MailMessage(from: "rnz@rnzss.com", to: "tazman536@gmail.com" ))
+                string emailTo = null;
+                if (string.IsNullOrEmpty(dbRfq.Email))
+                {
+                    if (string.IsNullOrEmpty(dbRfq.CompanyName))
+                    {
+                        return Json(new { success = false, message = "Invalid Vendor Name" }, JsonRequestBehavior.AllowGet);
+                    }
+
+                    Vendor v = Vendor.VendorExists(dbRfq.CompanyName);
+                    if (v == null)
+                    {
+                        return Json(new { success = false, message = "Can't find a vendor for this RFQ" }, JsonRequestBehavior.AllowGet);
+                    }
+
+                    if (string.IsNullOrEmpty(v.Email))
+                        return Json(new { success = false, message = "Please enter a valid email address for the company" }, JsonRequestBehavior.AllowGet);
+
+                    emailTo = v.Email;
+                }
+                else
+                {
+                    emailTo = dbRfq.Email;
+                }
+
+                using (MailMessage mm = new MailMessage(from: "rnz@rnzss.com", to: emailTo ))
                 {
                     mm.Subject = string.Format("Request for quote. Reference RFQ No. {0}",RFQNo);
                     mm.Body = string.Format(@"
@@ -1051,6 +1083,9 @@ website: www.rnzss.com
                         ViewBag.Message = "Email sent.";
                     }
                 }
+
+                RequestForQuoteEvent.LogEvent(dbRfq.RFQNo, string.Format("RFQ email sent by {0}", System.Web.HttpContext.Current.User.Identity.Name));
+                RequestForQuote.UpdateRfqStatus(dbRfq.RFQNo, RfqStatusList.Sent);
 
                 return Json(new { success = true, message = "Mail sent" }, JsonRequestBehavior.AllowGet);
 

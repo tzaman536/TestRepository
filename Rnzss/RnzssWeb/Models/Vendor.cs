@@ -194,6 +194,30 @@ namespace RnzssWeb.Models
 
         }
 
+        public static IEnumerable<Vendor> Get(int vendorId)
+        {
+            using (IDbConnection connection = CommonMethods.OpenConnection())
+            {
+                try
+                {
+                    return connection.Query<Vendor>(@"
+                                                        select *     
+                                                        from [rnz].[Vendors]
+                                                        where VendorId = @VendorId
+                                                        ",new { VendorId  = vendorId}, commandTimeout: 0);
+                }
+                catch (Exception ex)
+                {
+                    logger.Fatal(ex);
+                }
+
+            }
+
+            return null;
+
+        }
+
+
         public static IEnumerable<Vendor> GetVendorLike(string matchString, bool applySmartMatch = true)
         {
             using (IDbConnection connection = CommonMethods.OpenConnection())
