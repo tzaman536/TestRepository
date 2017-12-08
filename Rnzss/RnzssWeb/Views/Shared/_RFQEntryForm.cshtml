@@ -164,6 +164,7 @@
                                     <button data-bind="click: saveWork" class="k-button save-button">Save</button>
                                     <button data-bind="click: addAnotherProduct" class="k-button save-button">Add Product</button>
                                     <button data-bind="click: printRFQ" class="k-button action-button">Print</button>
+                                    <button data-bind="click: emailRFQ" class="k-button action-button">Email Rfq</button>
                                     <button data-bind="click: printPO" class="k-button action-button">Print PO</button>
                                     <button data-bind="click: addPkgRFQ" class="k-button action-button">Add Pkg. RFQ</button>
                                     <button data-bind="click: parseAddress" class="k-button action-button">Parse Address</button>
@@ -688,6 +689,7 @@
             printPO: printPO,
             findRfq: findRfq,
             parseAddress: parseAddress,
+            emailRFQ: emailRFQ,
             addPkgRFQ: addPkgRFQ
         });
 
@@ -702,6 +704,33 @@
         });
 
         reloadProductInformationGrid();
+
+    }
+
+    function emailRFQ()
+    {
+
+        
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("EmailRFQ", "Rfq")',
+            data:  JSON.stringify(getRFQNo()),
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            success: function (response, textStatus, jqXHR) {
+
+                if (response.success) {
+                    alert("email sent.");
+                }
+                else {
+                    alert(response.message);
+                }
+
+            },
+            error: function (response, textStatus, jqXHR) {
+                //alert('Failed send email. Please send this RFQ by logging into rnz@rnzss.com mail account.');
+            }
+        });
 
     }
 

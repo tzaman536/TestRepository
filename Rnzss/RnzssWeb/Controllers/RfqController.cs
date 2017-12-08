@@ -18,6 +18,9 @@ using iTextSharp.text.pdf;
 using iTextSharp.text.pdf.parser;
 using System.Data.SqlClient;
 using System.Data;
+using System.Web.Helpers;
+using System.Net.Mail;
+using System.Net;
 
 namespace RnzssWeb.Controllers
 {
@@ -541,6 +544,171 @@ namespace RnzssWeb.Controllers
         }
 
 
+        public string GenerateRFQFile(string RFQNo)
+        {
+            string sourceFile = System.IO.Path.Combine(Server.MapPath("~/RfqFiles"), "RFQ_Template.xlsx");
+            string destinationFile = System.IO.Path.Combine(Server.MapPath("~/RfqFiles"), string.Format("RFQ_{0}.xlsx", RFQNo));
+            if (System.IO.File.Exists(destinationFile))
+                System.IO.File.Delete(destinationFile);
+
+
+            System.IO.File.Copy(sourceFile, destinationFile);
+
+
+            RequestForQuote dbRfq = RequestForQuote.GetRfq(RFQNo);
+            IEnumerable<ProductInformation> dbProducts = ProductInformation.GetAll(RFQNo);
+
+            using (SpreadsheetDocument spreadSheet = SpreadsheetDocument.Open(destinationFile, true))
+            {
+                WorksheetPart worksheetPart =
+                     GetWorksheetPartByName(spreadSheet, "Sheet1");
+
+                if (worksheetPart != null)
+                {
+                    Cell cell = null;
+                    #region Our company info
+                    cell = GetCell(worksheetPart.Worksheet,
+                                             "F", 11);
+
+
+
+                    cell.CellValue = new CellValue(string.Format("RFQ No. {0} \n # Tanweer Zaman \n # R & Z Supply And Services LLC. \n # 14 Fountain Ln \n # Jericho NY 11753", RFQNo).Replace("\n", Environment.NewLine).Replace("#", "   "));
+                    cell.DataType =
+                        new EnumValue<CellValues>(CellValues.String);
+
+                    #endregion
+
+                    #region RFQ Company Info
+                    cell = GetCell(worksheetPart.Worksheet,
+                                             "B", 11);
+
+
+                    // Do not indent or add space.It will add space during print
+                    cell.CellValue = new CellValue(string.Format(@"{0}
+{1}
+{2}
+{3}"
+                                                                , dbRfq.CompanyName
+                                                                , dbRfq.Attention
+                                                                , dbRfq.CompanyAddress
+                                                                , dbRfq.PhoneNo
+                                                                )
+                                                  );
+                    cell.DataType =
+                        new EnumValue<CellValues>(CellValues.String);
+
+                    #endregion
+
+                    #region Print Products
+
+                    if (dbProducts != null && dbProducts.Any())
+                    {
+                        int line = 1;
+                        foreach (var p in dbProducts)
+                        {
+                            switch (line)
+                            {
+                                #region Line 1
+                                case 1:
+                                    cell = GetCell(worksheetPart.Worksheet, "C", 22);
+                                    cell.CellValue = new CellValue(string.Format("{0}", p.PartNumber));
+                                    cell.DataType = new EnumValue<CellValues>(CellValues.String);
+
+                                    cell = GetCell(worksheetPart.Worksheet, "E", 22);
+                                    cell.CellValue = new CellValue(string.Format("{0}", p.CN));
+                                    cell.DataType = new EnumValue<CellValues>(CellValues.String);
+
+                                    cell = GetCell(worksheetPart.Worksheet, "F", 22);
+                                    cell.CellValue = new CellValue(string.Format("{0}", p.Quantity));
+                                    cell.DataType = new EnumValue<CellValues>(CellValues.String);
+
+                                    cell = GetCell(worksheetPart.Worksheet, "C", 24);
+                                    cell.CellValue = new CellValue(string.Format("{0}", p.PartDescription));
+                                    cell.DataType = new EnumValue<CellValues>(CellValues.String);
+                                    break;
+                                #endregion
+
+                                #region Line 2
+                                case 2:
+                                    cell = GetCell(worksheetPart.Worksheet, "C", 30);
+                                    cell.CellValue = new CellValue(string.Format("{0}", p.PartNumber));
+                                    cell.DataType = new EnumValue<CellValues>(CellValues.String);
+
+                                    cell = GetCell(worksheetPart.Worksheet, "E", 30);
+                                    cell.CellValue = new CellValue(string.Format("{0}", p.CN));
+                                    cell.DataType = new EnumValue<CellValues>(CellValues.String);
+
+                                    cell = GetCell(worksheetPart.Worksheet, "F", 30);
+                                    cell.CellValue = new CellValue(string.Format("{0}", p.Quantity));
+                                    cell.DataType = new EnumValue<CellValues>(CellValues.String);
+
+                                    cell = GetCell(worksheetPart.Worksheet, "C", 32);
+                                    cell.CellValue = new CellValue(string.Format("{0}", p.PartDescription));
+                                    cell.DataType = new EnumValue<CellValues>(CellValues.String);
+                                    break;
+                                #endregion
+
+                                #region Line 3
+                                case 3:
+                                    cell = GetCell(worksheetPart.Worksheet, "C", 38);
+                                    cell.CellValue = new CellValue(string.Format("{0}", p.PartNumber));
+                                    cell.DataType = new EnumValue<CellValues>(CellValues.String);
+
+                                    cell = GetCell(worksheetPart.Worksheet, "E", 38);
+                                    cell.CellValue = new CellValue(string.Format("{0}", p.CN));
+                                    cell.DataType = new EnumValue<CellValues>(CellValues.String);
+
+                                    cell = GetCell(worksheetPart.Worksheet, "F", 38);
+                                    cell.CellValue = new CellValue(string.Format("{0}", p.Quantity));
+                                    cell.DataType = new EnumValue<CellValues>(CellValues.String);
+
+                                    cell = GetCell(worksheetPart.Worksheet, "C", 40);
+                                    cell.CellValue = new CellValue(string.Format("{0}", p.PartDescription));
+                                    cell.DataType = new EnumValue<CellValues>(CellValues.String);
+                                    break;
+                                #endregion
+
+                                #region Line 4
+                                case 4:
+                                    cell = GetCell(worksheetPart.Worksheet, "C", 46);
+                                    cell.CellValue = new CellValue(string.Format("{0}", p.PartNumber));
+                                    cell.DataType = new EnumValue<CellValues>(CellValues.String);
+
+                                    cell = GetCell(worksheetPart.Worksheet, "E", 46);
+                                    cell.CellValue = new CellValue(string.Format("{0}", p.CN));
+                                    cell.DataType = new EnumValue<CellValues>(CellValues.String);
+
+                                    cell = GetCell(worksheetPart.Worksheet, "F", 46);
+                                    cell.CellValue = new CellValue(string.Format("{0}", p.Quantity));
+                                    cell.DataType = new EnumValue<CellValues>(CellValues.String);
+
+                                    cell = GetCell(worksheetPart.Worksheet, "C", 48);
+                                    cell.CellValue = new CellValue(string.Format("{0}", p.PartDescription));
+                                    cell.DataType = new EnumValue<CellValues>(CellValues.String);
+                                    break;
+
+                                #endregion
+
+                                default:
+                                    break;
+                            }
+
+                            line++;
+                        }
+
+                    }
+                    #endregion
+
+                    // Save the worksheet.
+                    worksheetPart.Worksheet.Save();
+
+                }
+            }
+
+            return destinationFile;
+        }
+
+
         public ActionResult PrintRFQ(RequestForQuote rfq)
         {
             try
@@ -550,165 +718,8 @@ namespace RnzssWeb.Controllers
                     return Json(new { success = false, message = "Please Save the RFQ before clicking download.", JsonRequestBehavior.AllowGet });
                 }
 
-                string sourceFile = System.IO.Path.Combine(Server.MapPath("~/RfqFiles"), "RFQ_Template.xlsx");
-                string destinationFile = System.IO.Path.Combine(Server.MapPath("~/RfqFiles"), string.Format("RFQ_{0}.xlsx", rfq.RFQNo));
-                if (System.IO.File.Exists(destinationFile))
-                    System.IO.File.Delete(destinationFile);
 
-
-                System.IO.File.Copy(sourceFile, destinationFile);
-
-
-                RequestForQuote dbRfq = RequestForQuote.GetRfq(rfq.RFQNo);
-                IEnumerable<ProductInformation> dbProducts = ProductInformation.GetAll(rfq.RFQNo);
-
-                using (SpreadsheetDocument spreadSheet = SpreadsheetDocument.Open(destinationFile, true))
-                {
-                    WorksheetPart worksheetPart =
-                         GetWorksheetPartByName(spreadSheet, "Sheet1");
-
-                    if (worksheetPart != null)
-                    {
-                        Cell cell = null;
-                        #region Our company info
-                        cell = GetCell(worksheetPart.Worksheet,
-                                                 "F", 11);
-
-
-
-                        cell.CellValue = new CellValue(string.Format("RFQ No. {0} \n # Tanweer Zaman \n # R & Z Supply And Services LLC. \n # 14 Fountain Ln \n # Jericho NY 11753", rfq.RFQNo).Replace("\n", Environment.NewLine).Replace("#", "   "));
-                        cell.DataType =
-                            new EnumValue<CellValues>(CellValues.String);
-
-                        #endregion
-
-                        #region RFQ Company Info
-                        cell = GetCell(worksheetPart.Worksheet,
-                                                 "B", 11);
-
-
-                        // Do not indent or add space.It will add space during print
-                        cell.CellValue = new CellValue(string.Format(@"{0}
-{1}
-{2}
-{3}"
-                                                                    , dbRfq.CompanyName
-                                                                    , dbRfq.Attention
-                                                                    , dbRfq.CompanyAddress
-                                                                    , dbRfq.PhoneNo
-                                                                    )
-                                                      );
-                        cell.DataType =
-                            new EnumValue<CellValues>(CellValues.String);
-
-                        #endregion
-
-                        #region Print Products
-
-                        if (dbProducts != null && dbProducts.Any())
-                        {
-                            int line = 1;
-                            foreach (var p in dbProducts)
-                            {
-                                switch (line)
-                                {
-                                    #region Line 1
-                                    case 1:
-                                        cell = GetCell(worksheetPart.Worksheet, "C", 22);
-                                        cell.CellValue = new CellValue(string.Format("{0}", p.PartNumber));
-                                        cell.DataType = new EnumValue<CellValues>(CellValues.String);
-
-                                        cell = GetCell(worksheetPart.Worksheet, "E", 22);
-                                        cell.CellValue = new CellValue(string.Format("{0}", p.CN));
-                                        cell.DataType = new EnumValue<CellValues>(CellValues.String);
-
-                                        cell = GetCell(worksheetPart.Worksheet, "F", 22);
-                                        cell.CellValue = new CellValue(string.Format("{0}", p.Quantity));
-                                        cell.DataType = new EnumValue<CellValues>(CellValues.String);
-
-                                        cell = GetCell(worksheetPart.Worksheet, "C", 24);
-                                        cell.CellValue = new CellValue(string.Format("{0}", p.PartDescription));
-                                        cell.DataType = new EnumValue<CellValues>(CellValues.String);
-                                        break;
-                                    #endregion
-
-                                    #region Line 2
-                                    case 2:
-                                        cell = GetCell(worksheetPart.Worksheet, "C", 30);
-                                        cell.CellValue = new CellValue(string.Format("{0}", p.PartNumber));
-                                        cell.DataType = new EnumValue<CellValues>(CellValues.String);
-
-                                        cell = GetCell(worksheetPart.Worksheet, "E", 30);
-                                        cell.CellValue = new CellValue(string.Format("{0}", p.CN));
-                                        cell.DataType = new EnumValue<CellValues>(CellValues.String);
-
-                                        cell = GetCell(worksheetPart.Worksheet, "F", 30);
-                                        cell.CellValue = new CellValue(string.Format("{0}", p.Quantity));
-                                        cell.DataType = new EnumValue<CellValues>(CellValues.String);
-
-                                        cell = GetCell(worksheetPart.Worksheet, "C", 32);
-                                        cell.CellValue = new CellValue(string.Format("{0}", p.PartDescription));
-                                        cell.DataType = new EnumValue<CellValues>(CellValues.String);
-                                        break;
-                                    #endregion
-
-                                    #region Line 3
-                                    case 3:
-                                        cell = GetCell(worksheetPart.Worksheet, "C", 38);
-                                        cell.CellValue = new CellValue(string.Format("{0}", p.PartNumber));
-                                        cell.DataType = new EnumValue<CellValues>(CellValues.String);
-
-                                        cell = GetCell(worksheetPart.Worksheet, "E", 38);
-                                        cell.CellValue = new CellValue(string.Format("{0}", p.CN));
-                                        cell.DataType = new EnumValue<CellValues>(CellValues.String);
-
-                                        cell = GetCell(worksheetPart.Worksheet, "F", 38);
-                                        cell.CellValue = new CellValue(string.Format("{0}", p.Quantity));
-                                        cell.DataType = new EnumValue<CellValues>(CellValues.String);
-
-                                        cell = GetCell(worksheetPart.Worksheet, "C", 40);
-                                        cell.CellValue = new CellValue(string.Format("{0}", p.PartDescription));
-                                        cell.DataType = new EnumValue<CellValues>(CellValues.String);
-                                        break;
-                                    #endregion
-
-                                    #region Line 4
-                                    case 4:
-                                        cell = GetCell(worksheetPart.Worksheet, "C", 46);
-                                        cell.CellValue = new CellValue(string.Format("{0}", p.PartNumber));
-                                        cell.DataType = new EnumValue<CellValues>(CellValues.String);
-
-                                        cell = GetCell(worksheetPart.Worksheet, "E", 46);
-                                        cell.CellValue = new CellValue(string.Format("{0}", p.CN));
-                                        cell.DataType = new EnumValue<CellValues>(CellValues.String);
-
-                                        cell = GetCell(worksheetPart.Worksheet, "F", 46);
-                                        cell.CellValue = new CellValue(string.Format("{0}", p.Quantity));
-                                        cell.DataType = new EnumValue<CellValues>(CellValues.String);
-
-                                        cell = GetCell(worksheetPart.Worksheet, "C", 48);
-                                        cell.CellValue = new CellValue(string.Format("{0}", p.PartDescription));
-                                        cell.DataType = new EnumValue<CellValues>(CellValues.String);
-                                        break;
-
-                                    #endregion
-
-                                    default:
-                                        break;
-                                }
-
-                                line++;
-                            }
-
-                        }
-                        #endregion
-
-                        // Save the worksheet.
-                        worksheetPart.Worksheet.Save();
-
-                    }
-                }
-
+                string destinationFile = GenerateRFQFile(rfq.RFQNo);
                 RequestForQuoteEvent.LogEvent(rfq.RFQNo, string.Format("RFQ printed by {0}", System.Web.HttpContext.Current.User.Identity.Name));
                 RequestForQuote.UpdateRfqStatus(rfq.RFQNo, RfqStatusList.Sent);
                 return Json(new { success = true, fileName = destinationFile, JsonRequestBehavior.AllowGet });
@@ -993,6 +1004,67 @@ namespace RnzssWeb.Controllers
 
         #endregion
 
+        #region Send mail
+        public ActionResult EmailRFQ(string RFQNo)
+        {
+            try
+            {
+
+
+                using (MailMessage mm = new MailMessage(from: "rnz@rnzss.com", to: "tazman536@gmail.com" ))
+                {
+                    mm.Subject = string.Format("Request for quote. Reference RFQ No. {0}",RFQNo);
+                    mm.Body = string.Format(@"
+Dear Sir/Madam 
+Please quote a price for the item(s) listed in the attached document.
+
+Tanweer Zaman
+President
+R&Z Supply and Services LLC
+14 Fountain Lane
+Jericho, NY 11753
+email: rnz@rnzss.com
+phone: 516-639-8129
+website: www.rnzss.com
+
+                                            ");
+                    mm.CC.Add("rnz@rnzss.com");
+                    //if (model.Attachment.ContentLength > 0)
+                    //{
+                    //    string fileName = Path.GetFileName(model.Attachment.FileName);
+                    //    mm.Attachments.Add(new Attachment(model.Attachment.InputStream, fileName));
+                    //}
+                    string destinationFile = GenerateRFQFile(RFQNo);
+                    if(!string.IsNullOrEmpty(destinationFile))
+                        mm.Attachments.Add(new Attachment(destinationFile));
+
+                    mm.IsBodyHtml = false;
+                    using (SmtpClient smtp = new SmtpClient())
+                    {
+                        smtp.Host = "tigerlily.arvixe.com";
+                        smtp.EnableSsl = false;
+                        NetworkCredential NetworkCred = new NetworkCredential("rnz@rnzss.com", "Allen123#");
+                        smtp.UseDefaultCredentials = true;
+                        smtp.Credentials = NetworkCred;
+                        smtp.Port = 587;
+                        smtp.Send(mm);
+                        ViewBag.Message = "Email sent.";
+                    }
+                }
+
+                return Json(new { success = true, message = "Mail sent" }, JsonRequestBehavior.AllowGet);
+
+            }
+            catch (Exception ex)
+            {
+                logger.Fatal(ex);
+                return Json(new { success = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+
+            return Json(new { success = true, message = "Mail sent" }, JsonRequestBehavior.AllowGet);
+
+        }
+        #endregion
 
         #endregion
 
