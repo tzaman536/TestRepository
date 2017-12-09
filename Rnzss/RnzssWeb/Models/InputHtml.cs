@@ -217,7 +217,15 @@ namespace RnzssWeb.Models
             Match match = Regex.Match(inputAddress, @"^(.*?)Phone:", RegexOptions.None);
             if (match.Success)
             {
+                string companyName = Regex.Match(match.Value, @"^[^0-9]*").Value;
                 rfq.CompanyAddress = match.Value.Replace("Phone:", "");
+                if (!string.IsNullOrEmpty(companyName))
+                {
+                    rfq.CompanyAddress = rfq.CompanyAddress.Replace(companyName, "");
+                    rfq.CompanyName = companyName;
+
+                }
+
                 matchCount++;
             }
 
@@ -231,7 +239,14 @@ namespace RnzssWeb.Models
             match = Regex.Match(inputAddress, @"(?<=Fax:)(.*)(?=CAGE Code:)", RegexOptions.None);
             if (match.Success)
             {
-                rfq.FaxNo = match.Value.Trim();
+                if (match.Value.Trim().Contains("http"))
+                {
+                    rfq.FaxNo = Regex.Match(match.Value, @"^[^a-z]*").Value;
+                }
+                else
+                {
+                    rfq.FaxNo = match.Value.Trim();
+                }
                 matchCount++;
             }
 
