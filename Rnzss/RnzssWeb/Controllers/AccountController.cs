@@ -449,7 +449,7 @@ namespace SimplexInvoiceWeb.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("ActiveRfq", "Rfq");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult
