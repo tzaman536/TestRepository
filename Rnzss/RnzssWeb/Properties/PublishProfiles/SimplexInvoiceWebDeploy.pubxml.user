@@ -3859,7 +3859,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/08/2016 11:29:57</publishTime>
     </File>
     <File Include="Views/Rfq/ActiveRfq.cshtml">
-      <publishTime>12/14/2017 18:18:40</publishTime>
+      <publishTime>12/14/2017 18:51:56</publishTime>
     </File>
     <File Include="Views/Rfq/AddSolicitation.cshtml">
       <publishTime>11/16/2017 13:07:38</publishTime>
