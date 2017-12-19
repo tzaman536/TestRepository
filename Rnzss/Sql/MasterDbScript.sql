@@ -37,7 +37,7 @@ GO
 
 CREATE TABLE [rnz].[RequestForQuote](
 	[RequestForQuoteId] [int] IDENTITY(1,1) NOT NULL,
-	[RFQNo] [nvarchar](50) NULL,
+	[RFQNo] [nvarchar](50) NOT NULL,
 	[CompanyName] [nvarchar](200) NULL,
 	[Attention] [nvarchar](200) NULL,
 	[CompanyAddress] [nvarchar](255) NULL,

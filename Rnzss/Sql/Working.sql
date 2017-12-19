@@ -1,32 +1,29 @@
 use rnzss
+/* Search Product
+select * from [rnz].[ProductInformation] where quantity = '11'
+select * from [rnz].[ProductInformation] where Partname like '%5960%'
+select * from [rnz].[ProductInformation] where PartDescription like '%MG%'
+*/
+
+select LinkId, count(*)
+from rnz.DocumentStore 
+group by LinkId
+having count(*) > 1
+
+WHERE LinkId=@RfqNo
 
 
-  select 
-    rfq.*     
-    ,coalesce(s.SolicitaionStatus,rfq.SolicitaionStatus,'Synch') as SolicitaionStatus
-    ,e.RfqEvent
-from [rnz].[RequestForQuote] rfq 
-left join ( 
-			select  
-				re.RFQNo,EventDescription as  RfqEvent
-			from [rnz].RequestForQuoteEvents re
-			inner join (select RFQNo, max(RequestForQuoteEventId) as RequestForQuoteEventId from [rnz].RequestForQuoteEvents group by RFQNo ) me 
-			on re.RequestForQuoteEventId = me.RequestForQuoteEventId
-		  ) e on rfq.RFQNo = e.RFQNo
-left join (select distinct solicitationno as SolicitationNumber,SolicitaionStatus from [rnz].Solicitations t) s on rfq.SolicitationNumber = s.SolicitationNumber
+select *
+from rnz.DocumentStore 
+where LinkId like 'RZRFQ10321'
+order by LinkId
 
-order by rfq.[UpdateDate]
+select *
+from rnz.DocumentStore 
+where FileExtension like '%C4%'
 
 
-select  
-	re.RFQNo,EventDescription as  RfqEvent
-from [rnz].RequestForQuoteEvents re
-inner join (select RFQNo, max(RequestForQuoteEventId) as RequestForQuoteEventId from [rnz].RequestForQuoteEvents group by RFQNo ) me 
-on re.RequestForQuoteEventId = me.RequestForQuoteEventId
-
-
-select * 
-from rnz.[InputHtml] t
+select * from rnz.[InputHtml] t
 
 declare @RfqNo nvarchar(200) ='RZRFQ10009'
 
@@ -40,7 +37,6 @@ WHERE PONo is not null
 select * from [rnz].[ProductInformation] WHERE RFQNo=@RfqNo
 select * from [rnz].[RequestForQuote] WHERE RFQNo=@RfqNo
 select * from rnz.RequestForQuoteEvents  WHERE RFQNo=@RfqNo
-select * from rnz.DocumentStore WHERE LinkId=@RfqNo
 
 alter table [rnz].[RequestForQuote] add SolicitaionStatus nvarchar(50) null
 
@@ -49,10 +45,6 @@ select *
 from [rnz].[Vendors]
 where companyname like 'Tal%'
 
-select * from [rnz].[ProductInformation] where quantity = '11'
-
-select * from [rnz].[ProductInformation] where Partname like '%pin%'
-select * from [rnz].[ProductInformation] where PartDescription like '%inge%'
 select * 
 from [rnz].[RequestForQuote] 
 where RfqStatus = 'Closed'

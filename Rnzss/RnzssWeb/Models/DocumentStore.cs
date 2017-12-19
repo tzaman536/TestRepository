@@ -149,6 +149,48 @@ namespace RnzssWeb.Models
         }
 
 
+        public static IEnumerable<DocumentStore> GetDocument(string linkId)
+        {
+            using (IDbConnection connection = CommonMethods.OpenConnection())
+            {
+                try
+                {
+                    return connection.Query<DocumentStore>(@"
+                                                        select s.DocumentStoreId
+                                                               ,s.LinkId
+                                                               ,s.FileBaseName         
+                                                        from [rnz].[DocumentStore] s
+                                                        where LinkId = @linkId
+                                                        ", new { linkId }, commandTimeout: 0).ToList();
+                }
+                catch (Exception ex)
+                {
+                    logger.Fatal(ex);
+                }
+
+            }
+
+            return null;
+
+        }
+
+
+        public static void CleanUpFiles(IEnumerable<string> fileList)
+        {
+            foreach (var mapPath in fileList)
+            {
+                if (System.IO.File.Exists(mapPath))
+                {
+                    try {
+                        System.IO.File.Delete(mapPath);
+                    }
+                    catch(Exception ex)
+                    {
+                        logger.Error(ex);
+                    }
+                }
+            }
+        }
 
 
     }

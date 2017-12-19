@@ -53,6 +53,9 @@ namespace RnzssWeb.Controllers
 
         public string GetContentType(string fileExtension)
         {
+            if (string.IsNullOrEmpty(fileExtension))
+                return null;
+
             switch (fileExtension.ToLower())
             {
                 case ".xlsx":
@@ -1026,11 +1029,95 @@ namespace RnzssWeb.Controllers
         #endregion
 
         #region Send mail
-        public ActionResult EmailRFQ(string RFQNo)
+
+        public IEnumerable<string> GetRFQAttachments(string rfqNo)
         {
+
             try
             {
-                if(string.IsNullOrEmpty(RFQNo))
+                var documentList = DocumentStore.GetDocument(rfqNo);
+
+
+
+                if (documentList == null)
+                    return null;
+
+                RequestForQuote rfq = RequestForQuote.GetRfq(rfqNo);
+
+                if (rfq == null)
+                    return null;
+
+                List<string> files = new List<string>();
+
+                string solicitationNo = rfq.SolicitationNumber;
+
+                foreach(var dc in documentList)
+                {
+
+
+                    string filePath = dc.FileBaseName;
+
+                    if(filePath.Contains(solicitationNo))
+                    {
+                        continue;
+                    }
+
+                    if(filePath.ToUpper().Contains("QUOTE"))
+                    {
+                        continue;
+                    }
+
+                    string mapPath = GetFilePath("DOWNLOAD", filePath);
+                    byte[] fileContents;
+                    string selectStmt = "SELECT BinaryData FROM rnz.DocumentStore WHERE DocumentStoreId = @DocumentStoreId";
+                    using (SqlConnection connection = new SqlConnection(CommonMethods._connectionString))
+                    using (SqlCommand cmdSelect = new SqlCommand(selectStmt, connection))
+                    {
+                        cmdSelect.Parameters.Add("@DocumentStoreId", SqlDbType.Int).Value = dc.DocumentStoreId;
+                        connection.Open();
+                        fileContents = (byte[])cmdSelect.ExecuteScalar();
+                        connection.Close();
+                    }
+
+                    if (System.IO.File.Exists(mapPath))
+                    {
+                        System.IO.File.Delete(mapPath);
+                    }
+
+
+
+                    if (fileContents != null)
+                    {
+                        using (Stream file = System.IO.File.OpenWrite(mapPath))
+                        {
+                            file.Write(fileContents, 0, fileContents.Length);
+                        }
+                    }
+
+                    string contectType = GetContentType(dc.FileExtension);
+
+                    files.Add(mapPath);
+                }
+
+                return files;
+            }
+            catch (Exception ex)
+            {
+                logger.Fatal(ex);
+            }
+            return null;
+        }
+
+
+        
+
+        public ActionResult EmailRFQ(string RFQNo)
+        {
+            List<string> attachments = new List<string>();
+            string destinationFile = null;
+            try
+            {
+                if (string.IsNullOrEmpty(RFQNo))
                 {
                     return Json(new { success = false, message = "Invalid RFQ no" }, JsonRequestBehavior.AllowGet);
                 }
@@ -1083,14 +1170,18 @@ website: www.rnzss.com
 
                                             ");
                     mm.CC.Add("rnz@rnzss.com");
-                    //if (model.Attachment.ContentLength > 0)
-                    //{
-                    //    string fileName = Path.GetFileName(model.Attachment.FileName);
-                    //    mm.Attachments.Add(new Attachment(model.Attachment.InputStream, fileName));
-                    //}
-                    string destinationFile = GenerateRFQFile(RFQNo);
+                    destinationFile = GenerateRFQFile(RFQNo);
                     if(!string.IsNullOrEmpty(destinationFile))
                         mm.Attachments.Add(new Attachment(destinationFile));
+
+                    attachments = GetRFQAttachments(RFQNo).ToList();
+                    if(attachments != null && attachments.Any())
+                    {
+                        foreach(var file in attachments)
+                        {
+                            mm.Attachments.Add(new Attachment(file));
+                        }
+                    }
 
                     mm.IsBodyHtml = false;
                     using (SmtpClient smtp = new SmtpClient())
@@ -1104,11 +1195,13 @@ website: www.rnzss.com
                         smtp.Send(mm);
                         ViewBag.Message = "Email sent.";
                     }
+                    
                 }
 
+                
                 RequestForQuoteEvent.LogEvent(dbRfq.RFQNo, string.Format("RFQ email sent by {0}", System.Web.HttpContext.Current.User.Identity.Name));
                 RequestForQuote.UpdateRfqStatus(dbRfq.RFQNo, RfqStatusList.Sent);
-
+                
                 return Json(new { success = true, message = "Mail sent" }, JsonRequestBehavior.AllowGet);
 
             }
@@ -1117,8 +1210,29 @@ website: www.rnzss.com
                 logger.Fatal(ex);
                 return Json(new { success = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
             }
+            finally
+            {
 
-            return Json(new { success = true, message = "Mail sent" }, JsonRequestBehavior.AllowGet);
+                if (!string.IsNullOrEmpty(destinationFile))
+                {
+                    attachments.Add(destinationFile);
+                    System.IO.FileInfo fi = new FileInfo(destinationFile);
+                    if(fi.Extension.Contains("pdf"))
+                    {
+                        attachments.Add(destinationFile.Replace(".pdf",".xlsx"));
+                    }
+
+
+                }
+                
+
+                if(attachments != null && attachments.Any())
+                {
+                    DocumentStore.CleanUpFiles(attachments);
+                }
+            }
+
+            
 
         }
         #endregion
@@ -1825,3 +1939,4 @@ website: www.rnzss.com
 
     }
 }
+ 
