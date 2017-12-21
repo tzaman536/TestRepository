@@ -167,7 +167,7 @@ namespace RnzssWeb.Models
                                                ,@Comment
                                                ,@UpdatedBy
                                                ,@DueDate
-                                               ,@SolicitationNumber
+                                               ,LTRIM(RTRIM(@SolicitationNumber))
                                                ,@RfqStatus
                                                )
 
@@ -381,7 +381,7 @@ namespace RnzssWeb.Models
                                                       ,[Email] = @Email
                                                       ,[Comment] = @Comment
                                                       ,DueDate = @DueDate
-                                                      ,SolicitationNumber = @SolicitationNumber
+                                                      ,SolicitationNumber = LTRIM(RTRIM(@SolicitationNumber))
                                                       ,RfqStatus = @RfqStatus
                                                       ,[UpdatedBy] = @UpdatedBy
                                                       ,[UpdateDate] = getutcdate()

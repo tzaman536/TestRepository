@@ -22,6 +22,7 @@ using System.Web.Helpers;
 using System.Net.Mail;
 using System.Net;
 using GemBox.Spreadsheet;
+using RnzssBL;
 
 namespace RnzssWeb.Controllers
 {
@@ -1784,6 +1785,11 @@ website: www.rnzss.com
                         um.Message = "Runing task to synchronize solicitation status. Please review status in solicitation page.";
                         Solicitation.SynchSolicitation();
                         break;
+                    case "BACKUP_DATABASE":
+                        DatabaseBackupHandler dbh = new DatabaseBackupHandler();
+                        dbh.BackUpRnzssDatabase();
+                        break;
+
                     default:
                         um.Message = "Please choose a valid task to run.";
                         break;

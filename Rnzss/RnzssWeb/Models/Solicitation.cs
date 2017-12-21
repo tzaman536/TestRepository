@@ -75,7 +75,7 @@ namespace RnzssWeb.Models
                 {
                     var result = connection.Execute(@"
                                                 UPDATE [rnz].[Solicitations]
-                                                   SET [SolicitationNo] = @SolicitationNo
+                                                   SET [SolicitationNo] = LTRIM(RTRIM(@SolicitationNo))
                                                       ,[SolicitationDescription] = @SolicitationDescription
 	                                                  ,[AwardQuantity] = @AwardQuantity
 	                                                  ,[AwardAmount] = @AwardAmount
@@ -135,7 +135,7 @@ namespace RnzssWeb.Models
                                                                ,SolicitaionStatus
                                                                ,[UpdatedBy])
                                                          VALUES
-                                                               (@SolicitationNo
+                                                               (LTRIM(RTRIM(@SolicitationNo))
                                                                ,@SolicitationDescription
                                                                ,@AwardQuantity
                                                                ,@AwardAmount

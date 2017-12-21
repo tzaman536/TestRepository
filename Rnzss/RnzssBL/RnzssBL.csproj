@@ -7,7 +7,7 @@
     <ProjectGuid>{16120660-CF09-493D-BEC6-87661C7C5D61}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SimplexInvoiceBL</RootNamespace>
+    <RootNamespace>RnzssBL</RootNamespace>
     <AssemblyName>SimplexInvoiceBL</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DatabaseBackupHandler.cs" />
     <Compile Include="JobTicketHandler.cs" />
     <Compile Include="CompanyHandler.cs" />
     <Compile Include="SimplexInvoiceHelper.cs" />
