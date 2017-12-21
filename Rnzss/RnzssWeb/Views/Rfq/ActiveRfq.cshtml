@@ -42,12 +42,14 @@
                                 .ToolBar(toolbar =>
                                 {
                                     toolbar.Excel();
-                                    
+
                                 })
                                 .Editable(editable => editable.Mode(GridEditMode.InLine))
                                 .Pageable()
                                 .Sortable()
                                 .Filterable()
+                                .Resizable(resize => resize.Columns(true))
+                                .Groupable()
                                 .Scrollable(scr => scr.Height(800))
                                 .Excel(excel => excel
                                     .AllPages(true)
