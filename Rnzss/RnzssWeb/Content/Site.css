@@ -728,3 +728,28 @@ h3{
 }
 
 /*#endregion */
+
+/*#region Dashboard*/
+.pieChartContainer {
+        max-height: 500px;
+        max-width: 600px;
+        background-color: silver;
+        padding: 4px 4px 4px 4px;
+        margin-top: 90px;
+        margin-left: 10px;
+        border-radius: 15px;
+}
+
+
+.barChartContainer {
+        max-height: 500px;
+        max-width: 600px;
+        background-color: silver;
+        padding: 4px 4px 4px 4px;
+        margin-top: 90px;
+        margin-left: 10px;
+        border-radius: 15px;
+        align-items:center;
+}
+  
+/*#endregion*/

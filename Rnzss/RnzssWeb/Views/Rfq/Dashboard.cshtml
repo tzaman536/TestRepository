@@ -2,18 +2,134 @@
 @{
     ViewBag.Title = "Dashboard";
 }
-<div class="page-container">
-    <div id="addSolicitationForm" class="admin-page-container">
-        <div id="pageMessage" class="interactive-message"> </div>
+@*<div class="page-container">
+    <div id="addSolicitationForm" class="admin-page-container">*@
+        @*<div id="pageMessage" class="interactive-message"> </div>*@
 
-        <div class="rfq-command-buttons">
-            <button onclick="ExecuteTask('SYNCH_SOLICITATION_STATUS')" class="k-button action-button">Synch Solicitation Status</button>
-            <button onclick="ExecuteTask('BACKUP_DATABASE')" class="k-button action-button">Backup Database</button>
+<div id="wrapper">
+    <div id="first-large-rfqentry">
+        <div class="barChartContainer">
+            @(Html.Kendo().Chart()
+        .Name("chartBar")
+        .Title("Rfq Stats ")
+        .Legend(legend => legend
+            .Visible(false)
+        )
+        .ChartArea(chartArea => chartArea
+            .Background("transparent")
+        )
+        .Series(series =>
+        {
+            series.Bar(new double[] {
+                                    ((RfqCountByMonth)ViewData["OpenRfqByMonth"]).January
+                                        , ((RfqCountByMonth)ViewData["OpenRfqByMonth"]).February
+                                        , ((RfqCountByMonth)ViewData["OpenRfqByMonth"]).March
+                                        , ((RfqCountByMonth)ViewData["OpenRfqByMonth"]).April
+                                        , ((RfqCountByMonth)ViewData["OpenRfqByMonth"]).May
+                                        , ((RfqCountByMonth)ViewData["OpenRfqByMonth"]).June
+                                        , ((RfqCountByMonth)ViewData["OpenRfqByMonth"]).July
+                                        , ((RfqCountByMonth)ViewData["OpenRfqByMonth"]).August
+                                        , ((RfqCountByMonth)ViewData["OpenRfqByMonth"]).September
+                                        , ((RfqCountByMonth)ViewData["OpenRfqByMonth"]).October
+                                        , ((RfqCountByMonth)ViewData["OpenRfqByMonth"]).November
+                                        , ((RfqCountByMonth)ViewData["OpenRfqByMonth"]).December
+                                    }).Name("Open").Color("yellow");
+            series.Bar(new double[] {
+                                        ((RfqCountByMonth)ViewData["BidRfqByMonth"]).January
+                                        , ((RfqCountByMonth)ViewData["BidRfqByMonth"]).February
+                                        , ((RfqCountByMonth)ViewData["BidRfqByMonth"]).March
+                                        , ((RfqCountByMonth)ViewData["BidRfqByMonth"]).April
+                                        , ((RfqCountByMonth)ViewData["BidRfqByMonth"]).May
+                                        , ((RfqCountByMonth)ViewData["BidRfqByMonth"]).June
+                                        , ((RfqCountByMonth)ViewData["BidRfqByMonth"]).July
+                                        , ((RfqCountByMonth)ViewData["BidRfqByMonth"]).August
+                                        , ((RfqCountByMonth)ViewData["BidRfqByMonth"]).September
+                                        , ((RfqCountByMonth)ViewData["BidRfqByMonth"]).October
+                                        , ((RfqCountByMonth)ViewData["BidRfqByMonth"]).November
+                                        , ((RfqCountByMonth)ViewData["BidRfqByMonth"]).December
+                                    }).Name("Quoted").Color("blue");
+            series.Bar(new double[] {
+                                        ((RfqCountByMonth)ViewData["AwardedRfqByMonth"]).January
+                                        , ((RfqCountByMonth)ViewData["AwardedRfqByMonth"]).February
+                                        , ((RfqCountByMonth)ViewData["AwardedRfqByMonth"]).March
+                                        , ((RfqCountByMonth)ViewData["AwardedRfqByMonth"]).April
+                                        , ((RfqCountByMonth)ViewData["AwardedRfqByMonth"]).May
+                                        , ((RfqCountByMonth)ViewData["AwardedRfqByMonth"]).June
+                                        , ((RfqCountByMonth)ViewData["AwardedRfqByMonth"]).July
+                                        , ((RfqCountByMonth)ViewData["AwardedRfqByMonth"]).August
+                                        , ((RfqCountByMonth)ViewData["AwardedRfqByMonth"]).September
+                                        , ((RfqCountByMonth)ViewData["AwardedRfqByMonth"]).October
+                                        , ((RfqCountByMonth)ViewData["AwardedRfqByMonth"]).November
+                                        , ((RfqCountByMonth)ViewData["AwardedRfqByMonth"]).December
+                                    }).Name("Awarded").Color("green");
+        })
+        .CategoryAxis(axis => axis
+            .Categories("Jan", "Feb", "Mar", "Apr", "May", "Jun", "July", "August", "September", "October", "November", "December")
+            .MajorGridLines(lines => lines.Visible(false))
+        )
+        .ValueAxis(axis => axis
+            .Numeric()
+            .Max(300)
+            .Line(line => line.Visible(false))
+            .MajorGridLines(lines => lines.Visible(true))
+        )
+        .Tooltip(tooltip => tooltip
+            .Visible(true)
+            .Template("#= series.name #: #= value #")
+        )
+            )
         </div>
-       
     </div>
+    <div id="second-large-rfqentry">
+        <div class="pieChartContainer">
+            @(Html.Kendo().Chart()
+        .Name("chartPie")
+                .Title(title => title
+                    .Text("RFQ Status Summary")
+                    .Position(ChartTitlePosition.Bottom))
+        .Legend(legend => legend
+            .Visible(false)
+        )
+        .ChartArea(chart => chart
+            .Background("transparent")
+         )
+        //.HtmlAttributes(new { style = "background: center no-repeat url(" + @Url.Content("~/Content/shared/world-map.png") })
+        .Series(series =>
+        {
+            series.Pie(new dynamic[] {
+                new {category="Open",value=((RfqCountSummary)ViewData["RfqCount"]).TotalOpen,color="OrangeRed"},
+                new {category="Sent",value=((RfqCountSummary)ViewData["RfqCount"]).TotalSent,color="RoyalBlue"},
+                new {category="ReadyToBid",value=((RfqCountSummary)ViewData["RfqCount"]).TotalReadyToBid,color="yellow"},
+                new {category="Bid",value=((RfqCountSummary)ViewData["RfqCount"]).TotalBid,color="LightGreen"},
+                new {category="Awarded",value=((RfqCountSummary)ViewData["RfqCount"]).TotalAwarded,color="Green"},
 
+            })
+            .Labels(labels => labels
+                .Template("#= category #: \n #= value#%")
+                .Background("transparent")
+                .Visible(true)
+            )
+            .StartAngle(150);
+        })
+        .Legend(x => x.Position(ChartLegendPosition.Left))
+        .Tooltip(tooltip => tooltip
+            .Visible(true)
+            .Format("{0}%")
+        )
+            )
+
+        </div>
+    </div>
 </div>
+
+        
+
+
+        
+
+
+    @*</div>
+</div>*@
 
 
 <script>
@@ -50,3 +166,5 @@
     }
 </script>
 
+<style>
+</style>

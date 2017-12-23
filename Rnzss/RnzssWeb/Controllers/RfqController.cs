@@ -1769,8 +1769,22 @@ website: www.rnzss.com
                 return RedirectToAction("Login", "Account");
             }
 
+            RfqCountSummary count = new RfqCountSummary();
+            count.LoadSummary();
+            ViewData["RfqCount"] = count;
 
-            
+            RfqCountByMonth openRfqByMonth = new RfqCountByMonth();
+            openRfqByMonth.Load();
+            ViewData["OpenRfqByMonth"] = openRfqByMonth;
+
+            RfqCountByMonth awardedRfqByMonth = new RfqCountByMonth();
+            awardedRfqByMonth.Load();
+            ViewData["AwardedRfqByMonth"] = awardedRfqByMonth;
+
+            RfqCountByMonth bidRfqByMonth = new RfqCountByMonth();
+            bidRfqByMonth.Load();
+            ViewData["BidRfqByMonth"] = bidRfqByMonth;
+
             return View();
         }
 

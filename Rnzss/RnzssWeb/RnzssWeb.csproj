@@ -235,6 +235,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ChartObjects.cs" />
     <Compile Include="Models\DocumentStore.cs" />
     <Compile Include="Models\FileUploadLog.cs" />
     <Compile Include="Models\IdentityModels.cs" />
