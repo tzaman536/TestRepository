@@ -327,6 +327,13 @@
     }
     function validateForm(e)
     {
+        if(isEmpty(document.getElementById("rfqNo").value))
+        {
+            alert("Please save RFQ before uploading document");
+            e.preventDefault();
+            return false;
+        }
+
         document.getElementById("inputRfqNo").value = document.getElementById("rfqNo").value;
 
         $('#addNewRfqForm').submit(function (e) {

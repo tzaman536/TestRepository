@@ -190,7 +190,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/12/2016 16:42:22</publishTime>
     </File>
     <File Include="bin/SimplexInvoiceBL.dll">
-      <publishTime>11/22/2017 11:00:38</publishTime>
+      <publishTime>12/21/2017 10:22:12</publishTime>
     </File>
     <File Include="bin/SimplexInvoiceModel.dll">
       <publishTime>10/01/2016 12:52:32</publishTime>
@@ -199,13 +199,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/01/2016 12:52:42</publishTime>
     </File>
     <File Include="bin/SimplexTools.dll">
-      <publishTime>11/22/2017 11:00:37</publishTime>
+      <publishTime>12/21/2017 10:22:11</publishTime>
     </File>
     <File Include="bin/SportsNetworkModel.dll">
-      <publishTime>11/22/2017 11:00:38</publishTime>
+      <publishTime>12/21/2017 10:22:12</publishTime>
     </File>
     <File Include="bin/SportsNetworkWeb.dll">
-      <publishTime>12/16/2017 14:23:59</publishTime>
+      <publishTime>12/21/2017 10:22:22</publishTime>
     </File>
     <File Include="bin/sv-SE/Kendo.Mvc.resources.dll">
       <publishTime>01/12/2016 16:42:22</publishTime>
@@ -3859,13 +3859,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/08/2016 11:29:57</publishTime>
     </File>
     <File Include="Views/Rfq/ActiveRfq.cshtml">
-      <publishTime>12/14/2017 18:51:56</publishTime>
+      <publishTime>12/21/2017 10:18:22</publishTime>
     </File>
     <File Include="Views/Rfq/AddSolicitation.cshtml">
       <publishTime>11/16/2017 13:07:38</publishTime>
     </File>
     <File Include="Views/Rfq/Dashboard.cshtml">
-      <publishTime>11/30/2017 11:08:10</publishTime>
+      <publishTime>12/19/2017 00:04:27</publishTime>
     </File>
     <File Include="Views/Rfq/InputHtmlTable.cshtml">
       <publishTime>12/03/2017 18:54:38</publishTime>
