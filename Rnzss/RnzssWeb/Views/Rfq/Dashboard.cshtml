@@ -4,10 +4,10 @@
 }
 @*<div class="page-container">
     <div id="addSolicitationForm" class="admin-page-container">*@
-        @*<div id="pageMessage" class="interactive-message"> </div>*@
+@**@
 
 <div id="wrapper">
-    <div id="first-large-rfqentry">
+    <div id="first-large-chart">
         <div class="barChartContainer">
             @(Html.Kendo().Chart()
         .Name("chartBar")
@@ -80,7 +80,7 @@
             )
         </div>
     </div>
-    <div id="second-large-rfqentry">
+    <div id="second-large-chart">
         <div class="pieChartContainer">
             @(Html.Kendo().Chart()
         .Name("chartPie")
@@ -121,24 +121,33 @@
         </div>
     </div>
 </div>
+<br />
+<br />
+<br />
+<div id="pageMessage" class="interactive-message"> </div>
+<div id="wrapper">
+    <div id="first-large">
+        <div class="rfq-command-buttons">
+            <button onclick="ExecuteTask('SYNCH_SOLICITATION_STATUS')" class="k-button action-button">Synch Solicitation Status</button>
+            <button onclick="ExecuteTask('BACKUP_DATABASE')" class="k-button action-button">Backup Database</button>
+        </div>
+    </div>
+</div>
 
-        
 
 
-        
 
 
-    @*</div>
-</div>*@
+
+
 
 
 <script>
 
-    function ExecuteTask(taskName)
-    {
-        var myData =  {
+    function ExecuteTask(taskName) {
+        var myData = {
 
-                taskName: taskName
+            taskName: taskName
         }
 
 
@@ -153,8 +162,7 @@
                 if (response.success) {
                     document.getElementById("pageMessage").innerHTML = response.message.Message;
                 }
-                else
-                {
+                else {
                     alert(response.message);
                 }
 
