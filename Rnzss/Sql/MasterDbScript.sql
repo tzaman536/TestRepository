@@ -25,6 +25,7 @@ CREATE TABLE [rnz].[ProductInformation](
 	PkgCost decimal(18,2) null,
 	DeliverIn int null,
 	DeliverInUnit nvarchar(10) null,
+	[AddDate] [datetime] NULL,
 	[UpdatedBy] [nvarchar](100) NOT NULL,
 	[UpdateDate] [datetime] NOT NULL
 ) ON [PRIMARY]
@@ -33,6 +34,9 @@ GO
 
 ALTER TABLE [rnz].[ProductInformation] ADD  DEFAULT (getutcdate()) FOR [UpdateDate]
 GO
+ALTER TABLE [rnz].[ProductInformation] ADD  DEFAULT (getutcdate()) FOR [AddDate]
+GO
+
 
 
 CREATE TABLE [rnz].[RequestForQuote](
@@ -50,6 +54,7 @@ CREATE TABLE [rnz].[RequestForQuote](
 	RfqStatus nvarchar(50) NOT NULL,
 	PONo nvarchar(50) null,
 	SolicitaionStatus nvarchar(50) null,
+	[AddDate] [datetime] NULL,
 	[UpdatedBy] [nvarchar](100) NOT NULL,
 	[UpdateDate] [datetime] NOT NULL
 ) ON [PRIMARY]
@@ -57,6 +62,8 @@ CREATE TABLE [rnz].[RequestForQuote](
 GO
 
 ALTER TABLE [rnz].[RequestForQuote] ADD  DEFAULT (getutcdate()) FOR [UpdateDate]
+GO
+ALTER TABLE [rnz].[RequestForQuote] ADD  DEFAULT (getutcdate()) FOR [AddDate]
 GO
 
 ALTER TABLE rnz.RequestForQuote ADD CONSTRAINT Pk_RequestForQuote PRIMARY KEY (RFQNo)  

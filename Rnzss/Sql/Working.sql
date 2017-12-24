@@ -5,6 +5,16 @@ select * from [rnz].[ProductInformation] where Partname like '%5960%'
 select * from [rnz].[ProductInformation] where PartDescription like '%MG%'
 */
 
+select top 100 * from [rnz].[ProductInformation] WHERE PartNumber like '%X1024-503%'
+
+select SolicitationNumber,*
+from [rnz].[RequestForQuote] t
+where SolicitationNumber like '%SPE4A618T6086%' 
+select *
+from [rnz].[RequestForQuote] t
+where SolicitationNumber like ' %' 
+
+
 select LinkId, count(*)
 from rnz.DocumentStore 
 group by LinkId

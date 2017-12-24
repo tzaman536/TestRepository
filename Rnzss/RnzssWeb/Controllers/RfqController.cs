@@ -1774,15 +1774,15 @@ website: www.rnzss.com
             ViewData["RfqCount"] = count;
 
             RfqCountByMonth openRfqByMonth = new RfqCountByMonth();
-            openRfqByMonth.Load();
+            openRfqByMonth.LoadTotalRfqCountByMonth(ChartRfqTotalCountType.TotalRfqCount);
             ViewData["OpenRfqByMonth"] = openRfqByMonth;
 
             RfqCountByMonth awardedRfqByMonth = new RfqCountByMonth();
-            awardedRfqByMonth.Load();
+            awardedRfqByMonth.LoadTotalRfqCountByMonth(ChartRfqTotalCountType.TotalAwardedRfqCount);
             ViewData["AwardedRfqByMonth"] = awardedRfqByMonth;
 
             RfqCountByMonth bidRfqByMonth = new RfqCountByMonth();
-            bidRfqByMonth.Load();
+            bidRfqByMonth.LoadTotalRfqCountByMonth(ChartRfqTotalCountType.TotalQuotedRfqCount);
             ViewData["BidRfqByMonth"] = bidRfqByMonth;
 
             return View();

@@ -36,4 +36,11 @@ namespace RnzssWeb
     {
         RfqEntry
     }
+
+    public enum ChartRfqTotalCountType
+    {
+        TotalRfqCount
+        ,TotalQuotedRfqCount
+        ,TotalAwardedRfqCount
+    }
 }
