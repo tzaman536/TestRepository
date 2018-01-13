@@ -1,0 +1,5 @@
+C:\SourceCode\InterviewPrep\InterviewPrep\bin\Debug\InterviewPrep.exe.config
+C:\SourceCode\InterviewPrep\InterviewPrep\bin\Debug\InterviewPrep.exe
+C:\SourceCode\InterviewPrep\InterviewPrep\bin\Debug\InterviewPrep.pdb
+C:\SourceCode\InterviewPrep\InterviewPrep\obj\Debug\InterviewPrep.exe
+C:\SourceCode\InterviewPrep\InterviewPrep\obj\Debug\InterviewPrep.pdb
