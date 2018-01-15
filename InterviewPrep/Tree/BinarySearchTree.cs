@@ -19,7 +19,22 @@ namespace InterviewPrep.Tree
 
     public class BinarySearchTree
     {
-        static int getHeight(Node root)
+
+        public BinarySearchTree()
+        {
+            Root = null;
+        }
+
+        public virtual void Clear()
+        {
+            Root = null;
+        }
+
+
+        public Node Root;
+        
+
+        public int GetHeight(Node root)
         {
 
 
@@ -34,7 +49,7 @@ namespace InterviewPrep.Tree
             if (root.left != null)
             {
                 leftHeight++;
-                leftHeight = leftHeight + getHeight(root.left);
+                leftHeight = leftHeight + GetHeight(root.left);
             }
 
 
@@ -42,7 +57,7 @@ namespace InterviewPrep.Tree
             if (root.right != null)
             {
                 rightHeight++;
-                rightHeight = rightHeight + getHeight(root.right);
+                rightHeight = rightHeight + GetHeight(root.right);
             }
 
 
@@ -56,28 +71,29 @@ namespace InterviewPrep.Tree
 
 
 
-        static Node insert(Node root, int data)
+        Node Insert(ref Node n , int data)
         {
-            if (root == null)
+            if (n == null)
             {
-                return new Node(data);
+                n = new Node(data);
+                return n;
             }
             else {
                 Node cur;
-                if (data <= root.data)
+                if (data <= n.data)
                 {
-                    cur = insert(root.left, data);
-                    root.left = cur;
+                    cur = Insert(ref n.left, data);
+                    n.left = cur;
                 }
                 else {
-                    cur = insert(root.right, data);
-                    root.right = cur;
+                    cur = Insert(ref n.right, data);
+                    n.right = cur;
                 }
-                return root;
+                return n;
             }
         }
 
-        public static void PreorderTraversal(Node root)
+        public void PreorderTraversal(Node root)
         {
             if (root != null)
             {
@@ -89,17 +105,17 @@ namespace InterviewPrep.Tree
         }
 
 
-        public static void InorderTraversal(Node root)
+        public void InorderTraversal(Node root)
         {
             if (root != null)
             {
                 InorderTraversal(root.left);
                 Console.Write(string.Format("{0} ", root.data));
-                PreorderTraversal(root.right);
+                InorderTraversal(root.right);
             }
         }
 
-        public static void PostorderTraversal(Node root)
+        public void PostorderTraversal(Node root)
         {
             if(root != null)
             {
@@ -109,7 +125,7 @@ namespace InterviewPrep.Tree
             }
         }
 
-        public static void LookupValue(Node root, int data, ref bool found)
+        public void LookupValue(Node root, int data, ref bool found)
         {
             if (found)
                 return;
@@ -254,40 +270,44 @@ namespace InterviewPrep.Tree
         public static void Start()
         {
             // View this article to verify your work https://msdn.microsoft.com/en-us/library/ms379572(v=vs.80).aspx
-            // 90 50 150 20 75 95 175 5 25 66 80 92 111 166 200
+            //Input: 90 50 150 20 75 95 175 5 25 66 80 92 111 166 200
+
+            //Preorder Traversal: 90, 50, 20, 5, 25, 75, 66, 80, 150, 95, 92, 111, 175, 166, 200
+            //Inorder Traversal: 5, 20, 25, 50, 66, 75, 80, 90, 92, 95, 111, 150, 166, 175, 200
+            //Post Order Traversal:  5, 25, 20, 66, 80, 75, 50, 92, 111, 95, 166, 200, 175, 150, 90
             string[] c_temp = Console.ReadLine().Split(' ');
             int[] c = Array.ConvertAll(c_temp, Int32.Parse);
 
-            Node root = null;
+            BinarySearchTree bst = new BinarySearchTree();
 
             foreach (var data in c)
             {
-                root = insert(root, data);
+                bst.Insert(ref bst.Root, data);
             }
 
 
-            int height = getHeight(root);
+            int height = bst.GetHeight(bst.Root);
             Console.WriteLine(string.Format("Height of the tree is {0}",height));
             Console.Write("Preorder Traversal: ");
-            PreorderTraversal(root);
+            bst.PreorderTraversal(bst.Root);
             Console.WriteLine();
             Console.Write("Inorder Traversal: ");
-            InorderTraversal(root);
+            bst.InorderTraversal(bst.Root);
             Console.WriteLine();
             Console.Write("Postorder Traversal: ");
-            PostorderTraversal(root);
+            bst.PostorderTraversal(bst.Root);
             Console.WriteLine();
             bool found = false;
-            LookupValue(root, 255, ref found);
+            bst.LookupValue(bst.Root, 255, ref found);
             if (found)
                 Console.WriteLine("Found lookup value");
             else
                 Console.WriteLine("Lookup value not found");
 
-            Remove(175, ref root);
+            Remove(175, ref bst.Root);
 
             Console.Write("Preorder Traversal After Delete: ");
-            PreorderTraversal(root);
+            bst.PreorderTraversal(bst.Root);
             
             Console.ReadLine();
         }

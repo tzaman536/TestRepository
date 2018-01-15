@@ -12,7 +12,8 @@ namespace InterviewPrep
 
         static void Main(string[] args)
         {
-            IEnumerableTest.ImplementIEnumerable.Start();
+            //IEnumerableTest.ImplementIEnumerable.Start();
+            Tree.BinarySearchTree.Start();
         }
     }
 }
