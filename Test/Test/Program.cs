@@ -7,122 +7,99 @@ using System.Numerics;
 
 namespace Test
 {
+    class Node
+    { 
+        public string Value { get; set; }
+        public Node Left;
+        public Node Right; 
+    }
+
+
     class Program
     {
-        static void Merge(BigInteger[] arr, BigInteger[] L, BigInteger[] R)
+
+        static void PrintDepth(Node n, int nextLevel)
         {
-            int limit = L.Length;
-            if (R.Length < L.Length)
-                limit = R.Length;
+            if (n == null)
+                return;
 
-
-            for(int i=0; i < limit; i++)
+            if (!string.IsNullOrEmpty(n.Value) && n.Left == null && n.Right == null)
             {
-                if(L[i] < R[i])
-                {
-                 
-                }
+                Console.WriteLine(nextLevel);  
+            }
+            if (n.Left != null)
+                PrintDepth(n.Left, nextLevel + 1);
+            if(n.Right != null)
+                PrintDepth(n.Right, nextLevel + 1);
+        }
 
+        public static int Compare(string x, string y)
+        {
+            // If the length is not the same, we return the difference.
+            // A negative # means, x Length is shorter, 0 means the same (this doesn't occur) and a postive # means Y is bigger
+            if (x.Length != y.Length) return x.Length - y.Length;
+
+            // Now the length is the same.
+            // Compare the number from the first digit.
+            for (int i = 0; i < x.Length; i++)
+            {
+                char left = x[i];
+                char right = y[i];
+                if (left != right)
+                    return left - right;
             }
 
-            //7ZN9401
-            //TaZa-13:37:9001
+            // Default: "0" means both numbers are the same.
+            return 0;
+        }
+
+        static void Insert(ref Node n, string next)
+        {
 
 
+            if(n == null)
+            {
+                n = new Node() { Value = next };
+                return;
+            }
+
+
+            if (Compare(n.Value, next) == 0)
+            {
+                return;
+            }
+
+            if (Compare(n.Value, next) < 0)
+            {
+                Insert(ref n.Right, next);
+
+            }
+            else
+            {
+                Insert(ref n.Left, next);
+            }
+
+           
 
 
         }
 
-        static void MergeSort(BigInteger[] arr, int start, int end)
-        {
-         
-            if (start < end)
-            {
-
-                int midPoint = (start + end) / 2;
-                BigInteger[] L = new BigInteger[midPoint];
-                BigInteger[] R = new BigInteger[end - midPoint];
-                for (int i = 0; i < midPoint; i++)
-                    L[i] = arr[i];
-                for (int i = midPoint; i < end; i++)
-                    R[i] = arr[i];
-
-                MergeSort(L, start, midPoint);
-                MergeSort(R, midPoint,end);
-                Merge(arr, L,R);
-            }
-
-        }
-
-        static public void DoMerge(int[] numbers, int left, int mid, int right)
-        {
-            int[] temp = new int[25];
-            int i, left_end, num_elements, tmp_pos;
-
-            left_end = (mid - 1);
-            tmp_pos = left;
-            num_elements = (right - left + 1);
-
-            while ((left <= left_end) && (mid <= right))
-            {
-                if (numbers[left] <= numbers[mid])
-                    temp[tmp_pos++] = numbers[left++];
-                else
-                    temp[tmp_pos++] = numbers[mid++];
-            }
-
-            while (left <= left_end)
-                temp[tmp_pos++] = numbers[left++];
-
-            while (mid <= right)
-                temp[tmp_pos++] = numbers[mid++];
-
-            for (i = 0; i < num_elements; i++)
-            {
-                numbers[right] = temp[right];
-                right--;
-            }
-        }
-
-        static public void MergeSort_Recursive(int[] numbers, int left, int right)
-        {
-            int mid;
-
-            if (right > left)
-            {
-                mid = (right + left) / 2;
-                MergeSort_Recursive(numbers, left, mid);
-                MergeSort_Recursive(numbers, (mid + 1), right);
-
-                DoMerge(numbers, left, (mid + 1), right);
-            }
-        }
-
+     
         static void Main(string[] args)
         {
-            string[] unsorted = new string[] { "10"
-                                                ,"3"
-                                                ,"5"
-                                                };
+            string[] ar_temp = Console.ReadLine().Split(',');
 
+            Node root = null;
 
-            //BigInteger[] arr = new BigInteger[unsorted.Length];
-            //BigInteger temp;
-
-            int[] arr = new int[unsorted.Length];
-            int temp;
-
-            for (int i = 0; i < unsorted.Length; i++)
+            foreach (var a in ar_temp)
             {
-                //BigInteger.TryParse(unsorted[i], out temp);
-                int.TryParse(unsorted[i], out temp);
-                arr[i] = temp;
+                Insert(ref root, a);
             }
-            MergeSort_Recursive(arr, 0, arr.Length  -1);
-            for (int i = 0; i < arr.Length; i++)
-            {
-                Console.WriteLine(arr[i]);
-            }
+
+
+            PrintDepth(root,0);
+
+         
             Console.ReadLine();
         }
     }
