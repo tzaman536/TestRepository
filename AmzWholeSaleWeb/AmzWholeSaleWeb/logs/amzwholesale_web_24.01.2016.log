@@ -1,0 +1,96 @@
+2016-01-24 15:07:28,223 [13] INFO  AmzWholeSaleWeb.MvcApplication [(null)] - AmzHome Controller 
+2016-01-24 15:09:05,810 [1] INFO  AmzWholeSaleWeb.MvcApplication [(null)] - Starting AMZ Wholesale site...
+2016-01-24 15:09:08,779 [13] INFO  AmzWholeSaleWeb.Controllers.AmzHomeController [(null)] - AmzHome Controller 
+2016-01-24 15:10:23,367 [18] INFO  AmzWholeSaleWeb.Controllers.AmzHomeController [(null)] - AmzHome Controller 
+2016-01-24 15:15:21,649 [1] INFO  AmzWholeSaleWeb.MvcApplication [(null)] - Starting AMZ Wholesale site...
+2016-01-24 15:17:17,046 [6] INFO  AmzBL.Products.AmzProductHandler [(null)] - Adding product: Hello - There
+2016-01-24 15:22:08,431 [1] INFO  AmzWholeSaleWeb.MvcApplication [(null)] - Starting AMZ Wholesale site...
+2016-01-24 15:22:52,297 [17] INFO  AmzWholeSaleWeb.Controllers.ProductAdminController [(null)] - Initialized product handler
+2016-01-24 15:23:01,150 [9] INFO  AmzWholeSaleWeb.Controllers.ProductAdminController [(null)] - Initialized product handler
+2016-01-24 15:23:24,297 [17] INFO  AmzWholeSaleWeb.Controllers.ProductAdminController [(null)] - Initialized product handler
+2016-01-24 15:23:24,382 [17] INFO  AmzBL.Products.AmzProductHandler [(null)] - Adding product: hello - there
+2016-01-24 15:23:27,465 [12] INFO  AmzWholeSaleWeb.Controllers.ProductAdminController [(null)] - Initialized product handler
+2016-01-24 15:23:29,107 [17] INFO  AmzWholeSaleWeb.Controllers.ProductAdminController [(null)] - Initialized product handler
+2016-01-24 15:23:33,170 [17] INFO  AmzWholeSaleWeb.Controllers.ProductAdminController [(null)] - Initialized product handler
+2016-01-24 15:23:34,689 [12] INFO  AmzWholeSaleWeb.Controllers.ProductAdminController [(null)] - Initialized product handler
+2016-01-24 21:17:55,803 [1] INFO  AmzWholeSaleWeb.MvcApplication [(null)] - Starting AMZ Wholesale site...
+2016-01-24 21:21:17,213 [336] INFO  AmzBL.Products.AmzProductHandler [(null)] - Updating product: Beer - Beer
+2016-01-24 21:21:29,277 [336] WARN  AmzBL.Products.AmzProductHandler [(null)] - Couldn't figure out HttpContext user identity. Using Environment.UserName instead
+2016-01-24 21:22:17,522 [336] ERROR AmzBL.Products.AmzProductHandler [(null)] - System.Data.SqlClient.SqlException (0x80131904): Invalid column name 'UpdateDate'.
+Invalid column name 'UpdatedBy'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) in D:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:line 3397
+   at Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) in D:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:line 1346
+   at Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) in D:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:line 1221
+   at AmzBL.Products.AmzProductHandler.UpdateProduct(AmzProduct p)
+ClientConnectionId:3cdc9049-1190-4d5d-893e-8068d64343b5
+Error Number:207,State:1,Class:16
+2016-01-24 21:22:38,377 [336] INFO  AmzBL.Products.AmzProductHandler [(null)] - Updating product: Beer - Beer 
+2016-01-24 21:22:43,103 [336] WARN  AmzBL.Products.AmzProductHandler [(null)] - Couldn't figure out HttpContext user identity. Using Environment.UserName instead
+2016-01-24 21:31:49,467 [336] INFO  AmzBL.Products.AmzProductHandler [(null)] - Updating product: Fruits - Fruits
+2016-01-24 21:31:49,486 [336] WARN  AmzBL.Products.AmzProductHandler [(null)] - Couldn't figure out HttpContext user identity. Using Environment.UserName instead
+2016-01-24 21:35:05,666 [9] INFO  AmzBL.Products.AmzProductHandler [(null)] - Updating product: Curry - Curry
+2016-01-24 21:35:05,671 [9] WARN  AmzBL.Products.AmzProductHandler [(null)] - Couldn't figure out HttpContext user identity. Using Environment.UserName instead
+2016-01-24 21:36:01,924 [336] INFO  AmzBL.Products.AmzProductHandler [(null)] - Updating product: Bread pudding - Bread pudding
+2016-01-24 21:36:01,927 [336] WARN  AmzBL.Products.AmzProductHandler [(null)] - Couldn't figure out HttpContext user identity. Using Environment.UserName instead
+2016-01-24 21:36:28,934 [336] INFO  AmzBL.Products.AmzProductHandler [(null)] - Updating product: Dried fruits - Dried fruits
+2016-01-24 21:36:28,942 [336] WARN  AmzBL.Products.AmzProductHandler [(null)] - Couldn't figure out HttpContext user identity. Using Environment.UserName instead
+2016-01-24 21:36:34,440 [98] INFO  AmzBL.Products.AmzProductHandler [(null)] - Updating product: Dried fruits - Dried fruits
+2016-01-24 21:36:34,442 [98] WARN  AmzBL.Products.AmzProductHandler [(null)] - Couldn't figure out HttpContext user identity. Using Environment.UserName instead
+2016-01-24 21:36:42,058 [336] ERROR AmzBL.Products.AmzProductHandler [(null)] - System.Data.SqlClient.SqlException (0x80131904): A transport-level error has occurred when receiving results from the server. (provider: TCP Provider, error: 0 - The semaphore timeout period has expired.) ---> System.ComponentModel.Win32Exception (0x80004005): The semaphore timeout period has expired
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParserStateObject.ReadSniError(TdsParserStateObject stateObj, UInt32 error)
+   at System.Data.SqlClient.TdsParserStateObject.ReadSniSyncOverAsync()
+   at System.Data.SqlClient.TdsParserStateObject.TryReadNetworkPacket()
+   at System.Data.SqlClient.TdsParserStateObject.TryPrepareBuffer()
+   at System.Data.SqlClient.TdsParserStateObject.TryReadByte(Byte& value)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) in D:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:line 3397
+   at Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) in D:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:line 1346
+   at Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) in D:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:line 1221
+   at AmzBL.Products.AmzProductHandler.UpdateProduct(AmzProduct p)
+ClientConnectionId:3cdc9049-1190-4d5d-893e-8068d64343b5
+Error Number:121,State:0,Class:20
+2016-01-24 21:37:45,280 [336] INFO  AmzBL.Products.AmzProductHandler [(null)] - Adding product: Cranberry sauce - Cranberry sauce
+2016-01-24 21:37:50,963 [336] WARN  AmzBL.Products.AmzProductHandler [(null)] - Couldn't figure out HttpContext user identity. Using Environment.UserName instead
+2016-01-24 21:38:45,684 [336] INFO  AmzBL.Products.AmzProductHandler [(null)] - Adding product: Salmon - Salmon
+2016-01-24 21:38:48,115 [336] WARN  AmzBL.Products.AmzProductHandler [(null)] - Couldn't figure out HttpContext user identity. Using Environment.UserName instead
+2016-01-24 21:38:57,374 [336] INFO  AmzBL.Products.AmzProductHandler [(null)] - Adding product: Cranberry sauce - Cranberry sauce
+2016-01-24 21:39:00,363 [336] WARN  AmzBL.Products.AmzProductHandler [(null)] - Couldn't figure out HttpContext user identity. Using Environment.UserName instead
+2016-01-24 21:39:42,839 [336] INFO  AmzBL.Products.AmzProductHandler [(null)] - Adding product: Orbee - Orbee
+2016-01-24 21:39:42,846 [336] WARN  AmzBL.Products.AmzProductHandler [(null)] - Couldn't figure out HttpContext user identity. Using Environment.UserName instead
+2016-01-24 21:41:30,093 [336] INFO  AmzBL.Products.AmzProductHandler [(null)] - Adding product: Assorted Cheese - Assorted cheese
+2016-01-24 21:41:30,096 [336] WARN  AmzBL.Products.AmzProductHandler [(null)] - Couldn't figure out HttpContext user identity. Using Environment.UserName instead
+2016-01-24 21:42:01,846 [328] INFO  AmzBL.Products.AmzProductHandler [(null)] - Adding product: Provolone Cheese - Provolone cheese
+2016-01-24 21:42:01,852 [328] WARN  AmzBL.Products.AmzProductHandler [(null)] - Couldn't figure out HttpContext user identity. Using Environment.UserName instead
+2016-01-24 21:42:36,661 [336] INFO  AmzBL.Products.AmzProductHandler [(null)] - Adding product: Chips - Chips
+2016-01-24 21:42:36,664 [336] WARN  AmzBL.Products.AmzProductHandler [(null)] - Couldn't figure out HttpContext user identity. Using Environment.UserName instead
+2016-01-24 21:43:12,332 [336] INFO  AmzBL.Products.AmzProductHandler [(null)] - Adding product: Falafel - Falafel
+2016-01-24 21:43:12,334 [336] WARN  AmzBL.Products.AmzProductHandler [(null)] - Couldn't figure out HttpContext user identity. Using Environment.UserName instead
+2016-01-24 21:43:44,046 [336] INFO  AmzBL.Products.AmzProductHandler [(null)] - Adding product: Spice bowl - Spice bowl
+2016-01-24 21:43:44,050 [336] WARN  AmzBL.Products.AmzProductHandler [(null)] - Couldn't figure out HttpContext user identity. Using Environment.UserName instead
+2016-01-24 21:44:06,942 [336] INFO  AmzBL.Products.AmzProductHandler [(null)] - Adding product: Cheese cake - cheese cake
+2016-01-24 21:44:06,946 [336] WARN  AmzBL.Products.AmzProductHandler [(null)] - Couldn't figure out HttpContext user identity. Using Environment.UserName instead
+2016-01-24 21:44:43,743 [336] INFO  AmzBL.Products.AmzProductHandler [(null)] - Adding product: Olive bread - Olive bread
+2016-01-24 21:44:43,744 [336] WARN  AmzBL.Products.AmzProductHandler [(null)] - Couldn't figure out HttpContext user identity. Using Environment.UserName instead
+2016-01-24 21:45:11,199 [328] INFO  AmzBL.Products.AmzProductHandler [(null)] - Adding product: Cold cuts - Cold cuts
+2016-01-24 21:45:11,201 [328] WARN  AmzBL.Products.AmzProductHandler [(null)] - Couldn't figure out HttpContext user identity. Using Environment.UserName instead
+2016-01-24 21:45:45,241 [336] INFO  AmzBL.Products.AmzProductHandler [(null)] - Adding product: Chocolate - Chocolate
+2016-01-24 21:45:45,244 [336] WARN  AmzBL.Products.AmzProductHandler [(null)] - Couldn't figure out HttpContext user identity. Using Environment.UserName instead
+2016-01-24 21:46:08,018 [336] INFO  AmzBL.Products.AmzProductHandler [(null)] - Adding product: Orange juice - Orange juice
+2016-01-24 21:46:08,027 [336] WARN  AmzBL.Products.AmzProductHandler [(null)] - Couldn't figure out HttpContext user identity. Using Environment.UserName instead

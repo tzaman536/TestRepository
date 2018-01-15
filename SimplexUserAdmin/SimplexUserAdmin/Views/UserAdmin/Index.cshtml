@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "User Admin";
+}
+
+<h2>User Admin</h2>
+<div id="userMessage">
+    <h5 style="color:blue">@ViewBag.Message </h5>
+</div>
+<div id="idProductUploadForm">
+    @using (Html.BeginForm("AddUserToRole", "UserAdmin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <dl>
+            <dt>
+                Role Name:
+            </dt>
+            <dd>
+                <input type="text" id="idRoleName" name="roleName" required />
+            </dd>
+            <dt>
+                User Name:
+            </dt>
+            <dd>
+                <input type="text" id="idUserName" name="userName" required />
+            </dd>
+        </dl>
+        <input id="btnAddRole" type="submit" value="Add User To Role" />
+    }
+

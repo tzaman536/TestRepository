@@ -1,0 +1,12 @@
+*.[dll]
+*.[pdb]
+*.dll
+*.pdb
+*.cache
+bin/
+debug/
+obj/
+logs/
+log/
+products/
+UploadedImages/

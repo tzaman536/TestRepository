@@ -1,0 +1,4 @@
+Open command prompt
+ipconfig
+type default gateway ip address is browser
+userid/pwd : admin/password

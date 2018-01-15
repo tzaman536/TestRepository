@@ -1,0 +1,46 @@
+Arvixe
+In this e-mail, you will find information on how to setup your domain name, web publishing/FTP software 
+and your e-mail client. For further information and clarification please contact us with your domain name and username. 
+We are here for you 24/7/365 at support@arvixe.com through email, 1-888-927-8493 through the phone and through live chat 
+at our website http://www.arvixe.com.
+
+
+Control Panel Login http://tigerlily.arvixe.com/Default.aspx?pid=Home
+Username: coalesc1
+Password: Ph9l0ksG57
+
+
+How to FTP files:
+hostname: tigerlily.arvixe.com  [don't use coalescesoftcom.com]
+UID: coalesc1
+PWD: Ph9l0ksG57
+
+
+
+Home Page:
+https://customers.arvixe.com/
+uid: tzaman536@gmail.com pwd: Changeme123
+
+Check email:
+https://mailtigerlily.arvixe.com/
+
+
+New Domain Registration Note:
+Update name server to ns1.tigerlily.arvixe.com and ns21.tigerlily.arvixe.com by going into Domain -> Manage Name Server
+
+
+To Create a DB
+Log into control panel and create a DB
+
+How to backup database
+https://blog.arvixe.com/how-to-backup-your-database-using-websitepanel/
+
+
+
+To unlock your registrar lock and proceed with making changes to your domain:
+
+1. Login to your Customer Area: customers.arvixe.com/clientarea.php
+2. Click My Domains and the Manage Domains button to the right of the domain in which you'd like to unlock
+3. In the Registrar Lock tab click Disable Registrar Lock
+4. Make the changes to your domain
+5. Go back to the Registrar Lock tab and click Enable Registrar Lock

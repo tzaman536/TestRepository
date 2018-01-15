@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Simplex User Admin</h1>
+    <p class="lead">Manage all simplex application users roles and permissions using this application </p>
+</div>
+
+<ul class="nav navbar-nav">
+    <li>@Html.ActionLink("Role Admin", "RoleAdmin", "UserAdmin")</li>
+    <li>@Html.ActionLink("Manage User Role", "ManageUser", "UserAdmin")</li>
+    <li>@Html.ActionLink("Manage User Password", "ManagePassword", "UserAdmin")</li>
+</ul>
+
+<br />

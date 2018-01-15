@@ -1,0 +1,11 @@
+User: tzaman536/Cha...3
+
+How to add exiting reposity to remote git server
+
+open git bash on the root folder of the local repository
+ 	git remote add origin https://github.com/tzaman536/TestRepository.git
+
+
+To push code to remote server:
+ 	git push -u origin master
+

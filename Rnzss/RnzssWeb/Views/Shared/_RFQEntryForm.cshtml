@@ -1,0 +1,932 @@
+﻿@using RnzssWeb.Models
+<div class="page-container-admin">
+    <div id="rfqentryform" class="admin-page-container-rfq-entry">
+        <form id="addNewRfqForm" method="post" name="addNewRfqForm">
+            <table border="0" width="1400" style="height:auto">
+                <tr>
+                    <td width="*"><div class="form-data-entry-lable">Request For Quote: <input id="lookUpRfqNo" data-bind="value: lookUpRfqNo" class="k-textbox" />&nbsp;&nbsp;<button id="kendo-find-button" data-bind="click: findRfq" class="k-button action-button">Find</button><a href='@Url.Action("ActiveRfq", "Rfq")' class="rz-page-link">[Active Rfq]</a><a href='@Url.Action("RfqEvent", "Rfq", new { RFQNo = @ViewData["RFQNo"] },null)' class="rz-page-link">[Event Log]</a></div></td>
+                </tr>
+                <tr>
+                    <td height="20"><div id="pageMessage" class="interactive-message"> </div></td>
+                </tr>
+                <tr>
+                    <td width="*">
+                        <div id="wrapper">
+                            <div id="first"><label for="rfqNo">RFQ No: <input id="rfqNo" data-bind="value: rfqNo" disabled="disabled" class="rfqno" /></label></div>
+                            <div id="second" class="form-data-entry-lable">Solicitation No: <input type="text" name="solicitaionNumber" id="solicitationNumber" data-bind="value: solicitationNumber" class="k-textbox" required validationMessage="SolicitaionNumber is rquired" /></div>
+                            <div id="third" class="form-data-entry-lable second">Due Date: <input id="dueDate" name="dueDate" data-role="datepicker" data-bind="visible: isVisible, enabled: isEnabled,  value: dueDate, events: { change: onDueDateChange }" style="width: 120px" required validationMessage="Due date is rquired"></div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><div class="form-data-entry-lable">Vendor Information:</div></td>
+                </tr>
+                @* Vendor Information Section *@
+                <tr>
+                    <td width="*">
+                        <div id="wrapper">
+                            <div id="first-large-rfqentry">
+                                <div class="demo-section k-content wide">
+                                    <table border="0" width="750">
+                                        <tr>
+                                            <td colspan="1" width="*">
+                                                <div id="wrapper">
+                                                    <div id="first-large"><label for="companyName">Company Name: <input id="companyName" name="companyName" data-bind="value: companyName" class="k-textbox large" required validationMessage="Vendor name is rquired" /></label></div>
+                                                    <div id="second"><label for="attention">Attention: <input id="attention" data-bind="value: attention" class="k-textbox" /></label></div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="1">
+                                                <div id="wrapper">
+                                                    <div id="first-large">
+                                                        <label for="companyAddress">Address:</label><textarea id="companyAddress" rows="4" cols="25" class="rnzss-text-area" data-bind="value: companyAddress"> </textarea>
+                                                    </div>
+                                                    <div id="second"><label for="comment">Comment:</label><textarea id="comment" rows="4" cols="25" class="rnzss-text-area" data-bind="value: comment"> </textarea></div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="1">
+                                                <div id="wrapper">
+                                                    <div id="first">
+                                                        <label for="phoneNo">Phone No: <input id="phoneNo" data-role="maskedtextbox" data-mask="(999) 000-0000" data-bind="value: phoneNo" class="k-textbox" /></label>
+                                                    </div>
+                                                    <div id="second">
+                                                        <label for="faxNo">Fax No: <input id="faxNo" data-role="maskedtextbox" data-mask="(999) 000-0000" data-bind="value: faxNo" class="k-textbox" /></label>
+                                                    </div>
+                                                    <div id="second">
+                                                        <label for="email">Email: <input id="email" type="email" data-bind="value: email" class="k-textbox" /></label>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div id="second-large-rfqentry">
+                                <div class="rfq-file-upload-form">
+                                    <div id="wrapper">
+                                        <div id="first">
+                                            <input type="hidden" name="inputRfqNo" id="inputRfqNo" value="" />
+                                            @(Html.Kendo().Upload()
+                                                            .Name("files")
+                                                            .HtmlAttributes(new { aria_label = "files" })
+                                            )
+                                        </div>
+                                        <div id="second">
+                                            <button type="submit" class="k-button save-button" onclick="validateForm()">Upload</button>
+                                        </div>
+                                    </div>
+                                    @(Html.Kendo().Grid<DocumentStore>()
+                                            .Name("grid-uploaded-documents")
+                                            .Columns(columns =>
+                                            {
+                                                columns.Bound(p => p.FileBaseName).Template(@<text></text>).ClientTemplate("<a href='" + Url.Action("DownloadDocument", "Rfq") + "?DocumentStoreId=#=DocumentStoreId#'>#=FileBaseName#</a>").Title("Document.").Width(100);
+                                                columns.Command(command => { command.Destroy(); }).Width(75);
+                                            })
+                                            //.ToolBar(toolBar => toolBar.Template("<a class='k-button k-button-icontext' onclick='addAnotherProduct()' href='#'></span>Add Another Product</a>"))
+                                            .Editable(editable => editable.Mode(GridEditMode.InLine))
+                                            //.Pageable()
+                                            .Sortable()
+                                            .Filterable()
+                                            .Scrollable(scr => scr.Height(150))
+                                            .Excel(excel => excel
+                                                .AllPages(true)
+                                                .FileName("Index Rates Export.xlsx")
+                                                .Filterable(true)
+                                                .ProxyURL(Url.Action("Excel_Export_Save", "Carry"))
+                                            )
+                                            .Events(events => events.Edit("onEdit"))
+                                            .DataSource(dataSource => dataSource
+                                                .Ajax()
+                                                //.PageSize(100)
+                                                .Events(events => events.Error("error_handler").RequestEnd("onRequestEnd"))
+                                                .Model(model =>
+                                                {
+                                                    model.Id(p => p.DocumentStoreId);
+                                                })
+                                                .Read(read => read.Action("DocumentStoreRfq_Read", "Rfq").Data("getRFQNo"))
+                                                .Destroy(update => update.Action("DocumentStore_Destroy", "Rfq"))
+                                            )
+                                    )
+                                </div>
+                            </div>
+                        </div>
+
+                    </td>
+                </tr>
+                <tr><td height="10px;" colspan="1"></td></tr> @*Empty line*@
+                <tr>
+                    <td><div class="form-data-entry-lable">Product Information </div></td>
+                </tr>
+
+
+                @* Product Information Section *@
+                <tr>
+                    <td width="*">
+                        <div id="wrapper">
+                            <div id="first-large-rfqentry">
+                                <div class="demo-section k-content wide">
+                                    <table border="0" width="750">
+                                        <tr>
+                                            <td colspan="6">
+                                                <div id="wrapper">
+                                                    <div id="first">
+                                                        <label for="partNumber">Part Number: <input id="partNumber" name="partNumber" data-bind="value: partNumber" class="k-textbox" /></label>
+                                                    </div>
+                                                    <div id="second">
+                                                        <label for="partName">Part Name: <input id="partName" data-bind="value: partName" class="k-textbox" /></label>
+                                                    </div>
+                                                    <div id="second">
+                                                        <label for="cn">CN: <input id="cn" data-bind="value: cn" class="k-textbox" /></label>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="6">
+                                                <div id="wrapper">
+                                                    <div id="first">
+                                                        <label for="quantity">Quantity: <input id="quantity" name="quantity" data-bind="value: quantity" class="k-textbox" /></label>
+                                                    </div>
+                                                    <div id="second">
+                                                        <label for="partDescription">Description: <input id="partDescription" data-bind="value: partDescription" class="k-textbox" /></label>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div id="second-large-rfqentry">
+                                <div class="rfq-command-buttons">
+                                    <button data-bind="click: saveWork" class="k-button save-button">Save</button>
+                                    <button data-bind="click: addAnotherProduct" class="k-button save-button">Add Product</button>
+                                    <button data-bind="click: printRFQ" class="k-button action-button">Print</button>
+                                    <button data-bind="click: emailRFQ" class="k-button action-button">Email Rfq</button>
+                                    <button data-bind="click: printPO" class="k-button action-button">Print PO</button>
+                                    <button data-bind="click: addPkgRFQ" class="k-button action-button">Add Pkg. RFQ</button>
+                                    <button data-bind="click: parseAddress" class="k-button action-button">Parse Address</button>
+                                    <button data-bind="click: startOver" class="k-button warning-button">Start Over</button>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr><td height="10px;" colspan="1"></td></tr> @*Empty line*@
+                @* Product Information Table for multiple products *@
+                <tr>
+                    <td>
+                        @(Html.Kendo().Grid<ProductInformation>()
+                                .Name("grid-product-information")
+                                .Columns(columns =>
+                                {
+                                    columns.Bound(p => p.PartNumber).Width(75);
+                                    columns.Bound(p => p.PartName).Width(75);
+                                    columns.Bound(p => p.PartDescription).Width(75);
+                                    columns.Bound(p => p.Quantity).Width(75);
+                                    columns.Bound(p => p.VendorPrice).Width(75).Title("Vendor<br /> Unit<br /> Price");
+                                    columns.Bound(p => p.PkgCost).Width(75).Title("Packaging<br />Cost");
+                                    columns.Bound(p => p.DeliverIn).Width(75);
+                                    columns.ForeignKey(p => p.DeliverInUnit, (System.Collections.IEnumerable)ViewData["DeliverInUnit"], "Name", "Name").Width(100).Title("D/W/M");
+                                    columns.Bound(p => p.CN).Width(75);
+                                    columns.Command(command => { command.Edit(); command.Destroy(); }).Width(100);
+                                })
+                                //.ToolBar(toolBar => toolBar.Template("<a class='k-button k-button-icontext' onclick='addAnotherProduct()' href='#'></span>Add Another Product</a>"))
+                                .Editable(editable => editable.Mode(GridEditMode.InLine))
+                                //.Pageable()
+                                .Sortable()
+                                .Filterable()
+                                .Scrollable(scr => scr.Height(500))
+                                .Excel(excel => excel
+                                    .AllPages(true)
+                                    .FileName("Index Rates Export.xlsx")
+                                    .Filterable(true)
+                                    .ProxyURL(Url.Action("Excel_Export_Save", "Carry"))
+                                )
+                                .Events(events => events.Edit("onEdit"))
+                                .DataSource(dataSource => dataSource
+                                    .Ajax()
+                                    //.PageSize(100)
+                                    .Events(events => events.Error("error_handler").RequestEnd("onRequestEnd"))
+                                    .Model(model =>
+                                    {
+                                        model.Id(p => p.ProductInformationId);
+                                    })
+                                    .Read(read => read.Action("RfqProduct_Read", "Rfq").Data("getRFQNo"))
+                                    .Update(update => update.Action("RfqProduct_Update", "Rfq"))
+                                    .Destroy(update => update.Action("RfqProduct_Destroy", "Rfq"))
+                                )
+                        )
+                    </td>
+                </tr>
+
+            </table>
+        </form>
+
+
+
+        @*<div>
+                <h4>Current view model state:</h4>
+                <pre>
+                    {
+                        companyName: <span data-bind="text: companyName"></span>,
+                        attention: <span data-bind="text: attention"></span>,
+                        rfqNo: <span data-bind="text: rfqNo"></span>,
+                        companyAddress: <span data-bind="text: companyAddress"></span>,
+                        phoneNo: <span data-bind="text: phoneNo"></span>,
+                        faxNo: <span data-bind="text: faxNo"></span>,
+                        email: <span data-bind="text: email"></span>,
+                        ccPurchase: <span data-bind="text: ccPurchase"></span>,
+                        gvtInspection: <span data-bind="text: gvtInspection"></span>,
+                        comment: <span data-bind="text: comment"></span>,
+                        partName: <span data-bind="text: partName"></span>,
+                        PartNumber: <span data-bind="text: partNumber"></span>,
+                        partDescription: <span data-bind="text: partDescription"></span>,
+                        quantity: <span data-bind="text: quantity"></span>,
+                        cn: <span data-bind="text: cn"></span>,
+
+                    }
+                </pre>
+            </div>*@
+
+    </div>
+</div>
+
+
+<script>
+
+    function printPO(e)
+    {
+        e.preventDefault();
+
+        myData = getInputData();
+
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("PrintPO", "Rfq")',
+            data: JSON.stringify(myData),
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            success: function (response, textStatus, jqXHR) {
+
+                if (response.success) {
+                    //alert(response.fileName);
+                    window.location = '/Rfq/Download?file=' + response.fileName;
+                }
+                else
+                {
+                    alert(response.message);
+                }
+
+            },
+            error: function (response, textStatus, jqXHR) {
+                alert('Failed to print RFQ');
+            }
+        });
+    }
+
+    function addPkgRFQ()
+    {
+        //var parms = {
+        //    rfqNo: '1234'
+        //};
+
+        $.ajax({
+            type: "GET",
+            traditional: true,
+            url: '@Url.Action("CreatePkgRFQ", "Rfq")',
+            async: true,
+            data: getRFQNo(),
+            dataType: "json",
+            beforeSend: function (xhr) {
+            },
+            success: function (response, textStatus, jqXHR) {
+                if(response.success)
+                {
+                    document.getElementById("pageMessage").innerHTML = response.message.Message;
+                    document.getElementById("lookUpRfqNo").value = response.message.RfqNo;
+                    document.getElementById("rfqNo").value = response.message.RfqNo;
+                    //findRfq();
+                    window.location = '/Rfq/RfqEntry?RFQNo=' + response.message.RfqNo;
+
+                }
+                else{
+                    document.getElementById("pageMessage").innerHTML = response.message.Message;
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert( "Couldn't create a packaging RFQ");
+                document.getElementById("pageMessage").innerHTML = response.UserMessage.Message;
+            }
+        });
+    }
+    function isEmpty(val){
+        return (val === undefined || val == null || val.length <= 0) ? true : false;
+    }
+    function validateForm(e)
+    {
+        if(isEmpty(document.getElementById("rfqNo").value))
+        {
+            alert("Please save RFQ before uploading document");
+            e.preventDefault();
+            return false;
+        }
+
+        document.getElementById("inputRfqNo").value = document.getElementById("rfqNo").value;
+
+        $('#addNewRfqForm').submit(function (e) {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+
+            var formData = new FormData(this);
+
+            $.ajax({
+                url: '@Url.Action("UploadRfqAttachments", "Rfq")',
+                type: "POST",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function (result) {
+                    // here in result you will get your data
+
+                    //document.getElementById("fileUplaodMessage").innerHTML = result.message;
+                    //document.getElementById("solicitationForm").reset();
+                    reloadUploadedDocumentsGrid();
+                    $(".k-widget.k-upload").find("ul").remove();
+                },
+                error: function (result) {
+                }
+            });
+            //e.preventDefault();
+            return false;
+        });
+
+        return false;
+    }
+
+
+    function onEdit() {
+
+    }
+    function error_handler() {
+
+    }
+
+    function onRequestEnd(e) {
+        if (e.type == 'update' || e.type == "create" || e.type == "destroy") {
+            document.getElementById("pageMessage").innerHTML = e.response.myMessage;
+            if (e.response.myMessage.indexOf('ERROR') >= 0) {
+                alert(e.response.myMessage)
+            }
+            else {
+                $('#grid-product-information').data('kendoGrid').dataSource.read();
+                $('#grid-product-information').data('kendoGrid').refresh();
+            }
+
+        }
+    }
+
+
+    function getRFQNo() {
+
+        return {
+            RFQNo: document.getElementById("rfqNo").value
+        }
+    }
+
+    function reloadProductInformationGrid() {
+        $('#grid-product-information').data('kendoGrid').dataSource.read();
+        $('#grid-product-information').data('kendoGrid').refresh();
+    }
+    function reloadUploadedDocumentsGrid() {
+        $('#grid-uploaded-documents').data('kendoGrid').dataSource.read();
+        $('#grid-uploaded-documents').data('kendoGrid').refresh();
+    }
+
+
+    function restProductForm(){
+        document.getElementById("partNumber").value = "";
+        document.getElementById("partName").value = "";
+        document.getElementById("partDescription").value = "";
+        document.getElementById("quantity").value = "";
+        document.getElementById("cn").value = "NE";
+
+
+    }
+
+    function addProduct(e)
+    {
+        e.preventDefault();
+
+        myData = getInputData();
+
+        $.ajax({
+            type: 'POST',
+            data: JSON.stringify(myData),
+            url: '@Url.Action("AddAnotherProduct", "Rfq")',
+            contentType: 'application/json',
+            dataType: 'json',
+            success: function (response, textStatus, jqXHR) {
+                if (response.success) {
+                    reloadProductInformationGrid();
+                    document.getElementById("pageMessage").innerHTML = response.UserMessage.Message;
+                    restProductForm();
+                }
+                else
+                {
+                    alert(response.UserMessage.Message);
+                    document.getElementById("pageMessage").innerHTML = response.UserMessage.Message;
+                }
+            },
+            error: function (response, textStatus, jqXHR) {
+                alert('not good');
+            }
+        });
+
+
+    }
+
+
+    function SampleAjaxGetCall()
+    {
+        var parms = {
+            sessionId: '@(ViewBag.SessionId)'
+        };
+
+
+        $.ajax({
+            type: "GET",
+            traditional: true,
+            url: '@Url.Action("GetInstrumentName", "Rfq")',
+            async: true,
+            data: parms,
+            dataType: "json",
+            beforeSend: function (xhr) {
+            },
+            success: function (response, textStatus, jqXHR) {
+                alert(response.message);
+                location.reload();
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert( "Couldn't get instrument name");
+            }
+        });
+
+    }
+
+    function getInputData(){
+
+            return {
+                StageId: '@ViewBag.SessionId',
+                CompanyName: document.getElementById("companyName").value,
+                Attention: document.getElementById("attention").value,
+                RFQNo: document.getElementById("rfqNo").value,
+                CompanyAddress: document.getElementById("companyAddress").value,
+                PhoneNo: document.getElementById("phoneNo").value,
+                FaxNo: document.getElementById("faxNo").value,
+                Email: document.getElementById("email").value,
+                //CreditCardPurchase: document.getElementById("ccPurchase").value,
+                //GovernmentSourceInspectionRequired: document.getElementById("gvtInspection").value,
+                Comment: document.getElementById("comment").value,
+                SolicitationNumber: document.getElementById("solicitationNumber").value,
+                DueDate: document.getElementById("dueDate").value,
+                Product: {
+                    PartName: document.getElementById("partName").value,
+                    PartNumber: document.getElementById("partNumber").value,
+                    PartDescription: document.getElementById("partDescription").value,
+                    Quantity: document.getElementById("quantity").value,
+                    CN: document.getElementById("cn").value
+                }
+            }
+    }
+
+
+    function saveData(e) {
+        e.preventDefault();
+
+        kendoValidator = $("form").getKendoValidator();
+
+        if (!kendoValidator.validate()) {
+            // If the form is valid, the Validator will return true
+            return false;
+        }
+
+
+        myData = getInputData();
+
+        $.ajax({
+            type: 'POST',
+            data: JSON.stringify(myData),
+            url: '@Url.Action("SubmitRfqData", "Rfq")',
+            contentType: 'application/json',
+            dataType: 'json',
+            success: function (response, textStatus, jqXHR) {
+                if (response.success) {
+                    document.getElementById("rfqNo").value = response.UserMessage.RfqNo
+                    reloadProductInformationGrid();
+                    document.getElementById("pageMessage").innerHTML = response.UserMessage.Message;
+                    restProductForm();
+                }
+                else {
+                    alert(response.UserMessage.Message);
+                    document.getElementById("pageMessage").innerHTML = response.UserMessage.Message;
+                }
+            },
+            error: function (response, textStatus, jqXHR) {
+                alert('not good');
+            }
+        });
+
+
+    }
+
+    function printRFQ(e)
+    {
+        e.preventDefault();
+
+        myData = getInputData();
+
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("PrintRFQ", "Rfq")',
+            data: JSON.stringify(myData),
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            success: function (response, textStatus, jqXHR) {
+
+                if (response.success) {
+                    //alert(response.fileName);
+                    window.location = '/Rfq/Download?file=' + response.fileName;
+                }
+                else
+                {
+                    alert(response.message);
+                }
+
+            },
+            error: function (response, textStatus, jqXHR) {
+                alert('Failed to print RFQ');
+            }
+        });
+    }
+
+    function findRfq(e) {
+
+        document.getElementById("rfqNo").value = document.getElementById("lookUpRfqNo").value;
+
+        myData = getInputData();
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("FindRfq", "Rfq")',
+            data: JSON.stringify(myData),
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            success: function (response, textStatus, jqXHR) {
+
+                if (response.success) {
+                    //bindViewModel(response.RFQ);
+                    //alert(response.RFQ.RfqNo);
+                    window.location = '/Rfq/RfqEntry?RFQNo=' + response.RFQ.RFQNo;
+                }
+                else {
+
+                }
+
+            },
+            error: function (response, textStatus, jqXHR) {
+                alert('Failed find RFQ');
+            }
+        });
+
+        reloadUploadedDocumentsGrid();
+    }
+
+    function bindViewModel(rfq)
+    {
+        var tempSolicitationNo="";
+        var tempDueDate = rfq.DueDate;
+        var tempQty = rfq.Quantity;
+        var tempPartName = rfq.PartName;
+        var solicitation = @Html.Raw(Json.Encode(ViewData["Solicitation"]));
+        if(rfq.RFQNo == null)
+        {
+            if(solicitation != null)
+                tempSolicitationNo = solicitation.SolicitationNo;
+        }
+        else {tempSolicitationNo=rfq.SolicitationNumber}
+
+        if(rfq.DueDate == null){
+            if(solicitation != null)
+            {
+                tempDueDate = solicitation.DueDate;
+            }
+        }
+        else{
+            tempDueDate = rfq.DueDate;
+        }
+
+        if(rfq.Quantity == null || rfq.Quantity == 0)
+        {
+            if(solicitation != null)
+            {
+                tempQty = solicitation.AwardQuantity;
+            }
+        }
+
+        if(rfq.PartName == null)
+        {
+            if(solicitation != null)
+            {
+                tempPartName = solicitation.SolicitationDescription;
+            }
+        }
+
+
+        var viewModel = kendo.observable({
+            companyName: rfq.CompanyName,
+            attention: rfq.Attention,
+            rfqNo: rfq.RFQNo,
+            companyAddress: rfq.CompanyAddress,
+            phoneNo: rfq.PhoneNo,
+            faxNo: rfq.FaxNo,
+            email: rfq.Email,
+            comment: rfq.Comment,
+            solicitationNumber : tempSolicitationNo,
+            genders: ["Male", "Female"],
+            gender: "Male",
+            agreed: true,
+            confirmed: true,
+            saveWork: saveData,
+            partNumber: rfq.PartNumber,
+            partName: tempPartName,
+            cn: "NE",
+            quantity: tempQty,
+            partDescription: "",
+            lookUpRfqNo: "",
+            dueDate : tempDueDate,
+            isEnabled: true,
+            isVisible: true,
+            onDueDateChange: function() {
+                //alert( kendo.toString(this.get("dueDate"), "D") );
+            },
+            startOver: function () {
+                //this.set("confirmed", false);
+                //this.set("agreed", false);
+                //this.set("gender", "Male");
+                this.set("rfqNo", "");
+                this.set("solicitationNumber", "");
+                this.set("dueDate", "");
+                this.set("companyName", "");
+                this.set("attention", "");
+                this.set("comment", "");
+                this.set("phoneNo", "");
+                this.set("faxNo", "");
+                this.set("email", "");
+                this.set("partNumber", "");
+                this.set("partName", "");
+                this.set("quantity", "");
+                this.set("partDescription", "");
+            },
+            addAnotherProduct: addProduct,
+            printRFQ: printRFQ,
+            printPO: printPO,
+            findRfq: findRfq,
+            parseAddress: parseAddress,
+            emailRFQ: emailRFQ,
+            addPkgRFQ: addPkgRFQ
+        });
+
+        kendo.bind($("#rfqentryform"), viewModel);
+        // Following binding will allow you to detect change in any field
+        //viewModel.bind("set", function (e) {
+        //    console.log(e.field.value);
+        //});
+
+        $("form").kendoValidator({
+            validateOnBlur: false // Disable the default validation on blur
+        });
+
+        reloadProductInformationGrid();
+
+    }
+
+    function emailRFQ()
+    {
+
+        
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("EmailRFQ", "Rfq")',
+            data:  JSON.stringify(getRFQNo()),
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            success: function (response, textStatus, jqXHR) {
+
+                if (response.success) {
+                    alert("email sent.");
+                }
+                else {
+                    alert(response.message);
+                }
+
+            },
+            error: function (response, textStatus, jqXHR) {
+                //alert('Failed send email. Please send this RFQ by logging into rnz@rnzss.com mail account.');
+            }
+        });
+
+    }
+
+    // Parse address
+    function parseAddress(e){
+        e.preventDefault();
+        var x;
+        var address=prompt("Please paste company informatino text below","").replace("<","");
+
+        //alert(address);
+
+        if (address!=null){
+            var parms = {
+                inputAddress: address
+            };
+
+        
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("ParseAddress", "Rfq")',
+                data:  JSON.stringify(parms),
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                success: function (response, textStatus, jqXHR) {
+
+                    if (response.success) {
+                        if(response.message != null)
+                        {
+                            document.getElementById("companyName").value = response.message.CompanyName;
+                            document.getElementById("attention").value = response.message.Attention;
+                            document.getElementById("companyAddress").value = response.message.CompanyAddress;
+                            document.getElementById("phoneNo").value = response.message.PhoneNo;
+                            document.getElementById("faxNo").value = response.message.FaxNo;
+                            document.getElementById("email").value = response.message.Email;
+                        }
+
+                    }
+                    else {
+                        alert(response.message);
+                    }
+
+                },
+                error: function (response, textStatus, jqXHR) {
+                    alert('Failed to parse vendor information');
+                }
+            });
+        }
+    }
+
+    // Lookup and prefill vendor when user tab out of company name
+    $("input").keydown(function (e) {
+
+        if (e.which == 9)
+        {
+            if(e.target.id === "companyName")
+            {
+                var parms = {
+                    vendorName: e.target.value
+                };
+
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("GetVendor", "Rfq")',
+                    data:  JSON.stringify(parms),
+                    contentType: 'application/json; charset=utf-8',
+                    dataType: 'json',
+                    success: function (response, textStatus, jqXHR) {
+
+                        if (response.success) {
+                            if(response.message != null)
+                            {
+                                document.getElementById("companyName").value = response.message.CompanyName;
+                                document.getElementById("attention").value = response.message.Attention;
+                                document.getElementById("companyAddress").value = response.message.CompanyAddress;
+                                document.getElementById("phoneNo").value = response.message.PhoneNo;
+                                document.getElementById("faxNo").value = response.message.FaxNo;
+                                document.getElementById("email").value = response.message.Email;
+                            }
+
+                        }
+                        else {
+                            alert(response.message);
+                        }
+
+                    },
+                    error: function (response, textStatus, jqXHR) {
+                        alert('Failed to get vendor information');
+                    }
+                });
+
+            }
+        }
+    });
+
+
+   // Document Ready Section
+  $(document).ready(function () {
+
+
+
+
+
+        document.getElementById("rfqNo").value = @Html.Raw(Json.Encode(ViewData["RFQNo"]));
+
+
+        myData = getInputData();
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("FindRfq", "Rfq")',
+            data: JSON.stringify(myData),
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            success: function (response, textStatus, jqXHR) {
+
+                if (response.success) {
+                    bindViewModel(response.RFQ);
+                }
+                else {
+                    alert(response.message);
+                }
+
+            },
+            error: function (response, textStatus, jqXHR) {
+                alert('Failed to parse RFQ');
+            }
+        });
+
+
+
+        document.getElementById("pageMessage").innerHTML = "Enter data and click save to add a new RFQ or type RFQ No. above and click find to edit an existing RFQ";
+        reloadUploadedDocumentsGrid();
+
+
+
+    });
+
+</script>
+
+
+<style>
+    .demo-section > div {
+        float: left;
+        margin-bottom: 2em;
+    }
+
+    #fieldlist {
+        margin: 0;
+        padding: 0;
+    }
+
+    /*TZ  Increase text box size*/
+    .k-textbox {
+        min-width: 200px;
+        text-align: left;
+        font-weight: normal;
+    }
+
+        .k-textbox.large {
+            min-width: 275px;
+            text-align: left;
+            font-weight: normal;
+            margin-left: 0px;
+        }
+
+
+    .label {
+        text-align: left;
+    }
+
+
+    #fieldlist li {
+        list-style: none;
+        padding-top: .5em; /* TZ: do this to add distance between two Li */
+        padding-left: 1em; /* TZ: do this to add distance between left margin and label */
+        text-align: left;
+    }
+
+    #fieldlist label {
+        display: block;
+        padding-bottom: .3em;
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 12px;
+    }
+
+    .prettyprint {
+        background-color: #fff;
+        border: 1px solid #ccc;
+        overflow: auto;
+        padding: 5px;
+    }
+</style>

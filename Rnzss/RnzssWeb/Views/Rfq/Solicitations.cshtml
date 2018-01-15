@@ -1,0 +1,270 @@
+﻿@using RnzssWeb.Models
+@{
+    ViewBag.Title = "Solicitations";
+}
+
+<form id="solicitationForm" method="post" name="solicitationForm">
+    <div class="page-container">
+        <div id="addSolicitationForm" class="admin-page-container">
+            <div id="pageMessage" class="interactive-message"> </div>
+            <input type="hidden" name="uploadType" value="SOLICITATION">
+
+            <div id="solicitationDataEntryForm" class="small-data-entry-form">
+                <div class="rTable">
+                    <div class="rTableRowForm">
+                        <div class="rTableCellFromLable">Solicitation Number: </div>
+                        <div class="rTableCellFromInput"><input type="text" name="solicitaionNumber" id="solicitaionNumber" class="k-textbox rnzss-texbox-large" data-bind="value: solicitaionNumber" required validationMessage="SolicitaionNumber is rquired" /></div>
+                    </div>
+
+                    <div class="rTableRowForm">
+                        <div class="rTableCellFromLable">Solicitation Description:</div>
+                        <div class="rTableCellFromInputLarge"><input type="text" name="solicitaionDescription" id="solicitaionDescription" class="k-textbox rnzss-texbox-xlarge" data-bind="value: solicitaionDescription" /></div>
+                        <div class="rTableCellFromLable"></div>
+                    </div>
+                    <div class="rTableRowForm">
+                        <div class="rTableCellFromLable">Award Quantity:</div>
+                        <div class="rTableCellFromInputLarge"><input type="text" name="awardQuantity" id="awardQuantity" class="k-textbox rnzss-texbox" data-bind="value: awardQuantity" data-role='maskedtextbox' data-mask="0000" /></div>
+                        <div class="rTableCellFromLable"></div>
+                    </div>
+                    <div class="rTableRowForm">
+                        <div class="rTableCellFromLable">Award Amount:</div>
+                        <div class="rTableCellFromInputLarge"><input type="text" name="awardAmount" id="awardAmount" class="k-textbox rnzss-texbox" data-bind="value: awardAmount" /></div>
+                        <div class="rTableCellFromLable"></div>
+                    </div>
+                    <div class="rTableRowForm">
+                        <div class="rTableCellFromLable">Due Date:</div>
+                        <div class="rTableCellFromInputLarge"><input id="dueDate" name="dueDate" type="text" data-role="datepicker" data-bind="value: dueDate, events: { change: onDueDateChange }" style="min-width: 150px; margin-top:5px;"></div>
+                        <div class="rTableCellFromLable"></div>
+                    </div>
+
+                </div>
+                <div class="rTableRowForm">
+                    <div class="rTableCellFromLable">Upload Solicitation File:</div>
+                    <div class="rTableCellFromInputLarge">
+                        <div class="rnzss-fileupload">
+                            @(Html.Kendo().Upload()
+                        .Name("files")
+                        .HtmlAttributes(new { aria_label = "files" })
+                            )
+                        </div>
+                    </div>
+                    <div class="rTableCellFromInput">
+                        &nbsp;&nbsp;<button type="submit" class="k-button save-button" onclick="validateForm()">Save</button>
+                    </div>
+                </div>
+            </div>
+            <div id="rfqGridContainer" class="page-grid-container">
+                <div id="searchgrid">
+                    <div id="wrapper">
+                        <div id="first">
+                            <input type="search" id="searchbox"  style="width: 100%;" value="Type solicitation number here" onfocus="if (this.value == 'Type solicitation number here') this.value = ''" />
+                        </div>
+                        <div id="second">
+                            <div class="demo-hint"></div>
+                        </div>
+                    </div>
+                </div>
+
+                @(Html.Kendo().Grid<Solicitation>()
+                                .Name("grid-solicitation")
+                                .Columns(columns =>
+                                {
+                                    //columns.Bound(p => p.RFQNo).Template(@<text></text>).ClientTemplate("<a href='" + Url.Action("Index", "Rfq") + "?RFQNo=#=RFQNo#'>#=RFQNo#</a>").Title("RFQ No.").Width(100);
+                                    //columns.Bound(p => p.RfqEvent).Template(@<text></text>).ClientTemplate("<a href='" + Url.Action("RfqEvent", "Rfq") + "?RFQNo=#=RFQNo#'>#=RfqEvent#</a>").Title("Log Event.").Width(100);
+                                    columns.Bound(p => p.SolicitationNo).Width(75);
+                                    columns.Bound(p => p.SolicitationDescription).Width(100);
+                                    columns.Bound(p => p.Document).Template(@<text></text>).ClientTemplate("<a href='" + Url.Action("DownloadSolicitation", "Rfq") + "?solicitationNo=#=SolicitationNo#'>#=Document#</a>").Title("Document.").Width(100);
+                                    columns.Bound(p => p.SolicitationNo).Template(@<text></text>).ClientTemplate("<a href='" + Url.Action("RfqEntry", "Rfq") + "?SolicitationNo=#=SolicitationNo#'>Add RFQ</a>").Title("Add Rfq").Width(75);
+                                    columns.ForeignKey(p => p.SolicitaionStatus, (System.Collections.IEnumerable)ViewData["SolicitationStatus"], "Name", "Name").Width(100).Title("Solicitation</br>Status");
+                                    columns.Bound(p => p.UpdatedBy).Width(150);
+                                    columns.Bound(p => p.AwardQuantity).Width(75);
+                                    columns.Bound(p => p.AwardAmount).Width(75);
+                                    columns.Bound(p => p.DueDate).Width(75).Format("{0:MM/dd/yyyy}"); ;
+                                    columns.Bound(p => p.UpdateDate).Width(75).Format("{0:MM/dd/yyyy hh:mm:ss tt}");
+                                    columns.Command(command => { command.Edit(); command.Destroy(); }).Width(100);
+                                })
+                                .ToolBar(toolbar => { toolbar.Excel(); })
+                                .Selectable(selectable => selectable
+                                .Type(GridSelectionType.Row))
+                                //.ToolBar(toolBar => toolBar.Template("<a class='k-button k-button-icontext' onclick='addAnotherProduct()' href='#'></span>Add Another Product</a>"))
+                                .Editable(editable => editable.Mode(GridEditMode.InLine))
+                                .Pageable()
+                                .Sortable()
+                                .Filterable()
+                                .Scrollable(scr => scr.Height(600))
+                                .Excel(excel => excel
+                                    .AllPages(true)
+                                    .FileName("Solicitation.xlsx")
+                                    .Filterable(true)
+                                    .ProxyURL(Url.Action("Excel_Export_Save", "Carry"))
+                                )
+                                .Events(events => events.Edit("onEdit").Change("onChange"))
+                                .DataSource(dataSource => dataSource
+                                    .Ajax()
+                                    .PageSize(100)
+                                    .Events(events => events.Error("error_handler").RequestEnd("onRequestEnd"))
+                                    .Model(model =>
+                                    {
+                                        model.Id(p => p.SolicitationId);
+                                        model.Field(p => p.SolicitationNo).Editable(false);
+                                        model.Field(p => p.UpdatedBy).Editable(false);
+                                        model.Field(p => p.UpdateDate).Editable(false);
+                                        model.Field(p => p.DueDate).Editable(false);
+
+                                    })
+                                    .Read(read => read.Action("Solicitation_Read", "Rfq"))
+                                    .Update(update => update.Action("Solicitation_Update", "Rfq"))
+                                    .Destroy(update => update.Action("Solicitation_Destroy", "Rfq"))
+                                )
+)
+
+            </div>
+        </div>
+    </div>
+</form>
+<script>
+    function validateForm(e)
+    {
+
+        //if (document.getElementById("solicitaionNumber").value === "") {
+        //    alert("Please enter a valid solicitation number")
+        //    return false;
+        //}
+        // Get the validator instance
+        kendoValidator = $("form").getKendoValidator();
+
+        if (!kendoValidator.validate()) {
+            // If the form is valid, the Validator will return true
+            return false;
+        }
+
+        $('#solicitationForm').submit(function (e) {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+
+            var formData = new FormData(this);
+
+            $.ajax({
+                url: '@Url.Action("SaveSolicitation", "Rfq")',
+                type: "POST",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function (result) {
+                    // here in result you will get your data
+
+                    document.getElementById("pageMessage").innerHTML = result.message;
+                    document.getElementById("solicitationForm").reset();
+                    reloadSolicitationGrid();
+                },
+                error: function (result) {
+                }
+            });
+            //e.preventDefault();
+            return false;
+        });
+
+        return false;
+    }
+
+    function onEdit() {
+
+    }
+    function error_handler() {
+
+    }
+
+    function onChange(arg) {
+
+        var grid = $("#grid-solicitation").data("kendoGrid");
+        var selectedItem = grid.dataItem(grid.select());
+        document.getElementById("solicitaionNumber").value = selectedItem.SolicitationNo;
+        document.getElementById("solicitaionDescription").value = selectedItem.SolicitationDescription;
+        document.getElementById("awardQuantity").value = selectedItem.AwardQuantity;
+        document.getElementById("awardAmount").value = selectedItem.AwardAmount;
+        //document.getElementById("dueDate").value = selectedItem.DueDate;
+        if(selectedItem.DueDate == null)
+        {
+            $("#dueDate").data("kendoDatePicker").value(new Date());
+        }
+        else{
+            $("#dueDate").data("kendoDatePicker").value(new Date(selectedItem.DueDate));
+        }
+    }
+
+
+    function onRequestEnd(e) {
+        if (e.type == 'update' || e.type == "create" || e.type == "destroy") {
+            //document.getElementById("pageMessage").innerHTML = e.response.myMessage;
+            if (e.response.myMessage.indexOf('ERROR') >= 0) {
+                alert(e.response.myMessage)
+            }
+            else {
+                $('#grid-solicitation').data('kendoGrid').dataSource.read();
+                $('#grid-solicitation').data('kendoGrid').refresh();
+            }
+
+        }
+    }
+
+    function reloadSolicitationGrid() {
+        $('#grid-solicitation').data('kendoGrid').dataSource.read();
+        $('#grid-solicitation').data('kendoGrid').refresh();
+    }
+
+
+    function bindViewModel() {
+        var viewModel = kendo.observable({
+            solicitaionNumber: "",
+            solicitaionDescription: "",
+            awardAmount: "",
+            awardQuantity: "",
+            dueDate: null,
+            onDueDateChange: function () {
+                //document.getElementById("inputDueDate").value = kendo.toString(this.get("dueDate"), "D");
+                //alert( kendo.toString(this.get("dueDate"), "D") );
+            }
+        });
+
+        kendo.bind($("#solicitationDataEntryForm"), viewModel);
+
+        $("form").kendoValidator({
+            validateOnBlur: false // Disable the default validation on blur
+        });
+
+
+    }
+
+    function initSearch()
+    {
+        $("#searchbox").keyup(function () {
+            var val = $('#searchbox').val();
+            $("#grid-solicitation").data("kendoGrid").dataSource.filter({
+                logic: "or",
+                filters: [
+                    {
+                        field: "SolicitationNo",
+                        operator: "contains",
+                        value: val
+                    }
+
+                ]
+            });
+
+
+        });
+    }
+    $(document).ready(function () {
+        bindViewModel();
+        reloadSolicitationGrid();
+        initSearch();
+    });
+
+
+</script>
+<style>
+
+</style>
+

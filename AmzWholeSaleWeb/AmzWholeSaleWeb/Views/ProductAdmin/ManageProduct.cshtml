@@ -1,0 +1,219 @@
+﻿@{
+    ViewBag.Title = "ManageProduct";
+}
+<div>
+    @Html.Partial("AdminMenuHorizontal")
+</div>
+<div id="userMessage" style="width: 1200px;">
+    <div style="float: left; width: 120px;"><h5 style="color:black; font-weight:bold;"> Message: </h5></div>
+    <div style="float: left; width: 900px;"><h5 style="color:blue"> @ViewBag.Message </h5></div>
+</div>
+@using (Html.BeginForm("UploadImage", "ProductAdmin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+<div style="widows: 100%; display:table;">
+    <div style="display:table-row">
+        <div class="mangeProductImage">
+            <img id="selectedItemImageOriginal" src="@Url.Content("~/content/products/loading.jpg")" />
+            <input id="inputFile" class="k-textbox fileUploadBox" type="file" name="files" /><br />
+        </div>
+        <div class="mangeProductImage">
+            <img id="selectedItemImageOne" src="@Url.Content("~/content/products/loading.jpg")" />
+            <input id="inputFile" class="k-textbox fileUploadBox" type="file" name="files" /><br />
+        </div>
+        <div class="mangeProductImage">
+            <img id="selectedItemImageTwo" src="@Url.Content("~/content/products/loading.jpg")" />
+            <input id="inputFile" class="k-textbox fileUploadBox" type="file" name="files" /><br />
+        </div>
+        <div class="mangeProductImage">
+            <img id="selectedItemImageThree" src="@Url.Content("~/content/products/loading.jpg")" />
+            <input id="inputFile" class="k-textbox fileUploadBox" type="file" name="files" /><br />
+        </div>
+        <div class="mangeProductImage">
+            <img id="selectedItemImageFour" src="@Url.Content("~/content/products/loading.jpg")" />
+            <input id="inputFile" class="k-textbox fileUploadBox" type="file" name="files" /><br />
+        </div>
+        <div class="mangeProductImage">
+            <img id="selectedItemImageFive" src="@Url.Content("~/content/products/loading.jpg")" />
+            <input id="inputFile" class="k-textbox fileUploadBox" type="file" name="files" /><br />
+        </div>
+    </div>
+    <div style="display:table-row">
+        <div id="uploadButton">
+                <input type="hidden" id="idProductID" name="productID" value="0" />
+                <input id="btn_submitFile" type="submit" value="Upload Images" />
+        </div>
+     </div>
+</div>
+}
+<br />
+<div id="allProducts" style="min-width:1200px">
+    @(Html.Kendo().Grid<AmzModel.AmzProduct>()
+    .Name("ProductGrid")
+    .Columns(columns =>
+    {
+        columns.Bound(p => p.ProductName).Width(100);
+        columns.ForeignKey(p => p.SectionID, (System.Collections.IEnumerable)ViewData["SectionList"], "SectionID", "SectionName").Title("Category");
+        columns.Bound(p => p.ProductDescription).Width(100);
+        columns.Bound(p => p.ProductLongDescription).Width(255);
+        columns.Bound(p => p.UnitPrice).Width(85);
+        columns.Bound(p => p.UnitsInStock).Width(85);
+        columns.Bound(p => p.UnitsOnOrder).Width(85);
+        columns.Command(command => { command.Edit(); command.Destroy(); }).Width(250);
+    })
+    .ToolBar(toolbar =>
+    {
+        //toolbar.Create();
+        //toolbar.Save();
+    })
+    //.Editable(editable => editable.Mode(GridEditMode.InCell))
+    .Editable(editable => editable.Mode(GridEditMode.InLine))
+    //.Pageable()
+    .Filterable()
+    .Navigatable()
+    .Sortable()
+    .Selectable(selectable => selectable
+            .Mode(GridSelectionMode.Single)
+            .Type(GridSelectionType.Row))
+    //.Scrollable()
+    .Events(events => events.Change("onChange"))
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .Batch(false)
+        .PageSize(1000)
+        .ServerOperation(false)
+        .Events(events => events.Error("error_handler").RequestEnd("onRequestEnd"))
+        //.Model(model => model.Id(p => p.ProductID))
+        .Model(model =>
+        {
+            model.Id(p => p.ProductID);
+            model.Field(p => p.ProductName).Editable(true);
+            model.Field(p => p.SectionID).Editable(true);
+            model.Field(p => p.ProductDescription).Editable(true);
+            model.Field(p => p.ProductLongDescription).Editable(true);
+            model.Field(p => p.UnitPrice).Editable(true);
+            model.Field(p => p.UnitsInStock).Editable(true);
+            model.Field(p => p.UnitsOnOrder).Editable(true);
+
+        })
+
+
+                        .Create("Editing_Create", "ProductAdmin")
+                        .Read("Editing_Read", "ProductAdmin")
+                        .Update("Editing_Update", "ProductAdmin")
+                        .Destroy("Editing_Destroy", "ProductAdmin")
+                    )
+    )
+</div>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        validateUploadForm();
+
+    });
+
+    function validateUploadForm() {
+
+
+        $("#btn_submitFile").bind("click", function () {
+
+            //if ($("#inputFile").get(0).files.length === 0) {
+            //    alert("Pick an image file");
+            //    return false;
+            //}
+
+
+            document.getElementById("userMessage").innerHTML = "Uploading file. Please wait.....";
+
+            window.setInterval(function () {
+                // 'blink' class is toggled into 'P' tag between the interval of 500 ms
+                $("#userMessage").toggleClass('blink');
+            }, 500);
+
+            //var productName = document.getElementById("idProductName").value;
+            //var productDescription = document.getElementById("idProductDescription").value;
+            //var unitPrice = document.getElementById("idUnitPrice").value;
+            //var productLongDescription = document.getElementById("idProductLongDescription").value;
+
+            //if(productName == '' || productName == "Product Name")
+            //{
+            //    alert("Please type product name");
+            //    return false;
+            //}
+
+
+
+        });
+    }
+    function error_handler(e) {
+        if (e.errors) {
+            var message = "Errors:\n";
+            $.each(e.errors, function (key, value) {
+                if ('errors' in value) {
+                    $.each(value.errors, function() {
+                        message += this + "\n";
+                    });
+                }
+            });
+            alert(message);
+        }
+    }
+
+
+
+    function onChange(arg) {
+        var grid = $("#ProductGrid").data("kendoGrid");
+        var selectedItem = grid.dataItem(grid.select());
+        //alert(selectedItem);
+
+
+        document.getElementById("selectedItemImageOriginal").src = "@Url.Content("~/content/products/{0}?{1}")".format(selectedItem.OriginalImageId, new Date().getTime());
+        document.getElementById("selectedItemImageOne").src = "@Url.Content("~/content/products/{0}?{1}")".format(selectedItem.ImageIdOne, new Date().getTime());
+        document.getElementById("selectedItemImageTwo").src = "@Url.Content("~/content/products/{0}?{1}")".format(selectedItem.ImageIdTwo, new Date().getTime());
+        document.getElementById("selectedItemImageThree").src = "@Url.Content("~/content/products/{0}?{1}")".format(selectedItem.ImageIdThree, new Date().getTime());
+        document.getElementById("selectedItemImageFour").src = "@Url.Content("~/content/products/{0}?{1}")".format(selectedItem.ImageIdFour, new Date().getTime());
+        document.getElementById("selectedItemImageFive").src = "@Url.Content("~/content/products/{0}?{1}")".format(selectedItem.ImageIdFive, new Date().getTime());
+
+        document.getElementById("idProductID").value = selectedItem.ProductID;
+
+    }
+
+    function onRequestEnd(e) {
+
+        if (e.type == "update" && !e.response.Errors) {
+            alert("product updated");
+        }
+
+        if (e.type == "destroy" && !e.response.Errors) {
+            alert("Producdt deleted");
+        }
+
+    }
+
+</script>
+
+<style>
+    .mangeProductImage
+    {
+        min-width:200px;
+        max-width:200px; 
+        display:table-cell; 
+        border:double;
+    }
+    .mangeProductImage img{
+            float: left;
+            width:100px;
+            height:100px;
+            opacity:100;
+            margin-bottom:40px;
+            margin-right:0px;
+        }
+
+    .k-grid {
+        font-size: 10px;
+    }
+    .k-grid td {
+        line-height: 2em;
+    }
+</style>

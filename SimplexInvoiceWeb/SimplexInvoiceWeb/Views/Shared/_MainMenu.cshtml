@@ -1,0 +1,89 @@
+﻿<div id="megaStore">
+    @(Html.Kendo().Menu()
+      .Name("Menu")
+      .Items(items =>
+      {
+          items.Add()
+                  .Text("Job Tickets")
+                  .Items(children =>
+                  {
+                      children.Add().Text("Manage Ticket")
+                                  .Items(innerChildren =>
+                                  {
+                                      innerChildren.Add().Text("New Ticket").Action("Index","JobTicket");
+                                      innerChildren.Add().Text("Today's tickets").Action("Index","JobTicket");
+                                      innerChildren.Add().Text("Search Tickets").Action("SearchTicket","JobTicket");
+                                      innerChildren.Add().Text("Ticket Summary").Action("Index","Home");
+                                  });
+
+                  });
+
+          items.Add()
+                 .Text("Invoice")
+                 .Items(children =>
+                 {
+                     children.Add().Text("Manage Invoice")
+                                 .Items(innerChildren =>
+                                 {
+                                     innerChildren.Add().Text("Unpaid Invoices");
+                                     innerChildren.Add().Text("Search Invoice");
+                                 });
+
+                 });
+
+          items.Add()
+                .Text("Admin")
+                .Items(children =>
+                {
+                    children.Add().Text("My Company")
+                                .Items(innerChildren =>
+                                {
+                                    innerChildren.Add().Text("Settings");
+                                });
+                    children.Add().Text("My Clients").Action("Index","MyClients");
+
+
+                    children.Add().Text("Reference Data")
+                                .Items(innerChildren =>
+                                {
+                                    innerChildren.Add().Text("Job Type");
+                                });
+
+                });
+          items.Add().Text("Blog");
+          items.Add().Text("Company");
+          items.Add().Text("Events");
+          items.Add().Text("News").Enabled(false);
+      })
+    )
+
+</div>
+<style>
+   
+    #megaStore {
+        /*max-width: 600px;*/
+        margin: 0px auto;
+        padding-top: 0px;
+        /*background: url('../../content/web/menu/header.jpg') no-repeat center 0;*/
+    }
+
+    .k-menu
+    {
+        border:0px;
+        background: rgb(197,222,234); /* Old browsers */
+        background: -moz-linear-gradient(top, rgba(197,222,234,1) 0%, rgba(138,187,215,1) 31%, rgba(6,109,171,1) 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(top, rgba(197,222,234,1) 0%,rgba(138,187,215,1) 31%,rgba(6,109,171,1) 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom, rgba(197,222,234,1) 0%,rgba(138,187,215,1) 31%,rgba(6,109,171,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c5deea', endColorstr='#066dab',GradientType=0 ); /* IE6-9 */
+
+    }
+    
+    .k-menu .k-link 
+    {
+        font-size:11px;
+        text-decoration:none;
+        font-weight:bold;
+        border:0px;
+    }
+
+</style>

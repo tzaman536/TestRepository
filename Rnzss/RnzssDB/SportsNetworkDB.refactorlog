@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="8f3c3140-4caf-45ac-9fbf-b20519df868a" ChangeDateTime="12/11/2016 12:37:31">
+    <Property Name="ElementName" Value="[dbo].[Table1].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Table1]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="LeagueId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="d4a3d1b7-cdca-4287-908b-a0c69caea166" ChangeDateTime="12/11/2016 12:42:22">
+    <Property Name="ElementName" Value="[dbo].[LeagueTypes].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[LeagueTypes]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="LeagueTypeId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="da95214f-e4fe-47a2-b81e-731852ba4eff" ChangeDateTime="12/11/2016 12:48:03">
+    <Property Name="ElementName" Value="[dbo].[LeagueLevel].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[LeagueLevel]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="LevelId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="563f10ae-0f52-4c98-bed0-cd5a2eedb3af" ChangeDateTime="12/11/2016 12:48:40">
+    <Property Name="ElementName" Value="[dbo].[LeagueLevel].[LevelId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[LeagueLevel]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="LeagueLevelId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="b42a658e-61cc-431e-a681-2684b6b72e50" ChangeDateTime="12/11/2016 13:33:58">
+    <Property Name="ElementName" Value="[dbo].[LeagueAdmin].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[LeagueAdmin]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="LeagueAdminId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="3f9a66c6-d2cc-49e6-b361-3e71d3c892ed" ChangeDateTime="12/17/2016 16:32:32">
+    <Property Name="ElementName" Value="[dbo].[Players].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Players]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="PlayerId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="0d3bffe7-39e0-41dc-936a-20f60fccc069" ChangeDateTime="12/17/2016 16:36:52">
+    <Property Name="ElementName" Value="[dbo].[Players].[Location]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Players]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Address" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="96f0dc7f-2b31-4e3e-80c3-ddd657988561" ChangeDateTime="12/17/2016 16:38:05">
+    <Property Name="ElementName" Value="[dbo].[Players].[Zip]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Players]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Phone" />
+  </Operation>
+</Operations>

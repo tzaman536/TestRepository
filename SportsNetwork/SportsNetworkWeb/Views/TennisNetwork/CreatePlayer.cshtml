@@ -1,0 +1,87 @@
+﻿
+@{
+    ViewBag.Title = "Create Player";
+}
+
+<div class="page-title">My Leagues</div>
+
+@(Html.Kendo().Grid<SportsNetworkModel.Player>()
+    .Name("Player")
+    .Columns(columns =>
+    {
+        columns.Bound(p => p.Name).Width(255);
+        columns.Bound(p => p.Email).Width(255);
+        columns.Bound(p => p.Phone).Width(255).EditorTemplateName("telephone");
+        columns.Command(command => { command.Edit(); command.Destroy(); }).Width(250);
+    })
+    .ToolBar(toolbar =>
+    {
+        toolbar.Create();
+        //toolbar.Save();
+    })
+    //.Editable(editable => editable.Mode(GridEditMode.InCell))
+    .Editable(editable => { editable.DisplayDeleteConfirmation(true);  editable.Mode(GridEditMode.InLine);})
+    //.Pageable()
+    .Filterable()
+    .Navigatable()
+    .Sortable()
+    .Selectable(selectable => selectable
+            .Mode(GridSelectionMode.Single)
+            .Type(GridSelectionType.Row))
+    //.Scrollable()
+    .Events(events => events.Change("onChange"))
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .Batch(false)
+        .PageSize(1000)
+        .ServerOperation(false)
+        .Events(events => events.Error("error_handler").RequestEnd("onTableEditRequestEnd"))
+        //.Model(model => model.Id(p => p.ProductID))
+        .Model(model =>
+        {
+            model.Id(p => p.PlayerId);
+            model.Field(p => p.Name).Editable(true);
+            model.Field(p => p.Phone).Editable(true);
+            model.Field(p => p.Email).Editable(true);
+            model.Field(p => p.AddUpdateDt).Editable(false);
+            model.Field(p => p.AddUserName).Editable(false);
+
+        })
+
+
+                        .Create("Player_Create", "TennisNetwork")
+                        .Read("Player_Read", "TennisNetwork")
+                        .Update("Player_Update", "TennisNetwork")
+                        .Destroy("Player_Destroy", "TennisNetwork")
+                    )
+)
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+    });
+
+
+    function error_handler(e) {
+        if (e.errors) {
+            var message = "Errors:\n";
+            $.each(e.errors, function (key, value) {
+                if ('errors' in value) {
+                    $.each(value.errors, function() {
+                        message += this + "\n";
+                    });
+                }
+            });
+            //alert(message);
+        }
+    }
+
+    function onChange(arg) {
+        //var grid = $("#League").data("kendoGrid");
+        //var selectedItem = grid.dataItem(grid.select());
+
+    }
+
+
+</script>

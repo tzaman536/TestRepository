@@ -1,0 +1,61 @@
+﻿<div id="megaStore">
+    @if (User.Identity.IsAuthenticated)
+    {
+        @(Html.Kendo().Menu()
+          .Name("Menu")
+          .Items(items =>
+          {
+              items.Add().Text("Home").Action("Index", "Home");
+              items.Add().Text("About").Action("About", "Home");
+              items.Add().Text("Contact").Action("Contact", "Home");
+              items.Add()
+                    .Text("Admin")
+                    .Items(children =>
+                    {
+                        children.Add().Text("Solicitations").Action("Solicitations", "Rfq");
+                        children.Add().Text("New RFQ").Action("RfqEntry", "Rfq");
+                        children.Add().Text("Active RFQs").Action("ActiveRfq", "Rfq");
+                        children.Add().Text("Dashboard").Action("Dashboard", "Rfq");
+                        children.Add().Text("Vendors").Action("Vendors", "Rfq");
+                        children.Add().Text("InputHtml").Action("InputHtmlTable", "Rfq");
+                    });
+
+          })
+        )
+    }
+    else
+    {
+        @(Html.Kendo().Menu()
+          .Name("Menu")
+          .Items(items =>
+            {
+              items.Add().Text("Home").Action("Index", "Home");
+              items.Add().Text("About").Action("About", "Home");
+              items.Add().Text("Contact").Action("Contact", "Home");
+            })
+        )
+
+
+    }
+
+</div>
+<style>
+   
+    #megaStore {
+        /*max-width: 600px;*/
+        margin: 0px auto;
+        padding-top: 0px;
+        /*background: url('../../content/web/menu/header.jpg') no-repeat center 0;*/
+        background: rgb(181,189,200); /* Old browsers */
+        background: -moz-linear-gradient(top, rgba(181,189,200,1) 0%, rgba(130,140,149,1) 36%, rgba(40,52,59,1) 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(top, rgba(181,189,200,1) 0%,rgba(130,140,149,1) 36%,rgba(40,52,59,1) 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom, rgba(181,189,200,1) 0%,rgba(130,140,149,1) 36%,rgba(40,52,59,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b5bdc8', endColorstr='#28343b',GradientType=0 ); /* IE6-9 */
+
+    }
+
+    
+    
+
+
+</style>

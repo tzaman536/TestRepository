@@ -1,0 +1,84 @@
+﻿
+@{
+    ViewBag.Title = "ViewTransactions";
+}
+<div>
+    @Html.Partial("AdminMenuHorizontal")
+</div>
+
+<h2>ViewTransactions</h2>
+<div id="allProducts" style="min-width:1200px">
+@(Html.Kendo().Grid<Simplex.Tools.Cart.CartView>()
+        .Name("grid")
+        .Columns(columns =>
+        {
+            columns.Bound(c => c.CartId);
+            columns.Bound(c => c.ProductName);
+            columns.Bound(c => c.Quantity).Width(150);
+            columns.Bound(c => c.Price).Width(150);
+            columns.Bound(c => c.Total).Width(150);
+            columns.Bound(c => c.DateCreated).Width(150).Format("{0:MM/dd/yyyy hh:mm tt }");
+            columns.Bound(c => c.CheckedOut).Width(150);
+        })
+        .HtmlAttributes(new { style = "height: 550px;" })
+        .Scrollable()
+        .Groupable()
+        .Sortable()
+        //.Pageable(pageable => pageable
+        //    .Refresh(true)
+        //    .PageSizes(true)
+        //    .ButtonCount(5))
+        .DataSource(dataSource => dataSource
+            .Ajax()
+            .Read(read => read.Action("Cart_Read", "ProductAdmin"))
+        //.PageSize(20)
+        )
+)</div>
+
+
+<script>
+    $(document).ready(function () {
+        $("#ProductGrid").data("kendoGrid").dataSource.read();
+    });
+
+    function error_handler(e) {
+        if (e.errors) {
+            var message = "Errors:\n";
+            $.each(e.errors, function (key, value) {
+                if ('errors' in value) {
+                    $.each(value.errors, function () {
+                        message += this + "\n";
+                    });
+                }
+            });
+            alert(message);
+        }
+    }
+
+    function onChange(arg) {
+        @*var grid = $("#ProductGrid").data("kendoGrid");
+        var selectedItem = grid.dataItem(grid.select());
+
+        document.getElementById("selectedItemImageOriginal").src = "@Url.Content("~/content/products/{0}?{1}")".format(selectedItem.OriginalImageId, new Date().getTime());
+        document.getElementById("selectedItemImageOne").src = "@Url.Content("~/content/products/{0}?{1}")".format(selectedItem.ImageIdOne, new Date().getTime());
+        document.getElementById("selectedItemImageTwo").src = "@Url.Content("~/content/products/{0}?{1}")".format(selectedItem.ImageIdTwo, new Date().getTime());
+        document.getElementById("selectedItemImageThree").src = "@Url.Content("~/content/products/{0}?{1}")".format(selectedItem.ImageIdThree, new Date().getTime());
+        document.getElementById("selectedItemImageFour").src = "@Url.Content("~/content/products/{0}?{1}")".format(selectedItem.ImageIdFour, new Date().getTime());
+        document.getElementById("selectedItemImageFive").src = "@Url.Content("~/content/products/{0}?{1}")".format(selectedItem.ImageIdFive, new Date().getTime());
+
+        document.getElementById("idProductID").value = selectedItem.ProductID;*@
+
+    }
+
+
+</script>
+
+<style>
+    .k-grid {
+        font-size: 10px;
+    }
+    .k-grid td {
+        line-height: 2em;
+    }
+
+</style>

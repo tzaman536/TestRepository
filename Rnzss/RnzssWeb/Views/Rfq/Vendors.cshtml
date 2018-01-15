@@ -1,0 +1,145 @@
+﻿@{
+    ViewBag.Title = "Vendors";
+}
+@using RnzssWeb.Models
+<div class="page-container">
+    <div id="rfqentryform" class="admin-page-container">
+        <div id="searchgrid">
+            <div id="wrapper">
+                <div id="first">
+                    <input type="search" id="searchbox" style="width: 100%;" value="Search by vendor name, attention or email here" onfocus="if (this.value == 'Search by vendor name, attention or email here') this.value = ''" />
+                </div>
+                <div id="second">
+                    <div class="demo-hint"></div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="rnz-grid-container">
+            @(Html.Kendo().Grid<Vendor>()
+                                .Name("grid-vendor")
+                                .Columns(columns =>
+                                {
+                                    columns.Bound(p => p.CompanyName).Width(75);
+                                    columns.Bound(p => p.Attention).Width(75);
+                                    columns.Bound(p => p.CompanyAddress).Width(75);
+                                    columns.Bound(p => p.Email).Width(75);
+                                    columns.Bound(p => p.PhoneNo).Width(75).Format("{0:(###)###-####}");
+                                    columns.Bound(p => p.FaxNo).Width(75);
+                                    columns.Bound(p => p.UpdatedBy).Width(75);
+                                    columns.Bound(p => p.UpdateDate).Width(75).Format("{0:MM/dd/yyyy hh:mm:ss tt}");
+                                    columns.Command(command => { command.Edit(); command.Destroy(); }).Width(100);
+                                })
+                                .ToolBar(toolbar => { toolbar.Create(); toolbar.Excel(); })
+                                .Editable(editable => editable.Mode(GridEditMode.InLine))
+                                .Pageable()
+                                .Sortable()
+                                .Filterable()
+                                .Scrollable(scr => scr.Height(500))
+                                .Excel(excel => excel
+                                    .AllPages(true)
+                                    .FileName("Index Rates Export.xlsx")
+                                    .Filterable(true)
+                                    .ProxyURL(Url.Action("Excel_Export_Save", "Carry"))
+                                )
+                                .Events(events => events.Edit("onEdit"))
+                                .DataSource(dataSource => dataSource
+                                    .Ajax()
+                                    .PageSize(200)
+                                    .Events(events => events.Error("error_handler").RequestEnd("onRequestEnd"))
+                                    .Model(model =>
+                                    {
+                                        model.Id(p => p.VendorId);
+                                        model.Field(p => p.UpdateDate).Editable(false);
+                                        model.Field(p => p.UpdatedBy).Editable(false);
+                                    })
+                                    .Create(read => read.Action("Vendors_Create", "Rfq"))
+                                    .Read(read => read.Action("Vendors_Read", "Rfq"))
+                                    .Update(update => update.Action("Vendors_Update", "Rfq"))
+                                    .Destroy(update => update.Action("Vendors_Destroy", "Rfq"))
+                                )
+            )
+
+        </div>
+    </div>
+</div>
+
+<script>
+
+    function initSearch() {
+        $("#searchbox").keyup(function () {
+            var val = $('#searchbox').val();
+            $("#grid-vendor").data("kendoGrid").dataSource.filter({
+                logic: "or",
+                filters: [
+                    {
+                        field: "CompanyName",
+                        operator: "contains",
+                        value: val
+                    },
+                    {
+                        field: "Attention",
+                        operator: "contains",
+                        value: val
+                    },
+                    {
+                        field: "Email",
+                        operator: "contains",
+                        value: val
+                    }
+
+                ]
+            });
+
+
+        });
+    }
+    function getParameters() {
+
+        return {
+            rfqNo: document.getElementById("inputRFQNo").value
+        }
+    }
+
+    function onEdit() {
+
+    }
+    function error_handler() {
+
+    }
+
+    function onRequestEnd(e) {
+        if (e.type == 'update' || e.type == "create" || e.type == "destroy") {
+            //document.getElementById("pageMessage").innerHTML = e.response.myMessage;
+            if (e.response.myMessage.indexOf('ERROR') >= 0) {
+                alert(e.response.myMessage)
+            }
+            else {
+                $('#grid-vendor').data('kendoGrid').dataSource.read();
+                $('#grid-vendor').data('kendoGrid').refresh();
+            }
+
+        }
+    }
+    function reloadProductInformationGrid() {
+        $('#grid-vendor').data('kendoGrid').dataSource.read();
+        $('#grid-vendor').data('kendoGrid').refresh();
+    }
+
+
+
+
+
+    $(document).ready(function () {
+        reloadProductInformationGrid();
+        initSearch();
+    });
+
+</script>
+
+
+<style>
+</style>
+
+

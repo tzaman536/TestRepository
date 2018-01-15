@@ -1,0 +1,19 @@
+https://developer.paypal.com/docs/classic/paypal-payments-standard/integration-guide/paypal_shopping_cart/#id08AEBD00LY4
+
+Paypal account:
+tzaman536@gmail.com	
+Test123#
+
+Sand Box Test Account
+https://developer.paypal.com/developer/accounts/create
+
+tzaman536@gmail.com (Test123#)
+
+SandBox Test AppID: APP-80W284485P519543T
+
+curl -s --insecure https://api-3t.sandbox.paypal.com/nvp -d  "USER=tzaman536_api1.gmail.com&PWD=WYENLWPB7RPHV2GL&SIGNATURE=AFcWxV21C7fd0v3bYYYRCpSSRl31AIYoYMrzcxrlSMsDlrkM9Q-Lntdm&METHOD=SetExpressCheckout&VERSION=98&PAYMENTREQUEST_0_AMT=10&PAYMENTREQUEST_0_CURRENCYCODE=USD&PAYMENTREQUEST_0_PAYMENTACTION=SALE&cancelUrl=http://www.example.com/cancel.html&returnUrl=http://www.example.com/success.html"
+
+
+
+Links to all paypal button images:
+https://developer.paypal.com/docs/classic/api/buttons/

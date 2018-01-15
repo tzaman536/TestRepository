@@ -1,0 +1,199 @@
+﻿
+@{
+    ViewBag.Title = "ScheduleSinglesGame";
+}
+
+<div class="page-title">Schedule Singles Game</div>
+<input type="hidden" id="idInputLeagueName" name="InputLeagueName" value="UNSELECTED" />
+
+@(Html.Kendo().DropDownList()
+    .Name("ddlLeagues")
+    .DataTextField("LeagueName")
+    .DataValueField("LeagueId")
+    .DataSource(source =>
+    {
+        source.Read(read =>
+        {
+            read.Action("GetLeagues", "TennisNetwork");
+        });
+    })
+    .Events(e =>
+    {
+        e.Select("onLeagueSelected").DataBound("dataBound");
+    })
+    .HtmlAttributes(new { style = "width: 250px;" })
+)
+<br />
+<br />
+<br />
+<div class="divTable">
+    <div class="divTableBody">
+        <div class="divTableRow">
+            <div class="divTableCell">
+                @(Html.Kendo().Grid<SportsNetworkModel.Schedule>()
+                .Name("Schedule")
+                .Columns(columns =>
+                {
+                    columns.ForeignKey(p => p.TeamOneId, (System.Collections.IEnumerable)ViewData["Teams"], "TeamId", "Name").Title("Player One");
+                    columns.ForeignKey(p => p.TeamTwoId, (System.Collections.IEnumerable)ViewData["Teams"], "TeamId", "Name").Title("Player Two");
+                    columns.Bound(p => p.GameTime).Width(255);
+                    columns.ForeignKey(p => p.LocationId, (System.Collections.IEnumerable)ViewData["Locations"], "LocationId", "LocationName").Title("Location");
+                    columns.Command(command => { command.Edit(); command.Destroy(); }).Width(250);
+                })
+                .ToolBar(toolbar =>
+                {
+                    toolbar.Create();
+                    //toolbar.Save();
+                })
+                //.Editable(editable => editable.Mode(GridEditMode.InCell))
+                .Editable(editable => editable.Mode(GridEditMode.InLine))
+                //.Pageable()
+                .Filterable()
+                .Navigatable()
+                .Sortable()
+                .Selectable(selectable => selectable
+                        .Mode(GridSelectionMode.Single)
+                        .Type(GridSelectionType.Row))
+                //.Scrollable()
+                .Events(events => events.Change("onChange"))
+                .DataSource(dataSource => dataSource
+                    .Ajax()
+                    .Batch(false)
+                    .PageSize(1000)
+                    .ServerOperation(false)
+                    .Events(events => events.Error("error_handler").RequestEnd("onTableEditRequestEnd"))
+                    //.Model(model => model.Id(p => p.ProductID))
+                    .Model(model =>
+                    {
+                        model.Id(p => p.ScheduleId);
+                    })
+                    .Read(read => read.Action("Schedule_Read", "TennisNetwork").Data("getSelectedLeagueName"))
+                    .Create(create => create.Action("Schedule_Create", "TennisNetwork").Data("getSelectedLeagueName"))
+                    .Update(update => update.Action("Schedule_Update", "TennisNetwork").Data("getSelectedLeagueName"))
+
+                    .Destroy("Schedule_Destroy", "TennisNetwork")
+                                )
+                            )
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script>
+    $(document).ready(function () {
+        //$("#Schedule").data("kendoGrid").dataSource.read();
+    });
+
+
+    function reloadData()
+    {
+
+    }
+    function dataBound(e) {
+        //var ds = this.dataSource.data();
+        //if (ds.length > 0)
+        //{
+        //    document.getElementById("idInputLeagueName").value = ds[0].LeagueName;
+        //    reloadData();
+        //}
+
+    }
+
+    function getSelectedLeagueName()
+    {
+
+       var ddlLeagues = $("#ddlLeagues").data("kendoDropDownList").dataItem();
+       if (ddlLeagues != null) {
+           return {
+               inputLeagueName: $("#ddlLeagues").data("kendoDropDownList").dataItem().LeagueName
+           }
+       }
+
+       return {
+           inputLeagueName: document.getElementById("idInputLeagueName").value
+       }
+    }
+    function onLeagueSelected(e) {
+        if (e.item) {
+            var dataItem = this.dataItem(e.item);
+            document.getElementById("idInputLeagueName").value = dataItem.LeagueName;
+        }
+
+        $("#Schedule").data("kendoGrid").dataSource.read();
+    }
+
+
+        function error_handler(e) {
+            if (e.errors) {
+                var message = "Errors:\n";
+                $.each(e.errors, function (key, value) {
+                    if ('errors' in value) {
+                        $.each(value.errors, function() {
+                            message += this + "\n";
+                        });
+                    }
+                });
+                alert(message);
+            }
+        }
+
+
+        function onChange(e) {
+
+        }
+
+        function onRequestEnd(e) {
+
+            if (e.type == "update" && !e.response.Errors) {
+                alert("product updated");
+            }
+
+            if (e.type == "destroy" && !e.response.Errors) {
+                alert("Product deleted");
+            }
+
+        }
+</script>
+
+<style>
+    /* DivTable.com */
+    .divTable {
+        display: table;
+        width: 100%;
+    }
+
+    .divTableRow {
+        display: table-row;
+    }
+
+    .divTableHeading {
+        background-color: #EEE;
+        display: table-header-group;
+    }
+
+    .divTableCell, .divTableHead {
+        border: 1px solid #999999;
+        display: table-cell;
+        padding: 3px 10px;
+    }
+
+    .divTableHeading {
+        background-color: #EEE;
+        display: table-header-group;
+        font-weight: bold;
+    }
+
+    .divTableFoot {
+        background-color: #EEE;
+        display: table-footer-group;
+        font-weight: bold;
+    }
+
+    .divTableBody {
+        display: table-row-group;
+    }
+</style>

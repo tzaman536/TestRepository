@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/kendo/css");
+
+</head>
+<body>
+    @* TZ: Following jquery reference must be done before keno javascript include defined below *@
+
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink(" ", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <div class="nav navbar-nav company-name">R & Z Supply And Services LLC</div>
+                
+                @*<ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Company", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                </ul>*@
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+        <table border="1" class="menu-table">
+            <tr>
+                <td width="10%"></td>
+                <td>
+                    <div class="main-menu-container">
+                        @Html.Partial("_MainMenu")
+                    </div>
+                </td>
+                <td width="10%"></td>
+            </tr>
+        </table>
+    </div>
+      
+    <div class="body-content">
+        @RenderBody()
+        <hr />
+    </div>
+    <footer class="footer">
+        <p>&copy; @DateTime.Now.Year - R & Z Supply And Services LLC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;14 Fountain Lane&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jericho&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NY 11753&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tel:(516) 639-8129&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fax:(516) 324-8554&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E-Mail:rnz@rnzss.com</p>
+    </footer>
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/kendo")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

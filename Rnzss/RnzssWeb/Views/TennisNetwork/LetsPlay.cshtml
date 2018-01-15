@@ -1,0 +1,280 @@
+﻿
+@{
+    ViewBag.Title = "Let's Play";
+}
+<div class="page-title">Lets Play</div>
+
+<div class="divTable">
+    <div class="divTableBody">
+        <div class="divTableRow">
+            <div class="divTableCell">&nbsp;</div>
+            <div class="divTableCell">&nbsp;</div>
+            <div class="divTableCell">&nbsp;</div>
+        </div>
+        <div class="divTableRow">
+            <div class="divTableCell">
+                @(Html.Kendo().Grid<SportsNetworkModel.Player>()
+                    .Name("AvailablePlayers")
+                    .Columns(columns =>
+                    {
+                        columns.Bound(p => p.Name).Title("Available Players").Width(255);
+                    })
+                    .Filterable()
+                    .Navigatable()
+                    .Sortable()
+                    .Selectable(selectable => selectable
+                            .Mode(GridSelectionMode.Single)
+                            .Type(GridSelectionType.Row))
+                    .DataSource(dataSource => dataSource
+                        .Ajax()
+                        .Batch(false)
+                        .PageSize(1000)
+                        .ServerOperation(false)
+                        .Events(events => events.Error("error_handler").RequestEnd("onRequestEnd"))
+                        //.Model(model => model.Id(p => p.ProductID))
+                        .Model(model =>
+                        {
+                            model.Id(p => p.PlayerId);
+                            model.Field(p => p.Name).Editable(false);
+                        })
+                        .Read(read => read.Action("AvailablePlayers_Read", "TennisNetwork")))
+                )
+            </div>
+            <div class="divTableCell">
+                @(Html.Kendo().Button()
+                    .Name("textButtonAdd")
+                    .Content("  Add ")
+                    .HtmlAttributes(new { type = "button" })
+                    .Events(ev => ev.Click("onAddClick")))
+                <br />
+                <br />
+                @(Html.Kendo().Button()
+                    .Name("textButtonRemove")
+                    .Content("Remove")
+                    .HtmlAttributes(new { type = "button" })
+                    .Events(ev => ev.Click("onRemoveClick")))
+
+            </div>
+            <div class="divTableCell">
+                @(Html.Kendo().Grid<SportsNetworkModel.Player>()
+                    .Name("RequestQueue")
+                    .Columns(columns =>
+                    {
+                        columns.Bound(p => p.Name).Title("Players In Request Queue").Width(255);
+                    })
+                    .Filterable()
+                    .Navigatable()
+                    .Sortable()
+                    .Selectable(selectable => selectable
+                            .Mode(GridSelectionMode.Single)
+                            .Type(GridSelectionType.Row))
+                    .DataSource(dataSource => dataSource
+                        .Ajax()
+                        .Batch(false)
+                        .PageSize(1000)
+                        .ServerOperation(false)
+                        .Events(events => events.Error("error_handler").RequestEnd("onRequestEnd"))
+                        //.Model(model => model.Id(p => p.ProductID))
+                        .Model(model =>
+                        {
+                            model.Id(p => p.PlayerId);
+                            model.Field(p => p.Name).Editable(true);
+                            model.Field(p => p.Phone).Editable(true);
+                            model.Field(p => p.Email).Editable(true);
+                            model.Field(p => p.AddUpdateDt).Editable(false);
+                            model.Field(p => p.AddUserName).Editable(false);
+
+                        })
+                        .Read(read => read.Action("PlayerNotInLeague_Read", "TennisNetwork")))
+
+                )
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+    });
+
+
+    function reloadData()
+    {
+        $("#CurrentLeaguePlayer").data("kendoGrid").dataSource.read();
+        $("#AvailableLeaguePlayer").data("kendoGrid").dataSource.read();
+
+    }
+    function dataBound(e) {
+        var ds = this.dataSource.data();
+        if (ds.length > 0)
+        {
+            document.getElementById("idInputLeagueName").value = ds[0].LeagueName;
+            reloadData();
+        }
+
+    }
+
+    function onAddClick(e) {
+        var gview = $("#AvailableLeaguePlayer").data("kendoGrid");
+        var selectedItem = gview.dataItem(gview.select());
+        if (selectedItem == null) {
+            alert("Please select a player to add.")
+        }
+        else {
+            var playerId = selectedItem.PlayerId;
+            //alert(playerId);
+            //alert(document.getElementById("idInputLeagueName").value);
+
+            var parms = {
+                inputLeagueName: document.getElementById("idInputLeagueName").value,
+                playerId: playerId
+            };
+
+
+            $.ajax({
+                type: "POST",
+                traditional: true,
+                url: '@Url.Action("AddPlayerToLeague_AddPlayer", "TennisNetwork")',
+                async: false,
+                data: parms,
+                dataType: "json",
+                beforeSend: function (xhr) {
+                    //$('#loader').show();
+                },
+                success: function (response, textStatus, jqXHR) {
+                    //alert(response);
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert("Error found during execution");
+                }
+            });
+        }
+        reloadData();
+    }
+
+    function onRemoveClick(e) {
+        var gview = $("#CurrentLeaguePlayer").data("kendoGrid");
+        var selectedItem = gview.dataItem(gview.select());
+        if (selectedItem == null) {
+            alert("Please select a player to remove.")
+        }
+        else {
+            var playerId = selectedItem.PlayerId;
+            //alert(playerId);
+              var parms = {
+                inputLeagueName: document.getElementById("idInputLeagueName").value,
+                playerId : playerId
+            };
+
+
+            $.ajax({
+                type: "POST",
+                traditional: true,
+                url: '@Url.Action("AddPlayerToLeague_RemovePlayer", "TennisNetwork")',
+                async: false,
+                data: parms,
+                dataType: "json",
+                beforeSend: function (xhr) {
+                    //$('#loader').show();
+                },
+                success: function (response, textStatus, jqXHR) {
+                    //alert(response.message);
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    //alert("Error found during execution");
+                }
+            });
+        }
+        reloadData();
+    }
+    function getSelectedLeagueName()
+    {
+       return {
+           inputLeagueName: document.getElementById("idInputLeagueName").value
+            }
+    }
+    function onLeagueSelected(e) {
+        if (e.item) {
+            var dataItem = this.dataItem(e.item);
+            document.getElementById("idInputLeagueName").value = dataItem.LeagueName;
+        }
+
+
+        $("#CurrentLeaguePlayer").data("kendoGrid").dataSource.read();
+        $("#AvailableLeaguePlayer").data("kendoGrid").dataSource.read();
+
+    }
+
+
+        function error_handler(e) {
+            if (e.errors) {
+                var message = "Errors:\n";
+                $.each(e.errors, function (key, value) {
+                    if ('errors' in value) {
+                        $.each(value.errors, function() {
+                            message += this + "\n";
+                        });
+                    }
+                });
+                alert(message);
+            }
+        }
+
+
+
+
+        function onRequestEnd(e) {
+
+            if (e.type == "update" && !e.response.Errors) {
+                alert("product updated");
+            }
+
+            if (e.type == "destroy" && !e.response.Errors) {
+                alert("Product deleted");
+            }
+
+        }
+</script>
+
+<style>
+    /* DivTable.com */
+    .divTable {
+        display: table;
+        width: 100%;
+    }
+
+    .divTableRow {
+        display: table-row;
+    }
+
+    .divTableHeading {
+        background-color: #EEE;
+        display: table-header-group;
+    }
+
+    .divTableCell, .divTableHead {
+        border: 1px solid #999999;
+        display: table-cell;
+        padding: 3px 10px;
+    }
+
+    .divTableHeading {
+        background-color: #EEE;
+        display: table-header-group;
+        font-weight: bold;
+    }
+
+    .divTableFoot {
+        background-color: #EEE;
+        display: table-footer-group;
+        font-weight: bold;
+    }
+
+    .divTableBody {
+        display: table-row-group;
+    }
+</style>
+
