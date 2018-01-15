@@ -8,12 +8,12 @@ namespace InterviewPrep.Tree
 {
     public class Node
     {
-        public Node left, right;
-        public int data;
+        public Node Left, Right;
+        public int Data;
         public Node(int data)
         {
-            this.data = data;
-            left = right = null;
+            this.Data = data;
+            Left = Right = null;
         }
     }
 
@@ -41,23 +41,23 @@ namespace InterviewPrep.Tree
             if (root == null)
                 return 0;
 
-            if (root.left == null && root.right == null)
+            if (root.Left == null && root.Right == null)
                 return 1;
 
 
             int leftHeight = 0;
-            if (root.left != null)
+            if (root.Left != null)
             {
                 leftHeight++;
-                leftHeight = leftHeight + GetHeight(root.left);
+                leftHeight = leftHeight + GetHeight(root.Left);
             }
 
 
             int rightHeight = 0;
-            if (root.right != null)
+            if (root.Right != null)
             {
                 rightHeight++;
-                rightHeight = rightHeight + GetHeight(root.right);
+                rightHeight = rightHeight + GetHeight(root.Right);
             }
 
 
@@ -80,14 +80,14 @@ namespace InterviewPrep.Tree
             }
             else {
                 Node cur;
-                if (data <= n.data)
+                if (data <= n.Data)
                 {
-                    cur = Insert(ref n.left, data);
-                    n.left = cur;
+                    cur = Insert(ref n.Left, data);
+                    n.Left = cur;
                 }
                 else {
-                    cur = Insert(ref n.right, data);
-                    n.right = cur;
+                    cur = Insert(ref n.Right, data);
+                    n.Right = cur;
                 }
                 return n;
             }
@@ -97,9 +97,9 @@ namespace InterviewPrep.Tree
         {
             if (root != null)
             {
-                Console.Write(string.Format("{0} ",root.data));
-                PreorderTraversal(root.left);
-                PreorderTraversal(root.right);
+                Console.Write(string.Format("{0} ",root.Data));
+                PreorderTraversal(root.Left);
+                PreorderTraversal(root.Right);
             }
       
         }
@@ -109,9 +109,9 @@ namespace InterviewPrep.Tree
         {
             if (root != null)
             {
-                InorderTraversal(root.left);
-                Console.Write(string.Format("{0} ", root.data));
-                InorderTraversal(root.right);
+                InorderTraversal(root.Left);
+                Console.Write(string.Format("{0} ", root.Data));
+                InorderTraversal(root.Right);
             }
         }
 
@@ -119,9 +119,9 @@ namespace InterviewPrep.Tree
         {
             if(root != null)
             {
-                PostorderTraversal(root.left);
-                PostorderTraversal(root.right);
-                Console.Write(string.Format("{0} ", root.data));
+                PostorderTraversal(root.Left);
+                PostorderTraversal(root.Right);
+                Console.Write(string.Format("{0} ", root.Data));
             }
         }
 
@@ -132,15 +132,15 @@ namespace InterviewPrep.Tree
 
             if(root != null)
             {
-                if (root.data == data)
+                if (root.Data == data)
                 {
-                    Console.Write(string.Format("Search Value {0} ", root.data));
+                    Console.Write(string.Format("Search Value {0} ", root.Data));
                     found =  true;
                 }
                 else
                 {
-                    LookupValue(root.left, data, ref found);
-                    LookupValue(root.right, data, ref found);
+                    LookupValue(root.Left, data, ref found);
+                    LookupValue(root.Right, data, ref found);
                 }
             }
         }
@@ -164,18 +164,18 @@ namespace InterviewPrep.Tree
 
             Node current = Root;
             Node parent = null;
-            int result = Compare(removeItem, current.data);
+            int result = Compare(removeItem, current.Data);
             while(result != 0)
             {
                 if(result> 0)
                 {
                     parent = current;
-                    current = current.right;
+                    current = current.Right;
                 }
                 else if (result < 0)
                 {
                     parent = current;
-                    current = current.left;
+                    current = current.Left;
                 }
 
                 // If current == null, then we didn't find the item to remove
@@ -183,42 +183,42 @@ namespace InterviewPrep.Tree
                     return false;
 
 
-                result = Compare(removeItem, current.data);
+                result = Compare(removeItem, current.Data);
             }
 
             // At this point we found the node to remove
-            if(current.right == null)
+            if(current.Right == null)
             {
                 if(parent == null)
                 {
-                    Root = current.left;
+                    Root = current.Left;
                 }
                 else
                 {
-                    result = Compare(parent.data, current.data);
+                    result = Compare(parent.Data, current.Data);
                     if (result > 0)
                         // parent.Value > current.Value, so make current's left child a left child of parent
-                        parent.left = current.left;
+                        parent.Left = current.Left;
                     else if (result < 0)
                         // parent.Value < current.Value, so make current's left child a right child of parent
-                        parent.right = current.left;
+                        parent.Right = current.Left;
                 }
             }
-            else if (current.right.left == null)
+            else if (current.Right.Left == null)
             {
-                current.right.left = current.left;
+                current.Right.Left = current.Left;
 
                 if (parent == null)
-                    Root = current.right;
+                    Root = current.Right;
                 else
                 {
-                    result = Compare(parent.data, current.data);
+                    result = Compare(parent.Data, current.Data);
                     if (result > 0)
                         // parent.Value > current.Value, so make current's right child a left child of parent
-                        parent.left = current.right;
+                        parent.Left = current.Right;
                     else if (result < 0)
                         // parent.Value < current.Value, so make current's right child a right child of parent
-                        parent.right = current.right;
+                        parent.Right = current.Right;
                 }
             }
             // CASE 3: If current's right child has a left child, replace current with current's
@@ -226,36 +226,152 @@ namespace InterviewPrep.Tree
             else
             {
                 // We first need to find the right node's left-most child
-                Node leftmost = current.right.left, lmParent = current.right;
-                while (leftmost.left != null)
+                Node leftmost = current.Right.Left, lmParent = current.Right;
+                while (leftmost.Left != null)
                 {
                     lmParent = leftmost;
-                    leftmost = leftmost.left;
+                    leftmost = leftmost.Left;
                 }
 
                 // the parent's left subtree becomes the leftmost's right subtree
-                lmParent.left = leftmost.right;
+                lmParent.Left = leftmost.Right;
 
                 // assign leftmost's left and right to current's left and right children
-                leftmost.left = current.left;
-                leftmost.right = current.right;
+                leftmost.Left = current.Left;
+                leftmost.Right = current.Right;
 
                 if (parent == null)
                     Root = leftmost;
                 else
                 {
-                    result = Compare(parent.data, current.data);
+                    result = Compare(parent.Data, current.Data);
                     if (result > 0)
                         // parent.Value > current.Value, so make leftmost a left child of parent
-                        parent.left = leftmost;
+                        parent.Left = leftmost;
                     else if (result < 0)
                         // parent.Value < current.Value, so make leftmost a right child of parent
-                        parent.right = leftmost;
+                        parent.Right = leftmost;
                 }
             }
 
 
-            return true;
+            return false;
+        }
+
+        public void Delete(int removeItem)
+        {
+
+            // first make sure there exist some items in this tree
+            if (Root == null)
+                return ;       // no items to remove
+
+            Node current = Root;
+            Node parent = null;
+            int result = Compare(removeItem, current.Data);
+            while (result != 0)
+            {
+                if (result > 0)
+                {
+                    parent = current;
+                    current = current.Right;
+                }
+                else if (result < 0)
+                {
+                    parent = current;
+                    current = current.Left;
+                }
+
+                // If current == null, then we didn't find the item to remove
+                if (current == null)
+                    return;
+
+
+                result = Compare(removeItem, current.Data);
+            }
+
+
+       
+            // Three cases to consider, leaf, one child, two children
+
+            // If it is a simple leaf then just null what the parent is pointing to
+            if ((current.Left == null) && (current.Right == null))
+            {
+                if (parent == null)
+                {
+                    Root = null;
+                    return;
+                }
+
+                // find out whether left or right is associated 
+                // with the parent and null as appropriate
+                if (parent.Left == current)
+                    parent.Left = null;
+                else
+                    parent.Right = null;
+                return;
+            }
+
+            // One of the children is null, in this case
+            // delete the node and move child up
+            if (current.Left == null)
+            {
+                // Special case if we're at the root
+                if (parent == null)
+                {
+                    Root = current.Right;
+                    return;
+                }
+
+                // Identify the child and point the parent at the child
+                if (parent.Left == current)
+                    parent.Right = current.Right;
+                else
+                    parent.Left = current.Right;
+
+                current = null; // Clean up the deleted node
+                return;
+            }
+
+            // One of the children is null, in this case
+            // delete the node and move child up
+            if (current.Right == null)
+            {
+                // Special case if we're at the root			
+                if (parent == null)
+                {
+                    Root = current.Left;
+                    return;
+                }
+
+                // Identify the child and point the parent at the child
+                if (parent.Left == current)
+                    parent.Left = current.Left;
+                else
+                    parent.Right = current.Left;
+
+                current = null; // Clean up the deleted node
+                return;
+            }
+
+            /*
+            // Both children have nodes, therefore find the successor, 
+            // replace deleted node with successor and remove successor
+            // The parent argument becomes the parent of the successor
+            Node1 successor = findSuccessor(nodeToDelete, ref parent);
+            // Make a copy of the successor node
+            Node1 tmp = new Node1(successor.name, successor.value);
+            // Find out which side the successor parent is pointing to the
+            // successor and remove the successor
+            if (parent.left == successor)
+                parent.left = null;
+            else
+                parent.right = null;
+
+            // Copy over the successor values to the deleted node position
+            nodeToDelete.name = tmp.name;
+            nodeToDelete.value = tmp.value;
+            _count--;
+            */
         }
 
 
@@ -296,11 +412,12 @@ namespace InterviewPrep.Tree
             else
                 Console.WriteLine("Lookup value not found");
 
-            bool deleted = bst.Remove(175);
-            if(!deleted)
-            {
-                Console.WriteLine("Couldn't find the data to delete");
-            }
+            //bool deleted = bst.Remove(175);
+            //if (!deleted)
+            //{
+            //    Console.WriteLine("Couldn't find the data to delete");
+            //}
+            bst.Delete(175);
 
             Console.Write("Preorder Traversal After Delete: ");
             bst.PreorderTraversal(bst.Root);
