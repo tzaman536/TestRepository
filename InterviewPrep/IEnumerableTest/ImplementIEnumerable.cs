@@ -107,7 +107,10 @@ namespace InterviewPrep.IEnumerableTest
                 foreach(var p in peopleList)
                 {
                     Console.WriteLine(p.Name);
+                    
                 }
+                
+                
 
 
                 Console.ReadLine();
