@@ -156,50 +156,43 @@ namespace InterviewPrep.Tree
                 return 1;
         }
 
-        public static bool Remove(int data, ref Node root)
+        public bool Remove(int removeItem)
         {
             // first make sure there exist some items in this tree
-            if (root == null)
+            if (Root == null)
                 return false;       // no items to remove
 
-            // Now, try to find data in the tree
-            Node current = root, parent = null;
-            bool found = current.data == data;
-
-            int result = Compare(current.data,data);
-
-            while (result != 0)
+            Node current = Root;
+            Node parent = null;
+            int result = Compare(removeItem, current.data);
+            while(result != 0)
             {
-                if (result > 0)
+                if(result> 0)
                 {
-                    // current.Value > data, if data exists it's in the left subtree
                     parent = current;
-                    current = current.left;
+                    current = current.right;
                 }
                 else if (result < 0)
                 {
-                    // current.Value < data, if data exists it's in the right subtree
                     parent = current;
-                    current = current.right;
+                    current = current.left;
                 }
 
                 // If current == null, then we didn't find the item to remove
                 if (current == null)
                     return false;
-                else
-                    result = Compare(current.data, data);
+
+
+                result = Compare(removeItem, current.data);
             }
 
-            // At this point, we've found the node to remove
-            //count--;
-
-            // We now need to "rethread" the tree
-            // CASE 1: If current has no right child, then current's left child becomes
-            //         the node pointed to by the parent
-            if (current.right == null)
+            // At this point we found the node to remove
+            if(current.right == null)
             {
-                if (parent == null)
-                    root = current.left;
+                if(parent == null)
+                {
+                    Root = current.left;
+                }
                 else
                 {
                     result = Compare(parent.data, current.data);
@@ -211,14 +204,12 @@ namespace InterviewPrep.Tree
                         parent.right = current.left;
                 }
             }
-            // CASE 2: If current's right child has no left child, then current's right child
-            //         replaces current in the tree
             else if (current.right.left == null)
             {
                 current.right.left = current.left;
 
                 if (parent == null)
-                    root = current.right;
+                    Root = current.right;
                 else
                 {
                     result = Compare(parent.data, current.data);
@@ -250,7 +241,7 @@ namespace InterviewPrep.Tree
                 leftmost.right = current.right;
 
                 if (parent == null)
-                    root = leftmost;
+                    Root = leftmost;
                 else
                 {
                     result = Compare(parent.data, current.data);
@@ -262,6 +253,7 @@ namespace InterviewPrep.Tree
                         parent.right = leftmost;
                 }
             }
+
 
             return true;
         }
@@ -304,7 +296,11 @@ namespace InterviewPrep.Tree
             else
                 Console.WriteLine("Lookup value not found");
 
-            Remove(175, ref bst.Root);
+            bool deleted = bst.Remove(175);
+            if(!deleted)
+            {
+                Console.WriteLine("Couldn't find the data to delete");
+            }
 
             Console.Write("Preorder Traversal After Delete: ");
             bst.PreorderTraversal(bst.Root);
