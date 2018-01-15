@@ -12,7 +12,7 @@ namespace InterviewPrep
 
         static void Main(string[] args)
         {
-
+            IEnumerableTest.ImplementIEnumerable.Start();
         }
     }
 }
