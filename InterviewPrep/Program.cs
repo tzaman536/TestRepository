@@ -8,9 +8,11 @@ namespace InterviewPrep
 {
     class Program
     {
+     
+
         static void Main(string[] args)
         {
-            InterviewPrep.Tree.BinarySearchTree.Start();
+
         }
     }
 }

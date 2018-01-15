@@ -8,6 +8,64 @@ namespace InterviewPrep.Combination
 {
     public class AllCombinations
     {
+
+        public static string GetKey(List<long> inputList, bool skipSort = false)
+        {
+            StringBuilder sb = new StringBuilder(1000);
+            inputList.Sort();
+            foreach (var i in inputList)
+            {
+                sb.Append(i);
+            }
+            return sb.ToString();
+        }
+
+
+        static void GetUniqueCombination(List<long> list, long expectedAmount, ref Dictionary<string, string> comboListKey)
+        {
+            double count = Math.Pow(2, list.Count);
+            long comboCount = 0; ;
+            List<long> tempList = new List<long>();
+            string key = null;
+
+
+
+            for (int i = 1; i <= count - 1; i++)
+            {
+                comboCount = 0;
+                tempList.Clear();
+
+
+                string str = Convert.ToString(i, 2).PadLeft(list.Count, '0');
+
+                for (int j = 0; j < str.Length; j++)
+                {
+                    if (str[j] == '1')
+                    {
+                        //Console.Write(string.Format("{0},", list[j]));
+                        comboCount = comboCount + list[j];
+                        tempList.Add(list[j]);
+                    }
+                }
+
+                if (comboCount == expectedAmount)
+                {
+                    key = GetKey(tempList, true);
+                    if (!comboListKey.ContainsKey(key))
+                        comboListKey.Add(key, key);
+
+
+                    if (comboListKey.Count % 500 == 0)
+                    {
+                        Console.WriteLine("Combo list count {0}", comboListKey.Count);
+                    }
+
+                }
+                //Console.WriteLine();
+            }
+        }
+
+
         public static void Start()
         {
             /*
