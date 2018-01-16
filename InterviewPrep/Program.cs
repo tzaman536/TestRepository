@@ -14,6 +14,7 @@ namespace InterviewPrep
         {
             //IEnumerableTest.ImplementIEnumerable.Start();
             Tree.BinarySearchTree.Start();
+            Console.ReadLine();
         }
     }
 }
