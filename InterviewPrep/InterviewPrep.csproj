@@ -55,6 +55,7 @@
     <Compile Include="String\StringCompare.cs" />
     <Compile Include="Tree\BinarySearchTree.cs" />
     <Compile Include="Tree\BinaryTree.cs" />
+    <Compile Include="Tree\BTreeDemo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

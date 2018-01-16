@@ -66,6 +66,30 @@ namespace InterviewPrep.Combination
         }
 
 
+        static List<List<char>> GetCombination(List<char> list)
+        {
+            List<List<char>> result = new List<List<char>>();
+            double count = Math.Pow(2, list.Count);
+            for (int i = 1; i <= count - 1; i++)
+            {
+                List<char> temp = new List<char>();
+                string str = Convert.ToString(i, 2).PadLeft(list.Count, '0');
+                for (int j = 0; j < str.Length; j++)
+                {
+                    if (str[j] == '1')
+                    {
+                        //Console.Write(list[j]);
+                        temp.Add(list[j]);
+
+                    }
+                }
+                //Console.WriteLine();
+                result.Add(temp);
+            }
+
+            return result;
+        }
+
         public static void Start()
         {
             /*
