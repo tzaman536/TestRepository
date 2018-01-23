@@ -25,12 +25,7 @@ namespace InterviewPrep.IEnumerableTest
             }
         }
 
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return (IEnumerator)GetEnumerator();
-        }
-
-        public PeopleEnum GetEnumerator()
+        public IEnumerator GetEnumerator()
         {
             return new PeopleEnum(_people);
         }
@@ -104,7 +99,7 @@ namespace InterviewPrep.IEnumerableTest
 
                 People peopleList = new People(personArry);
 
-                foreach(var p in peopleList)
+                foreach(Person p in peopleList)
                 {
                     Console.WriteLine(p.Name);
                     

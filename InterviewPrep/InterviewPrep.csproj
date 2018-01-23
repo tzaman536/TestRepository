@@ -46,6 +46,7 @@
     <Compile Include="ChessBoard\ChessMoves.cs" />
     <Compile Include="Combination\AllCombinations.cs" />
     <Compile Include="IEnumerableTest\ImplementIEnumerable.cs" />
+    <Compile Include="IEnumerableTest\TestIenum.cs" />
     <Compile Include="LinkedList\LinkedListDemo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
