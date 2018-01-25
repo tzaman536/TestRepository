@@ -15,10 +15,13 @@ namespace InterviewPrep
             //IEnumerableTest.ImplementIEnumerable.Start();
             //Tree.BinarySearchTree.Start();
             //Tree.BTreeDemo.Start();
-            IEnumerableTest.TestIenum.Start();
+            //IEnumerableTest.TestIenum.Start();
             //IEnumerableTest.ImplementIEnumerable.Start();
+            //Sort.QuickSort.Start();
+            Sort.MergeSort.Start();
+            //FindMedian.FindMedian.Start();
+            //IEnumerableTest.AnimalEnum.Start();
 
-            Console.ReadLine();
         }
     }
 }

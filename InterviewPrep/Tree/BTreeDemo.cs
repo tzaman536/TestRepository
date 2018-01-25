@@ -6,32 +6,40 @@ using System.Threading.Tasks;
 
 namespace InterviewPrep.Tree
 {
+
+    public class MyNode
+    {
+        public int Value;
+        public BTreeNode Left;
+        public BTreeNode Right;
+        
+    }
     public class BTreeNode
     {
-        public List<int> Keys;
-        public List<BTreeNode> Nodes;
-        public bool IsLeaf
-        {
-            get
-            {
-                if (Nodes == null || Nodes.Count() == 0)
-                    return true;
-                else
-                    return false;
-            }
-        }
-
-
+        public List<MyNode> Keys;
         public BTreeNode()
         {
-            Keys = new List<int>();
-            Nodes = null;
+            Keys = new List<MyNode>();
         } 
+
+        public void AddToKeys(int item)
+        {
+            MyNode mn = new MyNode() { Value = item, Left = null, Right = null };
+            Keys.Add(mn);
+            Keys = Keys.OrderBy(x => x.Value).ToList();
+        }
+
+        public int GetMiddleIndex(int _degree)
+        {
+            return (_degree + 1) / 2;
+        }
+
 
     }
     public class BTree
     {
         int _degree = 2;
+        int _level = 0;
         public BTreeNode Root;
 
         public BTree()
@@ -40,25 +48,82 @@ namespace InterviewPrep.Tree
         }
 
 
-        public void Add(int item, ref BTreeNode n, ref BTreeNode parent)
+        public void Add(int item, ref BTreeNode n)
         {
             if (n == null)
             {
                 n = new BTreeNode();
-                n.Keys.Add(item);
+                BTreeNode node = new BTreeNode();
+                n.AddToKeys(item);
                 return;
             }
 
-            if(n.IsLeaf && n.Keys.Count <= _degree)
+            if(n.Keys.Count < _degree)
             {
-                n.Keys.Add(item);
-                n.Keys.Sort();
-            }
-            else
-            {
+                MyNode currentNode = null;
+                for (int i = 0; i < n.Keys.Count; i++)
+                {
+                    if(n.Keys.ElementAt(i).Left == null && n.Keys.ElementAt(i).Right == null)
+                    {
+                        n.AddToKeys(item);
+                        return;
+                    }
+                    if (item < n.Keys.ElementAt(i).Value)
+                    {
+                        currentNode = n.Keys.ElementAt(i);
+                        Add(item, ref currentNode.Left);
+                        break;
+                    }
+                    if (item > n.Keys.ElementAt(i).Value)
+                    {
+                        currentNode = n.Keys.ElementAt(i);
+                        Add(item, ref currentNode.Right);
+                        break;
+                    }
+                }
+
+                if (currentNode == null)
+                {
+                    n.AddToKeys(item);
+                }
+
              
+                return;
             }
 
+
+            n.AddToKeys(item);
+
+
+
+
+            if (n.Keys.Count > _degree)
+            {
+                int middleIndex = n.GetMiddleIndex(_degree);
+                BTreeNode leftNode = new BTreeNode();
+                BTreeNode rightNode = new BTreeNode();
+
+                for(int i=0; i< middleIndex; i++)
+                {
+                    leftNode.AddToKeys(n.Keys.ElementAt(i).Value);
+                }
+                for (int i = middleIndex+1; i < n.Keys.Count; i++)
+                {
+                    rightNode.AddToKeys(n.Keys.ElementAt(i).Value);
+                }
+
+                MyNode middleNode = n.Keys.ElementAt(middleIndex);
+                middleNode.Left = leftNode;
+                middleNode.Right = rightNode;
+
+                n.Keys.Clear();
+                n.Keys.Add(middleNode);
+                _level++;
+            }
+                
+
+
+      
             
         }
          
@@ -76,11 +141,8 @@ namespace InterviewPrep.Tree
             
             for(int i=1; i<= 10; i++)
             {
-                if(i == 5)
-                {
-
-                }
-                t.Add(i, ref t.Root, ref t.Root);
+             
+                t.Add(i, ref t.Root);
             }
             
         }

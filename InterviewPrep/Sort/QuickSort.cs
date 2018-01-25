@@ -48,5 +48,18 @@ namespace InterviewPrep.Sort
             }
         }
 
+
+        public static void Start()
+        {
+            string[] array = new string[] { "a", "b", "ab", "d", "cd", "x", "y" };
+            QuickSort.Sort(array, 0, array.Length -1);
+            foreach(var item in array)
+            {
+                Console.Write("{0} ", item);
+            }
+
+            Console.WriteLine();
+            Console.ReadLine();
+        }
     }
 }

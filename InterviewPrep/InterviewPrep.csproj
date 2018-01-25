@@ -45,6 +45,8 @@
   <ItemGroup>
     <Compile Include="ChessBoard\ChessMoves.cs" />
     <Compile Include="Combination\AllCombinations.cs" />
+    <Compile Include="FindMedian\FindMedian.cs" />
+    <Compile Include="IEnumerableTest\AnimalEnum.cs" />
     <Compile Include="IEnumerableTest\ImplementIEnumerable.cs" />
     <Compile Include="IEnumerableTest\TestIenum.cs" />
     <Compile Include="LinkedList\LinkedListDemo.cs" />

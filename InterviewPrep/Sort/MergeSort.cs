@@ -55,5 +55,19 @@ namespace InterviewPrep.Sort
         }
 
 
+        public static void Start()
+        {
+            string[] array = new string[] { "a", "ab", "d", "cd",  "b", "y", "x", "c" };
+            MergeSort.Sort(array, 0, array.Length - 1);
+            foreach (var item in array)
+            {
+                Console.Write("{0} ", item);
+            }
+
+            Console.WriteLine();
+            Console.ReadLine();
+        }
+
+
     }
 }
