@@ -40,8 +40,11 @@ namespace BondCalculator
             InitializeComponent();
             LoadPaymentFrequency();
             DataContext = Bond;
+
+
             Bond.ParValue = 1000;
             Bond.Coupon = 5;
+            Bond.RequiredYield = 10;
             Bond.PaymentFrequency = "Semiannually";
         }
 

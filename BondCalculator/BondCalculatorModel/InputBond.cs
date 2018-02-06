@@ -41,6 +41,14 @@ namespace BondCalculator
 
         }
 
+        private decimal _requiredYield;
+        public decimal RequiredYield
+        {
+            get { return _requiredYield; }
+            set { _requiredYield = value; Notify("RequiredYield"); }
+
+        }
+
 
     }
 }
