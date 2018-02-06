@@ -45,10 +45,13 @@
   <ItemGroup>
     <Compile Include="ChessBoard\ChessMoves.cs" />
     <Compile Include="Combination\AllCombinations.cs" />
+    <Compile Include="DKTest\DKCoinProblem.cs" />
     <Compile Include="FindMedian\FindMedian.cs" />
     <Compile Include="IEnumerableTest\AnimalEnum.cs" />
     <Compile Include="IEnumerableTest\ImplementIEnumerable.cs" />
     <Compile Include="IEnumerableTest\TestIenum.cs" />
+    <Compile Include="Inharitance\ConstructorSequence.cs" />
+    <Compile Include="Inharitance\TestNewKeyWord.cs" />
     <Compile Include="LinkedList\LinkedListDemo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -56,13 +59,16 @@
     <Compile Include="Sort\MergeSort.cs" />
     <Compile Include="Sort\QuickSort.cs" />
     <Compile Include="String\StringCompare.cs" />
+    <Compile Include="TestPrice.cs" />
     <Compile Include="Tree\BinarySearchTree.cs" />
     <Compile Include="Tree\BinaryTree.cs" />
     <Compile Include="Tree\BTreeDemo.cs" />
+    <Compile Include="ValueAndReferenceType\ValueAndRefTypeTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -10,6 +10,8 @@ namespace InterviewPrep
     {
      
 
+
+
         static void Main(string[] args)
         {
             //IEnumerableTest.ImplementIEnumerable.Start();
@@ -18,10 +20,13 @@ namespace InterviewPrep
             //IEnumerableTest.TestIenum.Start();
             //IEnumerableTest.ImplementIEnumerable.Start();
             //Sort.QuickSort.Start();
-            Sort.MergeSort.Start();
+            //Sort.MergeSort.Start();
             //FindMedian.FindMedian.Start();
             //IEnumerableTest.AnimalEnum.Start();
-
+            //Inharitance.TestNewKeyWord.Start();
+            //Inharitance.ConstructorSequence.Start();
+            //ValueAndReferenceType.ValueAndRefTypeTest.Start();
+            DKTest.DKCoinProblem.Start();
         }
     }
 }
