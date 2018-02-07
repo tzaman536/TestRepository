@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BondCalculator"
         mc:Ignorable="d"
-        Title="Bond Calculator" Height="350" Width="525">
+        Title="Bond Calculator" Height="800" Width="1100">
     <Grid>
         <StackPanel Background="Silver">
             <Grid>
@@ -17,6 +17,8 @@
                     <RowDefinition Height="50"/>
                     <RowDefinition Height="50"/>
                     <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
                     <RowDefinition Height="5"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
@@ -25,8 +27,8 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="20"/>
                 </Grid.ColumnDefinitions>
-                <Label Content="Par Value: " Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="1,1,1,1"/>
-                <TextBox x:Name="parValue" Text="{Binding ParValue, Mode=TwoWay, StringFormat=\{0:\#\,\#\#\#\;\(\#\,#\#\#\)\}}" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="1,1,1,1" Width="200"/>
+                <Label Content="Face Value: " Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="1,1,1,1"/>
+                <TextBox x:Name="faceValue" Text="{Binding FaceValue, Mode=TwoWay, StringFormat=\{0:\#\,\#\#\#\;\(\#\,#\#\#\)\}}" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="1,1,1,1" Width="200"/>
                 <Label Content="Coupon(%): " Grid.Row="2" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="1,1,1,1"/>
                 <TextBox x:Name="coupon" Text="{Binding Coupon, Mode=TwoWay}" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="1,1,1,1" Width="50"/>
                 <Label Content="Payment Frequency: " Grid.Row="3" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="1,1,1,1"/>
@@ -37,15 +39,23 @@
                 </ComboBox>
                 <Label Content="Required Yield(%): " Grid.Row="4" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="1,1,1,1"/>
                 <TextBox x:Name="requiredYield" Text="{Binding RequiredYield, Mode=TwoWay}" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="1,1,1,1" Width="50"/>
-                <Grid Grid.Row="6" Grid.Column="2">
+                
+                <Label Content="Calculated Price: " Grid.Row="6" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="1,1,1,1"/>
+                <TextBox x:Name="calculatedPriceValue" Text="{Binding CalculatedPrice, Mode=TwoWay, StringFormat={}{0:#.############}}" Grid.Row="6" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="1,1,1,1" Width="200"/>
+
+                <Label Content="Calculated YTM: " Grid.Row="7" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="1,1,1,1"/>
+                <TextBox x:Name="calculatedYTM" Text="{Binding CalculatedYTM, Mode=TwoWay, StringFormat={}{0:#.############}}" Grid.Row="7" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="1,1,1,1" Width="200"/>
+
+
+                <Grid Grid.Row="8" Grid.Column="2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="150"/>
                         <ColumnDefinition Width="150"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Button x:Name="calcButton" Content="Calculate" Click="calcButton_Click" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" 
+                    <Button x:Name="calcPriceButton" Content="Calculate Price" Click="calcPriceButton_Click" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" 
                       Width="110" Height="30" Margin="1,1,1,1" />
-                    <Button x:Name="restButton" Content="Reset" Click="restButton_Click" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" 
+                    <Button x:Name="calcYieldButton" Content="Calculate YTM" Click="calcYieldButton_Click" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" 
                       Width="110" Height="30" Margin="1,1,1,1"/>
                 </Grid>
             </Grid>

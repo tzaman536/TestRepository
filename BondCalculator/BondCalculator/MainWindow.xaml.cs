@@ -23,6 +23,7 @@ namespace BondCalculator
     {
 
         public InputBond Bond = new InputBond();
+        Calculator calculator = new Calculator();
 
 
 
@@ -42,23 +43,34 @@ namespace BondCalculator
             LoadPaymentFrequency();
             DataContext = Bond;
 
+            calculator.Message += Calculator_Message;
 
-            Bond.ParValue = 1000;
+
+            Bond.FaceValue = 1000;
             Bond.Coupon = 5;
             Bond.RequiredYield = 10;
             Bond.PaymentFrequency = "Semiannually";
+            Bond.CalculatedPrice = null;
+            Bond.CalculatedYTM = null;
         }
 
 
-        private void calcButton_Click(object sender, RoutedEventArgs e)
+        private void calcPriceButton_Click(object sender, RoutedEventArgs e)
         {
-            Calculator c = new Calculator();
-            //c.CalcPrice();
+            calculator.Message += Calculator_Message;
+            Bond.CalculatedPrice = calculator.CalcPrice(0.1, 5, 1000, .15);
         }
 
-        private void restButton_Click(object sender, RoutedEventArgs e)
+        private void calcYieldButton_Click(object sender, RoutedEventArgs e)
         {
+            Bond.CalculatedYTM = calculator.CalcYield(0.10, 5, 1000, 1079.85);
 
         }
+        private void Calculator_Message(string message)
+        {
+            
+        }
+
+        
     }
 }
