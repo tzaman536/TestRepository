@@ -100,6 +100,10 @@
       <Project>{528fc886-2b2e-4a1e-9cda-dd2d6f54ba21}</Project>
       <Name>BondCalculatorModel</Name>
     </ProjectReference>
+    <ProjectReference Include="BondCalculatorCalc\BondCalculatorCalc.csproj">
+      <Project>{42a0b995-6d54-45f8-9dc8-f77c955ba18a}</Project>
+      <Name>BondCalculatorCalc</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BondCalculatorCalc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -51,7 +52,8 @@ namespace BondCalculator
 
         private void calcButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(parValue.Text);
+            Calculator c = new Calculator();
+            //c.CalcPrice();
         }
 
         private void restButton_Click(object sender, RoutedEventArgs e)
