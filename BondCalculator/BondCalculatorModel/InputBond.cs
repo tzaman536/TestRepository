@@ -63,6 +63,36 @@ namespace BondCalculator
             set { _calculatedYTM = value; Notify("CalculatedYTM"); }
         }
 
+        private int _yearsToMaturity;
+        public int YearsToMaturity
+        {
+            get { return _yearsToMaturity; }
+            set { _yearsToMaturity = value; Notify("YearsToMaturity"); }
+
+        }
+
+        private int? _inputPrice;
+        public int? InputPrice
+        {
+            get { return _inputPrice; }
+            set { _inputPrice = value; Notify("InputPrice"); }
+
+        }
+
+        private string _log;
+        public string Log
+        {
+            get { return _log; }
+            set { _log = value; Notify("Log"); }
+
+        }
+
+
+        public void AppendToLog(string message)
+        {
+            Log = _log + "\r\n" + message;
+        }
+
 
     }
 }
