@@ -7,7 +7,7 @@ using System.Windows.Controls;
 
 namespace BondCalculator
 {
-    public class NameValidator : ValidationRule
+    public class RequiredFiledValidator : ValidationRule
     {
         public override ValidationResult Validate
           (object value, System.Globalization.CultureInfo cultureInfo)

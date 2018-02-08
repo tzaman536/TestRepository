@@ -80,7 +80,7 @@
                         <Binding Path="Coupon" Mode="TwoWay" 
                                 UpdateSourceTrigger="Explicit">
                                 <Binding.ValidationRules>
-                                    <local:NameValidator></local:NameValidator>
+                                    <local:RequiredFiledValidator></local:RequiredFiledValidator>
                                 </Binding.ValidationRules>
                         </Binding>
                     </TextBox.Text>
