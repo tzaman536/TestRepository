@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,9 +10,9 @@ namespace BondCalculatorCalc
 
     public enum PaymentFrequency
     {
-        Semiannually
-        ,Quarterly
-        ,Annually
+        Semiannually=2
+        ,Quarterly=4
+        ,Annually=1
     }
     public class Calculator
     {
@@ -21,6 +22,8 @@ namespace BondCalculatorCalc
 
         public double CalcPrice(double coupon, int years, double face, double rate, PaymentFrequency frequency = PaymentFrequency.Semiannually)
         {
+            Stopwatch stopWatch = new Stopwatch();
+            stopWatch.Start();
 
 
             double presentValueOfCashFlow = 0;
@@ -28,11 +31,7 @@ namespace BondCalculatorCalc
 
             try {
 
-                int paymentFrequency = 2;
-                if (frequency == PaymentFrequency.Quarterly)
-                    paymentFrequency = 4;
-                if (frequency == PaymentFrequency.Annually)
-                    paymentFrequency = 1;
+                int paymentFrequency = (int)frequency;
 
 
                 double c = (face * coupon) / paymentFrequency;
@@ -48,23 +47,30 @@ namespace BondCalculatorCalc
             }
 
 
+            stopWatch.Stop();
+
+            if (Message != null)
+            {
+                Message(string.Format("Time to calculate price {0} ", stopWatch.Elapsed));
+            }
+
+
             return Math.Round(presentValueOfCashFlow + presentValueOfFaceAmount,7);
         }
 
 
         public double CalcYield(double coupon, int years, double face, double price, PaymentFrequency frequency = PaymentFrequency.Semiannually)
         {
+            Stopwatch stopWatch = new Stopwatch();
+            stopWatch.Start();
+
             double presentValueOfCashFlow = 0;
             double presentValueOfFaceAmount = 0;
 
             try
             {
-                int paymentFrequency = 2;
+                int paymentFrequency = (int)frequency;
 
-                if (frequency == PaymentFrequency.Quarterly)
-                    paymentFrequency = 4;
-                if (frequency == PaymentFrequency.Annually)
-                    paymentFrequency = 1;
 
 
                 double c = (face * coupon) / paymentFrequency;
@@ -86,7 +92,7 @@ namespace BondCalculatorCalc
                     attemptCount++;
                     if(Message != null)
                     {
-                        Message(string.Format("Attempt {0} to find YTM for price {1}", attemptCount, price));
+                        Message(string.Format("Attempt {0} to find YTM for price {1} trial discount rate {2}", attemptCount, price,coupon));
                     }
 
                     if (!visitedPrice.ContainsKey(tempPrice))
@@ -116,6 +122,14 @@ namespace BondCalculatorCalc
                     presentValueOfCashFlow = c * (((1 - (1 / Math.Pow(1 + i, n))) / i));
                     presentValueOfFaceAmount = face * (1 / Math.Pow(1 + i, n));
                     tempPrice = presentValueOfCashFlow + presentValueOfFaceAmount;
+                }
+
+
+                stopWatch.Stop();
+
+                if (Message != null)
+                {
+                    Message(string.Format("Time to calculate yield {0} for one position", stopWatch.Elapsed));
                 }
 
                 return coupon;

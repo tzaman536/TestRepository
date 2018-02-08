@@ -90,7 +90,14 @@ namespace BondCalculator
 
         public void AppendToLog(string message)
         {
-            Log = _log + "\r\n" + message;
+            if (message.StartsWith("Time to calculate"))
+            {
+                Log = message  + "\r\n" + _log;
+            }
+            else
+            {
+                Log = _log + "\r\n" + message;
+            }
         }
 
 

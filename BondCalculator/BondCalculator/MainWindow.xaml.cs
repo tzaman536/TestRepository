@@ -49,7 +49,7 @@ namespace BondCalculator
             Bond.RequiredYield = 10;
             Bond.YearsToMaturity = 5;
             Bond.PaymentFrequency = "Semiannually";
-            Bond.InputPrice = 5208;
+            Bond.InputPrice = 640;
             Bond.CalculatedPrice = null;
             Bond.CalculatedYTM = null;
             Bond.Log = "Type price or required yield";
@@ -61,7 +61,8 @@ namespace BondCalculator
             Calculator calculator = new Calculator();
             calculator.Message += Calculator_Message;
             Bond.Log = null;
-            Bond.CalculatedPrice = calculator.CalcPrice(0.1, 5, 1000, .15);
+
+            Bond.CalculatedPrice = calculator.CalcPrice(Bond.Coupon/100, Bond.YearsToMaturity, Bond.FaceValue, Bond.RequiredYield/100, ((PaymentFrequency)Enum.Parse(typeof(PaymentFrequency), Bond.PaymentFrequency)));
         }
 
 
@@ -70,7 +71,7 @@ namespace BondCalculator
             Calculator calculator = new Calculator();
             calculator.Message += Calculator_Message;
             Bond.Log = null;
-            Bond.CalculatedYTM = calculator.CalcYield(0.10, 5, 1000, 1079.85);
+            Bond.CalculatedYTM = calculator.CalcYield(Bond.Coupon/100, Bond.YearsToMaturity, Bond.FaceValue, (double)Bond.InputPrice);
 
         }
 
