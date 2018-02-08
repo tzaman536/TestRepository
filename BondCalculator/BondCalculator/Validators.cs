@@ -14,12 +14,12 @@ namespace BondCalculator
         {
             try {
                 if (value == null)
-                    return new ValidationResult(false, "value cannot be empty.");
+                    return new ValidationResult(false, "Required.");
                 else
                 {
                     if (String.IsNullOrEmpty(value.ToString()))
                         return new ValidationResult
-                        (false, "value can not be empty.");
+                        (false, "Required.");
                 }
                 return ValidationResult.ValidResult;
             }

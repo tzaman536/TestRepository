@@ -45,7 +45,7 @@ namespace BondCalculator
 
 
             Bond.FaceValue = 1000;
-            Bond.Coupon = 5;
+            Bond.Coupon = null;
             Bond.RequiredYield = 10;
             Bond.YearsToMaturity = 5;
             Bond.PaymentFrequency = "Semiannually";
@@ -58,20 +58,31 @@ namespace BondCalculator
 
         private void calcPriceButton_Click(object sender, RoutedEventArgs e)
         {
+            BindingExpression binding = coupon.GetBindingExpression(TextBox.TextProperty);
+            binding.UpdateSource();
+
+            return;
+
             Calculator calculator = new Calculator();
             calculator.Message += Calculator_Message;
             Bond.Log = null;
 
-            Bond.CalculatedPrice = calculator.CalcPrice(Bond.Coupon/100, Bond.YearsToMaturity, Bond.FaceValue, Bond.RequiredYield/100, ((PaymentFrequency)Enum.Parse(typeof(PaymentFrequency), Bond.PaymentFrequency)));
+            Bond.CalculatedPrice = calculator.CalcPrice((double)Bond.Coupon/100, Bond.YearsToMaturity, Bond.FaceValue, Bond.RequiredYield/100, ((PaymentFrequency)Enum.Parse(typeof(PaymentFrequency), Bond.PaymentFrequency)));
         }
 
 
         private void calcYieldButton_Click(object sender, RoutedEventArgs e)
         {
+
+            BindingExpression binding = coupon.GetBindingExpression(TextBox.TextProperty);
+            binding.UpdateSource();
+
+            return;
+
             Calculator calculator = new Calculator();
             calculator.Message += Calculator_Message;
             Bond.Log = null;
-            Bond.CalculatedYTM = calculator.CalcYield(Bond.Coupon/100, Bond.YearsToMaturity, Bond.FaceValue, (double)Bond.InputPrice);
+            Bond.CalculatedYTM = calculator.CalcYield((double)Bond.Coupon/100, Bond.YearsToMaturity, Bond.FaceValue, (double)Bond.InputPrice);
 
         }
 

@@ -33,8 +33,8 @@ namespace BondCalculator
         }
 
 
-        private double _coupon;
-        public double Coupon
+        private double? _coupon;
+        public double? Coupon
         {
             get { return _coupon; }
             set { _coupon = value; Notify("Coupon"); }
