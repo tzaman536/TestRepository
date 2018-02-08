@@ -6,6 +6,57 @@
         xmlns:local="clr-namespace:BondCalculator"
         mc:Ignorable="d"
         Title="Bond Calculator" Height="800" Width="1100">
+    <Window.Resources>
+        <!--<ControlTemplate x:Key="validationErrorTemplate">
+            <DockPanel>
+                <TextBlock Foreground="Red" 
+
+            DockPanel.Dock="Top">!</TextBlock>
+                <AdornedElementPlaceholder 
+
+           x:Name="ErrorAdorner"
+
+        ></AdornedElementPlaceholder>
+            </DockPanel>
+        </ControlTemplate>-->
+        <ControlTemplate x:Key="validationErrorTemplate">
+            <DockPanel>
+                <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                    <Grid Width="12" Height="12">
+                        <Ellipse Width="12" Height="12" 
+
+            Fill="Red" HorizontalAlignment="Center" 
+
+            VerticalAlignment="Center"
+
+                     
+
+                     ></Ellipse>
+                        <TextBlock Foreground="White" FontWeight="Heavy" 
+
+            FontSize="8" HorizontalAlignment="Center" 
+
+            VerticalAlignment="Center" TextAlignment="Center"
+
+                       ToolTip="{Binding ElementName=ErrorAdorner, 
+                       Path=AdornedElement.(Validation.Errors)[0].ErrorContent}"
+
+                       >X</TextBlock>
+                    </Grid>
+                    <TextBlock Foreground="Red" FontWeight="12" Margin="2,0,0,0" 
+
+                   Text="{Binding ElementName=ErrorAdorner, 
+                   Path=AdornedElement.(Validation.Errors)[0].ErrorContent}"
+
+                   ></TextBlock>
+                </StackPanel>
+                <AdornedElementPlaceholder 
+
+        x:Name="ErrorAdorner" ></AdornedElementPlaceholder>
+            </DockPanel>
+        </ControlTemplate>
+
+    </Window.Resources>
     <Grid>
         <StackPanel Background="Silver">
             <Grid>
@@ -50,7 +101,25 @@
                 <TextBox x:Name="yearsToMaturity" Text="{Binding YearsToMaturity, Mode=TwoWay}" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="1,1,1,1" Width="50"/>
 
                 <Label Content="Coupon(%): " Grid.Row="4" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="1,1,1,1"/>
-                <TextBox x:Name="coupon" Text="{Binding Coupon, Mode=TwoWay}" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="1,1,1,1" Width="50"/>
+                <TextBox x:Name="coupon" 
+                         
+                         Grid.Row="4" 
+                         Grid.Column="2" 
+                         HorizontalAlignment="Left" 
+                         VerticalAlignment="Center" 
+                         Margin="1,1,1,1" 
+                         Width="50"
+                         Validation.ErrorTemplate="{StaticResource validationErrorTemplate}"
+                         >
+                    <TextBox.Text>
+                        <Binding Path="Coupon" Mode="TwoWay" 
+                                UpdateSourceTrigger="LostFocus">
+                                <Binding.ValidationRules>
+                                    <local:NameValidator></local:NameValidator>
+                                </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
                 <Label Content="Required Yield(%): " Grid.Row="5" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="1,1,1,1"/>
                 <TextBox x:Name="requiredYield" Text="{Binding RequiredYield, Mode=TwoWay}" Grid.Row="5" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="1,1,1,1" Width="50"/>
                 <Button x:Name="calcPriceButton" Content="Calculate Price" Click="calcPriceButton_Click" Grid.Row="5" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Center" 
