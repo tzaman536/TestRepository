@@ -18,8 +18,8 @@ namespace BondCalculator
             }
         }
 
-        private double _faceValue;
-        public double FaceValue
+        private double? _faceValue;
+        public double? FaceValue
         {
             get { return _faceValue; }
             set { _faceValue = value; Notify("FaceValue"); }
@@ -41,8 +41,8 @@ namespace BondCalculator
 
         }
 
-        private double _requiredYield;
-        public double RequiredYield
+        private double? _requiredYield;
+        public double? RequiredYield
         {
             get { return _requiredYield; }
             set { _requiredYield = value; Notify("RequiredYield"); }
@@ -63,8 +63,8 @@ namespace BondCalculator
             set { _calculatedYTM = value; Notify("CalculatedYTM"); }
         }
 
-        private int _yearsToMaturity;
-        public int YearsToMaturity
+        private int? _yearsToMaturity;
+        public int? YearsToMaturity
         {
             get { return _yearsToMaturity; }
             set { _yearsToMaturity = value; Notify("YearsToMaturity"); }

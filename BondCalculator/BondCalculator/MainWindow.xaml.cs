@@ -22,7 +22,7 @@ namespace BondCalculator
     public partial class MainWindow : Window
     {
 
-        public InputBond Bond = new InputBond();
+        public InputBond Bond;
 
 
 
@@ -33,57 +33,108 @@ namespace BondCalculator
             cbPaymentFrequency.Items.Add("Quarterly");
             cbPaymentFrequency.Items.Add("Annually");
 
-           
+
         }
 
         public MainWindow()
         {
             InitializeComponent();
             LoadPaymentFrequency();
+            Bond = new InputBond();
             DataContext = Bond;
 
 
 
             Bond.FaceValue = 1000;
-            Bond.Coupon = null;
-            Bond.RequiredYield = 10;
-            Bond.YearsToMaturity = 5;
             Bond.PaymentFrequency = "Semiannually";
-            Bond.InputPrice = 640;
+            /*
+            Bond.Coupon = null;
+            Bond.RequiredYield = null;
+            Bond.YearsToMaturity = null;
+            Bond.InputPrice = null;
             Bond.CalculatedPrice = null;
             Bond.CalculatedYTM = null;
+            */
             Bond.Log = "Type price or required yield";
+        }
+
+        private bool IsReadyToCalcPrice()
+        {
+
+            BindingExpression binding = coupon.GetBindingExpression(TextBox.TextProperty);
+            binding.UpdateSource();
+
+            binding = yearsToMaturity.GetBindingExpression(TextBox.TextProperty);
+            binding.UpdateSource();
+
+            binding = faceValue.GetBindingExpression(TextBox.TextProperty);
+            binding.UpdateSource();
+
+            binding = requiredYield.GetBindingExpression(TextBox.TextProperty);
+            binding.UpdateSource();
+
+            if (Bond.Coupon != null
+                && Bond.YearsToMaturity != null
+                && Bond.FaceValue != null
+                && Bond.RequiredYield != null
+            )
+            {
+                return true;
+            }
+
+            return false;
         }
 
 
         private void calcPriceButton_Click(object sender, RoutedEventArgs e)
         {
-            BindingExpression binding = coupon.GetBindingExpression(TextBox.TextProperty);
-            binding.UpdateSource();
-
-            return;
-
             Calculator calculator = new Calculator();
             calculator.Message += Calculator_Message;
             Bond.Log = null;
 
-            Bond.CalculatedPrice = calculator.CalcPrice((double)Bond.Coupon/100, Bond.YearsToMaturity, Bond.FaceValue, Bond.RequiredYield/100, ((PaymentFrequency)Enum.Parse(typeof(PaymentFrequency), Bond.PaymentFrequency)));
+            if (IsReadyToCalcPrice())
+            {
+                Bond.CalculatedPrice = calculator.CalcPrice((double)Bond.Coupon / 100, (int)Bond.YearsToMaturity, (double)Bond.FaceValue, (double)Bond.RequiredYield / 100, ((PaymentFrequency)Enum.Parse(typeof(PaymentFrequency), Bond.PaymentFrequency)));
+            }
+        }
+        private bool IsReadyToCalcYield()
+        {
+            BindingExpression binding = coupon.GetBindingExpression(TextBox.TextProperty);
+            binding.UpdateSource();
+
+            BindingExpression ytm = yearsToMaturity.GetBindingExpression(TextBox.TextProperty);
+            ytm.UpdateSource();
+
+            binding = faceValue.GetBindingExpression(TextBox.TextProperty);
+            binding.UpdateSource();
+
+            binding = inputPrice.GetBindingExpression(TextBox.TextProperty);
+            binding.UpdateSource();
+
+            if (Bond.Coupon != null
+                && Bond.YearsToMaturity != null
+                && Bond.FaceValue != null
+                && Bond.InputPrice != null
+            )
+            {
+                return true;
+            }
+
+
+            return false;
         }
 
 
         private void calcYieldButton_Click(object sender, RoutedEventArgs e)
         {
 
-            BindingExpression binding = coupon.GetBindingExpression(TextBox.TextProperty);
-            binding.UpdateSource();
-
-            return;
-
-            Calculator calculator = new Calculator();
-            calculator.Message += Calculator_Message;
-            Bond.Log = null;
-            Bond.CalculatedYTM = calculator.CalcYield((double)Bond.Coupon/100, Bond.YearsToMaturity, Bond.FaceValue, (double)Bond.InputPrice);
-
+            if (IsReadyToCalcYield())
+            {
+                Calculator calculator = new Calculator();
+                calculator.Message += Calculator_Message;
+                Bond.Log = null;
+                Bond.CalculatedYTM = calculator.CalcYield((double)Bond.Coupon / 100, (int)Bond.YearsToMaturity, (double)Bond.FaceValue, (double)Bond.InputPrice);
+            }
         }
 
 
