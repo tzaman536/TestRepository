@@ -129,7 +129,7 @@ namespace BondCalculatorCalc
 
                 if (Message != null)
                 {
-                    Message(string.Format("Time to calculate yield {0} for one position", stopWatch.Elapsed));
+                    Message(string.Format("Time to calculate yield for one position is {0}", stopWatch.Elapsed));
                 }
 
                 return coupon;
