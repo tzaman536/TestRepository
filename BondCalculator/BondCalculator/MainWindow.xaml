@@ -35,7 +35,7 @@
                     <RowDefinition Height="50"/>
                     <RowDefinition Height="50"/>
                     <RowDefinition Height="50"/>
-                    <RowDefinition Height="400"/>
+                    <RowDefinition Height="*"/>
                     <RowDefinition Height="5"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
@@ -168,6 +168,7 @@
                     Grid.Column="2"
                     Grid.ColumnSpan="3"
                     IsReadOnly="True"
+                    MinHeight="500"
                     />
 
                 <!--<Grid Grid.Row="8" Grid.Column="2">
