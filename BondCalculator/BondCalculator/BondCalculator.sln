@@ -5,13 +5,13 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BondCalculator", "BondCalculator.csproj", "{DD974522-CA8B-4D26-8AE9-EC9E5941139D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BondCalculatorModel", "..\BondCalculatorModel\BondCalculatorModel.csproj", "{528FC886-2B2E-4A1E-9CDA-DD2D6F54BA21}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BondCalculatorConsole", "BondCalculatorConsole\BondCalculatorConsole.csproj", "{14167E38-E8ED-4B02-B41C-2E56C3B964BC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BondCalculatorCalc", "BondCalculatorCalc\BondCalculatorCalc.csproj", "{42A0B995-6D54-45F8-9DC8-F77C955BA18A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BondCalculatorCalcTests", "BondCalculatorCalcTests\BondCalculatorCalcTests.csproj", "{32045C26-0794-4A0F-9DB6-8E4624F5DCAF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BondCalculatorModel", "BondCalculatorModel\BondCalculatorModel.csproj", "{528FC886-2B2E-4A1E-9CDA-DD2D6F54BA21}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,6 @@ Global
 		{DD974522-CA8B-4D26-8AE9-EC9E5941139D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD974522-CA8B-4D26-8AE9-EC9E5941139D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD974522-CA8B-4D26-8AE9-EC9E5941139D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{528FC886-2B2E-4A1E-9CDA-DD2D6F54BA21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{528FC886-2B2E-4A1E-9CDA-DD2D6F54BA21}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{528FC886-2B2E-4A1E-9CDA-DD2D6F54BA21}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{528FC886-2B2E-4A1E-9CDA-DD2D6F54BA21}.Release|Any CPU.Build.0 = Release|Any CPU
 		{14167E38-E8ED-4B02-B41C-2E56C3B964BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{14167E38-E8ED-4B02-B41C-2E56C3B964BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{14167E38-E8ED-4B02-B41C-2E56C3B964BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -39,6 +35,10 @@ Global
 		{32045C26-0794-4A0F-9DB6-8E4624F5DCAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32045C26-0794-4A0F-9DB6-8E4624F5DCAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{32045C26-0794-4A0F-9DB6-8E4624F5DCAF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{528FC886-2B2E-4A1E-9CDA-DD2D6F54BA21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{528FC886-2B2E-4A1E-9CDA-DD2D6F54BA21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{528FC886-2B2E-4A1E-9CDA-DD2D6F54BA21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{528FC886-2B2E-4A1E-9CDA-DD2D6F54BA21}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

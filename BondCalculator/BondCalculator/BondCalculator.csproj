@@ -25,7 +25,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationRevision>3</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -126,13 +126,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BondCalculatorModel\BondCalculatorModel.csproj">
-      <Project>{528fc886-2b2e-4a1e-9cda-dd2d6f54ba21}</Project>
-      <Name>BondCalculatorModel</Name>
-    </ProjectReference>
     <ProjectReference Include="BondCalculatorCalc\BondCalculatorCalc.csproj">
       <Project>{42a0b995-6d54-45f8-9dc8-f77c955ba18a}</Project>
       <Name>BondCalculatorCalc</Name>
+    </ProjectReference>
+    <ProjectReference Include="BondCalculatorModel\BondCalculatorModel.csproj">
+      <Project>{528fc886-2b2e-4a1e-9cda-dd2d6f54ba21}</Project>
+      <Name>BondCalculatorModel</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
